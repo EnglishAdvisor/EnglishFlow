@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1 Background — Unit 9</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0a0f1e;
+    font-family: 'Barlow', sans-serif;
+    min-height: 100vh;
+    position: relative;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: #0d1b2a;
+    padding: 14px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 2px solid #00b4d840;
+    position: relative;
+  }
+  .pill-title { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(28px, 5vw, 48px); font-weight: 700; color: #90c8e0; line-height: 1; }
+  .pill-title span { color: #00b4d8; font-size: clamp(14px, 2.5vw, 22px); font-weight: 600; display: block; letter-spacing: 0.06em; text-transform: uppercase; margin-top: 2px; }
+  .header-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+  .timer { background: #00b4d815; border: 1px solid #00b4d840; border-radius: 20px; padding: 4px 12px; font-size: 11px; color: #00b4d8; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; }
+  .icon-box { width: 48px; height: 48px; border: 1.5px solid #00b4d860; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .icon-box svg { width: 26px; height: 26px; stroke: #00b4d8; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* ── TRANSLATE WARNING ── */
+  .translate-warning {
+    background: #0d1b2a;
+    border-bottom: 1px solid #00b4d830;
+    padding: 6px 24px;
+    font-size: 11px;
+    color: #90c8e0;
+    text-align: center;
+  }
+  .translate-warning strong { color: #00b4d8; }
+  .translate-warning em { color: #90c8e0; }
+
+  /* ── STEPS ── */
+  .steps { display: flex; gap: 8px; padding: 10px 16px; flex-wrap: wrap; }
+  .step {
+    flex: 1; min-width: 120px;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+    background: #00b4d815; border: 1px solid #00b4d840; border-radius: 20px;
+    padding: 7px 10px; font-size: 12px; color: #90c8e0; font-weight: 500; text-align: center;
+  }
+  .step svg { width: 13px; height: 13px; stroke: #00b4d8; fill: none; stroke-width: 2; stroke-linecap: round; flex-shrink: 0; }
+
+  /* ── MAIN LAYOUT ── */
+  .content {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 12px;
+    padding: 0 16px 16px;
+  }
+
+  .left-col { display: flex; flex-direction: column; gap: 12px; }
+
+  /* text + image row */
+  .main-area {
+    background: #111827;
+    border-radius: 10px;
+    padding: 14px 16px;
+    display: grid;
+    grid-template-columns: 1fr 220px;
+    gap: 14px;
+  }
+
+  .zone-label { font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: #00b4d8; font-weight: 600; margin-bottom: 8px; }
+  .text-block { font-size: 12px; line-height: 1.65; color: #c8d8e8; }
+  .text-block p { margin-bottom: 7px; }
+
+  .hl {
+    color: #90c8e0; font-weight: 600; background: #00b4d818;
+    padding: 0 3px; border-radius: 3px; text-decoration: none;
+    border-bottom: 1px dashed #00b4d880; transition: background 0.2s, color 0.2s;
+  }
+  .hl:hover { background: #00b4d840; color: #fff; border-bottom-color: #00b4d8; }
+
+  .img-side { display: flex; flex-direction: column; gap: 10px; }
+  .platform-img { width: 100%; height: 190px; object-fit: cover; border-radius: 8px; border: 1px solid #00b4d830; }
+
+  .task-box {
+    flex: 1; background: #0a1628; border: 1px solid #00b4d840; border-radius: 8px;
+    padding: 10px 12px; display: flex; align-items: flex-start; gap: 8px;
+  }
+  .task-box svg { width: 16px; height: 16px; stroke: #00b4d8; fill: none; stroke-width: 1.5; flex-shrink: 0; margin-top: 2px; }
+  .task-box p { font-size: 11px; color: #90c8e0; font-style: italic; line-height: 1.45; }
+
+  /* ── RIGHT — keywords ── */
+  .zone-support {
+    background: #111827; border-radius: 10px; padding: 14px 14px;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .keyword-title { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 600; color: #90c8e0; text-transform: uppercase; letter-spacing: 0.08em; padding-bottom: 8px; border-bottom: 1px solid #00b4d830; margin-bottom: 2px; }
+  .keyword-item { padding: 6px 0; border-bottom: 1px solid #00b4d815; display: flex; flex-direction: column; gap: 3px; }
+  .keyword-item:last-child { border-bottom: none; }
+  .kw { font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 700; color: #00b4d8; letter-spacing: 0.04em; text-transform: uppercase; text-decoration: none; transition: color 0.2s; }
+  .kw:hover { color: #90c8e0; }
+  .kw-blank { font-size: 10px; color: #2a4060; letter-spacing: 0.1em; }
+  .kw-hint { font-size: 10px; color: #4a6a8a; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: #0d1b2a; padding: 10px 24px;
+    display: flex; align-items: center; justify-content: flex-end; gap: 10px;
+    border-top: 1px solid #00b4d830; margin-top: 4px;
+  }
+  .footer-icon svg { width: 22px; height: 22px; stroke: #00b4d8; fill: none; stroke-width: 1.5; }
+  .footer-text { font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 600; color: #00b4d8; letter-spacing: 0.06em; text-transform: uppercase; }
+
+  /* ── RESPONSIVE — mobile ── */
+  @media (max-width: 700px) {
+    .header { padding: 12px 16px; }
+    .steps { padding: 8px 12px; }
+    .step { font-size: 11px; min-width: 100px; }
+
+    .content {
+      grid-template-columns: 1fr;
+      padding: 0 12px 16px;
+    }
+
+    .main-area {
+      grid-template-columns: 1fr;
+    }
+
+    .img-side { flex-direction: row; flex-wrap: wrap; }
+    .platform-img { height: 180px; flex: 1; min-width: 200px; }
+    .task-box { flex: 1; min-width: 200px; }
+
+    .zone-support { margin-top: 0; }
+
+    .keywords-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+    .keyword-item { padding: 5px 0; }
+  }
+
+  @media (max-width: 420px) {
+    .pill-title { font-size: 24px; }
+    .pill-title span { font-size: 13px; }
+    .icon-box { width: 40px; height: 40px; }
+    .icon-box svg { width: 22px; height: 22px; }
+    .img-side { flex-direction: column; }
+    .platform-img { height: 160px; }
+    .keywords-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="pill-title">
+    1 — Background
+    <span>Natural Gas</span>
+  </div>
+  <div class="header-right">
+    <span class="timer">⏱ 15 min</span>
+    <div class="icon-box">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+    </div>
+  </div>
+</div>
+
+<div class="translate-warning">
+  🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em>
+</div>
+
+<div class="steps">
+  <div class="step">
+    <svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+    1. Listen to teacher's audio
+  </div>
+  <div class="step">
+    <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+    2. Read the text
+  </div>
+  <div class="step">
+    <svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+    3. Check highlighted words
+  </div>
+</div>
+
+<div class="content">
+  <div class="left-col">
+    <div class="main-area">
+      <div>
+        <div class="zone-label">Read & Highlight — click words for meaning & pronunciation</div>
+        <div class="text-block">
+          <p>Natural gas is a <a class="hl" href="https://dictionary.cambridge.org/dictionary/english-portuguese/fossil-fuel" target="_blank">fossil fuel</a> formed underground over millions of years from organic material. It is found in <a class="hl" href="https://dictionary.cambridge.org/dictionary/english-portuguese/reservoir" target="_blank">reservoirs</a> below the Earth's surface, often in the same areas as oil and coal deposits.</p>
+          <p>The main component of natural gas is <a class="hl" href="https://dictionary.cambridge.org/dictionary/english-portuguese/methane" target="_blank">methane</a> (CH₄). It also contains smaller amounts of ethane, propane, and butane, which are separated during processing and sold as valuable by-products.</p>
+          <p>Gas found alongside oil is called associated gas. Gas extracted from fields with little or no oil is called non-associated gas. After extraction, both types go to a <a class="hl" href="https://www.linguee.com.br/ingles-portugues/traducao/processing+plant.html" target="_blank">processing plant</a> to remove water and <a class="hl" href="https://dictionary.cambridge.org/dictionary/english-portuguese/impurity" target="_blank">impurities</a>.</p>
+          <p>Once cleaned, natural gas is transported through <a class="hl" href="https://dictionary.cambridge.org/dictionary/english-portuguese/pipeline" target="_blank">pipelines</a> underground and across borders. When pipelines are not possible — for example, across oceans — the gas is cooled to -160°C and becomes <a class="hl" href="https://www.linguee.com.br/ingles-portugues/traducao/lng.html" target="_blank">LNG</a> (Liquefied Natural Gas). Specially designed tanker ships carry LNG to markets worldwide.</p>
+          <p>Natural gas is one of the most versatile energy sources. It heats homes, generates electricity in power stations, and fuels industrial processes. It is also a key <a class="hl" href="https://www.linguee.com.br/ingles-portugues/traducao/feedstock.html" target="_blank">feedstock</a> for the petrochemical industry, used to produce fertilizers, plastics, and chemicals.</p>
+          <p>Compared with coal and oil, burning natural gas produces fewer <a class="hl" href="https://dictionary.cambridge.org/dictionary/english-portuguese/greenhouse-gas" target="_blank">greenhouse gas</a> emissions. This makes it an important part of the global energy transition. Today, natural gas supplies around 25% of the world's total energy.</p>
+          <p>Global demand for natural gas is growing rapidly, especially for LNG. Countries are investing in new pipelines, regasification terminals, and compression facilities to secure their energy supply and reduce dependence on coal.</p>
+        </div>
+      </div>
+
+      <div class="img-side">
+        <img class="platform-img" src="natural-gas-plant.jpg" alt="Natural gas processing plant"
+          onerror="this.style.display='none'">
+        <div class="task-box">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <p>🎙️ Record an audio reading the entire text and send it to your teacher on WhatsApp. Pay attention to the right pronunciation of the highlighted words.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="zone-support">
+    <div class="zone-label">Click to open Cambridge / Linguee</div>
+    <div class="keyword-title">Key words</div>
+    <div class="keywords-grid">
+      <div class="keyword-item">
+        <a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/fossil-fuel" target="_blank">Fossil Fuel</a>
+        <span class="kw-blank">_ _ _ _ _ _ _ _ _ _ _</span>
+        <span class="kw-hint">Coal, oil, or gas from ancient organic matter</span>
+      </div>
+      <div class="keyword-item">
+        <a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/reservoir" target="_blank">Reservoir</a>
+        <span class="kw-blank">_ _ _ _ _ _ _ _ _ _ _</span>
+        <span class="kw-hint">Underground rock formation holding gas or oil</span>
+      </div>
+      <div class="keyword-item">
+        <a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/methane" target="_blank">Methane</a>
+        <span class="kw-blank">_ _ _ _ _ _ _ _ _ _ _</span>
+        <span class="kw-hint">Main component of natural gas (CH₄)</span>
+      </div>
+      <div class="keyword-item">
+        <a class="kw" href="https://www.linguee.com.br/ingles-portugues/traducao/processing+plant.html" target="_blank">Processing Plant</a>
+        <span class="kw-blank">_ _ _ _ _ _ _ _ _ _ _</span>
+        <span class="kw-hint">Facility where raw gas is cleaned</span>
+      </div>
+      <div class="keyword-item">
+        <a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/impurity" target="_blank">Impurities</a>
+        <span class="kw-blank">_ _ _ _ _ _ _ _ _ _ _</span>
+        <span class="kw-hint">Unwanted substances removed from gas</span>
+      </div>
+      <div class="keyword-item">
+        <a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/pipeline" target="_blank">Pipeline</a>
+        <span class="kw-blank">_ _ _ _ _ _ _ _ _ _ _</span>
+        <span class="kw-hint">Pipe network for transporting gas</span>
+      </div>
+      <div class="keyword-item">
+        <a class="kw" href="https://www.linguee.com.br/ingles-portugues/traducao/lng.html" target="_blank">LNG</a>
+        <span class="kw-blank">_ _ _ _ _ _ _ _ _ _ _</span>
+        <span class="kw-hint">Liquefied Natural Gas — cooled to -160°C</span>
+      </div>
+      <div class="keyword-item">
+        <a class="kw" href="https://www.linguee.com.br/ingles-portugues/traducao/feedstock.html" target="_blank">Feedstock</a>
+        <span class="kw-blank">_ _ _ _ _ _ _ _ _ _ _</span>
+        <span class="kw-hint">Raw material for industrial production</span>
+      </div>
+      <div class="keyword-item">
+        <a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/greenhouse-gas" target="_blank">Greenhouse Gas</a>
+        <span class="kw-blank">_ _ _ _ _ _ _ _ _ _ _</span>
+        <span class="kw-hint">Gas that traps heat in the atmosphere</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-icon">
+    <svg viewBox="0 0 24 24"><path d="M12 2C9 8 7 13 7 16a5 5 0 0 0 10 0c0-3-2-8-5-14z"/><path d="M12 13c-1 1.5-1.5 3-1.5 4a1.5 1.5 0 0 0 3 0c0-1-0.5-2.5-1.5-4z"/></svg>
+  </div>
+  <div class="footer-text">Unit 9 — Natural Gas</div>
+</div>
+
+</body>
+</html>
