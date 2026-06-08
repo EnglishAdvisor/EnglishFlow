@@ -81,6 +81,36 @@
   .footer-text { font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 600; color: #0077b6; letter-spacing: 0.06em; text-transform: uppercase; }
 
   /* ANIMAÇÃO FINAL */
+
+  /* MODAL AUDIO */
+  .modal-overlay { display: none; position: fixed; inset: 0; background: #000000cc; z-index: 100; align-items: center; justify-content: center; padding: 16px; }
+  .modal-overlay.open { display: flex; }
+  .modal { background: #111827; border: 1px solid #0077b640; border-radius: 12px; width: 100%; max-width: 480px; max-height: 90vh; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 14px; }
+  .modal-title { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 700; color: #90c8e0; letter-spacing: 0.04em; }
+  .modal-subtitle { font-size: 11px; color: #4a6a8a; line-height: 1.5; margin-top: -8px; }
+  .modal-field { display: flex; flex-direction: column; gap: 6px; }
+  .modal-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #0077b6; font-weight: 600; }
+  .modal-input { background: #0a1628; border: 1px solid #0077b640; border-radius: 8px; padding: 10px 14px; color: #c8d8e8; font-family: 'Barlow', sans-serif; font-size: 14px; outline: none; transition: border 0.2s; width: 100%; }
+  .modal-input:focus { border-color: #0077b6; }
+  .recorder-box { background: #0a1628; border: 1px solid #0077b640; border-radius: 8px; padding: 14px; display: flex; flex-direction: column; gap: 10px; align-items: center; }
+  .recorder-status { font-size: 12px; color: #4a6a8a; text-align: center; }
+  .recorder-status.recording { color: #ef4444; font-weight: 600; }
+  .recorder-status.done { color: #2ecc71; font-weight: 600; }
+  .recorder-btn { display: flex; align-items: center; justify-content: center; gap: 6px; border: none; border-radius: 8px; padding: 10px 20px; font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.04em; cursor: pointer; transition: background 0.2s; width: 100%; }
+  .btn-record { background: #0077b6; color: #fff; }
+  .btn-record:hover { background: #005f92; }
+  .btn-stop { background: #ef4444; color: #fff; }
+  .btn-stop:hover { background: #cc0000; }
+  .audio-playback { width: 100%; height: 36px; accent-color: #0077b6; display: none; }
+  .modal-hint { background: #0077b615; border: 1px solid #0077b640; border-radius: 8px; padding: 10px 12px; font-size: 11px; color: #90c8e0; line-height: 1.5; }
+  .modal-actions { display: flex; gap: 8px; margin-top: 4px; }
+  .modal-cancel { flex: 1; background: none; border: 1px solid #0077b640; color: #4a6a8a; border-radius: 8px; padding: 9px; font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; transition: border 0.2s; }
+  .modal-cancel:hover { border-color: #0077b6; color: #90c8e0; }
+  .modal-send { flex: 2; display: flex; align-items: center; justify-content: center; gap: 6px; background: #25D366; color: #fff; border: none; border-radius: 8px; padding: 9px; font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+  .modal-send:hover { background: #1ebc58; }
+  .modal-send:disabled { background: #1a4a2a; color: #4a8a5a; cursor: not-allowed; }
+  .modal-send svg { width: 16px; height: 16px; fill: #fff; }
+
   @keyframes pulse-done { 0% { opacity:1; } 50% { opacity:0.15; } 100% { opacity:1; } }
   .time-done { animation: pulse-done 1.2s ease-in-out 3; }
 
@@ -160,10 +190,10 @@
         <img class="platform-img" src="https://englishadvisor.github.io/EnglishFlow/oil-gas/unit-8/4266150.jpg" alt="Offshore production platform" onerror="this.style.display='none'">
         <div class="task-box">
           <p>🎙️ Record an audio reading the entire text and send it to your teacher on WhatsApp. Pay attention to the right pronunciation of the highlighted words.</p>
-          <a class="whatsapp-btn" href="https://wa.me/5522999585058?text=Background%20%E2%9C%85%20Unit%208%20%E2%80%94%20Working%20Offshore" target="_blank">
-            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="#fff"/></svg>
-            Enviar áudio
-          </a>
+          <button class="whatsapp-btn" onclick="openAudioModal()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+            Gravar e enviar áudio
+          </button>
         </div>
       </div>
     </div>
@@ -217,6 +247,42 @@
   </div>
 </div>
 
+<!-- MODAL AUDIO -->
+<div class="modal-overlay" id="audioModal">
+  <div class="modal">
+    <div class="modal-title">🎙️ Gravar e enviar áudio</div>
+    <p class="modal-subtitle">Grave sua leitura do texto e envie para o teacher.</p>
+
+    <div class="modal-field">
+      <label class="modal-label">Seu nome</label>
+      <input type="text" class="modal-input" id="studentName" placeholder="Ex: Jonata Nascimento">
+    </div>
+
+    <div class="recorder-box">
+      <p class="recorder-status" id="recorderStatus">Pronto para gravar. O texto continua visível acima.</p>
+      <button class="recorder-btn btn-record" id="recordBtn" onclick="toggleRecording()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" width="16" height="16"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+        ▶ Iniciar gravação
+      </button>
+      <audio class="audio-playback" id="audioPlayback" controls></audio>
+    </div>
+
+    <div class="modal-hint">
+      📋 <strong>Como enviar:</strong> Após clicar em "Enviar no WhatsApp", uma mensagem de texto vai abrir. Envie essa mensagem primeiro e depois anexe o áudio gravado (disponível na galeria do seu celular).
+      <br><br>
+      👇 <em>O áudio deve ser enviado na mensagem seguinte à de texto.</em>
+    </div>
+
+    <div class="modal-actions">
+      <button class="modal-cancel" onclick="closeAudioModal()">Cancelar</button>
+      <button class="modal-send" id="sendBtn" onclick="sendToWhatsApp()" disabled>
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="#fff"/></svg>
+        Enviar no WhatsApp
+      </button>
+    </div>
+  </div>
+</div>
+
 <div class="footer">
   <div class="footer-left">Capsule 98 de 112 · Unit 8 — Working Offshore</div>
   <div class="footer-right">
@@ -254,5 +320,90 @@
     }
   }, 1000);
 </script>
+
+<script>
+  // LocalStorage para nome do aluno
+  window.addEventListener('load', function() {
+    const saved = localStorage.getItem('ef_student_name');
+    if (saved) document.getElementById('studentName').value = saved;
+  });
+
+  let mediaRecorder = null;
+  let audioChunks = [];
+  let isRecording = false;
+
+  function openAudioModal() {
+    document.getElementById('audioModal').classList.add('open');
+    // Restaura estado
+    document.getElementById('recorderStatus').textContent = 'Pronto para gravar. O texto continua visível acima.';
+    document.getElementById('recorderStatus').className = 'recorder-status';
+    document.getElementById('recordBtn').textContent = '▶ Iniciar gravação';
+    document.getElementById('recordBtn').className = 'recorder-btn btn-record';
+    document.getElementById('audioPlayback').style.display = 'none';
+    document.getElementById('sendBtn').disabled = true;
+    audioChunks = [];
+  }
+
+  function closeAudioModal() {
+    document.getElementById('audioModal').classList.remove('open');
+    if (mediaRecorder && isRecording) {
+      mediaRecorder.stop();
+      isRecording = false;
+    }
+  }
+
+  async function toggleRecording() {
+    if (!isRecording) {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        mediaRecorder = new MediaRecorder(stream);
+        audioChunks = [];
+        mediaRecorder.ondataavailable = e => audioChunks.push(e.data);
+        mediaRecorder.onstop = () => {
+          const blob = new Blob(audioChunks, { type: 'audio/webm' });
+          const url = URL.createObjectURL(blob);
+          const player = document.getElementById('audioPlayback');
+          player.src = url;
+          player.style.display = 'block';
+          document.getElementById('recorderStatus').textContent = '✅ Gravação concluída. Ouça antes de enviar.';
+          document.getElementById('recorderStatus').className = 'recorder-status done';
+          document.getElementById('recordBtn').innerHTML = '🔄 Gravar novamente';
+          document.getElementById('recordBtn').className = 'recorder-btn btn-record';
+          document.getElementById('sendBtn').disabled = false;
+          stream.getTracks().forEach(t => t.stop());
+        };
+        mediaRecorder.start();
+        isRecording = true;
+        document.getElementById('recorderStatus').textContent = '🔴 Gravando... Leia o texto em voz alta.';
+        document.getElementById('recorderStatus').className = 'recorder-status recording';
+        document.getElementById('recordBtn').innerHTML = '⏹ Parar gravação';
+        document.getElementById('recordBtn').className = 'recorder-btn btn-stop';
+      } catch(e) {
+        document.getElementById('recorderStatus').textContent = '❌ Microfone não autorizado. Permita o acesso nas configurações do browser.';
+      }
+    } else {
+      mediaRecorder.stop();
+      isRecording = false;
+    }
+  }
+
+  function sendToWhatsApp() {
+    const name = document.getElementById('studentName').value.trim() || 'Aluno';
+    localStorage.setItem('ef_student_name', name);
+    const now = new Date();
+    const date = now.toLocaleDateString('pt-BR');
+    const time = now.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+    const msg = [
+      '👤 ' + name,
+      '📅 ' + date + ' às ' + time,
+      '🎙️ Background — Unit 8 — Working Offshore',
+      '',
+      '👇 Áudio na mensagem seguinte'
+    ].join('\n');
+    window.open('https://wa.me/5522999585058?text=' + encodeURIComponent(msg), '_blank');
+    closeAudioModal();
+  }
+</script>
+
 </body>
 </html>
