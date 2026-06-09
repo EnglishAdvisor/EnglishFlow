@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gate — Pronunciation · Unit 8</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+  body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px}
+  .gate-card{background:#111827;border:1px solid rgba(0,119,182,0.25);border-radius:16px;padding:36px 32px;max-width:400px;width:100%}
+  .gate-header{text-align:center;margin-bottom:28px}
+  .gate-logo{font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:#0077b6;margin-bottom:16px}
+  .gate-title{font-family:'Barlow Condensed',sans-serif;font-size:38px;font-weight:700;color:#90c8e0;line-height:1;margin-bottom:4px}
+  .gate-unit{font-family:'Barlow Condensed',sans-serif;font-size:15px;color:#0077b6;text-transform:uppercase;letter-spacing:0.08em}
+  .gate-label{font-size:11px;color:#4a6a8a;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px}
+  .input-wrap{position:relative;margin-bottom:8px}
+  .gate-input{width:100%;background:#0a1628;border:1px solid rgba(0,119,182,0.25);border-radius:8px;padding:12px 42px 12px 14px;font-size:15px;color:#c8d8e8;font-family:'Barlow',sans-serif;outline:none;transition:border 0.2s}
+  .gate-input:focus{border-color:#0077b6}
+  .eye-btn{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:#4a6a8a;padding:2px;line-height:0}
+  .eye-btn:hover{color:#90c8e0}
+  .eye-btn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+  .enter-btn{width:100%;background:#0077b6;color:#fff;border:none;border-radius:8px;padding:12px;font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;transition:background 0.2s;margin-top:8px}
+  .enter-btn:hover{background:#005f99}
+  .error-msg{color:#ef4444;font-size:12px;text-align:center;margin-top:6px;display:none}
+  .gate-footer{text-align:center;margin-top:24px;font-size:10px;color:#2a4060;letter-spacing:0.08em;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="gate-card">
+  <div class="gate-header">
+    <div class="gate-logo">EnglishFlow · Oil &amp; Gas 1</div>
+    <div class="gate-title">Pronunciation</div>
+    <div class="gate-unit">Unit 8 — Working Offshore</div>
+  </div>
+  <div class="gate-label">Enter access password</div>
+  <div class="input-wrap">
+    <input class="gate-input" type="password" id="pwd" placeholder="••••••••••" autocomplete="off">
+    <button class="eye-btn" type="button" id="eyeBtn" aria-label="Show/hide password">
+      <svg id="eyeIcon" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+    </button>
+  </div>
+  <div class="error-msg" id="errMsg">Incorrect password. Try again.</div>
+  <button class="enter-btn" onclick="checkPwd()">Enter →</button>
+  <div class="gate-footer">Capsule 109 · Unit 8 — Working Offshore</div>
+</div>
+<script>
+  document.getElementById('pwd').addEventListener('keydown',function(e){if(e.key==='Enter')checkPwd();});
+  document.getElementById('eyeBtn').addEventListener('click',function(){
+    var inp=document.getElementById('pwd'),icon=document.getElementById('eyeIcon');
+    if(inp.type==='password'){inp.type='text';icon.innerHTML='<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/>';}
+    else{inp.type='password';icon.innerHTML='<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>';}
+  });
+  function checkPwd(){
+    if(document.getElementById('pwd').value==='offshore26'){window.location.href='capsule-109-pronunciation.html';}
+    else{var e=document.getElementById('errMsg');e.style.display='block';setTimeout(function(){e.style.display='none';},2500);}
+  }
+</script>
+</body>
+</html>

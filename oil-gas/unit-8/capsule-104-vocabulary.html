@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vocabulary · Unit 8 — Working Offshore</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
+.header{background:#0d1b2a;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid rgba(0,119,182,.25)}
+.pill-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:700;color:#90c8e0;line-height:1}
+.pill-title span{color:#0077b6;font-size:clamp(14px,2.5vw,22px);font-weight:600;display:block;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.icon-box{width:48px;height:48px;border:1.5px solid rgba(0,119,182,.4);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.icon-box svg{width:26px;height:26px;stroke:#0077b6;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.countdown-bar{background:#0d1b2a;border-bottom:1px solid rgba(0,119,182,.2);padding:8px 24px;display:flex;align-items:center;gap:12px}
+.countdown-display{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:#0077b6;letter-spacing:.08em;min-width:60px}
+.countdown-display.warning{color:#f59e0b}.countdown-display.urgent{color:#ef4444}
+.progress-track{flex:1;height:4px;background:rgba(0,119,182,.13);border-radius:2px;overflow:hidden}
+.progress-fill{height:100%;background:#0077b6;border-radius:2px;transition:width 1s linear,background .5s}
+.progress-fill.warning{background:#f59e0b}.progress-fill.urgent{background:#ef4444}
+.audio-bar{background:#0a1628;border-bottom:1px solid rgba(0,119,182,.2);padding:8px 24px;display:flex;align-items:center;gap:12px}
+.audio-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#0077b6;font-weight:600;white-space:nowrap}
+.audio-bar audio{flex:1;height:32px;accent-color:#0077b6}
+.translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(0,119,182,.2);padding:6px 24px;font-size:11px;color:#90c8e0;text-align:center}
+.translate-warning strong{color:#0077b6}
+.steps{display:flex;gap:6px;padding:8px 16px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.steps::-webkit-scrollbar{display:none}
+.step{flex-shrink:0;display:flex;align-items:center;gap:6px;background:rgba(0,119,182,.08);border:1px solid rgba(0,119,182,.25);border-radius:20px;padding:6px 12px;font-size:11.5px;color:#90c8e0;font-weight:500;white-space:nowrap}
+.step svg{width:13px;height:13px;stroke:#0077b6;fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0}
+.content{display:grid;grid-template-columns:1fr 340px;gap:12px;padding:0 16px 16px}
+.left-col{display:flex;flex-direction:column;gap:12px}
+.main-area{background:#111827;border-radius:10px;padding:14px 16px}
+.zone-label{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#0077b6;font-weight:600;margin-bottom:8px}
+.text-block{font-size:12px;line-height:1.65;color:#c8d8e8}
+.text-block p{margin-bottom:7px}
+.text-block ol{margin-left:16px;margin-bottom:7px}
+.text-block li{margin-bottom:5px}
+.act-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;color:#0077b6;text-transform:uppercase;letter-spacing:.06em;margin:10px 0 6px}
+.grammar-box{background:#0a1628;border:1px solid rgba(0,119,182,.3);border-left:3px solid #0077b6;border-radius:8px;padding:10px 12px;margin-bottom:10px}
+.grammar-box p{font-size:12px;color:#c8d8e8;line-height:1.65;margin-bottom:4px}
+.grammar-box code{font-family:'Barlow Condensed',sans-serif;font-size:13px;color:#90c8e0;background:rgba(0,119,182,.12);padding:1px 5px;border-radius:3px}
+.eq-row{display:flex;align-items:center;gap:8px;font-size:12px;color:#c8d8e8;margin-bottom:5px}
+.eq-sym{font-size:18px;color:#0077b6;font-weight:700;width:24px;text-align:center}
+.circuit-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px}
+.circuit-card{background:#0a1628;border:1px solid rgba(0,119,182,.2);border-radius:6px;padding:7px 9px;font-size:11px;color:#c8d8e8}
+.circuit-card strong{color:#90c8e0;display:block;font-size:12px;margin-bottom:2px}
+.task-box{background:#0a1628;border:1px solid rgba(0,119,182,.25);border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:8px}
+.task-box p{font-size:11px;color:#90c8e0;font-style:italic;line-height:1.45}
+.whatsapp-btn{display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;border:none;border-radius:8px;padding:7px 12px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:background .2s;width:100%}
+.whatsapp-btn:hover{background:#1ebc58}
+.whatsapp-btn svg{width:16px;height:16px;fill:#fff;flex-shrink:0}
+.zone-support{background:#111827;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:6px}
+.keyword-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;color:#90c8e0;text-transform:uppercase;letter-spacing:.08em;padding-bottom:8px;border-bottom:1px solid rgba(0,119,182,.2);margin-bottom:2px}
+.keywords-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.keyword-item{padding:6px 0;border-bottom:1px solid rgba(0,119,182,.09);display:flex;flex-direction:column;gap:3px}
+.keyword-item:last-child{border-bottom:none}
+.kw{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#0077b6;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;transition:color .2s}
+.kw:hover{color:#90c8e0}
+.kw-hint{font-size:10px;color:#4a6a8a;font-style:italic}
+.footer{background:#0d1b2a;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(0,119,182,.2);margin-top:4px}
+.footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a8a;letter-spacing:.04em}
+.footer-right{display:flex;align-items:center;gap:10px}
+.footer-icon svg{width:22px;height:22px;stroke:#0077b6;fill:none;stroke-width:1.5}
+.footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;color:#0077b6;letter-spacing:.06em;text-transform:uppercase}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);display:flex;align-items:center;justify-content:center;z-index:100;padding:16px}
+.modal-box{background:#111827;border:1px solid rgba(0,119,182,.25);border-radius:14px;padding:24px;max-width:480px;width:100%;max-height:85vh;overflow-y:auto;display:flex;flex-direction:column;gap:14px}
+.modal-title{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:#90c8e0}
+.modal-field label{font-size:11px;color:#0077b6;text-transform:uppercase;letter-spacing:.08em;font-weight:600;display:block;margin-bottom:5px}
+.modal-field textarea{width:100%;background:#0a1628;border:1px solid rgba(0,119,182,.25);border-radius:6px;padding:9px;font-size:12px;color:#c8d8e8;font-family:'Barlow',sans-serif;resize:vertical;min-height:80px;outline:none}
+.modal-field textarea:focus{border-color:#0077b6}
+.modal-field input[type="text"]{width:100%;background:#0a1628;border:1px solid rgba(0,119,182,.25);border-radius:6px;padding:9px;font-size:12px;color:#c8d8e8;font-family:'Barlow',sans-serif;outline:none}
+.modal-field input[type="text"]:focus{border-color:#0077b6}
+.modal-reminder{font-size:11px;color:#4a6a8a;font-style:italic;border-top:1px solid rgba(0,119,182,.13);padding-top:10px}
+.modal-actions{display:flex;gap:8px}
+.modal-cancel{flex:1;background:transparent;border:1px solid rgba(0,119,182,.25);color:#4a6a8a;border-radius:8px;padding:9px;font-family:'Barlow Condensed',sans-serif;font-size:14px;cursor:pointer}
+.modal-send{flex:2;display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;border:none;border-radius:8px;padding:9px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;cursor:pointer}
+.modal-send:hover{background:#1ebc58}
+.modal-send svg{width:15px;height:15px;fill:#fff}
+@media(max-width:700px){.content{grid-template-columns:1fr;padding:0 12px 16px}.steps{padding:6px 12px}.circuit-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="pill-title">Vocabulary<span>Working Offshore</span></div>
+  <div class="icon-box"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg></div>
+</div>
+<div class="countdown-bar">
+  <span class="countdown-display" id="timer">20:00</span>
+  <div class="progress-track"><div class="progress-fill" id="progress" style="width:100%"></div></div>
+</div>
+<div class="audio-bar">
+  <span class="audio-label">🎧 Teacher's audio — key words pronunciation</span>
+  <audio controls preload="none"><source src="teacher-audio-unit8-vocabulary.mp3" type="audio/mpeg">Audio not available.</audio>
+</div>
+<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
+<div class="steps">
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>1. Listen to teacher's audio</div>
+  <div class="step"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>2. Study the circuit vocabulary</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>3. Complete the activities</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.09 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3 1.19h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16h1v.92z"/></svg>4. Send via WhatsApp</div>
+</div>
+<div class="content">
+  <div class="left-col">
+    <div class="main-area">
+      <div class="zone-label">Vocabulary — Electricity &amp; Circuits · Unit 8</div>
+      <div class="text-block">
+        <div class="grammar-box">
+          <p><strong>Ohm's Law — The three key electrical equations:</strong></p>
+          <div class="eq-row"><span class="eq-sym">V</span> Voltage (V) = Current (I) × Resistance (R)</div>
+          <div class="eq-row"><span class="eq-sym">I</span> Current (I) = Voltage (V) ÷ Resistance (R)</div>
+          <div class="eq-row"><span class="eq-sym">R</span> Resistance (R) = Voltage (V) ÷ Current (I)</div>
+        </div>
+        <div class="circuit-grid">
+          <div class="circuit-card"><strong>Current (I)</strong>Flow of electrons through a conductor — measured in Amperes (A)</div>
+          <div class="circuit-card"><strong>Voltage (V)</strong>Electrical pressure that pushes current — measured in Volts (V)</div>
+          <div class="circuit-card"><strong>Resistance (R)</strong>Opposition to current flow — measured in Ohms (Ω)</div>
+          <div class="circuit-card"><strong>Circuit</strong>Closed loop that allows current to flow from source and back</div>
+          <div class="circuit-card"><strong>Multimeter</strong>Instrument that measures voltage, current and resistance</div>
+          <div class="circuit-card"><strong>Short Circuit</strong>Unintended low-resistance path — causes excess current &amp; danger</div>
+        </div>
+        <div style="margin-bottom:6px"><img src="multimeter-unit8-vocabulary.png" alt="Multimeter" style="width:100%;max-height:180px;object-fit:contain;background:#0a0f1e;border-radius:8px;display:block"></div>
+        <div class="act-title">Activity 1 — Calculate and match</div>
+        <ol>
+          <li>Voltage = 12 V, Resistance = 4 Ω. What is the current? ___</li>
+          <li>Current = 3 A, Resistance = 5 Ω. What is the voltage? ___</li>
+          <li>Voltage = 24 V, Current = 6 A. What is the resistance? ___</li>
+        </ol>
+        <div style="margin-bottom:4px"><img src="circuits-unit8-vocabulary.png" alt="Circuits" style="width:100%;max-height:180px;object-fit:contain;background:#0a0f1e;border-radius:8px;display:block"></div>
+        <p style="font-size:11px;color:#4a6a8a;font-style:italic;margin-bottom:8px;text-align:center">Circuits a b c d — identify components using the key words</p>
+        <div class="act-title">Activity 2 — Complete the sentences</div>
+        <ol>
+          <li>I use a <strong>___</strong> to check if there is voltage in the cable.</li>
+          <li>A <strong>___</strong> happens when current takes a wrong path.</li>
+          <li>High <strong>___</strong> in a cable means less current will flow.</li>
+          <li>Always check the <strong>___</strong> before working on electrical equipment.</li>
+        </ol>
+        <div class="act-title">Activity 3 — Discuss</div>
+        <ol>
+          <li>Have you ever used a multimeter? Describe the situation.</li>
+          <li>What are the safety risks of a short circuit on a platform?</li>
+        </ol>
+      </div>
+    </div>
+    <div class="task-box">
+      <p>🔧 Complete activities 1–3 and send your answers. Record a short audio for Activity 3.</p>
+      <button class="whatsapp-btn" onclick="openModal()"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Enviar respostas</button>
+    </div>
+  </div>
+  <div class="zone-support">
+    <div class="keyword-title">Key Words</div>
+    <div class="keywords-grid">
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/current" target="_blank">Current</a><span class="kw-hint">Flow of electrons (A)</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/resistance" target="_blank">Resistance</a><span class="kw-hint">Opposition to flow (Ω)</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/voltage" target="_blank">Voltage</a><span class="kw-hint">Electrical pressure (V)</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/circuit" target="_blank">Circuit</a><span class="kw-hint">Closed loop path</span></div>
+      <div class="keyword-item"><a class="kw" href="https://www.linguee.com.br/ingles-portugues/traducao/multimeter.html" target="_blank">Multimeter</a><span class="kw-hint">Measures V, I, R</span></div>
+      <div class="keyword-item"><a class="kw" href="https://www.linguee.com.br/ingles-portugues/traducao/short+circuit.html" target="_blank">Short Circuit</a><span class="kw-hint">Dangerous wrong path</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/ampere" target="_blank">Amps</a><span class="kw-hint">Unit of current (A)</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/ohm" target="_blank">Ohms</a><span class="kw-hint">Unit of resistance (Ω)</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/volt" target="_blank">Volts</a><span class="kw-hint">Unit of voltage (V)</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/battery" target="_blank">Battery</a><span class="kw-hint">Source of electric energy</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/buzzer" target="_blank">Buzzer</a><span class="kw-hint">Electrical alarm device</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/cell" target="_blank">Cell</a><span class="kw-hint">Single battery unit</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/lamp" target="_blank">Lamp</a><span class="kw-hint">Light source in circuit</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/motor" target="_blank">Motor</a><span class="kw-hint">Converts electricity to motion</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/switch" target="_blank">Switch</a><span class="kw-hint">Opens / closes circuit</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/wire" target="_blank">Wire</a><span class="kw-hint">Conducts electric current</span></div>
+    </div>
+  </div>
+</div>
+<div class="footer">
+  <div class="footer-left">Capsule 104 de 112 · Unit 8 — Working Offshore</div>
+  <div class="footer-right"><div class="footer-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg></div><div class="footer-text">Unit 8 — Working Offshore</div></div>
+</div>
+<div class="modal-overlay" id="modal" style="display:none">
+  <div class="modal-box">
+    <div class="modal-title">Vocabulary — Send your answers</div>
+    <div class="modal-field"><label>Your name</label><input type="text" id="studentName" placeholder="Type your name..."></div>
+    <div class="modal-field"><label>Activity 1 — Calculations (V, I, R)</label><textarea placeholder="1. I = 3A&#10;2. V = 15V&#10;3. R = 4Ω"></textarea></div>
+    <div class="modal-field"><label>Activity 2 — Completed sentences</label><textarea placeholder="1. multimeter&#10;2. short circuit&#10;3. resistance&#10;4. circuit"></textarea></div>
+    <div class="modal-field"><label>Activity 3 — Discussion answers</label><textarea placeholder="1. Yes, I used a multimeter when...&#10;2. A short circuit on a platform could..."></textarea></div>
+    <div class="modal-reminder">🎙️ Após enviar, mande um áudio respondendo a Activity 3 em inglês.</div>
+    <div class="modal-actions">
+      <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+      <button class="modal-send" onclick="sendWA()"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Send via WhatsApp</button>
+    </div>
+  </div>
+</div>
+<script>
+const TOTAL=20*60;let remaining=TOTAL;
+const iv=setInterval(function(){remaining--;const m=Math.floor(remaining/60).toString().padStart(2,'0'),s=(remaining%60).toString().padStart(2,'0');const el=document.getElementById('timer'),bar=document.getElementById('progress');el.textContent=m+':'+s;bar.style.width=((remaining/TOTAL)*100)+'%';el.className='countdown-display';bar.className='progress-fill';if(remaining<=0){clearInterval(iv);el.textContent='00:00';bar.style.width='0%';bar.classList.add('urgent');}else if(remaining<=60){el.classList.add('urgent');bar.classList.add('urgent');}else if(remaining<=180){el.classList.add('warning');bar.classList.add('warning');}},1000);
+function openModal(){
+  var saved=localStorage.getItem('ef_student_name');
+  if(saved)document.getElementById('studentName').value=saved;
+  document.getElementById('modal').style.display='flex';
+}
+function closeModal(){document.getElementById('modal').style.display='none';}
+function sendWA(){
+  var name=document.getElementById('studentName').value.trim()||'Aluno';
+  localStorage.setItem('ef_student_name',name);
+  var now=new Date();
+  var d=now.toLocaleDateString('pt-BR');
+  var h=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  var msg='👤 '+name+'\n📅 '+d+' às '+h+'\n🎙️ Vocabulary — Unit 8 — Working Offshore\n\n';
+  document.querySelectorAll('#modal .modal-field:not(:first-child)').forEach(function(f){
+    var ta=f.querySelector('textarea');
+    if(ta)msg+='📌 '+f.querySelector('label').textContent+':\n'+(ta.value||'(not answered)')+'\n\n';
+  });
+  msg+='👇 Áudio na mensagem seguinte';
+  window.open('https://wa.me/5522999585058?text='+encodeURIComponent(msg.trim()),'_blank');
+}
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+</script>
+</body>
+</html>
