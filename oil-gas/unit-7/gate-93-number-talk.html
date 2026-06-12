@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Gate · Number Talk · Unit 7 — Pipes and Pipelines</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;600&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px}
+.gate-box{background:#111827;border:1px solid rgba(127,179,211,.25);border-radius:16px;padding:32px 28px;max-width:380px;width:100%;text-align:center;display:flex;flex-direction:column;align-items:center;gap:18px}
+.gate-icon{width:56px;height:56px;border:2px solid rgba(127,179,211,.4);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.gate-icon svg{width:28px;height:28px;stroke:#7fb3d3;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.gate-label{font-size:10px;color:#7fb3d3;font-weight:600;text-transform:uppercase;letter-spacing:.14em}
+.gate-title{font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:700;color:#b0d0e8;line-height:1}
+.gate-sub{font-size:13px;color:#4a6a8a;line-height:1.5}
+.gate-input{width:100%;background:#0a1628;border:1px solid rgba(127,179,211,.25);border-radius:8px;padding:11px 14px;font-size:15px;color:#c8d8e8;font-family:'Barlow',sans-serif;outline:none;text-align:center;letter-spacing:.1em}
+.gate-input:focus{border-color:#7fb3d3}
+.gate-btn{width:100%;background:#7fb3d3;color:#0a0f1e;border:none;border-radius:8px;padding:12px;font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;cursor:pointer;transition:background .2s;letter-spacing:.06em}
+.gate-btn:hover{background:#b0d0e8}
+.gate-err{font-size:12px;color:#e74c3c;display:none}
+</style>
+</head>
+<body>
+<div class="gate-box">
+  <div class="gate-icon"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+  <div class="gate-label">Unit 7 — Pipes and Pipelines</div>
+  <div class="gate-title">Number Talk</div>
+  <div class="gate-sub">Enter your access password to continue.</div>
+  <input class="gate-input" type="password" id="pwd" placeholder="Password" onkeydown="if(event.key==='Enter')checkPwd()">
+  <button class="gate-btn" onclick="checkPwd()">Enter</button>
+  <span class="gate-err" id="errMsg">Incorrect password. Try again.</span>
+</div>
+<script>
+function checkPwd(){
+  if(document.getElementById('pwd').value==='offshore26'){window.location.href='capsule-93-number-talk.html';}
+  else{var e=document.getElementById('errMsg');e.style.display='block';setTimeout(function(){e.style.display='none';},2500);}
+}
+</script>
+</body>
+</html>
