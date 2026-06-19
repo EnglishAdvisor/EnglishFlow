@@ -120,9 +120,10 @@ body{background:#f0f0f0;font-family:'Barlow',sans-serif;min-height:100vh;display
 
 /* RESPONSIVE */
 @media(max-width:700px){
-  .content{grid-template-columns:1fr}
+  .content{grid-template-columns:1fr;display:flex;flex-direction:column}
   .expressions-grid{grid-template-columns:1fr}
-  .keywords{position:static;margin-top:0}
+  .keywords{position:static;margin-top:0;order:-1}
+  .left-col{order:1}
   .header{padding:12px 14px}
   .pill-title .main{font-size:22px}
 }
