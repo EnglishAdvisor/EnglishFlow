@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Working with Words · Unit 4 — Technology · Business Elementary</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#f0f0f0;font-family:'Barlow',sans-serif;min-height:100vh;display:flex;flex-direction:column}
+.header{background:#4a4f5a;padding:14px 20px;display:flex;align-items:center;justify-content:space-between}
+.pill-title .main{font-family:Georgia,serif;font-size:clamp(20px,4vw,36px);font-weight:700;color:#fff;line-height:1}
+.pill-title .sub{font-size:clamp(10px,1.8vw,13px);font-weight:600;color:#c8ccd4;text-transform:uppercase;letter-spacing:.12em;margin-top:3px;display:block}
+.header-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.level-badge{background:#f5a623;border-radius:6px;padding:4px 10px;display:flex;flex-direction:column;align-items:center}
+.level-badge .trail{font-size:9px;color:rgba(255,255,255,.85);text-transform:uppercase;letter-spacing:.1em;font-weight:600}
+.level-badge .level{font-size:12px;color:#fff;font-weight:700}
+.icon-box{width:38px;height:38px;border:1.5px solid rgba(255,255,255,.25);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.icon-box svg{width:18px;height:18px;stroke:#f5a623;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.teacher-bar{background:#3d4452;padding:6px 20px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,.06)}
+.teacher-btn{display:flex;align-items:center;gap:6px;background:#6b3fa0;border:none;border-radius:6px;padding:5px 12px;color:#fff;font-size:11px;font-weight:600;cursor:pointer}
+.teacher-btn svg{width:13px;height:13px;stroke:#fff;fill:none;stroke-width:2;flex-shrink:0}
+.teacher-label{font-size:10px;color:#9aa5b4;font-style:italic}
+.warn-bar{background:#3d4452;padding:5px 20px;font-size:11px;color:#c8ccd4;text-align:center;border-bottom:1px solid rgba(255,255,255,.06)}
+.warn-bar strong{color:#fff}
+.steps{display:flex;gap:6px;padding:8px 16px;overflow-x:auto;scrollbar-width:none;background:#fff;border-bottom:1px solid rgba(0,0,0,.07)}
+.steps::-webkit-scrollbar{display:none}
+.step{flex-shrink:0;display:flex;align-items:center;gap:5px;background:rgba(6,182,212,.07);border:1px solid rgba(6,182,212,.2);border-radius:20px;padding:5px 12px;font-size:11px;color:#0891b2;font-weight:500;white-space:nowrap}
+.step-num{background:#f5a623;color:#fff;border-radius:50%;width:16px;height:16px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;flex-shrink:0}
+.content{display:grid;grid-template-columns:1fr 220px;gap:12px;padding:12px 16px;flex:1}
+.left-col{display:flex;flex-direction:column;gap:12px}
+.card{background:#fff;border-radius:10px;padding:14px 16px;border:0.5px solid rgba(0,0,0,.08)}
+.act-title{font-size:11px;font-weight:700;color:#0891b2;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.audio-btn{display:inline-flex;align-items:center;gap:4px;background:#4a4f5a;color:#fff;border:none;border-radius:5px;padding:3px 9px;font-size:10px;font-weight:600;cursor:pointer;flex-shrink:0}
+.instruction{background:rgba(6,182,212,.05);border-left:3px solid #0891b2;padding:7px 10px;font-size:11px;color:#2C3E50;line-height:1.6;margin-bottom:10px}
+.instruction strong{color:#0891b2}
+.reading-box{background:#f0fdfe;border:1px solid rgba(6,182,212,.15);border-radius:8px;padding:12px 14px;margin-bottom:10px}
+.reading-headline{font-size:18px;font-weight:700;color:#2C3E50;margin-bottom:8px;text-transform:uppercase;letter-spacing:.04em}
+.reading-intro{font-size:11px;color:#666;font-style:italic;margin-bottom:8px;line-height:1.6}
+.reading-text{font-size:11px;color:#2C3E50;line-height:1.8}
+.reading-text strong{color:#0891b2}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:6px;margin-bottom:10px}
+.vocab-item{background:#f0fdfe;border:1px solid rgba(6,182,212,.15);border-radius:6px;padding:7px 10px;display:flex;flex-direction:column;gap:2px}
+.vocab-word{font-size:12px;font-weight:700;color:#0891b2}
+.vocab-def{font-size:10px;color:#666;font-style:italic}
+.match-grid{display:flex;flex-direction:column;gap:7px;margin-bottom:10px}
+.match-row{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:7px;border:1px solid rgba(0,0,0,.07);background:#fafafa;transition:all .2s}
+.match-row.correct{background:#f0fdf4;border-color:#16a34a}
+.match-row.wrong{background:#fef2f2;border-color:#dc2626}
+.match-num{font-size:12px;font-weight:700;color:#f5a623;min-width:18px;flex-shrink:0}
+.match-text{flex:1;font-size:12px;color:#2C3E50}
+.match-select{border:1px solid rgba(6,182,212,.25);border-radius:5px;padding:3px 7px;font-size:11px;color:#2C3E50;background:#fff;outline:none}
+.match-icon{font-size:13px;min-width:16px;text-align:center;font-weight:700}
+.fill-box{display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
+.fill-row{display:flex;align-items:center;gap:6px;font-size:12px;color:#2C3E50;flex-wrap:wrap;padding:6px 10px;border-radius:7px;border:1px solid rgba(0,0,0,.07);background:#fafafa;transition:all .2s}
+.fill-row.correct{background:#f0fdf4;border-color:#16a34a}
+.fill-row.wrong{background:#fef2f2;border-color:#dc2626}
+.fill-num{font-size:12px;font-weight:700;color:#f5a623;min-width:18px;flex-shrink:0}
+.fill-input{border:none;border-bottom:2px solid #0891b2;background:transparent;font-size:12px;color:#0891b2;font-weight:600;width:100px;outline:none;padding:2px 4px;text-align:center}
+.fill-input::placeholder{color:#bbb;font-weight:400}
+.fill-icon{font-size:13px;font-weight:700;min-width:16px;text-align:center}
+.check-btn{background:#4a4f5a;color:#fff;border:none;border-radius:6px;padding:7px 16px;font-size:12px;font-weight:600;cursor:pointer;margin-top:4px}
+.check-btn:hover{background:#3d4452}
+.score{font-size:11px;font-weight:700;margin-top:7px;display:none;padding:5px 8px;border-radius:5px}
+.score.perfect{color:#16a34a;background:#f0fdf4}
+.score.partial{color:#b45309;background:#fffbeb}
+.task-box{background:#fff8ee;border:1px solid rgba(245,166,35,.3);border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:8px}
+.task-box p{font-size:11px;color:#92400e;font-style:italic;line-height:1.5}
+.wa-btn{display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;border:none;border-radius:8px;padding:9px;font-size:12px;font-weight:600;cursor:pointer;width:100%;min-height:44px}
+.wa-btn:hover{background:#1ebc58}
+.keywords{background:#fff;border-radius:10px;padding:14px;border:0.5px solid rgba(0,0,0,.08);align-self:start;position:sticky;top:12px}
+.kw-title{font-size:11px;font-weight:700;color:#0891b2;text-transform:uppercase;letter-spacing:.08em;padding-bottom:7px;border-bottom:2px solid #f5a623;margin-bottom:8px}
+.kw-item{padding:5px 0;border-bottom:1px solid rgba(0,0,0,.05);display:flex;flex-direction:column;gap:2px}
+.kw-item:last-child{border-bottom:none}
+.kw-word{font-size:12px;font-weight:700;color:#0891b2;text-transform:uppercase;letter-spacing:.04em;text-decoration:none;display:block}
+.kw-word:hover{color:#f5a623;text-decoration:underline}
+.kw-hint{font-size:10px;color:#888;font-style:italic}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;z-index:100;padding:16px}
+.modal-box{background:#fff;border-radius:12px;padding:20px;max-width:460px;width:100%;max-height:85vh;overflow-y:auto;display:flex;flex-direction:column;gap:12px}
+.modal-title{font-family:Georgia,serif;font-size:18px;font-weight:700;color:#4a4f5a}
+.modal-field label{font-size:10px;color:#0891b2;text-transform:uppercase;letter-spacing:.08em;font-weight:700;display:block;margin-bottom:4px}
+.modal-field input,.modal-field textarea{width:100%;border:1px solid rgba(6,182,212,.25);border-radius:6px;padding:8px;font-size:12px;color:#2C3E50;font-family:'Barlow',sans-serif;outline:none}
+.modal-field input:focus,.modal-field textarea:focus{border-color:#0891b2}
+.modal-field textarea{resize:vertical;min-height:70px}
+.modal-reminder{font-size:10px;color:#888;font-style:italic;border-top:1px solid rgba(0,0,0,.08);padding-top:8px}
+.modal-actions{display:flex;gap:8px}
+.modal-cancel{flex:1;background:transparent;border:1px solid rgba(0,0,0,.15);color:#888;border-radius:7px;padding:8px;font-size:13px;cursor:pointer}
+.modal-send{flex:2;display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;border:none;border-radius:7px;padding:8px;font-size:13px;font-weight:700;cursor:pointer}
+.footer{background:#4a4f5a;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;margin-top:4px}
+.footer-left{font-size:11px;color:#c8ccd4;letter-spacing:.04em}
+.footer-right{display:flex;align-items:center;gap:8px}
+.footer-right svg{width:18px;height:18px;stroke:#f5a623;fill:none;stroke-width:1.5}
+.footer-text{font-family:Georgia,serif;font-size:13px;font-weight:700;color:#fff}
+@media(max-width:700px){
+  .content{grid-template-columns:1fr;display:flex;flex-direction:column}
+  .keywords{position:static;order:-1}
+  .left-col{order:1}
+  .vocab-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:480px){
+  .steps{padding:6px 10px}
+  .step{font-size:10px;padding:4px 9px}
+  .content{padding:10px 12px;gap:10px}
+  .card{padding:12px 13px}
+  .wa-btn{min-height:48px}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="pill-title">
+    <div class="main">Working with Words</div>
+    <span class="sub">Unit 4 — Technology</span>
+  </div>
+  <div class="header-right">
+    <div class="level-badge">
+      <span class="trail">Business Result</span>
+      <span class="level">Elementary</span>
+    </div>
+    <div class="icon-box">
+      <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+    </div>
+  </div>
+</div>
+
+<div class="teacher-bar">
+  <button class="teacher-btn" onclick="playTeacher()">
+    <svg viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 1 3 3v7a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+    Teacher's Note
+  </button>
+  <span class="teacher-label">Listen before you start</span>
+  <audio id="teacher-audio" src="/EnglishFlow/business/elementary/teacher-notes/capsule-22-teacher-note.mp3" preload="none"></audio>
+</div>
+
+<div class="warn-bar">This page is in English on purpose. <strong>Please do not translate it.</strong></div>
+
+<div class="steps">
+  <div class="step"><span class="step-num">1</span>Practise the keywords</div>
+  <div class="step"><span class="step-num">2</span>Read the text</div>
+  <div class="step"><span class="step-num">3</span>Do Activity 1 and 2</div>
+  <div class="step"><span class="step-num">4</span>Send your answers</div>
+</div>
+
+<div class="content">
+  <div class="left-col">
+
+    <!-- READING -->
+    <div class="card">
+      <div class="act-title">
+        Read — Money on the Move
+        <button class="audio-btn" onclick="playTrack('t41')">▶ Track 4.1</button>
+      </div>
+      <audio id="t41" src="/EnglishFlow/business/elementary/tracks/br2_001_a4_1.mp3" preload="none"></audio>
+      <div class="instruction">
+        <strong>Step 1:</strong> Read the text &nbsp;·&nbsp;
+        <strong>Step 2:</strong> Listen to Track 4.1 &nbsp;·&nbsp;
+        <strong>Step 3:</strong> Answer: Why is mobile banking useful?
+      </div>
+      <div class="reading-box">
+        <div class="reading-headline">Money on the Move</div>
+        <div class="reading-intro">All over the world more and more people use mobile banking.</div>
+        <div class="reading-text">
+          To start, just <strong>download</strong> your bank's mobile banking <strong>app</strong> onto your smartphone or tablet and register your mobile device. If you don't want to download the app, you can access the bank's website on your tablet or laptop.<br><br>
+          With some banks in the UK, you can use the Paym payment system to send and receive money to and from your friends and family. You don't need their bank account information, only their mobile phone number.<br><br>
+          With mobile banking, you can:<br>
+          • <strong>Log in</strong> and access your <strong>bank account</strong> anytime you have <strong>Internet access</strong>.<br>
+          • See all your accounts and move money easily between accounts.
+        </div>
+      </div>
+    </div>
+
+    <!-- VOCABULARY -->
+    <div class="card">
+      <div class="act-title">Technology Vocabulary</div>
+      <div class="vocab-grid">
+        <div class="vocab-item"><span class="vocab-word">download</span><span class="vocab-def">save from internet to device</span></div>
+        <div class="vocab-item"><span class="vocab-word">app</span><span class="vocab-def">software application</span></div>
+        <div class="vocab-item"><span class="vocab-word">log in</span><span class="vocab-def">enter username & password</span></div>
+        <div class="vocab-item"><span class="vocab-word">register</span><span class="vocab-def">create an account</span></div>
+        <div class="vocab-item"><span class="vocab-word">username</span><span class="vocab-def">your name/ID to log in</span></div>
+        <div class="vocab-item"><span class="vocab-word">password</span><span class="vocab-def">secret word to log in</span></div>
+        <div class="vocab-item"><span class="vocab-word">screen</span><span class="vocab-def">the display of a device</span></div>
+        <div class="vocab-item"><span class="vocab-word">battery</span><span class="vocab-def">power source of a device</span></div>
+        <div class="vocab-item"><span class="vocab-word">button</span><span class="vocab-def">something you click/press</span></div>
+        <div class="vocab-item"><span class="vocab-word">link</span><span class="vocab-def">clickable connection to a page</span></div>
+      </div>
+    </div>
+
+    <!-- ACTIVITY 1 -->
+    <div class="card">
+      <div class="act-title">
+        Activity 1 — Complete the phrases
+        <button class="audio-btn" onclick="playTrack('t42')">▶ Track 4.2</button>
+      </div>
+      <audio id="t42" src="/EnglishFlow/business/elementary/tracks/br2_001_a4_2.mp3" preload="none"></audio>
+      <div class="instruction">
+        <strong>Step 1:</strong> Listen to Track 4.2 &nbsp;·&nbsp;
+        <strong>Step 2:</strong> Complete each phrase with the correct word &nbsp;·&nbsp;
+        <strong>Step 3:</strong> Click Check answers
+      </div>
+      <div class="fill-box">
+        <div class="fill-row" id="frow1">
+          <span class="fill-num">1</span>
+          Log in with your <input class="fill-input" id="f1" placeholder="word..."> and <input class="fill-input" id="f1b" placeholder="word...">.
+          <span class="fill-icon" id="fi1"></span>
+        </div>
+        <div class="fill-row" id="frow2">
+          <span class="fill-num">2</span>
+          Press the Paym <input class="fill-input" id="f2" placeholder="word..."> or click on the Paym <input class="fill-input" id="f2b" placeholder="word...">.
+          <span class="fill-icon" id="fi2"></span>
+        </div>
+        <div class="fill-row" id="frow3">
+          <span class="fill-num">3</span>
+          On the next <input class="fill-input" id="f3" placeholder="word..."> you can enter the details.
+          <span class="fill-icon" id="fi3"></span>
+        </div>
+        <div class="fill-row" id="frow4">
+          <span class="fill-num">4</span>
+          It's a bit like sending a <input class="fill-input" id="f4" placeholder="word...">.
+          <span class="fill-icon" id="fi4"></span>
+        </div>
+        <div class="fill-row" id="frow5">
+          <span class="fill-num">5</span>
+          Select someone from your <input class="fill-input" id="f5" placeholder="word...">.
+          <span class="fill-icon" id="fi5"></span>
+        </div>
+        <div class="fill-row" id="frow6">
+          <span class="fill-num">6</span>
+          The <input class="fill-input" id="f6" placeholder="word..."> is low. There's a <input class="fill-input" id="f6b" placeholder="word..."> over here.
+          <span class="fill-icon" id="fi6"></span>
+        </div>
+      </div>
+      <button class="check-btn" onclick="checkFill()">Check answers</button>
+      <div class="score" id="fill-score"></div>
+    </div>
+
+    <!-- ACTIVITY 2 -->
+    <div class="card">
+      <div class="act-title">Activity 2 — Match verbs to nouns</div>
+      <div class="instruction">
+        <strong>Match</strong> each verb (1–10) to the correct noun phrase (a–j)
+      </div>
+      <div class="match-grid">
+        <div class="match-row" id="mrow1"><span class="match-num">1</span><span class="match-text">access</span><select class="match-select" id="m1"><option value="">—</option><option value="c">a. a battery / a phone</option><option value="b">b. a button / a link</option><option value="c">c. a contact / an account</option><option value="d">d. a device / for a service</option><option value="e">e. a text message / money</option><option value="f">f. a website / an account</option><option value="g">g. an account / a device</option><option value="h">h. an account / a website</option><option value="i">i. an app</option><option value="j">j. the details / a phone number</option></select><span class="match-icon" id="mi1"></span></div>
+        <div class="match-row" id="mrow2"><span class="match-num">2</span><span class="match-text">charge / recharge</span><select class="match-select" id="m2"><option value="">—</option><option value="a">a. a battery / a phone</option><option value="b">b. a button / a link</option><option value="c">c. a contact / an account</option><option value="d">d. a device / for a service</option><option value="e">e. a text message / money</option><option value="f">f. a website / an account</option><option value="g">g. an account / a device</option><option value="h">h. an account / a website</option><option value="i">i. an app</option><option value="j">j. the details / a phone number</option></select><span class="match-icon" id="mi2"></span></div>
+        <div class="match-row" id="mrow3"><span class="match-num">3</span><span class="match-text">click on</span><select class="match-select" id="m3"><option value="">—</option><option value="a">a. a battery / a phone</option><option value="b">b. a button / a link</option><option value="c">c. a contact / an account</option><option value="d">d. a device / for a service</option><option value="e">e. a text message / money</option><option value="f">f. a website / an account</option><option value="g">g. an account / a device</option><option value="h">h. an account / a website</option><option value="i">i. an app</option><option value="j">j. the details / a phone number</option></select><span class="match-icon" id="mi3"></span></div>
+        <div class="match-row" id="mrow4"><span class="match-num">4</span><span class="match-text">download</span><select class="match-select" id="m4"><option value="">—</option><option value="a">a. a battery / a phone</option><option value="b">b. a button / a link</option><option value="c">c. a contact / an account</option><option value="d">d. a device / for a service</option><option value="e">e. a text message / money</option><option value="f">f. a website / an account</option><option value="g">g. an account / a device</option><option value="h">h. an account / a website</option><option value="i">i. an app</option><option value="j">j. the details / a phone number</option></select><span class="match-icon" id="mi4"></span></div>
+        <div class="match-row" id="mrow5"><span class="match-num">5</span><span class="match-text">key in / enter</span><select class="match-select" id="m5"><option value="">—</option><option value="a">a. a battery / a phone</option><option value="b">b. a button / a link</option><option value="c">c. a contact / an account</option><option value="d">d. a device / for a service</option><option value="e">e. a text message / money</option><option value="f">f. a website / an account</option><option value="g">g. an account / a device</option><option value="h">h. an account / a website</option><option value="i">i. an app</option><option value="j">j. the details / a phone number</option></select><span class="match-icon" id="mi5"></span></div>
+        <div class="match-row" id="mrow6"><span class="match-num">6</span><span class="match-text">log in (to) / log out (of)</span><select class="match-select" id="m6"><option value="">—</option><option value="a">a. a battery / a phone</option><option value="b">b. a button / a link</option><option value="c">c. a contact / an account</option><option value="d">d. a device / for a service</option><option value="e">e. a text message / money</option><option value="f">f. a website / an account</option><option value="g">g. an account / a device</option><option value="h">h. an account / a website</option><option value="i">i. an app</option><option value="j">j. the details / a phone number</option></select><span class="match-icon" id="mi6"></span></div>
+        <div class="match-row" id="mrow7"><span class="match-num">7</span><span class="match-text">register</span><select class="match-select" id="m7"><option value="">—</option><option value="a">a. a battery / a phone</option><option value="b">b. a button / a link</option><option value="c">c. a contact / an account</option><option value="d">d. a device / for a service</option><option value="e">e. a text message / money</option><option value="f">f. a website / an account</option><option value="g">g. an account / a device</option><option value="h">h. an account / a website</option><option value="i">i. an app</option><option value="j">j. the details / a phone number</option></select><span class="match-icon" id="mi7"></span></div>
+        <div class="match-row" id="mrow8"><span class="match-num">8</span><span class="match-text">select</span><select class="match-select" id="m8"><option value="">—</option><option value="a">a. a battery / a phone</option><option value="b">b. a button / a link</option><option value="c">c. a contact / an account</option><option value="d">d. a device / for a service</option><option value="e">e. a text message / money</option><option value="f">f. a website / an account</option><option value="g">g. an account / a device</option><option value="h">h. an account / a website</option><option value="i">i. an app</option><option value="j">j. the details / a phone number</option></select><span class="match-icon" id="mi8"></span></div>
+        <div class="match-row" id="mrow9"><span class="match-num">9</span><span class="match-text">send / receive</span><select class="match-select" id="m9"><option value="">—</option><option value="a">a. a battery / a phone</option><option value="b">b. a button / a link</option><option value="c">c. a contact / an account</option><option value="d">d. a device / for a service</option><option value="e">e. a text message / money</option><option value="f">f. a website / an account</option><option value="g">g. an account / a device</option><option value="h">h. an account / a website</option><option value="i">i. an app</option><option value="j">j. the details / a phone number</option></select><span class="match-icon" id="mi9"></span></div>
+        <div class="match-row" id="mrow10"><span class="match-num">10</span><span class="match-text">link</span><select class="match-select" id="m10"><option value="">—</option><option value="a">a. a battery / a phone</option><option value="b">b. a button / a link</option><option value="c">c. a contact / an account</option><option value="d">d. a device / for a service</option><option value="e">e. a text message / money</option><option value="f">f. a website / an account</option><option value="g">g. an account / a device</option><option value="h">h. an account / a website</option><option value="i">i. an app</option><option value="j">j. the details / a phone number</option></select><span class="match-icon" id="mi10"></span></div>
+      </div>
+      <button class="check-btn" onclick="checkMatch()">Check answers</button>
+      <div class="score" id="match-score"></div>
+    </div>
+
+    <!-- TASK BOX -->
+    <div class="task-box">
+      <p>✍️ Write your answers to Activities 1 and 2 — or 🎙️ record yourself using 3 technology verbs in sentences about your work. Send via WhatsApp.</p>
+      <button class="wa-btn" onclick="openModal()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+        Send via WhatsApp
+      </button>
+    </div>
+
+  </div>
+
+  <!-- KEYWORDS -->
+  <div class="keywords">
+    <div class="kw-title">Key Words</div>
+    <div class="kw-item"><a class="kw-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/download" target="_blank">Download</a><span class="kw-hint">Save from internet</span></div>
+    <div class="kw-item"><a class="kw-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/app" target="_blank">App</a><span class="kw-hint">Software application</span></div>
+    <div class="kw-item"><a class="kw-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/log-in" target="_blank">Log in</a><span class="kw-hint">Enter your account</span></div>
+    <div class="kw-item"><a class="kw-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/register" target="_blank">Register</a><span class="kw-hint">Create a new account</span></div>
+    <div class="kw-item"><a class="kw-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/password" target="_blank">Password</a><span class="kw-hint">Secret word to access</span></div>
+    <div class="kw-item"><a class="kw-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/battery" target="_blank">Battery</a><span class="kw-hint">Power source of device</span></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-left">Capsule 22 of 82 · Unit 4 — Technology · Business Elementary</div>
+  <div class="footer-right">
+    <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+    <span class="footer-text">Business Result</span>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" style="display:none">
+  <div class="modal-box">
+    <div class="modal-title">Send your answers</div>
+    <div class="modal-field">
+      <label>Your name</label>
+      <input type="text" id="studentName" placeholder="Type your name..." autocomplete="off">
+    </div>
+    <div class="modal-field">
+      <label>Activity 1 — Complete phrases (write: 1=username/password...)</label>
+      <textarea id="act1" placeholder="1= , 2= , 3= , 4= , 5= , 6="></textarea>
+    </div>
+    <div class="modal-field">
+      <label>Activity 2 — Match verbs to nouns (write: 1=c, 2=a...)</label>
+      <textarea id="act2" placeholder="1= , 2= , 3= , 4= , 5= , 6= , 7= , 8= , 9= , 10="></textarea>
+    </div>
+    <div class="modal-reminder">🎙️ After sending, record yourself using 3 tech verbs in sentences and send in the same conversation.</div>
+    <div class="modal-actions">
+      <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+      <button class="modal-send" onclick="sendWA()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+        Send via WhatsApp
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+function playTeacher(){document.getElementById('teacher-audio').play().catch(function(){});}
+function playTrack(id){document.getElementById(id).play().catch(function(){});}
+
+// Activity 1 answers
+var fillAnswers={
+  f1:'username',f1b:'password',
+  f2:'button',f2b:'link',
+  f3:'screen',
+  f4:'text message',
+  f5:'contact list',
+  f6:'battery',f6b:'power point'
+};
+function checkFill(){
+  var correct=0;
+  var total=0;
+  ['1','2','3','4','5','6'].forEach(function(n){
+    var row=document.getElementById('frow'+n);
+    var icon=document.getElementById('fi'+n);
+    var v1=document.getElementById('f'+n)?document.getElementById('f'+n).value.trim().toLowerCase():'';
+    var v1b=document.getElementById('f'+n+'b')?document.getElementById('f'+n+'b').value.trim().toLowerCase():'';
+    var a1=fillAnswers['f'+n]||'';
+    var a1b=fillAnswers['f'+n+'b']||'';
+    var ok=v1===a1&&(a1b===''||v1b===a1b);
+    total++;
+    if(ok){correct++;row.className='fill-row correct';icon.textContent='✓';icon.style.color='#16a34a';}
+    else if(v1===''&&v1b===''){row.className='fill-row';icon.textContent='';}
+    else{row.className='fill-row wrong';icon.textContent='✗';icon.style.color='#dc2626';}
+  });
+  var sc=document.getElementById('fill-score');
+  sc.style.display='block';
+  sc.className='score '+(correct===6?'perfect':'partial');
+  sc.textContent=correct===6?'Perfect! All 6 correct!':correct+'/6 correct — check the red ones and try again.';
+}
+
+// Activity 2 answers
+var matchAnswers={m1:'c',m2:'a',m3:'b',m4:'i',m5:'j',m6:'g',m7:'h',m8:'d',m9:'e',m10:'f'};
+function checkMatch(){
+  var correct=0;
+  for(var k in matchAnswers){
+    var num=k.replace('m','');
+    var val=document.getElementById(k).value;
+    var row=document.getElementById('mrow'+num);
+    var icon=document.getElementById('mi'+num);
+    if(val===matchAnswers[k]){correct++;row.className='match-row correct';icon.textContent='✓';icon.style.color='#16a34a';}
+    else if(val===''){row.className='match-row';icon.textContent='';}
+    else{row.className='match-row wrong';icon.textContent='✗';icon.style.color='#dc2626';}
+  }
+  var sc=document.getElementById('match-score');
+  sc.style.display='block';
+  sc.className='score '+(correct===10?'perfect':'partial');
+  sc.textContent=correct===10?'Perfect! All 10 correct!':correct+'/10 correct — check the red ones and try again.';
+}
+
+function openModal(){
+  var saved=localStorage.getItem('ef_student_name');
+  if(saved)document.getElementById('studentName').value=saved;
+  document.getElementById('modal').style.display='flex';
+}
+function closeModal(){document.getElementById('modal').style.display='none';}
+function sendWA(){
+  var name=document.getElementById('studentName').value.trim()||'Student';
+  localStorage.setItem('ef_student_name',name);
+  var now=new Date();
+  var date=now.toLocaleDateString('pt-BR');
+  var time=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  var act1=document.getElementById('act1').value||'(not answered)';
+  var act2=document.getElementById('act2').value||'(not answered)';
+  var msg='👤 '+name+'\n'
+        +'📅 '+date+' at '+time+'\n'
+        +'📘 Capsule 22 of 82 — Working with Words · Unit 4 — Technology · Business Elementary\n\n'
+        +'📌 Activity 1 — Phrases:\n'+act1+'\n\n'
+        +'📌 Activity 2 — Verb match:\n'+act2+'\n\n'
+        +'🎙️ Audio in the next message.';
+  var formUrl='https://docs.google.com/forms/d/e/1FAIpQLSdGVa3JN0PfYG1C-YV8oGk-EQ5u5skM-V_LJImf_kijpmijWw/formResponse';
+  var data=new FormData();
+  data.append('entry.566273869',name);
+  data.append('entry.947389419','Capsule 22 of 82');
+  data.append('entry.156113480','Unit 4 — Technology');
+  data.append('entry.583447830','Business Elementary');
+  data.append('entry.923345328','Done');
+  fetch(formUrl,{method:'POST',mode:'no-cors',body:data});
+  window.open('https://wa.me/5522999585058?text='+encodeURIComponent(msg),'_blank');
+  closeModal();
+}
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+</script>
+</body>
+</html>
