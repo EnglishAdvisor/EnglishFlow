@@ -95,7 +95,8 @@ body{background:#f0f0f0;font-family:'Barlow',sans-serif;min-height:100vh;display
 .kw-title{font-size:11px;font-weight:700;color:#2563a8;text-transform:uppercase;letter-spacing:.08em;padding-bottom:7px;border-bottom:2px solid #f5a623;margin-bottom:8px}
 .kw-item{padding:5px 0;border-bottom:1px solid rgba(0,0,0,.05);display:flex;flex-direction:column;gap:2px}
 .kw-item:last-child{border-bottom:none}
-.kw-word{font-size:12px;font-weight:700;color:#2563a8;text-transform:uppercase;letter-spacing:.04em}
+.kw-word{font-size:12px;font-weight:700;color:#2563a8;text-transform:uppercase;letter-spacing:.04em;text-decoration:none;display:block}
+.kw-word:hover{color:#f5a623;text-decoration:underline}
 .kw-hint{font-size:10px;color:#888;font-style:italic}
 
 /* MODAL */
@@ -120,9 +121,10 @@ body{background:#f0f0f0;font-family:'Barlow',sans-serif;min-height:100vh;display
 
 /* RESPONSIVE */
 @media(max-width:700px){
-  .content{grid-template-columns:1fr}
+  .content{grid-template-columns:1fr;display:flex;flex-direction:column}
   .expressions-grid{grid-template-columns:1fr}
-  .keywords{position:static;margin-top:0}
+  .keywords{position:static;margin-top:0;order:-1}
+  .left-col{order:1}
   .header{padding:12px 14px}
   .pill-title .main{font-size:22px}
 }
@@ -316,12 +318,12 @@ body{background:#f0f0f0;font-family:'Barlow',sans-serif;min-height:100vh;display
   <!-- KEYWORDS -->
   <div class="keywords">
     <div class="kw-title">Key Words</div>
-    <div class="kw-item"><span class="kw-word">Greeting</span><span class="kw-hint">Saying hello to someone</span></div>
-    <div class="kw-item"><span class="kw-word">Introduce</span><span class="kw-hint">Present yourself or others</span></div>
-    <div class="kw-item"><span class="kw-word">Formal</span><span class="kw-hint">Professional / official style</span></div>
-    <div class="kw-item"><span class="kw-word">Informal</span><span class="kw-hint">Casual / friendly style</span></div>
-    <div class="kw-item"><span class="kw-word">Colleague</span><span class="kw-hint">Someone you work with</span></div>
-    <div class="kw-item"><span class="kw-word">Expression</span><span class="kw-hint">A fixed phrase in English</span></div>
+    <div class="kw-item"><a class="kw-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/greeting" target="_blank">Greeting</a><span class="kw-hint">Saying hello to someone</span></div>
+    <div class="kw-item"><a class="kw-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/introduce" target="_blank">Introduce</a><span class="kw-hint">Present yourself or others</span></div>
+    <div class="kw-item"><a class="kw-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/formal" target="_blank">Formal</a><span class="kw-hint">Professional / official style</span></div>
+    <div class="kw-item"><a class="kw-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/informal" target="_blank">Informal</a><span class="kw-hint">Casual / friendly style</span></div>
+    <div class="kw-item"><a class="kw-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/colleague" target="_blank">Colleague</a><span class="kw-hint">Someone you work with</span></div>
+    <div class="kw-item"><a class="kw-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/expression" target="_blank">Expression</a><span class="kw-hint">A fixed phrase in English</span></div>
   </div>
 </div>
 
