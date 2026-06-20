@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Number Talk · Unit 2 — Upstream · Oil and Gas 1</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a1018;font-family:'Barlow',sans-serif;min-height:100vh;display:flex;flex-direction:column}
+.header{background:#0d1520;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid #3d1f00}
+.pill-title .main{font-family:Georgia,serif;font-size:clamp(20px,4vw,34px);font-weight:700;color:#e8eef5;line-height:1}
+.pill-title .sub{font-size:12px;font-weight:500;color:#d97706;text-transform:uppercase;letter-spacing:.12em;margin-top:3px;display:block}
+.header-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.level-badge{background:#3d1f00;border:1px solid #7a3e00;border-radius:6px;padding:4px 10px;display:flex;flex-direction:column;align-items:center}
+.level-badge .trail{font-size:9px;color:#d97706;text-transform:uppercase;letter-spacing:.1em;font-weight:600}
+.level-badge .level{font-size:11px;color:#fcd34d;font-weight:700}
+.icon-box{width:36px;height:36px;border:1px solid #7a3e00;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#3d1f00}
+.icon-box svg{width:18px;height:18px;stroke:#d97706;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.teacher-bar{background:#0a1018;padding:6px 20px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #1a2d3d}
+.teacher-btn{display:flex;align-items:center;gap:6px;background:#6b3fa0;border:none;border-radius:6px;padding:5px 12px;color:#fff;font-size:11px;font-weight:600;cursor:pointer}
+.teacher-btn svg{width:13px;height:13px;stroke:#fff;fill:none;stroke-width:2;flex-shrink:0}
+.teacher-label{font-size:10px;color:#3a5a6a;font-style:italic}
+.warn-bar{background:#0a1018;padding:5px 20px;font-size:11px;color:#3a5a6a;text-align:center;border-bottom:1px solid #1a2d3d}
+.warn-bar strong{color:#d97706}
+.steps{display:flex;gap:6px;padding:8px 16px;overflow-x:auto;scrollbar-width:none;background:#0d1520;border-bottom:1px solid #1a2d3d}
+.steps::-webkit-scrollbar{display:none}
+.step{flex-shrink:0;display:flex;align-items:center;gap:5px;background:rgba(217,119,6,.08);border:1px solid rgba(217,119,6,.2);border-radius:20px;padding:5px 12px;font-size:11px;color:#d97706;font-weight:500;white-space:nowrap}
+.step-num{background:#3d1f00;border:1px solid #7a3e00;color:#d97706;border-radius:50%;width:16px;height:16px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;flex-shrink:0}
+.content{display:grid;grid-template-columns:1fr 220px;gap:12px;padding:12px 16px;flex:1}
+.left-col{display:flex;flex-direction:column;gap:12px}
+.card{background:#0d1a26;border-radius:10px;padding:14px 16px;border:1px solid #1a2d3d}
+.act-title{font-size:11px;font-weight:700;color:#d97706;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.audio-btn{display:inline-flex;align-items:center;gap:4px;background:#3d1f00;border:1px solid #7a3e00;color:#d97706;border-radius:5px;padding:3px 9px;font-size:10px;font-weight:600;cursor:pointer;flex-shrink:0}
+.instruction{background:rgba(217,119,6,.06);border-left:3px solid #3d1f00;padding:7px 10px;font-size:11px;color:#6a8a9a;line-height:1.6;margin-bottom:10px}
+.instruction strong{color:#d97706}
+.info-box{background:#0a1018;border:1px solid #1a2d3d;border-radius:8px;padding:12px 14px;margin-bottom:10px}
+.info-title{font-size:12px;font-weight:700;color:#fcd34d;margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em}
+.info-text{font-size:11px;color:#6a8a9a;line-height:1.8}
+.info-text strong{color:#d97706}
+.units-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px}
+.unit-card{background:#0a1018;border:1px solid #3d1f00;border-radius:8px;padding:10px 12px;text-align:center}
+.unit-symbol{font-family:Georgia,serif;font-size:20px;font-weight:700;color:#d97706;display:block;margin-bottom:4px}
+.unit-name{font-size:10px;color:#6a8a9a;text-transform:uppercase;letter-spacing:.08em}
+.unit-example{font-size:10px;color:#4a6a7a;font-style:italic;margin-top:4px}
+.numbers-box{background:#0a1018;border:1px solid #1a2d3d;border-radius:8px;padding:12px 14px;margin-bottom:10px}
+.number-row{display:flex;align-items:center;gap:12px;padding:5px 0;border-bottom:1px solid #1a2d3d;font-size:12px}
+.number-row:last-child{border-bottom:none}
+.number-digits{color:#d97706;font-weight:700;min-width:120px;font-family:Georgia,serif;font-size:13px}
+.number-words{color:#c8d8e8;flex:1}
+.quantities-grid{display:flex;flex-direction:column;gap:7px;margin-bottom:10px}
+.qty-row{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:7px;border:1px solid #1a2d3d;background:#0a1018;transition:all .2s}
+.qty-row.correct{background:#0a2a1a;border-color:#16a34a}
+.qty-row.wrong{background:#2a0a0a;border-color:#dc2626}
+.qty-label{font-size:12px;font-weight:700;color:#d97706;min-width:20px;flex-shrink:0}
+.qty-value{font-size:13px;font-weight:700;color:#fcd34d;font-family:Georgia,serif;flex:1}
+.qty-select{border:1px solid #7a3e00;border-radius:5px;padding:3px 7px;font-size:11px;color:#c8d8e8;background:#3d1f00;outline:none}
+.qty-icon{font-size:13px;min-width:16px;text-align:center;font-weight:700}
+.check-btn{background:#3d1f00;border:1px solid #7a3e00;color:#fcd34d;border-radius:6px;padding:7px 16px;font-size:12px;font-weight:600;cursor:pointer;margin-top:4px}
+.check-btn:hover{background:#7a3e00}
+.score{font-size:11px;font-weight:700;margin-top:7px;display:none;padding:5px 8px;border-radius:6px}
+.score.perfect{color:#4ade80;background:#0a2a1a}
+.score.partial{color:#fbbf24;background:#1a1500}
+.task-box{background:#0a1018;border:1px solid rgba(217,119,6,.2);border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:8px}
+.task-box p{font-size:11px;color:#4a6a7a;font-style:italic;line-height:1.5}
+.wa-btn{display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;border:none;border-radius:8px;padding:9px;font-size:12px;font-weight:600;cursor:pointer;width:100%;min-height:44px}
+.keywords{background:#0d1a26;border-radius:10px;padding:14px;border:1px solid #1a2d3d;align-self:start;position:sticky;top:12px}
+.kw-title{font-size:11px;font-weight:700;color:#d97706;text-transform:uppercase;letter-spacing:.08em;padding-bottom:7px;border-bottom:2px solid #3d1f00;margin-bottom:8px}
+.kw-item{padding:5px 0;border-bottom:1px solid #1a2d3d;display:flex;flex-direction:column;gap:2px}
+.kw-item:last-child{border-bottom:none}
+.kw-word{font-size:12px;font-weight:700;color:#d97706;text-transform:uppercase;letter-spacing:.04em;text-decoration:none;display:block}
+.kw-word:hover{color:#fcd34d}
+.kw-hint{font-size:10px;color:#3a5a6a;font-style:italic}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);display:flex;align-items:center;justify-content:center;z-index:100;padding:16px}
+.modal-box{background:#0d1a26;border:1px solid #3d1f00;border-radius:12px;padding:20px;max-width:460px;width:100%;max-height:85vh;overflow-y:auto;display:flex;flex-direction:column;gap:12px}
+.modal-title{font-family:Georgia,serif;font-size:18px;font-weight:700;color:#fcd34d}
+.modal-field label{font-size:10px;color:#d97706;text-transform:uppercase;letter-spacing:.08em;font-weight:700;display:block;margin-bottom:4px}
+.modal-field input,.modal-field textarea{width:100%;background:#0a1018;border:1px solid #3d1f00;border-radius:6px;padding:8px;font-size:12px;color:#c8d8e8;font-family:'Barlow',sans-serif;outline:none}
+.modal-field input:focus,.modal-field textarea:focus{border-color:#d97706}
+.modal-field textarea{resize:vertical;min-height:70px}
+.modal-reminder{font-size:10px;color:#4a6a7a;font-style:italic;border-top:1px solid #1a2d3d;padding-top:8px}
+.modal-actions{display:flex;gap:8px}
+.modal-cancel{flex:1;background:transparent;border:1px solid #1a2d3d;color:#4a6a7a;border-radius:7px;padding:8px;font-size:13px;cursor:pointer}
+.modal-send{flex:2;display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;border:none;border-radius:7px;padding:8px;font-size:13px;font-weight:700;cursor:pointer}
+.footer{background:#0a1018;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;margin-top:4px;border-top:1px solid #1a2d3d}
+.footer-left{font-size:11px;color:#3a5a6a;letter-spacing:.04em}
+.footer-right{display:flex;align-items:center;gap:8px}
+.footer-right svg{width:18px;height:18px;stroke:#d97706;fill:none;stroke-width:1.5}
+.footer-text{font-family:Georgia,serif;font-size:13px;font-weight:700;color:#fcd34d}
+@media(max-width:700px){.content{grid-template-columns:1fr;display:flex;flex-direction:column}.keywords{position:static;order:-1}.left-col{order:1}.units-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.steps{padding:6px 10px}.step{font-size:10px;padding:4px 9px}.content{padding:10px 12px;gap:10px}.card{padding:12px 13px}.wa-btn{min-height:48px}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="pill-title">
+    <div class="main">Number Talk</div>
+    <span class="sub">Unit 2 — Upstream</span>
+  </div>
+  <div class="header-right">
+    <div class="level-badge">
+      <span class="trail">Oil and Gas</span>
+      <span class="level">Book 1</span>
+    </div>
+    <div class="icon-box">
+      <svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg>
+    </div>
+  </div>
+</div>
+
+<div class="teacher-bar">
+  <button class="teacher-btn" onclick="playTeacher()">
+    <svg viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 1 3 3v7a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+    Teacher's Note
+  </button>
+  <span class="teacher-label">Listen before you start</span>
+  <audio id="teacher-audio" src="/EnglishFlow/oil-gas/teacher-notes/capsule-21-teacher-note.mp3" preload="none"></audio>
+</div>
+
+<div class="warn-bar">This page is in English on purpose. <strong>Please do not translate it.</strong></div>
+
+<div class="steps">
+  <div class="step"><span class="step-num">1</span>Practise the keywords</div>
+  <div class="step"><span class="step-num">2</span>Study the units</div>
+  <div class="step"><span class="step-num">3</span>Say the numbers</div>
+  <div class="step"><span class="step-num">4</span>Send your answers</div>
+</div>
+
+<div class="content">
+  <div class="left-col">
+
+    <!-- UNITS OF MEASUREMENT -->
+    <div class="card">
+      <div class="act-title">Units of Measurement — Oil and Gas</div>
+      <div class="instruction">
+        <strong>Read</strong> the units and examples &nbsp;·&nbsp;
+        <strong>Say</strong> each example aloud &nbsp;·&nbsp;
+        <strong>Remember</strong> the abbreviations
+      </div>
+      <div class="units-grid">
+        <div class="unit-card">
+          <span class="unit-symbol">m³</span>
+          <span class="unit-name">Cubic Metre</span>
+          <div class="unit-example">100,000 m³/d</div>
+        </div>
+        <div class="unit-card">
+          <span class="unit-symbol">l</span>
+          <span class="unit-name">Litre</span>
+          <div class="unit-example">1 m³ = 1,000 l</div>
+        </div>
+        <div class="unit-card">
+          <span class="unit-symbol">bbl</span>
+          <span class="unit-name">Barrel (US)</span>
+          <div class="unit-example">1 bbl = 159 l</div>
+        </div>
+        <div class="unit-card">
+          <span class="unit-symbol">l/s</span>
+          <span class="unit-name">Litres/second</span>
+          <div class="unit-example">10 l/s</div>
+        </div>
+        <div class="unit-card">
+          <span class="unit-symbol">bbl/d</span>
+          <span class="unit-name">Barrels/day</span>
+          <div class="unit-example">600,000 bbl/d</div>
+        </div>
+        <div class="unit-card">
+          <span class="unit-symbol">m³/hr</span>
+          <span class="unit-name">Cubic m/hour</span>
+          <div class="unit-example">28 m³/hr</div>
+        </div>
+      </div>
+      <div class="info-box">
+        <div class="info-title">💡 Tip — Saying numbers</div>
+        <div class="info-text">
+          In <strong>British English</strong>: two hundred <strong>and</strong> nine (209)<br>
+          In <strong>American English</strong>: two hundred nine (209) — <em>and</em> sometimes omitted
+        </div>
+      </div>
+    </div>
+
+    <!-- LARGE NUMBERS -->
+    <div class="card">
+      <div class="act-title">Activity 1 — How to say large numbers</div>
+      <div class="instruction">
+        <strong>Read</strong> each number silently &nbsp;·&nbsp;
+        <strong>Say</strong> it aloud &nbsp;·&nbsp;
+        <strong>Match</strong> the number to its written form below
+      </div>
+      <div class="numbers-box">
+        <div class="number-row"><span class="number-digits">209</span><span class="number-words">two hundred and nine</span></div>
+        <div class="number-row"><span class="number-digits">380</span><span class="number-words">three hundred and eighty</span></div>
+        <div class="number-row"><span class="number-digits">3,000</span><span class="number-words">three thousand</span></div>
+        <div class="number-row"><span class="number-digits">4,444</span><span class="number-words">four thousand, four hundred and forty-four</span></div>
+        <div class="number-row"><span class="number-digits">500,000</span><span class="number-words">five hundred thousand</span></div>
+        <div class="number-row"><span class="number-digits">560,000</span><span class="number-words">five hundred and sixty thousand</span></div>
+        <div class="number-row"><span class="number-digits">6,000,000</span><span class="number-words">six million</span></div>
+        <div class="number-row"><span class="number-digits">7,000,000,000</span><span class="number-words">seven billion</span></div>
+      </div>
+    </div>
+
+    <!-- ACTIVITY 2 -->
+    <div class="card">
+      <div class="act-title">Activity 2 — Say these quantities</div>
+      <div class="instruction">
+        <strong>Match</strong> each quantity (a–e) to its correct spoken form (1–5)
+      </div>
+      <div class="quantities-grid">
+        <div class="qty-row" id="qr1">
+          <span class="qty-label">a</span>
+          <span class="qty-value">100 l</span>
+          <select class="qty-select" id="q1"><option value="">—</option><option value="1">1. a hundred litres</option><option value="2">2. fifty barrels</option><option value="3">3. a hundred and seventy cubic metres</option><option value="4">4. twelve litres per second</option><option value="5">5. twenty-eight cubic metres per hour</option></select>
+          <span class="qty-icon" id="qi1"></span>
+        </div>
+        <div class="qty-row" id="qr2">
+          <span class="qty-label">b</span>
+          <span class="qty-value">50 bbl</span>
+          <select class="qty-select" id="q2"><option value="">—</option><option value="1">1. a hundred litres</option><option value="2">2. fifty barrels</option><option value="3">3. a hundred and seventy cubic metres</option><option value="4">4. twelve litres per second</option><option value="5">5. twenty-eight cubic metres per hour</option></select>
+          <span class="qty-icon" id="qi2"></span>
+        </div>
+        <div class="qty-row" id="qr3">
+          <span class="qty-label">c</span>
+          <span class="qty-value">170 m³</span>
+          <select class="qty-select" id="q3"><option value="">—</option><option value="1">1. a hundred litres</option><option value="2">2. fifty barrels</option><option value="3">3. a hundred and seventy cubic metres</option><option value="4">4. twelve litres per second</option><option value="5">5. twenty-eight cubic metres per hour</option></select>
+          <span class="qty-icon" id="qi3"></span>
+        </div>
+        <div class="qty-row" id="qr4">
+          <span class="qty-label">d</span>
+          <span class="qty-value">12 l/s</span>
+          <select class="qty-select" id="q4"><option value="">—</option><option value="1">1. a hundred litres</option><option value="2">2. fifty barrels</option><option value="3">3. a hundred and seventy cubic metres</option><option value="4">4. twelve litres per second</option><option value="5">5. twenty-eight cubic metres per hour</option></select>
+          <span class="qty-icon" id="qi4"></span>
+        </div>
+        <div class="qty-row" id="qr5">
+          <span class="qty-label">e</span>
+          <span class="qty-value">28 m³/hr</span>
+          <select class="qty-select" id="q5"><option value="">—</option><option value="1">1. a hundred litres</option><option value="2">2. fifty barrels</option><option value="3">3. a hundred and seventy cubic metres</option><option value="4">4. twelve litres per second</option><option value="5">5. twenty-eight cubic metres per hour</option></select>
+          <span class="qty-icon" id="qi5"></span>
+        </div>
+      </div>
+      <button class="check-btn" onclick="checkQty()">Check answers</button>
+      <div class="score" id="qty-score"></div>
+    </div>
+
+    <!-- SOLO DICTATION -->
+    <div class="card">
+      <div class="act-title">Activity 3 — Solo Dictation</div>
+      <div class="instruction">
+        <strong>Step 1:</strong> Record yourself saying these 5 numbers &nbsp;·&nbsp;
+        <strong>Step 2:</strong> Play it back &nbsp;·&nbsp;
+        <strong>Step 3:</strong> Write what you hear &nbsp;·&nbsp;
+        <strong>Step 4:</strong> Check your answers below
+      </div>
+      <div class="numbers-box" style="margin-bottom:10px">
+        <div class="number-row"><span class="number-digits">690</span><input style="background:transparent;border:none;border-bottom:1px solid #3d1f00;color:#c8d8e8;font-size:12px;width:180px;outline:none;padding:2px 4px" placeholder="write in words..."></div>
+        <div class="number-row"><span class="number-digits">4,575</span><input style="background:transparent;border:none;border-bottom:1px solid #3d1f00;color:#c8d8e8;font-size:12px;width:180px;outline:none;padding:2px 4px" placeholder="write in words..."></div>
+        <div class="number-row"><span class="number-digits">19,000</span><input style="background:transparent;border:none;border-bottom:1px solid #3d1f00;color:#c8d8e8;font-size:12px;width:180px;outline:none;padding:2px 4px" placeholder="write in words..."></div>
+        <div class="number-row"><span class="number-digits">609,000</span><input style="background:transparent;border:none;border-bottom:1px solid #3d1f00;color:#c8d8e8;font-size:12px;width:180px;outline:none;padding:2px 4px" placeholder="write in words..."></div>
+        <div class="number-row"><span class="number-digits">2,000,000</span><input style="background:transparent;border:none;border-bottom:1px solid #3d1f00;color:#c8d8e8;font-size:12px;width:180px;outline:none;padding:2px 4px" placeholder="write in words..."></div>
+      </div>
+      <div class="instruction" style="margin-bottom:0">
+        ✅ <strong>Answers:</strong> six hundred and ninety · four thousand, five hundred and seventy-five · nineteen thousand · six hundred and nine thousand · two million
+      </div>
+    </div>
+
+    <!-- TASK BOX -->
+    <div class="task-box">
+      <p>🎙️ Record yourself saying the 5 numbers above AND a sentence using each one with a unit (l, bbl, m³). Example: "Six hundred and ninety barrels per day." Send via WhatsApp.</p>
+      <button class="wa-btn" onclick="openModal()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+        Send via WhatsApp
+      </button>
+    </div>
+
+  </div>
+
+  <!-- KEYWORDS -->
+  <div class="keywords">
+    <div class="kw-title">Key Words</div>
+    <div class="kw-item"><a class="kw-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/barrel" target="_blank">Barrel</a><span class="kw-hint">Unit = 159 litres</span></div>
+    <div class="kw-item"><a class="kw-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/cubic" target="_blank">Cubic metre</a><span class="kw-hint">m³ = 1,000 litres</span></div>
+    <div class="kw-item"><a class="kw-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/measure" target="_blank">Measure</a><span class="kw-hint">Find the size or quantity</span></div>
+    <div class="kw-item"><a class="kw-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/flow" target="_blank">Flow</a><span class="kw-hint">Movement of liquid/gas</span></div>
+    <div class="kw-item"><a class="kw-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/produce" target="_blank">Produce</a><span class="kw-hint">Make or extract</span></div>
+    <div class="kw-item"><a class="kw-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/upstream" target="_blank">Upstream</a><span class="kw-hint">Exploration and production</span></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-left">Capsule 21 of 203 · Unit 2 — Upstream · Oil and Gas 1</div>
+  <div class="footer-right">
+    <svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg>
+    <span class="footer-text">Oil and Gas 1</span>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" style="display:none">
+  <div class="modal-box">
+    <div class="modal-title">Send your answers</div>
+    <div class="modal-field">
+      <label>Your name</label>
+      <input type="text" id="studentName" placeholder="Type your name..." autocomplete="off">
+    </div>
+    <div class="modal-field">
+      <label>Activity 2 — Match quantities (write: a=1, b=2...)</label>
+      <textarea id="act1" placeholder="a= , b= , c= , d= , e="></textarea>
+    </div>
+    <div class="modal-field">
+      <label>Audio task — 5 numbers in words + units</label>
+      <textarea id="act2" placeholder="690 = ... bbl/d · 4,575 = ..."></textarea>
+    </div>
+    <div class="modal-reminder">🎙️ After sending, record yourself saying the 5 numbers and send in the same conversation.</div>
+    <div class="modal-actions">
+      <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+      <button class="modal-send" onclick="sendWA()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+        Send via WhatsApp
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+function playTeacher(){document.getElementById('teacher-audio').play().catch(function(){});}
+
+var qtyAnswers={q1:'1',q2:'2',q3:'3',q4:'4',q5:'5'};
+function checkQty(){
+  var correct=0;
+  for(var k in qtyAnswers){
+    var num=k.replace('q','');
+    var val=document.getElementById(k).value;
+    var row=document.getElementById('qr'+num);
+    var icon=document.getElementById('qi'+num);
+    if(val===qtyAnswers[k]){correct++;row.className='qty-row correct';icon.textContent='✓';icon.style.color='#4ade80';}
+    else if(val===''){row.className='qty-row';icon.textContent='';}
+    else{row.className='qty-row wrong';icon.textContent='✗';icon.style.color='#f87171';}
+  }
+  var sc=document.getElementById('qty-score');
+  sc.style.display='block';
+  sc.className='score '+(correct===5?'perfect':'partial');
+  sc.textContent=correct===5?'Perfect! All 5 correct!':correct+'/5 correct — check the red ones.';
+}
+
+function openModal(){
+  var saved=localStorage.getItem('ef_student_name');
+  if(saved)document.getElementById('studentName').value=saved;
+  document.getElementById('modal').style.display='flex';
+}
+function closeModal(){document.getElementById('modal').style.display='none';}
+function sendWA(){
+  var name=document.getElementById('studentName').value.trim()||'Student';
+  localStorage.setItem('ef_student_name',name);
+  var now=new Date();
+  var date=now.toLocaleDateString('pt-BR');
+  var time=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  var act1=document.getElementById('act1').value||'(not answered)';
+  var act2=document.getElementById('act2').value||'(not answered)';
+  var msg='👤 '+name+'\n'
+        +'📅 '+date+' at '+time+'\n'
+        +'📘 Capsule 21 of 203 — Number Talk · Unit 2 — Upstream · Oil and Gas 1\n\n'
+        +'📌 Activity 2 — Quantities:\n'+act1+'\n\n'
+        +'📌 Numbers in words:\n'+act2+'\n\n'
+        +'🎙️ Audio in the next message.';
+  var formUrl='https://docs.google.com/forms/d/e/1FAIpQLSdGVa3JN0PfYG1C-YV8oGk-EQ5u5skM-V_LJImf_kijpmijWw/formResponse';
+  var data=new FormData();
+  data.append('entry.566273869',name);
+  data.append('entry.947389419','Capsule 21 of 203');
+  data.append('entry.156113480','Unit 2 — Upstream');
+  data.append('entry.583447830','Oil and Gas 1');
+  data.append('entry.923345328','Done');
+  fetch(formUrl,{method:'POST',mode:'no-cors',body:data});
+  window.open('https://wa.me/5522999585058?text='+encodeURIComponent(msg),'_blank');
+  closeModal();
+}
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+</script>
+</body>
+</html>
