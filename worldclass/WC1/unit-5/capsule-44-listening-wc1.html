@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Listening · Unit 5 — No Need to Panic · World Class 1</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#f0f4f8;font-family:'Barlow',sans-serif;min-height:100vh;display:flex;flex-direction:column}
+.header{background:#1e3a5f;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:3px solid #c8e63c}
+.pill-title .main{font-family:Georgia,serif;font-size:clamp(20px,4vw,34px);font-weight:700;color:#fff;line-height:1}
+.pill-title .sub{font-size:12px;font-weight:500;color:#7ec8d4;text-transform:uppercase;letter-spacing:.12em;margin-top:3px;display:block}
+.header-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.level-badge{background:#7ec8d4;border:1px solid #5ab0c0;border-radius:6px;padding:4px 10px;display:flex;flex-direction:column;align-items:center}
+.level-badge .trail{font-size:9px;color:#1e3a5f;text-transform:uppercase;letter-spacing:.1em;font-weight:600}
+.level-badge .level{font-size:11px;color:#1e3a5f;font-weight:700}
+.icon-box{width:36px;height:36px;border:1px solid #2d5a8e;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#2d5a8e}
+.icon-box svg{width:18px;height:18px;stroke:#7ec8d4;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.teacher-bar{background:#162d4a;padding:6px 20px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #2d5a8e}
+.teacher-btn{display:flex;align-items:center;gap:6px;background:#6b3fa0;border:none;border-radius:6px;padding:5px 12px;color:#fff;font-size:11px;font-weight:600;cursor:pointer}
+.teacher-btn svg{width:13px;height:13px;stroke:#fff;fill:none;stroke-width:2;flex-shrink:0}
+.teacher-label{font-size:10px;color:#4a7a9b;font-style:italic}
+.warn-bar{background:#162d4a;padding:5px 20px;font-size:11px;color:#4a7a9b;text-align:center;border-bottom:1px solid #2d5a8e}
+.warn-bar strong{color:#7ec8d4}
+.steps{display:flex;gap:6px;padding:8px 16px;overflow-x:auto;scrollbar-width:none;background:#fff;border-bottom:1px solid rgba(0,0,0,.08)}
+.steps::-webkit-scrollbar{display:none}
+.step{flex-shrink:0;display:flex;align-items:center;gap:5px;background:rgba(126,200,212,.08);border:1px solid rgba(126,200,212,.3);border-radius:20px;padding:5px 12px;font-size:11px;color:#1e3a5f;font-weight:500;white-space:nowrap}
+.step-num{background:#c8e63c;color:#1e3a5f;border-radius:50%;width:16px;height:16px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;flex-shrink:0}
+.content{display:grid;grid-template-columns:1fr 220px;gap:12px;padding:12px 16px;flex:1}
+.left-col{display:flex;flex-direction:column;gap:12px}
+.card{background:#fff;border-radius:10px;padding:14px 16px;border:0.5px solid rgba(0,0,0,.08)}
+.act-title{font-size:11px;font-weight:700;color:#1e3a5f;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.audio-btn{display:inline-flex;align-items:center;gap:4px;background:#1e3a5f;color:#fff;border:none;border-radius:5px;padding:3px 9px;font-size:10px;font-weight:600;cursor:pointer;flex-shrink:0}
+.instruction{background:rgba(30,58,95,.05);border-left:3px solid #7ec8d4;padding:7px 10px;font-size:11px;color:#2C3E50;line-height:1.6;margin-bottom:10px}
+.instruction strong{color:#1e3a5f}
+
+/* NERVOUSNESS RATING */
+.rating-grid{display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
+.rating-row{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:8px;background:#f8fafc;border:0.5px solid rgba(0,0,0,.07)}
+.rating-situation{flex:1;font-size:12px;color:#2C3E50}
+.rating-btns{display:flex;gap:5px;flex-shrink:0}
+.rate-btn{width:28px;height:28px;border-radius:50%;border:1.5px solid #7ec8d4;background:transparent;font-size:11px;font-weight:700;color:#1e3a5f;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center}
+.rate-btn.selected{background:#1e3a5f;color:#c8e63c;border-color:#1e3a5f}
+.rating-label{font-size:9px;color:#888;text-align:center;margin-top:3px}
+
+/* EMOTIONS TABLE */
+.emo-table{width:100%;border-collapse:collapse;font-size:11px;margin-bottom:10px}
+.emo-table th{background:rgba(30,58,95,.08);color:#1e3a5f;font-size:10px;font-weight:700;text-transform:uppercase;padding:6px 10px;text-align:left;border-bottom:1px solid rgba(30,58,95,.15)}
+.emo-table td{padding:6px 10px;color:#2C3E50;border-bottom:1px solid rgba(0,0,0,.05)}
+.emo-table td strong{color:#1e3a5f}
+.emo-table tr:last-child td{border-bottom:none}
+
+/* FALSE STATEMENTS */
+.false-grid{display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
+.false-row{padding:8px 12px;border-radius:8px;border:0.5px solid rgba(0,0,0,.07);background:#f8fafc;transition:all .2s}
+.false-row.correct{background:#f0fdf4;border-color:#16a34a}
+.false-row.wrong{background:#fef2f2;border-color:#dc2626}
+.false-num{font-size:11px;font-weight:700;color:#c8e63c;background:#1e3a5f;border-radius:4px;padding:1px 6px;display:inline-block;margin-bottom:5px}
+.false-text{font-size:11px;color:#2C3E50;margin-bottom:6px;font-style:italic}
+.false-input{width:100%;border:none;border-bottom:2px solid #7ec8d4;background:transparent;font-size:11px;color:#1e3a5f;font-weight:600;outline:none;padding:3px 4px}
+.false-input::placeholder{color:#bbb;font-weight:400}
+.false-answer{font-size:10px;color:#16a34a;font-weight:600;display:none;margin-top:4px}
+.false-icon{font-size:12px;font-weight:700;float:right}
+
+/* CALM DOWN TABLE */
+.calm-table{width:100%;border-collapse:collapse;font-size:11px;margin-bottom:10px}
+.calm-table th{background:#1e3a5f;color:#c8e63c;font-size:10px;font-weight:700;text-transform:uppercase;padding:7px 10px;text-align:left}
+.calm-table td{padding:8px 10px;color:#2C3E50;border-bottom:1px solid rgba(0,0,0,.06);vertical-align:top}
+.calm-table tr:last-child td{border-bottom:none}
+.calm-num{font-size:12px;font-weight:700;color:#7ec8d4;min-width:20px}
+.calm-input{width:100%;border:none;border-bottom:2px solid #7ec8d4;background:transparent;font-size:11px;color:#1e3a5f;font-weight:600;outline:none;padding:2px 4px;margin-bottom:3px}
+.calm-input::placeholder{color:#bbb;font-weight:400}
+.calm-hint{font-size:10px;color:#888;font-style:italic}
+
+.check-btn{background:#1e3a5f;color:#fff;border:none;border-radius:6px;padding:7px 16px;font-size:12px;font-weight:600;cursor:pointer;margin-top:4px}
+.check-btn:hover{background:#2d5a8e}
+.score{font-size:11px;font-weight:700;margin-top:7px;display:none;padding:5px 8px;border-radius:5px}
+.score.perfect{color:#16a34a;background:#f0fdf4}
+.score.partial{color:#b45309;background:#fffbeb}
+
+/* SELF TALK */
+.selftalk-box{background:#f0f9ff;border:1px solid rgba(126,200,212,.3);border-radius:8px;padding:12px 14px;margin-bottom:10px}
+.selftalk-title{font-size:11px;font-weight:700;color:#1e3a5f;margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em}
+.selftalk-items{display:flex;flex-direction:column;gap:6px}
+.selftalk-item{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:#2C3E50}
+.selftalk-emoji{font-size:16px;flex-shrink:0;margin-top:-1px}
+
+.task-box{background:#fff8e6;border:1px solid rgba(200,230,60,.4);border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:8px}
+.task-box p{font-size:11px;color:#5a4a00;font-style:italic;line-height:1.5}
+.wa-btn{display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;border:none;border-radius:8px;padding:9px;font-size:12px;font-weight:600;cursor:pointer;width:100%;min-height:44px}
+
+.keywords{background:#fff;border-radius:10px;padding:14px;border:0.5px solid rgba(0,0,0,.08);align-self:start;position:sticky;top:12px}
+.kw-title{font-size:11px;font-weight:700;color:#1e3a5f;text-transform:uppercase;letter-spacing:.08em;padding-bottom:7px;border-bottom:2px solid #c8e63c;margin-bottom:8px}
+.kw-item{padding:5px 0;border-bottom:1px solid rgba(0,0,0,.05);display:flex;flex-direction:column;gap:2px}
+.kw-item:last-child{border-bottom:none}
+.kw-word{font-size:12px;font-weight:700;color:#2d5a8e;text-transform:uppercase;letter-spacing:.04em;text-decoration:none;display:block}
+.kw-word:hover{color:#1e3a5f;text-decoration:underline}
+.kw-hint{font-size:10px;color:#888;font-style:italic}
+
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;z-index:100;padding:16px}
+.modal-box{background:#fff;border-radius:12px;padding:20px;max-width:460px;width:100%;max-height:85vh;overflow-y:auto;display:flex;flex-direction:column;gap:12px}
+.modal-title{font-family:Georgia,serif;font-size:18px;font-weight:700;color:#1e3a5f}
+.modal-field label{font-size:10px;color:#1e3a5f;text-transform:uppercase;letter-spacing:.08em;font-weight:700;display:block;margin-bottom:4px}
+.modal-field input,.modal-field textarea{width:100%;border:1px solid rgba(30,58,95,.2);border-radius:6px;padding:8px;font-size:12px;color:#2C3E50;font-family:'Barlow',sans-serif;outline:none}
+.modal-field input:focus,.modal-field textarea:focus{border-color:#1e3a5f}
+.modal-field textarea{resize:vertical;min-height:60px}
+.modal-reminder{font-size:10px;color:#888;font-style:italic;border-top:1px solid rgba(0,0,0,.08);padding-top:8px}
+.modal-actions{display:flex;gap:8px}
+.modal-cancel{flex:1;background:transparent;border:1px solid rgba(0,0,0,.15);color:#888;border-radius:7px;padding:8px;font-size:13px;cursor:pointer}
+.modal-send{flex:2;display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;border:none;border-radius:7px;padding:8px;font-size:13px;font-weight:700;cursor:pointer}
+
+.footer{background:#1e3a5f;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;margin-top:4px}
+.footer-left{font-size:11px;color:#7ec8d4;letter-spacing:.04em}
+.footer-right{display:flex;align-items:center;gap:8px}
+.footer-right svg{width:18px;height:18px;stroke:#c8e63c;fill:none;stroke-width:1.5}
+.footer-text{font-family:Georgia,serif;font-size:13px;font-weight:700;color:#fff}
+
+@media(max-width:700px){
+  .content{grid-template-columns:1fr;display:flex;flex-direction:column}
+  .keywords{position:static;order:-1}
+  .left-col{order:1}
+  .rating-row{flex-direction:column;align-items:flex-start;gap:6px}
+}
+@media(max-width:480px){
+  .steps{padding:6px 10px}
+  .step{font-size:10px;padding:4px 9px}
+  .content{padding:10px 12px;gap:10px}
+  .card{padding:12px 13px}
+  .wa-btn{min-height:48px}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="pill-title">
+    <div class="main">Listening</div>
+    <span class="sub">Unit 5 — No Need to Panic</span>
+  </div>
+  <div class="header-right">
+    <div class="level-badge">
+      <span class="trail">World Class</span>
+      <span class="level">Book 1</span>
+    </div>
+    <div class="icon-box">
+      <svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/><path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+    </div>
+  </div>
+</div>
+
+<div class="teacher-bar">
+  <button class="teacher-btn" onclick="playTeacher()">
+    <svg viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 1 3 3v7a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+    Teacher's Note
+  </button>
+  <span class="teacher-label">Listen before you start</span>
+  <audio id="teacher-audio" src="/EnglishFlow/world-class/teacher-notes/capsule-44-teacher-note.mp3" preload="none"></audio>
+</div>
+
+<div class="warn-bar">This page is in English on purpose. <strong>Please do not translate it.</strong></div>
+
+<div class="steps">
+  <div class="step"><span class="step-num">1</span>Study key vocabulary</div>
+  <div class="step"><span class="step-num">2</span>Rate your nervousness</div>
+  <div class="step"><span class="step-num">3</span>Listen and correct</div>
+  <div class="step"><span class="step-num">4</span>Listen and complete</div>
+  <div class="step"><span class="step-num">5</span>Send your answers</div>
+</div>
+
+<div class="content">
+  <div class="left-col">
+
+    <!-- VOCABULARY BOX -->
+    <div class="card">
+      <div class="act-title">Key Vocabulary — Feelings and Emotions</div>
+      <div class="instruction">
+        <strong>Study</strong> the table before listening &nbsp;·&nbsp;
+        <strong>Say</strong> each word aloud &nbsp;·&nbsp;
+        <strong>Notice</strong> the noun, verb, and adjective forms
+      </div>
+      <table class="emo-table">
+        <tr><th>Noun</th><th>Verb</th><th>Adjective</th></tr>
+        <tr><td><strong>anxiety</strong></td><td><em>—</em></td><td>anxious</td></tr>
+        <tr><td><strong>calm</strong></td><td>calm (down)</td><td>calm</td></tr>
+        <tr><td><strong>nerves</strong></td><td><em>—</em></td><td>nervous</td></tr>
+        <tr><td><strong>relaxation</strong></td><td>relax</td><td>relaxed / relaxing</td></tr>
+        <tr><td><strong>stress</strong></td><td>stress (out)</td><td>stressed / stressful</td></tr>
+      </table>
+      <div class="instruction" style="margin-bottom:0">
+        💡 Also: <strong>client</strong> — someone who pays a person or company for a service &nbsp;·&nbsp;
+        <strong>freeze</strong> (past: froze) — to suddenly stop and be unable to move or think
+      </div>
+    </div>
+
+    <!-- ACTIVITY A -->
+    <div class="card">
+      <div class="act-title">Activity A — Rate Your Nervousness</div>
+      <div class="instruction">
+        <strong>Rate</strong> how nervous each situation makes you feel &nbsp;·&nbsp;
+        <strong>1</strong> = not nervous at all &nbsp;·&nbsp;
+        <strong>2</strong> = somewhat nervous &nbsp;·&nbsp;
+        <strong>3</strong> = very nervous &nbsp;·&nbsp;
+        Then <strong>record yourself</strong> explaining one of your answers
+      </div>
+      <div class="rating-grid">
+        <div class="rating-row">
+          <span class="rating-situation">Taking an important test at school</span>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:2px">
+            <div class="rating-btns">
+              <button class="rate-btn" onclick="rate(this,1,'s1')">1</button>
+              <button class="rate-btn" onclick="rate(this,2,'s1')">2</button>
+              <button class="rate-btn" onclick="rate(this,3,'s1')">3</button>
+            </div>
+          </div>
+        </div>
+        <div class="rating-row">
+          <span class="rating-situation">Giving a presentation in front of a lot of people</span>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:2px">
+            <div class="rating-btns">
+              <button class="rate-btn" onclick="rate(this,1,'s2')">1</button>
+              <button class="rate-btn" onclick="rate(this,2,'s2')">2</button>
+              <button class="rate-btn" onclick="rate(this,3,'s2')">3</button>
+            </div>
+          </div>
+        </div>
+        <div class="rating-row">
+          <span class="rating-situation">Interviewing for a job</span>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:2px">
+            <div class="rating-btns">
+              <button class="rate-btn" onclick="rate(this,1,'s3')">1</button>
+              <button class="rate-btn" onclick="rate(this,2,'s3')">2</button>
+              <button class="rate-btn" onclick="rate(this,3,'s3')">3</button>
+            </div>
+          </div>
+        </div>
+        <div class="rating-row">
+          <span class="rating-situation">Speaking English</span>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:2px">
+            <div class="rating-btns">
+              <button class="rate-btn" onclick="rate(this,1,'s4')">1</button>
+              <button class="rate-btn" onclick="rate(this,2,'s4')">2</button>
+              <button class="rate-btn" onclick="rate(this,3,'s4')">3</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ACTIVITY B -->
+    <div class="card">
+      <div class="act-title">
+        Activity B — Correct the False Statements
+        <button class="audio-btn" onclick="playTrack('t8')">▶ Track 8</button>
+      </div>
+      <audio id="t8" src="/EnglishFlow/world-class/tracks/track-08.mp3" preload="none"></audio>
+      <div class="instruction">
+        <strong>Step 1:</strong> Listen to the interview with life coach Greg Ravetti &nbsp;·&nbsp;
+        <strong>Step 2:</strong> Each statement below is false — correct it &nbsp;·&nbsp;
+        <strong>Step 3:</strong> Click Check answers
+      </div>
+      <div class="false-grid">
+        <div class="false-row" id="fr1">
+          <span class="false-num">1</span>
+          <div class="false-text">Greg focuses on <em>dangerous situations</em> that cause anxiety.</div>
+          <input class="false-input" id="fi1" placeholder="Correct it: Greg focuses on...">
+          <span class="false-icon" id="fic1"></span>
+          <div class="false-answer" id="fa1">✅ Greg focuses on <strong>everyday things</strong> that cause anxiety.</div>
+        </div>
+        <div class="false-row" id="fr2">
+          <span class="false-num">2</span>
+          <div class="false-text">One of Greg's clients recently <em>gave a presentation at work</em>.</div>
+          <input class="false-input" id="fi2" placeholder="Correct it: One of Greg's clients recently...">
+          <span class="false-icon" id="fic2"></span>
+          <div class="false-answer" id="fa2">✅ One of Greg's clients recently <strong>went on her first job interview</strong>.</div>
+        </div>
+        <div class="false-row" id="fr3">
+          <span class="false-num">3</span>
+          <div class="false-text">She got so nervous she <em>panicked and started laughing</em>.</div>
+          <input class="false-input" id="fi3" placeholder="Correct it: She got so nervous she...">
+          <span class="false-icon" id="fic3"></span>
+          <div class="false-answer" id="fa3">✅ She got so nervous she <strong>froze and had a hard time answering questions</strong>.</div>
+        </div>
+        <div class="false-row" id="fr4">
+          <span class="false-num">4</span>
+          <div class="false-text">In some situations, people panic because they're worried about <em>their appearance</em>.</div>
+          <input class="false-input" id="fi4" placeholder="Correct it: People panic because...">
+          <span class="false-icon" id="fic4"></span>
+          <div class="false-answer" id="fa4">✅ People panic because they're worried about <strong>doing something poorly</strong>.</div>
+        </div>
+      </div>
+      <button class="check-btn" onclick="checkFalse()">Check answers</button>
+      <div class="score" id="false-score"></div>
+    </div>
+
+    <!-- ACTIVITY C -->
+    <div class="card">
+      <div class="act-title">
+        Activity C — 3 Ways to Calm Down
+        <button class="audio-btn" onclick="playTrack('t9')">▶ Track 9</button>
+      </div>
+      <audio id="t9" src="/EnglishFlow/world-class/tracks/track-09.mp3" preload="none"></audio>
+      <div class="instruction">
+        <strong>Step 1:</strong> Read sentences 1–3 and predict the missing words &nbsp;·&nbsp;
+        <strong>Step 2:</strong> Listen to Track 9 and complete the chart &nbsp;·&nbsp;
+        <strong>Step 3:</strong> Listen again and take notes on how each step helps
+      </div>
+      <table class="calm-table">
+        <tr>
+          <th style="width:30px">#</th>
+          <th>Ways to calm down</th>
+          <th>How it helps you feel calmer</th>
+        </tr>
+        <tr>
+          <td class="calm-num">1</td>
+          <td>
+            <input class="calm-input" id="c1" placeholder="_____________ slowly for a minute.">
+            <div class="calm-hint">Hint: one word — a breathing action</div>
+          </td>
+          <td><input class="calm-input" id="ch1" placeholder="It relaxes you so that..."></td>
+        </tr>
+        <tr>
+          <td class="calm-num">2</td>
+          <td>
+            <input class="calm-input" id="c2" placeholder="Make a simple _____________.">
+            <div class="calm-hint" style="margin-top:3px">Also: Try to _______ the situation _______ you're in it.</div>
+            <input class="calm-input" id="c2b" placeholder="imagine / before" style="margin-top:5px">
+          </td>
+          <td><input class="calm-input" id="ch2" placeholder="It helps you feel..."></td>
+        </tr>
+        <tr>
+          <td class="calm-num">3</td>
+          <td>
+            <input class="calm-input" id="c3" placeholder="_____________ the plan you created.">
+            <div class="calm-hint">Hint: one word — execute / carry out</div>
+          </td>
+          <td><input class="calm-input" id="ch3" placeholder="It helps you feel..."></td>
+        </tr>
+      </table>
+      <button class="check-btn" onclick="checkCalm()">Check answers</button>
+      <div class="score" id="calm-score"></div>
+    </div>
+
+    <!-- SOLO REFLECTION -->
+    <div class="card">
+      <div class="act-title">Solo Reflection — Your Experience</div>
+      <div class="instruction">
+        <strong>Think</strong> about a stressful situation you have experienced &nbsp;·&nbsp;
+        <strong>Record yourself</strong> answering these two questions aloud
+      </div>
+      <div class="selftalk-box">
+        <div class="selftalk-title">Questions to answer in your recording:</div>
+        <div class="selftalk-items">
+          <div class="selftalk-item"><span class="selftalk-emoji">🎯</span> What happened? How did the situation make you feel?</div>
+          <div class="selftalk-item"><span class="selftalk-emoji">💡</span> Which of Greg's 3 recommendations would have helped you most — and why?</div>
+        </div>
+      </div>
+      <div class="instruction" style="margin-bottom:0">
+        💬 Use vocabulary from today: <em>anxious, nervous, freeze, calm down, stress out, handle</em>
+      </div>
+    </div>
+
+    <!-- TASK BOX -->
+    <div class="task-box">
+      <p>✍️ Write your answers to Activities B and C — and 🎙️ record your reflection. Send via WhatsApp.</p>
+      <button class="wa-btn" onclick="openModal()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+        Send via WhatsApp
+      </button>
+    </div>
+
+  </div>
+
+  <!-- KEYWORDS -->
+  <div class="keywords">
+    <div class="kw-title">Key Words</div>
+    <div class="kw-item"><a class="kw-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/anxiety" target="_blank">Anxiety</a><span class="kw-hint">Worry about the future</span></div>
+    <div class="kw-item"><a class="kw-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/panic" target="_blank">Panic</a><span class="kw-hint">Sudden overwhelming fear</span></div>
+    <div class="kw-item"><a class="kw-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/ordeal" target="_blank">Ordeal</a><span class="kw-hint">Very difficult situation</span></div>
+    <div class="kw-item"><a class="kw-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/rescue" target="_blank">Rescue</a><span class="kw-hint">Save from danger</span></div>
+    <div class="kw-item"><a class="kw-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/handle" target="_blank">Handle</a><span class="kw-hint">Deal with successfully</span></div>
+    <div class="kw-item"><a class="kw-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/encourage" target="_blank">Encourage</a><span class="kw-hint">Give confidence or hope</span></div>
+    <div class="kw-item"><a class="kw-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/collapse" target="_blank">Collapse</a><span class="kw-hint">Fall down suddenly</span></div>
+    <div class="kw-item"><a class="kw-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/intense" target="_blank">Intense</a><span class="kw-hint">Very great or extreme</span></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-left">Capsule 44 of 120 · Unit 5 — No Need to Panic · World Class 1</div>
+  <div class="footer-right">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+    <span class="footer-text">World Class 1</span>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" style="display:none">
+  <div class="modal-box">
+    <div class="modal-title">Send your answers</div>
+    <div class="modal-field">
+      <label>Your name</label>
+      <input type="text" id="studentName" placeholder="Type your name..." autocomplete="off">
+    </div>
+    <div class="modal-field">
+      <label>Activity A — Your nervousness ratings (1/2/3 for each)</label>
+      <textarea id="act1" placeholder="Test= , Presentation= , Interview= , Speaking English="></textarea>
+    </div>
+    <div class="modal-field">
+      <label>Activity B — Corrected statements (write the correct version)</label>
+      <textarea id="act2" placeholder="1. Greg focuses on... 2. ... 3. ... 4. ..."></textarea>
+    </div>
+    <div class="modal-field">
+      <label>Activity C — 3 ways to calm down + how each helps</label>
+      <textarea id="act3" placeholder="1. Breathe... helps: ... 2. plan... helps: ... 3. Follow... helps: ..."></textarea>
+    </div>
+    <div class="modal-reminder">🎙️ After sending, record your reflection about a stressful situation and send in the same conversation.</div>
+    <div class="modal-actions">
+      <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+      <button class="modal-send" onclick="sendWA()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+        Send via WhatsApp
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+function playTeacher(){document.getElementById('teacher-audio').play().catch(function(){});}
+function playTrack(id){document.getElementById(id).play().catch(function(){});}
+
+// Activity A — rating buttons
+var ratings={};
+function rate(btn,val,id){
+  var group=btn.parentElement;
+  group.querySelectorAll('.rate-btn').forEach(function(b){b.classList.remove('selected');});
+  btn.classList.add('selected');
+  ratings[id]=val;
+}
+
+// Activity B — check false statements (keyword matching)
+var falseKeys=['everyday','job interview','froze','poorly'];
+function checkFalse(){
+  var correct=0;
+  [1,2,3,4].forEach(function(n){
+    var val=document.getElementById('fi'+n).value.toLowerCase();
+    var row=document.getElementById('fr'+n);
+    var icon=document.getElementById('fic'+n);
+    var ans=document.getElementById('fa'+n);
+    if(val.length>5){
+      correct++;
+      row.className='false-row correct';
+      icon.textContent='✓';
+      icon.style.color='#16a34a';
+      ans.style.display='block';
+    } else {
+      row.className='false-row wrong';
+      icon.textContent='✗';
+      icon.style.color='#dc2626';
+    }
+  });
+  var sc=document.getElementById('false-score');
+  sc.style.display='block';
+  sc.className='score '+(correct===4?'perfect':'partial');
+  sc.textContent=correct===4?'All 4 corrected! Check the answers shown below each one.':'You wrote '+correct+'/4 — write your correction for any missing ones, then check the answers shown.';
+}
+
+// Activity C — check calm down
+function checkCalm(){
+  var c1=document.getElementById('c1').value.toLowerCase();
+  var c2=document.getElementById('c2').value.toLowerCase();
+  var c3=document.getElementById('c3').value.toLowerCase();
+  var correct=0;
+  if(c1.indexOf('breath')!==-1||c1.indexOf('breat')!==-1)correct++;
+  if(c2.indexOf('plan')!==-1)correct++;
+  if(c3.indexOf('follow')!==-1||c3.indexOf('execut')!==-1)correct++;
+  var sc=document.getElementById('calm-score');
+  sc.style.display='block';
+  sc.className='score '+(correct===3?'perfect':'partial');
+  if(correct===3){
+    sc.textContent='Perfect! Answers: 1. Breathe · 2. Make a simple plan / imagine the situation before · 3. Follow the plan.';
+  } else {
+    sc.textContent=correct+'/3 — Answers: 1. Breathe · 2. Plan / imagine before · 3. Follow the plan.';
+  }
+}
+
+function openModal(){
+  var saved=localStorage.getItem('ef_student_name');
+  if(saved)document.getElementById('studentName').value=saved;
+  document.getElementById('modal').style.display='flex';
+}
+function closeModal(){document.getElementById('modal').style.display='none';}
+function sendWA(){
+  var name=document.getElementById('studentName').value.trim()||'Student';
+  localStorage.setItem('ef_student_name',name);
+  var now=new Date();
+  var date=now.toLocaleDateString('pt-BR');
+  var time=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  var act1=document.getElementById('act1').value||'(not answered)';
+  var act2=document.getElementById('act2').value||'(not answered)';
+  var act3=document.getElementById('act3').value||'(not answered)';
+  var msg='👤 '+name+'\n'
+        +'📅 '+date+' at '+time+'\n'
+        +'📘 Capsule 44 of 120 — Listening · Unit 5 — No Need to Panic · World Class 1\n\n'
+        +'📌 Activity A — Nervousness ratings:\n'+act1+'\n\n'
+        +'📌 Activity B — Corrected statements:\n'+act2+'\n\n'
+        +'📌 Activity C — 3 ways to calm down:\n'+act3+'\n\n'
+        +'🎙️ Reflection audio in the next message.';
+  var formUrl='https://docs.google.com/forms/d/e/1FAIpQLSdGVa3JN0PfYG1C-YV8oGk-EQ5u5skM-V_LJImf_kijpmijWw/formResponse';
+  var data=new FormData();
+  data.append('entry.566273869',name);
+  data.append('entry.947389419','Capsule 44 of 120');
+  data.append('entry.156113480','Unit 5 — No Need to Panic');
+  data.append('entry.583447830','World Class 1');
+  data.append('entry.923345328','Done');
+  fetch(formUrl,{method:'POST',mode:'no-cors',body:data});
+  window.open('https://wa.me/5522999585058?text='+encodeURIComponent(msg),'_blank');
+  closeModal();
+}
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+</script>
+</body>
+</html>
