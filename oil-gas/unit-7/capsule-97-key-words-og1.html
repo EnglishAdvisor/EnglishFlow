@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Key Words · Unit 7 — Pipes and Pipelines · Oil and Gas 1</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a1018;font-family:'Barlow',sans-serif;min-height:100vh;display:flex;flex-direction:column}
+.header{background:#0d1520;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid #3d1f00}
+.pill-title .main{font-family:Georgia,serif;font-size:clamp(20px,4vw,34px);font-weight:700;color:#e8eef5;line-height:1}
+.pill-title .sub{font-size:12px;font-weight:500;color:#d97706;text-transform:uppercase;letter-spacing:.12em;margin-top:3px;display:block}
+.header-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.level-badge{background:#3d1f00;border:1px solid #7a3e00;border-radius:6px;padding:4px 10px;display:flex;flex-direction:column;align-items:center}
+.level-badge .trail{font-size:9px;color:#d97706;text-transform:uppercase;letter-spacing:.1em;font-weight:600}
+.level-badge .level{font-size:11px;color:#fcd34d;font-weight:700}
+.icon-box{width:36px;height:36px;border:1px solid #7a3e00;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#3d1f00}
+.icon-box svg{width:18px;height:18px;stroke:#d97706;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.teacher-bar{background:#0a1018;padding:6px 20px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #1a2d3d}
+.teacher-btn{display:flex;align-items:center;gap:6px;background:#6b3fa0;border:none;border-radius:6px;padding:5px 12px;color:#fff;font-size:11px;font-weight:600;cursor:pointer}
+.teacher-btn svg{width:13px;height:13px;stroke:#fff;fill:none;stroke-width:2;flex-shrink:0}
+.teacher-label{font-size:10px;color:#3a5a6a;font-style:italic}
+.warn-bar{background:#0a1018;padding:5px 20px;font-size:11px;color:#3a5a6a;text-align:center;border-bottom:1px solid #1a2d3d}
+.warn-bar strong{color:#d97706}
+.steps{display:flex;gap:6px;padding:8px 16px;overflow-x:auto;scrollbar-width:none;background:#0d1520;border-bottom:1px solid #1a2d3d}
+.steps::-webkit-scrollbar{display:none}
+.step{flex-shrink:0;display:flex;align-items:center;gap:5px;background:rgba(217,119,6,.08);border:1px solid rgba(217,119,6,.2);border-radius:20px;padding:5px 12px;font-size:11px;color:#d97706;font-weight:500;white-space:nowrap}
+.step-num{background:#3d1f00;border:1px solid #7a3e00;color:#d97706;border-radius:50%;width:16px;height:16px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;flex-shrink:0}
+.content{display:grid;grid-template-columns:1fr 220px;gap:12px;padding:12px 16px;flex:1}
+.left-col{display:flex;flex-direction:column;gap:12px}
+.card{background:#0d1a26;border-radius:10px;padding:14px 16px;border:1px solid #1a2d3d}
+.act-title{font-size:11px;font-weight:700;color:#d97706;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.instruction{background:rgba(217,119,6,.06);border-left:3px solid #3d1f00;padding:7px 10px;font-size:11px;color:#6a8a9a;line-height:1.6;margin-bottom:10px}
+.instruction strong{color:#d97706}
+.words-section{margin-bottom:12px}
+.words-label{font-size:10px;font-weight:700;color:#d97706;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;padding-bottom:5px;border-bottom:1px solid #3d1f00;display:block}
+.flip-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-bottom:8px}
+.flip-card{height:90px;cursor:pointer;perspective:600px}
+.flip-inner{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .4s}
+.flip-card.flipped .flip-inner{transform:rotateY(180deg)}
+.flip-front,.flip-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px;text-align:center;border-radius:8px}
+.flip-front{background:#0a1018;border:1px solid #3d1f00}
+.flip-back{background:#1a0e00;border:1px solid #7a3e00;transform:rotateY(180deg)}
+.front-word{font-size:14px;font-weight:700;color:#fcd34d;line-height:1.2;margin-bottom:3px}
+.front-pos{font-size:9px;color:#4a6a7a;text-transform:uppercase;letter-spacing:.08em}
+.back-def{font-size:10px;color:#c8a060;line-height:1.5}
+.controls{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;flex-wrap:wrap;gap:8px}
+.counter{font-size:12px;color:#4a6a7a}
+.counter span{color:#d97706;font-weight:700}
+.reset-btn{background:transparent;border:1px solid #3d1f00;color:#4a6a7a;border-radius:6px;padding:5px 14px;font-size:11px;font-weight:600;cursor:pointer}
+.congrats{font-size:13px;color:#fcd34d;margin-top:6px;text-align:center;display:none;font-weight:600}
+.match-grid{display:flex;flex-direction:column;gap:7px;margin-bottom:10px}
+.match-row{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:7px;border:1px solid #1a2d3d;background:#0a1018;transition:all .2s}
+.match-row.correct{background:#0a2a1a;border-color:#16a34a}
+.match-row.wrong{background:#2a0a0a;border-color:#dc2626}
+.match-num{font-size:12px;font-weight:700;color:#d97706;min-width:18px;flex-shrink:0}
+.match-text{flex:1;font-size:12px;color:#c8d8e8;font-style:italic}
+.match-select{border:1px solid #7a3e00;border-radius:5px;padding:3px 7px;font-size:11px;color:#c8d8e8;background:#3d1f00;outline:none;max-width:130px}
+.match-icon{font-size:13px;min-width:16px;text-align:center;font-weight:700}
+.check-btn{background:#3d1f00;border:1px solid #7a3e00;color:#fcd34d;border-radius:6px;padding:7px 16px;font-size:12px;font-weight:600;cursor:pointer;margin-top:4px}
+.check-btn:hover{background:#7a3e00}
+.score{font-size:11px;font-weight:700;margin-top:7px;display:none;padding:5px 8px;border-radius:6px}
+.score.perfect{color:#4ade80;background:#0a2a1a}
+.score.partial{color:#fbbf24;background:#1a1500}
+.task-box{background:#0a1018;border:1px solid rgba(217,119,6,.2);border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:8px}
+.task-box p{font-size:11px;color:#4a6a7a;font-style:italic;line-height:1.5}
+.wa-btn{display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;border:none;border-radius:8px;padding:9px;font-size:12px;font-weight:600;cursor:pointer;width:100%;min-height:44px}
+.side-panel{display:flex;flex-direction:column;gap:12px}
+.checklist-card{background:#0d1a26;border-radius:10px;padding:14px;border:1px solid #1a2d3d;align-self:start}
+.cl-title{font-size:11px;font-weight:700;color:#d97706;text-transform:uppercase;letter-spacing:.08em;padding-bottom:7px;border-bottom:2px solid #3d1f00;margin-bottom:8px}
+.cl-item{display:flex;align-items:flex-start;gap:8px;padding:5px 0;border-bottom:1px solid #1a2d3d;font-size:11px;color:#6a8a9a;line-height:1.4;cursor:pointer}
+.cl-item:last-child{border-bottom:none}
+.cl-check{width:14px;height:14px;border:1px solid #3d1f00;border-radius:3px;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#4ade80}
+.cl-check.checked{background:#3d1f00;border-color:#7a3e00}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);display:flex;align-items:center;justify-content:center;z-index:100;padding:16px}
+.modal-box{background:#0d1a26;border:1px solid #3d1f00;border-radius:12px;padding:20px;max-width:460px;width:100%;max-height:85vh;overflow-y:auto;display:flex;flex-direction:column;gap:12px}
+.modal-title{font-family:Georgia,serif;font-size:18px;font-weight:700;color:#fcd34d}
+.modal-field label{font-size:10px;color:#d97706;text-transform:uppercase;letter-spacing:.08em;font-weight:700;display:block;margin-bottom:4px}
+.modal-field input,.modal-field textarea{width:100%;background:#0a1018;border:1px solid #3d1f00;border-radius:6px;padding:8px;font-size:12px;color:#c8d8e8;font-family:'Barlow',sans-serif;outline:none}
+.modal-field input:focus,.modal-field textarea:focus{border-color:#d97706}
+.modal-field textarea{resize:vertical;min-height:70px}
+.modal-reminder{font-size:10px;color:#4a6a7a;font-style:italic;border-top:1px solid #1a2d3d;padding-top:8px}
+.modal-actions{display:flex;gap:8px}
+.modal-cancel{flex:1;background:transparent;border:1px solid #1a2d3d;color:#4a6a7a;border-radius:7px;padding:8px;font-size:13px;cursor:pointer}
+.modal-send{flex:2;display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;border:none;border-radius:7px;padding:8px;font-size:13px;font-weight:700;cursor:pointer}
+.footer{background:#0a1018;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;margin-top:4px;border-top:1px solid #1a2d3d}
+.footer-left{font-size:11px;color:#3a5a6a;letter-spacing:.04em}
+.footer-right{display:flex;align-items:center;gap:8px}
+.footer-right svg{width:18px;height:18px;stroke:#d97706;fill:none;stroke-width:1.5}
+.footer-text{font-family:Georgia,serif;font-size:13px;font-weight:700;color:#fcd34d}
+@media(max-width:700px){.content{grid-template-columns:1fr;display:flex;flex-direction:column}.side-panel{order:-1}.left-col{order:1}.flip-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.steps{padding:6px 10px}.step{font-size:10px;padding:4px 9px}.content{padding:10px 12px;gap:10px}.card{padding:12px 13px}.wa-btn{min-height:48px}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="pill-title">
+    <div class="main">Key Words</div>
+    <span class="sub">Unit 7 — Pipes and Pipelines</span>
+  </div>
+  <div class="header-right">
+    <div class="level-badge">
+      <span class="trail">Oil and Gas</span>
+      <span class="level">Book 1</span>
+    </div>
+    <div class="icon-box">
+      <svg viewBox="0 0 24 24"><path d="M3 3h18v4H3z"/><path d="M3 17h18v4H3z"/><path d="M7 7v10M17 7v10"/></svg>
+    </div>
+  </div>
+</div>
+
+<div class="teacher-bar">
+  <button class="teacher-btn" onclick="playTeacher()">
+    <svg viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 1 3 3v7a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+    Teacher's Note
+  </button>
+  <span class="teacher-label">Listen before you start</span>
+  <audio id="teacher-audio" src="/EnglishFlow/oil-gas/teacher-notes/capsule-97-teacher-note.mp3" preload="none"></audio>
+</div>
+
+<div class="warn-bar">This page is in English on purpose. <strong>Please do not translate it.</strong></div>
+
+<div class="steps">
+  <div class="step"><span class="step-num">1</span>Flip all the cards</div>
+  <div class="step"><span class="step-num">2</span>Match words to definitions</div>
+  <div class="step"><span class="step-num">3</span>Tick your checklist</div>
+  <div class="step"><span class="step-num">4</span>Send your audio</div>
+</div>
+
+<div class="content">
+  <div class="left-col">
+
+    <!-- FLIP CARDS -->
+    <div class="card">
+      <div class="act-title">Activity 1 — Unit 7 Key Words</div>
+      <div class="instruction">
+        <strong>Click</strong> each card to see the definition &nbsp;·&nbsp;
+        <strong>Say</strong> the word aloud before flipping &nbsp;·&nbsp;
+        <strong>Flip all 15</strong> to complete
+      </div>
+      <div class="controls">
+        <div class="counter">Flipped: <span id="cnt">0</span> / 15</div>
+        <button class="reset-btn" onclick="resetAll()">Reset all</button>
+      </div>
+
+      <div class="words-section">
+        <span class="words-label">Nouns (10)</span>
+        <div class="flip-grid" id="nouns-grid"></div>
+      </div>
+
+      <div class="words-section">
+        <span class="words-label">Verbs (5)</span>
+        <div class="flip-grid" id="verbs-grid"></div>
+      </div>
+
+      <div class="congrats" id="congrats">🎉 All 15 words flipped! Unit 7 complete!</div>
+    </div>
+
+    <!-- MATCH ACTIVITY -->
+    <div class="card">
+      <div class="act-title">Activity 2 — Match word to definition</div>
+      <div class="instruction">
+        <strong>Match</strong> each word (1–5) to the correct definition (a–e)
+      </div>
+      <div class="match-grid">
+        <div class="match-row" id="mr1"><span class="match-num">1</span><span class="match-text">diameter</span><select class="match-select" id="m1"><option value="">—</option><option value="c">a. make something smaller/less</option><option value="a">b. check carefully</option><option value="b">c. distance across a circle</option><option value="d">d. stop something passing through</option><option value="e">e. how thick something is</option></select><span class="match-icon" id="mi1"></span></div>
+        <div class="match-row" id="mr2"><span class="match-num">2</span><span class="match-text">inspect</span><select class="match-select" id="m2"><option value="">—</option><option value="c">a. make something smaller/less</option><option value="a">b. check carefully</option><option value="b">c. distance across a circle</option><option value="d">d. stop something passing through</option><option value="e">e. how thick something is</option></select><span class="match-icon" id="mi2"></span></div>
+        <div class="match-row" id="mr3"><span class="match-num">3</span><span class="match-text">thickness</span><select class="match-select" id="m3"><option value="">—</option><option value="c">a. make something smaller/less</option><option value="a">b. check carefully</option><option value="b">c. distance across a circle</option><option value="d">d. stop something passing through</option><option value="e">e. how thick something is</option></select><span class="match-icon" id="mi3"></span></div>
+        <div class="match-row" id="mr4"><span class="match-num">4</span><span class="match-text">block</span><select class="match-select" id="m4"><option value="">—</option><option value="c">a. make something smaller/less</option><option value="a">b. check carefully</option><option value="b">c. distance across a circle</option><option value="d">d. stop something passing through</option><option value="e">e. how thick something is</option></select><span class="match-icon" id="mi4"></span></div>
+        <div class="match-row" id="mr5"><span class="match-num">5</span><span class="match-text">reduce</span><select class="match-select" id="m5"><option value="">—</option><option value="c">a. make something smaller/less</option><option value="a">b. check carefully</option><option value="b">c. distance across a circle</option><option value="d">d. stop something passing through</option><option value="e">e. how thick something is</option></select><span class="match-icon" id="mi5"></span></div>
+      </div>
+      <button class="check-btn" onclick="checkMatch()">Check answers</button>
+      <div class="score" id="match-score"></div>
+    </div>
+
+    <!-- FIND 5 MORE WORDS -->
+    <div class="card">
+      <div class="act-title">Activity 3 — Your 5 Extra Words</div>
+      <div class="instruction">
+        <strong>Look back</strong> through Unit 7 &nbsp;·&nbsp;
+        <strong>Find 5 more words</strong> you think are useful &nbsp;·&nbsp;
+        <strong>Write them below</strong> with a short definition or translation
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:10px">
+        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:12px;font-weight:700;color:#d97706;min-width:20px">1</span><input style="flex:1;background:#0a1018;border:none;border-bottom:1px solid #3d1f00;color:#c8d8e8;font-size:12px;outline:none;padding:4px 6px" placeholder="word — meaning..."></div>
+        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:12px;font-weight:700;color:#d97706;min-width:20px">2</span><input style="flex:1;background:#0a1018;border:none;border-bottom:1px solid #3d1f00;color:#c8d8e8;font-size:12px;outline:none;padding:4px 6px" placeholder="word — meaning..."></div>
+        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:12px;font-weight:700;color:#d97706;min-width:20px">3</span><input style="flex:1;background:#0a1018;border:none;border-bottom:1px solid #3d1f00;color:#c8d8e8;font-size:12px;outline:none;padding:4px 6px" placeholder="word — meaning..."></div>
+        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:12px;font-weight:700;color:#d97706;min-width:20px">4</span><input style="flex:1;background:#0a1018;border:none;border-bottom:1px solid #3d1f00;color:#c8d8e8;font-size:12px;outline:none;padding:4px 6px" placeholder="word — meaning..."></div>
+        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:12px;font-weight:700;color:#d97706;min-width:20px">5</span><input style="flex:1;background:#0a1018;border:none;border-bottom:1px solid #3d1f00;color:#c8d8e8;font-size:12px;outline:none;padding:4px 6px" placeholder="word — meaning..."></div>
+      </div>
+    </div>
+
+    <!-- TASK BOX -->
+    <div class="task-box">
+      <p>🎙️ Record yourself using 5 words from this unit in sentences about pipes or pipelines at your workplace. Send via WhatsApp.</p>
+      <button class="wa-btn" onclick="openModal()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+        Send via WhatsApp
+      </button>
+    </div>
+
+  </div>
+
+  <!-- SIDE PANEL -->
+  <div class="side-panel">
+    <div class="checklist-card">
+      <div class="cl-title">Unit 7 Checklist</div>
+      <div class="cl-item" onclick="toggleCheck(this)"><div class="cl-check" id="c1"></div>I can describe the location of a pipeline</div>
+      <div class="cl-item" onclick="toggleCheck(this)"><div class="cl-check" id="c2"></div>I can understand welding hazards and precautions</div>
+      <div class="cl-item" onclick="toggleCheck(this)"><div class="cl-check" id="c3"></div>I can understand countable and uncountable nouns</div>
+      <div class="cl-item" onclick="toggleCheck(this)"><div class="cl-check" id="c4"></div>I can talk about measuring pipes</div>
+      <div class="cl-item" onclick="toggleCheck(this)"><div class="cl-check" id="c5"></div>I can describe a pipeline system</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-left">Capsule 97 of 203 · Unit 7 — Pipes and Pipelines · Oil and Gas 1</div>
+  <div class="footer-right">
+    <svg viewBox="0 0 24 24"><path d="M3 3h18v4H3z"/><path d="M3 17h18v4H3z"/></svg>
+    <span class="footer-text">Oil and Gas 1</span>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" style="display:none">
+  <div class="modal-box">
+    <div class="modal-title">Send your answers</div>
+    <div class="modal-field">
+      <label>Your name</label>
+      <input type="text" id="studentName" placeholder="Type your name..." autocomplete="off">
+    </div>
+    <div class="modal-field">
+      <label>Activity 2 — Match (write: 1=c, 2=b...)</label>
+      <textarea id="act1" placeholder="1= , 2= , 3= , 4= , 5="></textarea>
+    </div>
+    <div class="modal-field">
+      <label>Checklist — which items can you do?</label>
+      <textarea id="act2" placeholder="I can... / I need more practice with..."></textarea>
+    </div>
+    <div class="modal-field">
+      <label>Activity 3 — Your 5 extra words from Unit 7</label>
+      <textarea id="act3" placeholder="1. word — meaning&#10;2. word — meaning&#10;..."></textarea>
+    </div>
+    <div class="modal-reminder">🎙️ After sending, record yourself using 5 key words in sentences about your workplace.</div>
+    <div class="modal-actions">
+      <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+      <button class="modal-send" onclick="sendWA()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+        Send via WhatsApp
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+function playTeacher(){document.getElementById('teacher-audio').play().catch(function(){});}
+
+var nouns=[
+  {w:'circumference',def:'The distance around the outside of a circle or pipe.'},
+  {w:'deposit',def:'An amount of oil or gas found in the ground.'},
+  {w:'diameter',def:'The distance across a circle, through its centre.'},
+  {w:'flow',def:'The movement of liquid or gas through a pipe.'},
+  {w:'inspection',def:'A careful check of something to find problems.'},
+  {w:'length',def:'The measurement of something from end to end.'},
+  {w:'radius',def:'The distance from the centre to the edge of a circle.'},
+  {w:'regulator',def:'A device that controls pressure or flow.'},
+  {w:'thickness',def:'How thick the wall of a pipe is.'},
+  {w:'volume',def:'The amount of space something fills.'}
+];
+var verbs=[
+  {w:'block',def:'To stop something from passing through.'},
+  {w:'cause',def:'To make something happen.'},
+  {w:'design',def:'To plan and draw how something will be made.'},
+  {w:'inspect',def:'To check something carefully for problems.'},
+  {w:'reduce',def:'To make something smaller or less.'}
+];
+
+var flipped=new Set();
+function makeCard(item,idx,type){
+  var id=type+idx;
+  var div=document.createElement('div');
+  div.className='flip-card';
+  div.id=id;
+  div.innerHTML='<div class="flip-inner"><div class="flip-front"><div class="front-word">'+item.w+'</div><div class="front-pos">tap to flip</div></div><div class="flip-back"><div class="back-def">'+item.def+'</div></div></div>';
+  div.addEventListener('click',function(){
+    this.classList.toggle('flipped');
+    if(this.classList.contains('flipped')){flipped.add(id);}else{flipped.delete(id);}
+    document.getElementById('cnt').textContent=flipped.size;
+    document.getElementById('congrats').style.display=flipped.size>=15?'block':'none';
+  });
+  return div;
+}
+var ng=document.getElementById('nouns-grid');
+nouns.forEach(function(item,i){ng.appendChild(makeCard(item,i,'n'));});
+var vg=document.getElementById('verbs-grid');
+verbs.forEach(function(item,i){vg.appendChild(makeCard(item,i,'v'));});
+
+function resetAll(){
+  document.querySelectorAll('.flip-card').forEach(function(c){c.classList.remove('flipped');});
+  flipped.clear();
+  document.getElementById('cnt').textContent='0';
+  document.getElementById('congrats').style.display='none';
+}
+
+var matchAnswers={m1:'c',m2:'b',m3:'e',m4:'d',m5:'a'};
+function checkMatch(){
+  var correct=0;
+  for(var k in matchAnswers){
+    var num=k.replace('m','');
+    var val=document.getElementById(k).value;
+    var row=document.getElementById('mr'+num);
+    var icon=document.getElementById('mi'+num);
+    if(val===matchAnswers[k]){correct++;row.className='match-row correct';icon.textContent='✓';icon.style.color='#4ade80';}
+    else if(val===''){row.className='match-row';icon.textContent='';}
+    else{row.className='match-row wrong';icon.textContent='✗';icon.style.color='#f87171';}
+  }
+  var sc=document.getElementById('match-score');
+  sc.style.display='block';
+  sc.className='score '+(correct===5?'perfect':'partial');
+  sc.textContent=correct===5?'Perfect! All 5 correct!':correct+'/5 correct — check the red ones.';
+}
+
+function toggleCheck(el){
+  var box=el.querySelector('.cl-check');
+  if(box.classList.contains('checked')){box.classList.remove('checked');box.textContent='';}
+  else{box.classList.add('checked');box.textContent='✓';}
+}
+
+function openModal(){
+  var saved=localStorage.getItem('ef_student_name');
+  if(saved)document.getElementById('studentName').value=saved;
+  document.getElementById('modal').style.display='flex';
+}
+function closeModal(){document.getElementById('modal').style.display='none';}
+function sendWA(){
+  var name=document.getElementById('studentName').value.trim()||'Student';
+  localStorage.setItem('ef_student_name',name);
+  var now=new Date();
+  var date=now.toLocaleDateString('pt-BR');
+  var time=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  var act1=document.getElementById('act1').value||'(not answered)';
+  var act2=document.getElementById('act2').value||'(not answered)';
+  var act3=document.getElementById('act3').value||'(not answered)';
+  var msg='👤 '+name+'\n'
+        +'📅 '+date+' at '+time+'\n'
+        +'📘 Capsule 97 of 203 — Key Words · Unit 7 — Pipes and Pipelines · Oil and Gas 1\n\n'
+        +'📌 Activity 2 — Match:\n'+act1+'\n\n'
+        +'📌 Checklist:\n'+act2+'\n\n'
+        +'📌 My 5 extra words:\n'+act3+'\n\n'
+        +'🎙️ Audio in the next message.';
+  var formUrl='https://docs.google.com/forms/d/e/1FAIpQLSdGVa3JN0PfYG1C-YV8oGk-EQ5u5skM-V_LJImf_kijpmijWw/formResponse';
+  var data=new FormData();
+  data.append('entry.566273869',name);
+  data.append('entry.947389419','Capsule 97 of 203');
+  data.append('entry.156113480','Unit 7 — Pipes and Pipelines');
+  data.append('entry.583447830','Oil and Gas 1');
+  data.append('entry.923345328','Done');
+  fetch(formUrl,{method:'POST',mode:'no-cors',body:data});
+  window.open('https://wa.me/5522999585058?text='+encodeURIComponent(msg),'_blank');
+  closeModal();
+}
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+</script>
+</body>
+</html>
