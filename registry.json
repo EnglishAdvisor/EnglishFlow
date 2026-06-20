@@ -1,0 +1,53 @@
+{
+  "students": [
+    {
+      "name": "Gleidson",
+      "color": "#6c3fc7",
+      "trail": "business/starter",
+      "unit": "Unit1",
+      "capsule": "capsule-05-business-communication.html"
+    },
+    {
+      "name": "Ingrid",
+      "color": "#0a9e8a",
+      "trail": "business/starter",
+      "unit": "Unit3",
+      "capsule": "capsule-15-language-at-work.html"
+    },
+    {
+      "name": "Maria Eduarda",
+      "color": "#e8a020",
+      "trail": "business/elementary",
+      "unit": "Unit1",
+      "capsule": "capsule-03-language-at-work-elementary.html"
+    },
+    {
+      "name": "Diogo Cordeiro",
+      "color": "#1a7a6e",
+      "trail": "business/elementary",
+      "unit": "Unit4",
+      "capsule": "capsule-22-working-with-words-elementary.html"
+    },
+    {
+      "name": "Fabricio Jorge",
+      "color": "#2c2c2c",
+      "trail": "oil-gas",
+      "unit": "unit-2",
+      "capsule": "capsule-21-number-talk-og1.html"
+    },
+    {
+      "name": "Jonata Nascimento",
+      "color": "#c47a1e",
+      "trail": "oil-gas",
+      "unit": "unit-7",
+      "capsule": "capsule-97-key-words-og1.html"
+    },
+    {
+      "name": "Anderson Soares",
+      "color": "#1e3a5f",
+      "trail": "worldclass/WC1",
+      "unit": "unit-5",
+      "capsule": "capsule-44-listening-wc1.html"
+    }
+  ]
+}
