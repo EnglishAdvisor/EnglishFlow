@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FIRST OIL — Inglês Técnico para Óleo &amp; Gás</title>
+<meta name="description" content="Da sísmica ao posto de combustível: um jogo de inglês técnico para profissionais de E&P. Offline, com modo instrutor, DDS diário e cenas industriais procedurais.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛢️</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<canvas id="bg"></canvas>
+<canvas id="fx"></canvas>
+<div id="float-layer"></div>
+<div id="vignette"></div>
+<div id="flash"></div>
+
+<div id="app">
+
+  <!-- TÍTULO -->
+  <div class="screen active" id="s-title">
+    <div class="title-wrap">
+      <div class="hazard-bar"></div>
+      <div class="logo">
+        <span class="logo-first">FIRST</span>
+        <span class="logo-oil">OIL</span>
+      </div>
+      <p class="tagline">Inglês técnico para óleo &amp; gás — da sísmica ao posto 🛢️</p>
+      <p class="tagline sub">ATLÂNTICA ENERGIA · CAMPO AURORA · BACIA DE SANTOS</p>
+      <div class="title-btns">
+        <button class="btn primary big-btn" id="t-play">⛑️ EMBARCAR<span class="t-sub"></span></button>
+        <button class="btn ghost big-btn" id="t-daily">📢 DDS Diário</button>
+        <button class="btn ghost big-btn" id="t-missions">📨 Ordens de Serviço</button>
+        <button class="btn ghost big-btn" id="t-mentor">📋 Modo Instrutor</button>
+        <button class="btn ghost big-btn" id="t-settings">⚙️ Ajustes</button>
+      </div>
+      <p class="muted center foot">Progresso salvo automaticamente · funciona offline<br>Upstream → Midstream → Downstream · 7 unidades · 1 certificação</p>
+      <div class="hazard-bar"></div>
+    </div>
+  </div>
+
+  <!-- HISTÓRIA -->
+  <div class="screen" id="s-story"><div class="content"></div></div>
+
+  <!-- MAPA DA CADEIA -->
+  <div class="screen" id="s-map"><div class="content"></div></div>
+
+  <!-- TAREFA / CRISE -->
+  <div class="screen" id="s-battle">
+    <div id="b-top">
+      <button id="b-flee" class="btn ghost small">✖</button>
+      <div id="b-einfo">
+        <div id="b-ename"></div>
+        <div id="b-ehplabel"></div>
+        <div id="b-ehpwrap"><div id="b-ehp"></div></div>
+      </div>
+      <div id="b-progress"></div>
+    </div>
+    <div id="b-stage">
+      <canvas id="b-canvas"></canvas>
+      <div id="b-dlg" class="hidden">
+        <div id="b-dlg-name"></div>
+        <div id="b-dlg-text"></div>
+        <div class="fb-tap muted">toque ▸</div>
+      </div>
+    </div>
+    <div id="b-card">
+      <div id="b-timer"><div id="b-timerfill"></div></div>
+      <div id="b-title"></div>
+      <div id="b-main"></div>
+      <div id="b-sub"></div>
+      <div id="b-area"></div>
+      <div id="b-feedback" class="hidden"></div>
+    </div>
+    <div id="b-bottom">
+      <div id="b-php-wrap">
+        <span id="b-php-label"></span>
+        <div id="b-phpbar"><div id="b-php"></div></div>
+      </div>
+      <div id="b-combo"></div>
+      <div id="b-items"></div>
+    </div>
+  </div>
+
+  <!-- SUPRIMENTOS -->
+  <div class="screen" id="s-shop"><div class="content"></div></div>
+
+  <!-- DATA BOOK -->
+  <div class="screen" id="s-grimoire"><div class="content"></div></div>
+
+  <!-- INSTRUTOR -->
+  <div class="screen" id="s-mentor"><div class="content"></div></div>
+
+  <!-- ORDENS DE SERVIÇO -->
+  <div class="screen" id="s-missions"><div class="content"></div></div>
+
+  <!-- AJUSTES -->
+  <div class="screen" id="s-settings"><div class="content"></div></div>
+
+  <!-- CERTIFICAÇÃO -->
+  <div class="screen" id="s-final"><div class="content"></div></div>
+
+</div>
+
+<div id="toasts"></div>
+
+<script src="js/util.js"></script>
+<script src="js/data.js"></script>
+<script src="js/data2.js"></script>
+<script src="js/data3.js"></script>
+<script src="js/srs.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/fx.js"></script>
+<script src="js/scene.js"></script>
+<script src="js/challenges.js"></script>
+<script src="js/mentor.js"></script>
+<script src="js/battle.js"></script>
+<script src="js/game.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
