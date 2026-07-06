@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>A Maldição da Cuca — RPG de Inglês</title>
+<meta name="description" content="Um RPG de inglês contra as lendas do folclore brasileiro. 100% offline, com modo mentor, desafio diário e monstros procedurais.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐊</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<canvas id="bg"></canvas>
+<canvas id="fx"></canvas>
+<div id="float-layer"></div>
+<div id="vignette"></div>
+<div id="flash"></div>
+
+<div id="app">
+
+  <!-- TÍTULO -->
+  <div class="screen active" id="s-title">
+    <div class="title-wrap">
+      <div class="logo">
+        <span class="logo-a">A MALDIÇÃO</span>
+        <span class="logo-da">da</span>
+        <span class="logo-cuca">CUCA</span>
+      </div>
+      <p class="tagline">Um RPG de inglês contra as lendas do Brasil 🐊</p>
+      <div class="title-btns">
+        <button class="btn primary big-btn" id="t-play">⚔️ JOGAR<span class="t-sub"></span></button>
+        <button class="btn ghost big-btn" id="t-daily">📅 Desafio Diário</button>
+        <button class="btn ghost big-btn" id="t-missions">✉️ Missões (aluno)</button>
+        <button class="btn ghost big-btn" id="t-mentor">🎓 Modo Mentor</button>
+        <button class="btn ghost big-btn" id="t-settings">⚙️ Ajustes</button>
+      </div>
+      <p class="muted center foot">Seu progresso salva sozinho · funciona offline<br>7 lendas · 7 letras · 1 contra-feitiço</p>
+    </div>
+  </div>
+
+  <!-- HISTÓRIA -->
+  <div class="screen" id="s-story"><div class="content"></div></div>
+
+  <!-- MAPA -->
+  <div class="screen" id="s-map"><div class="content"></div></div>
+
+  <!-- BATALHA -->
+  <div class="screen" id="s-battle">
+    <div id="b-top">
+      <button id="b-flee" class="btn ghost small">✖</button>
+      <div id="b-einfo">
+        <div id="b-ename"></div>
+        <div id="b-ehpwrap"><div id="b-ehp"></div></div>
+      </div>
+      <div id="b-progress"></div>
+    </div>
+    <div id="b-stage">
+      <canvas id="b-canvas"></canvas>
+      <div id="b-dlg" class="hidden">
+        <div id="b-dlg-name"></div>
+        <div id="b-dlg-text"></div>
+        <div class="fb-tap muted">toque ▸</div>
+      </div>
+    </div>
+    <div id="b-card">
+      <div id="b-timer"><div id="b-timerfill"></div></div>
+      <div id="b-title"></div>
+      <div id="b-main"></div>
+      <div id="b-sub"></div>
+      <div id="b-area"></div>
+      <div id="b-feedback" class="hidden"></div>
+    </div>
+    <div id="b-bottom">
+      <div id="b-php-wrap">
+        <span id="b-php-label"></span>
+        <div id="b-phpbar"><div id="b-php"></div></div>
+      </div>
+      <div id="b-combo"></div>
+      <div id="b-items"></div>
+    </div>
+  </div>
+
+  <!-- VENDINHA -->
+  <div class="screen" id="s-shop"><div class="content"></div></div>
+
+  <!-- GRIMÓRIO -->
+  <div class="screen" id="s-grimoire"><div class="content"></div></div>
+
+  <!-- MENTOR -->
+  <div class="screen" id="s-mentor"><div class="content"></div></div>
+
+  <!-- MISSÕES (aluno) -->
+  <div class="screen" id="s-missions"><div class="content"></div></div>
+
+  <!-- AJUSTES -->
+  <div class="screen" id="s-settings"><div class="content"></div></div>
+
+  <!-- FINAL -->
+  <div class="screen" id="s-final"><div class="content"></div></div>
+
+</div>
+
+<div id="toasts"></div>
+
+<script src="js/util.js"></script>
+<script src="js/data.js"></script>
+<script src="js/data2.js"></script>
+<script src="js/srs.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/fx.js"></script>
+<script src="js/monster.js"></script>
+<script src="js/challenges.js"></script>
+<script src="js/mentor.js"></script>
+<script src="js/battle.js"></script>
+<script src="js/game.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

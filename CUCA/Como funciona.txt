@@ -1,0 +1,25 @@
+🐊 Pronto — A Maldição da Cuca está criado e já deve ter aberto no seu navegador
+Um RPG de inglês contra as lendas do folclore brasileiro, em a-maldicao-da-cuca/. Para jogar de novo: dois cliques em JOGAR.bat ou abra o index.html. Funciona 100% offline, sem instalação, e no celular também.
+
+A ideia
+A Cuca enfeitiçou todo o inglês do Brasil. Sete lendas guardam as sete letras do contra-feitiço E·N·G·L·I·S·H — e cada chefe personifica uma dor real do brasileiro com inglês:
+
+Lenda	Desafio	Mecânica própria
+🌪️ Saci	Falsos amigos (pretend ≠ pretender)	Embaralha suas opções no meio da pergunta
+🔥 Curupira	Montar frases (pés ao contrário = ordem invertida)	Fala uma linha de trás pra frente
+🧜 Iara	Listening (ouça e escreva)	Na 2ª fase, canta mais rápido
+🐬 Boto	Phrasal verbs (o transformista das palavras)	—
+🐴 Mula-sem-cabeça	Preposições in/on/at (as lacunas!)	Fala por rinchos com "legenda"
+🐺 Lobisomem	Verbos irregulares e som do -ED	A lua atrás dele muda com as fases da luta
+🐊 Cuca	Tudo misturado	Canta "nana neném" e o seu tempo acelera
+O que faz ele ser mais que um quiz
+Repetição espaçada com tema: palavra errada vira Assombração 👻 que volta para te caçar até você dominá-la — tudo registrado no Grimório com estrelas de domínio (toque numa palavra e ela é falada em voz alta).
+Combate com skill: responder rápido dá crítico, acertos em sequência sobem o combo, itens brasileiros (Cafezinho ☕, Chinelo da Vó 🩴, Patuá 🧿) viram táticas.
+Mentor ↔ aluno sem servidor: o professor cria uma missão (até com vocabulário próprio) → código CUCA1 de ~330 caracteres via WhatsApp → a turma inteira recebe perguntas idênticas → o aluno devolve um código PROVA1 assinado digitalmente (o jogo detecta nota adulterada) → ranking da turma automático. O aluno ainda gera um Boletim com precisão por categoria, e o app sugere ao mentor o que reforçar.
+Desafio Diário estilo Wordle: 10 perguntas iguais para o Brasil inteiro, resultado em emojis 🟩🟨🟥 com sequência de dias 🔥.
+Voz de verdade: listening usa a voz do sistema, e ligando o microfone nos Ajustes aparecem desafios de pronúncia falada.
+Modo Pesadelo (Novo Jogo+) depois de zerar.
+Engenharia (zero dependências, zero rede)
+Todos os monstros são desenhados por código em canvas a partir de uma semente — não há uma única imagem no projeto. A música e os efeitos são sintetizados em tempo real (sequenciador de 16 passos que muda por região e acelera nos chefes). São ~500 itens de conteúdo autorais e ~5.500 linhas em 12 módulos. Validei tudo antes de entregar: sintaxe dos 12 arquivos no Node, 2.896 checagens de lógica passando (geração de desafios, SRS, roundtrip e anti-fraude dos códigos, determinismo das missões) e boot testado em Edge headless.
+
+Uma observação honesta: a assinatura dos códigos é um dissuasor forte contra aluno editando a nota, não criptografia de banco — para o contexto (sala de aula via WhatsApp) é o equilíbrio certo. Se quiser, os próximos passos naturais seriam mais frases no banco, novas regiões, ou um modo "duelo" entre dois alunos pelo mesmo esquema de códigos.
