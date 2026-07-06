@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="theme-color" content="#0a1018">
+<title>EnglishFlow ARENA — Jogue. Aprenda. Suba de nível.</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛢️</text></svg>">
+<style>
+/* ============================================================
+   ENGLISHFLOW ARENA — single-file game
+   Design: premium dark offshore · amber flare accents
+   Zero external dependencies — works offline
+   ============================================================ */
+:root{
+  --bg:#0a1018;
+  --card:rgba(255,255,255,.045);
+  --card2:rgba(255,255,255,.07);
+  --line:rgba(255,255,255,.09);
+  --tx:#e8eef4;
+  --tx2:#8fa3b8;
+  --ok:#22c55e;
+  --bad:#ef4444;
+  --wa:#25D366;
+  --fh:'Bahnschrift','Arial Narrow','Roboto Condensed','Liberation Sans Narrow',system-ui,sans-serif;
+  --fb:'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+  /* default = brand amber (OG identity) */
+  --ac:#f59e0b; --ac2:#d97706;
+  --badge-bg:#3d1f00; --badge-tx:#fbbf24;
+  --glow:rgba(245,158,11,.30);
+  --hd:#0d1622;
+}
+body[data-trail="og1"]{--ac:#f59e0b;--ac2:#d97706;--badge-bg:#3d1f00;--badge-tx:#fbbf24;--glow:rgba(245,158,11,.30);--hd:#0d1622}
+body[data-trail="starter"]{--ac:#a78bfa;--ac2:#8b5cf6;--badge-bg:#2e1065;--badge-tx:#ddd6fe;--glow:rgba(167,139,250,.30);--hd:#4a4f5a}
+body[data-trail="elementary"]{--ac:#fb923c;--ac2:#f5a623;--badge-bg:#431407;--badge-tx:#fed7aa;--glow:rgba(251,146,60,.30);--hd:#4a4f5a}
+body[data-trail="wc1"]{--ac:#7ec8d4;--ac2:#5ab0c0;--badge-bg:#0f2e42;--badge-tx:#a5e3ec;--glow:rgba(126,200,212,.30);--hd:#1e3a5f}
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{height:100%}
+body{
+  min-height:100%;background:var(--bg);color:var(--tx);font-family:var(--fb);
+  overflow-x:hidden;
+  background-image:radial-gradient(1200px 600px at 50% -10%,var(--glow),transparent 60%),
+                   radial-gradient(800px 500px at 100% 100%,rgba(30,58,95,.25),transparent 60%);
+  background-attachment:fixed;
+  transition:background .5s;
+}
+#bubbles{position:fixed;inset:0;z-index:0;pointer-events:none}
+#cfx{position:fixed;inset:0;z-index:90;pointer-events:none}
+
+#app{position:relative;z-index:1;max-width:520px;margin:0 auto;padding:14px 14px 40px;min-height:100vh}
+.screen{display:none;flex-direction:column;gap:14px}
+.screen.active{display:flex;animation:fadeUp .38s cubic-bezier(.2,.8,.3,1)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+h1,h2,h3,.hfont{font-family:var(--fh);text-transform:uppercase;letter-spacing:.04em;font-stretch:condensed}
+.small{font-size:12px;color:var(--tx2)}
+
+/* ---------- glass card ---------- */
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  box-shadow:0 8px 28px rgba(0,0,0,.35);
+}
+.card.tight{padding:12px}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:flex;align-items:center;justify-content:center;gap:8px;width:100%;
+  min-height:50px;padding:12px 16px;border-radius:14px;border:1px solid var(--line);
+  background:var(--card2);color:var(--tx);font-family:var(--fh);font-size:16px;
+  text-transform:uppercase;letter-spacing:.05em;cursor:pointer;
+  transition:transform .12s,box-shadow .2s,background .2s;user-select:none;
+}
+.btn:active{transform:scale(.965)}
+.btn.primary{
+  background:linear-gradient(135deg,var(--ac),var(--ac2));color:#0a0f14;border:none;font-weight:700;
+  box-shadow:0 6px 22px var(--glow);
+}
+.btn.wa{background:var(--wa);color:#fff;border:none;font-weight:700}
+.btn.ghost{background:transparent}
+.btn:disabled{opacity:.4;pointer-events:none}
+.btn.sm{min-height:40px;font-size:13px;padding:8px 12px;border-radius:10px;width:auto}
+
+/* ---------- splash ---------- */
+#screen-splash{min-height:88vh;justify-content:center;text-align:center}
+.logo-mark{font-size:64px;filter:drop-shadow(0 0 24px var(--glow));animation:bob 3s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.logo-title{font-size:44px;line-height:.95;font-weight:700}
+.logo-title em{font-style:normal;color:var(--ac);text-shadow:0 0 30px var(--glow)}
+.logo-sub{font-size:13px;color:var(--tx2);letter-spacing:.14em;text-transform:uppercase;margin-top:10px}
+.tagline{font-size:14px;color:var(--tx2);font-style:italic;margin-top:4px}
+
+/* ---------- onboarding ---------- */
+.field label{display:block;font-family:var(--fh);text-transform:uppercase;font-size:12px;letter-spacing:.1em;color:var(--ac);margin-bottom:6px}
+.field input{
+  width:100%;min-height:52px;padding:12px 14px;border-radius:12px;font-size:16px;
+  background:rgba(0,0,0,.35);border:1px solid var(--line);color:var(--tx);outline:none;
+}
+.field input:focus{border-color:var(--ac);box-shadow:0 0 0 3px var(--glow)}
+.trail-grid{display:grid;grid-template-columns:1fr;gap:10px}
+.trail-card{
+  position:relative;display:flex;align-items:center;gap:12px;padding:14px;border-radius:14px;cursor:pointer;
+  background:var(--card);border:1.5px solid var(--line);transition:border-color .2s,transform .12s,box-shadow .2s;
+}
+.trail-card:active{transform:scale(.98)}
+.trail-card .tc-icon{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
+.trail-card .tc-name{font-family:var(--fh);text-transform:uppercase;font-size:17px;letter-spacing:.04em}
+.trail-card .tc-desc{font-size:12px;color:var(--tx2);margin-top:2px}
+.trail-card .tc-students{font-size:11px;color:var(--tx2);margin-top:3px;opacity:.85}
+.trail-card.sel{border-color:var(--tc,#f59e0b);box-shadow:0 0 0 3px color-mix(in srgb,var(--tc,#f59e0b) 25%,transparent),0 8px 24px rgba(0,0,0,.4)}
+.trail-card.sel::after{content:'✓';position:absolute;top:10px;right:12px;color:var(--tc,#f59e0b);font-weight:700;font-size:18px}
+
+/* ---------- hub ---------- */
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.topbar .brand{font-family:var(--fh);font-size:18px;letter-spacing:.06em;text-transform:uppercase}
+.topbar .brand em{font-style:normal;color:var(--ac)}
+.chip{
+  font-family:var(--fh);font-size:11px;text-transform:uppercase;letter-spacing:.06em;
+  background:var(--badge-bg);color:var(--badge-tx);border:1px solid var(--line);
+  padding:5px 10px;border-radius:999px;white-space:nowrap;
+}
+.iconbtn{width:38px;height:38px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--tx);font-size:16px;cursor:pointer;flex-shrink:0}
+
+.player-card{background:linear-gradient(160deg,color-mix(in srgb,var(--hd) 55%,transparent),var(--card));border:1px solid var(--line)}
+.pc-top{display:flex;align-items:center;gap:12px}
+.avatar{
+  width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,var(--ac),var(--ac2));
+  display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-size:24px;color:#0a0f14;font-weight:700;flex-shrink:0;
+  box-shadow:0 0 0 3px var(--glow);
+}
+.pc-name{font-family:var(--fh);font-size:20px;text-transform:uppercase;letter-spacing:.03em}
+.level-badge{display:inline-flex;align-items:center;gap:6px;background:var(--badge-bg);color:var(--badge-tx);border-radius:999px;padding:4px 12px;font-family:var(--fh);font-size:13px;text-transform:uppercase;letter-spacing:.05em;margin-top:4px}
+.streak-flame{margin-left:auto;text-align:center;flex-shrink:0}
+.streak-flame .fl{font-size:26px;filter:drop-shadow(0 0 8px rgba(245,158,11,.6))}
+.streak-flame .fl.off{filter:grayscale(1);opacity:.45}
+.streak-flame .fn{font-family:var(--fh);font-size:12px;color:var(--tx2)}
+.xpbar-wrap{margin-top:12px}
+.xpbar-lbl{display:flex;justify-content:space-between;font-size:11px;color:var(--tx2);margin-bottom:5px}
+.xpbar{height:10px;border-radius:999px;background:rgba(0,0,0,.4);overflow:hidden;border:1px solid var(--line)}
+.xpbar>div{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--ac2),var(--ac));box-shadow:0 0 12px var(--glow);transition:width .7s cubic-bezier(.2,.8,.3,1)}
+
+.mode-grid{display:grid;grid-template-columns:1fr;gap:10px}
+.mode-card{
+  display:flex;align-items:center;gap:14px;padding:16px;border-radius:16px;cursor:pointer;
+  background:var(--card);border:1px solid var(--line);transition:transform .12s,border-color .2s;
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+}
+.mode-card:active{transform:scale(.98)}
+.mode-card .mc-icon{font-size:32px;width:52px;height:52px;display:flex;align-items:center;justify-content:center;border-radius:14px;background:rgba(0,0,0,.3);flex-shrink:0;box-shadow:inset 0 0 0 1px var(--line)}
+.mode-card .mc-name{font-family:var(--fh);font-size:18px;text-transform:uppercase;letter-spacing:.04em}
+.mode-card .mc-desc{font-size:12px;color:var(--tx2);margin-top:2px}
+.mode-card .mc-go{margin-left:auto;color:var(--ac);font-size:22px;flex-shrink:0}
+
+.sec-title{font-family:var(--fh);font-size:13px;text-transform:uppercase;letter-spacing:.12em;color:var(--ac);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.sec-title::after{content:'';flex:1;height:1px;background:var(--line)}
+
+.lb-row{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:10px;font-size:14px}
+.lb-row.me{background:color-mix(in srgb,var(--ac) 14%,transparent);border:1px solid color-mix(in srgb,var(--ac) 35%,transparent)}
+.lb-pos{font-family:var(--fh);width:26px;color:var(--tx2);font-size:14px;flex-shrink:0}
+.lb-row:nth-child(1) .lb-pos{color:#fbbf24}
+.lb-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lb-xp{font-family:var(--fh);color:var(--ac);letter-spacing:.03em}
+
+.badge-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.badge-cell{
+  aspect-ratio:1;border-radius:12px;background:rgba(0,0,0,.3);border:1px solid var(--line);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:4px;text-align:center;
+}
+.badge-cell .bi{font-size:22px}
+.badge-cell .bn{font-size:8.5px;text-transform:uppercase;letter-spacing:.02em;color:var(--tx2);line-height:1.1}
+.badge-cell.locked{opacity:.32;filter:grayscale(1)}
+.badge-cell.unlocked{border-color:color-mix(in srgb,var(--ac) 45%,transparent);box-shadow:0 0 14px var(--glow)}
+
+.mentor-note{font-size:12px;color:var(--tx2);line-height:1.5;margin-bottom:10px}
+.hub-foot{text-align:center;font-size:11.5px;color:var(--tx2);font-style:italic;margin-top:4px}
+.hub-links{display:flex;justify-content:center;gap:16px;margin-top:8px}
+.hub-links a{color:var(--tx2);font-size:11px;text-decoration:underline;cursor:pointer}
+
+/* ---------- game common ---------- */
+.game-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.game-prog{font-family:var(--fh);font-size:14px;color:var(--tx2);letter-spacing:.05em}
+.combo-flame{display:flex;align-items:center;gap:5px;font-family:var(--fh);font-size:15px;min-width:70px;justify-content:flex-end}
+.combo-flame .cf{display:inline-block;transition:transform .25s cubic-bezier(.3,1.6,.5,1);transform-origin:bottom center}
+.combo-flame .cm{color:var(--ac)}
+.progline{height:6px;border-radius:999px;background:rgba(0,0,0,.4);overflow:hidden;border:1px solid var(--line)}
+.progline>div{height:100%;background:linear-gradient(90deg,var(--ac2),var(--ac));transition:width .4s;border-radius:999px}
+
+.q-text{font-size:19px;line-height:1.4;font-weight:600;min-height:64px;display:flex;align-items:center}
+.opt-grid{display:grid;gap:10px}
+.opt{
+  min-height:54px;padding:13px 14px;border-radius:13px;border:1.5px solid var(--line);
+  background:var(--card2);color:var(--tx);font-size:15.5px;text-align:left;cursor:pointer;line-height:1.35;
+  transition:transform .1s,border-color .15s,background .15s;
+}
+.opt:active{transform:scale(.98)}
+.opt.correct{background:rgba(34,197,94,.18);border-color:var(--ok);animation:popOk .4s}
+.opt.wrong{background:rgba(239,68,68,.16);border-color:var(--bad);animation:shake .4s}
+.opt.dim{opacity:.45;pointer-events:none}
+@keyframes popOk{0%{transform:scale(1)}40%{transform:scale(1.04)}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}55%{transform:translateX(6px)}80%{transform:translateX(-3px)}}
+.q-explain{font-size:12.5px;color:var(--tx2);min-height:20px;font-style:italic}
+
+/* timer circle */
+.timer-wrap{position:relative;width:62px;height:62px;flex-shrink:0}
+.timer-wrap svg{transform:rotate(-90deg)}
+.timer-wrap .tbg{fill:none;stroke:rgba(255,255,255,.1);stroke-width:5}
+.timer-wrap .tfg{fill:none;stroke:var(--ac);stroke-width:5;stroke-linecap:round;transition:stroke .3s}
+.timer-wrap .tnum{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-size:20px}
+.timer-wrap.urgent .tfg{stroke:var(--bad)}
+.timer-wrap.urgent .tnum{color:var(--bad);animation:pulse .5s infinite alternate}
+@keyframes pulse{from{transform:scale(1)}to{transform:scale(1.15)}}
+
+/* XP float */
+.xpfloat{
+  position:fixed;z-index:80;font-family:var(--fh);font-size:20px;font-weight:700;color:var(--ac);
+  text-shadow:0 0 14px var(--glow);pointer-events:none;animation:floatUp 1.1s ease-out forwards;
+}
+@keyframes floatUp{0%{opacity:0;transform:translateY(6px) scale(.8)}18%{opacity:1;transform:translateY(0) scale(1.1)}100%{opacity:0;transform:translateY(-52px) scale(1)}}
+
+/* ---------- simulator ---------- */
+.scn-card{display:flex;gap:12px;align-items:center;padding:14px;border-radius:14px;background:var(--card);border:1px solid var(--line);cursor:pointer;transition:transform .12s}
+.scn-card:active{transform:scale(.98)}
+.scn-card .si{font-size:28px;flex-shrink:0}
+.scn-card .sn{font-family:var(--fh);font-size:16px;text-transform:uppercase}
+.scn-card .sd{font-size:12px;color:var(--tx2);margin-top:2px}
+.dlg-box{display:flex;flex-direction:column;gap:10px;min-height:180px}
+.bubble{max-width:88%;padding:11px 14px;border-radius:15px;font-size:14.5px;line-height:1.45;animation:fadeUp .3s}
+.bubble.npc{align-self:flex-start;background:var(--card2);border:1px solid var(--line);border-bottom-left-radius:4px}
+.bubble.npc .who{font-family:var(--fh);font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--ac);margin-bottom:3px}
+.bubble.me{align-self:flex-end;background:linear-gradient(135deg,color-mix(in srgb,var(--ac) 80%,#fff 0%),var(--ac2));color:#0a0f14;border-bottom-right-radius:4px;font-weight:500}
+.bubble.react{align-self:flex-start;background:rgba(0,0,0,.3);border:1px dashed var(--line);font-style:italic;font-size:13px;color:var(--tx2)}
+.sim-context{font-size:13px;color:var(--tx2);font-style:italic;line-height:1.5;border-left:3px solid var(--ac);padding-left:10px}
+
+/* ---------- type master ---------- */
+.type-word{font-family:var(--fh);font-size:34px;text-align:center;text-transform:uppercase;letter-spacing:.02em;color:var(--tx);line-height:1.1}
+.type-hint{text-align:center;font-size:12.5px;color:var(--tx2);font-style:italic;min-height:18px}
+.type-lbl{text-align:center;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ac);font-family:var(--fh)}
+.type-input{
+  width:100%;min-height:56px;padding:12px;border-radius:13px;font-size:19px;text-align:center;
+  background:rgba(0,0,0,.35);border:1.5px solid var(--line);color:var(--tx);outline:none;font-family:var(--fb);
+}
+.type-input:focus{border-color:var(--ac);box-shadow:0 0 0 3px var(--glow)}
+.type-input.ok{border-color:var(--ok);background:rgba(34,197,94,.12)}
+.type-input.bad{border-color:var(--bad);background:rgba(239,68,68,.1);animation:shake .4s}
+.type-fb{text-align:center;font-size:13.5px;min-height:40px;line-height:1.45}
+.type-fb .good{color:var(--ok)} .type-fb .no{color:var(--bad)}
+.type-btns{display:flex;gap:10px}
+
+/* ---------- results ---------- */
+.res-hero{text-align:center;padding:6px 0}
+.res-hero .ri{font-size:52px;animation:bob 2.5s ease-in-out infinite}
+.res-hero h2{font-size:28px;margin-top:6px}
+.res-hero .rs{color:var(--tx2);font-size:13px}
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.stat-cell{background:rgba(0,0,0,.28);border:1px solid var(--line);border-radius:13px;padding:12px 6px;text-align:center}
+.stat-cell .sv{font-family:var(--fh);font-size:24px;color:var(--ac)}
+.stat-cell .sl{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--tx2);margin-top:3px}
+.perfect-tag{
+  text-align:center;font-family:var(--fh);font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:#0a0f14;
+  background:linear-gradient(135deg,#fde047,var(--ac));border-radius:999px;padding:8px 14px;box-shadow:0 0 24px var(--glow);
+  animation:popOk .5s;
+}
+
+/* ---------- modal / toast ---------- */
+.overlay{position:fixed;inset:0;z-index:95;background:rgba(4,8,14,.82);display:none;align-items:center;justify-content:center;padding:22px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.overlay.show{display:flex;animation:fadeUp .3s}
+.modal{max-width:380px;width:100%;text-align:center;background:#0e1622;border:1px solid var(--line);border-radius:20px;padding:26px 20px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+.modal .mi{font-size:58px;animation:bob 2s ease-in-out infinite}
+.modal h2{font-size:26px;color:var(--ac);margin:8px 0 2px}
+.modal .mt{font-family:var(--fh);font-size:20px;text-transform:uppercase;letter-spacing:.05em}
+.modal .md{font-size:13px;color:var(--tx2);margin:8px 0 16px;line-height:1.5}
+#toast{
+  position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(80px);z-index:96;
+  background:#101b2a;border:1px solid var(--line);color:var(--tx);border-radius:999px;padding:11px 20px;
+  font-size:13.5px;white-space:nowrap;max-width:92vw;overflow:hidden;text-overflow:ellipsis;
+  box-shadow:0 10px 30px rgba(0,0,0,.5);transition:transform .35s cubic-bezier(.2,.8,.3,1);
+}
+#toast.show{transform:translateX(-50%) translateY(0)}
+
+@media(min-width:420px){.badge-grid{grid-template-columns:repeat(7,1fr)}.badge-cell .bn{display:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body data-trail="">
+<canvas id="bubbles"></canvas>
+
+<div id="app">
+
+  <!-- ═══════════ SPLASH ═══════════ -->
+  <section class="screen" id="screen-splash">
+    <div class="logo-mark">🛢️</div>
+    <h1 class="logo-title">ENGLISH<em>FLOW</em><br><em>ARENA</em></h1>
+    <div class="logo-sub">O jogo de inglês para quem vive o offshore</div>
+    <p class="tagline">"Consistency beats intensity — learn daily, speak naturally."</p>
+    <div style="height:26px"></div>
+    <button class="btn primary" id="btn-enter">⚡ Entrar na Arena</button>
+    <p class="small" style="text-align:center">Mentoria EnglishFlow · Felipe Tavares</p>
+  </section>
+
+  <!-- ═══════════ ONBOARDING ═══════════ -->
+  <section class="screen" id="screen-onboard">
+    <h2 style="font-size:24px">Prepare seu <span style="color:var(--ac)">embarque</span></h2>
+    <div class="card field">
+      <label for="inp-name">Seu nome</label>
+      <input id="inp-name" type="text" maxlength="24" placeholder="Como devemos te chamar?" autocomplete="off">
+    </div>
+    <div>
+      <div class="sec-title">Escolha sua trilha</div>
+      <div class="trail-grid" id="trail-grid"></div>
+    </div>
+    <button class="btn primary" id="btn-start" disabled>🚀 Começar</button>
+  </section>
+
+  <!-- ═══════════ HUB ═══════════ -->
+  <section class="screen" id="screen-hub">
+    <div class="topbar">
+      <div class="brand">EF·<em>ARENA</em></div>
+      <span class="chip" id="hub-trail-chip"></span>
+      <button class="iconbtn" id="btn-sound" title="Som">🔊</button>
+    </div>
+
+    <div class="card player-card">
+      <div class="pc-top">
+        <div class="avatar" id="hub-avatar">?</div>
+        <div>
+          <div class="pc-name" id="hub-name">—</div>
+          <span class="level-badge" id="hub-level">🎓 Trainee</span>
+        </div>
+        <div class="streak-flame">
+          <div class="fl" id="hub-flame">🔥</div>
+          <div class="fn" id="hub-streak">0 dias</div>
+        </div>
+      </div>
+      <div class="xpbar-wrap">
+        <div class="xpbar-lbl"><span id="hub-xp">0 XP</span><span id="hub-next">próx. nível: 150 XP</span></div>
+        <div class="xpbar"><div id="hub-xpbar" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="sec-title">Modos de jogo</div>
+      <div class="mode-grid">
+        <div class="mode-card" data-mode="quiz">
+          <div class="mc-icon">⚡</div>
+          <div><div class="mc-name">Quiz Rápido</div><div class="mc-desc">10 questões · 15s cada · combo vale ouro</div></div>
+          <div class="mc-go">›</div>
+        </div>
+        <div class="mode-card" data-mode="sim">
+          <div class="mc-icon">🎭</div>
+          <div><div class="mc-name">Simulador</div><div class="mc-desc">Situações reais de trabalho · suas escolhas importam</div></div>
+          <div class="mc-go">›</div>
+        </div>
+        <div class="mode-card" data-mode="type">
+          <div class="mc-icon">⌨️</div>
+          <div><div class="mc-name">Type Master</div><div class="mc-desc">Leia em português → digite em inglês</div></div>
+          <div class="mc-go">›</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card tight">
+      <div class="sec-title">🏆 Ranking da Arena</div>
+      <div id="leaderboard"></div>
+    </div>
+
+    <div class="card tight">
+      <div class="sec-title">🎖️ Conquistas</div>
+      <div class="badge-grid" id="badge-grid"></div>
+    </div>
+
+    <div class="card">
+      <div class="sec-title">👨‍🏫 Conexão com o mentor</div>
+      <p class="mentor-note">Mostre seu progresso ao Felipe ou dê o primeiro passo para destravar seu inglês com a mentoria individual.</p>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <button class="btn wa" id="btn-report">📲 Reportar score ao mentor</button>
+        <button class="btn ghost" id="btn-lead" style="border-color:var(--ac);color:var(--ac)">✨ Quero treinar com o mentor</button>
+      </div>
+    </div>
+
+    <div class="hub-foot">"Consistency beats intensity — learn daily, speak naturally."</div>
+    <div class="hub-links">
+      <a id="lnk-trail">↺ trocar trilha</a>
+      <a id="lnk-name">✎ trocar nome</a>
+    </div>
+  </section>
+
+  <!-- ═══════════ QUIZ ═══════════ -->
+  <section class="screen" id="screen-quiz">
+    <div class="game-top">
+      <button class="iconbtn" data-quit>✕</button>
+      <div style="flex:1">
+        <div class="game-prog" id="quiz-prog">Questão 1/10</div>
+        <div class="progline" style="margin-top:5px"><div id="quiz-progbar" style="width:0%"></div></div>
+      </div>
+      <div class="timer-wrap" id="quiz-timer">
+        <svg width="62" height="62"><circle class="tbg" cx="31" cy="31" r="26"/><circle class="tfg" id="quiz-tfg" cx="31" cy="31" r="26" stroke-dasharray="163.36" stroke-dashoffset="0"/></svg>
+        <div class="tnum" id="quiz-tnum">15</div>
+      </div>
+    </div>
+    <div class="combo-flame" style="align-self:flex-end" id="quiz-combo"><span class="cf">🔥</span><span class="cm">x1</span></div>
+    <div class="card">
+      <div class="q-text" id="quiz-q">…</div>
+    </div>
+    <div class="opt-grid" id="quiz-opts"></div>
+    <div class="q-explain" id="quiz-explain"></div>
+  </section>
+
+  <!-- ═══════════ SIMULATOR: scenario picker ═══════════ -->
+  <section class="screen" id="screen-scn">
+    <div class="game-top">
+      <button class="iconbtn" data-quit>✕</button>
+      <h2 style="font-size:20px">🎭 Escolha a situação</h2>
+      <span style="width:38px"></span>
+    </div>
+    <div id="scn-list" style="display:flex;flex-direction:column;gap:10px"></div>
+  </section>
+
+  <!-- ═══════════ SIMULATOR: play ═══════════ -->
+  <section class="screen" id="screen-sim">
+    <div class="game-top">
+      <button class="iconbtn" data-quit>✕</button>
+      <div style="flex:1">
+        <div class="game-prog" id="sim-prog">Turno 1/4</div>
+        <div class="progline" style="margin-top:5px"><div id="sim-progbar" style="width:0%"></div></div>
+      </div>
+      <span class="chip" id="sim-title-chip">—</span>
+    </div>
+    <div class="sim-context card tight" id="sim-context"></div>
+    <div class="card dlg-box" id="sim-dlg"></div>
+    <div class="opt-grid" id="sim-choices"></div>
+  </section>
+
+  <!-- ═══════════ TYPE MASTER ═══════════ -->
+  <section class="screen" id="screen-type">
+    <div class="game-top">
+      <button class="iconbtn" data-quit>✕</button>
+      <div style="flex:1">
+        <div class="game-prog" id="type-prog">Palavra 1/10</div>
+        <div class="progline" style="margin-top:5px"><div id="type-progbar" style="width:0%"></div></div>
+      </div>
+      <div class="combo-flame" id="type-combo"><span class="cf">🔥</span><span class="cm">x1</span></div>
+    </div>
+    <div class="card" style="display:flex;flex-direction:column;gap:12px">
+      <div class="type-lbl">Como se diz em inglês?</div>
+      <div class="type-word" id="type-word">—</div>
+      <div class="type-hint" id="type-hint"></div>
+      <input class="type-input" id="type-input" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="digite em inglês…">
+      <div class="type-fb" id="type-fb"></div>
+      <div class="type-btns">
+        <button class="btn ghost" id="type-skip" style="flex:1">Não sei 🤷</button>
+        <button class="btn primary" id="type-check" style="flex:2">Verificar ✓</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ RESULTS ═══════════ -->
+  <section class="screen" id="screen-results">
+    <div class="res-hero">
+      <div class="ri" id="res-icon">🏁</div>
+      <h2 id="res-title">Rodada concluída!</h2>
+      <div class="rs" id="res-sub">—</div>
+    </div>
+    <div class="perfect-tag" id="res-perfect" style="display:none">💎 Rodada perfeita! +50 XP bônus</div>
+    <div class="stat-grid">
+      <div class="stat-cell"><div class="sv" id="res-score">0</div><div class="sl">Acertos</div></div>
+      <div class="stat-cell"><div class="sv" id="res-combo">x0</div><div class="sl">Melhor combo</div></div>
+      <div class="stat-cell"><div class="sv" id="res-xp">+0</div><div class="sl">XP ganho</div></div>
+    </div>
+    <div class="card tight">
+      <div class="xpbar-lbl"><span id="res-lvl-now">—</span><span id="res-lvl-next">—</span></div>
+      <div class="xpbar"><div id="res-xpbar" style="width:0%"></div></div>
+    </div>
+    <button class="btn primary" id="btn-again">🔁 Jogar de novo</button>
+    <button class="btn" id="btn-hub">🏠 Voltar à Arena</button>
+    <button class="btn wa" id="btn-report2">📲 Reportar score ao mentor</button>
+  </section>
+
+</div>
+
+<!-- level-up modal -->
+<div class="overlay" id="levelup">
+  <div class="modal">
+    <div class="mi" id="lu-icon">⚙️</div>
+    <h2>LEVEL UP!</h2>
+    <div class="mt" id="lu-title">Driller</div>
+    <div class="md">Você subiu na hierarquia offshore. Continue jogando todos os dias para chegar a <b>Offshore Legend 👑</b>.</div>
+    <button class="btn primary" id="lu-ok">Continuar ⚡</button>
+  </div>
+</div>
+
+<div id="toast"></div>
+<canvas id="cfx"></canvas>
+
+<script>
+'use strict';
+/* ════════════════════════════════════════════════════════════
+   ENGLISHFLOW ARENA — game engine
+   splash → onboard → hub → (quiz | sim | type) → results
+   ════════════════════════════════════════════════════════════ */
+
+/* ---------- storage (localStorage + memory fallback) ---------- */
+const store=(()=>{let mem={},ok=false;
+  try{localStorage.setItem('__efa','1');localStorage.removeItem('__efa');ok=true}catch(e){}
+  return{
+    get(k,d){try{if(ok){const v=localStorage.getItem(k);return v===null?d:JSON.parse(v)}}catch(e){}return (k in mem)?mem[k]:d},
+    set(k,v){try{if(ok){localStorage.setItem(k,JSON.stringify(v));return}}catch(e){}mem[k]=v}
+  };
+})();
+
+/* ---------- sound (WebAudio, no files) ---------- */
+const SND=(()=>{let ctx=null,on=store.get('efa_snd',true);
+  function beep(f,d,type,g,when){if(!on)return;try{
+    ctx=ctx||new (window.AudioContext||window.webkitAudioContext)();
+    const o=ctx.createOscillator(),v=ctx.createGain();
+    o.type=type||'sine';o.frequency.value=f;o.connect(v);v.connect(ctx.destination);
+    const t=ctx.currentTime+(when||0);
+    v.gain.setValueAtTime(g||.14,t);v.gain.exponentialRampToValueAtTime(.001,t+d);
+    o.start(t);o.stop(t+d);
+  }catch(e){}}
+  return{
+    ok(){beep(880,.12);beep(1318,.16,'sine',.11,.09)},
+    err(){beep(170,.28,'sawtooth',.09)},
+    combo(c){beep(560+Math.min(c,10)*70,.09,'square',.07)},
+    level(){[523,659,784,1047].forEach((f,i)=>beep(f,.2,'sine',.15,i*.13))},
+    badge(){beep(700,.1,'sine',.12);beep(1050,.22,'sine',.12,.11)},
+    tap(){beep(440,.05,'sine',.05)},
+    toggle(){on=!on;store.set('efa_snd',on);return on},
+    isOn(){return on}
+  };
+})();
+
+/* ---------- helpers ---------- */
+const $=id=>document.getElementById(id);
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('show'),2600)}
+function floatXP(txt,x,y){const s=document.createElement('span');s.className='xpfloat';s.textContent=txt;
+  s.style.left=(x!==undefined?x:window.innerWidth/2-30)+'px';s.style.top=(y!==undefined?y:window.innerHeight*.4)+'px';
+  document.body.appendChild(s);setTimeout(()=>s.remove(),1150)}
+
+/* ════════════════════════════════════════════════════════════
+   CONTENT — extracted from Oxford Oil & Gas 1 capsules,
+   Business Result Starter/Elementary maps, World Class 1 notes
+   ════════════════════════════════════════════════════════════ */
+const TRAILS={
+
+/* ─────────────── OIL & GAS 1 (Oxford English for Careers) ─────────────── */
+og1:{
+  name:'Oil & Gas 1',icon:'🛢️',color:'#f59e0b',
+  desc:'Inglês técnico para operações offshore — Oxford Oil and Gas 1',
+  students:'Trilha de: Fabricio · Jonata',
+  quiz:[
+    {q:"No rádio, 'Go ahead' significa:",o:["Prossiga / pode falar","Vá embora","Suba agora","Desligue o rádio"],c:0,x:"Radio talk: 'Control to Dave: go ahead.'"},
+    {q:"O que é um 'derrick'?",o:["Torre de aço que sustenta o equipamento de perfuração","A broca que corta a rocha","O tanque de lama","O guindaste do convés"],c:0,x:"'The derrick is 45 metres tall on this rig.'"},
+    {q:"Na perfuração, 'mud' é:",o:["Fluido de perfuração (água + argila + aditivos)","Lama da chuva","Cimento do poço","Óleo cru"],c:0,x:"O mud resfria a broca e carrega os cascalhos à superfície."},
+    {q:"Quem é o mais sênior da equipe de perfuração?",o:["Toolpusher","Roustabout","Roughneck","Derrickman"],c:0,x:"Toolpusher = rig manager, responsável por segurança e papelada."},
+    {q:"'Stand by' no rádio significa:",o:["Aguarde / fique pronto","Levante-se","Fique ao lado da porta","Pode desligar"],c:0,x:"Radio: stand by = espere um momento."},
+    {q:"'Hazard' é:",o:["Perigo / risco","Sorte","Ferramenta","Uniforme"],c:0,x:"Something dangerous, likely to cause damage or injury."},
+    {q:"'Hard hat' é:",o:["Capacete de segurança","Chapéu de couro","Martelo pesado","Protetor de ouvido"],c:0,x:"Item básico de PPE (EPI)."},
+    {q:"'Upstream' refere-se a:",o:["Exploração e produção","Refino e venda","Transporte rodoviário","Marketing"],c:0,x:"Exploration → development → production."},
+    {q:"'Downstream' refere-se a:",o:["Refino e comercialização","Perfuração","Exploração sísmica","Içamento de cargas"],c:0,x:"Refining and selling oil/gas products."},
+    {q:"Um 'barrel' (bbl) equivale a:",o:["159 litros","100 litros","200 litros","55 litros"],c:0,x:"Unidade padrão de medição de petróleo."},
+    {q:"'Geologist' é quem:",o:["Estuda rochas para encontrar óleo e gás","Opera o guindaste","Cozinha na plataforma","Pilota o helicóptero"],c:0,x:"'Geologists study rocks.'"},
+    {q:"'Wellhead' é:",o:["O topo do poço, que controla o fluxo","O fundo do poço","A sala de controle","O alojamento"],c:0,x:"The top of a well that controls the flow of oil or gas."},
+    {q:"'Gauge' é:",o:["Instrumento que mede e exibe um valor","Cabo de aço","Tipo de válvula","Documento de segurança"],c:0,x:"'Use a gauge to check if the reading is within the safe range.'"},
+    {q:"'Evacuate' significa:",o:["Retirar as pessoas de uma área perigosa","Esvaziar um tanque","Limpar o convés","Desligar o alarme"],c:0,x:"'Evacuate the platform!'"},
+    {q:"'SCBA' é:",o:["Equipamento autônomo de respiração","Tipo de extintor","Alarme de incêndio","Colete salva-vidas"],c:0,x:"Self-Contained Breathing Apparatus — ambientes tóxicos/com fumaça."},
+    {q:"Complete: 'The pressure is too high — ___ the valve to reduce it.'",o:["open","close","break","paint"],c:0,x:"Frase real da cápsula de Key Words da Unit 8."},
+    {q:"'Drill bit' é:",o:["A broca que corta e tritura a rocha","O cabo da furadeira","A plataforma","O tanque de diesel"],c:0,x:"'Replace the drill bit after every 500 metres.'"},
+    {q:"Se a lama de perfuração está 'too thick':",o:["Está grossa demais — não flui bem","Está fina demais","Está fria demais","Está limpa demais"],c:0,x:"'If the pump is noisy, the mud is too thick.'"},
+    {q:"'Roustabout' é:",o:["Trabalhador júnior da equipe de perfuração","O gerente da plataforma","O médico de bordo","O cozinheiro"],c:0,x:"Início da hierarquia de perfuração — como no seu nível na Arena!"},
+    {q:"'Fumes' são:",o:["Gases / fumaças fortes e perigosos","Luzes de emergência","Ferramentas manuais","Documentos de bordo"],c:0,x:"Strong, unpleasant and sometimes dangerous gas or smoke."},
+    {q:"'Slippery' significa:",o:["Escorregadio","Seco","Quente","Barulhento"],c:0,x:"'Caution: slippery deck.'"},
+    {q:"'To injure' significa:",o:["Ferir / machucar","Consertar","Avisar","Inspecionar"],c:0,x:"To hurt or cause physical harm to a person."},
+    {q:"'To warn' significa:",o:["Avisar sobre um perigo","Esquentar","Trabalhar","Vencer"],c:0,x:"To tell someone about a possible danger."},
+    {q:"Turno típico offshore (como o de Dave, instrument technician):",o:["12 horas por dia, 7 dias por semana","8 horas, seg–sex","6 horas por dia","4 horas com pausas"],c:0,x:"It's My Job — Dave Bristow, North Sea platform (Unit 8)."},
+    {q:"'Offshore' significa:",o:["No mar, longe da costa","Em terra firme","No escritório","No exterior"],c:0,x:"'She works on an offshore platform in the North Sea.'"},
+    {q:"FPSO significa:",o:["Floating Production Storage and Offloading","Fast Petroleum Ship Operation","Fuel Pressure Safety Order","First Platform South Ocean"],c:0,x:"O tipo de unidade onde Fabricio e Jonata trabalham!"},
+    {q:"'Muster point' é:",o:["Ponto de encontro em emergências","Sala de máquinas","Depósito de ferramentas","Heliponto"],c:0,x:"Onde a equipe se reúne quando o alarme soa."},
+    {q:"'Pipeline' é:",o:["Sistema de dutos para transportar óleo/gás","Fila de espera","Cabo elétrico","Corrimão da escada"],c:0,x:"System of pipes for transporting oil or gas."}
+  ],
+  dialogues:[
+    {title:'Safety Briefing',icon:'🦺',desc:'Toolbox talk antes do turno — mostre que você domina a segurança.',
+     context:'Início do turno na plataforma. O HSE Officer conduz o briefing de segurança diário (toolbox talk). Responda como um profissional.',
+     npc:'HSE Officer',
+     steps:[
+      {say:"Good morning, team. Quick toolbox talk. First question: what do you check before entering the work area?",
+       ch:[
+        {t:"My PPE — hard hat, gloves, goggles and safety boots.",q:2,r:"Exactly. No PPE, no entry. Simple as that."},
+        {t:"The weather forecast.",q:1,r:"That matters offshore… but PPE comes first, always."},
+        {t:"My phone, to take some photos.",q:0,r:"Phones stay in the accommodation module. Focus, please."}]},
+      {say:"We have crane operations on deck today. You see a sign: 'DANGER — SUSPENDED LOAD'. What does it mean?",
+       ch:[
+        {t:"There's a load hanging above — never walk under it.",q:2,r:"Correct. Stay clear of the lifting area."},
+        {t:"Something about the crane… I'd ask the rigger to be sure.",q:1,r:"Asking is good — but you must know this sign by heart."},
+        {t:"It means the area was dangerous, but it's safe now.",q:0,r:"No! It means the danger is active. Never assume it's safe."}]},
+      {say:"During the job you smell strong gas fumes. What do you do?",
+       ch:[
+        {t:"Stop the job, alert everyone nearby and radio the control room.",q:2,r:"Perfect response. Stop — warn — report."},
+        {t:"Wait a few minutes to be sure, then tell my supervisor.",q:1,r:"Don't wait. With gas, seconds matter. Report immediately."},
+        {t:"Light a match to find where the leak is.",q:0,r:"NEVER! That could kill everyone on this platform."}]},
+      {say:"Last one: the emergency alarm sounds. Where do you go?",
+       ch:[
+        {t:"To my muster point, following the escape route.",q:2,r:"That's it. Good briefing, team. Stay safe out there!"},
+        {t:"To the helideck, to wait for a helicopter.",q:1,r:"Only if instructed. First: muster point, head count."},
+        {t:"To my cabin, to get my documents and my phone.",q:0,r:"Never go back for belongings. Things can be replaced — you can't."}]}
+     ]},
+    {title:'Shift Handover',icon:'🔄',desc:'06:00 no FPSO — passe o turno sem deixar pontas soltas.',
+     context:'Fim do seu turno de 12 horas no FPSO. Seu colega chega para assumir. Um bom handover evita acidentes — capriche nas informações.',
+     npc:'Colega do turno',
+     steps:[
+      {say:"Morning! How was the night shift? Anything I should know?",
+       ch:[
+        {t:"All stable — but watch the separator: pressure ran a bit high around 3 a.m.",q:2,r:"Good to know. I'll keep an eye on it."},
+        {t:"All good, I think. Nothing big.",q:1,r:"'I think'? Mate, I need details, not guesses."},
+        {t:"Ask the supervisor. I'm off to bed.",q:0,r:"Seriously? Handover is YOUR job, not his."}]},
+      {say:"OK. Did you adjust anything on the separator?",
+       ch:[
+        {t:"Yes — I opened the valve to reduce the pressure and logged it in the report.",q:2,r:"Perfect. Logged and done."},
+        {t:"I opened a valve, but I didn't write it down yet.",q:1,r:"Log it before you leave, please. If it's not written, it didn't happen."},
+        {t:"No — I switched the alarm off so it would stop beeping.",q:0,r:"You WHAT?! Never silence an alarm without checking the cause!"}]},
+      {say:"Any maintenance pending for today?",
+       ch:[
+        {t:"Yes — the level gauge on tank 2 needs calibration. The instrument tech comes at 8.",q:2,r:"Noted. I'll receive him."},
+        {t:"Something about a gauge… it's in the logbook somewhere.",q:1,r:"OK… I'll dig through the logbook then."},
+        {t:"No idea. Not my problem anymore.",q:0,r:"Wow. That attitude causes accidents, you know."}]},
+      {say:"Anything else before you go?",
+       ch:[
+        {t:"One more thing — the deck near the crane is slippery. We placed warning signs there.",q:2,r:"Thanks for the heads-up. Great handover — get some rest!"},
+        {t:"Nothing else. See you tonight.",q:1,r:"Alright. See you at 18:00."},
+        {t:"Yeah — the coffee machine is broken. That's the real emergency.",q:0,r:"Ha! Funny. But did you check the deck? The logbook? Anything?"}]}
+     ]},
+    {title:'Emergency on Deck',icon:'🚨',desc:'Alarme de incêndio na área de processo — comunicação via rádio.',
+     context:'Você lidera a equipe de convés quando o alarme de incêndio dispara na área de processo. A sala de controle chama no rádio. Use linguagem de rádio: "go ahead", "over", "roger".',
+     npc:'Control Room',
+     steps:[
+      {say:"Control to deck crew: fire alarm activated in the process area. Report your status. Over.",
+       ch:[
+        {t:"Deck crew to Control: all personnel moving to muster point Alpha. Over.",q:2,r:"Copy that, deck crew."},
+        {t:"Hello? Yes… we heard a loud noise here…",q:1,r:"Use radio procedure, please. Identify yourself and report."},
+        {t:"We're going closer to look at the fire. Over.",q:0,r:"NEGATIVE! Do NOT approach the fire. Go to your muster point!"}]},
+      {say:"Copy. Is anyone injured? Over.",
+       ch:[
+        {t:"Negative, no injuries. All twelve crew present and accounted for. Over.",q:2,r:"Good. Twelve confirmed."},
+        {t:"I don't think so… let me shout and ask.",q:1,r:"Do a proper head count, deck crew. Confirm numbers."},
+        {t:"Someone is missing, but I'm sure it's fine.",q:0,r:"Report missing personnel IMMEDIATELY. That is NEVER 'fine'."}]},
+      {say:"Fire team is responding. What do you see from your position? Over.",
+       ch:[
+        {t:"Smoke near the separator, no visible flames. Wind is blowing it away from us. Over.",q:2,r:"Copy. Clear and useful. Passing to fire team."},
+        {t:"Some smoke, I guess.",q:1,r:"Where? How much? Details, deck crew. Over."},
+        {t:"Stand by — I'll get closer and film it for you.",q:0,r:"NEGATIVE! Stay at the muster point. This is not social media."}]},
+      {say:"Copy that. Remain at muster point until the all-clear. Over.",
+       ch:[
+        {t:"Roger. Remaining at muster point Alpha. Out.",q:2,r:"Control out. Well handled, deck crew."},
+        {t:"OK, bye!",q:1,r:"'Roger, out' is the correct reply — but message received."},
+        {t:"Can we go back to work? We're really busy today.",q:0,r:"NEGATIVE. Nobody moves until the all-clear. Safety first."}]}
+     ]}
+  ],
+  type:[
+    {pt:'capacete',en:['helmet','hard hat','hardhat','safety helmet'],hint:'EPI — você usa na cabeça'},
+    {pt:'luvas',en:['gloves','safety gloves'],hint:'EPI — proteção das mãos'},
+    {pt:'óculos de proteção',en:['goggles','safety glasses','safety goggles'],hint:'EPI — proteção dos olhos'},
+    {pt:'plataforma',en:['platform','oil platform','rig'],hint:'estrutura de produção no mar'},
+    {pt:'poço',en:['well','oil well','oilwell'],hint:'de onde o óleo sai'},
+    {pt:'broca',en:['drill bit','bit'],hint:'corta e tritura a rocha'},
+    {pt:'guindaste',en:['crane'],hint:'levanta cargas pesadas no convés'},
+    {pt:'perigo',en:['hazard','danger'],hint:'palavra dos avisos de segurança'},
+    {pt:'segurança',en:['safety'],hint:'___ first!'},
+    {pt:'emergência',en:['emergency'],hint:'situação que exige ação imediata'},
+    {pt:'evacuar',en:['evacuate','to evacuate'],hint:'sair da área de perigo'},
+    {pt:'pressão',en:['pressure'],hint:'o que o gauge do separador mede'},
+    {pt:'válvula',en:['valve'],hint:'abre e fecha o fluxo'},
+    {pt:'duto / tubulação',en:['pipeline','pipe'],hint:'transporta óleo e gás'},
+    {pt:'turno',en:['shift'],hint:'offshore são 12 horas'},
+    {pt:'medidor',en:['gauge'],hint:'instrumento que exibe um valor'},
+    {pt:'extintor de incêndio',en:['fire extinguisher','extinguisher'],hint:'aparelho portátil contra fogo'},
+    {pt:'maca',en:['stretcher'],hint:'carrega um ferido deitado'}
+  ]
+},
+
+/* ─────────────── BUSINESS STARTER (Oxford Business Result) ─────────────── */
+starter:{
+  name:'Business Starter',icon:'💼',color:'#a78bfa',
+  desc:'Primeiros passos no inglês profissional — Business Result Starter',
+  students:'Trilha de: Gleidson · Ingrid',
+  quiz:[
+    {q:"Você conhece alguém pela primeira vez. O que dizer?",o:["Nice to meet you.","See you later.","You're welcome.","Good luck."],c:0,x:"Apresentações — Unit 1: You."},
+    {q:"'What's your job?' — melhor resposta:",o:["I'm an engineer.","I'm 35 years old.","I'm from Rio.","Yes, I am."],c:0,x:"Job = profissão."},
+    {q:"Complete: 'I work ___ Petrobras.'",o:["for","on","at the","in the"],c:0,x:"I work FOR + empresa."},
+    {q:"O plural de 'person' é:",o:["people","persons","peoples","person"],c:0,x:"1 person → 2 people."},
+    {q:"'Head office' é:",o:["A matriz da empresa","O chefe","Um escritório pequeno","O RH"],c:0,x:"Unit 2: Company."},
+    {q:"'Where are you from?' — resposta:",o:["I'm from Brazil.","I'm fine, thanks.","I'm an operator.","Yes, please."],c:0,x:"From = origem."},
+    {q:"Complete: 'She ___ a manager.'",o:["is","are","am","be"],c:0,x:"Verbo to be: she/he/it → is."},
+    {q:"'Colleague' é:",o:["Colega de trabalho","Faculdade","Chefe","Cliente"],c:0,x:"Cuidado: college = faculdade!"},
+    {q:"'Warehouse' é:",o:["Armazém / depósito","Casa de campo","Loja","Cozinha"],c:0,x:"Unit 3: Workplace."},
+    {q:"'Reception' é:",o:["Recepção","Receita","Reunião","Refeição"],c:0,x:"Onde os visitantes chegam."},
+    {q:"'Car park' é:",o:["Estacionamento","Parque de diversões","Oficina","Autoescola"],c:0,x:"Nos EUA: parking lot."},
+    {q:"'Meeting' é:",o:["Reunião","Comida","Meta","Mensagem"],c:0,x:"'I have a meeting at 2 p.m.'"},
+    {q:"'Schedule' é:",o:["Agenda / cronograma","Escola","Escada","Desconto"],c:0,x:"Unit 4: Departments."},
+    {q:"Como se escreve 13 em inglês?",o:["thirteen","thirty","threeteen","tirteen"],c:0,x:"13 = thirteen · 30 = thirty. Som diferente!"},
+    {q:"'How do you spell your name?' pede para você:",o:["Soletrar seu nome","Gritar seu nome","Escrever seu sobrenome","Repetir seu nome"],c:0,x:"Spell = soletrar, letra por letra."},
+    {q:"'Department' é:",o:["Departamento","Apartamento","Partida","Departura"],c:0,x:"Sales, HR, IT, Finance…"},
+    {q:"Complete: 'This is Maria. ___ is my colleague.'",o:["She","He","It","They"],c:0,x:"Maria → she."},
+    {q:"'Manager' é:",o:["Gerente","Mensageiro","Garçom","Motorista"],c:0,x:"'My manager is very busy.'"},
+    {q:"Para apresentar alguém, diga:",o:["This is Carlos, my colleague.","He Carlos.","Carlos is he.","That Carlos is."],c:0,x:"'This is…' = apresentação padrão."},
+    {q:"'Employee' é:",o:["Funcionário","Empregador","Desempregado","Estagiário"],c:0,x:"Employer = empregador. Employee = funcionário."},
+    {q:"'What does your company do?' — resposta:",o:["We produce oil and gas.","It is in Brazil.","Yes, it does.","My company is big."],c:0,x:"A pergunta pede a atividade da empresa."},
+    {q:"Num e-mail formal, comece com:",o:["Dear Mr Silva,","Hey Silva!","Silva!!!","What's up, Silva?"],c:0,x:"Dear + Mr/Ms + sobrenome."}
+  ],
+  dialogues:[
+    {title:'Nice to Meet You',icon:'🤝',desc:'Evento de negócios — apresente-se a um contato novo.',
+     context:'Você está num evento da indústria. Uma profissional se aproxima para se apresentar. Cause uma boa primeira impressão!',
+     npc:'Sarah Miller',
+     steps:[
+      {say:"Hello! I'm Sarah Miller, from TechnipFMC. Nice to meet you.",
+       ch:[
+        {t:"Nice to meet you too! I'm from Petrobras.",q:2,r:"Oh, Petrobras! Great company."},
+        {t:"Hello.",q:1,r:"…and you are…?"},
+        {t:"Yes.",q:0,r:"Er… OK. This is awkward."}]},
+      {say:"So, what's your job?",
+       ch:[
+        {t:"I'm an operations technician. And you?",q:2,r:"I'm a project engineer. Interesting area, operations!"},
+        {t:"I work.",q:1,r:"Ha! Everyone here works. What do you DO?"},
+        {t:"It's a secret.",q:0,r:"A secret job? At a business event? Right…"}]},
+      {say:"And what does your company do, exactly?",
+       ch:[
+        {t:"We produce oil and gas here in Brazil.",q:2,r:"Impressive! The industry is growing a lot here."},
+        {t:"Many things.",q:1,r:"…such as…?"},
+        {t:"I don't know.",q:0,r:"You don't know what your company does?!"}]},
+      {say:"Here's my business card. Let's keep in touch!",
+       ch:[
+        {t:"Thank you! Here's mine — my email is on it.",q:2,r:"Perfect. It was great to meet you!"},
+        {t:"Thanks. Bye!",q:1,r:"Oh — OK. Goodbye!"},
+        {t:"(pega o cartão e vai embora sem falar nada)",q:0,r:"…he just walked away. Incredible."}]}
+     ]},
+    {title:'A Visitor at the Office',icon:'🏢',desc:'Um cliente chega para uma reunião — receba-o bem.',
+     context:'Você está perto da recepção quando um cliente importante chega para uma reunião com a equipe de vendas. Receba-o como um profissional.',
+     npc:'John Baker',
+     steps:[
+      {say:"Good morning. I'm John Baker. I have a meeting with the sales team.",
+       ch:[
+        {t:"Good morning, Mr Baker. Welcome! Please, come in.",q:2,r:"Thank you very much!"},
+        {t:"OK. Wait.",q:1,r:"Er… sure. I'll wait here then."},
+        {t:"Who?",q:0,r:"John Baker? From Global Supplies? We have a meeting…?"}]},
+      {say:"Thank you. Is this the meeting room?",
+       ch:[
+        {t:"Yes, it is. The meeting room is here, next to the reception.",q:2,r:"Great, thank you."},
+        {t:"It's there. (aponta)",q:1,r:"Hm… there? OK, I'll find it."},
+        {t:"I don't work here.",q:0,r:"Oh! Sorry… but you're wearing the company badge?"}]},
+      {say:"I'm a little early, I'm afraid.",
+       ch:[
+        {t:"No problem! Would you like a coffee or some water?",q:2,r:"That's very kind of you."},
+        {t:"OK.",q:1,r:"…right. I'll just sit here."},
+        {t:"Yes, you are very early. Why?",q:0,r:"Because of the traffic…? Is that a problem?"}]},
+      {say:"A coffee, please. Black, no sugar.",
+       ch:[
+        {t:"Of course! One black coffee. The team arrives in five minutes.",q:2,r:"Perfect. Thank you for your help!"},
+        {t:"Hm. The machine is over there.",q:1,r:"Oh. Self-service. OK then…"},
+        {t:"We only have tea.",q:0,r:"Oh… tea is fine too. I guess."}]}
+     ]}
+  ],
+  type:[
+    {pt:'emprego / trabalho',en:['job','work'],hint:"What's your ___?"},
+    {pt:'empresa',en:['company'],hint:'Petrobras, Shell, TechnipFMC…'},
+    {pt:'nome',en:['name'],hint:"What's your ___?"},
+    {pt:'gerente',en:['manager'],hint:'chefe do departamento'},
+    {pt:'reunião',en:['meeting'],hint:'na sala, às 14h'},
+    {pt:'escritório',en:['office'],hint:'onde muita gente trabalha sentada'},
+    {pt:'fábrica',en:['factory','plant'],hint:'onde os produtos são feitos'},
+    {pt:'colega',en:['colleague','coworker','co-worker'],hint:'trabalha com você'},
+    {pt:'funcionário',en:['employee','worker'],hint:'quem trabalha na empresa'},
+    {pt:'recepção',en:['reception'],hint:'onde o visitante chega'},
+    {pt:'departamento',en:['department'],hint:'vendas, RH, TI…'},
+    {pt:'agenda / cronograma',en:['schedule','diary'],hint:'organiza seus compromissos'},
+    {pt:'país',en:['country'],hint:'Brazil, por exemplo'},
+    {pt:'armazém',en:['warehouse'],hint:'onde os produtos ficam guardados'},
+    {pt:'estacionamento',en:['car park','parking lot','parking'],hint:'onde deixar o carro'},
+    {pt:'cartão de visita',en:['business card','card'],hint:'você troca em eventos'}
+  ]
+},
+
+/* ─────────────── BUSINESS ELEMENTARY (Oxford Business Result) ─────────────── */
+elementary:{
+  name:'Business Elementary',icon:'📊',color:'#fb923c',
+  desc:'Comunicação profissional do dia a dia — Business Result Elementary',
+  students:'Trilha de: Maria Eduarda · Diogo',
+  quiz:[
+    {q:"Complete: 'I'm responsible ___ safety training.'",o:["for","of","with","to"],c:0,x:"Responsible FOR — sempre."},
+    {q:"Complete: 'She ___ in the HR department.'",o:["works","work","working","is work"],c:0,x:"Present simple: she/he/it + s."},
+    {q:"'To deal with' significa:",o:["Lidar com","Negociar cartas","Entregar","Desistir"],c:0,x:"'I deal with customers every day.'"},
+    {q:"Complete: '___ the file before you open it.'",o:["Download","Upload","Print","Delete"],c:0,x:"Unit 4: Technology — baixar antes de abrir."},
+    {q:"'Install' significa:",o:["Instalar","Parar","Vender","Pedir"],c:0,x:"'Install the new software.'"},
+    {q:"Ao telefone: 'Can I ___ to Mr Costa, please?'",o:["speak","say","tell","talk at"],c:0,x:"Speak TO someone (telefone)."},
+    {q:"'Hold on, please.' significa:",o:["Aguarde um momento","Segure firme","Desligue","Pode falar"],c:0,x:"Frase clássica de telefone."},
+    {q:"'Supplier' é:",o:["Fornecedor","Cliente","Suporte","Suprimento"],c:0,x:"Quem fornece produtos/serviços à empresa."},
+    {q:"'Customer' é:",o:["Cliente","Costume","Atendente","Caixa"],c:0,x:"Quem compra de você."},
+    {q:"Complete: 'I'll put you ___.' (transferir a ligação)",o:["through","up","down","away"],c:0,x:"Put through = transferir a chamada."},
+    {q:"'Where is your company based?' pergunta sobre:",o:["Localização","Preço","Tamanho","Fundação"],c:0,x:"Based in = sediada em. Unit 3: Location."},
+    {q:"Complete: '___ on the icon to open the program.'",o:["Click","Push","Kick","Take"],c:0,x:"Click on = clicar em."},
+    {q:"'Turn off' significa:",o:["Desligar","Ligar","Virar à esquerda","Aumentar"],c:0,x:"Turn on ↔ turn off."},
+    {q:"'Could you take a ___?' (recado)",o:["message","messenger","note paper","email"],c:0,x:"Take a message = anotar um recado."},
+    {q:"Ordem de frequência (mais → menos):",o:["always → usually → sometimes → never","never → always → sometimes → usually","sometimes → never → always → usually","usually → always → never → sometimes"],c:0,x:"100% → 0%."},
+    {q:"Complete: 'The meeting is ___ 2 p.m.'",o:["at","in","on","by"],c:0,x:"AT + hora exata."},
+    {q:"'Delivery' é:",o:["Entrega","Padaria","Devolução","Delegacia"],c:0,x:"'The delivery arrives on Monday.'"},
+    {q:"'We're launching a new product.' — launching =",o:["Lançando","Almoçando","Localizando","Alugando"],c:0,x:"Launch ≠ lunch! 🍽️"},
+    {q:"'How does it work?' pergunta:",o:["Como funciona?","Onde trabalha?","Quanto custa?","Quem fez?"],c:0,x:"Work = funcionar (para máquinas)."},
+    {q:"Complete: 'Press the ___ to start the machine.'",o:["button","bottom","butter","botton"],c:0,x:"Button = botão. Bottom = parte de baixo!"},
+    {q:"'Order' (substantivo) é:",o:["Pedido","Ordem religiosa","Organização","Oferta"],c:0,x:"'Order 4581 hasn't arrived.'"},
+    {q:"'Password' é:",o:["Senha","Passaporte","Passagem","Assinatura"],c:0,x:"'I forgot my password again…'"}
+  ],
+  dialogues:[
+    {title:'Phone Call from a Client',icon:'📞',desc:'A gerente está em reunião — atenda e anote o recado.',
+     context:'O telefone toca no escritório. É uma cliente querendo falar com a sua gerente, que está em reunião. Atenda com profissionalismo.',
+     npc:'Laura Chen',
+     steps:[
+      {say:"Hello, this is Laura Chen from Global Parts. Can I speak to Ms Rocha, please?",
+       ch:[
+        {t:"I'm afraid she's in a meeting. Can I take a message?",q:2,r:"Oh, yes please. That would be great."},
+        {t:"She's not here.",q:1,r:"Oh… so… what do I do now?"},
+        {t:"No.",q:0,r:"…no? Just… no?"}]},
+      {say:"It's about the delivery of order 4581 — it hasn't arrived yet.",
+       ch:[
+        {t:"I'm sorry to hear that. Let me write it down: order 4581, delivery problem. Is that right?",q:2,r:"Exactly right. Thank you for checking."},
+        {t:"OK, I'll tell her something about an order.",q:1,r:"'Something'? It's order 4-5-8-1. Please write it down…"},
+        {t:"That's not my department.",q:0,r:"But… you answered the phone! Can't you just take a message?"}]},
+      {say:"When can she call me back?",
+       ch:[
+        {t:"She'll call you back this afternoon. What's the best number to reach you?",q:2,r:"Perfect: 555-0182."},
+        {t:"Some day this week, probably.",q:1,r:"'Probably'? This is a bit urgent…"},
+        {t:"I don't know her schedule. Try again next month.",q:0,r:"Next MONTH? My order is late NOW!"}]},
+      {say:"Thank you so much for your help!",
+       ch:[
+        {t:"You're welcome, Ms Chen. She'll get your message right away. Have a nice day!",q:2,r:"You too! Goodbye!"},
+        {t:"OK, bye.",q:1,r:"…bye."},
+        {t:"(desliga sem falar nada)",q:0,r:"Hello? Hello?? Unbelievable."}]}
+     ]},
+    {title:'IT Helpdesk',icon:'💻',desc:'Seu computador não liga e o relatório é para hoje. Ligue para o suporte.',
+     context:'Seu computador não liga e você precisa enviar um relatório hoje. Você liga para o suporte de TI. Explique o problema com clareza.',
+     npc:'Marcus (TI)',
+     steps:[
+      {say:"IT helpdesk, Marcus speaking. How can I help you?",
+       ch:[
+        {t:"Hi Marcus. My computer won't turn on, and I need to send a report today.",q:2,r:"OK, let's fix that. Don't worry."},
+        {t:"My computer is broken. Fix it.",q:1,r:"Right… can you describe the problem?"},
+        {t:"EVERYTHING IS ON FIRE!",q:0,r:"…literal fire? Should I call the fire brigade or is it just the computer?"}]},
+      {say:"First: is the power cable connected?",
+       ch:[
+        {t:"Yes, it's connected, and the light on the cable is on.",q:2,r:"Good. That helps a lot."},
+        {t:"I think so? I can't see behind the desk.",q:1,r:"Please check. I'll wait. It's important."},
+        {t:"Cable? Which cable?",q:0,r:"The one that connects the computer to… electricity? The big one?"}]},
+      {say:"Now press and hold the power button for ten seconds.",
+       ch:[
+        {t:"Done! It's restarting — I can see the logo on the screen!",q:2,r:"Excellent! We're almost there."},
+        {t:"Which one is the power button?",q:1,r:"The round one, with the circle symbol. Usually on top."},
+        {t:"I pressed ALL the buttons at the same time.",q:0,r:"All of them?! At the same time?? Why???"}]},
+      {say:"It's working now. Anything else I can help with?",
+       ch:[
+        {t:"That's all. Thanks a lot for your help, Marcus!",q:2,r:"You're welcome! Good luck with the report!"},
+        {t:"No. Bye.",q:1,r:"OK… have a good one."},
+        {t:"Yes — can you also write my report?",q:0,r:"Ha! Nice try. Have a good day!"}]}
+     ]}
+  ],
+  type:[
+    {pt:'fornecedor',en:['supplier'],hint:'vende materiais para a empresa'},
+    {pt:'cliente',en:['customer','client'],hint:'compra de você'},
+    {pt:'produto',en:['product'],hint:'o que a empresa vende'},
+    {pt:'serviço',en:['service'],hint:'trabalho oferecido, não físico'},
+    {pt:'baixar (um arquivo)',en:['download','download it','to download'],hint:'internet → computador'},
+    {pt:'instalar',en:['install','to install'],hint:'colocar um programa no PC'},
+    {pt:'mensagem',en:['message'],hint:'Can I take a ___?'},
+    {pt:'senha',en:['password'],hint:'você sempre esquece'},
+    {pt:'impressora',en:['printer'],hint:'imprime documentos'},
+    {pt:'tela',en:['screen','display'],hint:'você olha para ela agora'},
+    {pt:'teclado',en:['keyboard'],hint:'onde você digita'},
+    {pt:'entrega',en:['delivery'],hint:'o pedido chega por ela'},
+    {pt:'pedido',en:['order'],hint:'nº 4581 está atrasado'},
+    {pt:'desligar (aparelho)',en:['turn off','switch off'],hint:'phrasal verb — 2 palavras'},
+    {pt:'ligar (aparelho)',en:['turn on','switch on'],hint:'phrasal verb — 2 palavras'},
+    {pt:'anexo (de e-mail)',en:['attachment'],hint:'arquivo junto do e-mail'}
+  ]
+},
+
+/* ─────────────── WORLD CLASS 1 (National Geographic) ─────────────── */
+wc1:{
+  name:'World Class 1',icon:'🌍',color:'#7ec8d4',
+  desc:'Fluência avançada e pensamento crítico — National Geographic',
+  students:'Trilha de: Anderson',
+  quiz:[
+    {q:"'Keep your cool' significa:",o:["Manter a calma","Ficar com frio","Ser popular","Guardar bebida gelada"],c:0,x:"Unit 5: No Need to Panic."},
+    {q:"'To beat the odds' é:",o:["Vencer contra as expectativas","Bater números ímpares","Apostar alto","Perder feio"],c:0,x:"'People who have beaten the odds' — Unit 5 vocabulary."},
+    {q:"'Level-headed' descreve alguém:",o:["Sensato e equilibrado","Com dor de cabeça","Nivelado","Teimoso"],c:0,x:"Calmo sob pressão."},
+    {q:"'You ___ have told me earlier!' (reclamação)",o:["should","must","can","will"],c:0,x:"Past modal: should have + particípio. Unit 8."},
+    {q:"'To freak out' é:",o:["Entrar em pânico","Sair de casa","Fantasiar","Dançar"],c:0,x:"Informal: perder o controle."},
+    {q:"'___ I was exhausted, I finished the report.'",o:["Although","Because","So","Unless"],c:0,x:"Adverbial clause de contraste — Unit 5 grammar."},
+    {q:"São fontes de energia renovável:",o:["Solar e eólica","Carvão e diesel","Petróleo e gás","Gasolina e querosene"],c:0,x:"Unit 3: The Great Energy Challenge."},
+    {q:"'Carbon footprint' é:",o:["Pegada de carbono","Pé de carbono","Sapato ecológico","Fóssil raro"],c:0,x:"O impacto de CO₂ que você gera."},
+    {q:"'Bucket list' é:",o:["Lista de coisas para fazer na vida","Lista de compras","Lista de baldes","Lista negra"],c:0,x:"Unit 2: The World Awaits — Speaking."},
+    {q:"'I enjoy ___ to new places.'",o:["traveling","travel","to travel","traveled"],c:0,x:"Enjoy + gerúndio. Unit 2 grammar."},
+    {q:"'It's not the end of the world' significa:",o:["Não é tão grave assim","O mundo vai acabar","É uma catástrofe","Fim do expediente"],c:0,x:"Expressão para acalmar."},
+    {q:"'There's no need to ___.' (título da Unit 5!)",o:["panic","panicking","panics","panicked"],c:0,x:"Need to + infinitivo."},
+    {q:"'If I ___ you, I'd accept the offer.'",o:["were","was","am","be"],c:0,x:"Second conditional: If I were you… Unit 10."},
+    {q:"'Peer pressure' é:",o:["Pressão do grupo / dos colegas","Pressão arterial","Prensa hidráulica","Pressa dos pares"],c:0,x:"Unit 10: Decisions, Decisions."},
+    {q:"'The meeting was called off.' =",o:["Cancelada","Confirmada","Adiantada","Barulhenta"],c:0,x:"Call off = cancelar (phrasal verb, Unit 11)."},
+    {q:"'To run out of' significa:",o:["Ficar sem","Correr para fora","Fugir","Exagerar"],c:0,x:"'We ran out of time.'"},
+    {q:"'I look forward to ___ you.'",o:["meeting","meet","met","will meet"],c:0,x:"Look forward TO + gerúndio."},
+    {q:"'Against all odds' =",o:["Contra todas as probabilidades","Contra os ímpares","Sem chance nenhuma","Com toda certeza"],c:0,x:"Tema central da Unit 5."},
+    {q:"Reported speech: 'She said she ___ tired.'",o:["was","is","be","am"],c:0,x:"Unit 12 grammar: presente → passado."},
+    {q:"'To come up with' =",o:["Ter uma ideia / propor","Subir junto","Aparecer de surpresa","Alcançar"],c:0,x:"'We came up with a solution.'"},
+    {q:"'To cope with' =",o:["Lidar com / suportar","Copiar","Competir","Concordar"],c:0,x:"'How do you cope with stress?'"},
+    {q:"'Take a deep ___ and stay calm.'",o:["breath","breathe","bread","break"],c:0,x:"Breath (subst.) ≠ breathe (verbo) ≠ bread (pão!)."}
+  ],
+  dialogues:[
+    {title:'No Need to Panic',icon:'😱',desc:'A apresentação foi antecipada — acalme sua colega e salve o dia.',
+     context:'Sua colega descobre que a apresentação para o cliente foi antecipada para daqui a UMA hora — e os slides não estão prontos. Ela está em pânico. Seja o profissional level-headed da sala.',
+     npc:'Colega em pânico',
+     steps:[
+      {say:"Oh no, oh no… they moved the presentation to 2 p.m.! That's in ONE HOUR! I'm freaking out!",
+       ch:[
+        {t:"Take a deep breath. We've got this — let's focus on what's essential.",q:2,r:"OK… OK. Breathing. You're right."},
+        {t:"Wow, one hour? That's really bad.",q:1,r:"I KNOW it's bad! You're NOT helping!"},
+        {t:"I'd panic too. We're doomed.",q:0,r:"DOOMED?! Why would you say that?!"}]},
+      {say:"But the slides aren't finished! What do we do first?",
+       ch:[
+        {t:"Let's prioritize: finish the key slides first and drop the extras.",q:2,r:"Right… the client cares about three slides, really."},
+        {t:"Maybe we just… work faster?",q:1,r:"Faster? That's your whole strategy?"},
+        {t:"Let's ask to cancel the meeting.",q:0,r:"Cancel?! With their CEO coming?! Are you insane?"}]},
+      {say:"OK, key slides first. But what if they ask something we can't answer?",
+       ch:[
+        {t:"Then we say we'll follow up with details — honesty beats bluffing.",q:2,r:"That's true. They respect honesty more than improvised numbers."},
+        {t:"We change the subject.",q:1,r:"They're clients, not children… they'll notice."},
+        {t:"We invent a number. They never check.",q:0,r:"They ALWAYS check! That's how people get fired!"}]},
+      {say:"You know what? I feel better. Maybe we can actually do this.",
+       ch:[
+        {t:"Of course we can — against all odds. Now let's nail this presentation.",q:2,r:"Let's do it. Thanks for keeping your cool. 💪"},
+        {t:"Yeah. Good luck to us.",q:1,r:"…luck. Right. We'll need it."},
+        {t:"Don't celebrate yet. So much can still go wrong.",q:0,r:"Why are you like this?!"}]}
+     ]},
+    {title:'The Ambassador Interview',icon:'🎤',desc:'Entrevista para embaixador cultural — venda a sua história.',
+     context:'Você está numa entrevista para ser embaixador cultural do Brasil num programa internacional (Speaking da Unit 1). Impressione a entrevistadora.',
+     npc:'Entrevistadora',
+     steps:[
+      {say:"Welcome! So, tell me: why do you want to be a cultural ambassador?",
+       ch:[
+        {t:"I'm passionate about sharing Brazilian culture — connection starts with understanding.",q:2,r:"Beautifully put. Genuine motivation matters here."},
+        {t:"It looks good on my CV.",q:1,r:"Honest… refreshingly honest. But is that all?"},
+        {t:"My friend told me to apply. I don't really know.",q:0,r:"You… don't know why you're here? Interesting start."}]},
+      {say:"What would you show a visitor in your country first?",
+       ch:[
+        {t:"Beyond the famous beaches — our music, our food, and the warmth of everyday life.",q:2,r:"Wonderful answer. Culture is people, not postcards."},
+        {t:"The beach, I guess. Everyone likes beaches.",q:1,r:"Hm. A bit predictable, don't you think?"},
+        {t:"Nothing special. It's all on the internet anyway.",q:0,r:"On the… internet. Why be an ambassador at all, then?"}]},
+      {say:"Suppose a visitor makes a negative comment about Brazil. How do you react?",
+       ch:[
+        {t:"I'd stay level-headed: listen first, then share a different perspective with facts.",q:2,r:"Excellent. Diplomacy under pressure — exactly what we need."},
+        {t:"I'd probably be annoyed, but I'd stay quiet.",q:1,r:"Staying quiet avoids conflict… but loses the chance to educate."},
+        {t:"I'd tell them to go home.",q:0,r:"That's… the opposite of the job description."}]},
+      {say:"Final question: what makes you different from the other candidates?",
+       ch:[
+        {t:"I don't give up. I've beaten the odds before — and I bring people together naturally.",q:2,r:"Now THAT is an answer. We'll be in touch very soon. 🌟"},
+        {t:"I'm… nice? And I speak some English.",q:1,r:"Nice and some English. Noted…"},
+        {t:"Nothing, honestly. We're all the same.",q:0,r:"Well. At least you saved us time."}]}
+     ]}
+  ],
+  type:[
+    {pt:'manter a calma',en:['keep calm','stay calm','keep your cool','keep cool'],hint:'o que fazer quando tudo dá errado'},
+    {pt:'respirar fundo',en:['take a deep breath','breathe deeply'],hint:'primeiro passo contra o pânico'},
+    {pt:'prazo',en:['deadline'],hint:'a linha da morte dos projetos'},
+    {pt:'desafio',en:['challenge'],hint:'The Great Energy ___'},
+    {pt:'entrar em pânico',en:['panic','freak out','to panic'],hint:"there's no need to ___"},
+    {pt:'cancelar',en:['call off','cancel','to cancel'],hint:'phrasal verb com "off"'},
+    {pt:'ficar sem',en:['run out of','run out'],hint:'phrasal verb — tempo, dinheiro, café'},
+    {pt:'lidar com',en:['cope with','deal with','handle'],hint:'estresse, problemas, pressão'},
+    {pt:'superar',en:['overcome','get over'],hint:'obstáculos e dificuldades'},
+    {pt:'conquista',en:['achievement','accomplishment'],hint:'motivo de orgulho'},
+    {pt:'sobreviver',en:['survive'],hint:'Everest, tempestades, segundas-feiras'},
+    {pt:'ambicioso',en:['ambitious'],hint:'quer sempre mais'},
+    {pt:'tomada de decisão',en:['decision making','decision-making'],hint:'Unit 10: Decisions, Decisions'},
+    {pt:'pegada de carbono',en:['carbon footprint'],hint:'seu impacto no planeta'},
+    {pt:'energia eólica',en:['wind power','wind energy'],hint:'renovável, vem do vento'},
+    {pt:'sensato / equilibrado',en:['level-headed','sensible','levelheaded'],hint:'calmo sob pressão'}
+  ]
+}
+};
+
+/* ---------- levels (offshore hierarchy) ---------- */
+const LEVELS=[
+  {t:'Trainee',xp:0,i:'🎓'},
+  {t:'Roustabout',xp:150,i:'🧰'},
+  {t:'Roughneck',xp:400,i:'🔧'},
+  {t:'Derrickhand',xp:800,i:'🪜'},
+  {t:'Driller',xp:1400,i:'⚙️'},
+  {t:'Toolpusher',xp:2200,i:'🛠️'},
+  {t:'Company Man',xp:3200,i:'🎖️'},
+  {t:'Offshore Legend',xp:4500,i:'👑'}
+];
+function levelIndex(xp){let li=0;for(let i=0;i<LEVELS.length;i++){if(xp>=LEVELS[i].xp)li=i}return li}
+
+/* ---------- badges ---------- */
+const BADGES=[
+  {id:'first',i:'🥇',n:'Primeira Vitória',d:'Complete sua primeira rodada'},
+  {id:'combo5',i:'🔥',n:'Combo x5',d:'5 acertos seguidos'},
+  {id:'combo10',i:'🌋',n:'Combo x10',d:'10 acertos seguidos'},
+  {id:'perfect',i:'💎',n:'Rodada Perfeita',d:'100% de acerto'},
+  {id:'streak3',i:'⚡',n:'3 Dias Seguidos',d:'Jogue 3 dias seguidos'},
+  {id:'streak7',i:'🏆',n:'7 Dias Seguidos',d:'Jogue 7 dias seguidos'},
+  {id:'modes',i:'🎮',n:'Triatleta',d:'Jogue os 3 modos'}
+];
+
+/* ---------- leaderboard seed (alunos reais) ---------- */
+const SEED=[
+  {n:'Anderson S.',xp:480},{n:'Jonata N.',xp:445},{n:'Fabricio J.',xp:390},
+  {n:'Ingrid',xp:350},{n:'Diogo',xp:310},{n:'Maria E.',xp:280},{n:'Gleidson',xp:240}
+];
+
+const WHATSAPP='5522999585058';
+
+/* ════════════════════ SAVE / STATE ════════════════════ */
+const DEF={name:'',trail:'',xp:0,badges:[],streak:0,lastDay:'',plays:{quiz:0,sim:0,type:0},bestCombo:0,rounds:0};
+let SAVE=Object.assign({},DEF,store.get('efa_save',{}));
+SAVE.plays=Object.assign({},DEF.plays,SAVE.plays||{});
+if(!Array.isArray(SAVE.badges))SAVE.badges=[];
+function persist(){store.set('efa_save',SAVE)}
+
+let SES=null;          // current round session
+let pendingLevel=-1;   // deferred level-up modal
+
+function trail(){return TRAILS[SAVE.trail]||TRAILS.og1}
+
+function todayStr(){const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function updateStreak(){
+  const t=todayStr();if(SAVE.lastDay===t)return;
+  const y=new Date(Date.now()-864e5);
+  const ys=y.getFullYear()+'-'+String(y.getMonth()+1).padStart(2,'0')+'-'+String(y.getDate()).padStart(2,'0');
+  SAVE.streak=(SAVE.lastDay===ys)?SAVE.streak+1:1;
+  SAVE.lastDay=t;persist();
+  if(SAVE.streak>=3)unlockBadge('streak3');
+  if(SAVE.streak>=7)unlockBadge('streak7');
+}
+
+function addXP(n,x,y){
+  if(n<=0)return;
+  const before=levelIndex(SAVE.xp);
+  SAVE.xp+=n;persist();
+  const after=levelIndex(SAVE.xp);
+  floatXP('+'+n+' XP',x,y);
+  if(after>before)pendingLevel=after;
+}
+
+function unlockBadge(id){
+  if(SAVE.badges.includes(id))return;
+  SAVE.badges.push(id);persist();
+  const b=BADGES.find(b=>b.id===id);
+  toast('🏅 Conquista desbloqueada: '+b.n+'!');
+  SND.badge();
+}
+
+function maybeLevelUp(cb){
+  if(pendingLevel<0){cb&&cb();return}
+  const L=LEVELS[pendingLevel];pendingLevel=-1;
+  $('lu-icon').textContent=L.i;
+  $('lu-title').textContent=L.t;
+  $('levelup').classList.add('show');
+  SND.level();confettiBurst();
+  $('lu-ok').onclick=()=>{$('levelup').classList.remove('show');cb&&cb()};
+}
+
+/* ════════════════════ SCREENS ════════════════════ */
+const SCREENS=['screen-splash','screen-onboard','screen-hub','screen-quiz','screen-scn','screen-sim','screen-type','screen-results'];
+function show(id){
+  SCREENS.forEach(s=>$(s).classList.toggle('active',s===id));
+  window.scrollTo({top:0,behavior:'instant'});
+}
+
+/* ---------- splash ---------- */
+$('btn-enter').addEventListener('click',()=>{
+  SND.tap();
+  if(SAVE.name&&SAVE.trail){document.body.dataset.trail=SAVE.trail;renderHub();show('screen-hub')}
+  else renderOnboard();
+});
+
+/* ---------- onboarding ---------- */
+let selTrail=SAVE.trail||'';
+function renderOnboard(){
+  $('inp-name').value=SAVE.name||'';
+  const g=$('trail-grid');g.innerHTML='';
+  Object.keys(TRAILS).forEach(k=>{
+    const t=TRAILS[k];
+    const el=document.createElement('div');
+    el.className='trail-card'+(selTrail===k?' sel':'');
+    el.style.setProperty('--tc',t.color);
+    el.innerHTML='<div class="tc-icon" style="background:color-mix(in srgb,'+t.color+' 18%,transparent)">'+t.icon+'</div>'+
+      '<div><div class="tc-name" style="color:'+t.color+'">'+t.name+'</div>'+
+      '<div class="tc-desc">'+t.desc+'</div>'+
+      '<div class="tc-students">'+t.students+'</div></div>';
+    el.addEventListener('click',()=>{selTrail=k;SND.tap();
+      document.querySelectorAll('.trail-card').forEach(c=>c.classList.remove('sel'));
+      el.classList.add('sel');checkStart()});
+    g.appendChild(el);
+  });
+  checkStart();
+  show('screen-onboard');
+}
+function checkStart(){$('btn-start').disabled=!($('inp-name').value.trim().length>=2&&selTrail)}
+$('inp-name').addEventListener('input',checkStart);
+$('btn-start').addEventListener('click',()=>{
+  SAVE.name=$('inp-name').value.trim();
+  SAVE.trail=selTrail;persist();
+  document.body.dataset.trail=selTrail;
+  SND.ok();renderHub();show('screen-hub');
+});
+
+/* ---------- hub ---------- */
+function renderHub(){
+  const t=trail();
+  $('hub-trail-chip').textContent=t.icon+' '+t.name;
+  $('hub-avatar').textContent=(SAVE.name||'?').charAt(0).toUpperCase();
+  $('hub-name').textContent=SAVE.name||'—';
+  const li=levelIndex(SAVE.xp),L=LEVELS[li];
+  $('hub-level').textContent=L.i+' '+L.t;
+  const isToday=SAVE.lastDay===todayStr();
+  $('hub-flame').classList.toggle('off',!isToday||SAVE.streak===0);
+  $('hub-streak').textContent=SAVE.streak+(SAVE.streak===1?' dia':' dias');
+  $('hub-xp').textContent=SAVE.xp+' XP';
+  if(li<LEVELS.length-1){
+    const cur=LEVELS[li].xp,nxt=LEVELS[li+1].xp;
+    $('hub-next').textContent='próx. nível ('+LEVELS[li+1].t+'): '+nxt+' XP';
+    $('hub-xpbar').style.width=Math.min(100,Math.round((SAVE.xp-cur)/(nxt-cur)*100))+'%';
+  }else{$('hub-next').textContent='NÍVEL MÁXIMO 👑';$('hub-xpbar').style.width='100%'}
+  /* leaderboard */
+  const rows=SEED.concat([{n:SAVE.name+' (você)',xp:SAVE.xp,me:true}]).sort((a,b)=>b.xp-a.xp);
+  $('leaderboard').innerHTML=rows.map((r,i)=>
+    '<div class="lb-row'+(r.me?' me':'')+'"><span class="lb-pos">'+(i+1)+(i===0?'º🥇':i===1?'º🥈':i===2?'º🥉':'º')+'</span>'+
+    '<span class="lb-name">'+esc(r.n)+'</span><span class="lb-xp">'+r.xp+' XP</span></div>').join('');
+  /* badges */
+  $('badge-grid').innerHTML=BADGES.map(b=>{
+    const un=SAVE.badges.includes(b.id);
+    return '<div class="badge-cell '+(un?'unlocked':'locked')+'" title="'+esc(b.n+' — '+b.d)+'"><div class="bi">'+b.i+'</div><div class="bn">'+b.n+'</div></div>';
+  }).join('');
+  $('btn-sound').textContent=SND.isOn()?'🔊':'🔇';
+}
+$('btn-sound').addEventListener('click',()=>{$('btn-sound').textContent=SND.toggle()?'🔊':'🔇'});
+$('lnk-trail').addEventListener('click',()=>{selTrail=SAVE.trail;renderOnboard()});
+$('lnk-name').addEventListener('click',()=>{selTrail=SAVE.trail;renderOnboard();setTimeout(()=>$('inp-name').focus(),80)});
+
+document.querySelectorAll('.mode-card').forEach(mc=>{
+  mc.addEventListener('click',()=>{
+    SND.tap();
+    const m=mc.dataset.mode;
+    if(m==='quiz')startQuiz();
+    else if(m==='sim')renderScenarios();
+    else startType();
+  });
+});
+document.querySelectorAll('[data-quit]').forEach(b=>b.addEventListener('click',()=>{
+  stopTimer();SES=null;renderHub();show('screen-hub');
+}));
+
+/* ---------- WhatsApp ---------- */
+function reportMsg(){
+  const li=levelIndex(SAVE.xp),L=LEVELS[li],t=trail();
+  let m='🎮 *EnglishFlow ARENA*\n👤 '+SAVE.name+'\n🛤️ Trilha: '+t.name+'\n🏅 Nível: '+L.t+' '+L.i+'\n⭐ XP total: '+SAVE.xp+'\n🔥 Streak: '+SAVE.streak+(SAVE.streak===1?' dia':' dias')+'\n🎖️ Conquistas: '+SAVE.badges.length+'/'+BADGES.length;
+  if(SES&&SES.done){m+='\n\n📊 Última rodada ('+SES.label+'): '+SES.correct+'/'+SES.total+' acertos · melhor combo x'+SES.best+' · +'+SES.xp+' XP'}
+  return m;
+}
+function openWA(msg){window.open('https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(msg),'_blank')}
+$('btn-report').addEventListener('click',()=>openWA(reportMsg()));
+$('btn-report2').addEventListener('click',()=>openWA(reportMsg()));
+$('btn-lead').addEventListener('click',()=>openWA('Olá, Felipe! 👋 Joguei o EnglishFlow ARENA e quero saber mais sobre a mentoria individual de inglês para profissionais. Pode me passar as informações?'));
+
+/* ════════════════════ COMBO ════════════════════ */
+function comboMult(c){return c>=5?3:c>=4?2.5:c>=3?2:c>=2?1.5:1}
+function drawCombo(el,c){
+  const f=el.querySelector('.cf'),m=el.querySelector('.cm');
+  f.style.transform='scale('+(1+Math.min(c,10)*.09)+')';
+  f.style.filter=c>0?'drop-shadow(0 0 '+(4+c*2)+'px rgba(245,158,11,.8))':'grayscale(1) opacity(.4)';
+  m.textContent='x'+comboMult(c);
+}
+function bumpCombo(){
+  SES.combo++;SES.best=Math.max(SES.best,SES.combo);
+  if(SES.combo>SAVE.bestCombo){SAVE.bestCombo=SES.combo;persist()}
+  if(SES.combo>=5)unlockBadge('combo5');
+  if(SES.combo>=10)unlockBadge('combo10');
+  if(SES.combo>=2)SND.combo(SES.combo);
+}
+
+/* ════════════════════ QUIZ ════════════════════ */
+const QT=15;let timerH=null,timeLeft=QT;
+function stopTimer(){if(timerH){clearInterval(timerH);timerH=null}}
+function startTimer(onEnd){
+  stopTimer();timeLeft=QT;drawTimer();
+  timerH=setInterval(()=>{
+    timeLeft-=.1;
+    if(timeLeft<=0){timeLeft=0;drawTimer();stopTimer();onEnd()}
+    else drawTimer();
+  },100);
+}
+function drawTimer(){
+  const C=163.36;
+  $('quiz-tfg').style.strokeDashoffset=String(C*(1-timeLeft/QT));
+  $('quiz-tnum').textContent=Math.ceil(timeLeft);
+  $('quiz-timer').classList.toggle('urgent',timeLeft<=5&&timeLeft>0);
+}
+
+function startQuiz(){
+  SES={mode:'quiz',label:'⚡ Quiz Rápido',list:shuffle(trail().quiz).slice(0,10),i:0,correct:0,combo:0,best:0,xp:0,total:10,done:false};
+  show('screen-quiz');nextQ();
+}
+function nextQ(){
+  const q=SES.list[SES.i];
+  $('quiz-prog').textContent='Questão '+(SES.i+1)+'/'+SES.total;
+  $('quiz-progbar').style.width=(SES.i/SES.total*100)+'%';
+  $('quiz-explain').textContent='';
+  $('quiz-q').textContent=q.q;
+  drawCombo($('quiz-combo'),SES.combo);
+  const correctText=q.o[q.c];
+  const opts=shuffle(q.o.map((t,i)=>({t:t,ok:i===q.c})));
+  const box=$('quiz-opts');box.innerHTML='';
+  opts.forEach(o=>{
+    const b=document.createElement('button');
+    b.className='opt';b.textContent=o.t;
+    b.addEventListener('click',ev=>answerQ(o.ok,b,q,ev));
+    box.appendChild(b);
+  });
+  startTimer(()=>answerQ(false,null,q,null));
+}
+function answerQ(ok,btn,q,ev){
+  stopTimer();
+  const btns=[...document.querySelectorAll('#quiz-opts .opt')];
+  btns.forEach(b=>{b.classList.add('dim');if(b.textContent===q.o[q.c])b.classList.remove('dim'),b.classList.add('correct')});
+  if(btn&&!ok)btn.classList.remove('dim'),btn.classList.add('wrong');
+  if(ok){
+    SES.correct++;bumpCombo();
+    const gain=Math.round(10*comboMult(SES.combo))+Math.ceil(timeLeft/3);
+    SES.xp+=gain;SND.ok();
+    addXP(gain,ev?ev.clientX-20:undefined,ev?ev.clientY-30:undefined);
+  }else{
+    SES.combo=0;SND.err();
+    if(navigator.vibrate)try{navigator.vibrate(120)}catch(e){}
+  }
+  drawCombo($('quiz-combo'),SES.combo);
+  $('quiz-explain').textContent=q.x?'💡 '+q.x:'';
+  setTimeout(()=>{
+    maybeLevelUp(()=>{
+      SES.i++;
+      if(SES.i>=SES.total)endRound();
+      else nextQ();
+    });
+  },ok?1200:1900);
+}
+
+/* ════════════════════ SIMULATOR ════════════════════ */
+function renderScenarios(){
+  const box=$('scn-list');box.innerHTML='';
+  trail().dialogues.forEach((d,idx)=>{
+    const el=document.createElement('div');
+    el.className='scn-card';
+    el.innerHTML='<div class="si">'+d.icon+'</div><div><div class="sn">'+esc(d.title)+'</div><div class="sd">'+esc(d.desc)+'</div></div>';
+    el.addEventListener('click',()=>{SND.tap();startSim(idx)});
+    box.appendChild(el);
+  });
+  show('screen-scn');
+}
+function startSim(idx){
+  const d=trail().dialogues[idx];
+  SES={mode:'sim',label:'🎭 Simulador — '+d.title,dlg:d,i:0,correct:0,combo:0,best:0,xp:0,total:d.steps.length,done:false,maxQ:d.steps.length*2,sumQ:0};
+  $('sim-title-chip').textContent=d.icon+' '+d.title;
+  $('sim-context').textContent=d.context;
+  $('sim-dlg').innerHTML='';
+  show('screen-sim');nextTurn();
+}
+function addBubble(cls,who,text){
+  const b=document.createElement('div');b.className='bubble '+cls;
+  b.innerHTML=(who?'<div class="who">'+esc(who)+'</div>':'')+esc(text);
+  $('sim-dlg').appendChild(b);
+  b.scrollIntoView({behavior:'smooth',block:'end'});
+}
+function nextTurn(){
+  const d=SES.dlg,st=d.steps[SES.i];
+  $('sim-prog').textContent='Turno '+(SES.i+1)+'/'+SES.total;
+  $('sim-progbar').style.width=(SES.i/SES.total*100)+'%';
+  addBubble('npc',d.npc,st.say);
+  const box=$('sim-choices');box.innerHTML='';
+  shuffle(st.ch.map(c=>c)).forEach(c=>{
+    const b=document.createElement('button');
+    b.className='opt';b.textContent=c.t;
+    b.addEventListener('click',ev=>chooseSim(c,ev));
+    box.appendChild(b);
+  });
+}
+function chooseSim(c,ev){
+  $('sim-choices').innerHTML='';
+  addBubble('me','',c.t);
+  SES.sumQ+=c.q;
+  setTimeout(()=>{
+    addBubble('react','',c.r);
+    if(c.q===2){
+      SES.correct++;bumpCombo();
+      const gain=15;SES.xp+=gain;SND.ok();
+      addXP(gain,ev?ev.clientX-20:undefined,ev?ev.clientY-30:undefined);
+    }else if(c.q===1){
+      SES.combo=0;
+      const gain=7;SES.xp+=gain;SND.tap();
+      addXP(gain,ev?ev.clientX-20:undefined,ev?ev.clientY-30:undefined);
+    }else{
+      SES.combo=0;SND.err();
+      if(navigator.vibrate)try{navigator.vibrate(120)}catch(e){}
+    }
+    setTimeout(()=>{
+      maybeLevelUp(()=>{
+        SES.i++;
+        if(SES.i>=SES.total)endRound();
+        else nextTurn();
+      });
+    },1400);
+  },550);
+}
+
+/* ════════════════════ TYPE MASTER ════════════════════ */
+function norm(s){
+  s=s.toLowerCase().trim().replace(/\s+/g,' ');
+  s=s.normalize('NFD').replace(/[̀-ͯ]/g,'');
+  s=s.replace(/^(to |the |a |an )/,'');
+  s=s.replace(/[.!?]$/,'');
+  return s;
+}
+function startType(){
+  SES={mode:'type',label:'⌨️ Type Master',list:shuffle(trail().type).slice(0,10),i:0,correct:0,combo:0,best:0,xp:0,total:10,done:false,locked:false};
+  show('screen-type');nextWord();
+}
+function nextWord(){
+  const w=SES.list[SES.i];
+  SES.locked=false;
+  $('type-prog').textContent='Palavra '+(SES.i+1)+'/'+SES.total;
+  $('type-progbar').style.width=(SES.i/SES.total*100)+'%';
+  $('type-word').textContent=w.pt;
+  $('type-hint').textContent=w.hint?'💡 '+w.hint:'';
+  $('type-fb').innerHTML='';
+  const inp=$('type-input');
+  inp.value='';inp.className='type-input';inp.disabled=false;
+  drawCombo($('type-combo'),SES.combo);
+  inp.focus();
+}
+function checkWord(skip){
+  if(SES.locked)return;SES.locked=true;
+  const w=SES.list[SES.i],inp=$('type-input');
+  const val=norm(inp.value||'');
+  const ok=!skip&&val.length>0&&w.en.some(a=>norm(a)===val);
+  inp.disabled=true;
+  const answers=w.en.slice(0,3).join('  ·  ');
+  if(ok){
+    inp.classList.add('ok');
+    SES.correct++;bumpCombo();
+    const gain=Math.round(12*comboMult(SES.combo));
+    SES.xp+=gain;SND.ok();
+    $('type-fb').innerHTML='<span class="good">✓ Perfeito!</span><br><span class="small">Aceitas: '+esc(answers)+'</span>';
+    const r=inp.getBoundingClientRect();
+    addXP(gain,r.right-60,r.top-10);
+  }else{
+    inp.classList.add('bad');
+    SES.combo=0;SND.err();
+    if(navigator.vibrate)try{navigator.vibrate(120)}catch(e){}
+    $('type-fb').innerHTML='<span class="no">✗ '+(skip?'Sem problema — anota essa:':'Quase! A resposta era:')+'</span><br><b>'+esc(answers)+'</b>';
+  }
+  drawCombo($('type-combo'),SES.combo);
+  setTimeout(()=>{
+    maybeLevelUp(()=>{
+      SES.i++;
+      if(SES.i>=SES.total)endRound();
+      else nextWord();
+    });
+  },ok?1100:2100);
+}
+$('type-check').addEventListener('click',()=>checkWord(false));
+$('type-skip').addEventListener('click',()=>checkWord(true));
+$('type-input').addEventListener('keydown',e=>{if(e.key==='Enter')checkWord(false)});
+
+/* ════════════════════ RESULTS ════════════════════ */
+function endRound(){
+  stopTimer();
+  SES.done=true;
+  SAVE.rounds++;
+  SAVE.plays[SES.mode]=(SAVE.plays[SES.mode]||0)+1;
+  persist();
+  updateStreak();
+  unlockBadge('first');
+  if(SAVE.plays.quiz>0&&SAVE.plays.sim>0&&SAVE.plays.type>0)unlockBadge('modes');
+  /* perfect round */
+  let perfect=false;
+  if(SES.mode==='sim')perfect=SES.sumQ===SES.maxQ;
+  else perfect=SES.correct===SES.total;
+  if(perfect){
+    SES.xp+=50;SAVE.xp+=50;persist();
+    const after=levelIndex(SAVE.xp);
+    if(after>levelIndex(SAVE.xp-50))pendingLevel=after;
+    unlockBadge('perfect');
+  }
+  /* render */
+  const pct=SES.correct/SES.total;
+  $('res-icon').textContent=perfect?'💎':pct>=.7?'🏆':pct>=.4?'💪':'📚';
+  $('res-title').textContent=perfect?'IMPECÁVEL!':pct>=.7?'Excelente!':pct>=.4?'Bom trabalho!':'Continue treinando!';
+  $('res-sub').textContent=SES.label+' · '+trail().name;
+  $('res-perfect').style.display=perfect?'block':'none';
+  $('res-score').textContent=SES.correct+'/'+SES.total;
+  $('res-combo').textContent='x'+SES.best;
+  $('res-xp').textContent='+'+(SES.xp+(perfect?0:0));
+  const li=levelIndex(SAVE.xp),L=LEVELS[li];
+  $('res-lvl-now').textContent=L.i+' '+L.t+' · '+SAVE.xp+' XP';
+  if(li<LEVELS.length-1){
+    const cur=LEVELS[li].xp,nxt=LEVELS[li+1].xp;
+    $('res-lvl-next').textContent='→ '+LEVELS[li+1].t+' aos '+nxt+' XP';
+    $('res-xpbar').style.width=Math.min(100,Math.round((SAVE.xp-cur)/(nxt-cur)*100))+'%';
+  }else{$('res-lvl-next').textContent='topo da hierarquia!';$('res-xpbar').style.width='100%'}
+  show('screen-results');
+  if(perfect)confettiBurst();
+  maybeLevelUp();
+}
+$('btn-again').addEventListener('click',()=>{
+  SND.tap();
+  if(!SES)return;
+  if(SES.mode==='quiz')startQuiz();
+  else if(SES.mode==='sim')renderScenarios();
+  else startType();
+});
+$('btn-hub').addEventListener('click',()=>{SES=null;renderHub();show('screen-hub')});
+
+/* ════════════════════ BUBBLES (ocean particles) ════════════════════ */
+(function(){
+  const cv=$('bubbles'),cx=cv.getContext('2d');
+  let W,H,bs=[];
+  const reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function size(){W=cv.width=window.innerWidth;H=cv.height=window.innerHeight}
+  size();window.addEventListener('resize',size);
+  function mk(){return{x:Math.random()*W,y:H+20+Math.random()*80,r:1+Math.random()*3.5,v:.25+Math.random()*.6,o:.05+Math.random()*.12,w:Math.random()*Math.PI*2}}
+  for(let i=0;i<26;i++){const b=mk();b.y=Math.random()*H;bs.push(b)}
+  function tick(){
+    cx.clearRect(0,0,W,H);
+    const ac=getComputedStyle(document.body).getPropertyValue('--ac').trim()||'#f59e0b';
+    bs.forEach(b=>{
+      b.y-=b.v;b.w+=.02;b.x+=Math.sin(b.w)*.3;
+      if(b.y<-20)Object.assign(b,mk());
+      cx.beginPath();cx.arc(b.x,b.y,b.r,0,7);
+      cx.strokeStyle=ac;cx.globalAlpha=b.o;cx.stroke();cx.globalAlpha=1;
+    });
+    if(!reduce)requestAnimationFrame(tick);
+  }
+  tick();
+})();
+
+/* ════════════════════ CONFETTI ════════════════════ */
+function confettiBurst(){
+  const cv=$('cfx'),cx=cv.getContext('2d');
+  cv.width=window.innerWidth;cv.height=window.innerHeight;
+  const colors=['#f59e0b','#fbbf24','#22c55e','#7ec8d4','#a78bfa','#ef4444','#ffffff'];
+  const ps=[];
+  for(let i=0;i<130;i++)ps.push({
+    x:cv.width/2,y:cv.height*.35,
+    vx:(Math.random()-.5)*13,vy:-4-Math.random()*9,
+    g:.28,s:4+Math.random()*6,c:colors[i%colors.length],
+    r:Math.random()*Math.PI,vr:(Math.random()-.5)*.3,life:1
+  });
+  let t=0;
+  function tick(){
+    t++;cx.clearRect(0,0,cv.width,cv.height);
+    ps.forEach(p=>{
+      p.x+=p.vx;p.y+=p.vy;p.vy+=p.g;p.r+=p.vr;p.life-=.008;
+      cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);
+      cx.globalAlpha=Math.max(0,p.life);cx.fillStyle=p.c;
+      cx.fillRect(-p.s/2,-p.s/2,p.s,p.s*.6);cx.restore();
+    });
+    if(t<170)requestAnimationFrame(tick);
+    else cx.clearRect(0,0,cv.width,cv.height);
+  }
+  tick();
+}
+
+/* ════════════════════ BOOT ════════════════════ */
+if(SAVE.trail)document.body.dataset.trail=SAVE.trail;
+show('screen-splash');
+</script>
+</body>
+</html>
