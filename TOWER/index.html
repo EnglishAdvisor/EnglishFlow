@@ -304,11 +304,12 @@ h1,h2,h3,.hfont{font-family:var(--fh);text-transform:uppercase;letter-spacing:.0
       <label for="inp-name">Seu nome</label>
       <input id="inp-name" type="text" maxlength="24" placeholder="Como devemos te chamar?" autocomplete="off">
     </div>
-    <div>
-      <div class="sec-title">Escolha seu nível</div>
-      <div class="trail-grid" id="trail-grid"></div>
+    <div class="card field">
+      <label for="inp-phone">Seu WhatsApp <span style="text-transform:none;letter-spacing:0;color:var(--tx2);font-size:11px">(pra receber seu resultado + um plano do mentor)</span></label>
+      <input id="inp-phone" type="tel" inputmode="tel" maxlength="20" placeholder="(22) 9 9999-9999" autocomplete="off">
     </div>
-    <button class="btn primary" id="btn-start" disabled>🚀 Começar</button>
+    <button class="btn primary" id="btn-level" disabled>🎯 Teste seu nível</button>
+    <button class="btn" id="btn-play" disabled>🎮 Jogar</button>
   </section>
 
   <!-- ═══════════ HUB ═══════════ -->
@@ -340,11 +341,6 @@ h1,h2,h3,.hfont{font-family:var(--fh);text-transform:uppercase;letter-spacing:.0
     <div>
       <div class="sec-title">Modos de jogo</div>
       <div class="mode-grid">
-        <div class="mode-card" data-mode="level" style="border-color:color-mix(in srgb,var(--ac) 50%,transparent);box-shadow:0 0 22px var(--glow)">
-          <div class="mc-icon">🎯</div>
-          <div><div class="mc-name">Teste de Nível</div><div class="mc-desc">Descubra seu nível de inglês em 2 min — grátis</div></div>
-          <div class="mc-go">›</div>
-        </div>
         <div class="mode-card" data-mode="quiz">
           <div class="mc-icon">⚡</div>
           <div><div class="mc-name">Quiz Rápido</div><div class="mc-desc">10 questões · 15s cada · combo vale ouro</div></div>
@@ -884,6 +880,8 @@ intermediate:{
 }
 };
 
+TRAILS.all={name:'Business',icon:'🏢',color:'#a78bfa',desc:'',students:'',quiz:[].concat(TRAILS.starter.quiz,TRAILS.elementary.quiz,TRAILS.intermediate.quiz),dialogues:[].concat(TRAILS.starter.dialogues,TRAILS.elementary.dialogues,TRAILS.intermediate.dialogues),type:[].concat(TRAILS.starter.type,TRAILS.elementary.type,TRAILS.intermediate.type)};
+
 /* ---------- levels (corporate hierarchy) ---------- */
 const LEVELS=[
   {t:'Intern',xp:0,i:'🎓'},
@@ -939,9 +937,12 @@ const LEVELTEST=[
 const GAMEID='TOWER';
 
 const WHATSAPP='5522999585058';
+const LEADFORM={url:'https://docs.google.com/forms/d/e/1FAIpQLSc3GaueEW4F_tlqRE4S0swR49EKmSMA9-SCFkAVkYI24bJFKA/formResponse',nome:'entry.1061431695',tel:'entry.491232576',jogo:'entry.1837062593',nivel:'entry.1956132553',acao:'entry.1025542082'};
+function leadCapture(acao,nivel){try{if(!LEADFORM.url)return;const fd=new FormData();fd.append(LEADFORM.nome,SAVE.name||'');fd.append(LEADFORM.tel,SAVE.phone||'');fd.append(LEADFORM.jogo,(typeof GAMEID!=='undefined'?GAMEID:''));fd.append(LEADFORM.nivel,nivel||'');fd.append(LEADFORM.acao,acao||'');fetch(LEADFORM.url,{method:'POST',mode:'no-cors',body:fd});}catch(e){}}
+
 
 /* ════════════════════ SAVE / STATE ════════════════════ */
-const DEF={name:'',trail:'',xp:0,badges:[],streak:0,lastDay:'',plays:{quiz:0,sim:0,type:0},bestCombo:0,rounds:0};
+const DEF={name:'',phone:'',trail:'',xp:0,badges:[],streak:0,lastDay:'',plays:{quiz:0,sim:0,type:0},bestCombo:0,rounds:0};
 let SAVE=Object.assign({},DEF,store.get('eft_save',{}));
 SAVE.plays=Object.assign({},DEF.plays,SAVE.plays||{});
 if(!Array.isArray(SAVE.badges))SAVE.badges=[];
@@ -1005,35 +1006,24 @@ $('btn-enter').addEventListener('click',()=>{
 });
 
 /* ---------- onboarding ---------- */
-let selTrail=SAVE.trail||'';
 function renderOnboard(){
   $('inp-name').value=SAVE.name||'';
-  const g=$('trail-grid');g.innerHTML='';
-  Object.keys(TRAILS).forEach(k=>{
-    const t=TRAILS[k];
-    const el=document.createElement('div');
-    el.className='trail-card'+(selTrail===k?' sel':'');
-    el.style.setProperty('--tc',t.color);
-    el.innerHTML='<div class="tc-icon" style="background:color-mix(in srgb,'+t.color+' 18%,transparent)">'+t.icon+'</div>'+
-      '<div><div class="tc-name" style="color:'+t.color+'">'+t.name+'</div>'+
-      '<div class="tc-desc">'+t.desc+'</div>'+
-      '<div class="tc-students">'+t.students+'</div></div>';
-    el.addEventListener('click',()=>{selTrail=k;SND.tap();
-      document.querySelectorAll('.trail-card').forEach(c=>c.classList.remove('sel'));
-      el.classList.add('sel');checkStart()});
-    g.appendChild(el);
-  });
+  $('inp-phone').value=SAVE.phone||'';
   checkStart();
   show('screen-onboard');
 }
-function checkStart(){$('btn-start').disabled=!($('inp-name').value.trim().length>=2&&selTrail)}
+function checkStart(){const ok=$('inp-name').value.trim().length>=2;$('btn-level').disabled=!ok;$('btn-play').disabled=!ok;}
 $('inp-name').addEventListener('input',checkStart);
-$('btn-start').addEventListener('click',()=>{
+$('inp-phone').addEventListener('input',checkStart);
+const DEFAULT_TRAIL='all';
+function commitOnboard(){
   SAVE.name=$('inp-name').value.trim();
-  SAVE.trail=selTrail;persist();
-  document.body.dataset.trail=selTrail;
-  SND.ok();renderHub();show('screen-hub');
-});
+  SAVE.phone=$('inp-phone').value.trim();
+  SAVE.trail=DEFAULT_TRAIL;persist();
+  document.body.dataset.trail=DEFAULT_TRAIL;
+}
+$('btn-level').addEventListener('click',()=>{commitOnboard();leadCapture('iniciou teste','');SND.ok();startLevel();});
+$('btn-play').addEventListener('click',()=>{commitOnboard();leadCapture('jogou','');SND.ok();renderHub();show('screen-hub');});
 
 /* ---------- hub ---------- */
 function renderHub(){
@@ -1065,8 +1055,8 @@ function renderHub(){
   $('btn-sound').textContent=SND.isOn()?'🔊':'🔇';
 }
 $('btn-sound').addEventListener('click',()=>{$('btn-sound').textContent=SND.toggle()?'🔊':'🔇'});
-$('lnk-trail').addEventListener('click',()=>{selTrail=SAVE.trail;renderOnboard()});
-$('lnk-name').addEventListener('click',()=>{selTrail=SAVE.trail;renderOnboard();setTimeout(()=>$('inp-name').focus(),80)});
+$('lnk-trail').addEventListener('click',()=>{renderOnboard()});
+$('lnk-name').addEventListener('click',()=>{renderOnboard();setTimeout(()=>$('inp-name').focus(),80)});
 
 document.querySelectorAll('.mode-card').forEach(mc=>{
   mc.addEventListener('click',()=>{
@@ -1364,7 +1354,7 @@ function renderLevelResult(){
   if(c<=7){lvl='Iniciante (A1)';ic='🌱';desc='Seu ponto de partida sugerido é Iniciante — o melhor momento para construir uma base sólida do jeito certo. O mentor confirma seu nível real na conversa.';}
   else if(c<=13){lvl='Básico (A2)';ic='📗';desc='Você já tem uma base. Ponto de partida sugerido: Básico. Com constância diária a fluência vem rápido — e o mentor ajusta seu nível na conversa.';}
   else{lvl='Intermediário (a confirmar)';ic='📘';desc='Boa base! Ponto de partida sugerido: Intermediário. Só uma conversa com o mentor confirma seu nível real e até onde você pode ir — talvez bem mais alto.';}
-  SES.lvlName=lvl;
+  SES.lvlName=lvl;leadCapture('testou',lvl);
   $('lvl-icon').textContent=ic;$('lvl-level').textContent=lvl;
   $('lvl-score').textContent=c+' de '+total+' acertos';$('lvl-desc').textContent=desc;
   show('screen-levelresult');confettiBurst();
