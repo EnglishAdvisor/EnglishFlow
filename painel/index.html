@@ -1,1 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EnglishFlow — Teacher Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#f0f0f0;font-family:'Barlow',sans-serif;min-height:100vh}
+.header{background:#1e3a5f;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:3px solid #c8e63c}
+.logo{font-family:Georgia,serif;font-size:24px;font-weight:700;color:#fff}
+.logo span{color:#c8e63c}
+.header-sub{font-size:11px;color:#7ec8d4;text-transform:uppercase;letter-spacing:.15em;margin-top:2px}
+.last-updated{font-size:10px;color:#4a7a9b;text-align:right}
+
+.container{max-width:960px;margin:0 auto;padding:16px}
+
+/* STUDENTS SECTION */
+.section-title{font-size:11px;font-weight:700;color:#4a4f5a;text-transform:uppercase;letter-spacing:.12em;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #e0e0e0;display:flex;align-items:center;gap:8px}
+.section-title svg{width:14px;height:14px;stroke:#4a4f5a;fill:none;stroke-width:2}
+
+.students-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;margin-bottom:20px}
+.student-card{background:#fff;border-radius:10px;padding:14px 16px;border:0.5px solid rgba(0,0,0,.08);display:flex;flex-direction:column;gap:8px}
+.student-top{display:flex;align-items:center;gap:10px}
+.student-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;flex-shrink:0}
+.student-name{font-size:14px;font-weight:700;color:#2C3E50}
+.student-trail{font-size:10px;color:#888;text-transform:uppercase;letter-spacing:.08em}
+.student-capsule{font-size:11px;color:#4a4f5a;background:#f5f5f5;border-radius:6px;padding:5px 10px}
+.student-capsule strong{color:#2C3E50}
+.capsule-link{display:flex;align-items:center;gap:6px;background:#1e3a5f;color:#fff;text-decoration:none;border-radius:7px;padding:7px 12px;font-size:11px;font-weight:600;transition:all .2s}
+.capsule-link:hover{background:#2d5a8e}
+.capsule-link svg{width:12px;height:12px;stroke:#c8e63c;fill:none;stroke-width:2;flex-shrink:0}
+.copy-btn{background:transparent;border:1px solid rgba(0,0,0,.12);border-radius:6px;padding:6px 10px;font-size:10px;font-weight:600;color:#4a4f5a;cursor:pointer;flex-shrink:0}
+.copy-btn:hover{background:#f5f5f5}
+.copy-btn.copied{color:#16a34a;border-color:#16a34a}
+.link-row{display:flex;gap:6px;align-items:center}
+
+/* TRAIL SECTIONS */
+.trail-block{background:#fff;border-radius:10px;border:0.5px solid rgba(0,0,0,.08);margin-bottom:12px;overflow:hidden}
+.trail-header{padding:10px 16px;display:flex;align-items:center;gap:10px;cursor:pointer;user-select:none}
+.trail-header:hover{opacity:.9}
+.trail-badge{border-radius:5px;padding:3px 10px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;flex-shrink:0}
+.trail-name{font-size:13px;font-weight:700;color:#fff;flex:1}
+.trail-count{font-size:10px;color:rgba(255,255,255,.6)}
+.trail-arrow{font-size:12px;color:rgba(255,255,255,.6);transition:transform .2s}
+.trail-arrow.open{transform:rotate(90deg)}
+.trail-body{display:none;padding:0 16px 12px}
+.trail-body.open{display:block}
+.unit-title{font-size:10px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.1em;margin:10px 0 6px}
+.capsules-list{display:flex;flex-direction:column;gap:4px}
+.capsule-row{display:flex;align-items:center;gap:8px;padding:5px 8px;border-radius:6px;transition:background .15s}
+.capsule-row:hover{background:#f5f5f5}
+.cap-num{font-size:10px;font-weight:700;color:#888;min-width:32px;flex-shrink:0}
+.cap-name{font-size:12px;color:#2C3E50;flex:1}
+.cap-status{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.cap-status.live{background:#16a34a}
+.cap-status.pending{background:#e5e7eb}
+.cap-link{font-size:10px;color:#2d5a8e;text-decoration:none;font-weight:600;flex-shrink:0}
+.cap-link:hover{text-decoration:underline}
+.cap-copy{background:transparent;border:none;font-size:10px;color:#888;cursor:pointer;padding:2px 5px;border-radius:4px}
+.cap-copy:hover{background:#e5e7eb;color:#2C3E50}
+
+.footer{background:#1e3a5f;padding:12px 24px;text-align:center;margin-top:20px}
+.footer-text{font-size:11px;color:#4a7a9b}
+.footer-text strong{color:#7ec8d4}
+
+@media(max-width:600px){
+  .students-grid{grid-template-columns:1fr}
+  .container{padding:12px}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <div class="logo">English<span>Flow</span></div>
+    <div class="header-sub">Teacher Dashboard · Capsule Control</div>
+  </div>
+  <div class="last-updated">Felipe Tavares · Macaé, Brazil<br>englishadvisor.github.io/EnglishFlow</div>
+</div>
+
+<div class="container">
+
+  <!-- ACTIVE STUDENTS -->
+  <div class="section-title">
+    <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+    Active Students
+  </div>
+
+  <div class="students-grid" id="students-grid">
+    <div style="color:#888;font-size:13px;padding:12px">Loading students...</div>
+  </div>
+
+  <!-- TRAIL: BUSINESS STARTER -->
+  <div class="section-title">
+    <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+    Capsule Library
+  </div>
+
+  <div class="trail-block">
+    <div class="trail-header" style="background:#6b3fa0" onclick="toggleTrail('starter')">
+      <div class="trail-badge" style="background:rgba(255,255,255,.2);color:#fff">Starter</div>
+      <div class="trail-name">Business Result — Starter</div>
+      <div class="trail-count">54 capsules · 2 live</div>
+      <div class="trail-arrow" id="arr-starter">▶</div>
+    </div>
+    <div class="trail-body" id="body-starter">
+      <div class="unit-title">Unit 1 — Contacts</div>
+      <div class="capsules-list">
+        <div class="capsule-row">
+          <span class="cap-num">05/54</span>
+          <span class="cap-name">Business Communication</span>
+          <span class="cap-status live"></span>
+          <a class="cap-link" href="https://englishadvisor.github.io/EnglishFlow/business/starter/Unit1/capsule-05-business-communication.html" target="_blank">Open</a>
+          <button class="cap-copy" onclick="copyLink(this,'https://englishadvisor.github.io/EnglishFlow/business/starter/Unit1/capsule-05-business-communication.html')">⎘</button>
+        </div>
+      </div>
+      <div class="unit-title">Unit 3 — Workplace</div>
+      <div class="capsules-list">
+        <div class="capsule-row">
+          <span class="cap-num">15/54</span>
+          <span class="cap-name">Language at Work</span>
+          <span class="cap-status live"></span>
+          <a class="cap-link" href="https://englishadvisor.github.io/EnglishFlow/business/starter/Unit3/capsule-15-language-at-work.html" target="_blank">Open</a>
+          <button class="cap-copy" onclick="copyLink(this,'https://englishadvisor.github.io/EnglishFlow/business/starter/Unit3/capsule-15-language-at-work.html')">⎘</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="trail-block">
+    <div class="trail-header" style="background:#d97706" onclick="toggleTrail('elementary')">
+      <div class="trail-badge" style="background:rgba(255,255,255,.2);color:#fff">Elementary</div>
+      <div class="trail-name">Business Result — Elementary</div>
+      <div class="trail-count">82 capsules · 2 live</div>
+      <div class="trail-arrow" id="arr-elementary">▶</div>
+    </div>
+    <div class="trail-body" id="body-elementary">
+      <div class="unit-title">Unit 1 — Jobs</div>
+      <div class="capsules-list">
+        <div class="capsule-row">
+          <span class="cap-num">03/82</span>
+          <span class="cap-name">Language at Work</span>
+          <span class="cap-status live"></span>
+          <a class="cap-link" href="https://englishadvisor.github.io/EnglishFlow/business/elementary/Unit1/capsule-03-language-at-work-elementary.html" target="_blank">Open</a>
+          <button class="cap-copy" onclick="copyLink(this,'https://englishadvisor.github.io/EnglishFlow/business/elementary/Unit1/capsule-03-language-at-work-elementary.html')">⎘</button>
+        </div>
+      </div>
+      <div class="unit-title">Unit 4 — Technology</div>
+      <div class="capsules-list">
+        <div class="capsule-row">
+          <span class="cap-num">22/82</span>
+          <span class="cap-name">Working with Words</span>
+          <span class="cap-status live"></span>
+          <a class="cap-link" href="https://englishadvisor.github.io/EnglishFlow/business/elementary/Unit4/capsule-22-working-with-words-elementary.html" target="_blank">Open</a>
+          <button class="cap-copy" onclick="copyLink(this,'https://englishadvisor.github.io/EnglishFlow/business/elementary/Unit4/capsule-22-working-with-words-elementary.html')">⎘</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="trail-block">
+    <div class="trail-header" style="background:#0a1018;border-bottom:1px solid #3d1f00" onclick="toggleTrail('og1')">
+      <div class="trail-badge" style="background:#3d1f00;color:#d97706;border:1px solid #7a3e00">OG-1</div>
+      <div class="trail-name" style="color:#d97706">Oil and Gas 1</div>
+      <div class="trail-count" style="color:#4a6a7a">203 capsules · 2 live</div>
+      <div class="trail-arrow" id="arr-og1" style="color:#4a6a7a">▶</div>
+    </div>
+    <div class="trail-body" id="body-og1">
+      <div class="unit-title">Unit 2 — Upstream</div>
+      <div class="capsules-list">
+        <div class="capsule-row">
+          <span class="cap-num">21/203</span>
+          <span class="cap-name">Number Talk</span>
+          <span class="cap-status live"></span>
+          <a class="cap-link" href="https://englishadvisor.github.io/EnglishFlow/oil-gas/unit-2/capsule-21-number-talk-og1.html" target="_blank">Open</a>
+          <button class="cap-copy" onclick="copyLink(this,'https://englishadvisor.github.io/EnglishFlow/oil-gas/unit-2/capsule-21-number-talk-og1.html')">⎘</button>
+        </div>
+      </div>
+      <div class="unit-title">Unit 7 — Pipes and Pipelines</div>
+      <div class="capsules-list">
+        <div class="capsule-row">
+          <span class="cap-num">97/203</span>
+          <span class="cap-name">Key Words</span>
+          <span class="cap-status live"></span>
+          <a class="cap-link" href="https://englishadvisor.github.io/EnglishFlow/oil-gas/unit-7/capsule-97-key-words-og1.html" target="_blank">Open</a>
+          <button class="cap-copy" onclick="copyLink(this,'https://englishadvisor.github.io/EnglishFlow/oil-gas/unit-7/capsule-97-key-words-og1.html')">⎘</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="trail-block">
+    <div class="trail-header" style="background:#1e3a5f;border-bottom:1px solid #7ec8d4" onclick="toggleTrail('wc1')">
+      <div class="trail-badge" style="background:#7ec8d4;color:#1e3a5f">WC-1</div>
+      <div class="trail-name">World Class 1</div>
+      <div class="trail-count">120 capsules · 1 live</div>
+      <div class="trail-arrow" id="arr-wc1">▶</div>
+    </div>
+    <div class="trail-body" id="body-wc1">
+      <div class="unit-title">Unit 5 — No Need to Panic</div>
+      <div class="capsules-list">
+        <div class="capsule-row">
+          <span class="cap-num">44/120</span>
+          <span class="cap-name">Listening</span>
+          <span class="cap-status live"></span>
+          <a class="cap-link" href="https://englishadvisor.github.io/EnglishFlow/world-class/unit-5/capsule-44-listening-wc1.html" target="_blank">Open</a>
+          <button class="cap-copy" onclick="copyLink(this,'https://englishadvisor.github.io/EnglishFlow/world-class/unit-5/capsule-44-listening-wc1.html')">⎘</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <div class="footer-text">
+    <strong>EnglishFlow</strong> · Consistency beats intensity — learn daily, speak naturally · Felipe Tavares · Macaé, Brazil
+  </div>
+</div>
+
+<script>
+const BASE = 'https://englishadvisor.github.io/EnglishFlow';
+const REGISTRY = BASE + '/registry.json';
+const SVG_OPEN = '<svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
+
+async function loadStudents() {
+  const grid = document.getElementById('students-grid');
+  try {
+    const reg = await fetch(REGISTRY + '?t=' + Date.now()).then(r => r.json());
+    const cards = await Promise.all(reg.students.map(async s => {
+      const url = BASE + '/' + s.trail + '/' + s.unit + '/' + s.capsule;
+      let footerText = '';
+      try {
+        const html = await fetch(url + '?t=' + Date.now()).then(r => r.text());
+        const doc = new DOMParser().parseFromString(html, 'text/html');
+        footerText = doc.querySelector('.footer-left') ? doc.querySelector('.footer-left').textContent.trim() : '';
+      } catch(e) {}
+
+      // Parse: "Capsule 5 of 54 · Unit 1 — You · Business Starter"
+      let capsuleInfo = footerText || 'Capsule — · —';
+      // Split at first ·
+      const parts = footerText.split('·');
+      const capsuleNum = parts[0] ? parts[0].trim() : '';
+      const unitAndName = parts[1] ? parts[1].trim() : '';
+      const trailLabel = parts[2] ? parts[2].trim() : '';
+
+      const initial = s.name.charAt(0).toUpperCase();
+      return `
+      <div class="student-card">
+        <div class="student-top">
+          <div class="student-avatar" style="background:${s.color}">${initial}</div>
+          <div>
+            <div class="student-name">${s.name}</div>
+            <div class="student-trail">${trailLabel}</div>
+          </div>
+        </div>
+        <div class="student-capsule"><strong>${capsuleNum}</strong>${unitAndName ? ' — ' + unitAndName : ''}</div>
+        <div class="link-row">
+          <a class="capsule-link" href="${url}" target="_blank">
+            ${SVG_OPEN} Open Capsule
+          </a>
+          <button class="copy-btn" onclick="copyLink(this,'${url}')">Copy Link</button>
+        </div>
+      </div>`;
+    }));
+    grid.innerHTML = cards.join('');
+  } catch(e) {
+    grid.innerHTML = '<div style="color:#c00;font-size:13px;padding:12px">Failed to load registry.json — ' + e.message + '</div>';
+  }
+}
+
+loadStudents();
+
+function toggleTrail(id){
+  var body=document.getElementById('body-'+id);
+  var arr=document.getElementById('arr-'+id);
+  var isOpen=body.classList.contains('open');
+  body.classList.toggle('open',!isOpen);
+  arr.classList.toggle('open',!isOpen);
+  arr.textContent=isOpen?'▶':'▼';
+}
+
+function copyLink(btn,url){
+  navigator.clipboard.writeText(url).then(function(){
+    var orig=btn.textContent;
+    btn.textContent='✓ Copied';
+    btn.classList.add('copied');
+    setTimeout(function(){btn.textContent=orig;btn.classList.remove('copied');},2000);
+  });
+}
+</script>
+</body>
+</html>
 
