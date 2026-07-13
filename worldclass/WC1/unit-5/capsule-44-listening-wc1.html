@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="logo-englishflow.png">
 <title>Listening · Unit 5 — No Need to Panic · World Class 1</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -129,6 +130,7 @@ body{background:#f0f4f8;font-family:'Barlow',sans-serif;min-height:100vh;display
   .card{padding:12px 13px}
   .wa-btn{min-height:48px}
 }
+.ef-logo{width:26px;height:26px;border-radius:50%}
 </style>
 </head>
 <body>
@@ -388,7 +390,7 @@ body{background:#f0f4f8;font-family:'Barlow',sans-serif;min-height:100vh;display
 <!-- FOOTER -->
 <div class="footer">
   <div class="footer-left">Capsule 44 of 120 · Unit 5 — No Need to Panic · World Class 1</div>
-  <div class="footer-right">
+  <div class="footer-right"><img class="ef-logo" src="logo-englishflow.png" alt="EnglishFlow" onerror="this.style.display=&#39;none&#39;">
     <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
     <span class="footer-text">World Class 1</span>
   </div>
@@ -499,13 +501,13 @@ function sendWA(){
   var act1=document.getElementById('act1').value||'(not answered)';
   var act2=document.getElementById('act2').value||'(not answered)';
   var act3=document.getElementById('act3').value||'(not answered)';
-  var msg='👤 '+name+'\n'
-        +'📅 '+date+' at '+time+'\n'
-        +'📘 Capsule 44 of 120 — Listening · Unit 5 — No Need to Panic · World Class 1\n\n'
-        +'📌 Activity A — Nervousness ratings:\n'+act1+'\n\n'
-        +'📌 Activity B — Corrected statements:\n'+act2+'\n\n'
-        +'📌 Activity C — 3 ways to calm down:\n'+act3+'\n\n'
-        +'🎙️ Reflection audio in the next message.';
+  var msg='Aluno: '+name+'\n'
+        +'Data: '+date+' at '+time+'\n'
+        +'Cápsula: Capsule 44 of 120 — Listening · Unit 5 — No Need to Panic · World Class 1\n\n'
+        +'- Activity A — Nervousness ratings:\n'+act1+'\n\n'
+        +'- Activity B — Corrected statements:\n'+act2+'\n\n'
+        +'- Activity C — 3 ways to calm down:\n'+act3+'\n\n'
+        +'Áudio na mensagem seguinte.';
   var formUrl='https://docs.google.com/forms/d/e/1FAIpQLSdGVa3JN0PfYG1C-YV8oGk-EQ5u5skM-V_LJImf_kijpmijWw/formResponse';
   var data=new FormData();
   data.append('entry.566273869',name);
@@ -519,5 +521,6 @@ function sendWA(){
 }
 document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
 </script>
+<script>(function(){try{var q=new URLSearchParams(location.search);if(q.get("aluno"))localStorage.setItem("ef_student_name",q.get("aluno"));}catch(e){}})();</script>
 </body>
 </html>
