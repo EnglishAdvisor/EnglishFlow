@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Language at Work · Unit 1 — You · Business Starter</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#f0f0f0;font-family:'Barlow',sans-serif;min-height:100vh;display:flex;flex-direction:column;color:#2C3E50}
+.header{background:#4a4f5a;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:3px solid #f5a623}
+.header-left{display:flex;flex-direction:column;gap:6px}
+.pill-title{font-family:Georgia,'Times New Roman',serif;font-size:clamp(22px,4vw,40px);font-weight:700;color:#FFFFFF;line-height:1.1;letter-spacing:-.01em}
+.subtitle-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.subtitle{font-family:'Barlow Condensed',sans-serif;font-size:clamp(12px,2vw,15px);font-weight:600;color:#d8dde6;text-transform:uppercase;letter-spacing:.08em}
+.level-badge{background:#6b3fa0;color:#FFFFFF;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:3px 8px;border-radius:4px;white-space:nowrap}
+.icon-box{width:46px;height:46px;border:2px solid rgba(245,166,35,.4);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.icon-box svg{width:24px;height:24px;stroke:#f5a623;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.teacher-note-bar{background:#FFFFFF;border-bottom:1px solid rgba(107,63,160,.15);padding:7px 24px}
+.tn-btn{display:inline-flex;align-items:center;gap:9px;background:rgba(107,63,160,.07);border:1px solid rgba(107,63,160,.28);border-radius:6px;padding:6px 14px;cursor:pointer;transition:background .2s;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;color:#6b3fa0;letter-spacing:.04em;text-align:left}
+.tn-btn:hover{background:rgba(107,63,160,.14)}
+.tn-btn.playing{background:rgba(107,63,160,.14);border-color:#6b3fa0}
+.tn-circle{width:24px;height:24px;border-radius:50%;background:#6b3fa0;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s}
+.tn-btn.playing .tn-circle{background:#dc2626}
+.tn-circle svg{width:9px;height:9px}
+.tn-play{fill:#fff;stroke:none;display:block}
+.tn-stop{fill:#fff;stroke:none;display:none}
+.tn-btn.playing .tn-play{display:none}
+.tn-btn.playing .tn-stop{display:block}
+.translate-warning{background:rgba(245,166,35,.06);border-bottom:1px solid rgba(245,166,35,.18);padding:6px 24px;font-size:11px;color:#2C3E50;text-align:center}
+.translate-warning strong{color:#b57a0a}
+.steps{display:flex;gap:6px;padding:8px 16px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.steps::-webkit-scrollbar{display:none}
+.step{flex-shrink:0;display:flex;align-items:center;gap:6px;background:rgba(245,166,35,.07);border:1px solid rgba(245,166,35,.3);border-radius:20px;padding:6px 12px;font-size:11.5px;color:#2C3E50;font-weight:500;white-space:nowrap}
+.step svg{width:13px;height:13px;stroke:#f5a623;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.content{display:grid;grid-template-columns:1fr 340px;gap:12px;padding:0 16px 16px;flex:1}
+.left-col{display:flex;flex-direction:column;gap:12px}
+.main-area{background:#FFFFFF;border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:16px;border:1px solid rgba(245,166,35,.14);box-shadow:0 1px 4px rgba(44,62,80,.07)}
+.info-box{background:rgba(245,166,35,.07);border:1px solid rgba(245,166,35,.24);border-radius:8px;padding:10px 12px;font-size:12px;color:#2C3E50;line-height:1.6;font-style:italic}
+.act-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#2563a8;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid rgba(37,99,168,.14)}
+.instructions{font-size:12px;color:#2C3E50;line-height:1.65;margin-bottom:10px}
+.gram-table{width:100%;border-collapse:collapse;font-size:11.5px;margin-bottom:10px}
+.gram-table th{background:#2563a8;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:7px 10px;text-align:left}
+.gram-table td{padding:7px 10px;color:#2C3E50;border-bottom:1px solid rgba(37,99,168,.1);background:rgba(37,99,168,.03)}
+.gram-table tr:last-child td{border-bottom:none}
+.order-rows{display:flex;flex-direction:column;gap:7px;margin-bottom:10px}
+.order-row{display:grid;grid-template-columns:20px 1fr auto 22px;align-items:center;gap:8px;background:#f0f0f0;border:1px solid rgba(37,99,168,.12);border-radius:8px;padding:9px 12px;transition:background .2s,border-color .2s}
+.order-row.correct{background:rgba(22,163,74,.06);border-color:rgba(22,163,74,.3)}
+.order-row.incorrect{background:rgba(220,38,38,.06);border-color:rgba(220,38,38,.3)}
+.order-letter{font-family:'Barlow Condensed',sans-serif;font-weight:700;color:#f5a623;font-size:15px;text-align:center}
+.order-text{font-size:12px;color:#2C3E50;line-height:1.5}
+.order-select{border:1.5px solid rgba(37,99,168,.28);border-radius:6px;padding:5px 6px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#2C3E50;background:#FFFFFF;cursor:pointer;outline:none;min-width:50px}
+.order-select:focus{border-color:#2563a8}
+.order-fb{font-size:15px;font-weight:700;text-align:center;min-width:18px}
+.fill-rows{display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
+.fill-row{background:#f0f0f0;border:1px solid rgba(37,99,168,.12);border-radius:8px;padding:9px 12px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;transition:border-color .2s,background .2s}
+.fill-row.correct{background:rgba(22,163,74,.06);border-color:rgba(22,163,74,.3)}
+.fill-row.incorrect{background:rgba(220,38,38,.06);border-color:rgba(220,38,38,.3)}
+.fill-num{font-family:'Barlow Condensed',sans-serif;font-weight:700;color:#f5a623;font-size:15px;min-width:18px}
+.fill-text{font-size:12px;color:#2C3E50;line-height:1.6;flex:1}
+.fill-input{border:1.5px solid rgba(37,99,168,.28);border-radius:6px;padding:5px 8px;font-family:'Barlow',sans-serif;font-size:12px;color:#2C3E50;background:#FFFFFF;outline:none;width:100px;transition:border-color .2s}
+.fill-input:focus{border-color:#2563a8}
+.fill-input.correct{border-color:#16a34a;background:rgba(22,163,74,.06)}
+.fill-input.incorrect{border-color:#dc2626;background:rgba(220,38,38,.06)}
+.fill-fb{font-size:11px;color:#6b7280;min-height:14px}
+.fill-fb.ok{color:#16a34a;font-weight:600}
+.fill-fb.bad{color:#dc2626}
+.check-btn{display:flex;align-items:center;justify-content:center;gap:6px;background:rgba(245,166,35,.1);border:1.5px solid rgba(245,166,35,.45);color:#2C3E50;border-radius:8px;padding:8px 12px;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;cursor:pointer;transition:background .2s;width:100%;margin-bottom:8px;min-height:36px}
+.check-btn:hover{background:rgba(245,166,35,.22)}
+.check-feedback{font-size:11px;color:#2C3E50;line-height:1.6;padding:8px 10px;background:rgba(245,166,35,.07);border-radius:6px;border:1px solid rgba(245,166,35,.2)}
+.task-box{background:rgba(245,166,35,.07);border:1px solid rgba(245,166,35,.24);border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:8px}
+.task-box p{font-size:11px;color:#2C3E50;font-style:italic;line-height:1.55}
+.whatsapp-btn{display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;border:none;border-radius:8px;padding:10px 12px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:background .2s;width:100%;min-height:44px}
+.whatsapp-btn:hover{background:#1ebc58}
+.whatsapp-btn svg{width:16px;height:16px;fill:#fff;flex-shrink:0}
+.zone-support{background:#FFFFFF;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:6px;align-self:start;border:1px solid rgba(245,166,35,.14);box-shadow:0 1px 4px rgba(44,62,80,.07)}
+.keyword-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#2C3E50;text-transform:uppercase;letter-spacing:.08em;padding-bottom:8px;border-bottom:1px solid rgba(245,166,35,.2);margin-bottom:2px}
+.keywords-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.keyword-item{padding:6px 0;border-bottom:1px solid rgba(37,99,168,.09);display:flex;flex-direction:column;gap:3px}
+.keyword-item:nth-last-child(-n+2){border-bottom:none}
+.kw{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#2563a8;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;transition:color .2s}
+.kw:hover{color:#f5a623}
+.kw-hint{font-size:10px;color:#6b7280;font-style:italic;line-height:1.4}
+.footer{background:#FFFFFF;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(245,166,35,.18)}
+.footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#6b7280;letter-spacing:.04em}
+.footer-right{display:flex;align-items:center;gap:10px}
+.footer-icon svg{width:22px;height:22px;stroke:#f5a623;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;color:#f5a623;letter-spacing:.06em;text-transform:uppercase}
+.modal-overlay{position:fixed;inset:0;background:rgba(44,62,80,.55);display:flex;align-items:center;justify-content:center;z-index:100;padding:16px}
+.modal-box{background:#FFFFFF;border:1px solid rgba(245,166,35,.2);border-radius:14px;padding:24px;max-width:480px;width:100%;max-height:85vh;overflow-y:auto;display:flex;flex-direction:column;gap:14px;box-shadow:0 8px 32px rgba(44,62,80,.18)}
+.modal-title{font-family:Georgia,serif;font-size:20px;font-weight:700;color:#2C3E50}
+.modal-field label{font-size:11px;color:#2563a8;text-transform:uppercase;letter-spacing:.08em;font-weight:600;display:block;margin-bottom:5px;font-family:'Barlow Condensed',sans-serif}
+.modal-field input[type="text"]{width:100%;background:#f0f0f0;border:1px solid rgba(37,99,168,.2);border-radius:6px;padding:9px;font-size:12px;color:#2C3E50;font-family:'Barlow',sans-serif;outline:none}
+.modal-field input[type="text"]:focus{border-color:#2563a8}
+.modal-field textarea{width:100%;background:#f0f0f0;border:1px solid rgba(37,99,168,.2);border-radius:6px;padding:9px;font-size:12px;color:#2C3E50;font-family:'Barlow',sans-serif;resize:vertical;min-height:90px;outline:none}
+.modal-field textarea:focus{border-color:#2563a8}
+.modal-reminder{font-size:11px;color:#6b7280;font-style:italic;border-top:1px solid rgba(37,99,168,.12);padding-top:10px}
+.modal-actions{display:flex;gap:8px}
+.modal-cancel{flex:1;background:transparent;border:1px solid rgba(37,99,168,.2);color:#6b7280;border-radius:8px;padding:9px;font-family:'Barlow Condensed',sans-serif;font-size:14px;cursor:pointer}
+.modal-send{flex:2;display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;border:none;border-radius:8px;padding:9px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:background .2s}
+.modal-send:hover{background:#1ebc58}
+.modal-send svg{width:15px;height:15px;fill:#fff;flex-shrink:0}
+@media(max-width:768px){
+  .content{grid-template-columns:1fr;gap:10px;padding:0 12px 16px}
+  .pill-title{font-size:clamp(18px,3vw,28px)}
+  .step{font-size:10px;padding:4px 10px}
+  .main-area{padding:12px}
+  .act-title{font-size:12px}
+  .info-box,.instructions{font-size:11px}
+  .keyword-title{font-size:12px}
+  .modal-box{padding:16px}
+  .check-btn{padding:8px 12px;font-size:11px}
+  .whatsapp-btn{min-height:44px;padding:12px}
+  .zone-support{align-self:auto}
+  .teacher-note-bar{padding:8px 16px}
+  .fill-input{width:90px}
+}
+@media(max-width:480px){
+  .content{grid-template-columns:1fr;gap:10px;padding:0 8px 12px}
+  .pill-title{font-size:clamp(16px,3vw,22px)}
+  .header{padding:10px 16px}
+  .footer{padding:8px 16px}
+  .footer-left{font-size:11px}
+  .footer-text{font-size:12px}
+  .main-area{padding:10px}
+  .modal-box{padding:12px}
+  .order-row{grid-template-columns:18px 1fr auto 20px;gap:6px}
+  .fill-row{flex-direction:column;align-items:flex-start}
+  .fill-input{width:100%}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <div class="pill-title">Language at Work</div>
+    <div class="subtitle-row">
+      <span class="subtitle">Unit 1 — You</span>
+      <span class="level-badge">Business Result / Starter</span>
+    </div>
+  </div>
+  <div class="icon-box">
+    <svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+  </div>
+</div>
+
+<div class="teacher-note-bar">
+  <button class="tn-btn" id="tnBtn" onclick="playTeacherNote()">
+    <div class="tn-circle">
+      <svg viewBox="0 0 24 24"><polygon class="tn-play" points="5 3 19 12 5 21 5 3"/><rect class="tn-stop" x="6" y="6" width="12" height="12" rx="2"/></svg>
+    </div>
+    🎙️ Teacher's Note — listen before you start
+  </button>
+</div>
+
+<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
+
+<div class="steps">
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>1. Study the grammar</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>2. Do Activity 1 &amp; 2</div>
+  <div class="step"><svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>3. Send your answers</div>
+</div>
+
+<div class="content">
+  <div class="left-col">
+    <div class="main-area">
+
+      <div class="info-box">The most important verb in English: <b>to be</b>. Today just <b>I</b> and <b>you</b>. Study the table, then practise with a real dialogue and your own sentences.</div>
+
+      <div>
+        <div class="act-title">Grammar — I am / you are</div>
+        <table class="gram-table">
+          <tr><th>Positive</th><th>Negative</th><th>Question</th><th>Short answer</th></tr>
+          <tr><td>I <b>'m</b> Jacob.</td><td>I'm <b>not</b> Alice.</td><td rowspan="2"><b>Are</b> you a director?</td><td>Yes, I <b>am</b>.</td></tr>
+          <tr><td>You <b>'re</b> Alice.</td><td>You're <b>not</b> Maria.</td><td>No, I'm <b>not</b>.</td></tr>
+        </table>
+        <div class="instructions" style="margin-bottom:0">💡 <b>Tip:</b> use <i>'m</i> / <i>'re</i> when speaking (I'm, you're). Use the full <i>am</i> in short answers (Yes, I am — never "Yes, I'm").</div>
+      </div>
+
+      <div>
+        <div class="act-title">Activity 1 — Put the Dialogue in Order (1–4)</div>
+        <div class="instructions">Two colleagues meet for the first time. Choose the correct position (1–4) for each line, then click <strong>Check Activity 1</strong>.</div>
+        <div class="order-rows">
+          <div class="order-row" id="or1">
+            <span class="order-letter">a</span>
+            <span class="order-text">"No, I'm not. I'm a finance director."</span>
+            <select class="order-select" id="os1"><option value="">–</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
+            <span class="order-fb" id="of1"></span>
+          </div>
+          <div class="order-row" id="or2">
+            <span class="order-letter">b</span>
+            <span class="order-text">"Are you an office assistant?"</span>
+            <select class="order-select" id="os2"><option value="">–</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
+            <span class="order-fb" id="of2"></span>
+          </div>
+          <div class="order-row" id="or3">
+            <span class="order-letter">c</span>
+            <span class="order-text">"Nice to meet you!"</span>
+            <select class="order-select" id="os3"><option value="">–</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
+            <span class="order-fb" id="of3"></span>
+          </div>
+          <div class="order-row" id="or4">
+            <span class="order-letter">d</span>
+            <span class="order-text">"Yes, I am. Are you a human resources manager?"</span>
+            <select class="order-select" id="os4"><option value="">–</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
+            <span class="order-fb" id="of4"></span>
+          </div>
+        </div>
+        <button class="check-btn" onclick="checkOrder()">✓ Check Activity 1</button>
+        <div class="check-feedback" id="orderFeedback" style="display:none"></div>
+      </div>
+
+      <div>
+        <div class="act-title">Activity 2 — Complete with am / are / 'm / 're / not</div>
+        <div class="fill-rows">
+          <div class="fill-row" id="fr1"><span class="fill-num">1</span><span class="fill-text">Hello, I <input class="fill-input" id="fi1" type="text" placeholder="____" autocomplete="off"> Sofia.</span><span class="fill-fb" id="ff1"></span></div>
+          <div class="fill-row" id="fr2"><span class="fill-num">2</span><span class="fill-text"><input class="fill-input" id="fi2" type="text" placeholder="____" autocomplete="off"> you Kenji?</span><span class="fill-fb" id="ff2"></span></div>
+          <div class="fill-row" id="fr3"><span class="fill-num">3</span><span class="fill-text">Yes, I <input class="fill-input" id="fi3" type="text" placeholder="____" autocomplete="off">.</span><span class="fill-fb" id="ff3"></span></div>
+          <div class="fill-row" id="fr4"><span class="fill-num">4</span><span class="fill-text">No, I'm <input class="fill-input" id="fi4" type="text" placeholder="____" autocomplete="off">.</span><span class="fill-fb" id="ff4"></span></div>
+          <div class="fill-row" id="fr5"><span class="fill-num">5</span><span class="fill-text">You <input class="fill-input" id="fi5" type="text" placeholder="____" autocomplete="off"> new here.</span><span class="fill-fb" id="ff5"></span></div>
+          <div class="fill-row" id="fr6"><span class="fill-num">6</span><span class="fill-text"><input class="fill-input" id="fi6" type="text" placeholder="____" autocomplete="off"> you an assistant?</span><span class="fill-fb" id="ff6"></span></div>
+        </div>
+        <button class="check-btn" onclick="checkFill()">✓ Check Activity 2</button>
+        <div class="check-feedback" id="fillFeedback" style="display:none"></div>
+      </div>
+
+      <div>
+        <div class="act-title">Activity 3 — About YOU 🎙️</div>
+        <div class="instructions">Write 3 true sentences about yourself using <b>I'm</b> / <b>I'm not</b> / <b>Are you…?</b>. Then record yourself saying them.</div>
+      </div>
+
+      <div class="task-box">
+        <p>✍️ Complete Activities 1–2 and write your 3 sentences, then 🎙️ record yourself saying them.</p>
+        <button class="whatsapp-btn" onclick="openModal()">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Enviar respostas
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="zone-support">
+    <div class="keyword-title">Key Words</div>
+    <div class="keywords-grid">
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/office" target="_blank">Office</a><span class="kw-hint">Place you work in</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/human-resources" target="_blank">Human Resources</a><span class="kw-hint">People department (HR)</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/finance" target="_blank">Finance</a><span class="kw-hint">Money department</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/new" target="_blank">New</a><span class="kw-hint">Recently started</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/positive" target="_blank">Positive</a><span class="kw-hint">Affirmative sentence</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/negative" target="_blank">Negative</a><span class="kw-hint">Sentence with "not"</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-left">Capsule 3 of 54 · Unit 1 — You · Business Starter</div>
+  <div class="footer-right">
+    <div class="footer-icon"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+    <div class="footer-text">Unit 1 — You</div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal" style="display:none">
+  <div class="modal-box">
+    <div class="modal-title">Language at Work — Send your answers</div>
+    <div class="modal-field"><label>Your name</label><input type="text" id="studentName" placeholder="Type your name…" autocomplete="off"></div>
+    <div class="modal-field"><label>Activity 1 — Dialogue order (auto-filled)</label><textarea id="act1" placeholder="a → ___&#10;b → ___..."></textarea></div>
+    <div class="modal-field"><label>Activity 2 — am/are/not (auto-filled)</label><textarea id="act2" placeholder="1. ___&#10;2. ___..."></textarea></div>
+    <div class="modal-field"><label>Activity 3 — Your 3 sentences</label><textarea id="act3" placeholder="1. I'm ...&#10;2. I'm not ...&#10;3. Are you ...?"></textarea></div>
+    <div class="modal-reminder">🎙️ After sending, record yourself saying your 3 sentences.</div>
+    <div class="modal-actions">
+      <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+      <button class="modal-send" onclick="sendWA()">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Send via WhatsApp
+      </button>
+    </div>
+  </div>
+</div>
+
+<audio id="teacherAudio" preload="none"></audio>
+<script>
+var teacherAudio=document.getElementById('teacherAudio');
+var teacherPlaying=false;
+function playTeacherNote(){
+  var btn=document.getElementById('tnBtn');
+  if(teacherPlaying){teacherAudio.pause();teacherAudio.currentTime=0;btn.classList.remove('playing');teacherPlaying=false;return;}
+  teacherAudio.src='teacher-audio-bstarter-unit1-language-at-work.mp3';
+  teacherAudio.play().catch(function(){});
+  btn.classList.add('playing');teacherPlaying=true;
+  teacherAudio.onended=function(){btn.classList.remove('playing');teacherPlaying=false;};
+  teacherAudio.onerror=function(){btn.classList.remove('playing');teacherPlaying=false;};
+}
+
+/* Correct order: b=1, d=2, a=3, c=4 */
+var ORDER={os1:'3',os2:'1',os3:'4',os4:'2'};
+function checkOrder(){
+  var ok=0;
+  var keys=['os1','os2','os3','os4'];
+  var rowIds=['or1','or2','or3','or4'];
+  var fbIds=['of1','of2','of3','of4'];
+  for(var i=0;i<4;i++){
+    var sel=document.getElementById(keys[i]);
+    var fb=document.getElementById(fbIds[i]);
+    var row=document.getElementById(rowIds[i]);
+    if(!sel.value){fb.textContent='?';row.className='order-row';continue;}
+    if(sel.value===ORDER[keys[i]]){fb.textContent='✓';row.className='order-row correct';ok++;}
+    else{fb.textContent='✗';row.className='order-row incorrect';}
+  }
+  var el=document.getElementById('orderFeedback');
+  el.style.display='block';
+  if(ok===4){el.textContent='✅ All 4 in the correct order!';el.style.color='#16a34a';}
+  else{el.textContent=ok+'/4 correct. Read the dialogue again and try once more.';el.style.color='#d97706';}
+}
+
+function norm(s){return s.toLowerCase().trim();}
+var FILL=[
+  {answers:['am',"'m","i'm"], hint:"I ____ Sofia. (am / 'm)"},
+  {answers:['are'],           hint:"____ you Kenji? (Are)"},
+  {answers:['am'],            hint:"Yes, I ____. (am)"},
+  {answers:['not'],           hint:"No, I'm ____. (not)"},
+  {answers:['are',"'re"],     hint:"You ____ new here. (are / 're)"},
+  {answers:['are'],           hint:"____ you an assistant? (Are)"}
+];
+function checkFill(){
+  var ok=0;
+  for(var i=0;i<6;i++){
+    var inp=document.getElementById('fi'+(i+1));
+    var fb=document.getElementById('ff'+(i+1));
+    var row=document.getElementById('fr'+(i+1));
+    var v=norm(inp.value);
+    if(!v){fb.textContent='?';fb.className='fill-fb';row.className='fill-row';continue;}
+    if(FILL[i].answers.indexOf(v)!==-1){
+      inp.classList.add('correct');inp.classList.remove('incorrect');
+      row.className='fill-row correct';fb.textContent='✓';fb.className='fill-fb ok';ok++;
+    } else {
+      inp.classList.add('incorrect');inp.classList.remove('correct');
+      row.className='fill-row incorrect';fb.textContent='✗ '+FILL[i].hint;fb.className='fill-fb bad';
+    }
+  }
+  var el=document.getElementById('fillFeedback');
+  el.style.display='block';
+  if(ok===6){el.textContent='✅ All 6 correct! Now write your own 3 sentences.';el.style.color='#16a34a';}
+  else{el.textContent=ok+'/6 correct. Check the hints and try again.';el.style.color='#d97706';}
+}
+
+function openModal(){
+  var saved=localStorage.getItem('ef_student_name');
+  if(saved)document.getElementById('studentName').value=saved;
+  var letters=['a','b','c','d'];
+  var m1='';
+  for(var i=1;i<=4;i++){m1+=letters[i-1]+' → '+(document.getElementById('os'+i).value||'___')+'\n';}
+  document.getElementById('act1').value=m1.trim();
+  var m2='';
+  for(var j=1;j<=6;j++){m2+=j+'. '+(document.getElementById('fi'+j).value.trim()||'___')+'\n';}
+  document.getElementById('act2').value=m2.trim();
+  document.getElementById('modal').style.display='flex';
+}
+function closeModal(){document.getElementById('modal').style.display='none';}
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+
+function submitToGoogleForm(name,capsule,unit){
+  var url='https://docs.google.com/forms/d/e/1FAIpQLSdGVa3JN0PfYG1C-YV8oGk-EQ5u5skM-V_LJImf_kijpmijWw/formResponse';
+  var d=new FormData();
+  d.append('entry.566273869',name);
+  d.append('entry.947389419',capsule);
+  d.append('entry.156113480',unit);
+  d.append('entry.583447830','Business Starter');
+  d.append('entry.923345328','Done');
+  fetch(url,{method:'POST',mode:'no-cors',body:d});
+}
+
+function sendWA(){
+  var name=document.getElementById('studentName').value.trim()||'Aluno';
+  localStorage.setItem('ef_student_name',name);
+  var now=new Date();
+  var date=now.toLocaleDateString('pt-BR');
+  var time=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  var a1=document.getElementById('act1').value.trim()||'(not answered)';
+  var a2=document.getElementById('act2').value.trim()||'(not answered)';
+  var a3=document.getElementById('act3').value.trim()||'(not answered)';
+  var msg='👤 '+name+'\n'
+        +'📅 '+date+' às '+time+'\n'
+        +'📘 Language at Work — Unit 1 — You · Business Starter\n\n'
+        +'📌 Activity 1 — Dialogue order:\n'+a1+'\n\n'
+        +'📌 Activity 2 — am/are/not:\n'+a2+'\n\n'
+        +'📌 Activity 3 — Your 3 sentences:\n'+a3+'\n\n'
+        +'👇 Áudio na mensagem seguinte';
+  submitToGoogleForm(name,'Capsule 3 of 54','Unit 1 — You');
+  window.open('https://wa.me/5522999585058?text='+encodeURIComponent(msg),'_blank');
+}
+</script>
+</body>
+</html>

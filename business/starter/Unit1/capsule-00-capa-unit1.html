@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Unit 1 — You · Business Starter</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#f0f0f0;font-family:'Barlow',sans-serif;min-height:100vh;display:flex;flex-direction:column;color:#2C3E50}
+.header{background:#4a4f5a;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:3px solid #f5a623}
+.header-left{display:flex;flex-direction:column;gap:6px}
+.pill-title{font-family:Georgia,'Times New Roman',serif;font-size:clamp(22px,4vw,40px);font-weight:700;color:#FFFFFF;line-height:1.1;letter-spacing:-.01em}
+.subtitle-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.subtitle{font-family:'Barlow Condensed',sans-serif;font-size:clamp(12px,2vw,15px);font-weight:600;color:#d8dde6;text-transform:uppercase;letter-spacing:.08em}
+.level-badge{background:#6b3fa0;color:#FFFFFF;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:3px 8px;border-radius:4px;white-space:nowrap}
+.icon-box{width:46px;height:46px;border:2px solid rgba(245,166,35,.4);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.icon-box svg{width:24px;height:24px;stroke:#f5a623;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.translate-warning{background:rgba(245,166,35,.06);border-bottom:1px solid rgba(245,166,35,.18);padding:6px 24px;font-size:11px;color:#2C3E50;text-align:center}
+.translate-warning strong{color:#b57a0a}
+.cover-wrap{flex:1;display:flex;align-items:center;justify-content:center;padding:24px 16px}
+.cover-card{background:#FFFFFF;border-radius:16px;padding:36px 32px;max-width:540px;width:100%;text-align:center;box-shadow:0 4px 18px rgba(44,62,80,.10);border:1px solid rgba(245,166,35,.14)}
+.cover-num{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:.25em;color:#2563a8;text-transform:uppercase}
+.cover-title{font-family:Georgia,serif;font-size:clamp(38px,8vw,64px);font-weight:700;color:#2C3E50;line-height:1.05;margin:6px 0 2px}
+.cover-sub{font-size:12px;color:#6b7280;letter-spacing:.12em;text-transform:uppercase;margin-bottom:18px}
+.cover-icon{width:84px;height:84px;border:2px solid #f5a623;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px}
+.cover-icon svg{width:44px;height:44px;stroke:#f5a623;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.tn-btn{display:inline-flex;align-items:center;gap:9px;background:rgba(107,63,160,.07);border:1px solid rgba(107,63,160,.28);border-radius:6px;padding:8px 16px;cursor:pointer;transition:background .2s;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;color:#6b3fa0;letter-spacing:.04em;margin:0 auto 18px}
+.tn-btn:hover{background:rgba(107,63,160,.14)}
+.tn-btn.playing{background:rgba(107,63,160,.14);border-color:#6b3fa0}
+.tn-circle{width:24px;height:24px;border-radius:50%;background:#6b3fa0;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s}
+.tn-btn.playing .tn-circle{background:#dc2626}
+.tn-circle svg{width:9px;height:9px}
+.tn-play{fill:#fff;stroke:none;display:block}
+.tn-stop{fill:#fff;stroke:none;display:none}
+.tn-btn.playing .tn-play{display:none}
+.tn-btn.playing .tn-stop{display:block}
+.learn-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#2563a8;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
+.learn-list{list-style:none;text-align:left;max-width:360px;margin:0 auto 22px;font-size:12.5px;line-height:1.5}
+.learn-list li{padding:5px 0 5px 26px;position:relative;border-bottom:1px solid rgba(37,99,168,.12)}
+.learn-list li:last-child{border-bottom:none}
+.learn-list li::before{content:"✓";position:absolute;left:4px;color:#f5a623;font-weight:700}
+.start-btn{display:inline-flex;align-items:center;gap:8px;background:#2563a8;color:#fff;border:none;border-radius:10px;padding:14px 30px;font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;text-decoration:none;min-height:48px}
+.start-btn:hover{background:#1d4e87}
+.footer{background:#FFFFFF;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(245,166,35,.18)}
+.footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#6b7280;letter-spacing:.04em}
+.footer-right{display:flex;align-items:center;gap:10px}
+.footer-icon svg{width:22px;height:22px;stroke:#f5a623;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;color:#f5a623;letter-spacing:.06em;text-transform:uppercase}
+@media(max-width:480px){.cover-card{padding:26px 18px}.header{padding:10px 16px}.footer{padding:8px 16px}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <div class="pill-title">Unit 1</div>
+    <div class="subtitle-row">
+      <span class="subtitle">You</span>
+      <span class="level-badge">Business Result / Starter</span>
+    </div>
+  </div>
+  <div class="icon-box">
+    <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+  </div>
+</div>
+
+<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
+
+<div class="cover-wrap">
+  <div class="cover-card">
+    <div class="cover-num">Unit 1 of 8</div>
+    <div class="cover-title">YOU</div>
+    <div class="cover-sub">Business Starter · by Oxford</div>
+    <div class="cover-icon">
+      <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </div>
+    <div>
+      <button class="tn-btn" id="tnBtn" onclick="playTeacherNote()">
+        <div class="tn-circle">
+          <svg viewBox="0 0 24 24"><polygon class="tn-play" points="5 3 19 12 5 21 5 3"/><rect class="tn-stop" x="6" y="6" width="12" height="12" rx="2"/></svg>
+        </div>
+        🎙️ Teacher's intro — listen first
+      </button>
+    </div>
+    <div class="learn-title">In this unit you learn to…</div>
+    <ul class="learn-list">
+      <li>introduce <b>yourself</b> — name, job, company</li>
+      <li>talk about <b>jobs</b> and use <i>a / an</i> correctly</li>
+      <li>use the verb <b>to be</b> (I / you) — positive, negative, questions</li>
+      <li><b>spell</b> your name letter by letter</li>
+      <li><b>meet people</b> and make small talk at work</li>
+    </ul>
+    <a class="start-btn" href="capsule-01-starting-point.html">Start Unit →</a>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-left">Capa · Unit 1 — You · Business Starter</div>
+  <div class="footer-right">
+    <div class="footer-icon"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+    <div class="footer-text">Unit 1 — You</div>
+  </div>
+</div>
+
+<audio id="teacherAudio" preload="none"></audio>
+<script>
+var teacherAudio=document.getElementById('teacherAudio');
+var teacherPlaying=false;
+function playTeacherNote(){
+  var btn=document.getElementById('tnBtn');
+  if(teacherPlaying){teacherAudio.pause();teacherAudio.currentTime=0;btn.classList.remove('playing');teacherPlaying=false;return;}
+  teacherAudio.src='teacher-audio-bstarter-unit1-capa.mp3';
+  teacherAudio.play().catch(function(){});
+  btn.classList.add('playing');teacherPlaying=true;
+  teacherAudio.onended=function(){btn.classList.remove('playing');teacherPlaying=false;};
+  teacherAudio.onerror=function(){btn.classList.remove('playing');teacherPlaying=false;};
+}
+</script>
+</body>
+</html>
