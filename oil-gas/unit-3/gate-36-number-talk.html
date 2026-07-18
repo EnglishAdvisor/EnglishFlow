@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Number Talk · Unit 3 — Downstream</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center}
+.gate{background:#111827;border:1px solid rgba(192,57,43,.25);border-radius:14px;padding:32px 28px;max-width:400px;width:90%;display:flex;flex-direction:column;gap:18px}
+.gate-title{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:700;color:#e07a74;text-align:center}
+.gate-sub{font-size:12px;color:#4a6a8a;text-align:center;margin-top:-10px}
+.gate-field{position:relative}
+.gate-field input{width:100%;background:#0a1628;border:1px solid rgba(192,57,43,.25);border-radius:8px;padding:12px 44px 12px 14px;font-size:14px;color:#c8d8e8;font-family:'Barlow',sans-serif;outline:none;letter-spacing:.08em}
+.gate-field input:focus{border-color:#c0392b}
+.eye-btn{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:#4a6a8a;display:flex;align-items:center}
+.gate-btn{background:#c0392b;color:#fff;border:none;border-radius:8px;padding:12px;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;cursor:pointer;transition:background .2s;letter-spacing:.04em}
+.gate-btn:hover{background:#e07a74}
+.gate-err{font-size:11px;color:#ef4444;text-align:center;min-height:14px}
+</style>
+</head>
+<body>
+<div class="gate">
+  <div class="gate-title">Number Talk</div>
+  <div class="gate-sub">Unit 3 — Downstream · Oil &amp; Gas 1</div>
+  <div class="gate-field">
+    <input type="password" id="pw" placeholder="Enter password..." autocomplete="off" onkeydown="if(event.key==='Enter')check()">
+    <button class="eye-btn" onclick="toggleEye()" type="button">
+      <svg id="eyeIcon" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+    </button>
+  </div>
+  <div class="gate-err" id="err"></div>
+  <button class="gate-btn" onclick="check()">ENTER</button>
+</div>
+<script>
+function check(){
+  var v=document.getElementById('pw').value;
+  if(v==='offshore26'){window.location.href='capsule-36-number-talk.html';}
+  else{document.getElementById('err').textContent='Incorrect password. Try again.';document.getElementById('pw').value='';}
+}
+function toggleEye(){var inp=document.getElementById('pw');inp.type=inp.type==='password'?'text':'password';}
+</script>
+</body>
+</html>

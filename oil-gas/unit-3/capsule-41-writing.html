@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Writing · Unit 3 — Downstream</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
+.header{background:#0d1b2a;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid rgba(192,57,43,.25)}
+.pill-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:700;color:#e07a74;line-height:1}
+.pill-title span{color:#c0392b;font-size:clamp(14px,2.5vw,22px);font-weight:600;display:block;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.icon-box{width:48px;height:48px;border:1.5px solid rgba(192,57,43,.4);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.icon-box svg{width:26px;height:26px;stroke:#c0392b;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.countdown-bar{background:#0d1b2a;border-bottom:1px solid rgba(192,57,43,.2);padding:8px 24px;display:flex;align-items:center;gap:12px}
+.countdown-display{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:#c0392b;letter-spacing:.08em;min-width:60px}
+.countdown-display.warning{color:#f59e0b}.countdown-display.urgent{color:#ef4444}
+.progress-track{flex:1;height:4px;background:rgba(192,57,43,.13);border-radius:2px;overflow:hidden}
+.progress-fill{height:100%;background:#c0392b;border-radius:2px;transition:width 1s linear,background .5s}
+.progress-fill.warning{background:#f59e0b}.progress-fill.urgent{background:#ef4444}
+.translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(192,57,43,.2);padding:6px 24px;font-size:11px;color:#e07a74;text-align:center}
+.translate-warning strong{color:#c0392b}
+.steps{display:flex;gap:6px;padding:8px 16px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.steps::-webkit-scrollbar{display:none}
+.step{flex-shrink:0;display:flex;align-items:center;gap:6px;background:rgba(192,57,43,.08);border:1px solid rgba(192,57,43,.25);border-radius:20px;padding:6px 12px;font-size:11.5px;color:#e07a74;font-weight:500;white-space:nowrap}
+.step svg{width:13px;height:13px;stroke:#c0392b;fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0}
+.content{display:grid;grid-template-columns:1fr 280px;gap:12px;padding:0 16px 16px}
+.left-col{display:flex;flex-direction:column;gap:12px}
+.panel{background:#111827;border-radius:10px;padding:14px 16px}
+.zone-label{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#c0392b;font-weight:600;margin-bottom:10px}
+.activity-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#e07a74;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.activity-title .num{background:#c0392b;color:#fff;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0}
+.message-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.msg-card{background:#0a1628;border-radius:8px;border-top:2px solid #c0392b;padding:10px 12px}
+.msg-label{font-size:9px;color:#c0392b;font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.msg-field{font-size:11.5px;color:#c8d8e8;line-height:1.7}
+.msg-field strong{color:#e07a74}
+.msg-change{color:#2ecc71;font-weight:700}
+.rule-box{background:#0a1628;border-left:3px solid #c0392b;border-radius:0 6px 6px 0;padding:8px 12px;margin-bottom:10px}
+.rule-box p{font-size:11.5px;color:#c8d8e8;line-height:1.65}
+.task-box{background:#0a1628;border:1px solid rgba(192,57,43,.25);border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:8px}
+.task-box p{font-size:11px;color:#e07a74;font-style:italic;line-height:1.45}
+.whatsapp-btn{display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;border:none;border-radius:8px;padding:7px 12px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:background .2s;width:100%}
+.whatsapp-btn:hover{background:#1ebc58}
+.whatsapp-btn svg{width:16px;height:16px;fill:#fff;flex-shrink:0}
+.zone-support{background:#111827;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:6px;align-self:start}
+.keyword-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;color:#e07a74;text-transform:uppercase;letter-spacing:.08em;padding-bottom:8px;border-bottom:1px solid rgba(192,57,43,.2);margin-bottom:2px}
+.rule-list{display:flex;flex-direction:column;gap:6px;margin-top:4px}
+.rule-item{font-size:11px;color:#c8d8e8;padding:5px 8px;background:#0a1628;border-radius:6px;line-height:1.5}
+.rule-item strong{color:#e07a74}
+.footer{background:#0d1b2a;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(192,57,43,.2);margin-top:4px}
+.footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a8a;letter-spacing:.04em}
+.footer-right{display:flex;align-items:center;gap:10px}
+.footer-icon svg{width:22px;height:22px;stroke:#c0392b;fill:none;stroke-width:1.5}
+.footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;color:#c0392b;letter-spacing:.06em;text-transform:uppercase}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);display:flex;align-items:center;justify-content:center;z-index:100;padding:16px}
+.modal-box{background:#111827;border:1px solid rgba(192,57,43,.25);border-radius:14px;padding:24px;max-width:480px;width:100%;max-height:85vh;overflow-y:auto;display:flex;flex-direction:column;gap:14px}
+.modal-title{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:#e07a74}
+.modal-field label{font-size:11px;color:#c0392b;text-transform:uppercase;letter-spacing:.08em;font-weight:600;display:block;margin-bottom:5px}
+.modal-field input[type='text'],.modal-field textarea{width:100%;background:#0a1628;border:1px solid rgba(192,57,43,.25);border-radius:6px;padding:9px;font-size:12px;color:#c8d8e8;font-family:'Barlow',sans-serif;outline:none}
+.modal-field textarea{resize:vertical;min-height:80px}
+.modal-field input[type='text']:focus,.modal-field textarea:focus{border-color:#c0392b}
+.modal-reminder{font-size:11px;color:#4a6a8a;font-style:italic;border-top:1px solid rgba(192,57,43,.13);padding-top:10px}
+.modal-actions{display:flex;gap:8px}
+.modal-cancel{flex:1;background:transparent;border:1px solid rgba(192,57,43,.25);color:#4a6a8a;border-radius:8px;padding:9px;font-family:'Barlow Condensed',sans-serif;font-size:14px;cursor:pointer}
+.modal-send{flex:2;display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;border:none;border-radius:8px;padding:9px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;cursor:pointer}
+.modal-send:hover{background:#1ebc58}
+.modal-send svg{width:15px;height:15px;fill:#fff}
+@media(max-width:700px){.content{grid-template-columns:1fr}.message-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="pill-title">Writing<span>Downstream</span></div>
+  <div class="icon-box">
+    <svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+  </div>
+</div>
+
+<div class="countdown-bar">
+  <span class="countdown-display" id="timer">25:00</span>
+  <div class="progress-track"><div class="progress-fill" id="progress" style="width:100%"></div></div>
+</div>
+
+<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
+
+<div class="steps">
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>1. Study messages</div>
+  <div class="step"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>2. Change pronouns</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>3. Write messages</div>
+</div>
+
+<div class="content">
+  <div class="left-col">
+    <div class="panel">
+      <div class="zone-label">Phone messages — changing pronouns</div>
+      <div class="rule-box">
+        <p>When you write a phone message for someone, you change the pronouns:<br>
+        The caller says <strong style="color:#e07a74">"I"</strong> → you write <strong style="color:#2ecc71">"he/she"</strong> &nbsp;|&nbsp;
+        The caller says <strong style="color:#e07a74">"you"</strong> → you write <strong style="color:#2ecc71">"him/her"</strong></p>
+      </div>
+
+      <div class="activity-title"><span class="num">1</span>Messages for George (Technical Support)</div>
+      <p style="font-size:11.5px;color:#c8d8e8;margin-bottom:10px">Change the pronouns. Write the corrected message:</p>
+      <div class="message-grid">
+        <div class="msg-card">
+          <div class="msg-label">Original (what caller said)</div>
+          <div class="msg-field">
+            "I'm calling about the new computers. Can you call me back, please? I want to check the delivery date. My number is 4521."
+          </div>
+        </div>
+        <div class="msg-card">
+          <div class="msg-label">Message to write for George</div>
+          <div class="msg-field">
+            <strong>From:</strong> Andrew Watts, HR<br>
+            <strong>Message:</strong> <span class="msg-change">He</span>'s calling about the new computers. Can you call <span class="msg-change">him</span> back? <span class="msg-change">He</span> wants to check the delivery date. <span class="msg-change">His</span> number is 4521.
+          </div>
+        </div>
+      </div>
+
+      <div class="activity-title"><span class="num">2</span>Messages for Faisal Hamdi (Human Resources)</div>
+      <p style="font-size:11.5px;color:#c8d8e8;margin-bottom:10px">Read each caller's words. Write the message. Change the pronouns.</p>
+      <div class="message-grid">
+        <div class="msg-card">
+          <div class="msg-label">Caller 1 — Omar, Control Room</div>
+          <div class="msg-field">
+            "I need to speak to Faisal about my new work schedule. Can you ask him to call me? My extension is 2134."
+          </div>
+        </div>
+        <div class="msg-card">
+          <div class="msg-label">Caller 2 — Sara, Training Dept.</div>
+          <div class="msg-field">
+            "I'm calling because I want to update my personal file. Can Faisal call me before three o'clock? My number is 3310."
+          </div>
+        </div>
+        <div class="msg-card">
+          <div class="msg-label">Caller 3 — Jean-Claude, Maintenance</div>
+          <div class="msg-field">
+            "I'm applying for the night-shift supervisor position. I sent my application last week. Can you confirm you received it?"
+          </div>
+        </div>
+        <div class="msg-card">
+          <div class="msg-label">Caller 4 — Group task</div>
+          <div class="msg-field" style="color:#4a6a8a;font-style:italic">
+            Write your own message from an imaginary caller. Use the same format.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="task-box">
+      <p>✏️ Write the messages for Faisal (Activity 2 — at least callers 1 and 2). Send via WhatsApp.</p>
+      <button class="whatsapp-btn" onclick="openModal()">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="#fff"/></svg>
+        Enviar respostas
+      </button>
+    </div>
+  </div>
+
+  <div class="zone-support">
+    <div class="keyword-title">Pronoun changes</div>
+    <div class="rule-list">
+      <div class="rule-item"><strong>I</strong> → he / she</div>
+      <div class="rule-item"><strong>me</strong> → him / her</div>
+      <div class="rule-item"><strong>my</strong> → his / her</div>
+      <div class="rule-item"><strong>you</strong> → him / her</div>
+      <div class="rule-item"><strong>your</strong> → his / her</div>
+    </div>
+    <div style="background:#0a1628;border-radius:8px;padding:10px;margin-top:8px">
+      <div style="font-size:10px;color:#c0392b;font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Message format</div>
+      <div style="font-size:11px;color:#c8d8e8;line-height:1.8">
+        <strong style="color:#e07a74">From:</strong> [name, dept]<br>
+        <strong style="color:#e07a74">Message:</strong> [what he/she wants]<br>
+        <strong style="color:#e07a74">Number:</strong> [ext / phone]
+      </div>
+    </div>
+    <div style="background:#0a1628;border-radius:8px;padding:10px;margin-top:4px">
+      <div style="font-size:10px;color:#c0392b;font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Sample — Caller 1</div>
+      <div style="font-size:11px;color:#c8d8e8;line-height:1.8">
+        From: Omar, Control Room<br>
+        Message: <em style="color:#e07a74">He needs to speak about his new work schedule. Can you call him? His ext. is 2134.</em>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-left">Capsule 41 de 57 · Unit 3 — Downstream</div>
+  <div class="footer-right">
+    <div class="footer-icon"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div>
+    <div class="footer-text">Unit 3 — Downstream</div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal" style="display:none">
+  <div class="modal-box">
+    <div class="modal-title">Writing — Enviar respostas</div>
+    <div class="modal-field"><label>Your name</label><input type="text" id="studentName" placeholder="Type your name..." autocomplete="off"></div>
+    <div class="modal-field"><label>Activity 2 — Caller 1 message (Omar)</label><textarea id="ans1" placeholder="From: Omar, Control Room&#10;Message: He needs to speak about his new work schedule..."></textarea></div>
+    <div class="modal-field"><label>Activity 2 — Caller 2 message (Sara)</label><textarea id="ans2" placeholder="From: Sara, Training Dept.&#10;Message: She's calling because she wants to update her personal file..."></textarea></div>
+    <div class="modal-field"><label>Activity 2 — Caller 3 or your own message</label><textarea id="ans3" placeholder="From: Jean-Claude / your own caller..."></textarea></div>
+    <div class="modal-reminder">🎙️ Após enviar, grave seu áudio e envie na mesma conversa.</div>
+    <div class="modal-actions">
+      <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+      <button class="modal-send" onclick="sendWA()">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="#fff"/></svg>
+        Enviar no WhatsApp
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+const TOTAL=25*60;let remaining=TOTAL;
+const iv=setInterval(function(){
+  remaining--;
+  var m=Math.floor(remaining/60).toString().padStart(2,'0'),s=(remaining%60).toString().padStart(2,'0');
+  var el=document.getElementById('timer'),bar=document.getElementById('progress');
+  el.textContent=m+':'+s;bar.style.width=((remaining/TOTAL)*100)+'%';
+  el.className='countdown-display';bar.className='progress-fill';
+  if(remaining<=0){clearInterval(iv);el.textContent='00:00';bar.style.width='0%';bar.classList.add('urgent');}
+  else if(remaining<=60){el.classList.add('urgent');bar.classList.add('urgent');}
+  else if(remaining<=180){el.classList.add('warning');bar.classList.add('warning');}
+},1000);
+function openModal(){
+  var saved=localStorage.getItem('ef_student_name');
+  if(saved)document.getElementById('studentName').value=saved;
+  document.getElementById('modal').style.display='flex';
+}
+function closeModal(){document.getElementById('modal').style.display='none';}
+function sendWA(){
+  var name=document.getElementById('studentName').value.trim()||'Aluno';
+  localStorage.setItem('ef_student_name',name);
+  var a1=document.getElementById('ans1').value.trim()||'—';
+  var a2=document.getElementById('ans2').value.trim()||'—';
+  var a3=document.getElementById('ans3').value.trim()||'—';
+  var now=new Date(),date=now.toLocaleDateString('pt-BR'),time=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  var msg='👤 '+name+'\n📅 '+date+' às '+time+'\n🎙️ Writing — Unit 3 — Downstream\n📌 Activity 2a: '+a1+'\n📌 Activity 2b: '+a2+'\n📌 Activity 2c: '+a3+'\n👇 Áudio na mensagem seguinte (se preferiu enviar por áudio)';
+  window.open('https://wa.me/5522999585058?text='+encodeURIComponent(msg),'_blank');
+}
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+</script>
+</body>
+</html>

@@ -2,139 +2,181 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Business Communication · Unit 1 — You · Business Starter</title>
-<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-body{background:#f0f0f0;font-family:'Barlow',sans-serif;min-height:100vh;display:flex;flex-direction:column}
 
-/* HEADER */
-.header{background:#4a4f5a;padding:14px 20px;display:flex;align-items:center;justify-content:space-between}
-.pill-title .main{font-family:Georgia,serif;font-size:clamp(20px,4vw,36px);font-weight:700;color:#fff;line-height:1}
-.pill-title .sub{font-size:clamp(10px,1.8vw,13px);font-weight:600;color:#c8ccd4;text-transform:uppercase;letter-spacing:.12em;margin-top:3px;display:block}
-.header-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
-.level-badge{background:#6b3fa0;border-radius:6px;padding:4px 10px;display:flex;flex-direction:column;align-items:center}
-.level-badge .trail{font-size:9px;color:rgba(255,255,255,.75);text-transform:uppercase;letter-spacing:.1em;font-weight:600}
-.level-badge .level{font-size:12px;color:#fff;font-weight:700}
-.icon-box{width:38px;height:38px;border:1.5px solid rgba(255,255,255,.25);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.icon-box svg{width:18px;height:18px;stroke:#f5a623;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+body{background:#f0f0f0;font-family:'Barlow',sans-serif;min-height:100vh;display:flex;flex-direction:column;color:#2C3E50}
 
-/* TEACHER'S NOTE BAR */
-.teacher-bar{background:#3d4452;padding:6px 20px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,.06)}
-.teacher-btn{display:flex;align-items:center;gap:6px;background:#6b3fa0;border:none;border-radius:6px;padding:5px 12px;color:#fff;font-size:11px;font-weight:600;cursor:pointer}
-.teacher-btn svg{width:13px;height:13px;stroke:#fff;fill:none;stroke-width:2;flex-shrink:0}
-.teacher-label{font-size:10px;color:#9aa5b4;font-style:italic}
+.header{background:#4a4f5a;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:3px solid #f5a623}
+.header-left{display:flex;flex-direction:column;gap:6px}
+.pill-title{font-family:Georgia,'Times New Roman',serif;font-size:clamp(22px,4vw,40px);font-weight:700;color:#FFFFFF;line-height:1.1;letter-spacing:-.01em}
+.subtitle-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.subtitle{font-family:'Barlow Condensed',sans-serif;font-size:clamp(12px,2vw,15px);font-weight:600;color:#d8dde6;text-transform:uppercase;letter-spacing:.08em}
+.level-badge{background:#6b3fa0;color:#FFFFFF;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:3px 8px;border-radius:4px;white-space:nowrap}
+.icon-box{width:46px;height:46px;border:2px solid rgba(245,166,35,.4);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.icon-box svg{width:24px;height:24px;stroke:#f5a623;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 
-/* WARN BAR */
-.warn-bar{background:#3d4452;padding:5px 20px;font-size:11px;color:#c8ccd4;text-align:center;border-bottom:1px solid rgba(255,255,255,.06)}
-.warn-bar strong{color:#fff}
+.teacher-note-bar{background:#FFFFFF;border-bottom:1px solid rgba(107,63,160,.15);padding:7px 24px}
+.tn-btn{display:inline-flex;align-items:center;gap:9px;background:rgba(107,63,160,.07);border:1px solid rgba(107,63,160,.28);border-radius:6px;padding:6px 14px;cursor:pointer;transition:background .2s;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;color:#6b3fa0;letter-spacing:.04em;text-align:left}
+.tn-btn:hover{background:rgba(107,63,160,.14)}
+.tn-btn.playing{background:rgba(107,63,160,.14);border-color:#6b3fa0}
+.tn-circle{width:24px;height:24px;border-radius:50%;background:#6b3fa0;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s}
+.tn-btn.playing .tn-circle{background:#dc2626}
+.tn-circle svg{width:9px;height:9px}
+.tn-play{fill:#fff;stroke:none;display:block}
+.tn-stop{fill:#fff;stroke:none;display:none}
+.tn-btn.playing .tn-play{display:none}
+.tn-btn.playing .tn-stop{display:block}
 
-/* STEPS */
-.steps{display:flex;gap:6px;padding:8px 16px;overflow-x:auto;scrollbar-width:none;background:#fff;border-bottom:1px solid rgba(0,0,0,.07)}
+.translate-warning{background:rgba(245,166,35,.06);border-bottom:1px solid rgba(245,166,35,.18);padding:6px 24px;font-size:11px;color:#2C3E50;text-align:center}
+.translate-warning strong{color:#b57a0a}
+
+.steps{display:flex;gap:6px;padding:8px 16px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .steps::-webkit-scrollbar{display:none}
-.step{flex-shrink:0;display:flex;align-items:center;gap:5px;background:rgba(37,99,168,.07);border:1px solid rgba(37,99,168,.2);border-radius:20px;padding:5px 12px;font-size:11px;color:#2563a8;font-weight:500;white-space:nowrap}
-.step-num{background:#f5a623;color:#fff;border-radius:50%;width:16px;height:16px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;flex-shrink:0}
+.step{flex-shrink:0;display:flex;align-items:center;gap:6px;background:rgba(245,166,35,.07);border:1px solid rgba(245,166,35,.3);border-radius:20px;padding:6px 12px;font-size:11.5px;color:#2C3E50;font-weight:500;white-space:nowrap}
+.step svg{width:13px;height:13px;stroke:#f5a623;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
 
-/* CONTENT LAYOUT */
-.content{display:grid;grid-template-columns:1fr 220px;gap:12px;padding:12px 16px;flex:1}
+.content{display:grid;grid-template-columns:1fr 340px;gap:12px;padding:0 16px 16px;flex:1}
 .left-col{display:flex;flex-direction:column;gap:12px}
 
-/* CARDS */
-.card{background:#fff;border-radius:10px;padding:14px 16px;border:0.5px solid rgba(0,0,0,.08)}
-.act-title{font-size:11px;font-weight:700;color:#2563a8;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.audio-btn{display:inline-flex;align-items:center;gap:4px;background:#4a4f5a;color:#fff;border:none;border-radius:5px;padding:3px 9px;font-size:10px;font-weight:600;cursor:pointer;flex-shrink:0}
-.instruction{background:rgba(37,99,168,.05);border-left:3px solid #2563a8;padding:7px 10px;font-size:11px;color:#2C3E50;line-height:1.6;margin-bottom:10px}
-.instruction strong{color:#2563a8}
+.main-area{background:#FFFFFF;border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:16px;border:1px solid rgba(245,166,35,.14);box-shadow:0 1px 4px rgba(44,62,80,.07)}
 
-/* EXPRESSIONS GRID */
-.expressions-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:4px}
-.expr-card{background:#f5f7fa;border:1px solid rgba(37,99,168,.1);border-radius:8px;padding:10px 12px}
-.expr-title{font-size:10px;font-weight:700;color:#f5a623;text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px}
-.expr-item{font-size:11px;color:#2C3E50;line-height:1.85}
+.info-box{background:rgba(245,166,35,.07);border:1px solid rgba(245,166,35,.24);border-radius:8px;padding:10px 12px;font-size:12px;color:#2C3E50;line-height:1.6;font-style:italic}
 
-/* MATCH ACTIVITY */
-.responses-box{background:#f5f7fa;border:1px solid rgba(37,99,168,.1);border-radius:8px;padding:9px 12px;margin-bottom:10px;font-size:11px;color:#2C3E50;line-height:1.9}
-.responses-box strong{color:#2563a8}
-.match-grid{display:flex;flex-direction:column;gap:7px;margin-bottom:10px}
-.match-row{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:7px;border:1px solid rgba(0,0,0,.07);background:#fafafa;transition:all .2s}
-.match-row.correct{background:#f0fdf4;border-color:#16a34a}
-.match-row.wrong{background:#fef2f2;border-color:#dc2626}
-.match-num{font-size:12px;font-weight:700;color:#f5a623;min-width:18px;flex-shrink:0}
-.match-text{flex:1;font-size:12px;color:#2C3E50}
-.match-select{border:1px solid rgba(37,99,168,.25);border-radius:5px;padding:3px 7px;font-size:11px;color:#2C3E50;background:#fff;outline:none}
-.match-icon{font-size:13px;min-width:16px;text-align:center;font-weight:700}
+.act-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#2563a8;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid rgba(37,99,168,.14)}
 
-/* MISTAKE ACTIVITY */
-.mistake-box{display:flex;flex-direction:column;gap:10px;margin-bottom:10px}
-.mistake-row{display:flex;flex-direction:column;gap:4px;padding:8px 10px;border-radius:7px;border:1px solid rgba(0,0,0,.07);background:#fafafa;transition:all .2s}
-.mistake-row.correct{background:#f0fdf4;border-color:#16a34a}
-.mistake-row.wrong{background:#fef2f2;border-color:#dc2626}
-.mistake-top{display:flex;align-items:center;gap:8px}
-.mistake-num{font-size:12px;font-weight:700;color:#f5a623;min-width:18px;flex-shrink:0}
-.mistake-wrong{font-size:12px;color:#dc2626;text-decoration:line-through;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1}
-.mistake-input{border:none;border-bottom:2px solid #2563a8;background:transparent;font-size:12px;color:#2563a8;font-weight:600;width:100%;outline:none;padding:3px 2px;margin-top:2px}
-.mistake-input::placeholder{color:#bbb;font-weight:400}
-.mistake-icon{font-size:13px;font-weight:700;min-width:16px;text-align:center}
+.audio-btn{display:flex;align-items:center;gap:12px;background:rgba(37,99,168,.05);border:1.5px solid rgba(37,99,168,.18);border-radius:8px;padding:10px 14px;cursor:pointer;transition:background .2s,border-color .2s;width:100%;margin-bottom:12px;text-align:left}
+.audio-btn:hover{background:rgba(37,99,168,.1);border-color:rgba(37,99,168,.4)}
+.audio-btn.playing{background:rgba(37,99,168,.1);border-color:#2563a8}
+.audio-circle{width:36px;height:36px;border-radius:50%;background:#2563a8;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s}
+.audio-btn.playing .audio-circle{background:#dc2626}
+.audio-circle svg{width:13px;height:13px;flex-shrink:0}
+.audio-circle .icon-play{fill:#fff;stroke:none;display:block}
+.audio-circle .icon-stop{fill:#fff;stroke:none;display:none}
+.audio-btn.playing .audio-circle .icon-play{display:none}
+.audio-btn.playing .audio-circle .icon-stop{display:block}
+.audio-meta{display:flex;flex-direction:column;gap:2px}
+.audio-label{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#2C3E50;line-height:1.2}
+.audio-track-info{font-size:10px;color:#6b7280;font-style:italic}
 
-/* BUTTONS */
-.check-btn{background:#4a4f5a;color:#fff;border:none;border-radius:6px;padding:7px 16px;font-size:12px;font-weight:600;cursor:pointer;margin-top:4px}
-.check-btn:hover{background:#3d4452}
-.score{font-size:11px;font-weight:700;margin-top:7px;display:none;padding:5px 8px;border-radius:5px}
-.score.perfect{color:#16a34a;background:#f0fdf4}
-.score.partial{color:#b45309;background:#fffbeb}
+.expr-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:4px}
+.expr-card{background:#FFFFFF;border:1.5px solid rgba(37,99,168,.18);border-radius:10px;overflow:hidden;box-shadow:0 1px 3px rgba(44,62,80,.06)}
+.expr-card-header{background:#2563a8;padding:8px 12px;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;color:#FFFFFF;text-transform:uppercase;letter-spacing:.08em}
+.expr-card-body{padding:10px 12px;display:flex;flex-direction:column;gap:5px}
+.expr-phrase{font-size:11.5px;color:#2C3E50;line-height:1.6;padding-left:8px;border-left:2px solid rgba(245,166,35,.45)}
+.expr-note{font-size:10px;color:#6b7280;font-style:italic;margin-top:4px;padding-top:4px;border-top:1px solid rgba(37,99,168,.09)}
 
-/* TASK BOX */
-.task-box{background:#fff8ee;border:1px solid rgba(245,166,35,.3);border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:8px}
-.task-box p{font-size:11px;color:#92400e;font-style:italic;line-height:1.5}
-.wa-btn{display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;border:none;border-radius:8px;padding:9px;font-size:12px;font-weight:600;cursor:pointer;width:100%;min-height:44px}
-.wa-btn:hover{background:#1ebc58}
+.instructions{font-size:12px;color:#2C3E50;line-height:1.65;margin-bottom:10px}
+.instructions ol{padding-left:18px;margin-top:5px}
+.instructions li{margin-bottom:3px}
 
-/* KEYWORDS */
-.keywords{background:#fff;border-radius:10px;padding:14px;border:0.5px solid rgba(0,0,0,.08);align-self:start;position:sticky;top:12px}
-.kw-title{font-size:11px;font-weight:700;color:#2563a8;text-transform:uppercase;letter-spacing:.08em;padding-bottom:7px;border-bottom:2px solid #f5a623;margin-bottom:8px}
-.kw-item{padding:5px 0;border-bottom:1px solid rgba(0,0,0,.05);display:flex;flex-direction:column;gap:2px}
-.kw-item:last-child{border-bottom:none}
-.kw-word{font-size:12px;font-weight:700;color:#2563a8;text-transform:uppercase;letter-spacing:.04em;text-decoration:none;display:block}
-.kw-word:hover{color:#f5a623;text-decoration:underline}
-.kw-hint{font-size:10px;color:#888;font-style:italic}
+.word-box{background:rgba(37,99,168,.05);border:1.5px solid rgba(37,99,168,.18);border-radius:8px;padding:10px 14px;margin-bottom:12px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.word-box-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;color:#2563a8;text-transform:uppercase;letter-spacing:.08em;width:100%}
+.word-chip{background:#2563a8;color:#FFFFFF;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;padding:4px 10px;border-radius:12px;letter-spacing:.04em}
 
-/* MODAL */
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;z-index:100;padding:16px}
-.modal-box{background:#fff;border-radius:12px;padding:20px;max-width:460px;width:100%;max-height:85vh;overflow-y:auto;display:flex;flex-direction:column;gap:12px}
-.modal-title{font-family:Georgia,serif;font-size:18px;font-weight:700;color:#4a4f5a}
-.modal-field label{font-size:10px;color:#2563a8;text-transform:uppercase;letter-spacing:.08em;font-weight:700;display:block;margin-bottom:4px}
-.modal-field input,.modal-field textarea{width:100%;border:1px solid rgba(37,99,168,.25);border-radius:6px;padding:8px;font-size:12px;color:#2C3E50;font-family:'Barlow',sans-serif;outline:none}
-.modal-field input:focus,.modal-field textarea:focus{border-color:#2563a8}
-.modal-field textarea{resize:vertical;min-height:70px}
-.modal-reminder{font-size:10px;color:#888;font-style:italic;border-top:1px solid rgba(0,0,0,.08);padding-top:8px}
+.order-rows{display:flex;flex-direction:column;gap:7px;margin-bottom:10px}
+.order-row{display:grid;grid-template-columns:22px 1fr auto 22px;align-items:center;gap:8px;background:#f0f0f0;border:1px solid rgba(37,99,168,.12);border-radius:8px;padding:9px 12px;transition:background .2s,border-color .2s}
+.order-row.correct{background:rgba(22,163,74,.06);border-color:rgba(22,163,74,.3)}
+.order-row.incorrect{background:rgba(220,38,38,.06);border-color:rgba(220,38,38,.3)}
+.order-letter{font-family:'Barlow Condensed',sans-serif;font-weight:700;color:#f5a623;font-size:15px;text-align:center}
+.order-text{font-size:12px;color:#2C3E50;line-height:1.5}
+.order-select{border:1.5px solid rgba(37,99,168,.28);border-radius:6px;padding:5px 6px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#2C3E50;background:#FFFFFF;cursor:pointer;outline:none;min-width:50px}
+.order-select:focus{border-color:#2563a8}
+.order-fb{font-size:15px;font-weight:700;text-align:center;min-width:18px}
+
+.fill-rows{display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
+.fill-row{background:#f0f0f0;border:1px solid rgba(37,99,168,.12);border-radius:8px;padding:9px 12px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;transition:border-color .2s,background .2s}
+.fill-row.correct{background:rgba(22,163,74,.06);border-color:rgba(22,163,74,.3)}
+.fill-row.incorrect{background:rgba(220,38,38,.06);border-color:rgba(220,38,38,.3)}
+.fill-num{font-family:'Barlow Condensed',sans-serif;font-weight:700;color:#f5a623;font-size:15px;min-width:18px}
+.fill-text{font-size:12px;color:#2C3E50;line-height:1.6;flex:1}
+.fill-input{border:1.5px solid rgba(37,99,168,.28);border-radius:6px;padding:5px 8px;font-family:'Barlow',sans-serif;font-size:12px;color:#2C3E50;background:#FFFFFF;outline:none;width:120px;transition:border-color .2s}
+.fill-input:focus{border-color:#2563a8}
+.fill-input.correct{border-color:#16a34a;background:rgba(22,163,74,.06)}
+.fill-input.incorrect{border-color:#dc2626;background:rgba(220,38,38,.06)}
+.fill-fb{font-size:11px;color:#6b7280;min-height:14px}
+.fill-fb.ok{color:#16a34a;font-weight:600}
+.fill-fb.bad{color:#dc2626}
+
+.check-btn{display:flex;align-items:center;justify-content:center;gap:6px;background:rgba(245,166,35,.1);border:1.5px solid rgba(245,166,35,.45);color:#2C3E50;border-radius:8px;padding:8px 12px;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;cursor:pointer;transition:background .2s;width:100%;margin-bottom:8px;min-height:36px}
+.check-btn:hover{background:rgba(245,166,35,.22)}
+.check-feedback{font-size:11px;color:#2C3E50;line-height:1.6;padding:8px 10px;background:rgba(245,166,35,.07);border-radius:6px;border:1px solid rgba(245,166,35,.2)}
+
+.task-box{background:rgba(245,166,35,.07);border:1px solid rgba(245,166,35,.24);border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:8px}
+.task-box p{font-size:11px;color:#2C3E50;font-style:italic;line-height:1.55}
+.whatsapp-btn{display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;border:none;border-radius:8px;padding:10px 12px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:background .2s;width:100%;min-height:44px}
+.whatsapp-btn:hover{background:#1ebc58}
+.whatsapp-btn svg{width:16px;height:16px;fill:#fff;flex-shrink:0}
+
+.zone-support{background:#FFFFFF;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:6px;align-self:start;border:1px solid rgba(245,166,35,.14);box-shadow:0 1px 4px rgba(44,62,80,.07)}
+.keyword-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#2C3E50;text-transform:uppercase;letter-spacing:.08em;padding-bottom:8px;border-bottom:1px solid rgba(245,166,35,.2);margin-bottom:2px}
+.keywords-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.keyword-item{padding:6px 0;border-bottom:1px solid rgba(37,99,168,.09);display:flex;flex-direction:column;gap:3px}
+.keyword-item:nth-last-child(-n+2){border-bottom:none}
+.kw{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#2563a8;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;transition:color .2s}
+.kw:hover{color:#f5a623}
+.kw-hint{font-size:10px;color:#6b7280;font-style:italic;line-height:1.4}
+
+.footer{background:#FFFFFF;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(245,166,35,.18)}
+.footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#6b7280;letter-spacing:.04em}
+.footer-right{display:flex;align-items:center;gap:10px}
+.footer-icon svg{width:22px;height:22px;stroke:#f5a623;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;color:#f5a623;letter-spacing:.06em;text-transform:uppercase}
+
+.modal-overlay{position:fixed;inset:0;background:rgba(44,62,80,.55);display:flex;align-items:center;justify-content:center;z-index:100;padding:16px}
+.modal-box{background:#FFFFFF;border:1px solid rgba(245,166,35,.2);border-radius:14px;padding:24px;max-width:480px;width:100%;max-height:85vh;overflow-y:auto;display:flex;flex-direction:column;gap:14px;box-shadow:0 8px 32px rgba(44,62,80,.18)}
+.modal-title{font-family:Georgia,serif;font-size:20px;font-weight:700;color:#2C3E50}
+.modal-field label{font-size:11px;color:#2563a8;text-transform:uppercase;letter-spacing:.08em;font-weight:600;display:block;margin-bottom:5px;font-family:'Barlow Condensed',sans-serif}
+.modal-field input[type="text"]{width:100%;background:#f0f0f0;border:1px solid rgba(37,99,168,.2);border-radius:6px;padding:9px;font-size:12px;color:#2C3E50;font-family:'Barlow',sans-serif;outline:none}
+.modal-field input[type="text"]:focus{border-color:#2563a8}
+.modal-field textarea{width:100%;background:#f0f0f0;border:1px solid rgba(37,99,168,.2);border-radius:6px;padding:9px;font-size:12px;color:#2C3E50;font-family:'Barlow',sans-serif;resize:vertical;min-height:90px;outline:none}
+.modal-field textarea:focus{border-color:#2563a8}
+.modal-reminder{font-size:11px;color:#6b7280;font-style:italic;border-top:1px solid rgba(37,99,168,.12);padding-top:10px}
 .modal-actions{display:flex;gap:8px}
-.modal-cancel{flex:1;background:transparent;border:1px solid rgba(0,0,0,.15);color:#888;border-radius:7px;padding:8px;font-size:13px;cursor:pointer}
-.modal-send{flex:2;display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;border:none;border-radius:7px;padding:8px;font-size:13px;font-weight:700;cursor:pointer}
+.modal-cancel{flex:1;background:transparent;border:1px solid rgba(37,99,168,.2);color:#6b7280;border-radius:8px;padding:9px;font-family:'Barlow Condensed',sans-serif;font-size:14px;cursor:pointer}
+.modal-send{flex:2;display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;border:none;border-radius:8px;padding:9px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:background .2s}
+.modal-send:hover{background:#1ebc58}
+.modal-send svg{width:15px;height:15px;fill:#fff;flex-shrink:0}
 
-/* FOOTER */
-.footer{background:#4a4f5a;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;margin-top:4px}
-.footer-left{font-size:11px;color:#c8ccd4;letter-spacing:.04em}
-.footer-right{display:flex;align-items:center;gap:8px}
-.footer-right svg{width:18px;height:18px;stroke:#f5a623;fill:none;stroke-width:1.5}
-.footer-text{font-family:Georgia,serif;font-size:13px;font-weight:700;color:#fff}
-
-/* RESPONSIVE */
-@media(max-width:700px){
-  .content{grid-template-columns:1fr;display:flex;flex-direction:column}
-  .expressions-grid{grid-template-columns:1fr}
-  .keywords{position:static;margin-top:0;order:-1}
-  .left-col{order:1}
-  .header{padding:12px 14px}
-  .pill-title .main{font-size:22px}
+@media(max-width:768px){
+  .content{grid-template-columns:1fr;gap:10px;padding:0 12px 16px}
+  .pill-title{font-size:clamp(18px,3vw,28px)}
+  .step{font-size:10px;padding:4px 10px}
+  .main-area{padding:12px}
+  .act-title{font-size:12px}
+  .info-box,.instructions{font-size:11px}
+  .keyword-title{font-size:12px}
+  .modal-box{padding:16px}
+  .expr-grid{grid-template-columns:1fr}
+  .order-row{grid-template-columns:20px 1fr auto 22px;gap:6px}
+  .check-btn{padding:8px 12px;font-size:11px}
+  .whatsapp-btn{min-height:44px;padding:12px}
+  .zone-support{align-self:auto}
+  .teacher-note-bar{padding:8px 16px}
+  .fill-input{width:100px}
 }
+
 @media(max-width:480px){
-  .steps{padding:6px 10px}
-  .step{font-size:10px;padding:4px 9px}
-  .content{padding:10px 12px;gap:10px}
-  .card{padding:12px 13px}
-  .match-text{font-size:11px}
-  .wa-btn{min-height:48px}
+  .content{grid-template-columns:1fr;gap:10px;padding:0 8px 12px}
+  .pill-title{font-size:clamp(16px,3vw,22px)}
+  .step{font-size:10px;padding:4px 10px}
+  .header{padding:10px 16px}
+  .footer{padding:8px 16px}
+  .footer-left{font-size:11px}
+  .footer-text{font-size:12px}
+  .main-area{padding:10px}
+  .modal-box{padding:12px}
+  .expr-grid{grid-template-columns:1fr}
+  .order-row{gap:5px}
+  .order-text{font-size:11px}
+  .check-btn{font-size:11px}
+  .whatsapp-btn{min-height:44px}
+  .teacher-note-bar{padding:8px 12px}
+  .fill-row{flex-direction:column;align-items:flex-start}
+  .fill-input{width:100%}
 }
 </style>
 </head>
@@ -142,332 +184,479 @@ body{background:#f0f0f0;font-family:'Barlow',sans-serif;min-height:100vh;display
 
 <!-- HEADER -->
 <div class="header">
-  <div class="pill-title">
-    <div class="main">Business Communication</div>
-    <span class="sub">Unit 1 — You</span>
+  <div class="header-left">
+    <div class="pill-title">Business Communication</div>
+    <div class="subtitle-row">
+      <span class="subtitle">Unit 1 — You</span>
+      <span class="level-badge">Business Result / Starter</span>
+    </div>
   </div>
-  <div class="header-right">
-    <div class="level-badge">
-      <span class="trail">Business Result</span>
-      <span class="level">Starter</span>
-    </div>
-    <div class="icon-box">
-      <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-    </div>
+  <div class="icon-box">
+    <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
   </div>
 </div>
 
-<!-- TEACHER'S NOTE -->
-<div class="teacher-bar">
-  <button class="teacher-btn" onclick="playTeacher()">
-    <svg viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 1 3 3v7a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
-    Teacher's Note
+<!-- TEACHER NOTE -->
+<div class="teacher-note-bar">
+  <button class="tn-btn" id="tnBtn" onclick="playTeacherNote()">
+    <div class="tn-circle">
+      <svg viewBox="0 0 24 24"><polygon class="tn-play" points="5 3 19 12 5 21 5 3"/><rect class="tn-stop" x="6" y="6" width="12" height="12" rx="2"/></svg>
+    </div>
+    🎙️ Teacher's Note — listen before you start
   </button>
-  <span class="teacher-label">Listen before you start</span>
-  <audio id="teacher-audio" src="../teacher-notes/capsule-05-teacher-note.mp3" preload="none"></audio>
 </div>
 
-<!-- WARN -->
-<div class="warn-bar">This page is in English on purpose. <strong>Please do not translate it.</strong></div>
+<!-- TRANSLATE WARNING -->
+<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
 
 <!-- STEPS -->
 <div class="steps">
-  <div class="step"><span class="step-num">1</span>Practise the keywords</div>
-  <div class="step"><span class="step-num">2</span>Study the key expressions</div>
-  <div class="step"><span class="step-num">3</span>Do Activity 1 and 2</div>
-  <div class="step"><span class="step-num">4</span>Send your answers</div>
+  <div class="step">
+    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    1. Practise the keywords
+  </div>
+  <div class="step">
+    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    2. Study the key expressions
+  </div>
+  <div class="step">
+    <svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+    3. Do Activity 1 and 2
+  </div>
+  <div class="step">
+    <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+    4. Send your answers
+  </div>
 </div>
 
 <!-- CONTENT -->
 <div class="content">
   <div class="left-col">
+    <div class="main-area">
 
-    <!-- KEY EXPRESSIONS -->
-    <div class="card">
-      <div class="act-title">
-        Key Expressions — Meeting People
-        <button class="audio-btn" onclick="playTrack('t110')">▶ Track 1.10</button>
+      <div class="info-box">In Unit 1 you practise introductions and greetings in professional contexts. This capsule focuses on expressions for meeting colleagues for the first time — study the cards, order the conversation, and complete the sentences.</div>
+
+      <!-- KEY EXPRESSIONS -->
+      <div>
+        <div class="act-title">Key Expressions — First Meetings at Work</div>
+        <div class="expr-grid">
+          <div class="expr-card">
+            <div class="expr-card-header">Introducing yourself</div>
+            <div class="expr-card-body">
+              <div class="expr-phrase">Hello! My name is [name].</div>
+              <div class="expr-phrase">Hi! I'm [name]. I'm new here.</div>
+              <div class="expr-phrase">I work in the [department].</div>
+              <div class="expr-note">Use <em>I'm</em> (informal) or <em>My name is</em> (more formal).</div>
+            </div>
+          </div>
+          <div class="expr-card">
+            <div class="expr-card-header">Asking about someone</div>
+            <div class="expr-card-body">
+              <div class="expr-phrase">What do you do?</div>
+              <div class="expr-phrase">What department are you in?</div>
+              <div class="expr-phrase">Are you new here?</div>
+              <div class="expr-note">Reply: <em>I'm a [job]. I'm in [department].</em></div>
+            </div>
+          </div>
+          <div class="expr-card">
+            <div class="expr-card-header">Reacting politely</div>
+            <div class="expr-card-body">
+              <div class="expr-phrase">Nice to meet you.</div>
+              <div class="expr-phrase">Pleased to meet you.</div>
+              <div class="expr-phrase">Good to meet you.</div>
+              <div class="expr-note">Always reply: <em>Nice to meet you too.</em></div>
+            </div>
+          </div>
+          <div class="expr-card">
+            <div class="expr-card-header">Welcoming someone</div>
+            <div class="expr-card-body">
+              <div class="expr-phrase">Welcome to the company!</div>
+              <div class="expr-phrase">Let me show you around.</div>
+              <div class="expr-phrase">Is there anything I can help with?</div>
+              <div class="expr-note">Reply: <em>Thank you very much!</em></div>
+            </div>
+          </div>
+        </div>
       </div>
-      <audio id="t110" src="../tracks/br2_000_a1_10.mp3" preload="none"></audio>
-      <div class="instruction"><strong>Step 1:</strong> Listen to Track 1.10 &nbsp;·&nbsp; <strong>Step 2:</strong> Read and study the expressions below</div>
-      <div class="expressions-grid">
-        <div class="expr-card">
-          <div class="expr-title">Saying hello</div>
-          <div class="expr-item">Hello / Hi<br>Good morning<br>Good afternoon<br>Good evening</div>
+
+      <!-- ACTIVITY 1 — ORDER THE CONVERSATION -->
+      <div>
+        <div class="act-title">Activity 1 — Put the Conversation in Order (1–6)</div>
+
+        <button class="audio-btn" id="audioBtn1" onclick="playTrack('audioBtn1','../../../tracks.mp3/br2_000_a1_10.mp3')">
+          <div class="audio-circle">
+            <svg viewBox="0 0 24 24"><polygon class="icon-play" points="5 3 19 12 5 21 5 3"/><rect class="icon-stop" x="6" y="6" width="12" height="12" rx="2"/></svg>
+          </div>
+          <div class="audio-meta">
+            <span class="audio-label">Track 1.10 — Business Communication (Listen)</span>
+            <span class="audio-track-info">br2_000_a1_10.mp3</span>
+          </div>
+        </button>
+
+        <div class="instructions">
+          <strong>Instructions:</strong>
+          <ol>
+            <li>Listen to Track 1.10.</li>
+            <li>Read sentences a–f. They are the lines of a conversation in the wrong order.</li>
+            <li>Use each dropdown to choose the correct position (1–6) for that line.</li>
+            <li>Click <strong>Check Activity 1</strong> to see your result.</li>
+          </ol>
         </div>
-        <div class="expr-card">
-          <div class="expr-title">Meeting people</div>
-          <div class="expr-item">What's your name?<br>Are you (Mara)?<br>I'm (Jacob).<br>Nice to meet you.</div>
+
+        <div class="order-rows">
+          <div class="order-row" id="or1">
+            <span class="order-letter">a</span>
+            <span class="order-text">"Nice to meet you too. I'm in the IT department."</span>
+            <select class="order-select" id="os1">
+              <option value="">–</option>
+              <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+              <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+            </select>
+            <span class="order-fb" id="of1"></span>
+          </div>
+          <div class="order-row" id="or2">
+            <span class="order-letter">b</span>
+            <span class="order-text">"Hello! My name is Carlos. I'm new here."</span>
+            <select class="order-select" id="os2">
+              <option value="">–</option>
+              <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+              <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+            </select>
+            <span class="order-fb" id="of2"></span>
+          </div>
+          <div class="order-row" id="or3">
+            <span class="order-letter">c</span>
+            <span class="order-text">"Really? What do you do?"</span>
+            <select class="order-select" id="os3">
+              <option value="">–</option>
+              <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+              <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+            </select>
+            <span class="order-fb" id="of3"></span>
+          </div>
+          <div class="order-row" id="or4">
+            <span class="order-letter">d</span>
+            <span class="order-text">"Nice to meet you, Carlos. I'm Sofia, the Office Manager."</span>
+            <select class="order-select" id="os4">
+              <option value="">–</option>
+              <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+              <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+            </select>
+            <span class="order-fb" id="of4"></span>
+          </div>
+          <div class="order-row" id="or5">
+            <span class="order-letter">e</span>
+            <span class="order-text">"I'm a software engineer. And you?"</span>
+            <select class="order-select" id="os5">
+              <option value="">–</option>
+              <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+              <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+            </select>
+            <span class="order-fb" id="of5"></span>
+          </div>
+          <div class="order-row" id="or6">
+            <span class="order-letter">f</span>
+            <span class="order-text">"I manage the office. Welcome to the company, Carlos!"</span>
+            <select class="order-select" id="os6">
+              <option value="">–</option>
+              <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+              <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+            </select>
+            <span class="order-fb" id="of6"></span>
+          </div>
         </div>
-        <div class="expr-card">
-          <div class="expr-title">Introducing others</div>
-          <div class="expr-item">This is (Alek).<br>This is my assistant.<br>Nice to meet you too.</div>
-        </div>
-        <div class="expr-card">
-          <div class="expr-title">Saying goodbye</div>
-          <div class="expr-item">Bye / Goodbye<br>See you soon.<br>It was nice meeting you.</div>
-        </div>
+
+        <button class="check-btn" onclick="checkOrder()">✓ Check Activity 1</button>
+        <div class="check-feedback" id="orderFeedback" style="display:none"></div>
       </div>
+
+      <!-- ACTIVITY 2 — COMPLETE THE SENTENCES -->
+      <div>
+        <div class="act-title">Activity 2 — Complete the Sentences</div>
+
+        <button class="audio-btn" id="audioBtn2" onclick="playTrack('audioBtn2','../../../tracks.mp3/br2_000_a1_11.mp3')">
+          <div class="audio-circle">
+            <svg viewBox="0 0 24 24"><polygon class="icon-play" points="5 3 19 12 5 21 5 3"/><rect class="icon-stop" x="6" y="6" width="12" height="12" rx="2"/></svg>
+          </div>
+          <div class="audio-meta">
+            <span class="audio-label">Track 1.11 — Listen, Check, Repeat</span>
+            <span class="audio-track-info">br2_000_a1_11.mp3</span>
+          </div>
+        </button>
+
+        <div class="instructions">Use the words in the box to complete each sentence. Then click <strong>Check Activity 2</strong> and listen to Track 1.11 to confirm.</div>
+
+        <div class="word-box">
+          <span class="word-box-label">Word box</span>
+          <span class="word-chip">name</span>
+          <span class="word-chip">meet</span>
+          <span class="word-chip">work</span>
+          <span class="word-chip">introduce</span>
+          <span class="word-chip">department</span>
+        </div>
+
+        <div class="fill-rows">
+          <div class="fill-row" id="fr1">
+            <span class="fill-num">1</span>
+            <span class="fill-text">Hello! My <input class="fill-input" id="fi1" type="text" placeholder="________" autocomplete="off"> is Ana Silva.</span>
+            <span class="fill-fb" id="ff1"></span>
+          </div>
+          <div class="fill-row" id="fr2">
+            <span class="fill-num">2</span>
+            <span class="fill-text">Nice to <input class="fill-input" id="fi2" type="text" placeholder="________" autocomplete="off"> you. I'm Paulo.</span>
+            <span class="fill-fb" id="ff2"></span>
+          </div>
+          <div class="fill-row" id="fr3">
+            <span class="fill-num">3</span>
+            <span class="fill-text">I <input class="fill-input" id="fi3" type="text" placeholder="________" autocomplete="off"> in the Sales department.</span>
+            <span class="fill-fb" id="ff3"></span>
+          </div>
+          <div class="fill-row" id="fr4">
+            <span class="fill-num">4</span>
+            <span class="fill-text">Let me <input class="fill-input" id="fi4" type="text" placeholder="________" autocomplete="off"> my colleague, James.</span>
+            <span class="fill-fb" id="ff4"></span>
+          </div>
+          <div class="fill-row" id="fr5">
+            <span class="fill-num">5</span>
+            <span class="fill-text">I'm in the Marketing <input class="fill-input" id="fi5" type="text" placeholder="________" autocomplete="off">.</span>
+            <span class="fill-fb" id="ff5"></span>
+          </div>
+        </div>
+
+        <button class="check-btn" onclick="checkFill()">✓ Check Activity 2</button>
+        <div class="check-feedback" id="fillFeedback" style="display:none"></div>
+      </div>
+
+      <!-- TASK BOX -->
+      <div class="task-box">
+        <p>💬 Practise the conversation from Activity 1 with your teacher. Then send your written answers — the modal auto-fills from your selections and typed answers.</p>
+        <button class="whatsapp-btn" onclick="openModal()">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Enviar respostas
+        </button>
+      </div>
+
     </div>
-
-    <!-- ACTIVITY 1 -->
-    <div class="card">
-      <div class="act-title">Activity 1 — Match the expressions</div>
-      <div class="instruction">
-        <strong>Step 1:</strong> Read sentences 1–5 &nbsp;·&nbsp;
-        <strong>Step 2:</strong> Choose the correct response a–e &nbsp;·&nbsp;
-        <strong>Step 3:</strong> Click Check answers
-      </div>
-      <div class="responses-box">
-        <strong>Responses:</strong><br>
-        a. Good afternoon, Sally. Nice to meet you. &nbsp;·&nbsp;
-        b. Yes, I am. &nbsp;·&nbsp;
-        c. Yes, see you soon. And it was nice meeting you, Sally. &nbsp;·&nbsp;
-        d. Bye. &nbsp;·&nbsp;
-        e. Nice to meet you too.
-      </div>
-      <div class="match-grid">
-        <div class="match-row" id="row1">
-          <span class="match-num">1</span>
-          <span class="match-text">Good morning. Are you Kasia?</span>
-          <select class="match-select" id="m1"><option value="">—</option><option value="a">a</option><option value="b">b</option><option value="c">c</option><option value="d">d</option><option value="e">e</option></select>
-          <span class="match-icon" id="i1"></span>
-        </div>
-        <div class="match-row" id="row2">
-          <span class="match-num">2</span>
-          <span class="match-text">I'm Franco. Nice to meet you.</span>
-          <select class="match-select" id="m2"><option value="">—</option><option value="a">a</option><option value="b">b</option><option value="c">c</option><option value="d">d</option><option value="e">e</option></select>
-          <span class="match-icon" id="i2"></span>
-        </div>
-        <div class="match-row" id="row3">
-          <span class="match-num">3</span>
-          <span class="match-text">This is Sally.</span>
-          <select class="match-select" id="m3"><option value="">—</option><option value="a">a</option><option value="b">b</option><option value="c">c</option><option value="d">d</option><option value="e">e</option></select>
-          <span class="match-icon" id="i3"></span>
-        </div>
-        <div class="match-row" id="row4">
-          <span class="match-num">4</span>
-          <span class="match-text">See you soon.</span>
-          <select class="match-select" id="m4"><option value="">—</option><option value="a">a</option><option value="b">b</option><option value="c">c</option><option value="d">d</option><option value="e">e</option></select>
-          <span class="match-icon" id="i4"></span>
-        </div>
-        <div class="match-row" id="row5">
-          <span class="match-num">5</span>
-          <span class="match-text">Goodbye.</span>
-          <select class="match-select" id="m5"><option value="">—</option><option value="a">a</option><option value="b">b</option><option value="c">c</option><option value="d">d</option><option value="e">e</option></select>
-          <span class="match-icon" id="i5"></span>
-        </div>
-      </div>
-      <button class="check-btn" onclick="checkMatch()">Check answers</button>
-      <div class="score" id="match-score"></div>
-    </div>
-
-    <!-- ACTIVITY 2 -->
-    <div class="card">
-      <div class="act-title">
-        Activity 2 — Correct the mistakes
-        <button class="audio-btn" onclick="playTrack('t111')">▶ Track 1.11</button>
-      </div>
-      <audio id="t111" src="../tracks/br2_000_a1_11.mp3" preload="none"></audio>
-      <div class="instruction">
-        <strong>Step 1:</strong> Listen to Track 1.11 &nbsp;·&nbsp;
-        <strong>Step 2:</strong> Find the one mistake in each sentence &nbsp;·&nbsp;
-        <strong>Step 3:</strong> Write the correct version below each sentence
-      </div>
-      <div class="mistake-box">
-        <div class="mistake-row" id="erow1">
-          <div class="mistake-top"><span class="mistake-num">1</span><span class="mistake-wrong">Good afternoon. Am you Jacob?</span><span class="mistake-icon" id="ei1"></span></div>
-          <input class="mistake-input" id="e1" placeholder="Write the correct version...">
-        </div>
-        <div class="mistake-row" id="erow2">
-          <div class="mistake-top"><span class="mistake-num">2</span><span class="mistake-wrong">Nice to meeting you, Sally.</span><span class="mistake-icon" id="ei2"></span></div>
-          <input class="mistake-input" id="e2" placeholder="Write the correct version...">
-        </div>
-        <div class="mistake-row" id="erow3">
-          <div class="mistake-top"><span class="mistake-num">3</span><span class="mistake-wrong">Seeing you soon.</span><span class="mistake-icon" id="ei3"></span></div>
-          <input class="mistake-input" id="e3" placeholder="Write the correct version...">
-        </div>
-        <div class="mistake-row" id="erow4">
-          <div class="mistake-top"><span class="mistake-num">4</span><span class="mistake-wrong">This are Kasia.</span><span class="mistake-icon" id="ei4"></span></div>
-          <input class="mistake-input" id="e4" placeholder="Write the correct version...">
-        </div>
-        <div class="mistake-row" id="erow5">
-          <div class="mistake-top"><span class="mistake-num">5</span><span class="mistake-wrong">I Franco. Nice to meet you.</span><span class="mistake-icon" id="ei5"></span></div>
-          <input class="mistake-input" id="e5" placeholder="Write the correct version...">
-        </div>
-        <div class="mistake-row" id="erow6">
-          <div class="mistake-top"><span class="mistake-num">6</span><span class="mistake-wrong">Are you Mara? — Yes, I'm.</span><span class="mistake-icon" id="ei6"></span></div>
-          <input class="mistake-input" id="e6" placeholder="Write the correct version...">
-        </div>
-      </div>
-      <button class="check-btn" onclick="checkMistakes()">Check answers</button>
-      <div class="score" id="mistake-score"></div>
-    </div>
-
-    <!-- TASK BOX -->
-    <div class="task-box">
-      <p>🎙️ Record a short roleplay using the key expressions — or ✍️ write your answers to Activities 1 and 2. Send via WhatsApp when ready.</p>
-      <button class="wa-btn" onclick="openModal()">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
-        Send via WhatsApp
-      </button>
-    </div>
-
-  </div>
+  </div><!-- /left-col -->
 
   <!-- KEYWORDS -->
-  <div class="keywords">
-    <div class="kw-title">Key Words</div>
-    <div class="kw-item"><a class="kw-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/greeting" target="_blank">Greeting</a><span class="kw-hint">Saying hello to someone</span></div>
-    <div class="kw-item"><a class="kw-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/introduce" target="_blank">Introduce</a><span class="kw-hint">Present yourself or others</span></div>
-    <div class="kw-item"><a class="kw-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/formal" target="_blank">Formal</a><span class="kw-hint">Professional / official style</span></div>
-    <div class="kw-item"><a class="kw-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/informal" target="_blank">Informal</a><span class="kw-hint">Casual / friendly style</span></div>
-    <div class="kw-item"><a class="kw-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/colleague" target="_blank">Colleague</a><span class="kw-hint">Someone you work with</span></div>
-    <div class="kw-item"><a class="kw-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/expression" target="_blank">Expression</a><span class="kw-hint">A fixed phrase in English</span></div>
+  <div class="zone-support">
+    <div class="keyword-title">Key Words</div>
+    <div class="keywords-grid">
+      <div class="keyword-item">
+        <a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/job" target="_blank">Job</a>
+        <span class="kw-hint">Your work / profession</span>
+      </div>
+      <div class="keyword-item">
+        <a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/company" target="_blank">Company</a>
+        <span class="kw-hint">A business organisation</span>
+      </div>
+      <div class="keyword-item">
+        <a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/name" target="_blank">Name</a>
+        <span class="kw-hint">What you are called</span>
+      </div>
+      <div class="keyword-item">
+        <a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/department" target="_blank">Department</a>
+        <span class="kw-hint">A section of a company</span>
+      </div>
+      <div class="keyword-item">
+        <a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/colleague" target="_blank">Colleague</a>
+        <span class="kw-hint">A person you work with</span>
+      </div>
+      <div class="keyword-item">
+        <a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/introduction" target="_blank">Introduction</a>
+        <span class="kw-hint">First time meeting someone</span>
+      </div>
+    </div>
   </div>
-</div>
+
+</div><!-- /content -->
 
 <!-- FOOTER -->
 <div class="footer">
   <div class="footer-left">Capsule 5 of 54 · Unit 1 — You · Business Starter</div>
   <div class="footer-right">
-    <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
-    <span class="footer-text">Business Result</span>
+    <div class="footer-icon">
+      <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </div>
+    <div class="footer-text">Unit 1 — You</div>
   </div>
 </div>
 
 <!-- MODAL -->
 <div class="modal-overlay" id="modal" style="display:none">
   <div class="modal-box">
-    <div class="modal-title">Send your answers</div>
+    <div class="modal-title">Business Communication — Send your answers</div>
     <div class="modal-field">
       <label>Your name</label>
-      <input type="text" id="studentName" placeholder="Type your name..." autocomplete="off">
+      <input type="text" id="studentName" placeholder="Type your name…" autocomplete="off">
     </div>
     <div class="modal-field">
-      <label>Activity 1 — Match (write: 1=b, 2=e...)</label>
-      <textarea id="act1" placeholder="1= , 2= , 3= , 4= , 5="></textarea>
+      <label>Activity 1 — Conversation order (auto-filled)</label>
+      <textarea id="act1" placeholder="a → ___&#10;b → ___&#10;c → ___&#10;d → ___&#10;e → ___&#10;f → ___"></textarea>
     </div>
     <div class="modal-field">
-      <label>Activity 2 — Corrections (write the correct sentences)</label>
-      <textarea id="act2" placeholder="1. ... 2. ... 3. ..."></textarea>
+      <label>Activity 2 — Complete the sentences (auto-filled)</label>
+      <textarea id="act2" placeholder="1. ___&#10;2. ___&#10;3. ___&#10;4. ___&#10;5. ___"></textarea>
     </div>
-    <div class="modal-reminder">🎙️ After sending, record your roleplay audio and send in the same conversation.</div>
+    <div class="modal-reminder">💬 After sending, role-play the conversation from Activity 1 with your teacher in a WhatsApp voice message.</div>
     <div class="modal-actions">
       <button class="modal-cancel" onclick="closeModal()">Cancel</button>
       <button class="modal-send" onclick="sendWA()">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         Send via WhatsApp
       </button>
     </div>
   </div>
 </div>
 
-<script>
-// Audio
-function playTeacher(){document.getElementById('teacher-audio').play().catch(function(){});}
-function playTrack(id){document.getElementById(id).play().catch(function(){});}
+<audio id="sharedAudio" preload="none"></audio>
+<audio id="teacherAudio" preload="none"></audio>
 
-// Match Activity
-var matchAnswers={m1:'b',m2:'e',m3:'a',m4:'c',m5:'d'};
-function checkMatch(){
-  var correct=0;
-  for(var k in matchAnswers){
-    var num=k.replace('m','');
-    var val=document.getElementById(k).value;
-    var row=document.getElementById('row'+num);
-    var icon=document.getElementById('i'+num);
-    if(val===matchAnswers[k]){
-      correct++;
-      row.className='match-row correct';
-      icon.textContent='✓';
-      icon.style.color='#16a34a';
-    } else if(val===''){
-      row.className='match-row';
-      icon.textContent='';
+<script>
+var sharedAudio=document.getElementById('sharedAudio');
+var currentBtnId=null;
+
+function playTrack(btnId,src){
+  if(teacherPlaying){
+    teacherAudio.pause();teacherAudio.currentTime=0;
+    document.getElementById('tnBtn').classList.remove('playing');
+    teacherPlaying=false;
+  }
+  var btn=document.getElementById(btnId);
+  if(currentBtnId===btnId&&!sharedAudio.paused){
+    sharedAudio.pause();sharedAudio.currentTime=0;
+    btn.classList.remove('playing');currentBtnId=null;return;
+  }
+  if(currentBtnId){var p=document.getElementById(currentBtnId);if(p)p.classList.remove('playing');}
+  sharedAudio.src=src;
+  sharedAudio.play().catch(function(){});
+  btn.classList.add('playing');currentBtnId=btnId;
+  sharedAudio.onended=function(){btn.classList.remove('playing');currentBtnId=null;};
+  sharedAudio.onerror=function(){btn.classList.remove('playing');currentBtnId=null;};
+}
+
+var teacherAudio=document.getElementById('teacherAudio');
+var teacherPlaying=false;
+
+function playTeacherNote(){
+  if(currentBtnId){
+    sharedAudio.pause();sharedAudio.currentTime=0;
+    var p=document.getElementById(currentBtnId);if(p)p.classList.remove('playing');
+    currentBtnId=null;
+  }
+  var btn=document.getElementById('tnBtn');
+  if(teacherPlaying){
+    teacherAudio.pause();teacherAudio.currentTime=0;
+    btn.classList.remove('playing');teacherPlaying=false;return;
+  }
+  teacherAudio.src='../../../audios/teacher/capsule-05-teacher-note.mp3';
+  teacherAudio.play().catch(function(){});
+  btn.classList.add('playing');teacherPlaying=true;
+  teacherAudio.onended=function(){btn.classList.remove('playing');teacherPlaying=false;};
+  teacherAudio.onerror=function(){btn.classList.remove('playing');teacherPlaying=false;};
+}
+
+/* Correct order: b=1, d=2, a=3, c=4, e=5, f=6 */
+var ORDER={os1:'3',os2:'1',os3:'4',os4:'2',os5:'5',os6:'6'};
+
+function checkOrder(){
+  var ok=0;
+  var keys=['os1','os2','os3','os4','os5','os6'];
+  var rowIds=['or1','or2','or3','or4','or5','or6'];
+  var fbIds=['of1','of2','of3','of4','of5','of6'];
+  for(var i=0;i<6;i++){
+    var sel=document.getElementById(keys[i]);
+    var fb=document.getElementById(fbIds[i]);
+    var row=document.getElementById(rowIds[i]);
+    if(!sel.value){fb.textContent='?';row.className='order-row';continue;}
+    if(sel.value===ORDER[keys[i]]){fb.textContent='✓';row.className='order-row correct';ok++;}
+    else{fb.textContent='✗';row.className='order-row incorrect';}
+  }
+  var el=document.getElementById('orderFeedback');
+  el.style.display='block';
+  if(ok===6){el.textContent='✅ All 6 in the correct order! Well done.';el.style.color='#16a34a';}
+  else if(ok>=4){el.textContent='Good — '+ok+'/6 correct. Review the red rows and try again.';el.style.color='#d97706';}
+  else{el.textContent=ok+'/6 correct. Listen to Track 1.10 again and follow the conversation carefully.';el.style.color='#dc2626';}
+}
+
+function norm(s){return s.toLowerCase().trim();}
+
+var FILL=[
+  {answer:'name',     hint:'My ____ is Ana Silva.'},
+  {answer:'meet',     hint:'Nice to ____ you.'},
+  {answer:'work',     hint:'I ____ in the Sales department.'},
+  {answer:'introduce',hint:'Let me ____ my colleague.'},
+  {answer:'department',hint:"I'm in the Marketing ____."}
+];
+
+function checkFill(){
+  var ok=0;
+  for(var i=0;i<5;i++){
+    var inp=document.getElementById('fi'+(i+1));
+    var fb=document.getElementById('ff'+(i+1));
+    var row=document.getElementById('fr'+(i+1));
+    var v=norm(inp.value);
+    if(!v){fb.textContent='?';fb.className='fill-fb';row.className='fill-row';continue;}
+    if(v===FILL[i].answer){
+      inp.classList.add('correct');inp.classList.remove('incorrect');
+      row.className='fill-row correct';
+      fb.textContent='✓';fb.className='fill-fb ok';ok++;
     } else {
-      row.className='match-row wrong';
-      icon.textContent='✗';
-      icon.style.color='#dc2626';
+      inp.classList.add('incorrect');inp.classList.remove('correct');
+      row.className='fill-row incorrect';
+      fb.textContent='✗ '+FILL[i].hint;fb.className='fill-fb bad';
     }
   }
-  var sc=document.getElementById('match-score');
-  sc.style.display='block';
-  sc.className='score '+(correct===5?'perfect':'partial');
-  sc.textContent=correct===5?'Perfect! All 5 correct!':correct+'/5 correct — check the red ones and try again.';
+  var el=document.getElementById('fillFeedback');
+  el.style.display='block';
+  if(ok===5){el.textContent='✅ All 5 correct! Listen to Track 1.11 to practise pronunciation.';el.style.color='#16a34a';}
+  else{el.textContent=ok+'/5 correct. Check the hints and try again, then listen to Track 1.11.';el.style.color='#d97706';}
 }
 
-// Mistake Activity
-var mistakeAnswers={
-  e1:'good afternoon. are you jacob?',
-  e2:'nice to meet you, sally.',
-  e3:'see you soon.',
-  e4:'this is kasia.',
-  e5:"i'm franco. nice to meet you.",
-  e6:'are you mara? — yes, i am.'
-};
-function checkMistakes(){
-  var correct=0;
-  var keys=['e1','e2','e3','e4','e5','e6'];
-  keys.forEach(function(k,idx){
-    var num=idx+1;
-    var val=document.getElementById(k).value.trim().toLowerCase();
-    var row=document.getElementById('erow'+num);
-    var icon=document.getElementById('ei'+num);
-    if(val===mistakeAnswers[k]){
-      correct++;
-      row.className='mistake-row correct';
-      icon.textContent='✓';
-      icon.style.color='#16a34a';
-    } else if(val===''){
-      row.className='mistake-row';
-      icon.textContent='';
-    } else {
-      row.className='mistake-row wrong';
-      icon.textContent='✗';
-      icon.style.color='#dc2626';
-    }
-  });
-  var sc=document.getElementById('mistake-score');
-  sc.style.display='block';
-  sc.className='score '+(correct>=5?'perfect':'partial');
-  sc.textContent=correct>=5?'Excellent! Well done!':correct+'/6 correct — check the red ones and try again.';
-}
-
-// Modal
 function openModal(){
   var saved=localStorage.getItem('ef_student_name');
   if(saved)document.getElementById('studentName').value=saved;
+  var letters=['a','b','c','d','e','f'];
+  var m1='';
+  for(var i=1;i<=6;i++){m1+=letters[i-1]+' → '+(document.getElementById('os'+i).value||'___')+'\n';}
+  document.getElementById('act1').value=m1.trim();
+  var m2='';
+  for(var j=1;j<=5;j++){m2+=j+'. '+(document.getElementById('fi'+j).value.trim()||'___')+'\n';}
+  document.getElementById('act2').value=m2.trim();
   document.getElementById('modal').style.display='flex';
 }
 function closeModal(){document.getElementById('modal').style.display='none';}
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+
+function submitToGoogleForm(name,capsule,unit){
+  var url='https://docs.google.com/forms/d/e/1FAIpQLSdGVa3JN0PfYG1C-YV8oGk-EQ5u5skM-V_LJImf_kijpmijWw/formResponse';
+  var d=new FormData();
+  d.append('entry.566273869',name);
+  d.append('entry.947389419',capsule);
+  d.append('entry.156113480',unit);
+  d.append('entry.583447830','Business Starter');
+  d.append('entry.923345328','Done');
+  fetch(url,{method:'POST',mode:'no-cors',body:d});
+}
+
 function sendWA(){
-  var name=document.getElementById('studentName').value.trim()||'Student';
+  var name=document.getElementById('studentName').value.trim()||'Aluno';
   localStorage.setItem('ef_student_name',name);
   var now=new Date();
   var date=now.toLocaleDateString('pt-BR');
   var time=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
-  var act1=document.getElementById('act1').value||'(not answered)';
-  var act2=document.getElementById('act2').value||'(not answered)';
+  var a1=document.getElementById('act1').value.trim()||'(not answered)';
+  var a2=document.getElementById('act2').value.trim()||'(not answered)';
   var msg='👤 '+name+'\n'
-        +'📅 '+date+' at '+time+'\n'
-        +'📘 Capsule 5 of 54 — Business Communication · Unit 1 — You · Business Starter\n\n'
-        +'📌 Activity 1 — Match:\n'+act1+'\n\n'
-        +'📌 Activity 2 — Corrections:\n'+act2+'\n\n'
-        +'🎙️ Audio in the next message.';
-  // Google Form silent submission
-  var formUrl='https://docs.google.com/forms/d/e/1FAIpQLSdGVa3JN0PfYG1C-YV8oGk-EQ5u5skM-V_LJImf_kijpmijWw/formResponse';
-  var data=new FormData();
-  data.append('entry.566273869',name);
-  data.append('entry.947389419','Capsule 5 of 54');
-  data.append('entry.156113480','Unit 1 — You');
-  data.append('entry.583447830','Business Starter');
-  data.append('entry.923345328','Done');
-  fetch(formUrl,{method:'POST',mode:'no-cors',body:data});
+        +'📅 '+date+' às '+time+'\n'
+        +'📘 Business Communication — Unit 1 — You · Business Starter\n\n'
+        +'📌 Activity 1 — Put the Conversation in Order:\n'+a1+'\n\n'
+        +'📌 Activity 2 — Complete the Sentences:\n'+a2+'\n\n'
+        +'👇 Áudio na mensagem seguinte (se preferiu enviar por áudio)';
+  submitToGoogleForm(name,'Capsule 5 of 54','Unit 1 — You');
   window.open('https://wa.me/5522999585058?text='+encodeURIComponent(msg),'_blank');
-  closeModal();
 }
-document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
 </script>
 </body>
 </html>

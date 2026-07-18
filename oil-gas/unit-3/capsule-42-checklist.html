@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Checklist · Unit 3 — Downstream</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh;display:flex;flex-direction:column}
+.header{background:#0d1b2a;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid rgba(192,57,43,.25)}
+.pill-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:700;color:#e07a74;line-height:1}
+.pill-title span{color:#c0392b;font-size:clamp(14px,2.5vw,22px);font-weight:600;display:block;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.icon-box{width:48px;height:48px;border:1.5px solid rgba(192,57,43,.4);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.icon-box svg{width:26px;height:26px;stroke:#c0392b;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(192,57,43,.2);padding:6px 24px;font-size:11px;color:#e07a74;text-align:center}
+.translate-warning strong{color:#c0392b}
+.main{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:24px 16px;gap:16px}
+.intro{font-size:13px;color:#4a6a8a;text-align:center;max-width:480px}
+.checklist{background:#111827;border-radius:12px;width:100%;max-width:560px;overflow:hidden}
+.check-item{display:flex;align-items:flex-start;gap:14px;padding:14px 18px;border-bottom:1px solid rgba(192,57,43,.1);cursor:pointer;transition:background .15s}
+.check-item:last-child{border-bottom:none}
+.check-item:hover{background:rgba(192,57,43,.05)}
+.check-item.done{background:rgba(192,57,43,.08)}
+.check-box{width:22px;height:22px;border:2px solid rgba(192,57,43,.4);border-radius:6px;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.check-item.done .check-box{background:#c0392b;border-color:#c0392b}
+.check-icon{width:14px;height:14px;stroke:#fff;fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;display:none}
+.check-item.done .check-icon{display:block}
+.check-text{display:flex;flex-direction:column;gap:3px}
+.check-title{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:#e07a74;letter-spacing:.03em}
+.check-detail{font-size:11.5px;color:#4a6a8a;line-height:1.4}
+.check-item.done .check-title{color:#c0392b}
+.score-bar{background:#111827;border-radius:12px;width:100%;max-width:560px;padding:18px 20px;display:flex;flex-direction:column;align-items:center;gap:10px}
+.score-num{font-family:'Barlow Condensed',sans-serif;font-size:44px;font-weight:700;color:#c0392b;line-height:1}
+.score-label{font-size:12px;color:#4a6a8a}
+.score-track{width:100%;height:8px;background:rgba(192,57,43,.13);border-radius:4px;overflow:hidden}
+.score-fill{height:100%;background:#c0392b;border-radius:4px;transition:width .5s ease}
+.score-msg{font-size:12px;color:#e07a74;font-style:italic;text-align:center;min-height:18px}
+.footer{background:#0d1b2a;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(192,57,43,.2)}
+.footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a8a;letter-spacing:.04em}
+.footer-right{display:flex;align-items:center;gap:10px}
+.footer-icon svg{width:22px;height:22px;stroke:#c0392b;fill:none;stroke-width:1.5}
+.footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;color:#c0392b;letter-spacing:.06em;text-transform:uppercase}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="pill-title">Checklist<span>Downstream</span></div>
+  <div class="icon-box">
+    <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+  </div>
+</div>
+
+<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
+
+<div class="main">
+  <p class="intro">Tap each item you can do. Be honest — this is your self-assessment for Unit 3.</p>
+
+  <div class="checklist" id="checklist">
+    <div class="check-item" onclick="toggle(this)">
+      <div class="check-box"><svg class="check-icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div class="check-text">
+        <div class="check-title">Talk about the downstream sector</div>
+        <div class="check-detail">Products, departments and companies that process oil and gas</div>
+      </div>
+    </div>
+    <div class="check-item" onclick="toggle(this)">
+      <div class="check-box"><svg class="check-icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div class="check-text">
+        <div class="check-title">Use the Present Continuous</div>
+        <div class="check-detail">am/is/are + -ing for things happening now and for future plans</div>
+      </div>
+    </div>
+    <div class="check-item" onclick="toggle(this)">
+      <div class="check-box"><svg class="check-icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div class="check-text">
+        <div class="check-title">Name parts of computers and control panels</div>
+        <div class="check-detail">screen, keyboard, mouse, gauge, knob, switch, button, keypad...</div>
+      </div>
+    </div>
+    <div class="check-item" onclick="toggle(this)">
+      <div class="check-box"><svg class="check-icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div class="check-text">
+        <div class="check-title">Make and take telephone calls</div>
+        <div class="check-detail">Can I speak to...? / This is... speaking. / Can I take a message?</div>
+      </div>
+    </div>
+    <div class="check-item" onclick="toggle(this)">
+      <div class="check-box"><svg class="check-icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div class="check-text">
+        <div class="check-title">Write a phone message</div>
+        <div class="check-detail">Change I → he/she, me → him/her. Use correct message format.</div>
+      </div>
+    </div>
+    <div class="check-item" onclick="toggle(this)">
+      <div class="check-box"><svg class="check-icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div class="check-text">
+        <div class="check-title">Say word stress correctly</div>
+        <div class="check-detail">EU-rope, COM-pa-ny, pe-tro-CHEM-i-cal, re-FI-ne-ry...</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="score-bar">
+    <div class="score-num" id="scoreNum">0/6</div>
+    <div class="score-label">items completed</div>
+    <div class="score-track"><div class="score-fill" id="scoreFill" style="width:0%"></div></div>
+    <div class="score-msg" id="scoreMsg">Tap the items above to record your progress.</div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-left">Capsule 42 de 57 · Unit 3 — Downstream</div>
+  <div class="footer-right">
+    <div class="footer-icon"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+    <div class="footer-text">Unit 3 — Downstream</div>
+  </div>
+</div>
+
+<script>
+var total=6;
+var msgs=['Keep going — you can do it!','Good start!','Half way there — keep it up!','Well done! You\'re making progress!','Almost there!','Excellent! You\'ve completed Unit 3! 🎉'];
+function toggle(el){
+  el.classList.toggle('done');
+  update();
+}
+function update(){
+  var done=document.querySelectorAll('.check-item.done').length;
+  document.getElementById('scoreNum').textContent=done+'/'+total;
+  document.getElementById('scoreFill').style.width=((done/total)*100)+'%';
+  document.getElementById('scoreMsg').textContent=msgs[done]||'';
+}
+</script>
+</body>
+</html>

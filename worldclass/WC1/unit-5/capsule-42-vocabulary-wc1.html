@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="logo-englishflow.png">
+<title>Vocabulary · Unit 5 — No Need to Panic · World Class 1</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#f0f4f8;font-family:'Barlow',sans-serif;min-height:100vh;display:flex;flex-direction:column}
+.header{background:#1e3a5f;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:3px solid #c8e63c}
+.pill-title .main{font-family:Georgia,serif;font-size:clamp(20px,4vw,34px);font-weight:700;color:#fff;line-height:1}
+.pill-title .sub{font-size:12px;font-weight:500;color:#7ec8d4;text-transform:uppercase;letter-spacing:.12em;margin-top:3px;display:block}
+.header-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.level-badge{background:#7ec8d4;border:1px solid #5ab0c0;border-radius:6px;padding:4px 10px;display:flex;flex-direction:column;align-items:center}
+.level-badge .trail{font-size:9px;color:#1e3a5f;text-transform:uppercase;letter-spacing:.1em;font-weight:600}
+.level-badge .level{font-size:11px;color:#1e3a5f;font-weight:700}
+.icon-box{width:36px;height:36px;border:1px solid #2d5a8e;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#2d5a8e}
+.icon-box svg{width:18px;height:18px;stroke:#7ec8d4;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.teacher-bar{background:#162d4a;padding:6px 20px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #2d5a8e}
+.teacher-btn{display:flex;align-items:center;gap:6px;background:#6b3fa0;border:none;border-radius:6px;padding:5px 12px;color:#fff;font-size:11px;font-weight:600;cursor:pointer}
+.teacher-btn svg{width:13px;height:13px;stroke:#fff;fill:none;stroke-width:2;flex-shrink:0}
+.teacher-label{font-size:10px;color:#4a7a9b;font-style:italic}
+.warn-bar{background:#162d4a;padding:5px 20px;font-size:11px;color:#4a7a9b;text-align:center;border-bottom:1px solid #2d5a8e}
+.warn-bar strong{color:#7ec8d4}
+.steps{display:flex;gap:6px;padding:8px 16px;overflow-x:auto;scrollbar-width:none;background:#fff;border-bottom:1px solid rgba(0,0,0,.08)}
+.steps::-webkit-scrollbar{display:none}
+.step{flex-shrink:0;display:flex;align-items:center;gap:5px;background:rgba(126,200,212,.08);border:1px solid rgba(126,200,212,.3);border-radius:20px;padding:5px 12px;font-size:11px;color:#1e3a5f;font-weight:500;white-space:nowrap}
+.step-num{background:#c8e63c;color:#1e3a5f;border-radius:50%;width:16px;height:16px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;flex-shrink:0}
+.content{display:grid;grid-template-columns:1fr 220px;gap:12px;padding:12px 16px;flex:1}
+.left-col{display:flex;flex-direction:column;gap:12px}
+.card{background:#fff;border-radius:10px;padding:14px 16px;border:0.5px solid rgba(0,0,0,.08)}
+.act-title{font-size:11px;font-weight:700;color:#1e3a5f;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px}
+.instruction{background:rgba(30,58,95,.05);border-left:3px solid #7ec8d4;padding:7px 10px;font-size:11px;color:#2C3E50;line-height:1.6;margin-bottom:10px}
+.instruction strong{color:#1e3a5f}
+.wb-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px}
+.wb-item{background:#f0f9ff;border:1px solid rgba(126,200,212,.35);border-radius:8px;padding:8px 10px;font-size:11.5px;color:#2C3E50;line-height:1.4}
+.wb-item b{color:#1e3a5f;text-transform:uppercase;font-size:11px;letter-spacing:.03em}
+.gap-item{padding:8px 12px;border-radius:8px;background:#f8fafc;border:0.5px solid rgba(0,0,0,.07);margin-bottom:7px;font-size:12px;color:#2C3E50;line-height:1.6}
+.gap-item b{color:#1e3a5f}
+.task-box{background:#fff8e6;border:1px solid rgba(200,230,60,.4);border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:8px}
+.task-box p{font-size:11px;color:#5a4a00;font-style:italic;line-height:1.5}
+.wa-btn{display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;border:none;border-radius:8px;padding:9px;font-size:12px;font-weight:600;cursor:pointer;width:100%;min-height:44px}
+.keywords{background:#fff;border-radius:10px;padding:14px;border:0.5px solid rgba(0,0,0,.08);align-self:start;position:sticky;top:12px}
+.kw-title{font-size:11px;font-weight:700;color:#1e3a5f;text-transform:uppercase;letter-spacing:.08em;padding-bottom:7px;border-bottom:2px solid #c8e63c;margin-bottom:8px}
+.kw-item{padding:5px 0;border-bottom:1px solid rgba(0,0,0,.05);display:flex;flex-direction:column;gap:2px}
+.kw-item:last-child{border-bottom:none}
+.kw-word{font-size:12px;font-weight:700;color:#2d5a8e;text-transform:uppercase;letter-spacing:.04em;text-decoration:none;display:block}
+.kw-word:hover{color:#1e3a5f;text-decoration:underline}
+.kw-hint{font-size:10px;color:#888;font-style:italic}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;z-index:100;padding:16px}
+.modal-box{background:#fff;border-radius:12px;padding:20px;max-width:460px;width:100%;max-height:85vh;overflow-y:auto;display:flex;flex-direction:column;gap:12px}
+.modal-title{font-family:Georgia,serif;font-size:18px;font-weight:700;color:#1e3a5f}
+.modal-field label{font-size:10px;color:#1e3a5f;text-transform:uppercase;letter-spacing:.08em;font-weight:700;display:block;margin-bottom:4px}
+.modal-field input,.modal-field textarea{width:100%;border:1px solid rgba(30,58,95,.2);border-radius:6px;padding:8px;font-size:12px;color:#2C3E50;font-family:'Barlow',sans-serif;outline:none}
+.modal-field input:focus,.modal-field textarea:focus{border-color:#1e3a5f}
+.modal-field textarea{resize:vertical;min-height:60px}
+.modal-reminder{font-size:10px;color:#888;font-style:italic;border-top:1px solid rgba(0,0,0,.08);padding-top:8px}
+.modal-actions{display:flex;gap:8px}
+.modal-cancel{flex:1;background:transparent;border:1px solid rgba(0,0,0,.15);color:#888;border-radius:7px;padding:8px;font-size:13px;cursor:pointer}
+.modal-send{flex:2;display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;border:none;border-radius:7px;padding:8px;font-size:13px;font-weight:700;cursor:pointer}
+.footer{background:#1e3a5f;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;margin-top:4px}
+.footer-left{font-size:11px;color:#7ec8d4;letter-spacing:.04em}
+.footer-right{display:flex;align-items:center;gap:8px}
+.footer-right svg{width:18px;height:18px;stroke:#c8e63c;fill:none;stroke-width:1.5}
+.footer-text{font-family:Georgia,serif;font-size:13px;font-weight:700;color:#fff}
+.ef-logo{width:26px;height:26px;border-radius:50%}
+@media(max-width:700px){.content{grid-template-columns:1fr;display:flex;flex-direction:column}.keywords{position:static;order:-1}.left-col{order:1}.wb-grid{grid-template-columns:1fr}}
+@media(max-width:480px){.steps{padding:6px 10px}.step{font-size:10px;padding:4px 9px}.content{padding:10px 12px;gap:10px}.card{padding:12px 13px}.wa-btn{min-height:48px}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="pill-title">
+    <div class="main">Vocabulary</div>
+    <span class="sub">Unit 5 — No Need to Panic</span>
+  </div>
+  <div class="header-right">
+    <div class="level-badge">
+      <span class="trail">World Class</span>
+      <span class="level">Book 1</span>
+    </div>
+    <div class="icon-box">
+      <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+    </div>
+  </div>
+</div>
+
+<div class="teacher-bar">
+  <button class="teacher-btn" onclick="playTeacher()">
+    <svg viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 1 3 3v7a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+    Teacher's Note
+  </button>
+  <span class="teacher-label">Listen before you start</span>
+  <audio id="teacher-audio" src="teacher-audio-wc1-unit5-vocabulary.mp3" preload="none"></audio>
+</div>
+
+<div class="warn-bar">This page is in English on purpose. <strong>Please do not translate it.</strong></div>
+
+<div class="steps">
+  <div class="step"><span class="step-num">1</span>Study the word bank</div>
+  <div class="step"><span class="step-num">2</span>Complete the stories</div>
+  <div class="step"><span class="step-num">3</span>Word combinations</div>
+  <div class="step"><span class="step-num">4</span>Send your answers</div>
+</div>
+
+<div class="content">
+  <div class="left-col">
+
+    <div class="card">
+      <div class="act-title">Word Bank — People who have beaten the odds</div>
+      <div class="instruction"><strong>Study</strong> the 9 target words · <strong>Say</strong> each one aloud · Book reference: <strong>SB page 50</strong></div>
+      <div class="wb-grid">
+        <div class="wb-item"><b>collapse</b> — to fall down suddenly</div>
+        <div class="wb-item"><b>encourage</b> — to give someone confidence or hope</div>
+        <div class="wb-item"><b>handle</b> — to deal with a problem successfully</div>
+        <div class="wb-item"><b>injure</b> — to damage a part of the body</div>
+        <div class="wb-item"><b>intense</b> — very great or extreme</div>
+        <div class="wb-item"><b>ordeal</b> — a very difficult, stressful experience</div>
+        <div class="wb-item"><b>panic</b> — to feel very afraid all of a sudden</div>
+        <div class="wb-item"><b>rescue</b> — to save someone from danger</div>
+        <div class="wb-item"><b>trapped</b> — unable to escape from a place</div>
+      </div>
+      <div class="instruction" style="margin-bottom:0">💡 <strong>Hang in there!</strong> = Stay positive! Don't give up! (said to encourage someone in a difficult situation)</div>
+    </div>
+
+    <div class="card">
+      <div class="act-title">Activity A — Two true survival stories</div>
+      <div class="instruction"><strong>Complete</strong> each sentence with the best word from the Word Bank. These are TRUE stories!</div>
+      <div class="gap-item"><b>✈️ The Hudson River landing (2009):</b> Flight 1549 lost power in both engines after take-off from New York. The passengers were in danger, but the pilot did not <b>(1)</b> ________ — he stayed calm and <b>(2)</b> ________ the emergency perfectly, landing on the river. Boats came quickly to <b>(3)</b> ________ everyone from the water. Nobody was seriously <b>(4)</b> ________. Survivors say the whole <b>(5)</b> ________ lasted only a few minutes.</div>
+      <div class="gap-item"><b>⛏️ The Chilean miners (2010):</b> A mine in Chile <b>(6)</b> ________ suddenly, and 33 men were <b>(7)</b> ________ 700 metres underground for 69 days. They suffered <b>(8)</b> ________ heat and long periods of darkness. Whenever someone got scared, the others <b>(9)</b> ________ him: "Hang in there! Help is coming!" — and finally it came.</div>
+    </div>
+
+    <div class="card">
+      <div class="act-title">Activity B — Word combinations</div>
+      <div class="instruction"><strong>handle</strong> combines with many nouns. Complete with your own ideas:</div>
+      <div class="gap-item">1. At work, I have to handle ________ every day.</div>
+      <div class="gap-item">2. The most difficult thing to handle in my job is ________.</div>
+      <div class="gap-item">3. Something that is easy for me to handle: ________.</div>
+    </div>
+
+    <div class="card">
+      <div class="act-title">Activity C — Ask &amp; Answer 🎙️</div>
+      <div class="instruction"><strong>Record yourself</strong> answering: <em>"How do you handle scary or stressful situations — are you calm, or do you start to panic? Explain with an example."</em> Use at least 4 words from the Word Bank.</div>
+    </div>
+
+    <div class="task-box">
+      <p>✍️ Write your answers to Activities A and B — and 🎙️ record Activity C. Send via WhatsApp.</p>
+      <button class="wa-btn" onclick="openModal()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+        Send via WhatsApp
+      </button>
+    </div>
+
+  </div>
+
+  <div class="keywords">
+    <div class="kw-title">Key Words</div>
+    <div class="kw-item"><a class="kw-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/collapse" target="_blank">Collapse</a><span class="kw-hint">Fall down suddenly</span></div>
+    <div class="kw-item"><a class="kw-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/encourage" target="_blank">Encourage</a><span class="kw-hint">Give confidence or hope</span></div>
+    <div class="kw-item"><a class="kw-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/handle" target="_blank">Handle</a><span class="kw-hint">Deal with successfully</span></div>
+    <div class="kw-item"><a class="kw-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/injure" target="_blank">Injure</a><span class="kw-hint">Damage the body</span></div>
+    <div class="kw-item"><a class="kw-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/intense" target="_blank">Intense</a><span class="kw-hint">Very great or extreme</span></div>
+    <div class="kw-item"><a class="kw-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/ordeal" target="_blank">Ordeal</a><span class="kw-hint">Very difficult situation</span></div>
+    <div class="kw-item"><a class="kw-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/rescue" target="_blank">Rescue</a><span class="kw-hint">Save from danger</span></div>
+    <div class="kw-item"><a class="kw-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/trapped" target="_blank">Trapped</a><span class="kw-hint">Unable to escape</span></div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-left">Capsule 42 of 120 · Unit 5 — No Need to Panic · World Class 1</div>
+  <div class="footer-right"><img class="ef-logo" src="logo-englishflow.png" alt="EnglishFlow" onerror="this.style.display='none'">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+    <span class="footer-text">World Class 1</span>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal" style="display:none">
+  <div class="modal-box">
+    <div class="modal-title">Send your answers</div>
+    <div class="modal-field"><label>Your name</label><input type="text" id="studentName" placeholder="Type your name..." autocomplete="off"></div>
+    <div class="modal-field"><label>Activity A — Words 1–9</label><textarea id="act1" placeholder="1. panic  2. ...  3. ..."></textarea></div>
+    <div class="modal-field"><label>Activity B — handle + noun (1–3)</label><textarea id="act2" placeholder="1. I have to handle...&#10;2. ..."></textarea></div>
+    <div class="modal-reminder">🎙️ After sending, record Activity C (how you handle stress) in the same conversation.</div>
+    <div class="modal-actions">
+      <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+      <button class="modal-send" onclick="sendWA()">Send via WhatsApp</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function playTeacher(){document.getElementById('teacher-audio').play().catch(function(){});}
+function openModal(){
+  var saved=localStorage.getItem('ef_student_name');
+  if(saved)document.getElementById('studentName').value=saved;
+  document.getElementById('modal').style.display='flex';
+}
+function closeModal(){document.getElementById('modal').style.display='none';}
+function sendWA(){
+  var name=document.getElementById('studentName').value.trim()||'Student';
+  localStorage.setItem('ef_student_name',name);
+  var now=new Date();
+  var date=now.toLocaleDateString('pt-BR');
+  var time=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  var msg='Aluno: '+name+'\nData: '+date+' at '+time+'\nCápsula: Capsule 42 of 120 — Vocabulary · Unit 5 — No Need to Panic · World Class 1\n\n'
+        +'- Activity A (1-9):\n'+(document.getElementById('act1').value||'(not answered)')+'\n\n'
+        +'- Activity B (handle):\n'+(document.getElementById('act2').value||'(not answered)')+'\n\n'
+        +'Áudio na mensagem seguinte.';
+  var formUrl='https://docs.google.com/forms/d/e/1FAIpQLSdGVa3JN0PfYG1C-YV8oGk-EQ5u5skM-V_LJImf_kijpmijWw/formResponse';
+  var data=new FormData();
+  data.append('entry.566273869',name);
+  data.append('entry.947389419','Capsule 42 of 120');
+  data.append('entry.156113480','Unit 5 — No Need to Panic');
+  data.append('entry.583447830','World Class 1');
+  data.append('entry.923345328','Done');
+  fetch(formUrl,{method:'POST',mode:'no-cors',body:data});
+  window.open('https://wa.me/5522999585058?text='+encodeURIComponent(msg),'_blank');
+  closeModal();
+}
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+</script>
+<script>(function(){try{var q=new URLSearchParams(location.search);if(q.get("aluno"))localStorage.setItem("ef_student_name",q.get("aluno"));}catch(e){}})();</script>
+</body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="logo-englishflow.png">
+<title>Business Communication · Unit 4 — Departments</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#E8EAED;font-family:'Barlow',sans-serif;min-height:100vh;color:#2C3E50}
+.header{background:#7C4DCC;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+.pill-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:700;color:#FFFFFF;line-height:1}
+.pill-title span{color:#E8EAED;font-size:clamp(14px,2.5vw,22px);font-weight:600;display:block;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.icon-box{width:48px;height:48px;border:1.5px solid rgba(255,255,255,.5);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.icon-box svg{width:26px;height:26px;stroke:#FFFFFF;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.audio-bar{background:#FFFFFF;border-bottom:1px solid rgba(159,122,234,.2);padding:8px 24px;display:flex;align-items:center;gap:12px}
+.audio-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#9F7AEA;font-weight:700;white-space:nowrap}
+.audio-bar audio{flex:1;height:32px;accent-color:#9F7AEA}
+.translate-warning{background:rgba(159,122,234,.07);border-bottom:1px solid rgba(159,122,234,.15);padding:6px 24px;font-size:11px;color:#2C3E50;text-align:center}
+.translate-warning strong{color:#7C4DCC}
+.steps{display:flex;gap:6px;padding:8px 16px;overflow-x:auto;scrollbar-width:none}
+.steps::-webkit-scrollbar{display:none}
+.step{flex-shrink:0;display:flex;align-items:center;gap:6px;background:#FFFFFF;border:1px solid rgba(159,122,234,.3);border-radius:20px;padding:6px 12px;font-size:11.5px;color:#2C3E50;font-weight:500;white-space:nowrap}
+.step svg{width:13px;height:13px;stroke:#9F7AEA;fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0}
+.content{display:grid;grid-template-columns:1fr 340px;gap:12px;padding:0 16px 16px}
+.main-area{background:#FFFFFF;border-radius:10px;padding:14px 16px}
+.zone-label{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#7C4DCC;font-weight:700;margin-bottom:8px}
+.text-block{font-size:12px;line-height:1.65;color:#2C3E50}
+.text-block p{margin-bottom:7px}
+.dialogue-box{background:#E8EAED;border-left:3px solid #9F7AEA;border-radius:6px;padding:10px 12px;margin-bottom:10px;font-size:12px;line-height:1.7}
+.dialogue-box .spk{font-weight:700;color:#7C4DCC}
+.act-title{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:#7C4DCC;text-transform:uppercase;letter-spacing:.06em;margin:14px 0 6px}
+.mode{display:inline-block;background:rgba(159,122,234,.12);color:#7C4DCC;border-radius:4px;padding:1px 7px;font-size:9px;font-weight:700;letter-spacing:.08em;vertical-align:middle;margin-left:6px}
+.msg-pad{background:#FFFDF5;border:1px solid rgba(159,122,234,.4);border-radius:10px;padding:14px 16px;margin:8px 0;max-width:380px;font-size:12.5px;line-height:2;box-shadow:0 2px 6px rgba(44,62,80,.08)}
+.msg-pad .mp-title{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:#7C4DCC;text-transform:uppercase;letter-spacing:.08em;border-bottom:1px dashed rgba(159,122,234,.4);padding-bottom:4px;margin-bottom:6px}
+.msg-pad .blank{color:#7C4DCC;font-weight:600;letter-spacing:.12em}
+.task-box{background:#E8EAED;border:1px solid rgba(159,122,234,.3);border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.task-box p{font-size:11px;color:#2C3E50;font-style:italic;line-height:1.45}
+.whatsapp-btn{display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;border:none;border-radius:8px;padding:10px 12px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;cursor:pointer;min-height:44px;width:100%}
+.whatsapp-btn:hover{background:#1ebc58}
+.whatsapp-btn svg{width:16px;height:16px;fill:#fff;flex-shrink:0}
+.zone-support{background:#FFFFFF;border-radius:10px;padding:14px;align-self:start}
+.keyword-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#2C3E50;text-transform:uppercase;letter-spacing:.08em;padding-bottom:8px;border-bottom:1px solid rgba(159,122,234,.2);margin-bottom:6px}
+.gram-card{background:#F6F1FE;border:1px solid rgba(159,122,234,.35);border-radius:8px;padding:10px 12px;margin-bottom:8px}
+.gram-h{font-size:11px;color:#7C4DCC;font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em}
+.gram-row{font-size:12px;color:#2C3E50;padding:3px 0;border-bottom:1px solid rgba(159,122,234,.12)}
+.gram-row:last-child{border:none}
+.gram-tip{font-size:11px;color:#7C4DCC;background:rgba(159,122,234,.08);border-radius:6px;padding:7px 10px;margin-top:6px}
+.footer{background:#FFFFFF;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(159,122,234,.15);margin-top:4px}
+.footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#8A9BAC;letter-spacing:.04em}
+.footer-right{display:flex;align-items:center;gap:10px}
+.ef-logo{width:26px;height:26px;border-radius:50%}
+.footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:#7C4DCC;letter-spacing:.06em;text-transform:uppercase}
+.modal-overlay{position:fixed;inset:0;background:rgba(44,62,80,.55);display:flex;align-items:center;justify-content:center;z-index:100;padding:16px}
+.modal-box{background:#FFFFFF;border-radius:14px;padding:24px;max-width:480px;width:100%;max-height:85vh;overflow-y:auto;display:flex;flex-direction:column;gap:14px}
+.modal-title{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:#2C3E50}
+.modal-field label{font-size:11px;color:#7C4DCC;text-transform:uppercase;letter-spacing:.08em;font-weight:700;display:block;margin-bottom:5px}
+.modal-field textarea,.modal-field input[type="text"]{width:100%;background:#E8EAED;border:1px solid rgba(159,122,234,.3);border-radius:6px;padding:9px;font-size:12px;color:#2C3E50;font-family:'Barlow',sans-serif;outline:none}
+.modal-field textarea{resize:vertical;min-height:70px}
+.modal-field textarea:focus,.modal-field input[type="text"]:focus{border-color:#9F7AEA}
+.modal-reminder{font-size:11px;color:#8A9BAC;font-style:italic;border-top:1px solid rgba(159,122,234,.15);padding-top:10px}
+.modal-actions{display:flex;gap:8px}
+.modal-cancel{flex:1;background:transparent;border:1px solid rgba(44,62,80,.25);color:#8A9BAC;border-radius:8px;padding:9px;font-family:'Barlow Condensed',sans-serif;font-size:14px;cursor:pointer;min-height:44px}
+.modal-send{flex:2;display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;border:none;border-radius:8px;padding:9px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;cursor:pointer;min-height:44px}
+.modal-send svg{width:15px;height:15px;fill:#fff}
+@media(max-width:768px){
+.content{grid-template-columns:1fr;gap:10px;padding:0 12px 16px}
+.pill-title{font-size:clamp(18px,3vw,28px)}
+.step{font-size:10px;padding:4px 10px}
+.main-area{padding:12px}
+.act-title{font-size:12px}
+.keyword-title{font-size:12px}
+.zone-support{margin-top:4px}
+.modal-box{padding:16px}
+}
+@media(max-width:480px){
+.content{padding:0 8px 12px}
+.header{padding:10px 16px}
+.footer{padding:8px 16px}
+.footer-left{font-size:11px}
+.main-area{padding:10px}
+.modal-box{padding:12px}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="pill-title">Business Communication<span>Taking &amp; leaving a message</span></div>
+  <div class="icon-box">
+    <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="8" y1="9" x2="16" y2="9"/><line x1="8" y1="13" x2="13" y2="13"/></svg>
+  </div>
+</div>
+
+<div class="audio-bar">
+  <span class="audio-label">🎧 Teacher's audio</span>
+  <audio controls preload="none"><source src="teacher-audio-bstarter-unit4-business-communication.mp3" type="audio/mpeg">Audio not available.</audio>
+</div>
+
+<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
+
+<div class="steps">
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>1. Study key expressions</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>2. Role-play the call</div>
+  <div class="step"><svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>3. Send your answers</div>
+</div>
+
+<div class="content">
+  <div class="main-area">
+    <div class="zone-label">Business Communication — Taking &amp; leaving a message · Unit 4</div>
+    <div class="text-block">
+
+      <p>The person you call is not there? No problem — <b>leave a message</b>. Someone calls your colleague? <b>Take a message</b>. Study the key expressions on the side panel. 👉</p>
+
+      <div class="act-title">Model call <span class="mode">STUDY</span></div>
+      <div class="dialogue-box">
+        <span class="spk">Bruna:</span> Sales. Hello?<br>
+        <span class="spk">Diego:</span> Hi. Is Camila there?<br>
+        <span class="spk">Bruna:</span> No, I'm sorry, she's out. Can I take a message?<br>
+        <span class="spk">Diego:</span> Yes, it's Diego in IT. I'm calling about the new sales report.<br>
+        <span class="spk">Bruna:</span> Go ahead.<br>
+        <span class="spk">Diego:</span> Please ask her to call me back. My extension is 4 0 2.<br>
+        <span class="spk">Bruna:</span> Sorry, can you repeat that?<br>
+        <span class="spk">Diego:</span> 4 0 2.<br>
+        <span class="spk">Bruna:</span> So that's 4 0 2. Is there anything else?<br>
+        <span class="spk">Diego:</span> No, that's all. Thanks!<br>
+        <span class="spk">Bruna:</span> OK. I'll give Camila your message.
+      </div>
+
+      <div class="act-title">Activity 1 — Complete the message pad <span class="mode">BY WRITTEN</span></div>
+      <p>Read the model call again and complete Bruna's note:</p>
+      <div class="msg-pad">
+        <div class="mp-title">📝 While you were out</div>
+        Message for: <span class="blank">1._________</span><br>
+        Caller: <span class="blank">2._________</span> in the <span class="blank">3._________</span> Department<br>
+        Reason for call: the new sales <span class="blank">4._________</span><br>
+        Action: please call him back on extension <span class="blank">5._________</span>
+      </div>
+
+      <div class="act-title">Activity 2 — What do you say? <span class="mode">BY WRITTEN</span></div>
+      <p>Write the expression for each situation:</p>
+      <ol>
+        <li>You answer, and the caller wants your colleague. You offer to write the information. → "Can I ________ a ________?"</li>
+        <li>You don't understand the number. → "Can you ________ that?"</li>
+        <li>You want to confirm the number 517. → "________ ________ 5 1 7."</li>
+        <li>You finish taking the message. → "I'll ________ her your ________."</li>
+      </ol>
+
+      <div class="act-title">Activity 3 — Role-play: take a message <span class="mode">BY AUDIO</span></div>
+      <p>🎙️ Record a complete call — <b>you do both voices</b>: someone calls asking for <b>Pedro</b> (he's out), leaves a message about <b>the meeting on Friday</b> and a call-back number. Use: <i>Can I take a message? · Can you repeat that? · So that's… · I'll give Pedro your message.</i></p>
+
+    </div>
+    <div class="task-box">
+      <p>✍️ Complete Activities 1–2, then 🎙️ record your call (Activity 3).</p>
+      <button class="whatsapp-btn" onclick="openModal()">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Enviar respostas
+      </button>
+    </div>
+  </div>
+
+  <div class="zone-support">
+    <div class="keyword-title">Key Expressions — Messages</div>
+    <div class="gram-card">
+      <div class="gram-h">📝 Taking a message</div>
+      <div class="gram-row">Can I take a message?</div>
+      <div class="gram-row">Go ahead.</div>
+      <div class="gram-row">I'll give (Pedro) your message.</div>
+    </div>
+    <div class="gram-card">
+      <div class="gram-h">📞 Leaving a message</div>
+      <div class="gram-row">I'm calling about (the report).</div>
+      <div class="gram-row">It's about (the meeting).</div>
+      <div class="gram-row">Please call me back.</div>
+      <div class="gram-row">My number is (…).</div>
+    </div>
+    <div class="gram-card">
+      <div class="gram-h">🔁 Repetition &amp; checking</div>
+      <div class="gram-row">Sorry, I don't understand.</div>
+      <div class="gram-row">Can you repeat that?</div>
+      <div class="gram-row">So that's (4 0 2).</div>
+    </div>
+    <div class="gram-card">
+      <div class="gram-h">👋 Ending</div>
+      <div class="gram-row">Is there anything else?</div>
+    </div>
+    <div class="gram-tip">💡 Always repeat numbers back: "So that's…" — it avoids mistakes.</div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-left">Cápsula 23 de 54 · Unit 4 — Departments · Business Starter</div>
+  <div class="footer-right">
+    <img class="ef-logo" src="logo-englishflow.png" alt="EnglishFlow" onerror="this.style.display='none'">
+    <div class="footer-text">Unit 4 — Departments</div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal" style="display:none">
+  <div class="modal-box">
+    <div class="modal-title">Business Communication — Send your answers</div>
+    <div class="modal-field"><label>Your name</label><input type="text" id="studentName" placeholder="Type your name..."></div>
+    <div class="modal-field"><label>Activity 1 — Message pad (1–5)</label><textarea placeholder="1. Camila&#10;2. ..."></textarea></div>
+    <div class="modal-field"><label>Activity 2 — Expressions (1–4)</label><textarea placeholder="1. take / message&#10;2. ..."></textarea></div>
+    <div class="modal-reminder">🎙️ Após enviar, grave sua ligação completa (Activity 3) fazendo as duas vozes.</div>
+    <div class="modal-actions">
+      <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+      <button class="modal-send" onclick="sendWA()">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Send via WhatsApp
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+function openModal(){
+  var saved=localStorage.getItem('ef_student_name');
+  if(saved)document.getElementById('studentName').value=saved;
+  document.getElementById('modal').style.display='flex';
+}
+function closeModal(){document.getElementById('modal').style.display='none';}
+function sendWA(){
+  var name=document.getElementById('studentName').value.trim()||'Aluno';
+  localStorage.setItem('ef_student_name',name);
+  var now=new Date();
+  var d=now.toLocaleDateString('pt-BR');
+  var h=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  var msg='Aluno: '+name+'\nData: '+d+' às '+h+'\nCápsula: Business Communication — Unit 4 — Departments (Business Starter)\n\n';
+  document.querySelectorAll('#modal .modal-field:not(:first-child)').forEach(function(f){
+    var ta=f.querySelector('textarea');
+    if(ta)msg+='- '+f.querySelector('label').textContent+':\n'+(ta.value||'(not answered)')+'\n\n';
+  });
+  msg+='Áudio na mensagem seguinte';
+  window.open('https://wa.me/5522999585058?text='+encodeURIComponent(msg.trim()),'_blank');
+}
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+</script>
+<script>
+/* EnglishFlow — rastreio de frequência */
+(function(){
+  var FORM='https://docs.google.com/forms/d/e/1FAIpQLSdGVa3JN0PfYG1C-YV8oGk-EQ5u5skM-V_LJImf_kijpmijWw/formResponse';
+  try{var q=new URLSearchParams(location.search);
+      if(q.get('aluno')){localStorage.setItem('og1_aluno',q.get('aluno'));}}catch(e){}
+  function aluno(){try{return localStorage.getItem('og1_aluno')||localStorage.getItem('ef_student_name')||'(sem nome)';}catch(e){return '(sem nome)';}}
+  function ping(status){
+    var d=new FormData();
+    d.append('entry.566273869',aluno());
+    d.append('entry.947389419','23');
+    d.append('entry.156113480','Unit 4 — Departments');
+    d.append('entry.583447830','Business Starter');
+    d.append('entry.923345328',status);
+    var ok=false;
+    try{ok=navigator.sendBeacon(FORM,d);}catch(e){}
+    if(!ok){try{fetch(FORM,{method:'POST',mode:'no-cors',body:d});}catch(e){}}
+  }
+  var send=document.querySelectorAll('.modal-send');
+  var sels=send.length?send:document.querySelectorAll('a[href*="wa.me"], .whatsapp-btn');
+  for(var i=0;i<sels.length;i++){sels[i].addEventListener('click',function(){ping('done');});}
+})();
+</script>
+</body>
+</html>

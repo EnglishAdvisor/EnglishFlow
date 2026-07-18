@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="logo-englishflow.png">
+<title>Talking Point · Unit 4 — Departments</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#E8EAED;font-family:'Barlow',sans-serif;min-height:100vh;color:#2C3E50}
+.header{background:#7C4DCC;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+.pill-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:700;color:#FFFFFF;line-height:1}
+.pill-title span{color:#E8EAED;font-size:clamp(14px,2.5vw,22px);font-weight:600;display:block;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.icon-box{width:48px;height:48px;border:1.5px solid rgba(255,255,255,.5);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.icon-box svg{width:26px;height:26px;stroke:#FFFFFF;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.audio-bar{background:#FFFFFF;border-bottom:1px solid rgba(159,122,234,.2);padding:8px 24px;display:flex;align-items:center;gap:12px}
+.audio-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#9F7AEA;font-weight:700;white-space:nowrap}
+.audio-bar audio{flex:1;height:32px;accent-color:#9F7AEA}
+.translate-warning{background:rgba(159,122,234,.07);border-bottom:1px solid rgba(159,122,234,.15);padding:6px 24px;font-size:11px;color:#2C3E50;text-align:center}
+.translate-warning strong{color:#7C4DCC}
+.steps{display:flex;gap:6px;padding:8px 16px;overflow-x:auto;scrollbar-width:none}
+.steps::-webkit-scrollbar{display:none}
+.step{flex-shrink:0;display:flex;align-items:center;gap:6px;background:#FFFFFF;border:1px solid rgba(159,122,234,.3);border-radius:20px;padding:6px 12px;font-size:11.5px;color:#2C3E50;font-weight:500;white-space:nowrap}
+.step svg{width:13px;height:13px;stroke:#9F7AEA;fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0}
+.content{display:grid;grid-template-columns:1fr 340px;gap:12px;padding:0 16px 16px}
+.main-area{background:#FFFFFF;border-radius:10px;padding:14px 16px}
+.zone-label{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#7C4DCC;font-weight:700;margin-bottom:8px}
+.text-block{font-size:12px;line-height:1.65;color:#2C3E50}
+.text-block p{margin-bottom:7px}
+.dialogue-box{background:#E8EAED;border-left:3px solid #9F7AEA;border-radius:6px;padding:10px 12px;margin-bottom:10px;font-size:12px;line-height:1.7}
+.act-title{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:#7C4DCC;text-transform:uppercase;letter-spacing:.06em;margin:14px 0 6px}
+.mode{display:inline-block;background:rgba(159,122,234,.12);color:#7C4DCC;border-radius:4px;padding:1px 7px;font-size:9px;font-weight:700;letter-spacing:.08em;vertical-align:middle;margin-left:6px}
+.dir-table{width:100%;max-width:460px;border-collapse:collapse;font-size:12px;margin:8px 0}
+.dir-table th{background:#7C4DCC;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:12px;text-transform:uppercase;letter-spacing:.06em;padding:6px 10px;text-align:left}
+.dir-table td{padding:6px 10px;border-bottom:1px solid rgba(159,122,234,.15);background:#F6F1FE}
+.dir-table tr:last-child td{border-bottom:none}
+.task-box{background:#E8EAED;border:1px solid rgba(159,122,234,.3);border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.task-box p{font-size:11px;color:#2C3E50;font-style:italic;line-height:1.45}
+.whatsapp-btn{display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;border:none;border-radius:8px;padding:10px 12px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;cursor:pointer;min-height:44px;width:100%}
+.whatsapp-btn:hover{background:#1ebc58}
+.whatsapp-btn svg{width:16px;height:16px;fill:#fff;flex-shrink:0}
+.zone-support{background:#FFFFFF;border-radius:10px;padding:14px;align-self:start}
+.keyword-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#2C3E50;text-transform:uppercase;letter-spacing:.08em;padding-bottom:8px;border-bottom:1px solid rgba(159,122,234,.2);margin-bottom:6px}
+.keywords-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.keyword-item{padding:6px 0;border-bottom:1px solid rgba(159,122,234,.1);display:flex;flex-direction:column;gap:3px}
+.keyword-item:last-child,.keyword-item:nth-last-child(2){border-bottom:none}
+.kw{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#7C4DCC;letter-spacing:.04em;text-transform:uppercase;text-decoration:none}
+.kw:hover{color:#9F7AEA}
+.kw-hint{font-size:10px;color:#8A9BAC;font-style:italic}
+.footer{background:#FFFFFF;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(159,122,234,.15);margin-top:4px}
+.footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#8A9BAC;letter-spacing:.04em}
+.footer-right{display:flex;align-items:center;gap:10px}
+.ef-logo{width:26px;height:26px;border-radius:50%}
+.footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:#7C4DCC;letter-spacing:.06em;text-transform:uppercase}
+.modal-overlay{position:fixed;inset:0;background:rgba(44,62,80,.55);display:flex;align-items:center;justify-content:center;z-index:100;padding:16px}
+.modal-box{background:#FFFFFF;border-radius:14px;padding:24px;max-width:480px;width:100%;max-height:85vh;overflow-y:auto;display:flex;flex-direction:column;gap:14px}
+.modal-title{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:#2C3E50}
+.modal-field label{font-size:11px;color:#7C4DCC;text-transform:uppercase;letter-spacing:.08em;font-weight:700;display:block;margin-bottom:5px}
+.modal-field textarea,.modal-field input[type="text"]{width:100%;background:#E8EAED;border:1px solid rgba(159,122,234,.3);border-radius:6px;padding:9px;font-size:12px;color:#2C3E50;font-family:'Barlow',sans-serif;outline:none}
+.modal-field textarea{resize:vertical;min-height:70px}
+.modal-field textarea:focus,.modal-field input[type="text"]:focus{border-color:#9F7AEA}
+.modal-reminder{font-size:11px;color:#8A9BAC;font-style:italic;border-top:1px solid rgba(159,122,234,.15);padding-top:10px}
+.modal-actions{display:flex;gap:8px}
+.modal-cancel{flex:1;background:transparent;border:1px solid rgba(44,62,80,.25);color:#8A9BAC;border-radius:8px;padding:9px;font-family:'Barlow Condensed',sans-serif;font-size:14px;cursor:pointer;min-height:44px}
+.modal-send{flex:2;display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;border:none;border-radius:8px;padding:9px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;cursor:pointer;min-height:44px}
+.modal-send svg{width:15px;height:15px;fill:#fff}
+@media(max-width:768px){
+.content{grid-template-columns:1fr;gap:10px;padding:0 12px 16px}
+.pill-title{font-size:clamp(18px,3vw,28px)}
+.step{font-size:10px;padding:4px 10px}
+.main-area{padding:12px}
+.act-title{font-size:12px}
+.keyword-title{font-size:12px}
+.zone-support{margin-top:4px}
+.modal-box{padding:16px}
+}
+@media(max-width:480px){
+.content{padding:0 8px 12px}
+.header{padding:10px 16px}
+.footer{padding:8px 16px}
+.footer-left{font-size:11px}
+.main-area{padding:10px}
+.modal-box{padding:12px}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="pill-title">Talking Point<span>Voicemail Messages</span></div>
+  <div class="icon-box">
+    <svg viewBox="0 0 24 24"><circle cx="5.5" cy="11.5" r="3.5"/><circle cx="18.5" cy="11.5" r="3.5"/><line x1="5.5" y1="15" x2="18.5" y2="15"/></svg>
+  </div>
+</div>
+
+<div class="audio-bar">
+  <span class="audio-label">🎧 Teacher's audio (the 3 voicemails are here!)</span>
+  <audio controls preload="none"><source src="teacher-audio-bstarter-unit4-talking-point.mp3" type="audio/mpeg">Audio not available.</audio>
+</div>
+
+<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
+
+<div class="steps">
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>1. Read about the company</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>2. Listen to the voicemails</div>
+  <div class="step"><svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>3. Send your answers</div>
+</div>
+
+<div class="content">
+  <div class="main-area">
+    <div class="zone-label">Talking Point — Voicemail messages · Unit 4</div>
+    <div class="text-block">
+
+      <p>You work for <b>NovaTech BR</b>, an IT company from Rio. Read about the company:</p>
+      <div class="dialogue-box" style="font-style:normal">
+        🏢 <b>NovaTech BR</b> is an IT company. There are two offices in Brazil and one office in Portugal. The head office is in Rio de Janeiro. They manage computer systems and make new software. There are 25 people in the head office. There are departments for Human Resources and Sales, and teams of IT technicians for projects.
+      </div>
+
+      <div class="act-title">Activity 1 — About the company <span class="mode">BY WRITTEN</span></div>
+      <ol>
+        <li>Where is the head office of NovaTech BR?</li>
+        <li>What do they do?</li>
+        <li>What are the departments?</li>
+        <li>Is it a big company?</li>
+      </ol>
+
+      <div class="act-title">Activity 2 — The voicemails <span class="mode">BY WRITTEN</span></div>
+      <p>▶ Play the teacher's audio. You hear <b>3 voicemails</b> on the company phone. For each one, write:</p>
+      <div class="dialogue-box" style="font-style:normal">
+        📼 Voicemail 1: Caller: ______ · Reason: ______ · Message: ______<br>
+        📼 Voicemail 2: Caller: ______ · Reason: ______ · Message: ______<br>
+        📼 Voicemail 3: Caller: ______ · Reason: ______ · Message: ______
+      </div>
+
+      <div class="act-title">Activity 3 — Who gets the message? <span class="mode">BY WRITTEN + AUDIO</span></div>
+      <p>Look at the people in the head office. Who do you give each voicemail to? <b>Why?</b></p>
+      <table class="dir-table">
+        <tr><th>Name</th><th>Department</th><th>Ext.</th></tr>
+        <tr><td>Otávio Pereira</td><td>Managing Director</td><td>100</td></tr>
+        <tr><td>Fernanda Rocha</td><td>IT Projects Manager</td><td>101</td></tr>
+        <tr><td>Rafael Silva</td><td>IT Projects Assistant</td><td>102</td></tr>
+        <tr><td>Simone Matos</td><td>Sales (Brazil)</td><td>104</td></tr>
+        <tr><td>Tiago Kfouri</td><td>Sales (Portugal)</td><td>105</td></tr>
+        <tr><td>Elaine Santos</td><td>HR Manager</td><td>106</td></tr>
+        <tr><td>Gil Ramos</td><td>HR Assistant</td><td>107</td></tr>
+      </table>
+      <p>Write your 3 answers, then 🎙️ record yourself explaining: <i>"I give voicemail 1 to … because …"</i></p>
+
+    </div>
+    <div class="task-box">
+      <p>✍️ Answer Activities 1–3, then 🎙️ record your explanation.</p>
+      <button class="whatsapp-btn" onclick="openModal()">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Enviar respostas
+      </button>
+    </div>
+  </div>
+
+  <div class="zone-support">
+    <div class="keyword-title">Key Words — Unit 4</div>
+    <div class="keywords-grid">
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/department" target="_blank">Department</a><span class="kw-hint">Part of a company</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/responsibility" target="_blank">Responsibility</a><span class="kw-hint">What you must do</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/manager" target="_blank">Manager</a><span class="kw-hint">Person in charge</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/report" target="_blank">Report</a><span class="kw-hint">Written information</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/meeting" target="_blank">Meeting</a><span class="kw-hint">People talk together</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/schedule" target="_blank">Schedule</a><span class="kw-hint">Plan of times</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-left">Cápsula 24 de 54 · Unit 4 — Departments · Business Starter</div>
+  <div class="footer-right">
+    <img class="ef-logo" src="logo-englishflow.png" alt="EnglishFlow" onerror="this.style.display='none'">
+    <div class="footer-text">Unit 4 — Departments</div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal" style="display:none">
+  <div class="modal-box">
+    <div class="modal-title">Talking Point — Send your answers</div>
+    <div class="modal-field"><label>Your name</label><input type="text" id="studentName" placeholder="Type your name..."></div>
+    <div class="modal-field"><label>Activity 1 — About the company (1–4)</label><textarea placeholder="1. The head office is in...&#10;2. ..."></textarea></div>
+    <div class="modal-field"><label>Activity 2 — The 3 voicemails</label><textarea placeholder="VM1: caller / reason / message&#10;VM2: ...&#10;VM3: ..."></textarea></div>
+    <div class="modal-field"><label>Activity 3 — Who gets each message + why</label><textarea placeholder="VM1 → ... because ...&#10;VM2 → ..."></textarea></div>
+    <div class="modal-reminder">🎙️ Após enviar, grave sua explicação (Activity 3) na mesma conversa.</div>
+    <div class="modal-actions">
+      <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+      <button class="modal-send" onclick="sendWA()">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Send via WhatsApp
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+function openModal(){
+  var saved=localStorage.getItem('ef_student_name');
+  if(saved)document.getElementById('studentName').value=saved;
+  document.getElementById('modal').style.display='flex';
+}
+function closeModal(){document.getElementById('modal').style.display='none';}
+function sendWA(){
+  var name=document.getElementById('studentName').value.trim()||'Aluno';
+  localStorage.setItem('ef_student_name',name);
+  var now=new Date();
+  var d=now.toLocaleDateString('pt-BR');
+  var h=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  var msg='Aluno: '+name+'\nData: '+d+' às '+h+'\nCápsula: Talking Point — Unit 4 — Departments (Business Starter)\n\n';
+  document.querySelectorAll('#modal .modal-field:not(:first-child)').forEach(function(f){
+    var ta=f.querySelector('textarea');
+    if(ta)msg+='- '+f.querySelector('label').textContent+':\n'+(ta.value||'(not answered)')+'\n\n';
+  });
+  msg+='Áudio na mensagem seguinte';
+  window.open('https://wa.me/5522999585058?text='+encodeURIComponent(msg.trim()),'_blank');
+}
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+</script>
+<script>
+/* EnglishFlow — rastreio de frequência */
+(function(){
+  var FORM='https://docs.google.com/forms/d/e/1FAIpQLSdGVa3JN0PfYG1C-YV8oGk-EQ5u5skM-V_LJImf_kijpmijWw/formResponse';
+  try{var q=new URLSearchParams(location.search);
+      if(q.get('aluno')){localStorage.setItem('og1_aluno',q.get('aluno'));}}catch(e){}
+  function aluno(){try{return localStorage.getItem('og1_aluno')||localStorage.getItem('ef_student_name')||'(sem nome)';}catch(e){return '(sem nome)';}}
+  function ping(status){
+    var d=new FormData();
+    d.append('entry.566273869',aluno());
+    d.append('entry.947389419','24');
+    d.append('entry.156113480','Unit 4 — Departments');
+    d.append('entry.583447830','Business Starter');
+    d.append('entry.923345328',status);
+    var ok=false;
+    try{ok=navigator.sendBeacon(FORM,d);}catch(e){}
+    if(!ok){try{fetch(FORM,{method:'POST',mode:'no-cors',body:d});}catch(e){}}
+  }
+  var send=document.querySelectorAll('.modal-send');
+  var sels=send.length?send:document.querySelectorAll('a[href*="wa.me"], .whatsapp-btn');
+  for(var i=0;i<sels.length;i++){sels[i].addEventListener('click',function(){ping('done');});}
+})();
+</script>
+</body>
+</html>

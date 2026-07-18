@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Kick Off · Unit 3 — Downstream</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
+.header{background:#0d1b2a;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid rgba(192,57,43,.25)}
+.pill-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:700;color:#e07a74;line-height:1}
+.pill-title span{color:#c0392b;font-size:clamp(14px,2.5vw,22px);font-weight:600;display:block;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.icon-box{width:48px;height:48px;border:1.5px solid rgba(192,57,43,.4);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.icon-box svg{width:26px;height:26px;stroke:#c0392b;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.countdown-bar{background:#0d1b2a;border-bottom:1px solid rgba(192,57,43,.2);padding:8px 24px;display:flex;align-items:center;gap:12px}
+.countdown-display{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:#c0392b;letter-spacing:.08em;min-width:60px}
+.countdown-display.warning{color:#f59e0b}.countdown-display.urgent{color:#ef4444}
+.progress-track{flex:1;height:4px;background:rgba(192,57,43,.13);border-radius:2px;overflow:hidden}
+.progress-fill{height:100%;background:#c0392b;border-radius:2px;transition:width 1s linear,background .5s}
+.progress-fill.warning{background:#f59e0b}.progress-fill.urgent{background:#ef4444}
+.translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(192,57,43,.2);padding:6px 24px;font-size:11px;color:#e07a74;text-align:center}
+.translate-warning strong{color:#c0392b}
+.steps{display:flex;gap:6px;padding:8px 16px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.steps::-webkit-scrollbar{display:none}
+.step{flex-shrink:0;display:flex;align-items:center;gap:6px;background:rgba(192,57,43,.08);border:1px solid rgba(192,57,43,.25);border-radius:20px;padding:6px 12px;font-size:11.5px;color:#e07a74;font-weight:500;white-space:nowrap}
+.step svg{width:13px;height:13px;stroke:#c0392b;fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0}
+.content{display:grid;grid-template-columns:1fr 220px;gap:12px;padding:0 16px 16px}
+.left-col{display:flex;flex-direction:column;gap:12px}
+.main-area{background:#111827;border-radius:10px;padding:14px 16px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.main-area.full{grid-template-columns:1fr}
+.zone-label{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#c0392b;font-weight:600;margin-bottom:8px}
+.img-box{background:#0a1628;border-radius:8px;overflow:hidden;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center}
+.img-box img{width:100%;height:100%;object-fit:contain;background:#0a0f1e}
+.img-caption{font-size:10px;color:#4a6a8a;text-align:center;margin-top:4px;font-style:italic}
+.products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.product-card{background:#0a1628;border:1px solid rgba(192,57,43,.15);border-radius:8px;padding:8px;text-align:center}
+.product-icon{font-size:22px;margin-bottom:4px}
+.product-name{font-size:10px;font-weight:600;color:#e07a74;font-family:'Barlow Condensed',sans-serif;letter-spacing:.04em}
+.product-sub{font-size:9px;color:#4a6a8a;font-style:italic}
+.activity{background:#111827;border-radius:10px;padding:14px 16px}
+.activity-title{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:#e07a74;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.activity-title .num{background:#c0392b;color:#fff;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0}
+.question-list{list-style:none;display:flex;flex-direction:column;gap:7px}
+.question-list li{font-size:12px;color:#c8d8e8;padding-left:16px;position:relative;line-height:1.5}
+.question-list li::before{content:'›';position:absolute;left:0;color:#c0392b;font-weight:700}
+.task-box{background:#0a1628;border:1px solid rgba(192,57,43,.25);border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:8px}
+.task-box p{font-size:11px;color:#e07a74;font-style:italic;line-height:1.45}
+.whatsapp-btn{display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;border:none;border-radius:8px;padding:7px 12px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:background .2s;width:100%}
+.whatsapp-btn:hover{background:#1ebc58}
+.whatsapp-btn svg{width:16px;height:16px;fill:#fff;flex-shrink:0}
+.zone-support{background:#111827;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:6px;align-self:start}
+.keyword-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;color:#e07a74;text-transform:uppercase;letter-spacing:.08em;padding-bottom:8px;border-bottom:1px solid rgba(192,57,43,.2);margin-bottom:2px}
+.keywords-grid{display:grid;grid-template-columns:1fr;gap:0}
+.keyword-item{padding:6px 0;border-bottom:1px solid rgba(192,57,43,.09);display:flex;flex-direction:column;gap:3px}
+.keyword-item:last-child{border-bottom:none}
+.kw{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#c0392b;letter-spacing:.04em}
+.kw-hint{font-size:10px;color:#4a6a8a;font-style:italic}
+.footer{background:#0d1b2a;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(192,57,43,.2);margin-top:4px}
+.footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a8a;letter-spacing:.04em}
+.footer-right{display:flex;align-items:center;gap:10px}
+.footer-icon svg{width:22px;height:22px;stroke:#c0392b;fill:none;stroke-width:1.5}
+.footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;color:#c0392b;letter-spacing:.06em;text-transform:uppercase}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);display:flex;align-items:center;justify-content:center;z-index:100;padding:16px}
+.modal-box{background:#111827;border:1px solid rgba(192,57,43,.25);border-radius:14px;padding:24px;max-width:480px;width:100%;max-height:85vh;overflow-y:auto;display:flex;flex-direction:column;gap:14px}
+.modal-title{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:#e07a74}
+.modal-field label{font-size:11px;color:#c0392b;text-transform:uppercase;letter-spacing:.08em;font-weight:600;display:block;margin-bottom:5px}
+.modal-field input[type='text'],.modal-field textarea{width:100%;background:#0a1628;border:1px solid rgba(192,57,43,.25);border-radius:6px;padding:9px;font-size:12px;color:#c8d8e8;font-family:'Barlow',sans-serif;outline:none}
+.modal-field textarea{resize:vertical;min-height:64px}
+.modal-field input[type='text']:focus,.modal-field textarea:focus{border-color:#c0392b}
+.modal-reminder{font-size:11px;color:#4a6a8a;font-style:italic;border-top:1px solid rgba(192,57,43,.13);padding-top:10px}
+.modal-actions{display:flex;gap:8px}
+.modal-cancel{flex:1;background:transparent;border:1px solid rgba(192,57,43,.25);color:#4a6a8a;border-radius:8px;padding:9px;font-family:'Barlow Condensed',sans-serif;font-size:14px;cursor:pointer}
+.modal-send{flex:2;display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;border:none;border-radius:8px;padding:9px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;cursor:pointer}
+.modal-send:hover{background:#1ebc58}
+.modal-send svg{width:15px;height:15px;fill:#fff}
+@media(max-width:700px){.content{grid-template-columns:1fr}.main-area{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="pill-title">Kick Off<span>Downstream</span></div>
+  <div class="icon-box">
+    <svg viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
+  </div>
+</div>
+
+<div class="countdown-bar">
+  <span class="countdown-display" id="timer">25:00</span>
+  <div class="progress-track"><div class="progress-fill" id="progress" style="width:100%"></div></div>
+</div>
+
+<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
+
+<div class="steps">
+  <div class="step"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>1. Study the platform</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>2. Answer the questions</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 0 2 2z"/></svg>3. Give your opinion</div>
+</div>
+
+<div class="content">
+  <div class="left-col">
+    <div class="main-area full">
+      <div class="zone-label">The downstream sector — what do you think?</div>
+      <p style="font-size:12px;color:#c8d8e8;margin-bottom:12px;line-height:1.6">Workers in the downstream sector make useful products from crude oil and natural gas. They <strong style="color:#e07a74">transport</strong> these products and sell them. Look at the products below — which ones are made from oil or natural gas?</p>
+      <div class="products-grid">
+        <div class="product-card"><div class="product-icon">⛽</div><div class="product-name">Petrol</div><div class="product-sub">Am E = gasoline</div></div>
+        <div class="product-card"><div class="product-icon">🛍️</div><div class="product-name">Plastic bags</div><div class="product-sub">from polymers</div></div>
+        <div class="product-card"><div class="product-icon">🔴</div><div class="product-name">Propane</div><div class="product-sub">LPG cylinder</div></div>
+        <div class="product-card"><div class="product-icon">🧴</div><div class="product-name">Detergents</div><div class="product-sub">chemicals in wash</div></div>
+        <div class="product-card"><div class="product-icon">🏗️</div><div class="product-name">Asphalt</div><div class="product-sub">heavy product</div></div>
+        <div class="product-card"><div class="product-icon">🌱</div><div class="product-name">Fertilizers</div><div class="product-sub">chemicals in agric.</div></div>
+        <div class="product-card"><div class="product-icon">🚗</div><div class="product-name">Tyres</div><div class="product-sub">synthetic rubber</div></div>
+        <div class="product-card"><div class="product-icon">🏭</div><div class="product-name">Refinery</div><div class="product-sub">processes crude oil</div></div>
+        <div class="product-card"><div class="product-icon">🔍</div><div class="product-name">Control room</div><div class="product-sub">monitors 24/7</div></div>
+      </div>
+    </div>
+
+    <div class="activity">
+      <div class="activity-title"><span class="num">1</span>Activity 1 — Downstream products</div>
+      <ul class="question-list">
+        <li>What do these people do in the upstream sector? <em>driller / geologist / production operator / roughneck</em></li>
+        <li>Which products in the grid above are made from oil or natural gas?</li>
+        <li>Can you name five more things that contain oil products? (Examples: paint, candles, medicine...)</li>
+        <li>Refineries separate crude oil into <strong>light</strong> and <strong>heavy</strong> products. What do you think "light" and "heavy" mean here?</li>
+      </ul>
+    </div>
+
+    <div class="activity">
+      <div class="activity-title"><span class="num">2</span>Activity 2 — Your opinion</div>
+      <ul class="question-list">
+        <li>Oil and gas products get to us by sea, by road, by rail, and by pipeline. Which method do you think is most used in your country? Why?</li>
+        <li>Gas processing plants separate the different gases in natural gas. Why do you think this is necessary?</li>
+        <li>The downstream sector works 24 hours a day, 7 days a week. What are the challenges of working night shifts?</li>
+      </ul>
+    </div>
+
+    <div class="task-box">
+      <p>✏️ Answer in writing OR record a short audio. Send via WhatsApp.</p>
+      <button class="whatsapp-btn" onclick="openModal()">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="#fff"/></svg>
+        Enviar respostas
+      </button>
+    </div>
+  </div>
+
+  <div class="zone-support">
+    <div class="keyword-title">Key words</div>
+    <div class="keywords-grid">
+      <div class="keyword-item"><span class="kw">transport</span><span class="kw-hint">move goods from A to B</span></div>
+      <div class="keyword-item"><span class="kw">refinery</span><span class="kw-hint">separates crude oil</span></div>
+      <div class="keyword-item"><span class="kw">light / heavy</span><span class="kw-hint">product types</span></div>
+      <div class="keyword-item"><span class="kw">loading</span><span class="kw-hint">putting fuel in</span></div>
+      <div class="keyword-item"><span class="kw">unloading</span><span class="kw-hint">taking fuel out</span></div>
+      <div class="keyword-item"><span class="kw">leak</span><span class="kw-hint">unwanted liquid/gas escape</span></div>
+      <div class="keyword-item"><span class="kw">petrol station</span><span class="kw-hint">filling station (Am E)</span></div>
+      <div class="keyword-item"><span class="kw">roughneck</span><span class="kw-hint">drilling crew worker</span></div>
+      <div class="keyword-item"><span class="kw">geologist</span><span class="kw-hint">studies rocks</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-left">Capsule 32 de 57 · Unit 3 — Downstream</div>
+  <div class="footer-right">
+    <div class="footer-icon"><svg viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg></div>
+    <div class="footer-text">Unit 3 — Downstream</div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal" style="display:none">
+  <div class="modal-box">
+    <div class="modal-title">Kick Off — Enviar respostas</div>
+    <div class="modal-field"><label>Your name</label><input type="text" id="studentName" placeholder="Type your name..." autocomplete="off"></div>
+    <div class="modal-field"><label>Activity 1 — Downstream products</label><textarea id="ans1" placeholder="Which products are from oil? Name 5 more things. What do light/heavy mean?"></textarea></div>
+    <div class="modal-field"><label>Activity 2 — Your opinion</label><textarea id="ans2" placeholder="Transport methods, gas processing, night shifts..."></textarea></div>
+    <div class="modal-reminder">🎙️ Após enviar, grave seu áudio e envie na mesma conversa.</div>
+    <div class="modal-actions">
+      <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+      <button class="modal-send" onclick="sendWA()">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="#fff"/></svg>
+        Enviar no WhatsApp
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+const TOTAL=25*60;let remaining=TOTAL;
+const iv=setInterval(function(){
+  remaining--;
+  var m=Math.floor(remaining/60).toString().padStart(2,'0'),s=(remaining%60).toString().padStart(2,'0');
+  var el=document.getElementById('timer'),bar=document.getElementById('progress');
+  el.textContent=m+':'+s;bar.style.width=((remaining/TOTAL)*100)+'%';
+  el.className='countdown-display';bar.className='progress-fill';
+  if(remaining<=0){clearInterval(iv);el.textContent='00:00';bar.style.width='0%';bar.classList.add('urgent');}
+  else if(remaining<=60){el.classList.add('urgent');bar.classList.add('urgent');}
+  else if(remaining<=180){el.classList.add('warning');bar.classList.add('warning');}
+},1000);
+function openModal(){
+  var saved=localStorage.getItem('ef_student_name');
+  if(saved)document.getElementById('studentName').value=saved;
+  document.getElementById('modal').style.display='flex';
+}
+function closeModal(){document.getElementById('modal').style.display='none';}
+function sendWA(){
+  var name=document.getElementById('studentName').value.trim()||'Aluno';
+  localStorage.setItem('ef_student_name',name);
+  var a1=document.getElementById('ans1').value.trim()||'—';
+  var a2=document.getElementById('ans2').value.trim()||'—';
+  var now=new Date(),date=now.toLocaleDateString('pt-BR'),time=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  var msg='👤 '+name+'\n📅 '+date+' às '+time+'\n🎙️ Kick Off — Unit 3 — Downstream\n📌 Activity 1: '+a1+'\n📌 Activity 2: '+a2+'\n👇 Áudio na mensagem seguinte (se preferiu enviar por áudio)';
+  window.open('https://wa.me/5522999585058?text='+encodeURIComponent(msg),'_blank');
+}
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+</script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Number Talk · Unit 3 — Downstream</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
+.header{background:#0d1b2a;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid rgba(192,57,43,.25)}
+.pill-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:700;color:#e07a74;line-height:1}
+.pill-title span{color:#c0392b;font-size:clamp(14px,2.5vw,22px);font-weight:600;display:block;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.icon-box{width:48px;height:48px;border:1.5px solid rgba(192,57,43,.4);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.icon-box svg{width:26px;height:26px;stroke:#c0392b;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.countdown-bar{background:#0d1b2a;border-bottom:1px solid rgba(192,57,43,.2);padding:8px 24px;display:flex;align-items:center;gap:12px}
+.countdown-display{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:#c0392b;letter-spacing:.08em;min-width:60px}
+.countdown-display.warning{color:#f59e0b}.countdown-display.urgent{color:#ef4444}
+.progress-track{flex:1;height:4px;background:rgba(192,57,43,.13);border-radius:2px;overflow:hidden}
+.progress-fill{height:100%;background:#c0392b;border-radius:2px;transition:width 1s linear,background .5s}
+.progress-fill.warning{background:#f59e0b}.progress-fill.urgent{background:#ef4444}
+.translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(192,57,43,.2);padding:6px 24px;font-size:11px;color:#e07a74;text-align:center}
+.translate-warning strong{color:#c0392b}
+.steps{display:flex;gap:6px;padding:8px 16px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.steps::-webkit-scrollbar{display:none}
+.step{flex-shrink:0;display:flex;align-items:center;gap:6px;background:rgba(192,57,43,.08);border:1px solid rgba(192,57,43,.25);border-radius:20px;padding:6px 12px;font-size:11.5px;color:#e07a74;font-weight:500;white-space:nowrap}
+.step svg{width:13px;height:13px;stroke:#c0392b;fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0}
+.content{display:grid;grid-template-columns:1fr 280px;gap:12px;padding:0 16px 16px}
+.left-col{display:flex;flex-direction:column;gap:12px}
+.panel{background:#111827;border-radius:10px;padding:14px 16px}
+.zone-label{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#c0392b;font-weight:600;margin-bottom:10px}
+.ops-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.op-card{background:#0a1628;border-radius:8px;padding:10px 12px;display:flex;align-items:center;gap:10px}
+.op-symbol{font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:700;color:#c0392b;min-width:28px;text-align:center}
+.op-text{display:flex;flex-direction:column;gap:2px}
+.op-name{font-size:12px;font-weight:600;color:#c8d8e8}
+.op-alt{font-size:10px;color:#4a6a8a;font-style:italic}
+.example-box{background:#0a1628;border-left:3px solid #c0392b;border-radius:0 8px 8px 0;padding:10px 12px;margin-bottom:12px}
+.example-label{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#c0392b;font-weight:600;margin-bottom:4px}
+.example-text{font-size:12px;color:#c8d8e8;line-height:1.6}
+.example-text em{color:#e07a74}
+.activity-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#e07a74;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.activity-title .num{background:#c0392b;color:#fff;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0}
+.problem-list{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
+.problem{background:#0a1628;border-radius:8px;padding:10px 12px}
+.problem-num{font-size:10px;color:#c0392b;font-weight:700;margin-bottom:4px;text-transform:uppercase;letter-spacing:.08em}
+.problem-text{font-size:12px;color:#c8d8e8;line-height:1.6}
+.problem-hint{font-size:10px;color:#4a6a8a;font-style:italic;margin-top:3px}
+.task-box{background:#0a1628;border:1px solid rgba(192,57,43,.25);border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:8px}
+.task-box p{font-size:11px;color:#e07a74;font-style:italic;line-height:1.45}
+.whatsapp-btn{display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;border:none;border-radius:8px;padding:7px 12px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:background .2s;width:100%}
+.whatsapp-btn:hover{background:#1ebc58}
+.whatsapp-btn svg{width:16px;height:16px;fill:#fff;flex-shrink:0}
+.zone-support{background:#111827;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:6px;align-self:start}
+.keyword-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;color:#e07a74;text-transform:uppercase;letter-spacing:.08em;padding-bottom:8px;border-bottom:1px solid rgba(192,57,43,.2);margin-bottom:2px}
+.kw-row{padding:6px 0;border-bottom:1px solid rgba(192,57,43,.09);display:grid;grid-template-columns:1fr 1fr;gap:6px;align-items:center}
+.kw-row:last-child{border-bottom:none}
+.kw{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#c0392b}
+.kw-hint{font-size:10px;color:#4a6a8a;font-style:italic}
+.footer{background:#0d1b2a;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(192,57,43,.2);margin-top:4px}
+.footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a8a;letter-spacing:.04em}
+.footer-right{display:flex;align-items:center;gap:10px}
+.footer-icon svg{width:22px;height:22px;stroke:#c0392b;fill:none;stroke-width:1.5}
+.footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;color:#c0392b;letter-spacing:.06em;text-transform:uppercase}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);display:flex;align-items:center;justify-content:center;z-index:100;padding:16px}
+.modal-box{background:#111827;border:1px solid rgba(192,57,43,.25);border-radius:14px;padding:24px;max-width:480px;width:100%;max-height:85vh;overflow-y:auto;display:flex;flex-direction:column;gap:14px}
+.modal-title{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:#e07a74}
+.modal-field label{font-size:11px;color:#c0392b;text-transform:uppercase;letter-spacing:.08em;font-weight:600;display:block;margin-bottom:5px}
+.modal-field input[type='text'],.modal-field textarea{width:100%;background:#0a1628;border:1px solid rgba(192,57,43,.25);border-radius:6px;padding:9px;font-size:12px;color:#c8d8e8;font-family:'Barlow',sans-serif;outline:none}
+.modal-field textarea{resize:vertical;min-height:80px}
+.modal-field input[type='text']:focus,.modal-field textarea:focus{border-color:#c0392b}
+.modal-reminder{font-size:11px;color:#4a6a8a;font-style:italic;border-top:1px solid rgba(192,57,43,.13);padding-top:10px}
+.modal-actions{display:flex;gap:8px}
+.modal-cancel{flex:1;background:transparent;border:1px solid rgba(192,57,43,.25);color:#4a6a8a;border-radius:8px;padding:9px;font-family:'Barlow Condensed',sans-serif;font-size:14px;cursor:pointer}
+.modal-send{flex:2;display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;border:none;border-radius:8px;padding:9px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;cursor:pointer}
+.modal-send:hover{background:#1ebc58}
+.modal-send svg{width:15px;height:15px;fill:#fff}
+@media(max-width:700px){.content{grid-template-columns:1fr}.ops-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="pill-title">Number Talk<span>Downstream</span></div>
+  <div class="icon-box">
+    <svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg>
+  </div>
+</div>
+
+<div class="countdown-bar">
+  <span class="countdown-display" id="timer">20:00</span>
+  <div class="progress-track"><div class="progress-fill" id="progress" style="width:100%"></div></div>
+</div>
+
+<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
+
+<div class="steps">
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>1. Learn the operations</div>
+  <div class="step"><svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="8" y1="6" x2="16" y2="6"/></svg>2. Solve the problems</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>3. Say answers aloud</div>
+</div>
+
+<div class="content">
+  <div class="left-col">
+    <div class="panel">
+      <div class="zone-label">Calculator operations — how to say them</div>
+      <div class="ops-grid">
+        <div class="op-card"><div class="op-symbol">+</div><div class="op-text"><div class="op-name">plus / add</div><div class="op-alt">seven plus three</div></div></div>
+        <div class="op-card"><div class="op-symbol">−</div><div class="op-text"><div class="op-name">minus / subtract</div><div class="op-alt">ten minus four</div></div></div>
+        <div class="op-card"><div class="op-symbol">×</div><div class="op-text"><div class="op-name">times / multiplied by</div><div class="op-alt">five times six</div></div></div>
+        <div class="op-card"><div class="op-symbol">÷</div><div class="op-text"><div class="op-name">over / divided by</div><div class="op-alt">twelve over three</div></div></div>
+        <div class="op-card"><div class="op-symbol">=</div><div class="op-text"><div class="op-name">equals</div><div class="op-alt">... equals fifteen</div></div></div>
+        <div class="op-card"><div class="op-symbol">%</div><div class="op-text"><div class="op-name">per cent</div><div class="op-alt">fifty per cent</div></div></div>
+        <div class="op-card"><div class="op-symbol">.</div><div class="op-text"><div class="op-name">point</div><div class="op-alt">three point five</div></div></div>
+        <div class="op-card"><div class="op-symbol">√</div><div class="op-text"><div class="op-name">square root</div><div class="op-alt">square root of 9</div></div></div>
+      </div>
+
+      <div class="example-box">
+        <div class="example-label">Example</div>
+        <div class="example-text">
+          <strong style="color:#c0392b">Q:</strong> What's seven point two five times three?<br>
+          <strong style="color:#e07a74">A:</strong> <em>That's twenty-one point seven five.</em><br>
+          You write: <em>7.25 × 3 = 21.75</em>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="activity-title"><span class="num">1</span>Industry problems — solve and say aloud</div>
+      <div class="problem-list">
+        <div class="problem">
+          <div class="problem-num">Problem 1</div>
+          <div class="problem-text">Li is working three twelve-hour night shifts this week. How many hours is she working this week?</div>
+          <div class="problem-hint">Say: "Three times twelve equals..."</div>
+        </div>
+        <div class="problem">
+          <div class="problem-num">Problem 2</div>
+          <div class="problem-text">A petrol tanker has 18,500 litres of petrol in it now. It can carry 30,000 litres on the road. How much more petrol can the driver load into the tanker?</div>
+          <div class="problem-hint">Say: "Thirty thousand minus eighteen thousand five hundred equals..."</div>
+        </div>
+        <div class="problem">
+          <div class="problem-num">Problem 3</div>
+          <div class="problem-text">How many 8,000-litre tanks do you need for 32,000 litres of oil?</div>
+          <div class="problem-hint">Say: "Thirty-two thousand divided by eight thousand equals..."</div>
+        </div>
+        <div class="problem">
+          <div class="problem-num">Problem 4</div>
+          <div class="problem-text">A refinery produces 6.2 million litres of petrol per day and 0.75 million litres of other products. What is the total daily production?</div>
+          <div class="problem-hint">Say: "Six point two plus zero point seven five equals..."</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="task-box">
+      <p>✏️ Write out the 4 calculations and answers. Say them aloud and send audio. Send via WhatsApp.</p>
+      <button class="whatsapp-btn" onclick="openModal()">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="#fff"/></svg>
+        Enviar respostas
+      </button>
+    </div>
+  </div>
+
+  <div class="zone-support">
+    <div class="keyword-title">How to say numbers</div>
+    <div class="kw-row"><span class="kw">18,500</span><span class="kw-hint">eighteen thousand five hundred</span></div>
+    <div class="kw-row"><span class="kw">6.2M</span><span class="kw-hint">six point two million</span></div>
+    <div class="kw-row"><span class="kw">0.75</span><span class="kw-hint">zero point seven five</span></div>
+    <div class="kw-row"><span class="kw">32,000</span><span class="kw-hint">thirty-two thousand</span></div>
+    <div class="kw-row"><span class="kw">50%</span><span class="kw-hint">fifty per cent</span></div>
+    <div style="background:#0a1628;border-radius:8px;padding:10px;margin-top:8px">
+      <div style="font-size:10px;color:#c0392b;font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px">Answers</div>
+      <div style="font-size:11px;color:#c8d8e8;line-height:1.8">
+        1. 3 × 12 = <strong style="color:#e07a74">36 hours</strong><br>
+        2. 30,000 − 18,500 = <strong style="color:#e07a74">11,500 litres</strong><br>
+        3. 32,000 ÷ 8,000 = <strong style="color:#e07a74">4 tanks</strong><br>
+        4. 6.2 + 0.75 = <strong style="color:#e07a74">6.95 M litres</strong>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-left">Capsule 36 de 57 · Unit 3 — Downstream</div>
+  <div class="footer-right">
+    <div class="footer-icon"><svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="8" y1="6" x2="16" y2="6"/></svg></div>
+    <div class="footer-text">Unit 3 — Downstream</div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal" style="display:none">
+  <div class="modal-box">
+    <div class="modal-title">Number Talk — Enviar respostas</div>
+    <div class="modal-field"><label>Your name</label><input type="text" id="studentName" placeholder="Type your name..." autocomplete="off"></div>
+    <div class="modal-field"><label>Calculations (write all 4 with answers)</label><textarea id="ans1" placeholder="1) 3 × 12 = ... / 2) 30,000 − 18,500 = ... / 3) ... / 4) ..."></textarea></div>
+    <div class="modal-reminder">🎙️ Após enviar, grave seu áudio dizendo os cálculos em voz alta e envie na mesma conversa.</div>
+    <div class="modal-actions">
+      <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+      <button class="modal-send" onclick="sendWA()">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="#fff"/></svg>
+        Enviar no WhatsApp
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+const TOTAL=20*60;let remaining=TOTAL;
+const iv=setInterval(function(){
+  remaining--;
+  var m=Math.floor(remaining/60).toString().padStart(2,'0'),s=(remaining%60).toString().padStart(2,'0');
+  var el=document.getElementById('timer'),bar=document.getElementById('progress');
+  el.textContent=m+':'+s;bar.style.width=((remaining/TOTAL)*100)+'%';
+  el.className='countdown-display';bar.className='progress-fill';
+  if(remaining<=0){clearInterval(iv);el.textContent='00:00';bar.style.width='0%';bar.classList.add('urgent');}
+  else if(remaining<=60){el.classList.add('urgent');bar.classList.add('urgent');}
+  else if(remaining<=180){el.classList.add('warning');bar.classList.add('warning');}
+},1000);
+function openModal(){
+  var saved=localStorage.getItem('ef_student_name');
+  if(saved)document.getElementById('studentName').value=saved;
+  document.getElementById('modal').style.display='flex';
+}
+function closeModal(){document.getElementById('modal').style.display='none';}
+function sendWA(){
+  var name=document.getElementById('studentName').value.trim()||'Aluno';
+  localStorage.setItem('ef_student_name',name);
+  var a1=document.getElementById('ans1').value.trim()||'—';
+  var now=new Date(),date=now.toLocaleDateString('pt-BR'),time=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  var msg='👤 '+name+'\n📅 '+date+' às '+time+'\n🎙️ Number Talk — Unit 3 — Downstream\n📌 Activity 1: '+a1+'\n👇 Áudio na mensagem seguinte (se preferiu enviar por áudio)';
+  window.open('https://wa.me/5522999585058?text='+encodeURIComponent(msg),'_blank');
+}
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+</script>
+</body>
+</html>

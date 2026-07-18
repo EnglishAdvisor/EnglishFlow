@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Writing Bank · Unit 3 — Downstream</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
+.header{background:#0d1b2a;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid rgba(192,57,43,.25)}
+.pill-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:700;color:#e07a74;line-height:1}
+.pill-title span{color:#c0392b;font-size:clamp(14px,2.5vw,22px);font-weight:600;display:block;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.icon-box{width:48px;height:48px;border:1.5px solid rgba(192,57,43,.4);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.icon-box svg{width:26px;height:26px;stroke:#c0392b;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.countdown-bar{background:#0d1b2a;border-bottom:1px solid rgba(192,57,43,.2);padding:8px 24px;display:flex;align-items:center;gap:12px}
+.countdown-display{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:#c0392b;letter-spacing:.08em;min-width:60px}
+.countdown-display.warning{color:#f59e0b}.countdown-display.urgent{color:#ef4444}
+.progress-track{flex:1;height:4px;background:rgba(192,57,43,.13);border-radius:2px;overflow:hidden}
+.progress-fill{height:100%;background:#c0392b;border-radius:2px;transition:width 1s linear,background .5s}
+.progress-fill.warning{background:#f59e0b}.progress-fill.urgent{background:#ef4444}
+.translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(192,57,43,.2);padding:6px 24px;font-size:11px;color:#e07a74;text-align:center}
+.translate-warning strong{color:#c0392b}
+.steps{display:flex;gap:6px;padding:8px 16px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.steps::-webkit-scrollbar{display:none}
+.step{flex-shrink:0;display:flex;align-items:center;gap:6px;background:rgba(192,57,43,.08);border:1px solid rgba(192,57,43,.25);border-radius:20px;padding:6px 12px;font-size:11.5px;color:#e07a74;font-weight:500;white-space:nowrap}
+.step svg{width:13px;height:13px;stroke:#c0392b;fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0}
+.content{display:grid;grid-template-columns:1fr 280px;gap:12px;padding:0 16px 16px}
+.left-col{display:flex;flex-direction:column;gap:12px}
+.panel{background:#111827;border-radius:10px;padding:14px 16px}
+.zone-label{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#c0392b;font-weight:600;margin-bottom:10px}
+.email-parts{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+.email-part{background:#0a1628;border-radius:8px;padding:10px 12px;border-left:3px solid rgba(192,57,43,.5)}
+.ep-tag{font-size:9px;color:#c0392b;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px}
+.ep-phrase{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:#e07a74;line-height:1.2}
+.ep-note{font-size:11px;color:#4a6a8a;margin-top:3px;line-height:1.4}
+.email-example{background:#0a1628;border-radius:8px;padding:14px;font-size:12px;color:#c8d8e8;line-height:1.85;margin-bottom:12px;border:1px solid rgba(192,57,43,.12)}
+.email-example .field{color:#c0392b;font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.08em}
+.email-example .val{color:#c8d8e8}
+.email-example hr{border:none;border-top:1px solid rgba(192,57,43,.12);margin:8px 0}
+.task-box{background:#0a1628;border:1px solid rgba(192,57,43,.25);border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:8px}
+.task-box p{font-size:11px;color:#e07a74;font-style:italic;line-height:1.45}
+.whatsapp-btn{display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;border:none;border-radius:8px;padding:7px 12px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:background .2s;width:100%}
+.whatsapp-btn:hover{background:#1ebc58}
+.whatsapp-btn svg{width:16px;height:16px;fill:#fff;flex-shrink:0}
+.zone-support{background:#111827;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:6px;align-self:start}
+.keyword-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;color:#e07a74;text-transform:uppercase;letter-spacing:.08em;padding-bottom:8px;border-bottom:1px solid rgba(192,57,43,.2);margin-bottom:4px}
+.tip-item{font-size:11px;color:#c8d8e8;padding:5px 0;border-bottom:1px solid rgba(192,57,43,.07);line-height:1.5}
+.tip-item:last-child{border-bottom:none}
+.tip-item strong{color:#e07a74}
+.footer{background:#0d1b2a;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(192,57,43,.2);margin-top:4px}
+.footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a8a;letter-spacing:.04em}
+.footer-right{display:flex;align-items:center;gap:10px}
+.footer-icon svg{width:22px;height:22px;stroke:#c0392b;fill:none;stroke-width:1.5}
+.footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;color:#c0392b;letter-spacing:.06em;text-transform:uppercase}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);display:flex;align-items:center;justify-content:center;z-index:100;padding:16px}
+.modal-box{background:#111827;border:1px solid rgba(192,57,43,.25);border-radius:14px;padding:24px;max-width:480px;width:100%;max-height:85vh;overflow-y:auto;display:flex;flex-direction:column;gap:14px}
+.modal-title{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:#e07a74}
+.modal-field label{font-size:11px;color:#c0392b;text-transform:uppercase;letter-spacing:.08em;font-weight:600;display:block;margin-bottom:5px}
+.modal-field input[type='text'],.modal-field textarea{width:100%;background:#0a1628;border:1px solid rgba(192,57,43,.25);border-radius:6px;padding:9px;font-size:12px;color:#c8d8e8;font-family:'Barlow',sans-serif;outline:none}
+.modal-field textarea{resize:vertical;min-height:100px}
+.modal-field input[type='text']:focus,.modal-field textarea:focus{border-color:#c0392b}
+.modal-reminder{font-size:11px;color:#4a6a8a;font-style:italic;border-top:1px solid rgba(192,57,43,.13);padding-top:10px}
+.modal-actions{display:flex;gap:8px}
+.modal-cancel{flex:1;background:transparent;border:1px solid rgba(192,57,43,.25);color:#4a6a8a;border-radius:8px;padding:9px;font-family:'Barlow Condensed',sans-serif;font-size:14px;cursor:pointer}
+.modal-send{flex:2;display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;border:none;border-radius:8px;padding:9px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;cursor:pointer}
+.modal-send:hover{background:#1ebc58}
+.modal-send svg{width:15px;height:15px;fill:#fff}
+@media(max-width:700px){.content{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="pill-title">Writing Bank<span>Downstream</span></div>
+  <div class="icon-box">
+    <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+  </div>
+</div>
+
+<div class="countdown-bar">
+  <span class="countdown-display" id="timer">25:00</span>
+  <div class="progress-track"><div class="progress-fill" id="progress" style="width:100%"></div></div>
+</div>
+
+<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
+
+<div class="steps">
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>1. Study the model</div>
+  <div class="step"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>2. Learn the structure</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>3. Write your email</div>
+</div>
+
+<div class="content">
+  <div class="left-col">
+    <div class="panel">
+      <div class="zone-label">Writing Bank 3 — An email reporting an IT problem</div>
+      <p style="font-size:12px;color:#c8d8e8;margin-bottom:12px;line-height:1.6">Learn the 5-part structure. Each part has a key phrase to learn.</p>
+
+      <div class="email-parts">
+        <div class="email-part">
+          <div class="ep-tag">Part 1 — Greeting</div>
+          <div class="ep-phrase">Dear IT Support,</div>
+          <div class="ep-note">Use the department name if you don't know the person's name.</div>
+        </div>
+        <div class="email-part">
+          <div class="ep-tag">Part 2 — State equipment</div>
+          <div class="ep-phrase">I am writing about [the computer / printer / screen] in [location].</div>
+          <div class="ep-note">Be specific: give the equipment name and where it is.</div>
+        </div>
+        <div class="email-part">
+          <div class="ep-tag">Part 3 — Describe the problem</div>
+          <div class="ep-phrase">The [equipment] is [not working / showing an error / making a noise].</div>
+          <div class="ep-note">Use Present Continuous for what is happening now.</div>
+        </div>
+        <div class="email-part">
+          <div class="ep-tag">Part 4 — Request</div>
+          <div class="ep-phrase">Could you please send someone to fix it? / Could you advise me?</div>
+          <div class="ep-note">Use "Could you please…?" for polite requests.</div>
+        </div>
+        <div class="email-part">
+          <div class="ep-tag">Part 5 — Close</div>
+          <div class="ep-phrase">Thank you for your help.</div>
+          <div class="ep-note">Then: Best regards, / [Your name] / [Department]</div>
+        </div>
+      </div>
+
+      <div class="zone-label" style="margin-top:4px">Model email</div>
+      <div class="email-example">
+        <span class="field">To:</span> <span class="val">IT Support</span><br>
+        <span class="field">From:</span> <span class="val">Jang Li, Control Room</span><br>
+        <span class="field">Subject:</span> <span class="val">Computer problem — Control Room</span>
+        <hr>
+        Dear IT Support,<br><br>
+        I am writing about the computer on the main control panel in the Control Room on Level 2.<br><br>
+        The screen is showing an error message and the keyboard is not responding. The computer has been like this since the start of my shift.<br><br>
+        Could you please send someone to look at it as soon as possible? We are using a hand-held computer at the moment, but this is not ideal.<br><br>
+        Thank you for your help.<br><br>
+        Best regards,<br>
+        Jang Li<br>
+        Control Room Operator
+      </div>
+    </div>
+
+    <div class="task-box">
+      <p>✏️ Write your own email to IT Support about a problem with equipment. Use the 5-part structure. Send via WhatsApp.</p>
+      <button class="whatsapp-btn" onclick="openModal()">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="#fff"/></svg>
+        Enviar email
+      </button>
+    </div>
+  </div>
+
+  <div class="zone-support">
+    <div class="keyword-title">Writing tips</div>
+    <div class="tip-item"><strong>Subject line</strong> — always include; say what it's about in 6 words or less</div>
+    <div class="tip-item"><strong>Be specific</strong> — name the equipment and location</div>
+    <div class="tip-item"><strong>Polite language</strong> — use "Could you please…?" not "Fix this!"</div>
+    <div class="tip-item"><strong>Present Continuous</strong> — "The screen is showing an error"</div>
+    <div class="tip-item"><strong>Sign off</strong> — name + job title + department</div>
+    <div style="background:#0a1628;border-radius:8px;padding:10px;margin-top:8px">
+      <div style="font-size:10px;color:#c0392b;font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Useful phrases</div>
+      <div style="font-size:11px;color:#c8d8e8;line-height:1.9">
+        "I am writing about…"<br>
+        "The [equipment] is not working."<br>
+        "Could you please…?"<br>
+        "Thank you for your help."<br>
+        "Best regards,"
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-left">Capsule 44 de 57 · Unit 3 — Downstream</div>
+  <div class="footer-right">
+    <div class="footer-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+    <div class="footer-text">Unit 3 — Downstream</div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal" style="display:none">
+  <div class="modal-box">
+    <div class="modal-title">Writing Bank — Enviar email</div>
+    <div class="modal-field"><label>Your name</label><input type="text" id="studentName" placeholder="Type your name..." autocomplete="off"></div>
+    <div class="modal-field"><label>Your email to IT Support (full text)</label><textarea id="ans1" placeholder="Dear IT Support,&#10;&#10;I am writing about the [equipment] in [location].&#10;The [equipment] is...&#10;Could you please...&#10;Thank you for your help.&#10;Best regards,&#10;[Your name]"></textarea></div>
+    <div class="modal-reminder">🎙️ Após enviar, grave seu áudio e envie na mesma conversa.</div>
+    <div class="modal-actions">
+      <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+      <button class="modal-send" onclick="sendWA()">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="#fff"/></svg>
+        Enviar no WhatsApp
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+const TOTAL=25*60;let remaining=TOTAL;
+const iv=setInterval(function(){
+  remaining--;
+  var m=Math.floor(remaining/60).toString().padStart(2,'0'),s=(remaining%60).toString().padStart(2,'0');
+  var el=document.getElementById('timer'),bar=document.getElementById('progress');
+  el.textContent=m+':'+s;bar.style.width=((remaining/TOTAL)*100)+'%';
+  el.className='countdown-display';bar.className='progress-fill';
+  if(remaining<=0){clearInterval(iv);el.textContent='00:00';bar.style.width='0%';bar.classList.add('urgent');}
+  else if(remaining<=60){el.classList.add('urgent');bar.classList.add('urgent');}
+  else if(remaining<=180){el.classList.add('warning');bar.classList.add('warning');}
+},1000);
+function openModal(){
+  var saved=localStorage.getItem('ef_student_name');
+  if(saved)document.getElementById('studentName').value=saved;
+  document.getElementById('modal').style.display='flex';
+}
+function closeModal(){document.getElementById('modal').style.display='none';}
+function sendWA(){
+  var name=document.getElementById('studentName').value.trim()||'Aluno';
+  localStorage.setItem('ef_student_name',name);
+  var a1=document.getElementById('ans1').value.trim()||'—';
+  var now=new Date(),date=now.toLocaleDateString('pt-BR'),time=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  var msg='👤 '+name+'\n📅 '+date+' às '+time+'\n🎙️ Writing Bank — Unit 3 — Downstream\n📌 Email: '+a1+'\n👇 Áudio na mensagem seguinte (se preferiu enviar por áudio)';
+  window.open('https://wa.me/5522999585058?text='+encodeURIComponent(msg),'_blank');
+}
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+</script>
+</body>
+</html>
