@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#16283f">
+<title>LIFE FLOW — O Bairro que Cresce · EnglishFlow</title>
+<meta name="description" content="O companion oficial da trilha World Class 1 da EnglishFlow: ande pelo bairro praticando o inglês do livro, casa a casa. Offline, com códigos do mentor via WhatsApp.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏘️</text></svg>">
+<link rel="stylesheet" href="css/style.css?v=1.0">
+<link rel="stylesheet" href="css/street.css?v=1.0">
+</head>
+<body>
+
+<div id="app">
+
+  <!-- SPLASH -->
+  <div class="screen active" id="s-splash">
+    <div class="content">
+      <div class="logo-mark">🏘️</div>
+      <div class="logo">LIFE <em>FLOW</em></div>
+      <div class="logo-sub">O BAIRRO QUE CRESCE · ENGLISHFLOW</div>
+      <p class="tagline">Da entrada à praça: inglês para a vida real, casa a casa.</p>
+      <div class="title-btns">
+        <button class="btn primary" id="t-play">🏘️ ENTRAR NO BAIRRO</button>
+        <button class="btn ghost" id="t-codes">🔑 Códigos do mentor</button>
+        <button class="btn ghost" id="t-import">📥 Restaurar save (SAV…)</button>
+      </div>
+      <p class="muted center foot-note">
+        Progresso salvo neste aparelho · funciona 100% offline<br>
+        12 casas · World Class 1 · 3 reviews + 1 Final Test · mentor via WhatsApp
+      </p>
+    </div>
+  </div>
+
+  <!-- ONBOARDING -->
+  <div class="screen" id="s-name">
+    <div class="content">
+      <div class="panel" style="margin-top:22vh">
+        <h3>🪪 Identificação</h3>
+        <p class="muted">Seus relatórios assinados levam este nome — use o nome pelo qual seu mentor te conhece.</p>
+        <label class="lbl" for="name-inp">Seu nome</label>
+        <input class="inp" id="name-inp" maxlength="24" placeholder="ex.: João Silva" autocomplete="off">
+        <button class="btn primary wide" id="name-go">🏘️ Entrar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAPA DO BAIRRO -->
+  <div class="screen" id="s-map">
+    <div id="map-world"></div>
+  </div>
+
+  <!-- CASA (UNIDADE) -->
+  <div class="screen" id="s-unit"><div class="content"></div></div>
+
+  <!-- MISSÃO / TESTE -->
+  <div class="screen" id="s-mission"><div class="content"></div></div>
+
+  <!-- DATA BOOK -->
+  <div class="screen" id="s-databook"><div class="content"></div></div>
+
+  <!-- GLOSSÁRIO -->
+  <div class="screen" id="s-glossary"><div class="content"></div></div>
+
+  <!-- CÓDIGOS -->
+  <div class="screen" id="s-codes"><div class="content"></div></div>
+
+  <!-- AJUSTES -->
+  <div class="screen" id="s-settings"><div class="content"></div></div>
+
+</div>
+
+<!-- HUD fixo do mapa -->
+<div id="hud-depth">🏘️ <span class="dv">Entrada</span></div>
+<div id="riser"><div class="cap"></div></div>
+<div id="hud-actions">
+  <button class="iconbtn" id="hud-nc">🛠️ 0<small>NCs</small></button>
+  <button class="iconbtn" id="hud-databook">📘<small>Data Book</small></button>
+  <button class="iconbtn" id="hud-glossary">🗝️<small>Glossário</small></button>
+  <button class="iconbtn" id="hud-codes">🔑<small>Códigos</small></button>
+  <button class="iconbtn" id="hud-settings">⚙️<small>Ajustes</small></button>
+</div>
+
+<div id="toasts"></div>
+
+<script src="js/util.js?v=1.0"></script>
+<script src="js/store.js?v=1.0"></script>
+<script src="js/srs.js?v=1.0"></script>
+<script src="js/speech.js?v=1.0"></script>
+<script src="js/audio.js?v=1.0"></script>
+<script src="js/codes.js?v=1.0"></script>
+<script src="js/whatsapp.js?v=1.0"></script>
+<script src="js/numbers.js?v=1.0"></script>
+<script src="js/mechanics.js?v=1.0"></script>
+<script src="js/units/index.js?v=1.0"></script>
+<script src="js/units/unit01.js?v=1.0"></script>
+<script src="js/units/unit02.js?v=1.0"></script>
+<script src="js/units/unit03.js?v=1.0"></script>
+<script src="js/units/unit04.js?v=1.0"></script>
+<script src="js/units/unit05.js?v=1.0"></script>
+<script src="js/units/unit06.js?v=1.0"></script>
+<script src="js/units/unit07.js?v=1.0"></script>
+<script src="js/units/unit08.js?v=1.0"></script>
+<script src="js/units/unit09.js?v=1.0"></script>
+<script src="js/units/unit10.js?v=1.0"></script>
+<script src="js/units/unit11.js?v=1.0"></script>
+<script src="js/units/unit12.js?v=1.0"></script>
+<script src="js/missions.js?v=1.0"></script>
+<script src="js/exam.js?v=1.0"></script>
+<script src="js/street.js?v=1.0"></script>
+<script src="js/databook.js?v=1.0"></script>
+<script src="js/glossary.js?v=1.0"></script>
+<script src="js/main.js?v=1.0"></script>
+</body>
+</html>

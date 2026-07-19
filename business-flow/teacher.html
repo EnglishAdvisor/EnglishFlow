@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#140f24">
+<title>BUSINESS FLOW — Painel do Mentor · EnglishFlow</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧭</text></svg>">
+<link rel="stylesheet" href="css/style.css?v=1.0">
+<link rel="stylesheet" href="css/cert.css?v=1.0">
+</head>
+<body>
+
+<div id="app">
+  <div class="screen active" id="s-teacher">
+    <div class="content">
+      <div class="center" style="margin-bottom:16px">
+        <div class="logo" style="font-size:34px">BUSINESS <em>FLOW</em></div>
+        <div class="logo-sub">PAINEL DO MENTOR</div>
+        <p class="muted" style="margin-top:6px">Gere códigos de desbloqueio, teste e certificados; valide os relatórios assinados dos alunos.<br>Tudo local, sem servidor — o elo é o WhatsApp.</p>
+      </div>
+      <div class="panel" id="trail-panel">
+        <label class="lbl">Trilha do aluno</label>
+        <select class="inp" id="trail-select"></select>
+      </div>
+      <div class="tabs" id="tabs"></div>
+      <div id="panels"></div>
+      <p class="muted center foot-note">BUSINESS FLOW · EnglishFlow — uso exclusivo do mentor</p>
+    </div>
+  </div>
+</div>
+
+<!-- página de certificado (só aparece na impressão) -->
+<div id="cert-page"></div>
+
+<div id="toasts"></div>
+
+<script src="js/util.js?v=1.0"></script>
+<script src="js/srs.js?v=1.0"></script>
+<script src="js/codes.js?v=1.0"></script>
+<script src="js/units/index.js?v=1.0"></script>
+<script src="js/teacher.js?v=1.0"></script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+/* ══════════════════════════════════════════════════════════════
+   BUSINESS FLOW — tower.css · o cenário da subida
+   Recepção → fachada iluminada → andares corporativos → cobertura/boardroom
+   Estética herdada do SUMMIT: violeta sobre torre noturna, dourado de destaque.
+   ══════════════════════════════════════════════════════════════ */
+
+#s-map.active {
+  position: fixed; inset: 0;
+  overflow-y: auto; overflow-x: hidden;
+  min-height: 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+#map-world {
+  position: relative;
+  width: 100%;
+  /* recepção clara → cair da noite → topo dourado da cobertura */
+  background: linear-gradient(
+    #6a5a8e 0px,
+    #4a5f8e 260px,
+    #3a5aa0 520px,
+    #2f4f9a 900px,
+    #241d3a 1700px,
+    #1c1630 2600px,
+    #140f24 3500px,
+    #0e0a1c 4200px,
+    #2a1a4a 4800px,
+    #6a4a90 100%
+  );
+}
+
+/* ---------- camadas decorativas ---------- */
+.ly-sky { position: absolute; top: 0; left: 0; width: 100%; height: 480px; pointer-events: none; overflow: hidden; }
+.sun-disc {
+  position: absolute; top: 40px; left: 50%; transform: translateX(-50%);
+  width: 170px; height: 170px; border-radius: 50%;
+  background: radial-gradient(circle, #fff0d0 0%, rgba(255, 210, 140, .5) 42%, transparent 70%);
+}
+#heli { position: absolute; top: 70px; left: -15%; animation: droneFly 30s linear infinite; }
+@keyframes droneFly { from { transform: translateX(0); } to { transform: translateX(130vw); } }
+#heli .rotor { transform-origin: 24px 5px; animation: rotorSpin .1s linear infinite; }
+@keyframes rotorSpin { to { transform: rotate(180deg); } }
+
+/* fachada da torre — janelas geradas via JS */
+.ly-tower { position: absolute; left: 50%; transform: translateX(-50%); width: min(96vw, 720px); pointer-events: none; }
+.win { opacity: .9; }
+.win.lit { animation: twinkle 3.4s ease-in-out infinite; }
+.win.lit:nth-child(odd) { animation-delay: 1.6s; }
+@keyframes twinkle { 0%, 100% { opacity: 1; } 50% { opacity: .45; } }
+
+.ray {
+  position: absolute; width: 14vw; height: 900px; left: 12%;
+  background: linear-gradient(rgba(167, 139, 250, .13), transparent 78%);
+  transform: skewX(-13deg); filter: blur(6px);
+  animation: raySway 8s ease-in-out infinite alternate; pointer-events: none;
+}
+.ray.r2 { left: 55%; width: 9vw; animation-duration: 10s; animation-delay: -3s; }
+.ray.r3 { left: 80%; width: 6vw; animation-duration: 12s; animation-delay: -6s; }
+@keyframes raySway { from { transform: skewX(-16deg) translateX(-2vw); } to { transform: skewX(-8deg) translateX(2vw); } }
+
+.bird { position: absolute; left: 0; animation: fly linear infinite; pointer-events: none; opacity: .5; font-size: 16px; }
+@keyframes fly { from { transform: translateX(-12vw); } to { transform: translateX(114vw); } }
+
+/* skyline base (recepção / térreo) */
+.ly-skyline { position: absolute; left: 50%; transform: translateX(-50%); width: min(96vw, 760px); pointer-events: none; }
+
+/* cobertura / boardroom no topo */
+.ly-roof { position: absolute; left: 50%; transform: translateX(-50%); width: min(94vw, 700px); pointer-events: none; }
+.gold-glow {
+  position: absolute; left: 50%; transform: translateX(-50%);
+  width: 140vw; height: 560px; pointer-events: none;
+  background: radial-gradient(ellipse at 50% 40%, rgba(251, 191, 36, .3), rgba(167, 139, 250, .14) 45%, transparent 72%);
+}
+
+/* ---------- andares (units) ---------- */
+.station {
+  position: absolute; left: 5%;
+  width: min(64vw, 340px);
+  display: flex; align-items: center; gap: 11px;
+  background: var(--glass);
+  border: 1.5px solid var(--line);
+  border-radius: 16px; padding: 11px 13px;
+  color: var(--tx); text-align: left; cursor: pointer;
+  backdrop-filter: blur(9px); -webkit-backdrop-filter: blur(9px);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, .45);
+  transition: transform .15s, border-color .25s, box-shadow .25s;
+  font-family: var(--fb);
+  z-index: 3;
+}
+.station.right { left: auto; right: 7%; }
+.station:active { transform: scale(.97); }
+.station .st-depth {
+  position: absolute; top: -11px; left: 12px;
+  font-family: var(--fh); font-size: 10.5px; letter-spacing: .1em;
+  background: #100b1f; border: 1px solid var(--line);
+  padding: 2px 9px; border-radius: 999px; color: var(--tx2);
+}
+.station .st-icon { font-size: 27px; flex-shrink: 0; }
+.station .st-info { display: flex; flex-direction: column; min-width: 0; }
+.station .st-info b { font-family: var(--fh); font-size: 12px; letter-spacing: .12em; color: var(--tx2); }
+.station .st-name { font-family: var(--fh); text-transform: uppercase; font-size: 15px; letter-spacing: .03em; line-height: 1.15; }
+.station .st-state { font-size: 11px; color: var(--tx2); margin-top: 2px; }
+
+.station.open { border-color: var(--ua); box-shadow: 0 0 0 1px var(--ua), 0 0 26px color-mix(in srgb, var(--ua) 45%, transparent), 0 12px 36px rgba(0, 0, 0, .45); }
+.station.open .st-icon { filter: drop-shadow(0 0 10px var(--ua)); }
+.station.open .st-name { color: var(--ua); }
+.station.open .st-state { color: var(--tx); }
+.station.open .st-depth { color: var(--ua); border-color: color-mix(in srgb, var(--ua) 55%, transparent); }
+.station.complete { border-color: var(--good); box-shadow: 0 0 0 1px var(--good), 0 0 22px rgba(34, 197, 94, .35); }
+.station.complete .st-name { color: #86efac; }
+
+.station.locked { opacity: .55; filter: saturate(.35); }
+.station.locked .st-name { color: var(--tx2); }
+
+/* ---------- portões (Viewpoint / Final Test) ---------- */
+.airlock {
+  position: absolute; left: 50%; transform: translateX(-50%);
+  width: min(88vw, 460px); text-align: center; cursor: pointer; z-index: 2;
+  display: flex; align-items: center; gap: 10px;
+}
+.airlock .al-line { flex: 1; height: 1.5px; background: repeating-linear-gradient(90deg, rgba(251, 191, 36, .55) 0 10px, transparent 10px 20px); }
+.airlock .al-badge {
+  font-family: var(--fh); font-size: 13px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--gold); background: rgba(20, 15, 36, .8);
+  border: 1.5px solid rgba(251, 191, 36, .55); border-radius: 999px;
+  padding: 8px 16px; white-space: nowrap;
+  box-shadow: 0 0 22px rgba(251, 191, 36, .25);
+}
+.airlock .al-badge small { display: block; font-size: 8.5px; color: var(--tx2); letter-spacing: .08em; }
+
+/* ---------- seletor de trilha (onboarding) ---------- */
+.trail-grid { display: flex; flex-direction: column; gap: 12px; margin-top: 16px; }
+.trail-card {
+  display: flex; align-items: center; gap: 14px; width: 100%;
+  background: var(--card); border: 1.5px solid var(--line); border-radius: 16px;
+  padding: 14px 16px; cursor: pointer; text-align: left; color: var(--tx);
+  transition: transform .12s, border-color .2s, box-shadow .2s;
+  font-family: var(--fb);
+}
+.trail-card:active { transform: scale(.98); }
+.trail-card:hover, .trail-card.sel {
+  border-color: var(--tc, var(--ac));
+  box-shadow: 0 0 0 1px var(--tc, var(--ac)), 0 0 22px color-mix(in srgb, var(--tc, var(--ac)) 40%, transparent);
+}
+.tc-icon { font-size: 26px; width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.tc-info { display: flex; flex-direction: column; }
+.tc-name { font-family: var(--fh); font-size: 16px; letter-spacing: .03em; text-transform: uppercase; }
+.tc-desc { font-size: 12px; color: var(--tx2); margin-top: 2px; }
+
+@media (min-width: 680px) {
+  .station { width: 340px; left: calc(50% - 380px); }
+  .station.right { left: auto; right: calc(50% - 380px); }
+}

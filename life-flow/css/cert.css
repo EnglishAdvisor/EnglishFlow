@@ -1,0 +1,31 @@
+/* LIFE FLOW — cert.css · certificado imprimível (PDF via impressão do navegador) */
+#cert-page { display: none; }
+
+.cert-sheet {
+  width: 100%; max-width: 900px; aspect-ratio: 1.414 / 1; margin: 0 auto;
+  background: #fbfdfc; color: #16283f;
+  border: 10px solid #7ec8d4; outline: 2px solid #4fa8b8; outline-offset: -18px;
+  padding: 48px 56px; box-sizing: border-box;
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+  position: relative;
+}
+.cert-seal { font-size: 46px; margin-bottom: 6px; }
+.cert-kicker { font-family: var(--fh); font-size: 13px; letter-spacing: .3em; text-transform: uppercase; color: #4fa8b8; margin-bottom: 6px; }
+.cert-title { font-family: var(--fh); font-size: 34px; letter-spacing: .05em; text-transform: uppercase; color: #16283f; margin-bottom: 18px; }
+.cert-body { font-size: 17px; line-height: 1.7; color: #2e4a63; max-width: 640px; }
+.cert-name { display: block; font-family: var(--fh); font-size: 30px; color: #4fa8b8; margin: 14px 0; text-transform: uppercase; letter-spacing: .03em; }
+.cert-detail { font-size: 15px; color: #6b8194; margin-top: 6px; }
+.cert-foot { display: flex; justify-content: space-between; width: 100%; max-width: 640px; margin-top: auto; padding-top: 34px; }
+.cert-sig { text-align: center; font-size: 13px; color: #6b8194; }
+.cert-sig b { display: block; border-top: 1px solid #b6cdd6; padding-top: 6px; margin-top: 34px; font-size: 14px; color: #16283f; }
+.cert-date { text-align: center; font-size: 13px; color: #6b8194; }
+.cert-date b { display: block; font-size: 14px; color: #16283f; margin-top: 2px; }
+
+@media print {
+  body * { visibility: hidden; }
+  #cert-page, #cert-page * { visibility: visible; }
+  #cert-page { display: block; position: fixed; inset: 0; background: #fff; }
+  .cert-sheet { border-width: 8px; box-shadow: none; page-break-inside: avoid; }
+  @page { size: landscape; margin: 0; }
+}

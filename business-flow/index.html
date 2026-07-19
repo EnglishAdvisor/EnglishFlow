@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#140f24">
+<title>BUSINESS FLOW — A Subida da Torre · EnglishFlow</title>
+<meta name="description" content="O companion oficial das trilhas Business Starter e Business Elementary da EnglishFlow: suba a torre praticando o inglês do livro, andar a andar. Offline, com códigos do mentor via WhatsApp.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏢</text></svg>">
+<link rel="stylesheet" href="css/style.css?v=1.0">
+<link rel="stylesheet" href="css/tower.css?v=1.0">
+</head>
+<body>
+
+<div id="app">
+
+  <!-- SPLASH -->
+  <div class="screen active" id="s-splash">
+    <div class="content">
+      <div class="logo-mark">🏢</div>
+      <div class="logo">BUSINESS <em>FLOW</em></div>
+      <div class="logo-sub">A SUBIDA DA TORRE · ENGLISHFLOW</div>
+      <p class="tagline">Do térreo à sua cadeira na mesa internacional: inglês para o trabalho.</p>
+      <div class="title-btns">
+        <button class="btn primary" id="t-play">🏢 INICIAR A SUBIDA</button>
+        <button class="btn ghost" id="t-codes">🔑 Códigos do mentor</button>
+        <button class="btn ghost" id="t-import">📥 Restaurar save (SAV…)</button>
+      </div>
+      <p class="muted center foot-note">
+        Progresso salvo neste aparelho · funciona 100% offline<br>
+        Business Starter (8 andares) · Business Elementary (6 andares)<br>
+        1 Viewpoint + 1 Final Test por trilha · mentor via WhatsApp
+      </p>
+    </div>
+  </div>
+
+  <!-- ONBOARDING: NOME -->
+  <div class="screen" id="s-name">
+    <div class="content">
+      <div class="panel" style="margin-top:22vh">
+        <h3>🪪 Identificação</h3>
+        <p class="muted">Seus relatórios assinados levam este nome — use o nome pelo qual seu mentor te conhece.</p>
+        <label class="lbl" for="name-inp">Seu nome</label>
+        <input class="inp" id="name-inp" maxlength="24" placeholder="ex.: João Silva" autocomplete="off">
+        <button class="btn primary wide" id="name-go">🏢 Continuar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ONBOARDING: TRILHA -->
+  <div class="screen" id="s-trail">
+    <div class="content">
+      <div class="panel" style="margin-top:14vh">
+        <h3>🏢 Escolha sua trilha</h3>
+        <p class="muted">Cada trilha é um prédio com seus próprios andares. Escolha o livro que você está estudando com seu mentor:</p>
+        <div class="trail-grid" id="trail-grid"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAPA DA SUBIDA -->
+  <div class="screen" id="s-map">
+    <div id="map-world"></div>
+  </div>
+
+  <!-- ANDAR (UNIDADE) -->
+  <div class="screen" id="s-unit"><div class="content"></div></div>
+
+  <!-- MISSÃO / TESTE -->
+  <div class="screen" id="s-mission"><div class="content"></div></div>
+
+  <!-- DATA BOOK -->
+  <div class="screen" id="s-databook"><div class="content"></div></div>
+
+  <!-- GLOSSÁRIO -->
+  <div class="screen" id="s-glossary"><div class="content"></div></div>
+
+  <!-- CÓDIGOS -->
+  <div class="screen" id="s-codes"><div class="content"></div></div>
+
+  <!-- AJUSTES -->
+  <div class="screen" id="s-settings"><div class="content"></div></div>
+
+</div>
+
+<!-- HUD fixo do mapa -->
+<div id="hud-depth">🏢 <span class="dv">Térreo</span></div>
+<div id="riser"><div class="cap"></div></div>
+<div id="hud-actions">
+  <button class="iconbtn" id="hud-nc">🛠️ 0<small>NCs</small></button>
+  <button class="iconbtn" id="hud-databook">📘<small>Data Book</small></button>
+  <button class="iconbtn" id="hud-glossary">🗝️<small>Glossário</small></button>
+  <button class="iconbtn" id="hud-codes">🔑<small>Códigos</small></button>
+  <button class="iconbtn" id="hud-settings">⚙️<small>Ajustes</small></button>
+</div>
+
+<div id="toasts"></div>
+
+<script src="js/util.js?v=1.0"></script>
+<script src="js/store.js?v=1.0"></script>
+<script src="js/srs.js?v=1.0"></script>
+<script src="js/speech.js?v=1.0"></script>
+<script src="js/audio.js?v=1.0"></script>
+<script src="js/codes.js?v=1.0"></script>
+<script src="js/whatsapp.js?v=1.0"></script>
+<script src="js/numbers.js?v=1.0"></script>
+<script src="js/mechanics.js?v=1.0"></script>
+<script src="js/units/index.js?v=1.0"></script>
+<script src="js/units/starter/unit01.js?v=1.0"></script>
+<script src="js/units/starter/unit02.js?v=1.0"></script>
+<script src="js/units/starter/unit03.js?v=1.0"></script>
+<script src="js/units/starter/unit04.js?v=1.0"></script>
+<script src="js/units/starter/unit05.js?v=1.0"></script>
+<script src="js/units/starter/unit06.js?v=1.0"></script>
+<script src="js/units/starter/unit07.js?v=1.0"></script>
+<script src="js/units/starter/unit08.js?v=1.0"></script>
+<script src="js/units/elementary/unit01.js?v=1.0"></script>
+<script src="js/units/elementary/unit02.js?v=1.0"></script>
+<script src="js/units/elementary/unit03.js?v=1.0"></script>
+<script src="js/units/elementary/unit04.js?v=1.0"></script>
+<script src="js/units/elementary/unit05.js?v=1.0"></script>
+<script src="js/units/elementary/unit06.js?v=1.0"></script>
+<script src="js/missions.js?v=1.0"></script>
+<script src="js/exam.js?v=1.0"></script>
+<script src="js/ascent.js?v=1.0"></script>
+<script src="js/databook.js?v=1.0"></script>
+<script src="js/glossary.js?v=1.0"></script>
+<script src="js/main.js?v=1.0"></script>
+</body>
+</html>
