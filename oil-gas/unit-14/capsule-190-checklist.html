@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Checklist · Unit 14 — Emergencies</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
+.header{background:#0d1b2a;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid rgba(231,76,60,.25)}
+.pill-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:700;color:#f0958d;line-height:1}
+.pill-title span{color:#e74c3c;font-size:clamp(14px,2.5vw,22px);font-weight:600;display:block;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.icon-box{width:48px;height:48px;border:1.5px solid rgba(231,76,60,.4);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.icon-box svg{width:26px;height:26px;stroke:#e74c3c;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(231,76,60,.2);padding:6px 24px;font-size:11px;color:#f0958d;text-align:center}
+.translate-warning strong{color:#e74c3c}
+.content{max-width:700px;margin:0 auto;padding:24px 16px 40px;display:flex;flex-direction:column;gap:14px;align-items:center}
+.unit-badge{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;color:#4a6a8a;text-transform:uppercase;letter-spacing:.1em;text-align:center}
+.checklist-intro{font-size:13px;color:#c8d8e8;text-align:center;max-width:420px;line-height:1.6}
+.checklist-card{background:#111827;border:1px solid rgba(231,76,60,.18);border-radius:14px;padding:22px 24px;width:100%}
+.item{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid rgba(231,76,60,.1);cursor:pointer;user-select:none;transition:background .15s;border-radius:8px;padding-left:8px;padding-right:8px}
+.item:last-child{border-bottom:none}
+.item:active{background:rgba(231,76,60,.06)}
+.check-box{width:28px;height:28px;border:2px solid rgba(231,76,60,.4);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s,border-color .2s}
+.check-box svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;opacity:0;transition:opacity .2s}
+.item.done .check-box{background:#e74c3c;border-color:#e74c3c}
+.item.done .check-box svg{opacity:1}
+.item-text{font-size:14px;color:#c8d8e8;line-height:1.4;transition:color .2s}
+.item.done .item-text{color:#4a6a8a;text-decoration:line-through}
+.progress-row{display:flex;align-items:center;gap:12px;width:100%;margin-top:4px}
+.progress-bar{flex:1;height:6px;background:#111827;border-radius:4px;overflow:hidden}
+.progress-fill{height:100%;background:#e74c3c;border-radius:4px;transition:width .3s}
+.progress-label{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;color:#e74c3c;min-width:40px;text-align:right}
+.reset-btn{background:transparent;border:1px solid rgba(231,76,60,.25);color:#4a6a8a;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;border-radius:8px;padding:6px 16px;cursor:pointer;margin-top:4px}
+.footer{background:#0d1b2a;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(231,76,60,.2);margin-top:4px}
+.footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a8a}
+.footer-right{display:flex;align-items:center;gap:10px}
+.footer-icon svg{width:22px;height:22px;stroke:#e74c3c;fill:none;stroke-width:1.5}
+.footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;color:#e74c3c;letter-spacing:.06em;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="pill-title">Checklist<span>Unit 14 — Emergencies</span></div>
+  <div class="icon-box"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+</div>
+<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
+<div class="content">
+  <div class="unit-badge">Unit 14 · Oil &amp; Gas 1 · Capsule 190 de 191</div>
+  <div class="checklist-intro">Tap each item when you can do it. Try to check all five before moving to the next unit.</div>
+
+  <div class="checklist-card">
+    <div class="item" id="i1" onclick="toggle(1)">
+      <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div class="item-text">I can deal with accidents and emergencies.</div>
+    </div>
+    <div class="item" id="i2" onclick="toggle(2)">
+      <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div class="item-text">I can understand what's wrong.</div>
+    </div>
+    <div class="item" id="i3" onclick="toggle(3)">
+      <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div class="item-text">I can explain an accident.</div>
+    </div>
+    <div class="item" id="i4" onclick="toggle(4)">
+      <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div class="item-text">I can write an accident report.</div>
+    </div>
+    <div class="item" id="i5" onclick="toggle(5)">
+      <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div class="item-text">I can understand vital signs.</div>
+    </div>
+  </div>
+
+  <div class="progress-row">
+    <div class="progress-bar"><div class="progress-fill" id="pBar" style="width:0%"></div></div>
+    <div class="progress-label" id="pLabel">0 / 5</div>
+  </div>
+  <button class="reset-btn" onclick="resetAll()">Reset</button>
+</div>
+<div class="footer">
+  <div class="footer-left">Capsule 190 de 191 · Unit 14 — Emergencies</div>
+  <div class="footer-right">
+    <div class="footer-icon"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+    <div class="footer-text">Unit 14 — Emergencies</div>
+  </div>
+</div>
+<script>
+var state=[false,false,false,false,false];
+function toggle(n){
+  state[n-1]=!state[n-1];
+  var el=document.getElementById('i'+n);
+  if(state[n-1])el.classList.add('done');else el.classList.remove('done');
+  updateProgress();
+}
+function updateProgress(){
+  var done=state.filter(Boolean).length;
+  document.getElementById('pBar').style.width=(done/5*100)+'%';
+  document.getElementById('pLabel').textContent=done+' / 5';
+}
+function resetAll(){state=[false,false,false,false,false];for(var i=1;i<=5;i++)document.getElementById('i'+i).classList.remove('done');updateProgress();}
+</script>
+</body>
+</html>

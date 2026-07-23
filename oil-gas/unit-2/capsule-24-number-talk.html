@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Number Talk · Unit 2 — Upstream</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
+.header{background:#0d1b2a;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid rgba(245,166,35,.25)}
+.pill-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:700;color:#f5c87a;line-height:1}
+.pill-title span{color:#f5a623;font-size:clamp(14px,2.5vw,22px);font-weight:600;display:block;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.icon-box{width:48px;height:48px;border:1.5px solid rgba(245,166,35,.4);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.icon-box svg{width:26px;height:26px;stroke:#f5a623;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.countdown-bar{background:#0d1b2a;border-bottom:1px solid rgba(245,166,35,.2);padding:8px 24px;display:flex;align-items:center;gap:12px}
+.countdown-display{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:#f5a623;letter-spacing:.08em;min-width:60px}
+.countdown-display.warning{color:#f59e0b}.countdown-display.urgent{color:#ef4444}
+.progress-track{flex:1;height:4px;background:rgba(245,166,35,.13);border-radius:2px;overflow:hidden}
+.progress-fill{height:100%;background:#f5a623;border-radius:2px;transition:width 1s linear,background .5s}
+.progress-fill.warning{background:#f59e0b}.progress-fill.urgent{background:#ef4444}
+.translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(245,166,35,.2);padding:6px 24px;font-size:11px;color:#f5c87a;text-align:center}
+.translate-warning strong{color:#f5a623}
+.steps{display:flex;gap:6px;padding:8px 16px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.steps::-webkit-scrollbar{display:none}
+.step{flex-shrink:0;display:flex;align-items:center;gap:6px;background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.25);border-radius:20px;padding:6px 12px;font-size:11.5px;color:#f5c87a;font-weight:500;white-space:nowrap}
+.step svg{width:13px;height:13px;stroke:#f5a623;fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0}
+.content{display:grid;grid-template-columns:1fr 300px;gap:12px;padding:0 16px 16px}
+.left-col{display:flex;flex-direction:column;gap:12px}
+.main-area{background:#111827;border-radius:10px;padding:14px 16px}
+.zone-label{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#f5a623;font-weight:600;margin-bottom:10px}
+.unit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+.unit-card{background:#0a1628;border:1.5px solid rgba(245,166,35,.3);border-radius:10px;padding:10px;text-align:center}
+.unit-symbol{font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:700;color:#f5a623}
+.unit-name{font-size:11px;color:#c8d8e8;margin-top:3px}
+.unit-conv{font-size:10px;color:#4a6a8a;margin-top:4px;font-style:italic}
+.info-block{background:#0a1628;border:1px solid rgba(245,166,35,.2);border-radius:8px;padding:10px 14px;margin-bottom:10px;font-size:11.5px;color:#c8d8e8;line-height:1.7}
+.info-block strong{color:#f5c87a}
+.activity-title{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:#f5a623;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+.number-table{width:100%;border-collapse:collapse;font-size:11.5px;margin-bottom:10px}
+.number-table th{background:rgba(245,166,35,.15);color:#f5c87a;padding:5px 8px;text-align:left;font-weight:600;letter-spacing:.04em;border-bottom:1px solid rgba(245,166,35,.25)}
+.number-table td{padding:5px 8px;color:#c8d8e8;border-bottom:1px solid rgba(245,166,35,.08)}
+.number-table tr:last-child td{border-bottom:none}
+.accent{color:#f5a623;font-weight:700}
+.exercise-list{display:flex;flex-direction:column;gap:5px;margin-bottom:10px}
+.exercise-item{background:#0a1628;border:1px solid rgba(245,166,35,.14);border-radius:6px;padding:7px 10px;font-size:11.5px;color:#c8d8e8}
+.exercise-num{color:#f5a623;font-weight:700}
+.task-box{background:#0a1628;border:1px solid rgba(245,166,35,.25);border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.task-box p{font-size:11px;color:#f5c87a;font-style:italic;line-height:1.45}
+.whatsapp-btn{display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;border:none;border-radius:8px;padding:7px 12px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:background .2s;width:100%}
+.whatsapp-btn:hover{background:#1ebc58}
+.whatsapp-btn svg{width:16px;height:16px;fill:#fff;flex-shrink:0}
+.zone-support{background:#111827;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:6px;align-self:start}
+.sidebar-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;color:#f5c87a;text-transform:uppercase;letter-spacing:.08em;padding-bottom:8px;border-bottom:1px solid rgba(245,166,35,.2);margin-bottom:4px}
+.key-item{padding:5px 0;border-bottom:1px solid rgba(245,166,35,.09);font-size:11.5px;color:#c8d8e8;display:flex;gap:6px;align-items:baseline}
+.key-item:last-child{border-bottom:none}
+.key-word{color:#f5a623;font-weight:700;font-family:'Barlow Condensed',sans-serif;font-size:13px;white-space:nowrap}
+.footer{background:#0d1b2a;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(245,166,35,.2);margin-top:4px}
+.footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a8a;letter-spacing:.04em}
+.footer-right{display:flex;align-items:center;gap:10px}
+.footer-icon svg{width:22px;height:22px;stroke:#f5a623;fill:none;stroke-width:1.5}
+.footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;color:#f5a623;letter-spacing:.06em;text-transform:uppercase}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);display:flex;align-items:center;justify-content:center;z-index:100;padding:16px}
+.modal-box{background:#111827;border:1px solid rgba(245,166,35,.25);border-radius:14px;padding:24px;max-width:480px;width:100%;max-height:85vh;overflow-y:auto;display:flex;flex-direction:column;gap:14px}
+.modal-title{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:#f5c87a}
+.modal-field label{font-size:11px;color:#f5a623;text-transform:uppercase;letter-spacing:.08em;font-weight:600;display:block;margin-bottom:5px}
+.modal-field input[type='text']{width:100%;background:#0a1628;border:1px solid rgba(245,166,35,.25);border-radius:6px;padding:9px;font-size:12px;color:#c8d8e8;font-family:'Barlow',sans-serif;outline:none}
+.modal-field input[type='text']:focus{border-color:#f5a623}
+.modal-field textarea{width:100%;background:#0a1628;border:1px solid rgba(245,166,35,.25);border-radius:6px;padding:9px;font-size:12px;color:#c8d8e8;font-family:'Barlow',sans-serif;resize:vertical;min-height:72px;outline:none}
+.modal-field textarea:focus{border-color:#f5a623}
+.modal-reminder{font-size:11px;color:#4a6a8a;font-style:italic;border-top:1px solid rgba(245,166,35,.13);padding-top:10px}
+.modal-actions{display:flex;gap:8px}
+.modal-cancel{flex:1;background:transparent;border:1px solid rgba(245,166,35,.25);color:#4a6a8a;border-radius:8px;padding:9px;font-family:'Barlow Condensed',sans-serif;font-size:14px;cursor:pointer}
+.modal-send{flex:2;display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;border:none;border-radius:8px;padding:9px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;cursor:pointer}
+.modal-send:hover{background:#1ebc58}
+.modal-send svg{width:15px;height:15px;fill:#fff}
+@media(max-width:700px){.content{grid-template-columns:1fr}.unit-grid{grid-template-columns:1fr 1fr}.steps{padding:6px 12px}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="pill-title">Number Talk<span>Upstream</span></div>
+  <div class="icon-box">
+    <svg viewBox="0 0 24 24"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg>
+  </div>
+</div>
+
+<div class="countdown-bar">
+  <span class="countdown-display" id="timer">20:00</span>
+  <div class="progress-track"><div class="progress-fill" id="progress" style="width:100%"></div></div>
+</div>
+
+<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
+
+<div class="steps">
+  <div class="step"><svg viewBox="0 0 24 24"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg>1. Study the units</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>2. Say the numbers</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>3. Record audio</div>
+</div>
+
+<div class="content">
+  <div class="left-col">
+    <div class="main-area">
+      <div class="zone-label">Number Talk — Measuring oil and gas</div>
+
+      <div class="unit-grid">
+        <div class="unit-card">
+          <div class="unit-symbol">m³</div>
+          <div class="unit-name">cubic metre</div>
+          <div class="unit-conv">= 1,000 litres</div>
+        </div>
+        <div class="unit-card">
+          <div class="unit-symbol">L</div>
+          <div class="unit-name">litre</div>
+          <div class="unit-conv">1 bbl = 159 L</div>
+        </div>
+        <div class="unit-card">
+          <div class="unit-symbol">bbl</div>
+          <div class="unit-name">barrel</div>
+          <div class="unit-conv">≈ 0.159 m³</div>
+        </div>
+      </div>
+
+      <div class="info-block">
+        <strong>Key conversions:</strong><br>
+        1 m³ = 1,000 litres<br>
+        1 barrel (bbl) = 159 litres<br>
+        Oil production is measured in <strong>bbl/d</strong> (barrels per day) or <strong>m³/d</strong> (cubic metres per day).
+      </div>
+
+      <div class="activity-title">Activity 1 — Say these large numbers in English</div>
+      <table class="number-table">
+        <tr><th>Number</th><th>In words</th></tr>
+        <tr><td class="accent">209</td><td>two hundred and nine</td></tr>
+        <tr><td class="accent">1,500</td><td>one thousand, five hundred</td></tr>
+        <tr><td class="accent">25,000</td><td>twenty-five thousand</td></tr>
+        <tr><td class="accent">380,000</td><td>three hundred and eighty thousand</td></tr>
+        <tr><td class="accent">1,000,000</td><td>one million</td></tr>
+        <tr><td class="accent">4,500,000</td><td>four million, five hundred thousand</td></tr>
+      </table>
+
+      <div class="activity-title">Activity 2 — Write these numbers in words</div>
+      <div class="exercise-list">
+        <div class="exercise-item"><span class="exercise-num">1.</span> 159 = _______________</div>
+        <div class="exercise-item"><span class="exercise-num">2.</span> 5,000 = _______________</div>
+        <div class="exercise-item"><span class="exercise-num">3.</span> 75,000 = _______________</div>
+        <div class="exercise-item"><span class="exercise-num">4.</span> 500,000 = _______________</div>
+        <div class="exercise-item"><span class="exercise-num">5.</span> 2,000,000 = _______________</div>
+      </div>
+
+      <div class="task-box">
+        <p>📝 Write or say the answers. Record your audio. Send via WhatsApp.</p>
+        <button class="whatsapp-btn" onclick="openModal()">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="#fff"/></svg>
+          Enviar respostas
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="zone-support">
+    <div class="sidebar-title">Units &amp; conversions</div>
+    <div class="key-item"><span class="key-word">m³</span>cubic metre</div>
+    <div class="key-item"><span class="key-word">L</span>litre</div>
+    <div class="key-item"><span class="key-word">bbl</span>barrel (of oil)</div>
+    <div class="key-item"><span class="key-word">bbl/d</span>barrels per day</div>
+    <div class="key-item"><span class="key-word">m³/d</span>cubic metres/day</div>
+    <div style="height:6px"></div>
+    <div class="sidebar-title">Large numbers</div>
+    <div class="key-item"><span class="key-word">100</span>a hundred</div>
+    <div class="key-item"><span class="key-word">1,000</span>a thousand</div>
+    <div class="key-item"><span class="key-word">1,000,000</span>a million</div>
+    <div class="key-item"><span class="key-word">and</span>after hundreds</div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-left">Capsule 24 de 30 · Unit 2 — Upstream</div>
+  <div class="footer-right">
+    <div class="footer-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+    <div class="footer-text">Unit 2 — Upstream</div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal" style="display:none">
+  <div class="modal-box">
+    <div class="modal-title">Number Talk — Enviar respostas</div>
+    <div class="modal-field"><label>Your name</label><input type="text" id="studentName" placeholder="Type your name..." autocomplete="off"></div>
+    <div class="modal-field"><label>Activity 1 — Say large numbers (confirm you practised them)</label><textarea id="act1" placeholder="I practised: 209, 1500, 25000, 380000, 1000000, 4500000"></textarea></div>
+    <div class="modal-field"><label>Activity 2 — Write numbers in words (1–5)</label><textarea id="act2" placeholder="1: one hundred and... 2: five thousand 3: ... 4: ... 5: ..."></textarea></div>
+    <div class="modal-reminder">🎙️ Após enviar, grave seu áudio lendo os números em voz alta.</div>
+    <div class="modal-actions">
+      <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+      <button class="modal-send" onclick="sendWA()">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="#fff"/></svg>
+        Enviar no WhatsApp
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+const TOTAL=20*60;let remaining=TOTAL;
+const iv=setInterval(function(){
+  remaining--;
+  var m=Math.floor(remaining/60).toString().padStart(2,'0'),s=(remaining%60).toString().padStart(2,'0');
+  var el=document.getElementById('timer'),bar=document.getElementById('progress');
+  el.textContent=m+':'+s;bar.style.width=((remaining/TOTAL)*100)+'%';
+  el.className='countdown-display';bar.className='progress-fill';
+  if(remaining<=0){clearInterval(iv);el.textContent='00:00';bar.style.width='0%';bar.classList.add('urgent');}
+  else if(remaining<=60){el.classList.add('urgent');bar.classList.add('urgent');}
+  else if(remaining<=180){el.classList.add('warning');bar.classList.add('warning');}
+},1000);
+
+function openModal(){
+  var saved=localStorage.getItem('ef_student_name');
+  if(saved)document.getElementById('studentName').value=saved;
+  document.getElementById('modal').style.display='flex';
+}
+function closeModal(){document.getElementById('modal').style.display='none';}
+
+function sendWA(){
+  var name=document.getElementById('studentName').value.trim()||'Aluno';
+  localStorage.setItem('ef_student_name',name);
+  var now=new Date(),date=now.toLocaleDateString('pt-BR'),time=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  var a1=document.getElementById('act1').value||'(not answered)';
+  var a2=document.getElementById('act2').value||'(not answered)';
+  var msg='👤 '+name+'\n📅 '+date+' às '+time+'\n🎙️ Number Talk — Unit 2 — Upstream\n\n📌 Activity 1 — Large numbers practice:\n'+a1+'\n\n📌 Activity 2 — Numbers in words:\n'+a2+'\n\n👇 Áudio na mensagem seguinte';
+  window.open('https://wa.me/5522999585058?text='+encodeURIComponent(msg),'_blank');
+}
+
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+</script>
+</body>
+</html>

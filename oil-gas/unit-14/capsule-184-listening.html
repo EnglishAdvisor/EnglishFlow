@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Listening · Unit 14 — Emergencies</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
+.header{background:#0d1b2a;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid rgba(231,76,60,.25)}
+.pill-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:700;color:#f0958d;line-height:1}
+.pill-title span{color:#e74c3c;font-size:clamp(14px,2.5vw,22px);font-weight:600;display:block;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.icon-box{width:48px;height:48px;border:1.5px solid rgba(231,76,60,.4);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.icon-box svg{width:26px;height:26px;stroke:#e74c3c;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(231,76,60,.2);padding:6px 24px;font-size:11px;color:#f0958d;text-align:center}
+.translate-warning strong{color:#e74c3c}
+.content{max-width:900px;margin:0 auto;padding:20px 16px 32px;display:flex;gap:16px;align-items:flex-start}
+.left-col{flex:1;min-width:0}
+.zone-support{width:220px;flex-shrink:0}
+@media(max-width:640px){.content{flex-direction:column}.zone-support{width:100%}}
+.act-card{background:#111827;border:1px solid rgba(231,76,60,.18);border-radius:12px;padding:16px;margin-bottom:10px}
+.act-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:#e74c3c;margin-bottom:4px}
+.act-sub{font-size:12px;color:#4a6a8a;margin-bottom:10px}
+.sit-label{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#f0958d;margin:10px 0 6px;text-transform:uppercase;letter-spacing:.06em}
+.tf-row{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid rgba(231,76,60,.08);font-size:13px;color:#c8d8e8}
+.tf-row:last-child{border-bottom:none}
+.tf-num{color:#e74c3c;font-weight:700;font-family:'Barlow Condensed',sans-serif;font-size:13px;width:18px;flex-shrink:0}
+.tf-text{flex:1}
+.tf-btns{display:flex;gap:4px;flex-shrink:0}
+.tf-btn{background:#0a1628;border:1px solid rgba(231,76,60,.2);color:#4a6a8a;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;border-radius:5px;padding:3px 10px;cursor:pointer}
+.tf-btn.correct{background:rgba(46,204,113,.15);border-color:#2ecc71;color:#2ecc71}
+.tf-btn.wrong{background:rgba(231,76,60,.15);border-color:#e74c3c;color:#e74c3c}
+.q-list{list-style:none}
+.q-item{padding:7px 0;border-bottom:1px solid rgba(231,76,60,.1);font-size:13px;color:#c8d8e8;line-height:1.5;display:flex;gap:8px}
+.q-item:last-child{border-bottom:none}
+.q-num{color:#e74c3c;font-weight:700;flex-shrink:0;font-family:'Barlow Condensed',sans-serif;font-size:14px;min-width:18px}
+.sidebar-box{background:#111827;border:1px solid rgba(231,76,60,.18);border-radius:12px;padding:14px;margin-bottom:10px}
+.sidebar-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:#e74c3c;margin-bottom:10px}
+.kw-item{display:flex;flex-direction:column;padding:5px 0;border-bottom:1px solid rgba(231,76,60,.1)}
+.kw-item:last-child{border-bottom:none}
+.kw-en{font-size:13px;color:#f0958d;font-weight:600}
+.kw-def{font-size:11px;color:#4a6a8a;margin-top:1px}
+.wa-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:#e74c3c;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:none;border-radius:10px;padding:13px 20px;width:100%;cursor:pointer;transition:background .2s;margin-top:6px}
+.wa-btn:hover{background:#f0958d}
+.wa-btn svg{width:20px;height:20px;fill:#fff;flex-shrink:0}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal-overlay.open{display:flex}
+.modal{background:#111827;border:1px solid rgba(231,76,60,.3);border-radius:14px;padding:22px;width:100%;max-width:420px;max-height:90vh;overflow-y:auto}
+.modal-title{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:#f0958d;margin-bottom:4px}
+.modal-sub{font-size:12px;color:#4a6a8a;margin-bottom:14px}
+.modal label{font-size:12px;color:#f0958d;font-weight:600;display:block;margin-bottom:4px}
+.modal input,.modal textarea{width:100%;background:#0a0f1e;border:1px solid rgba(231,76,60,.3);border-radius:8px;padding:9px 12px;font-size:13px;color:#c8d8e8;margin-bottom:12px;font-family:'Barlow',sans-serif;resize:vertical}
+.modal-note{font-size:12px;color:#4a6a8a;background:#0a0f1e;border-radius:8px;padding:10px 12px;margin-bottom:14px;line-height:1.5}
+.modal-btns{display:flex;gap:8px}
+.modal-send{flex:1;background:#e74c3c;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;border:none;border-radius:8px;padding:10px;cursor:pointer}
+.modal-cancel{background:transparent;border:1px solid rgba(231,76,60,.3);color:#4a6a8a;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;border-radius:8px;padding:10px 16px;cursor:pointer}
+.footer{background:#0d1b2a;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(231,76,60,.2);margin-top:4px}
+.footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a8a}
+.footer-right{display:flex;align-items:center;gap:10px}
+.footer-icon svg{width:22px;height:22px;stroke:#e74c3c;fill:none;stroke-width:1.5}
+.footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;color:#e74c3c;letter-spacing:.06em;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="pill-title">Listening<span>Understanding What's Wrong</span></div>
+  <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg></div>
+</div>
+<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
+<div class="content">
+  <div class="left-col">
+    <div class="act-card">
+      <div class="act-title">Activity 1 — True or False?</div>
+      <div class="act-sub">Listen to three emergency dialogues. Click T (true) or F (false).</div>
+
+      <div class="sit-label">Situation 1</div>
+      <div class="tf-row"><span class="tf-num">1</span><span class="tf-text">The man has broken his hand.</span><div class="tf-btns"><button class="tf-btn" onclick="tfAns(this,'F','1a')">T</button><button class="tf-btn" onclick="tfAns(this,'F','1a')">F</button></div></div>
+      <div class="tf-row"><span class="tf-num">2</span><span class="tf-text">The injury is very serious.</span><div class="tf-btns"><button class="tf-btn" onclick="tfAns(this,'F','1b')">T</button><button class="tf-btn" onclick="tfAns(this,'F','1b')">F</button></div></div>
+      <div class="tf-row"><span class="tf-num">3</span><span class="tf-text">The area is now safe.</span><div class="tf-btns"><button class="tf-btn" onclick="tfAns(this,'T','1c')">T</button><button class="tf-btn" onclick="tfAns(this,'T','1c')">F</button></div></div>
+
+      <div class="sit-label">Situation 2</div>
+      <div class="tf-row"><span class="tf-num">4</span><span class="tf-text">The man has a serious head injury.</span><div class="tf-btns"><button class="tf-btn" onclick="tfAns(this,'T','2a')">T</button><button class="tf-btn" onclick="tfAns(this,'T','2a')">F</button></div></div>
+      <div class="tf-row"><span class="tf-num">5</span><span class="tf-text">He is unconscious.</span><div class="tf-btns"><button class="tf-btn" onclick="tfAns(this,'T','2b')">T</button><button class="tf-btn" onclick="tfAns(this,'T','2b')">F</button></div></div>
+      <div class="tf-row"><span class="tf-num">6</span><span class="tf-text">They telephone an ambulance.</span><div class="tf-btns"><button class="tf-btn" onclick="tfAns(this,'T','2c')">T</button><button class="tf-btn" onclick="tfAns(this,'T','2c')">F</button></div></div>
+
+      <div class="sit-label">Situation 3</div>
+      <div class="tf-row"><span class="tf-num">7</span><span class="tf-text">The man was burned by a fire.</span><div class="tf-btns"><button class="tf-btn" onclick="tfAns(this,'F','3a')">T</button><button class="tf-btn" onclick="tfAns(this,'F','3a')">F</button></div></div>
+      <div class="tf-row"><span class="tf-num">8</span><span class="tf-text">He used the emergency shower.</span><div class="tf-btns"><button class="tf-btn" onclick="tfAns(this,'T','3b')">T</button><button class="tf-btn" onclick="tfAns(this,'T','3b')">F</button></div></div>
+      <div class="tf-row"><span class="tf-num">9</span><span class="tf-text">The injury is serious.</span><div class="tf-btns"><button class="tf-btn" onclick="tfAns(this,'F','3c')">T</button><button class="tf-btn" onclick="tfAns(this,'F','3c')">F</button></div></div>
+    </div>
+
+    <div class="act-card">
+      <div class="act-title">Activity 2 — Comprehension: Listen again and answer</div>
+      <div class="sit-label">Situation 1</div>
+      <ul class="q-list">
+        <li class="q-item"><span class="q-num">1</span>Where did the incident happen?</li>
+        <li class="q-item"><span class="q-num">2</span>What were the men doing when it happened?</li>
+        <li class="q-item"><span class="q-num">3</span>What will they do now?</li>
+      </ul>
+      <div class="sit-label">Situation 2</div>
+      <ul class="q-list">
+        <li class="q-item"><span class="q-num">4</span>What fell on the man's head?</li>
+        <li class="q-item"><span class="q-num">5</span>Can the injured man talk?</li>
+        <li class="q-item"><span class="q-num">6</span>Where did the incident happen?</li>
+      </ul>
+      <div class="sit-label">Situation 3</div>
+      <ul class="q-list">
+        <li class="q-item"><span class="q-num">7</span>What part of the man's body was injured?</li>
+        <li class="q-item"><span class="q-num">8</span>Where did the incident happen?</li>
+        <li class="q-item"><span class="q-num">9</span>What do they need to do next?</li>
+      </ul>
+    </div>
+
+    <button class="wa-btn" onclick="openModal()">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.535 5.858L.057 23.48a.5.5 0 0 0 .61.632l5.788-1.517A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.95 9.95 0 0 1-5.187-1.448l-.372-.22-3.433.9.916-3.345-.242-.384A9.953 9.953 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Enviar respostas
+    </button>
+  </div>
+  <div class="zone-support">
+    <div class="sidebar-box">
+      <div class="sidebar-title">Key Words</div>
+      <div class="kw-item"><span class="kw-en">conscious (adj)</span><span class="kw-def">awake, alert, able to speak</span></div>
+      <div class="kw-item"><span class="kw-en">unconscious (adj)</span><span class="kw-def">not awake — usually from injury or illness</span></div>
+      <div class="kw-item"><span class="kw-en">minor injury</span><span class="kw-def">injury that is not very serious</span></div>
+      <div class="kw-item"><span class="kw-en">serious injury</span><span class="kw-def">a bad or dangerous injury</span></div>
+    </div>
+    <div class="sidebar-box">
+      <div class="sidebar-title">Answers key (Activity 1)</div>
+      <div class="kw-item"><span class="kw-en">1 — F</span><span class="kw-def">he cut his arm, not broke his hand</span></div>
+      <div class="kw-item"><span class="kw-en">2 — F</span><span class="kw-def">minor, not serious</span></div>
+      <div class="kw-item"><span class="kw-en">3 — T</span><span class="kw-def">area is safe</span></div>
+      <div class="kw-item"><span class="kw-en">4 — T</span><span class="kw-def">serious head injury</span></div>
+      <div class="kw-item"><span class="kw-en">5 — T</span><span class="kw-def">unconscious</span></div>
+      <div class="kw-item"><span class="kw-en">6 — T</span><span class="kw-def">ambulance called</span></div>
+      <div class="kw-item"><span class="kw-en">7 — F</span><span class="kw-def">chemical burn, not fire burn</span></div>
+      <div class="kw-item"><span class="kw-en">8 — T</span><span class="kw-def">used emergency shower</span></div>
+      <div class="kw-item"><span class="kw-en">9 — F</span><span class="kw-def">minor, not serious</span></div>
+    </div>
+  </div>
+</div>
+<div class="footer">
+  <div class="footer-left">Capsule 184 de 191 · Unit 14 — Emergencies</div>
+  <div class="footer-right">
+    <div class="footer-icon"><svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/></svg></div>
+    <div class="footer-text">Unit 14 — Emergencies</div>
+  </div>
+</div>
+<div class="modal-overlay" id="waModal">
+  <div class="modal">
+    <div class="modal-title">Enviar respostas — Listening</div>
+    <div class="modal-sub">Unit 14 — Understanding What's Wrong</div>
+    <label for="studentName">Your name</label>
+    <input type="text" id="studentName" placeholder="Type your name" oninput="localStorage.setItem('ef_student_name',this.value)">
+    <label for="ans1">Activity 2 — Comprehension answers (1–9)</label>
+    <textarea id="ans1" rows="8" placeholder="Sit 1: 1. ... 2. ... 3. ...&#10;Sit 2: 4. ... 5. ... 6. ...&#10;Sit 3: 7. ... 8. ... 9. ..."></textarea>
+    <div class="modal-note">🎙️ Após enviar, grave seu áudio e envie na mesma conversa.</div>
+    <div class="modal-btns">
+      <button class="modal-cancel" onclick="closeModal()">Cancelar</button>
+      <button class="modal-send" onclick="sendWA()">Enviar no WhatsApp</button>
+    </div>
+  </div>
+</div>
+<script>
+var tfAnswered={};
+function tfAns(btn,correct,id){
+  if(tfAnswered[id])return;
+  tfAnswered[id]=true;
+  var row=btn.closest('.tf-row');
+  var btns=row.querySelectorAll('.tf-btn');
+  var clicked=btn.textContent;
+  btn.classList.add(clicked===correct?'correct':'wrong');
+}
+function openModal(){var n=localStorage.getItem('ef_student_name')||'';document.getElementById('studentName').value=n;document.getElementById('waModal').classList.add('open');}
+function closeModal(){document.getElementById('waModal').classList.remove('open');}
+function sendWA(){
+  var name=document.getElementById('studentName').value.trim()||'Student';
+  localStorage.setItem('ef_student_name',name);
+  var now=new Date();
+  var date=now.toLocaleDateString('pt-BR');
+  var time=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  var a1=document.getElementById('ans1').value.trim()||'—';
+  var msg='👤 '+name+'\n📅 '+date+' às '+time+'\n🎙️ Listening — Unit 14 — Emergencies\n📌 Activity 2:\n'+a1+'\n👇 Áudio na mensagem seguinte';
+  window.open('https://wa.me/5522999585058?text='+encodeURIComponent(msg),'_blank');
+  closeModal();
+}
+document.getElementById('waModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+</script>
+</body>
+</html>

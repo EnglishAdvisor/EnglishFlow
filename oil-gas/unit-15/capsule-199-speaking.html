@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Speaking · Unit 15 — Petrochemicals</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
+.header{background:#0d1b2a;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid rgba(168,85,247,.25)}
+.pill-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:700;color:#cc99fb;line-height:1}
+.pill-title span{color:#a855f7;font-size:clamp(14px,2.5vw,22px);font-weight:600;display:block;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.icon-box{width:48px;height:48px;border:1.5px solid rgba(168,85,247,.4);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.icon-box svg{width:26px;height:26px;stroke:#a855f7;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(168,85,247,.2);padding:6px 24px;font-size:11px;color:#cc99fb;text-align:center}
+.translate-warning strong{color:#a855f7}
+.content{max-width:900px;margin:0 auto;padding:20px 16px 32px;display:flex;gap:16px;align-items:flex-start}
+.left-col{flex:1;min-width:0}
+.zone-support{width:220px;flex-shrink:0}
+@media(max-width:640px){.content{flex-direction:column}.zone-support{width:100%}}
+.act-card{background:#111827;border:1px solid rgba(168,85,247,.18);border-radius:12px;padding:16px;margin-bottom:10px}
+.act-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:#a855f7;margin-bottom:10px}
+.company-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:10px}
+@media(max-width:500px){.company-grid{grid-template-columns:1fr}}
+.company-box{background:#0a1628;border:1px solid rgba(168,85,247,.25);border-radius:10px;padding:14px}
+.company-box-title{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:#cc99fb;margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em}
+.company-field{font-size:12px;color:#c8d8e8;padding:4px 0;border-bottom:1px solid rgba(168,85,247,.08);line-height:1.4}
+.company-field:last-child{border-bottom:none}
+.company-field strong{color:#a855f7}
+.form-card{background:#0a1628;border:1px solid rgba(168,85,247,.2);border-radius:10px;padding:14px;margin-top:8px}
+.form-title{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:#cc99fb;margin-bottom:8px}
+.form-row{display:flex;align-items:baseline;gap:8px;padding:6px 0;border-bottom:1px solid rgba(168,85,247,.08);font-size:12px}
+.form-row:last-child{border-bottom:none}
+.form-label{color:#a855f7;font-weight:600;flex-shrink:0;width:130px;font-size:11px;text-transform:uppercase}
+.form-blank{flex:1;border-bottom:1px solid rgba(168,85,247,.3);color:#4a6a8a;font-style:italic;padding:0 4px;min-height:18px}
+.lang-box{background:#0a1628;border:1px solid rgba(168,85,247,.2);border-radius:10px;padding:12px}
+.lang-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#cc99fb;margin-bottom:6px}
+.lang-item{font-size:12px;color:#c8d8e8;padding:3px 0;border-bottom:1px solid rgba(168,85,247,.06)}
+.lang-item:last-child{border-bottom:none}
+.sidebar-box{background:#111827;border:1px solid rgba(168,85,247,.18);border-radius:12px;padding:14px;margin-bottom:10px}
+.sidebar-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:#a855f7;margin-bottom:10px}
+.kw-item{display:flex;flex-direction:column;padding:5px 0;border-bottom:1px solid rgba(168,85,247,.1)}
+.kw-item:last-child{border-bottom:none}
+.kw-en{font-size:13px;color:#cc99fb;font-weight:600}
+.kw-def{font-size:11px;color:#4a6a8a;margin-top:1px}
+.wa-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:#a855f7;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:none;border-radius:10px;padding:13px 20px;width:100%;cursor:pointer;transition:background .2s;margin-top:6px}
+.wa-btn:hover{background:#cc99fb}
+.wa-btn svg{width:20px;height:20px;fill:#fff;flex-shrink:0}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal-overlay.open{display:flex}
+.modal{background:#111827;border:1px solid rgba(168,85,247,.3);border-radius:14px;padding:22px;width:100%;max-width:420px;max-height:90vh;overflow-y:auto}
+.modal-title{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:#cc99fb;margin-bottom:4px}
+.modal-sub{font-size:12px;color:#4a6a8a;margin-bottom:14px}
+.modal label{font-size:12px;color:#cc99fb;font-weight:600;display:block;margin-bottom:4px}
+.modal input{width:100%;background:#0a0f1e;border:1px solid rgba(168,85,247,.3);border-radius:8px;padding:9px 12px;font-size:13px;color:#c8d8e8;margin-bottom:12px;font-family:'Barlow',sans-serif}
+.modal-instr{font-size:12px;color:#c8d8e8;background:#0a0f1e;border-radius:8px;padding:10px 12px;margin-bottom:14px;line-height:1.6}
+.modal-btns{display:flex;gap:8px}
+.modal-send{flex:1;background:#a855f7;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;border:none;border-radius:8px;padding:10px;cursor:pointer}
+.modal-cancel{background:transparent;border:1px solid rgba(168,85,247,.3);color:#4a6a8a;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;border-radius:8px;padding:10px 16px;cursor:pointer}
+.footer{background:#0d1b2a;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(168,85,247,.2);margin-top:4px}
+.footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a8a}
+.footer-right{display:flex;align-items:center;gap:10px}
+.footer-icon svg{width:22px;height:22px;stroke:#a855f7;fill:none;stroke-width:1.5}
+.footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;color:#a855f7;letter-spacing:.06em;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="pill-title">Speaking<span>Describe a Petrochemical Factory</span></div>
+  <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+</div>
+<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
+<div class="content">
+  <div class="left-col">
+    <div class="act-card">
+      <div class="act-title">Activity 1 — Study both companies and practise describing them</div>
+      <div class="company-grid">
+        <div class="company-box">
+          <div class="company-box-title">Company A</div>
+          <div class="company-field"><strong>Company:</strong> Arg-Nyl</div>
+          <div class="company-field"><strong>Plant:</strong> San Lorenzo</div>
+          <div class="company-field"><strong>Location:</strong> Near Buenos Aires, Argentina</div>
+          <div class="company-field"><strong>Main product:</strong> Nylon fabric</div>
+          <div class="company-field"><strong>Used for:</strong> Clothing, shoes, camping tents</div>
+        </div>
+        <div class="company-box">
+          <div class="company-box-title">Company B</div>
+          <div class="company-field"><strong>Company:</strong> Ming Hing Carbon Company</div>
+          <div class="company-field"><strong>Plant:</strong> MH Guangzhou Works</div>
+          <div class="company-field"><strong>Location:</strong> Guangzhou, China</div>
+          <div class="company-field"><strong>Main product:</strong> Carbon fibre</div>
+          <div class="company-field"><strong>Used for:</strong> Composite fabrics for cars and airplanes</div>
+        </div>
+      </div>
+      <p style="font-size:12px;color:#4a6a8a">Practise describing each company in full sentences. Use the Useful language box on the right.</p>
+    </div>
+
+    <div class="act-card">
+      <div class="act-title">Activity 2 — Role-play: Exchange information with a partner</div>
+      <p style="font-size:13px;color:#c8d8e8;margin-bottom:8px">Student A describes Company B (Ming Hing). Student B listens and completes the description form. Then switch.</p>
+      <div class="form-card">
+        <div class="form-title">Listen and complete</div>
+        <div class="form-row"><div class="form-label">Company</div><div class="form-blank"></div></div>
+        <div class="form-row"><div class="form-label">Plant</div><div class="form-blank"></div></div>
+        <div class="form-row"><div class="form-label">Location</div><div class="form-blank"></div></div>
+        <div class="form-row"><div class="form-label">Main product</div><div class="form-blank"></div></div>
+        <div class="form-row"><div class="form-label">Product used for</div><div class="form-blank"></div></div>
+      </div>
+      <div class="lang-box" style="margin-top:10px">
+        <div class="lang-title">Useful language</div>
+        <div class="lang-item">"[Company]'s [Plant] is located [location]."</div>
+        <div class="lang-item">"It manufactures [main product]."</div>
+        <div class="lang-item">"[Product] is used to make …"</div>
+        <div class="lang-item">"The company specializes in …"</div>
+        <div class="lang-item">"Their main customers are …"</div>
+      </div>
+    </div>
+
+    <button class="wa-btn" onclick="openModal()">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.535 5.858L.057 23.48a.5.5 0 0 0 .61.632l5.788-1.517A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.95 9.95 0 0 1-5.187-1.448l-.372-.22-3.433.9.916-3.345-.242-.384A9.953 9.953 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Enviar áudio
+    </button>
+  </div>
+  <div class="zone-support">
+    <div class="sidebar-box">
+      <div class="sidebar-title">Sentence starters</div>
+      <div class="kw-item"><span class="kw-en">"The plant is located…"</span><span class="kw-def">near [city], [country]</span></div>
+      <div class="kw-item"><span class="kw-en">"It manufactures…"</span><span class="kw-def">the main product</span></div>
+      <div class="kw-item"><span class="kw-en">"[Product] is used to…"</span><span class="kw-def">make / produce / supply</span></div>
+      <div class="kw-item"><span class="kw-en">"The company specializes in…"</span><span class="kw-def">type of production</span></div>
+    </div>
+    <div class="sidebar-box">
+      <div class="sidebar-title">Key materials</div>
+      <div class="kw-item"><span class="kw-en">nylon fabric</span><span class="kw-def">clothing, shoes, camping tents</span></div>
+      <div class="kw-item"><span class="kw-en">carbon fibre</span><span class="kw-def">composite fabrics for cars/planes</span></div>
+      <div class="kw-item"><span class="kw-en">composite fibre</span><span class="kw-def">thread from 2+ materials combined</span></div>
+      <div class="kw-item"><span class="kw-en">spunbond fabric</span><span class="kw-def">carpets, medical packaging, diapers</span></div>
+    </div>
+  </div>
+</div>
+<div class="footer">
+  <div class="footer-left">Capsule 199 de 203 · Unit 15 — Petrochemicals</div>
+  <div class="footer-right">
+    <div class="footer-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+    <div class="footer-text">Unit 15 — Petrochemicals</div>
+  </div>
+</div>
+<div class="modal-overlay" id="waModal">
+  <div class="modal">
+    <div class="modal-title">Enviar áudio — Speaking</div>
+    <div class="modal-sub">Unit 15 — Describe a Factory</div>
+    <label for="studentName">Your name</label>
+    <input type="text" id="studentName" placeholder="Type your name" oninput="localStorage.setItem('ef_student_name',this.value)">
+    <div class="modal-instr">Clique em <strong>Enviar no WhatsApp</strong>, depois grave seu áudio descrevendo uma das fábricas. Use frases completas como no exemplo do Listening.</div>
+    <div class="modal-btns">
+      <button class="modal-cancel" onclick="closeModal()">Cancelar</button>
+      <button class="modal-send" onclick="sendWA()">Enviar no WhatsApp</button>
+    </div>
+  </div>
+</div>
+<script>
+function openModal(){var n=localStorage.getItem('ef_student_name')||'';document.getElementById('studentName').value=n;document.getElementById('waModal').classList.add('open');}
+function closeModal(){document.getElementById('waModal').classList.remove('open');}
+function sendWA(){
+  var name=document.getElementById('studentName').value.trim()||'Student';
+  localStorage.setItem('ef_student_name',name);
+  var now=new Date();
+  var date=now.toLocaleDateString('pt-BR');
+  var time=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  var msg='👤 '+name+'\n📅 '+date+' às '+time+'\n🎙️ Speaking — Unit 15 — Petrochemicals\n👇 Áudio na mensagem seguinte (descrição da fábrica)';
+  window.open('https://wa.me/5522999585058?text='+encodeURIComponent(msg),'_blank');
+  closeModal();
+}
+document.getElementById('waModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+</script>
+</body>
+</html>

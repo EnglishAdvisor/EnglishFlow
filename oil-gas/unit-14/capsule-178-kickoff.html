@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Kick Off · Unit 14 — Emergencies</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
+.header{background:#0d1b2a;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid rgba(231,76,60,.25)}
+.pill-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:700;color:#f0958d;line-height:1}
+.pill-title span{color:#e74c3c;font-size:clamp(14px,2.5vw,22px);font-weight:600;display:block;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.icon-box{width:48px;height:48px;border:1.5px solid rgba(231,76,60,.4);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.icon-box svg{width:26px;height:26px;stroke:#e74c3c;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(231,76,60,.2);padding:6px 24px;font-size:11px;color:#f0958d;text-align:center}
+.translate-warning strong{color:#e74c3c}
+.steps-bar{background:#0d1b2a;padding:10px 24px;display:flex;gap:0;border-bottom:1px solid rgba(231,76,60,.15);overflow-x:auto;scrollbar-width:none}
+.steps-bar::-webkit-scrollbar{display:none}
+.step{display:flex;align-items:center;gap:6px;flex-shrink:0}
+.step-num{width:22px;height:22px;border-radius:50%;background:rgba(231,76,60,.15);border:1px solid rgba(231,76,60,.3);font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;color:#e74c3c;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.step-label{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;color:#4a6a8a;text-transform:uppercase;letter-spacing:.06em;white-space:nowrap}
+.step-arrow{color:#2a3a4a;font-size:14px;margin:0 8px}
+.content{max-width:760px;margin:0 auto;padding:20px 16px 40px}
+.scenario-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+@media(max-width:480px){.scenario-grid{grid-template-columns:1fr}}
+.scenario-card{background:#111827;border:1px solid rgba(231,76,60,.2);border-radius:12px;overflow:hidden}
+.scenario-img{background:#0a1628;height:110px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid rgba(231,76,60,.1)}
+.scenario-img svg{width:52px;height:52px;stroke:#e74c3c;fill:none;stroke-width:1.2}
+.scenario-body{padding:12px}
+.scenario-label{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#f0958d;margin-bottom:4px}
+.scenario-desc{font-size:12px;color:#c8d8e8;line-height:1.5}
+.act-card{background:#111827;border:1px solid rgba(231,76,60,.18);border-radius:12px;padding:16px;margin-bottom:10px}
+.act-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:#e74c3c;margin-bottom:10px}
+.q-list{list-style:none}
+.q-list li{display:flex;gap:8px;padding:6px 0;border-bottom:1px solid rgba(231,76,60,.1);font-size:13px;color:#c8d8e8;line-height:1.5}
+.q-list li:last-child{border-bottom:none}
+.q-num{color:#e74c3c;font-weight:700;flex-shrink:0;font-family:'Barlow Condensed',sans-serif;font-size:14px;min-width:18px}
+.task-box{background:#0a1628;border:1px solid rgba(231,76,60,.3);border-radius:10px;padding:12px;font-size:13px;color:#c8d8e8;line-height:1.6;margin-bottom:12px}
+.task-box strong{color:#f0958d}
+.wa-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:#e74c3c;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:none;border-radius:10px;padding:13px 20px;width:100%;cursor:pointer;transition:background .2s;max-width:340px;margin:0 auto}
+.wa-btn:hover{background:#f0958d}
+.wa-btn svg{width:20px;height:20px;fill:#fff;flex-shrink:0}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal-overlay.open{display:flex}
+.modal{background:#111827;border:1px solid rgba(231,76,60,.3);border-radius:14px;padding:22px;width:100%;max-width:420px;max-height:90vh;overflow-y:auto}
+.modal-title{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:#f0958d;margin-bottom:4px}
+.modal-sub{font-size:12px;color:#4a6a8a;margin-bottom:14px}
+.modal label{font-size:12px;color:#f0958d;font-weight:600;display:block;margin-bottom:4px}
+.modal input,.modal textarea{width:100%;background:#0a0f1e;border:1px solid rgba(231,76,60,.3);border-radius:8px;padding:9px 12px;font-size:13px;color:#c8d8e8;margin-bottom:12px;font-family:'Barlow',sans-serif;resize:vertical}
+.modal-note{font-size:12px;color:#4a6a8a;background:#0a0f1e;border-radius:8px;padding:10px 12px;margin-bottom:14px;line-height:1.5}
+.modal-btns{display:flex;gap:8px}
+.modal-send{flex:1;background:#e74c3c;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;border:none;border-radius:8px;padding:10px;cursor:pointer}
+.modal-cancel{background:transparent;border:1px solid rgba(231,76,60,.3);color:#4a6a8a;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;border-radius:8px;padding:10px 16px;cursor:pointer}
+.footer{background:#0d1b2a;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(231,76,60,.2);margin-top:4px}
+.footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a8a}
+.footer-right{display:flex;align-items:center;gap:10px}
+.footer-icon svg{width:22px;height:22px;stroke:#e74c3c;fill:none;stroke-width:1.5}
+.footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;color:#e74c3c;letter-spacing:.06em;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="pill-title">Kick Off<span>Unit 14 — Emergencies</span></div>
+  <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
+</div>
+<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
+<div class="steps-bar">
+  <div class="step"><div class="step-num">1</div><div class="step-label">Study the scenarios</div></div>
+  <div class="step-arrow">›</div>
+  <div class="step"><div class="step-num">2</div><div class="step-label">Answer the questions</div></div>
+  <div class="step-arrow">›</div>
+  <div class="step"><div class="step-num">3</div><div class="step-label">Give your opinion</div></div>
+</div>
+<div class="content">
+  <div class="scenario-grid">
+    <div class="scenario-card">
+      <div class="scenario-img">
+        <svg viewBox="0 0 48 48"><path d="M24 4 L28 20 L44 20 L30 30 L36 46 L24 36 L12 46 L18 30 L4 20 L20 20 Z" stroke-linejoin="round"/><circle cx="24" cy="24" r="6"/></svg>
+      </div>
+      <div class="scenario-body">
+        <div class="scenario-label">Scenario A — Fire in the workshop</div>
+        <div class="scenario-desc">A small fire has started near a welding station. Smoke is spreading. Workers are nearby.</div>
+      </div>
+    </div>
+    <div class="scenario-card">
+      <div class="scenario-img">
+        <svg viewBox="0 0 48 48"><line x1="24" y1="4" x2="24" y2="44"/><path d="M8 20 L24 4 L40 20"/><path d="M16 44 L24 34 L32 44"/><line x1="12" y1="32" x2="36" y2="32"/></svg>
+      </div>
+      <div class="scenario-body">
+        <div class="scenario-label">Scenario B — Fall from height</div>
+        <div class="scenario-desc">A rigger has fallen from a ladder and is lying on the ground. He is not moving.</div>
+      </div>
+    </div>
+    <div class="scenario-card">
+      <div class="scenario-img">
+        <svg viewBox="0 0 48 48"><path d="M12 8 L36 8 L40 16 L36 40 L12 40 L8 16 Z"/><path d="M20 20 L28 28 M28 20 L20 28"/><circle cx="24" cy="24" r="10" stroke-dasharray="4 2"/></svg>
+      </div>
+      <div class="scenario-body">
+        <div class="scenario-label">Scenario C — Electric shock</div>
+        <div class="scenario-desc">An electrician has received an electric shock. He is unconscious on the floor.</div>
+      </div>
+    </div>
+    <div class="scenario-card">
+      <div class="scenario-img">
+        <svg viewBox="0 0 48 48"><path d="M24 4 C24 4 10 16 10 28 C10 36 16 44 24 44 C32 44 38 36 38 28 C38 16 24 4 24 4Z"/><path d="M18 32 L30 20"/></svg>
+      </div>
+      <div class="scenario-body">
+        <div class="scenario-label">Scenario D — Chemical leak</div>
+        <div class="scenario-desc">A pipe is leaking a toxic chemical. Workers in the area are coughing and feeling unwell.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="act-card">
+    <div class="act-title">Activity 1 — For each scenario, answer the questions</div>
+    <ul class="q-list">
+      <li><span class="q-num">1</span>What is the main danger in this situation?</li>
+      <li><span class="q-num">2</span>Who could be injured — and how?</li>
+      <li><span class="q-num">3</span>What emergency equipment would you need?</li>
+      <li><span class="q-num">4</span>Who would you call?</li>
+    </ul>
+  </div>
+
+  <div class="act-card">
+    <div class="act-title">Activity 2 — Your opinion</div>
+    <ul class="q-list">
+      <li><span class="q-num">1</span>Have you ever seen or been involved in an emergency at work? What happened?</li>
+      <li><span class="q-num">2</span>What emergency training have you done? (first aid, fire drills, SCBA, etc.)</li>
+      <li><span class="q-num">3</span>What do you think is the most important thing to do in an emergency?</li>
+    </ul>
+  </div>
+
+  <div class="task-box"><strong>Task:</strong> Answer in writing OR record a short audio. Send via WhatsApp.</div>
+
+  <button class="wa-btn" onclick="openModal()">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.535 5.858L.057 23.48a.5.5 0 0 0 .61.632l5.788-1.517A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.95 9.95 0 0 1-5.187-1.448l-.372-.22-3.433.9.916-3.345-.242-.384A9.953 9.953 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+    Enviar respostas
+  </button>
+</div>
+<div class="footer">
+  <div class="footer-left">Capsule 178 de 191 · Unit 14 — Emergencies</div>
+  <div class="footer-right">
+    <div class="footer-icon"><svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/></svg></div>
+    <div class="footer-text">Unit 14 — Emergencies</div>
+  </div>
+</div>
+<div class="modal-overlay" id="waModal">
+  <div class="modal">
+    <div class="modal-title">Enviar respostas — Kick Off</div>
+    <div class="modal-sub">Unit 14 — Emergencies</div>
+    <label for="studentName">Your name</label>
+    <input type="text" id="studentName" placeholder="Type your name" oninput="localStorage.setItem('ef_student_name',this.value)">
+    <label for="ans1">Activity 1 — Scenarios (what danger / who injured / equipment / who to call)</label>
+    <textarea id="ans1" rows="4" placeholder="A: fire... B: rigger fallen... C: electric shock... D: chemical leak..."></textarea>
+    <label for="ans2">Activity 2 — Your opinion</label>
+    <textarea id="ans2" rows="4" placeholder="Your experience, training, and opinion about emergencies..."></textarea>
+    <div class="modal-note">🎙️ Após enviar, grave seu áudio e envie na mesma conversa.</div>
+    <div class="modal-btns">
+      <button class="modal-cancel" onclick="closeModal()">Cancelar</button>
+      <button class="modal-send" onclick="sendWA()">Enviar no WhatsApp</button>
+    </div>
+  </div>
+</div>
+<script>
+function openModal(){var n=localStorage.getItem('ef_student_name')||'';document.getElementById('studentName').value=n;document.getElementById('waModal').classList.add('open');}
+function closeModal(){document.getElementById('waModal').classList.remove('open');}
+function sendWA(){
+  var name=document.getElementById('studentName').value.trim()||'Student';
+  localStorage.setItem('ef_student_name',name);
+  var now=new Date();
+  var date=now.toLocaleDateString('pt-BR');
+  var time=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  var a1=document.getElementById('ans1').value.trim()||'—';
+  var a2=document.getElementById('ans2').value.trim()||'—';
+  var msg='👤 '+name+'\n📅 '+date+' às '+time+'\n🎙️ Kick Off — Unit 14 — Emergencies\n📌 Activity 1: '+a1+'\n📌 Activity 2: '+a2+'\n👇 Áudio na mensagem seguinte (se preferiu enviar por áudio)';
+  window.open('https://wa.me/5522999585058?text='+encodeURIComponent(msg),'_blank');
+  closeModal();
+}
+document.getElementById('waModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+</script>
+</body>
+</html>

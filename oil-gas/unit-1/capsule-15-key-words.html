@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Key Words · Unit 1 — An International Industry</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
+.header{background:#0d1b2a;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid rgba(245,166,35,.25)}
+.pill-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:700;color:#f5c87a;line-height:1}
+.pill-title span{color:#f5a623;font-size:clamp(14px,2.5vw,22px);font-weight:600;display:block;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.icon-box{width:48px;height:48px;border:1.5px solid rgba(245,166,35,.4);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.icon-box svg{width:26px;height:26px;stroke:#f5a623;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.countdown-bar{background:#0d1b2a;border-bottom:1px solid rgba(245,166,35,.2);padding:8px 24px;display:flex;align-items:center;gap:12px}
+.countdown-display{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:#f5a623;letter-spacing:.08em;min-width:60px}
+.countdown-display.warning{color:#f59e0b}.countdown-display.urgent{color:#ef4444}
+.progress-track{flex:1;height:4px;background:rgba(245,166,35,.13);border-radius:2px;overflow:hidden}
+.progress-fill{height:100%;background:#f5a623;border-radius:2px;transition:width 1s linear,background .5s}
+.progress-fill.warning{background:#f59e0b}.progress-fill.urgent{background:#ef4444}
+.translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(245,166,35,.2);padding:6px 24px;font-size:11px;color:#f5c87a;text-align:center}
+.translate-warning strong{color:#f5a623}
+.steps{display:flex;gap:6px;padding:8px 16px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.steps::-webkit-scrollbar{display:none}
+.step{flex-shrink:0;display:flex;align-items:center;gap:6px;background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.25);border-radius:20px;padding:6px 12px;font-size:11.5px;color:#f5c87a;font-weight:500;white-space:nowrap}
+.step svg{width:13px;height:13px;stroke:#f5a623;fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0}
+.content{display:grid;grid-template-columns:1fr;gap:12px;padding:0 16px 16px}
+.main-area{background:#111827;border-radius:10px;padding:14px 16px}
+.zone-label{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#f5a623;font-weight:600;margin-bottom:12px}
+.section-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;color:#4a6a8a;text-transform:uppercase;letter-spacing:.1em;margin:16px 0 8px;padding-bottom:4px;border-bottom:1px solid rgba(245,166,35,.12)}
+.kw-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px}
+.kw-card{background:#0a1628;border:1px solid rgba(245,166,35,.15);border-radius:8px;padding:10px 14px;display:flex;flex-direction:column;gap:4px;transition:border-color .2s}
+.kw-card:hover{border-color:rgba(245,166,35,.4)}
+.kw-word{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;color:#f5a623;letter-spacing:.04em}
+.kw-word a{color:#f5a623;text-decoration:none;border-bottom:1px dotted rgba(245,166,35,.5)}
+.kw-word a:hover{color:#f5c87a}
+.kw-class{font-size:10px;color:#4a6a8a;font-style:italic;font-weight:400}
+.kw-def{font-size:11.5px;color:#c8d8e8;line-height:1.45}
+.kw-ex{font-size:11px;color:#6a8aaa;font-style:italic;line-height:1.4;margin-top:2px}
+.task-box{background:#0a1628;border:1px solid rgba(245,166,35,.25);border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.task-box p{font-size:11px;color:#f5c87a;font-style:italic;line-height:1.45}
+.whatsapp-btn{display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;border:none;border-radius:8px;padding:7px 12px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:background .2s;width:100%}
+.whatsapp-btn:hover{background:#1ebc58}
+.whatsapp-btn svg{width:16px;height:16px;fill:#fff;flex-shrink:0}
+.footer{background:#0d1b2a;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(245,166,35,.2);margin-top:4px}
+.footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a8a;letter-spacing:.04em}
+.footer-right{display:flex;align-items:center;gap:10px}
+.footer-icon svg{width:22px;height:22px;stroke:#f5a623;fill:none;stroke-width:1.5}
+.footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;color:#f5a623;letter-spacing:.06em;text-transform:uppercase}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);display:flex;align-items:center;justify-content:center;z-index:100;padding:16px}
+.modal-box{background:#111827;border:1px solid rgba(245,166,35,.25);border-radius:14px;padding:24px;max-width:480px;width:100%;max-height:85vh;overflow-y:auto;display:flex;flex-direction:column;gap:14px}
+.modal-title{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:#f5c87a}
+.modal-field label{font-size:11px;color:#f5a623;text-transform:uppercase;letter-spacing:.08em;font-weight:600;display:block;margin-bottom:5px}
+.modal-field input[type='text']{width:100%;background:#0a1628;border:1px solid rgba(245,166,35,.25);border-radius:6px;padding:9px;font-size:12px;color:#c8d8e8;font-family:'Barlow',sans-serif;outline:none}
+.modal-field input[type='text']:focus{border-color:#f5a623}
+.modal-reminder{font-size:11px;color:#4a6a8a;font-style:italic;border-top:1px solid rgba(245,166,35,.13);padding-top:10px}
+.modal-actions{display:flex;gap:8px}
+.modal-cancel{flex:1;background:transparent;border:1px solid rgba(245,166,35,.25);color:#4a6a8a;border-radius:8px;padding:9px;font-family:'Barlow Condensed',sans-serif;font-size:14px;cursor:pointer}
+.modal-send{flex:2;display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;border:none;border-radius:8px;padding:9px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;cursor:pointer}
+.modal-send:hover{background:#1ebc58}
+.modal-send svg{width:15px;height:15px;fill:#fff}
+@media(max-width:700px){.steps{padding:6px 12px}.kw-grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="pill-title">Key Words<span>An International Industry</span></div>
+  <div class="icon-box">
+    <svg viewBox="0 0 24 24"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+  </div>
+</div>
+
+<div class="countdown-bar">
+  <span class="countdown-display" id="timer">20:00</span>
+  <div class="progress-track"><div class="progress-fill" id="progress" style="width:100%"></div></div>
+</div>
+
+<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
+
+<div class="steps">
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>1. Read all words</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>2. Say each word</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.18 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6.5 6.5l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>3. Record audio</div>
+</div>
+
+<div class="content">
+  <div class="main-area">
+    <div class="zone-label">Key Words — Unit 1 · An International Industry</div>
+
+    <div class="section-label">Adjectives</div>
+    <div class="kw-grid">
+      <div class="kw-card">
+        <div class="kw-word"><a href="https://dictionary.cambridge.org/dictionary/english/foreign" target="_blank">foreign</a> <span class="kw-class">adj.</span></div>
+        <div class="kw-def">from another country; not native</div>
+        <div class="kw-ex">"Many foreign workers join international oil teams."</div>
+      </div>
+      <div class="kw-card">
+        <div class="kw-word"><a href="https://dictionary.cambridge.org/dictionary/english/international" target="_blank">international</a> <span class="kw-class">adj.</span></div>
+        <div class="kw-def">involving two or more countries</div>
+        <div class="kw-ex">"Oil and gas is an international industry."</div>
+      </div>
+      <div class="kw-card">
+        <div class="kw-word"><a href="https://dictionary.cambridge.org/dictionary/english/offshore" target="_blank">offshore</a> <span class="kw-class">adj./adv.</span></div>
+        <div class="kw-def">in or on the sea, away from land</div>
+        <div class="kw-ex">"She works on an offshore platform in the Campos Basin."</div>
+      </div>
+      <div class="kw-card">
+        <div class="kw-word"><a href="https://dictionary.cambridge.org/dictionary/english/onshore" target="_blank">onshore</a> <span class="kw-class">adj./adv.</span></div>
+        <div class="kw-def">on land, not at sea</div>
+        <div class="kw-ex">"He prefers onshore work — he lives near the oilfield."</div>
+      </div>
+    </div>
+
+    <div class="section-label">Nouns</div>
+    <div class="kw-grid">
+      <div class="kw-card">
+        <div class="kw-word"><a href="https://dictionary.cambridge.org/dictionary/english/control-room" target="_blank">control room</a> <span class="kw-class">n.</span></div>
+        <div class="kw-def">room where operations are monitored and controlled</div>
+        <div class="kw-ex">"The engineer monitors pressure from the control room."</div>
+      </div>
+      <div class="kw-card">
+        <div class="kw-word"><a href="https://dictionary.cambridge.org/dictionary/english/drilling" target="_blank">drilling company</a> <span class="kw-class">n.</span></div>
+        <div class="kw-def">company that drills oil and gas wells</div>
+        <div class="kw-ex">"The drilling company provides crews and equipment."</div>
+      </div>
+      <div class="kw-card">
+        <div class="kw-word"><a href="https://dictionary.cambridge.org/dictionary/english/oilfield" target="_blank">oilfield</a> <span class="kw-class">n.</span></div>
+        <div class="kw-def">area with underground oil reserves being extracted</div>
+        <div class="kw-ex">"Ghawar is the world's largest oilfield, in Saudi Arabia."</div>
+      </div>
+      <div class="kw-card">
+        <div class="kw-word"><a href="https://dictionary.cambridge.org/dictionary/english/oil-well" target="_blank">oilwell</a> <span class="kw-class">n.</span></div>
+        <div class="kw-def">a hole drilled to extract oil from underground</div>
+        <div class="kw-ex">"They drilled a new oilwell in the desert."</div>
+      </div>
+      <div class="kw-card">
+        <div class="kw-word"><a href="https://dictionary.cambridge.org/dictionary/english/operating" target="_blank">operating company</a> <span class="kw-class">n.</span></div>
+        <div class="kw-def">company that explores for and produces oil and gas</div>
+        <div class="kw-ex">"BP is an operating company with global licences."</div>
+      </div>
+      <div class="kw-card">
+        <div class="kw-word"><a href="https://dictionary.cambridge.org/dictionary/english/plant" target="_blank">plant</a> <span class="kw-class">n.</span></div>
+        <div class="kw-def">a factory or industrial facility</div>
+        <div class="kw-ex">"The processing plant separates oil, gas, and water."</div>
+      </div>
+      <div class="kw-card">
+        <div class="kw-word"><a href="https://dictionary.cambridge.org/dictionary/english/service-company" target="_blank">service company</a> <span class="kw-class">n.</span></div>
+        <div class="kw-def">company providing technical services to operators</div>
+        <div class="kw-ex">"SLB is a major service company operating worldwide."</div>
+      </div>
+      <div class="kw-card">
+        <div class="kw-word"><a href="https://dictionary.cambridge.org/dictionary/english/team" target="_blank">team</a> <span class="kw-class">n.</span></div>
+        <div class="kw-def">group of people working together</div>
+        <div class="kw-ex">"Our team has twenty technicians from five countries."</div>
+      </div>
+      <div class="kw-card">
+        <div class="kw-word"><a href="https://dictionary.cambridge.org/dictionary/english/technician" target="_blank">technician</a> <span class="kw-class">n.</span></div>
+        <div class="kw-def">person with specialist technical skills</div>
+        <div class="kw-ex">"She is a maintenance technician on the platform."</div>
+      </div>
+    </div>
+
+    <div class="section-label">Verbs</div>
+    <div class="kw-grid">
+      <div class="kw-card">
+        <div class="kw-word"><a href="https://dictionary.cambridge.org/dictionary/english/operate" target="_blank">operate</a> <span class="kw-class">v.</span></div>
+        <div class="kw-def">to control or run a machine, system, or business</div>
+        <div class="kw-ex">"They operate oil platforms in the Gulf of Mexico."</div>
+      </div>
+      <div class="kw-card">
+        <div class="kw-word"><a href="https://dictionary.cambridge.org/dictionary/english/supply" target="_blank">supply</a> <span class="kw-class">v.</span></div>
+        <div class="kw-def">to provide something that is needed</div>
+        <div class="kw-ex">"Service companies supply equipment and expertise."</div>
+      </div>
+    </div>
+
+    <div class="task-box">
+      <p>🎙️ Choose 5 key words. For each, say: the word, its meaning in English, and one example sentence. Record and send via WhatsApp.</p>
+      <button class="whatsapp-btn" onclick="openModal()">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="#fff"/></svg>
+        Enviar áudio
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-left">Capsule 15 de 30 · Unit 1 — An International Industry</div>
+  <div class="footer-right">
+    <div class="footer-icon"><svg viewBox="0 0 24 24"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg></div>
+    <div class="footer-text">Unit 1 — An International Industry</div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal" style="display:none">
+  <div class="modal-box">
+    <div class="modal-title">Key Words — Send audio</div>
+    <div class="modal-field"><label>Your name</label><input type="text" id="studentName" placeholder="Type your name..." autocomplete="off"></div>
+    <div class="modal-reminder">🎙️ Clique em Enviar no WhatsApp — depois grave seu áudio com 5 palavras, significado e exemplo.</div>
+    <div class="modal-actions">
+      <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+      <button class="modal-send" onclick="sendWA()">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="#fff"/></svg>
+        Enviar no WhatsApp
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+const TOTAL=20*60;let remaining=TOTAL;
+const iv=setInterval(function(){
+  remaining--;
+  var m=Math.floor(remaining/60).toString().padStart(2,'0'),s=(remaining%60).toString().padStart(2,'0');
+  var el=document.getElementById('timer'),bar=document.getElementById('progress');
+  el.textContent=m+':'+s;bar.style.width=((remaining/TOTAL)*100)+'%';
+  el.className='countdown-display';bar.className='progress-fill';
+  if(remaining<=0){clearInterval(iv);el.textContent='00:00';bar.style.width='0%';bar.classList.add('urgent');}
+  else if(remaining<=60){el.classList.add('urgent');bar.classList.add('urgent');}
+  else if(remaining<=180){el.classList.add('warning');bar.classList.add('warning');}
+},1000);
+
+function openModal(){
+  var saved=localStorage.getItem('ef_student_name');
+  if(saved)document.getElementById('studentName').value=saved;
+  document.getElementById('modal').style.display='flex';
+}
+function closeModal(){document.getElementById('modal').style.display='none';}
+
+function sendWA(){
+  var name=document.getElementById('studentName').value.trim()||'Aluno';
+  localStorage.setItem('ef_student_name',name);
+  var now=new Date(),date=now.toLocaleDateString('pt-BR'),time=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  var msg='👤 '+name+'\n📅 '+date+' às '+time+'\n🎙️ Key Words — Unit 1 — An International Industry\n\n👇 Áudio na mensagem seguinte';
+  window.open('https://wa.me/5522999585058?text='+encodeURIComponent(msg),'_blank');
+}
+
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+</script>
+</body>
+</html>

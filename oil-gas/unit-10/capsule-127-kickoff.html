@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Kick Off · Unit 10 — Oil and the Environment</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
+.header{background:#0d1b2a;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid rgba(46,204,113,.25)}
+.pill-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:700;color:#82e0aa;line-height:1}
+.pill-title span{color:#2ecc71;font-size:clamp(14px,2.5vw,22px);font-weight:600;display:block;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.icon-box{width:48px;height:48px;border:1.5px solid rgba(46,204,113,.4);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.icon-box svg{width:26px;height:26px;stroke:#2ecc71;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(46,204,113,.2);padding:6px 24px;font-size:11px;color:#82e0aa;text-align:center}
+.translate-warning strong{color:#2ecc71}
+.steps{background:#0d1b2a;padding:8px 24px;display:flex;gap:0;border-bottom:1px solid rgba(46,204,113,.15);overflow-x:auto;scrollbar-width:none}
+.steps::-webkit-scrollbar{display:none}
+.step{display:flex;align-items:center;gap:6px;padding:5px 14px;border-radius:20px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#4a6a8a;white-space:nowrap}
+.step.active{background:#0a1628;color:#82e0aa;border:1px solid rgba(46,204,113,.35)}
+.step-num{width:18px;height:18px;border-radius:50%;background:rgba(46,204,113,.15);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#2ecc71}
+.content{max-width:960px;margin:0 auto;padding:20px 16px 32px;display:grid;grid-template-columns:1fr 260px;gap:20px}
+@media(max-width:700px){.content{grid-template-columns:1fr}}
+.left-col{}
+.pictures-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:18px}
+@media(max-width:500px){.pictures-grid{grid-template-columns:1fr}}
+.pic-card{background:#111827;border:1px solid rgba(46,204,113,.18);border-radius:10px;overflow:hidden}
+.pic-label{background:#0a1628;padding:6px 10px;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;color:#2ecc71;text-transform:uppercase;letter-spacing:.08em;display:flex;align-items:center;justify-content:space-between}
+.pic-letter{background:rgba(46,204,113,.2);border-radius:4px;padding:2px 7px;font-size:13px;color:#82e0aa;font-weight:700}
+.pic-visual{height:100px;display:flex;align-items:center;justify-content:center;font-size:48px;background:#0a0f1e}
+.pic-caption{padding:8px 10px;font-size:11px;color:#4a6a8a;font-style:italic}
+.act-card{background:#111827;border:1px solid rgba(46,204,113,.18);border-radius:12px;padding:16px;margin-bottom:12px}
+.act-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:#2ecc71;margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em}
+.act-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap}
+.act-label{font-size:13px;color:#c8d8e8;min-width:60px}
+.act-select{background:#0a0f1e;border:1px solid rgba(46,204,113,.3);border-radius:6px;padding:5px 10px;font-size:13px;color:#c8d8e8;font-family:'Barlow',sans-serif;cursor:pointer;min-width:80px}
+.reveal-btn{background:transparent;border:1px solid rgba(46,204,113,.35);color:#4a6a8a;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;border-radius:6px;padding:3px 8px;cursor:pointer;transition:all .2s;white-space:nowrap}
+.reveal-btn:hover{border-color:#2ecc71;color:#2ecc71}
+.answer-tag{display:inline-block;background:rgba(46,204,113,.15);border:1px solid rgba(46,204,113,.3);border-radius:4px;padding:2px 8px;font-size:12px;color:#2ecc71;font-weight:600;font-family:'Barlow Condensed',sans-serif;letter-spacing:.04em}
+.check-group{display:flex;flex-wrap:wrap;gap:6px}
+.check-item{display:flex;align-items:center;gap:5px;cursor:pointer;user-select:none}
+.check-item input{accent-color:#2ecc71;cursor:pointer;width:14px;height:14px}
+.check-item span{font-size:13px;color:#c8d8e8}
+.countdown{background:#0a1628;border:1px solid rgba(46,204,113,.25);border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.countdown-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;color:#4a6a8a;text-transform:uppercase;letter-spacing:.08em}
+.countdown-time{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:#2ecc71;min-width:60px}
+.task-box{background:#0a1628;border:1px solid rgba(46,204,113,.3);border-radius:10px;padding:14px;margin-bottom:14px;font-size:13px;color:#c8d8e8;line-height:1.6}
+.task-box strong{color:#2ecc71}
+.wa-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:#2ecc71;color:#0a0f1e;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:none;border-radius:10px;padding:13px 20px;width:100%;cursor:pointer;transition:background .2s}
+.wa-btn:hover{background:#82e0aa}
+.wa-btn svg{width:20px;height:20px;fill:#0a0f1e;flex-shrink:0}
+.zone-support{display:flex;flex-direction:column;gap:12px}
+.info-card{background:#111827;border:1px solid rgba(46,204,113,.18);border-radius:12px;padding:14px}
+.info-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#2ecc71;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.info-row{padding:5px 0;border-bottom:1px solid rgba(46,204,113,.1);font-size:12px;color:#c8d8e8}
+.info-row:last-child{border-bottom:none}
+.info-row strong{color:#82e0aa}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal-overlay.open{display:flex}
+.modal{background:#111827;border:1px solid rgba(46,204,113,.3);border-radius:14px;padding:22px;width:100%;max-width:420px;max-height:90vh;overflow-y:auto}
+.modal-title{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:#82e0aa;margin-bottom:4px}
+.modal-sub{font-size:12px;color:#4a6a8a;margin-bottom:14px}
+.modal label{font-size:12px;color:#82e0aa;font-weight:600;display:block;margin-bottom:4px}
+.modal input,.modal textarea{width:100%;background:#0a0f1e;border:1px solid rgba(46,204,113,.3);border-radius:8px;padding:9px 12px;font-size:13px;color:#c8d8e8;margin-bottom:12px;font-family:'Barlow',sans-serif;resize:vertical}
+.modal textarea{min-height:80px}
+.modal-note{font-size:12px;color:#4a6a8a;background:#0a0f1e;border-radius:8px;padding:10px 12px;margin-bottom:14px;line-height:1.5}
+.modal-btns{display:flex;gap:8px}
+.modal-send{flex:1;background:#2ecc71;color:#0a0f1e;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:.05em;border:none;border-radius:8px;padding:10px;cursor:pointer}
+.modal-cancel{background:transparent;border:1px solid rgba(46,204,113,.3);color:#4a6a8a;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;border-radius:8px;padding:10px 16px;cursor:pointer}
+.footer{background:#0d1b2a;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(46,204,113,.2);margin-top:4px}
+.footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a8a}
+.footer-right{display:flex;align-items:center;gap:10px}
+.footer-icon svg{width:22px;height:22px;stroke:#2ecc71;fill:none;stroke-width:1.5}
+.footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;color:#2ecc71;letter-spacing:.06em;text-transform:uppercase}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="pill-title">Kick Off<span>Oil and the Environment</span></div>
+  <div class="icon-box">
+    <svg viewBox="0 0 24 24"><path d="M22.65 14.39L12 22.13 1.35 14.39a.84.84 0 0 1-.3-.94l1.22-3.78 2.44-7.51A.42.42 0 0 1 4.82 2a.43.43 0 0 1 .58 0 .42.42 0 0 1 .11.18l2.44 7.49h8.1l2.44-7.51A.42.42 0 0 1 18.6 2a.43.43 0 0 1 .58 0 .42.42 0 0 1 .11.18l2.44 7.51L23 13.45a.84.84 0 0 1-.35.94z"/></svg>
+  </div>
+</div>
+
+<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
+
+<div class="steps">
+  <div class="step active"><span class="step-num">1</span>Study the platform</div>
+  <div class="step active"><span class="step-num">2</span>Answer the questions</div>
+  <div class="step active"><span class="step-num">3</span>Give your opinion</div>
+</div>
+
+<div class="content">
+  <div class="left-col">
+
+    <div class="countdown" id="countdownBox">
+      <div class="countdown-label">Time remaining</div>
+      <div class="countdown-time" id="cdTime">25:00</div>
+    </div>
+
+    <div class="pictures-grid">
+      <div class="pic-card">
+        <div class="pic-label">Picture <span class="pic-letter">A</span></div>
+        <div class="pic-visual">🔧</div>
+        <div class="pic-caption">Broken / damaged equipment at a facility</div>
+      </div>
+      <div class="pic-card">
+        <div class="pic-label">Picture <span class="pic-letter">B</span></div>
+        <div class="pic-visual">🛢️</div>
+        <div class="pic-caption">An oil spill on water or land</div>
+      </div>
+      <div class="pic-card">
+        <div class="pic-label">Picture <span class="pic-letter">C</span></div>
+        <div class="pic-visual">🔊</div>
+        <div class="pic-caption">Noisy machinery / loud compressor</div>
+      </div>
+      <div class="pic-card">
+        <div class="pic-label">Picture <span class="pic-letter">D</span></div>
+        <div class="pic-visual">🔥</div>
+        <div class="pic-caption">A gas flare burning at a facility</div>
+      </div>
+    </div>
+
+    <div class="act-card">
+      <div class="act-title">Activity 1 — What does each picture show?</div>
+      <div class="act-row">
+        <div class="act-label">1 An oil spill</div>
+        <select class="act-select" id="s1"><option value="">—</option><option>a</option><option>b</option><option>c</option><option>d</option></select>
+        <button class="reveal-btn" onclick="reveal('s1','b')">Check</button>
+      </div>
+      <div class="act-row">
+        <div class="act-label">2 Noisy equipment</div>
+        <select class="act-select" id="s2"><option value="">—</option><option>a</option><option>b</option><option>c</option><option>d</option></select>
+        <button class="reveal-btn" onclick="reveal('s2','c')">Check</button>
+      </div>
+      <div class="act-row">
+        <div class="act-label">3 Broken equipment</div>
+        <select class="act-select" id="s3"><option value="">—</option><option>a</option><option>b</option><option>c</option><option>d</option></select>
+        <button class="reveal-btn" onclick="reveal('s3','a')">Check</button>
+      </div>
+      <div class="act-row">
+        <div class="act-label">4 A gas flare</div>
+        <select class="act-select" id="s4"><option value="">—</option><option>a</option><option>b</option><option>c</option><option>d</option></select>
+        <button class="reveal-btn" onclick="reveal('s4','d')">Check</button>
+      </div>
+    </div>
+
+    <div class="act-card">
+      <div class="act-title">Activity 2 — Which can lead to which type of pollution?</div>
+      <p style="font-size:12px;color:#4a6a8a;margin-bottom:10px">Select all pictures (a–d) that apply to each pollution type.</p>
+
+      <p style="font-size:13px;color:#82e0aa;margin-bottom:6px">1 Noise pollution</p>
+      <div class="check-group" style="margin-bottom:12px">
+        <label class="check-item"><input type="checkbox" id="n1a"><span>a</span></label>
+        <label class="check-item"><input type="checkbox" id="n1b"><span>b</span></label>
+        <label class="check-item"><input type="checkbox" id="n1c"><span>c</span></label>
+        <label class="check-item"><input type="checkbox" id="n1d"><span>d</span></label>
+        <button class="reveal-btn" onclick="showAns('noise','a, c, d')">Answer</button>
+        <span id="noise" style="display:none"><span class="answer-tag">a, c, d</span></span>
+      </div>
+
+      <p style="font-size:13px;color:#82e0aa;margin-bottom:6px">2 Water pollution</p>
+      <div class="check-group" style="margin-bottom:12px">
+        <label class="check-item"><input type="checkbox" id="w2a"><span>a</span></label>
+        <label class="check-item"><input type="checkbox" id="w2b"><span>b</span></label>
+        <label class="check-item"><input type="checkbox" id="w2c"><span>c</span></label>
+        <label class="check-item"><input type="checkbox" id="w2d"><span>d</span></label>
+        <button class="reveal-btn" onclick="showAns('water','a, b, d')">Answer</button>
+        <span id="water" style="display:none"><span class="answer-tag">a, b, d</span></span>
+      </div>
+
+      <p style="font-size:13px;color:#82e0aa;margin-bottom:6px">3 Soil pollution</p>
+      <div class="check-group" style="margin-bottom:12px">
+        <label class="check-item"><input type="checkbox" id="s5a"><span>a</span></label>
+        <label class="check-item"><input type="checkbox" id="s5b"><span>b</span></label>
+        <label class="check-item"><input type="checkbox" id="s5c"><span>c</span></label>
+        <label class="check-item"><input type="checkbox" id="s5d"><span>d</span></label>
+        <button class="reveal-btn" onclick="showAns('soil','a, b, d')">Answer</button>
+        <span id="soil" style="display:none"><span class="answer-tag">a, b, d</span></span>
+      </div>
+
+      <p style="font-size:13px;color:#82e0aa;margin-bottom:6px">4 Air pollution</p>
+      <div class="check-group" style="margin-bottom:12px">
+        <label class="check-item"><input type="checkbox" id="a4a"><span>a</span></label>
+        <label class="check-item"><input type="checkbox" id="a4b"><span>b</span></label>
+        <label class="check-item"><input type="checkbox" id="a4c"><span>c</span></label>
+        <label class="check-item"><input type="checkbox" id="a4d"><span>d</span></label>
+        <button class="reveal-btn" onclick="showAns('air','a, d')">Answer</button>
+        <span id="air" style="display:none"><span class="answer-tag">a, d</span></span>
+      </div>
+    </div>
+
+    <div class="act-card">
+      <div class="act-title">Activity 3 — Match solutions with pictures</div>
+      <div class="act-row">
+        <div class="act-label" style="min-width:180px">1 Reduce the noise.</div>
+        <select class="act-select" id="sol1"><option value="">—</option><option>a</option><option>b</option><option>c</option><option>d</option></select>
+        <button class="reveal-btn" onclick="reveal('sol1','c')">Check</button>
+      </div>
+      <div class="act-row">
+        <div class="act-label" style="min-width:180px">2 Make it safe. Clean it up.</div>
+        <select class="act-select" id="sol2"><option value="">—</option><option>a</option><option>b</option><option>c</option><option>d</option></select>
+        <button class="reveal-btn" onclick="reveal('sol2','b')">Check</button>
+      </div>
+      <div class="act-row">
+        <div class="act-label" style="min-width:180px">3 Repair it.</div>
+        <select class="act-select" id="sol3"><option value="">—</option><option>a</option><option>b</option><option>c</option><option>d</option></select>
+        <button class="reveal-btn" onclick="reveal('sol3','a')">Check</button>
+      </div>
+      <div class="act-row">
+        <div class="act-label" style="min-width:180px">4 Limit or stop it.</div>
+        <select class="act-select" id="sol4"><option value="">—</option><option>a</option><option>b</option><option>c</option><option>d</option></select>
+        <button class="reveal-btn" onclick="reveal('sol4','d')">Check</button>
+      </div>
+    </div>
+
+    <div class="task-box"><strong>Task:</strong> Answer in writing OR record a short audio. Send via WhatsApp.</div>
+
+    <button class="wa-btn" onclick="openModal()">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.535 5.858L.057 23.48a.5.5 0 0 0 .61.632l5.788-1.517A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.95 9.95 0 0 1-5.187-1.448l-.372-.22-3.433.9.916-3.345-.242-.384A9.953 9.953 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Enviar respostas
+    </button>
+  </div>
+
+  <div class="zone-support">
+    <div class="info-card">
+      <div class="info-title">Pollution Types</div>
+      <div class="info-row"><strong>Noise</strong> — unwanted sound from equipment</div>
+      <div class="info-row"><strong>Water</strong> — contamination of seas, rivers, or groundwater</div>
+      <div class="info-row"><strong>Soil</strong> — contamination of land with harmful substances</div>
+      <div class="info-row"><strong>Air</strong> — release of harmful gases or particles</div>
+    </div>
+    <div class="info-card">
+      <div class="info-title">Useful Verbs</div>
+      <div class="info-row"><strong>reduce</strong> — make smaller</div>
+      <div class="info-row"><strong>repair</strong> — fix something broken</div>
+      <div class="info-row"><strong>clean up</strong> — remove pollution</div>
+      <div class="info-row"><strong>limit</strong> — keep within a boundary</div>
+      <div class="info-row"><strong>stop</strong> — end completely</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-left">Capsule 127 de 139 · Unit 10 — Oil and the Environment</div>
+  <div class="footer-right">
+    <div class="footer-icon"><svg viewBox="0 0 24 24"><path d="M22.65 14.39L12 22.13 1.35 14.39a.84.84 0 0 1-.3-.94l1.22-3.78 2.44-7.51A.42.42 0 0 1 4.82 2a.43.43 0 0 1 .58 0 .42.42 0 0 1 .11.18l2.44 7.49h8.1l2.44-7.51A.42.42 0 0 1 18.6 2a.43.43 0 0 1 .58 0 .42.42 0 0 1 .11.18l2.44 7.51L23 13.45a.84.84 0 0 1-.35.94z"/></svg></div>
+    <div class="footer-text">Unit 10 — Oil and the Environment</div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="waModal">
+  <div class="modal">
+    <div class="modal-title">Enviar respostas — Kick Off</div>
+    <div class="modal-sub">Unit 10 — Oil and the Environment</div>
+    <label for="studentName">Your name</label>
+    <input type="text" id="studentName" placeholder="Type your name" oninput="localStorage.setItem('ef_student_name',this.value)">
+    <label>Activity 1 — Match pictures with descriptions</label>
+    <textarea id="ans1" placeholder="1 oil spill = picture __ · 2 noisy equipment = __ · 3 broken equipment = __ · 4 gas flare = __"></textarea>
+    <label>Activity 2 — Pollution types (which pictures?)</label>
+    <textarea id="ans2" placeholder="Noise: __ · Water: __ · Soil: __ · Air: __"></textarea>
+    <label>Activity 3 — Match solutions with pictures</label>
+    <textarea id="ans3" placeholder="1 Reduce noise → __ · 2 Make safe, clean up → __ · 3 Repair → __ · 4 Limit/stop → __"></textarea>
+    <div class="modal-note">🎙️ Após enviar, grave seu áudio e envie na mesma conversa.</div>
+    <div class="modal-btns">
+      <button class="modal-cancel" onclick="closeModal()">Cancelar</button>
+      <button class="modal-send" onclick="sendWA()">Enviar no WhatsApp</button>
+    </div>
+  </div>
+</div>
+
+<script>
+var secs=25*60;
+function pad(n){return n<10?'0'+n:n;}
+function tick(){if(secs<=0){document.getElementById('cdTime').textContent='00:00';return;}secs--;document.getElementById('cdTime').textContent=pad(Math.floor(secs/60))+':'+pad(secs%60);var el=document.getElementById('cdTime');if(secs<=60)el.style.color='#e74c3c';else if(secs<=180)el.style.color='#f1c40f';else el.style.color='#2ecc71';setTimeout(tick,1000);}
+tick();
+function reveal(id,ans){var el=document.getElementById(id);el.value=ans;el.style.color='#2ecc71';}
+function showAns(id,ans){document.getElementById(id).style.display='inline';}
+function openModal(){var n=localStorage.getItem('ef_student_name')||'';document.getElementById('studentName').value=n;document.getElementById('waModal').classList.add('open');}
+function closeModal(){document.getElementById('waModal').classList.remove('open');}
+function sendWA(){
+  var name=document.getElementById('studentName').value.trim()||'Student';
+  localStorage.setItem('ef_student_name',name);
+  var now=new Date();
+  var date=now.toLocaleDateString('pt-BR');
+  var time=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  var a1=document.getElementById('ans1').value.trim()||'(no answer)';
+  var a2=document.getElementById('ans2').value.trim()||'(no answer)';
+  var a3=document.getElementById('ans3').value.trim()||'(no answer)';
+  var msg='👤 '+name+'\n📅 '+date+' às '+time+'\n🎙️ Kick Off — Unit 10 — Oil and the Environment\n📌 Activity 1: '+a1+'\n📌 Activity 2: '+a2+'\n📌 Activity 3: '+a3+'\n👇 Áudio na mensagem seguinte';
+  window.open('https://wa.me/5522999585058?text='+encodeURIComponent(msg),'_blank');
+  closeModal();
+}
+document.getElementById('waModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+</script>
+</body>
+</html>

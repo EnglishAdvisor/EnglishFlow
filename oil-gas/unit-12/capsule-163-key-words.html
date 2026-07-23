@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Key Words · Unit 12 — Repairs and Maintenance</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
+.header{background:#0d1b2a;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid rgba(230,126,34,.25)}
+.pill-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:700;color:#f0ad72;line-height:1}
+.pill-title span{color:#e67e22;font-size:clamp(14px,2.5vw,22px);font-weight:600;display:block;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.icon-box{width:48px;height:48px;border:1.5px solid rgba(230,126,34,.4);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.icon-box svg{width:26px;height:26px;stroke:#e67e22;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(230,126,34,.2);padding:6px 24px;font-size:11px;color:#f0ad72;text-align:center}
+.translate-warning strong{color:#e67e22}
+.content{max-width:700px;margin:0 auto;padding:20px 16px 40px}
+.section-label{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;color:#e67e22;text-transform:uppercase;letter-spacing:.1em;margin:16px 0 8px}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
+.flip-card{height:100px;perspective:600px;cursor:pointer}
+.flip-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .45s}
+.flip-card.flipped .flip-inner{transform:rotateY(180deg)}
+.flip-front,.flip-back{position:absolute;inset:0;border-radius:10px;backface-visibility:hidden;display:flex;align-items:center;justify-content:center;padding:8px;text-align:center}
+.flip-front{background:#111827;border:1px solid rgba(230,126,34,.25);flex-direction:column;gap:4px}
+.flip-back{background:#0a1628;border:1px solid rgba(230,126,34,.4);transform:rotateY(180deg)}
+.word{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;color:#f0ad72}
+.pos{font-size:10px;color:#4a6a8a;text-transform:uppercase;letter-spacing:.06em}
+.hint{font-size:10px;color:#4a6a8a;margin-top:2px;font-style:italic}
+.def{font-size:11px;color:#c8d8e8;line-height:1.4}
+.progress{text-align:center;margin-top:20px;font-family:'Barlow Condensed',sans-serif;font-size:14px;color:#4a6a8a}
+.progress span{color:#e67e22;font-size:18px;font-weight:700}
+.reset-btn{display:block;margin:12px auto 0;background:transparent;border:1px solid rgba(230,126,34,.3);color:#e67e22;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;border-radius:8px;padding:7px 20px;cursor:pointer}
+.footer{background:#0d1b2a;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(230,126,34,.2);margin-top:4px}
+.footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a8a}
+.footer-right{display:flex;align-items:center;gap:10px}
+.footer-icon svg{width:22px;height:22px;stroke:#e67e22;fill:none;stroke-width:1.5}
+.footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;color:#e67e22;letter-spacing:.06em;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="pill-title">Key Words<span>Unit 12 — 15 words</span></div>
+  <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+</div>
+<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
+<div class="content">
+  <p style="font-size:12px;color:#4a6a8a;text-align:center;margin-bottom:4px">Tap a card to see its meaning. Tap again to flip back.</p>
+
+  <div class="section-label">Adjectives — problems (8)</div>
+  <div class="card-grid">
+    <div class="flip-card" onclick="flip(this)"><div class="flip-inner"><div class="flip-front"><div class="word">bent</div><div class="pos">adj</div></div><div class="flip-back"><div class="def">curved or twisted out of its correct shape</div></div></div></div>
+    <div class="flip-card" onclick="flip(this)"><div class="flip-inner"><div class="flip-front"><div class="word">corroded</div><div class="pos">adj</div></div><div class="flip-back"><div class="def">damaged by rust or chemical reaction</div></div></div></div>
+    <div class="flip-card" onclick="flip(this)"><div class="flip-inner"><div class="flip-front"><div class="word">damaged</div><div class="pos">adj</div></div><div class="flip-back"><div class="def">broken or harmed so it can't work properly</div></div></div></div>
+    <div class="flip-card" onclick="flip(this)"><div class="flip-inner"><div class="flip-front"><div class="word">frozen</div><div class="pos">adj</div></div><div class="flip-back"><div class="def">stuck because something is blocked or seized</div></div></div></div>
+    <div class="flip-card" onclick="flip(this)"><div class="flip-inner"><div class="flip-front"><div class="word">jammed</div><div class="pos">adj</div></div><div class="flip-back"><div class="def">stuck and unable to move</div></div></div></div>
+    <div class="flip-card" onclick="flip(this)"><div class="flip-inner"><div class="flip-front"><div class="word">rusted</div><div class="pos">adj</div></div><div class="flip-back"><div class="def">covered in rust from water and oxygen</div></div></div></div>
+    <div class="flip-card" onclick="flip(this)"><div class="flip-inner"><div class="flip-front"><div class="word">split</div><div class="pos">adj</div></div><div class="flip-back"><div class="def">cracked or divided into two along a line</div></div></div></div>
+    <div class="flip-card" onclick="flip(this)"><div class="flip-inner"><div class="flip-front"><div class="word">worn</div><div class="pos">adj</div></div><div class="flip-back"><div class="def">damaged by long use — thinner or weaker</div></div></div></div>
+  </div>
+
+  <div class="section-label">Nouns (4)</div>
+  <div class="card-grid">
+    <div class="flip-card" onclick="flip(this)"><div class="flip-inner"><div class="flip-front"><div class="word">belt</div><div class="pos">noun</div></div><div class="flip-back"><div class="def">a loop that transfers power between parts</div></div></div></div>
+    <div class="flip-card" onclick="flip(this)"><div class="flip-inner"><div class="flip-front"><div class="word">bolt</div><div class="pos">noun</div></div><div class="flip-back"><div class="def">a threaded fastener used with a nut</div></div></div></div>
+    <div class="flip-card" onclick="flip(this)"><div class="flip-inner"><div class="flip-front"><div class="word">gear</div><div class="pos">noun</div></div><div class="flip-back"><div class="def">a toothed wheel that transmits motion</div></div></div></div>
+    <div class="flip-card" onclick="flip(this)"><div class="flip-inner"><div class="flip-front"><div class="word">troubleshoot<span class="hint">-ing</span></div><div class="pos">noun/verb</div></div><div class="flip-back"><div class="def">the process of finding and fixing problems</div></div></div></div>
+  </div>
+
+  <div class="section-label">Verbs (3)</div>
+  <div class="card-grid">
+    <div class="flip-card" onclick="flip(this)"><div class="flip-inner"><div class="flip-front"><div class="word">install</div><div class="pos">verb</div></div><div class="flip-back"><div class="def">to put equipment in place and connect it</div></div></div></div>
+    <div class="flip-card" onclick="flip(this)"><div class="flip-inner"><div class="flip-front"><div class="word">reinstall</div><div class="pos">verb</div></div><div class="flip-back"><div class="def">to install again after removing for repair</div></div></div></div>
+    <div class="flip-card" onclick="flip(this)"><div class="flip-inner"><div class="flip-front"><div class="word">remove</div><div class="pos">verb</div></div><div class="flip-back"><div class="def">to take a part out from the equipment</div></div></div></div>
+  </div>
+
+  <div class="progress">Flipped: <span id="cnt">0</span> / 15</div>
+  <button class="reset-btn" onclick="resetAll()">Reset all cards</button>
+</div>
+<div class="footer">
+  <div class="footer-left">Capsule 163 de 163 · Unit 12 — Repairs and Maintenance</div>
+  <div class="footer-right">
+    <div class="footer-icon"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+    <div class="footer-text">Unit 12 — Repairs and Maintenance</div>
+  </div>
+</div>
+<script>
+var flipped=new Set();
+function flip(el){
+  var idx=Array.from(document.querySelectorAll('.flip-card')).indexOf(el);
+  el.classList.toggle('flipped');
+  if(el.classList.contains('flipped'))flipped.add(idx);else flipped.delete(idx);
+  document.getElementById('cnt').textContent=flipped.size;
+}
+function resetAll(){
+  document.querySelectorAll('.flip-card').forEach(function(c){c.classList.remove('flipped');});
+  flipped.clear();
+  document.getElementById('cnt').textContent='0';
+}
+</script>
+</body>
+</html>

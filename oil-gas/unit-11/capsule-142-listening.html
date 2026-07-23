@@ -1,0 +1,180 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Listening · Unit 11 — Workshop Operations</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
+.header{background:#0d1b2a;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid rgba(241,196,15,.25)}
+.pill-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:700;color:#f5da6e;line-height:1}
+.pill-title span{color:#f1c40f;font-size:clamp(14px,2.5vw,22px);font-weight:600;display:block;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.icon-box{width:48px;height:48px;border:1.5px solid rgba(241,196,15,.4);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.icon-box svg{width:26px;height:26px;stroke:#f1c40f;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(241,196,15,.2);padding:6px 24px;font-size:11px;color:#f5da6e;text-align:center}
+.translate-warning strong{color:#f1c40f}
+.audio-bar{background:#0d1b2a;border-bottom:1px solid rgba(241,196,15,.2);padding:10px 24px;display:flex;align-items:center;gap:12px}
+.audio-label{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;color:#f1c40f;text-transform:uppercase;letter-spacing:.08em}
+audio{flex:1;height:32px;max-width:340px}
+.content{max-width:900px;margin:0 auto;padding:20px 16px 32px;display:grid;grid-template-columns:1fr 260px;gap:20px}
+@media(max-width:700px){.content{grid-template-columns:1fr}}
+.left-col{display:flex;flex-direction:column;gap:16px}
+.act-card{background:#111827;border:1px solid rgba(241,196,15,.18);border-radius:12px;padding:16px}
+.act-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:#f1c40f;margin-bottom:10px}
+.act-sub{font-size:12px;color:#4a6a8a;margin-bottom:10px}
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.match-left{display:flex;flex-direction:column;gap:6px}
+.match-right{display:flex;flex-direction:column;gap:6px}
+.match-item{background:#0a0f1e;border:1px solid rgba(241,196,15,.15);border-radius:8px;padding:8px 10px;font-size:12px;color:#c8d8e8;display:flex;align-items:flex-start;gap:6px}
+.match-label{color:#f1c40f;font-family:'Barlow Condensed',sans-serif;font-weight:700;min-width:18px;font-size:13px}
+.q-row{padding:8px 0;border-bottom:1px solid rgba(241,196,15,.1);font-size:13px;color:#c8d8e8;display:flex;align-items:center;gap:8px}
+.q-row:last-child{border-bottom:none}
+.q-num{color:#f1c40f;font-family:'Barlow Condensed',sans-serif;font-weight:700;min-width:90px;font-size:12px}
+.reveal-btn{background:rgba(241,196,15,.12);border:1px solid rgba(241,196,15,.3);color:#f5da6e;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;border-radius:6px;padding:3px 10px;cursor:pointer;margin-left:auto;white-space:nowrap}
+.answer{display:none;color:#f5da6e;font-weight:600}
+.zone-support{display:flex;flex-direction:column;gap:14px}
+.task-box{background:#0a1628;border:1px solid rgba(241,196,15,.35);border-radius:12px;padding:16px}
+.task-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;color:#f1c40f;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+.task-text{font-size:12px;color:#c8d8e8;line-height:1.6}
+.timer-box{background:#111827;border-radius:10px;padding:12px;text-align:center}
+.timer-label{font-size:10px;color:#4a6a8a;text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px}
+.timer-display{font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:700;color:#f5da6e}
+.timer-display.urgent{color:#e74c3c}
+.timer-display.warning{color:#f39c12}
+.wa-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:#f1c40f;color:#0a0f1e;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:none;border-radius:10px;padding:13px 20px;width:100%;cursor:pointer;transition:background .2s;margin-top:6px}
+.wa-btn:hover{background:#f5da6e}
+.wa-btn svg{width:20px;height:20px;fill:#0a0f1e;flex-shrink:0}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal-overlay.open{display:flex}
+.modal{background:#111827;border:1px solid rgba(241,196,15,.3);border-radius:14px;padding:22px;width:100%;max-width:420px;max-height:90vh;overflow-y:auto}
+.modal-title{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:#f5da6e;margin-bottom:4px}
+.modal-sub{font-size:12px;color:#4a6a8a;margin-bottom:14px}
+.modal label{font-size:12px;color:#f5da6e;font-weight:600;display:block;margin-bottom:4px}
+.modal input,.modal textarea{width:100%;background:#0a0f1e;border:1px solid rgba(241,196,15,.3);border-radius:8px;padding:9px 12px;font-size:13px;color:#c8d8e8;margin-bottom:12px;font-family:'Barlow',sans-serif;resize:vertical}
+.modal textarea{min-height:80px}
+.modal-note{font-size:12px;color:#4a6a8a;background:#0a0f1e;border-radius:8px;padding:10px 12px;margin-bottom:14px;line-height:1.5}
+.modal-btns{display:flex;gap:8px}
+.modal-send{flex:1;background:#f1c40f;color:#0a0f1e;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;border:none;border-radius:8px;padding:10px;cursor:pointer}
+.modal-cancel{background:transparent;border:1px solid rgba(241,196,15,.3);color:#4a6a8a;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;border-radius:8px;padding:10px 16px;cursor:pointer}
+.footer{background:#0d1b2a;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(241,196,15,.2);margin-top:4px}
+.footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a8a}
+.footer-right{display:flex;align-items:center;gap:10px}
+.footer-icon svg{width:22px;height:22px;stroke:#f1c40f;fill:none;stroke-width:1.5}
+.footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;color:#f1c40f;letter-spacing:.06em;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="pill-title">Listening<span>Workshop Operations</span></div>
+  <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
+</div>
+<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
+<div class="audio-bar">
+  <div class="audio-label">🔊 Listen</div>
+  <audio controls src="teacher-audio-unit11-listening.mp3"></audio>
+</div>
+<div class="content">
+  <div class="left-col">
+
+    <div class="act-card">
+      <div class="act-title">Activity 1 — Match each workshop responsibility (a–f) with an explanation (1–6)</div>
+      <div class="match-grid">
+        <div class="match-left">
+          <div class="match-item"><span class="match-label">a</span>Maintaining — taking care of machines</div>
+          <div class="match-item"><span class="match-label">b</span>Repairing — making broken things work</div>
+          <div class="match-item"><span class="match-label">c</span>Budgeting — dealing with money</div>
+          <div class="match-item"><span class="match-label">d</span>Scheduling — organizing times and dates</div>
+          <div class="match-item"><span class="match-label">e</span>Replacing — taking out damaged parts and putting in new parts</div>
+          <div class="match-item"><span class="match-label">f</span>Managing — organizing people, equipment, and jobs</div>
+        </div>
+        <div class="match-right">
+          <div class="match-item"><span class="match-label">1</span>dealing with money</div>
+          <div class="match-item"><span class="match-label">2</span>organizing times and dates</div>
+          <div class="match-item"><span class="match-label">3</span>making broken things work</div>
+          <div class="match-item"><span class="match-label">4</span>taking care of machines, for example oiling them</div>
+          <div class="match-item"><span class="match-label">5</span>organizing people, equipment, and jobs</div>
+          <div class="match-item"><span class="match-label">6</span>taking out damaged parts and putting in new parts</div>
+        </div>
+      </div>
+      <div style="margin-top:10px">
+        <div class="q-row"><span class="q-num">Answers (1–6):</span><button class="reveal-btn" onclick="rev(this)">Reveal</button><span class="answer">1→c · 2→d · 3→b · 4→a · 5→f · 6→e</span></div>
+      </div>
+    </div>
+
+    <div class="act-card">
+      <div class="act-title">Activity 2 — Listen to 6 conversations</div>
+      <div class="act-sub">Which workshop responsibility (a–f) is each conversation about?</div>
+      <div class="q-row"><span class="q-num">Conversation 1</span><button class="reveal-btn" onclick="rev(this)">Reveal</button><span class="answer">a — Maintaining</span></div>
+      <div class="q-row"><span class="q-num">Conversation 2</span><button class="reveal-btn" onclick="rev(this)">Reveal</button><span class="answer">b — Repairing</span></div>
+      <div class="q-row"><span class="q-num">Conversation 3</span><button class="reveal-btn" onclick="rev(this)">Reveal</button><span class="answer">e — Replacing</span></div>
+      <div class="q-row"><span class="q-num">Conversation 4</span><button class="reveal-btn" onclick="rev(this)">Reveal</button><span class="answer">d — Scheduling</span></div>
+      <div class="q-row"><span class="q-num">Conversation 5</span><button class="reveal-btn" onclick="rev(this)">Reveal</button><span class="answer">f — Managing</span></div>
+      <div class="q-row"><span class="q-num">Conversation 6</span><button class="reveal-btn" onclick="rev(this)">Reveal</button><span class="answer">c — Budgeting</span></div>
+    </div>
+
+  </div>
+  <div class="zone-support">
+    <div class="task-box">
+      <div class="task-label">Task</div>
+      <div class="task-text">Listen to the audio, complete both activities, then send your answers.</div>
+    </div>
+    <div class="timer-box">
+      <div class="timer-label">Time remaining</div>
+      <div class="timer-display" id="timerDisplay">20:00</div>
+    </div>
+    <button class="wa-btn" onclick="openModal()">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.535 5.858L.057 23.48a.5.5 0 0 0 .61.632l5.788-1.517A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.95 9.95 0 0 1-5.187-1.448l-.372-.22-3.433.9.916-3.345-.242-.384A9.953 9.953 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Enviar respostas
+    </button>
+  </div>
+</div>
+<div class="footer">
+  <div class="footer-left">Capsule 142 de 163 · Unit 11 — Workshop Operations</div>
+  <div class="footer-right">
+    <div class="footer-icon"><svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
+    <div class="footer-text">Unit 11 — Workshop Operations</div>
+  </div>
+</div>
+<div class="modal-overlay" id="waModal">
+  <div class="modal">
+    <div class="modal-title">Enviar respostas — Listening</div>
+    <div class="modal-sub">Unit 11 — Workshop Operations</div>
+    <label for="studentName">Your name</label>
+    <input type="text" id="studentName" placeholder="Type your name" oninput="localStorage.setItem('ef_student_name',this.value)">
+    <label>Activity 1 — Match responsibilities to explanations (e.g. 1-c, 2-d ...)</label>
+    <textarea id="ans1" placeholder="1→ , 2→ , 3→ , 4→ , 5→ , 6→"></textarea>
+    <label>Activity 2 — Which responsibility in each conversation? (e.g. Conv 1 = a ...)</label>
+    <textarea id="ans2" placeholder="Conv 1= , Conv 2= , Conv 3= , Conv 4= , Conv 5= , Conv 6="></textarea>
+    <div class="modal-note">🎙️ Após enviar, grave seu áudio e envie na mesma conversa.</div>
+    <div class="modal-btns">
+      <button class="modal-cancel" onclick="closeModal()">Cancelar</button>
+      <button class="modal-send" onclick="sendWA()">Enviar no WhatsApp</button>
+    </div>
+  </div>
+</div>
+<script>
+var total=20*60,remaining=total;
+function fmt(s){return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');}
+var td=document.getElementById('timerDisplay');
+var iv=setInterval(function(){remaining--;if(remaining<=0){clearInterval(iv);td.textContent='00:00';td.className='timer-display urgent';return;}td.textContent=fmt(remaining);if(remaining<=60)td.className='timer-display urgent';else if(remaining<=180)td.className='timer-display warning';else td.className='timer-display';},1000);
+function rev(btn){var a=btn.nextElementSibling;a.style.display='inline';btn.style.display='none';}
+function openModal(){var n=localStorage.getItem('ef_student_name')||'';document.getElementById('studentName').value=n;document.getElementById('waModal').classList.add('open');}
+function closeModal(){document.getElementById('waModal').classList.remove('open');}
+function sendWA(){
+  var name=document.getElementById('studentName').value.trim()||'Student';
+  localStorage.setItem('ef_student_name',name);
+  var now=new Date();
+  var date=now.toLocaleDateString('pt-BR');
+  var time=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  var a1=document.getElementById('ans1').value.trim()||'(no answer)';
+  var a2=document.getElementById('ans2').value.trim()||'(no answer)';
+  var msg='👤 '+name+'\n📅 '+date+' às '+time+'\n🎙️ Listening — Unit 11 — Workshop Operations\n📌 Activity 1: '+a1+'\n📌 Activity 2: '+a2+'\n👇 Áudio na mensagem seguinte';
+  window.open('https://wa.me/5522999585058?text='+encodeURIComponent(msg),'_blank');
+  closeModal();
+}
+document.getElementById('waModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+</script>
+</body>
+</html>

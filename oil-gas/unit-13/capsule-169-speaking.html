@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Speaking · Unit 13 — The Refinery</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
+.header{background:#0d1b2a;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid rgba(231,76,60,.25)}
+.pill-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:700;color:#f0958d;line-height:1}
+.pill-title span{color:#e74c3c;font-size:clamp(14px,2.5vw,22px);font-weight:600;display:block;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.icon-box{width:48px;height:48px;border:1.5px solid rgba(231,76,60,.4);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.icon-box svg{width:26px;height:26px;stroke:#e74c3c;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(231,76,60,.2);padding:6px 24px;font-size:11px;color:#f0958d;text-align:center}
+.translate-warning strong{color:#e74c3c}
+.content{max-width:700px;margin:0 auto;padding:24px 16px 40px}
+.task-box{background:#0a1628;border:1px solid rgba(231,76,60,.3);border-radius:12px;padding:18px;margin-bottom:16px}
+.task-title{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:#f0958d;margin-bottom:10px}
+.task-text{font-size:14px;color:#c8d8e8;line-height:1.7}
+.task-text strong{color:#f0958d}
+.process-card{background:#111827;border:1px solid rgba(231,76,60,.15);border-radius:10px;padding:14px;margin-bottom:12px}
+.process-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:#e74c3c;margin-bottom:10px}
+.step-list{list-style:none}
+.step-list li{display:flex;align-items:baseline;gap:8px;padding:5px 0;border-bottom:1px solid rgba(231,76,60,.08);font-size:13px;color:#c8d8e8}
+.step-list li:last-child{border-bottom:none}
+.step-list li::before{content:"→";color:#e74c3c;flex-shrink:0}
+.useful-lang{background:#0a1628;border:1px solid rgba(231,76,60,.2);border-radius:10px;padding:12px;margin-bottom:16px}
+.ul-title{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:#e74c3c;margin-bottom:8px}
+.phrase-row{font-size:13px;color:#c8d8e8;padding:3px 0;border-bottom:1px solid rgba(231,76,60,.08)}
+.phrase-row:last-child{border-bottom:none}
+.phrase-row em{color:#f0958d}
+.wa-wrap{max-width:340px;margin:0 auto}
+.wa-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:#e74c3c;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:none;border-radius:10px;padding:13px 20px;width:100%;cursor:pointer;transition:background .2s}
+.wa-btn:hover{background:#f0958d}
+.wa-btn svg{width:20px;height:20px;fill:#fff;flex-shrink:0}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal-overlay.open{display:flex}
+.modal{background:#111827;border:1px solid rgba(231,76,60,.3);border-radius:14px;padding:22px;width:100%;max-width:420px;max-height:90vh;overflow-y:auto}
+.modal-title{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:#f0958d;margin-bottom:4px}
+.modal-sub{font-size:12px;color:#4a6a8a;margin-bottom:14px}
+.modal label{font-size:12px;color:#f0958d;font-weight:600;display:block;margin-bottom:4px}
+.modal input{width:100%;background:#0a0f1e;border:1px solid rgba(231,76,60,.3);border-radius:8px;padding:9px 12px;font-size:13px;color:#c8d8e8;margin-bottom:12px;font-family:'Barlow',sans-serif}
+.modal-note{font-size:12px;color:#4a6a8a;background:#0a0f1e;border-radius:8px;padding:10px 12px;margin-bottom:14px;line-height:1.5}
+.modal-btns{display:flex;gap:8px}
+.modal-send{flex:1;background:#e74c3c;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;border:none;border-radius:8px;padding:10px;cursor:pointer}
+.modal-cancel{background:transparent;border:1px solid rgba(231,76,60,.3);color:#4a6a8a;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;border-radius:8px;padding:10px 16px;cursor:pointer}
+.footer{background:#0d1b2a;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(231,76,60,.2);margin-top:4px}
+.footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a8a}
+.footer-right{display:flex;align-items:center;gap:10px}
+.footer-icon svg{width:22px;height:22px;stroke:#e74c3c;fill:none;stroke-width:1.5}
+.footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;color:#e74c3c;letter-spacing:.06em;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="pill-title">Speaking<span>Explaining a Process</span></div>
+  <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg></div>
+</div>
+<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
+<div class="content">
+  <div class="task-box">
+    <div class="task-title">Task — Explain a refinery process</div>
+    <div class="task-text">Choose <strong>one process</strong> below. Study the steps, then record a short audio explaining the process in your own words. Use sequence words and passive verbs where possible.</div>
+  </div>
+
+  <div class="process-card">
+    <div class="process-title">Process A — Loading a bulk tanker at the refinery</div>
+    <ul class="step-list">
+      <li>Drive the tanker into the loading area.</li>
+      <li>Earth the tanker (connect to ground).</li>
+      <li>Switch off the master switch.</li>
+      <li>Check the transport emergency card.</li>
+      <li>Connect the pipes.</li>
+      <li>Load the tanker with the petroleum product.</li>
+      <li>Drain the hoses.</li>
+      <li>Drive the tanker out of the loading area.</li>
+    </ul>
+  </div>
+
+  <div class="process-card">
+    <div class="process-title">Process B — How fractional distillation works</div>
+    <ul class="step-list">
+      <li>Crude oil is pumped into the furnace and heated.</li>
+      <li>The boiling oil enters the bottom of the distillation tower.</li>
+      <li>The oil is separated into fractions (parts) by boiling point.</li>
+      <li>The lightest products (petroleum gas) rise to the top.</li>
+      <li>The heaviest products (asphalt) sink to the bottom.</li>
+      <li>Each fraction is piped out of the tower at its boiling point level.</li>
+      <li>Products are stored in tanks in the refinery.</li>
+      <li>Products are transported by tanker, rail, or pipeline.</li>
+    </ul>
+  </div>
+
+  <div class="useful-lang">
+    <div class="ul-title">Useful Language</div>
+    <div class="phrase-row"><em>First, ...</em> / <em>Then, ...</em> / <em>Next, ...</em> / <em>After that, ...</em> / <em>Finally, ...</em></div>
+    <div class="phrase-row"><em>The oil is heated in ...</em> / <em>The products are separated by ...</em></div>
+    <div class="phrase-row"><em>The lightest product rises to the top.</em></div>
+    <div class="phrase-row"><em>The tanker is driven into / out of ...</em></div>
+  </div>
+
+  <div class="wa-wrap">
+    <button class="wa-btn" onclick="openModal()">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.535 5.858L.057 23.48a.5.5 0 0 0 .61.632l5.788-1.517A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.95 9.95 0 0 1-5.187-1.448l-.372-.22-3.433.9.916-3.345-.242-.384A9.953 9.953 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Enviar áudio
+    </button>
+  </div>
+</div>
+<div class="footer">
+  <div class="footer-left">Capsule 169 de 176 · Unit 13 — The Refinery</div>
+  <div class="footer-right">
+    <div class="footer-icon"><svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/></svg></div>
+    <div class="footer-text">Unit 13 — The Refinery</div>
+  </div>
+</div>
+<div class="modal-overlay" id="waModal">
+  <div class="modal">
+    <div class="modal-title">Enviar áudio — Speaking</div>
+    <div class="modal-sub">Unit 13 — Explaining a Process</div>
+    <label for="studentName">Your name</label>
+    <input type="text" id="studentName" placeholder="Type your name" oninput="localStorage.setItem('ef_student_name',this.value)">
+    <div class="modal-note">Clique em <strong>Enviar no WhatsApp</strong>, depois grave seu áudio explicando o processo que escolheu (A ou B) e envie na mesma conversa.</div>
+    <div class="modal-btns">
+      <button class="modal-cancel" onclick="closeModal()">Cancelar</button>
+      <button class="modal-send" onclick="sendWA()">Enviar no WhatsApp</button>
+    </div>
+  </div>
+</div>
+<script>
+function openModal(){var n=localStorage.getItem('ef_student_name')||'';document.getElementById('studentName').value=n;document.getElementById('waModal').classList.add('open');}
+function closeModal(){document.getElementById('waModal').classList.remove('open');}
+function sendWA(){
+  var name=document.getElementById('studentName').value.trim()||'Student';
+  localStorage.setItem('ef_student_name',name);
+  var now=new Date();
+  var date=now.toLocaleDateString('pt-BR');
+  var time=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  var msg='👤 '+name+'\n📅 '+date+' às '+time+'\n🎙️ Speaking — Unit 13 — The Refinery\n👇 Áudio na mensagem seguinte';
+  window.open('https://wa.me/5522999585058?text='+encodeURIComponent(msg),'_blank');
+  closeModal();
+}
+document.getElementById('waModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+</script>
+</body>
+</html>

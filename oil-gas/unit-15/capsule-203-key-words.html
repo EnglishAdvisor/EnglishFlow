@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Key Words · Unit 15 — Petrochemicals</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
+.header{background:#0d1b2a;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid rgba(168,85,247,.25)}
+.pill-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:700;color:#cc99fb;line-height:1}
+.pill-title span{color:#a855f7;font-size:clamp(14px,2.5vw,22px);font-weight:600;display:block;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.icon-box{width:48px;height:48px;border:1.5px solid rgba(168,85,247,.4);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.icon-box svg{width:26px;height:26px;stroke:#a855f7;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(168,85,247,.2);padding:6px 24px;font-size:11px;color:#cc99fb;text-align:center}
+.translate-warning strong{color:#a855f7}
+.content{max-width:860px;margin:0 auto;padding:20px 16px 32px}
+.section-label{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#a855f7;text-transform:uppercase;letter-spacing:.1em;margin:0 0 10px}
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:10px;margin-bottom:20px}
+.flip-card{height:110px;cursor:pointer;perspective:800px}
+.flip-inner{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .45s}
+.flip-card.flipped .flip-inner{transform:rotateY(180deg)}
+.flip-front,.flip-back{position:absolute;inset:0;border-radius:10px;backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;text-align:center}
+.flip-front{background:#111827;border:1px solid rgba(168,85,247,.25)}
+.flip-back{background:#0a1628;border:1px solid rgba(168,85,247,.4);transform:rotateY(180deg)}
+.front-word{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:#cc99fb;line-height:1.2;margin-bottom:4px}
+.front-pos{font-size:10px;color:#4a6a8a;text-transform:uppercase;letter-spacing:.08em}
+.front-hint{font-size:10px;color:#4a6a8a;margin-top:4px}
+.back-def{font-size:11px;color:#c8d8e8;line-height:1.5}
+.controls{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:8px}
+.counter{font-family:'Barlow Condensed',sans-serif;font-size:14px;color:#4a6a8a}
+.counter span{color:#a855f7;font-weight:700}
+.reset-btn{background:transparent;border:1px solid rgba(168,85,247,.25);color:#4a6a8a;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;border-radius:8px;padding:6px 18px;cursor:pointer}
+.congrats{font-family:'Barlow Condensed',sans-serif;font-size:14px;color:#cc99fb;margin-top:4px;text-align:center;display:none}
+.footer{background:#0d1b2a;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(168,85,247,.2);margin-top:4px}
+.footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a8a}
+.footer-right{display:flex;align-items:center;gap:10px}
+.footer-icon svg{width:22px;height:22px;stroke:#a855f7;fill:none;stroke-width:1.5}
+.footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;color:#a855f7;letter-spacing:.06em;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="pill-title">Key Words<span>Unit 15 — Petrochemicals</span></div>
+  <div class="icon-box"><svg viewBox="0 0 24 24"><path d="m15 5 4 4"/><path d="M13 7 8.7 2.7a2.41 2.41 0 0 0-3.4 0L2.7 5.3a2.41 2.41 0 0 0 0 3.4L7 13"/><path d="m8 6 2-2"/><path d="m2 22 5.5-5.5"/><path d="M17 7l4.3 4.3c.94.94.94 2.46 0 3.4l-2.6 2.6c-.94.94-2.46.94-3.4 0L11 13"/><path d="m16 18 2 2"/><path d="m13 13-3 3"/></svg></div>
+</div>
+<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
+<div class="content">
+  <div class="controls">
+    <div class="counter">Flipped: <span id="cnt">0</span> / 15</div>
+    <button class="reset-btn" onclick="resetAll()">Reset all</button>
+  </div>
+  <div class="congrats" id="congrats">🎉 All 15 words flipped! You've completed Oil &amp; Gas 1 — 203 capsules!</div>
+
+  <div class="section-label">Nouns (8)</div>
+  <div class="cards-grid" id="nouns-grid"></div>
+
+  <div class="section-label">Adjectives (5)</div>
+  <div class="cards-grid" id="adj-grid"></div>
+
+  <div class="section-label">Verbs (2)</div>
+  <div class="cards-grid" id="verbs-grid"></div>
+</div>
+<div class="footer">
+  <div class="footer-left">Capsule 203 de 203 · Unit 15 — Petrochemicals · OG-1 Complete!</div>
+  <div class="footer-right">
+    <div class="footer-icon"><svg viewBox="0 0 24 24"><path d="m15 5 4 4"/><path d="M13 7 8.7 2.7a2.41 2.41 0 0 0-3.4 0L2.7 5.3a2.41 2.41 0 0 0 0 3.4L7 13"/></svg></div>
+    <div class="footer-text">Unit 15 — Petrochemicals</div>
+  </div>
+</div>
+<script>
+var nouns=[
+  {w:'carbon black',pos:'noun',hint:'black colouring',def:'A black substance made by burning materials. Used in ink, paint, and tyres.'},
+  {w:'molecule',pos:'noun',hint:'tiny particle',def:'The smallest unit of a substance that has all its chemical properties.'},
+  {w:'monomer',pos:'noun',hint:'single unit',def:'A single molecule that can link with others to form a polymer (chain).'},
+  {w:'plastics',pos:'noun (pl.)',hint:'synthetic material',def:'Lightweight, versatile synthetic materials made from petroleum. Used in packaging, pipes, and thousands of other products.'},
+  {w:'polyethylene',pos:'noun',hint:'most common plastic',def:'The most widely produced plastic. Used in bags, packaging, bottles, and containers (PE).'},
+  {w:'polymer',pos:'noun',hint:'chain of monomers',def:'A large molecule made of many monomers linked in a chain. Examples: nylon, PVC, rubber, polystyrene.'},
+  {w:'requisition',pos:'noun',hint:'official request',def:'A formal request for materials or supplies. Submitted to the company buyer.'},
+  {w:'supplier',pos:'noun',hint:'provides materials',def:'A company that supplies raw materials or products to another company.'}
+];
+var adjs=[
+  {w:'inexpensive',pos:'adjective',hint:'not costly',def:'Cheap; not costing a lot of money. "Plastic products are inexpensive to produce."'},
+  {w:'man-made',pos:'adjective',hint:'not natural',def:'Created by humans, not found in nature. Same as synthetic. "Man-made fibres like nylon."'},
+  {w:'plentiful',pos:'adjective',hint:'in large supply',def:'Available in large quantities; easy to find. "Natural gas was plentiful and inexpensive."'},
+  {w:'prehistoric',pos:'adjective',hint:'before written history',def:'Relating to the time before written records. "Carbon black was discovered in prehistoric times."'},
+  {w:'synthetic',pos:'adjective',hint:'man-made',def:'Made by humans using chemicals, not occurring naturally. "Synthetic dyes, paints, and medicines."'}
+];
+var verbs=[
+  {w:'package',pos:'verb',hint:'put in containers',def:'To put something into a container for storage or transport. "Package in 20 kg bags."'},
+  {w:'specialize (in)',pos:'verb',hint:'focus on one area',def:'To concentrate on a particular area of work or production. "The plant specializes in spunbond fabric."'}
+];
+var flipped=new Set();
+function makeCard(item,idx,type){
+  var id=type+'-'+idx;
+  var div=document.createElement('div');
+  div.className='flip-card';
+  div.id=id;
+  div.innerHTML='<div class="flip-inner"><div class="flip-front"><div class="front-word">'+item.w+'</div><div class="front-pos">'+item.pos+'</div><div class="front-hint">'+item.hint+'</div></div><div class="flip-back"><div class="back-def">'+item.def+'</div></div></div>';
+  div.addEventListener('click',function(){
+    this.classList.toggle('flipped');
+    if(this.classList.contains('flipped'))flipped.add(id);else flipped.delete(id);
+    document.getElementById('cnt').textContent=flipped.size;
+    document.getElementById('congrats').style.display=flipped.size===15?'block':'none';
+  });
+  return div;
+}
+var ng=document.getElementById('nouns-grid');
+nouns.forEach(function(item,i){ng.appendChild(makeCard(item,i,'n'));});
+var ag=document.getElementById('adj-grid');
+adjs.forEach(function(item,i){ag.appendChild(makeCard(item,i,'a'));});
+var vg=document.getElementById('verbs-grid');
+verbs.forEach(function(item,i){vg.appendChild(makeCard(item,i,'v'));});
+function resetAll(){
+  document.querySelectorAll('.flip-card').forEach(function(c){c.classList.remove('flipped');});
+  flipped.clear();
+  document.getElementById('cnt').textContent='0';
+  document.getElementById('congrats').style.display='none';
+}
+</script>
+</body>
+</html>

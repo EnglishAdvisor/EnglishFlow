@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Vocabulary · Unit 12 — Repairs and Maintenance</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
+.header{background:#0d1b2a;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid rgba(230,126,34,.25)}
+.pill-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:700;color:#f0ad72;line-height:1}
+.pill-title span{color:#e67e22;font-size:clamp(14px,2.5vw,22px);font-weight:600;display:block;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.icon-box{width:48px;height:48px;border:1.5px solid rgba(230,126,34,.4);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.icon-box svg{width:26px;height:26px;stroke:#e67e22;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(230,126,34,.2);padding:6px 24px;font-size:11px;color:#f0ad72;text-align:center}
+.translate-warning strong{color:#e67e22}
+.content{max-width:900px;margin:0 auto;padding:20px 16px 32px;display:grid;grid-template-columns:1fr 260px;gap:20px}
+@media(max-width:700px){.content{grid-template-columns:1fr}}
+.left-col{display:flex;flex-direction:column;gap:16px}
+.act-card{background:#111827;border:1px solid rgba(230,126,34,.18);border-radius:12px;padding:16px}
+.act-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:#e67e22;margin-bottom:10px}
+.act-sub{font-size:12px;color:#4a6a8a;margin-bottom:12px}
+.defect-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:12px}
+.defect-card{background:#0a1628;border:1px solid rgba(230,126,34,.2);border-radius:8px;padding:10px;text-align:center}
+.defect-word{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;color:#f0ad72}
+.defect-def{font-size:11px;color:#4a6a8a;margin-top:3px;line-height:1.4}
+.q-row{padding:8px 0;border-bottom:1px solid rgba(230,126,34,.1);font-size:13px;color:#c8d8e8;display:flex;align-items:flex-start;gap:8px}
+.q-row:last-child{border-bottom:none}
+.q-num{color:#e67e22;font-family:'Barlow Condensed',sans-serif;font-weight:700;min-width:18px}
+.reveal-btn{background:rgba(230,126,34,.12);border:1px solid rgba(230,126,34,.3);color:#f0ad72;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;border-radius:6px;padding:3px 10px;cursor:pointer;margin-left:auto;white-space:nowrap;flex-shrink:0}
+.answer{display:none;color:#f0ad72;font-weight:600;margin-left:4px}
+.zone-support{display:flex;flex-direction:column;gap:14px}
+.def-card{background:#0d1b2a;border:1px solid rgba(230,126,34,.2);border-radius:12px;padding:14px}
+.def-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#e67e22;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
+.def-row{font-size:12px;color:#c8d8e8;padding:4px 0;border-bottom:1px solid rgba(230,126,34,.08);line-height:1.5}
+.def-row:last-child{border-bottom:none}
+.def-row strong{color:#f0ad72}
+.task-box{background:#0a1628;border:1px solid rgba(230,126,34,.35);border-radius:12px;padding:16px}
+.task-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;color:#e67e22;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+.task-text{font-size:12px;color:#c8d8e8;line-height:1.6}
+.timer-box{background:#111827;border-radius:10px;padding:12px;text-align:center}
+.timer-label{font-size:10px;color:#4a6a8a;text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px}
+.timer-display{font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:700;color:#f0ad72;letter-spacing:.04em}
+.timer-display.urgent{color:#e74c3c}
+.timer-display.warning{color:#f39c12}
+.wa-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:#e67e22;color:#0a0f1e;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:none;border-radius:10px;padding:13px 20px;width:100%;cursor:pointer;transition:background .2s;margin-top:6px}
+.wa-btn:hover{background:#f0ad72}
+.wa-btn svg{width:20px;height:20px;fill:#0a0f1e;flex-shrink:0}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal-overlay.open{display:flex}
+.modal{background:#111827;border:1px solid rgba(230,126,34,.3);border-radius:14px;padding:22px;width:100%;max-width:420px;max-height:90vh;overflow-y:auto}
+.modal-title{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:#f0ad72;margin-bottom:4px}
+.modal-sub{font-size:12px;color:#4a6a8a;margin-bottom:14px}
+.modal label{font-size:12px;color:#f0ad72;font-weight:600;display:block;margin-bottom:4px}
+.modal input,.modal textarea{width:100%;background:#0a0f1e;border:1px solid rgba(230,126,34,.3);border-radius:8px;padding:9px 12px;font-size:13px;color:#c8d8e8;margin-bottom:12px;font-family:'Barlow',sans-serif;resize:vertical}
+.modal textarea{min-height:80px}
+.modal-note{font-size:12px;color:#4a6a8a;background:#0a0f1e;border-radius:8px;padding:10px 12px;margin-bottom:14px;line-height:1.5}
+.modal-btns{display:flex;gap:8px}
+.modal-send{flex:1;background:#e67e22;color:#0a0f1e;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;border:none;border-radius:8px;padding:10px;cursor:pointer}
+.modal-cancel{background:transparent;border:1px solid rgba(230,126,34,.3);color:#4a6a8a;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;border-radius:8px;padding:10px 16px;cursor:pointer}
+.footer{background:#0d1b2a;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(230,126,34,.2);margin-top:4px}
+.footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a8a}
+.footer-right{display:flex;align-items:center;gap:10px}
+.footer-icon svg{width:22px;height:22px;stroke:#e67e22;fill:none;stroke-width:1.5}
+.footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;color:#e67e22;letter-spacing:.06em;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="pill-title">Vocabulary<span>Problems &amp; Solutions</span></div>
+  <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+</div>
+<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
+<div class="content">
+  <div class="left-col">
+    <div class="act-card">
+      <div class="act-title">Activity 1 — Problem words. Study the 4 adjectives.</div>
+      <div class="defect-grid">
+        <div class="defect-card"><div class="defect-word">frozen</div><div class="defect-def">cannot move — seized up, completely stuck</div></div>
+        <div class="defect-card"><div class="defect-word">broken</div><div class="defect-def">cracked or in pieces — no longer intact</div></div>
+        <div class="defect-card"><div class="defect-word">split</div><div class="defect-def">has a tear or crack along its length</div></div>
+        <div class="defect-card"><div class="defect-word">bent</div><div class="defect-def">no longer straight — deformed by force</div></div>
+      </div>
+    </div>
+    <div class="act-card">
+      <div class="act-title">Activity 2 — Choose the correct word: frozen or broken? split or bent?</div>
+      <div class="q-row"><span class="q-num">1</span><div>The bearing was <em>frozen / broken</em>.</div><button class="reveal-btn" onclick="rev(this)">Reveal</button><span class="answer">broken</span></div>
+      <div class="q-row"><span class="q-num">2</span><div>The bearing was / wasn't replaced.</div><button class="reveal-btn" onclick="rev(this)">Reveal</button><span class="answer">was replaced</span></div>
+      <div class="q-row"><span class="q-num">3</span><div>The hose was / wasn't replaced.</div><button class="reveal-btn" onclick="rev(this)">Reveal</button><span class="answer">wasn't replaced</span></div>
+      <div class="q-row"><span class="q-num">4</span><div>The hose was <em>split / bent</em>.</div><button class="reveal-btn" onclick="rev(this)">Reveal</button><span class="answer">split</span></div>
+    </div>
+    <div class="act-card">
+      <div class="act-title">Activity 3 — Match problem to solution</div>
+      <div class="act-sub">The wires are corroded → I'll clean them. Match each problem with the correct solution.</div>
+      <div class="q-row"><span class="q-num">1</span><div>The wires are <strong>corroded</strong>.</div><button class="reveal-btn" onclick="rev(this)">Reveal</button><span class="answer">I'll clean them.</span></div>
+      <div class="q-row"><span class="q-num">2</span><div>The tank is <strong>damaged</strong>. There's a big dent.</div><button class="reveal-btn" onclick="rev(this)">Reveal</button><span class="answer">I'll write a report.</span></div>
+      <div class="q-row"><span class="q-num">3</span><div>The system is <strong>frozen</strong>. It's down.</div><button class="reveal-btn" onclick="rev(this)">Reveal</button><span class="answer">I'll re-start the system.</span></div>
+      <div class="q-row"><span class="q-num">4</span><div>The copier is <strong>jammed</strong>.</div><button class="reveal-btn" onclick="rev(this)">Reveal</button><span class="answer">I'll get the manual.</span></div>
+      <div class="q-row"><span class="q-num">5</span><div>The bolt is <strong>rusted</strong>. I can't remove it.</div><button class="reveal-btn" onclick="rev(this)">Reveal</button><span class="answer">I'll get the angle grinder.</span></div>
+      <div class="q-row"><span class="q-num">6</span><div>The gear is <strong>worn</strong>.</div><button class="reveal-btn" onclick="rev(this)">Reveal</button><span class="answer">I'll replace it.</span></div>
+      <div class="q-row"><span class="q-num">7</span><div>The belt is <strong>loose</strong>. It's noisy.</div><button class="reveal-btn" onclick="rev(this)">Reveal</button><span class="answer">I'll tighten it.</span></div>
+      <div class="q-row"><span class="q-num">8</span><div>The cap is <strong>leaking</strong>.</div><button class="reveal-btn" onclick="rev(this)">Reveal</button><span class="answer">I'll check it.</span></div>
+    </div>
+  </div>
+  <div class="zone-support">
+    <div class="def-card">
+      <div class="def-title">Problem Adjectives</div>
+      <div class="def-row"><strong>corroded</strong> — damaged by rust or chemical reaction</div>
+      <div class="def-row"><strong>damaged</strong> — physically harmed; has dents, cracks, or deformation</div>
+      <div class="def-row"><strong>jammed</strong> — stuck and unable to move; blocked</div>
+      <div class="def-row"><strong>rusted</strong> — covered with rust (iron + moisture)</div>
+      <div class="def-row"><strong>worn</strong> — gradually damaged by use; needs replacing</div>
+      <div class="def-row"><strong>loose</strong> — not tight or secure; can cause noise or failure</div>
+      <div class="def-row"><strong>leaking</strong> — allowing fluid or gas to escape through a gap</div>
+    </div>
+    <div class="task-box">
+      <div class="task-label">Task</div>
+      <div class="task-text">Complete all activities, then send your answers via WhatsApp.</div>
+    </div>
+    <div class="timer-box">
+      <div class="timer-label">Time remaining</div>
+      <div class="timer-display" id="timerDisplay">25:00</div>
+    </div>
+    <button class="wa-btn" onclick="openModal()">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.535 5.858L.057 23.48a.5.5 0 0 0 .61.632l5.788-1.517A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.95 9.95 0 0 1-5.187-1.448l-.372-.22-3.433.9.916-3.345-.242-.384A9.953 9.953 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Enviar respostas
+    </button>
+  </div>
+</div>
+<div class="footer">
+  <div class="footer-left">Capsule 154 de 163 · Unit 12 — Repairs and Maintenance</div>
+  <div class="footer-right">
+    <div class="footer-icon"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+    <div class="footer-text">Unit 12 — Repairs and Maintenance</div>
+  </div>
+</div>
+<div class="modal-overlay" id="waModal">
+  <div class="modal">
+    <div class="modal-title">Enviar respostas — Vocabulary</div>
+    <div class="modal-sub">Unit 12 — Problems &amp; Solutions</div>
+    <label for="studentName">Your name</label>
+    <input type="text" id="studentName" placeholder="Type your name" oninput="localStorage.setItem('ef_student_name',this.value)">
+    <label>Activity 2 — Answers (1–4)</label>
+    <textarea id="ans1" placeholder="1=broken, 2=was, 3=wasn't, 4=split"></textarea>
+    <label>Activity 3 — Problem → Solution (1–8)</label>
+    <textarea id="ans2" placeholder="1=I'll clean them / 2=I'll write a report / ..."></textarea>
+    <div class="modal-note">🎙️ Após enviar, grave seu áudio e envie na mesma conversa.</div>
+    <div class="modal-btns">
+      <button class="modal-cancel" onclick="closeModal()">Cancelar</button>
+      <button class="modal-send" onclick="sendWA()">Enviar no WhatsApp</button>
+    </div>
+  </div>
+</div>
+<script>
+var total=25*60,remaining=total;
+function fmt(s){return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');}
+var td=document.getElementById('timerDisplay');
+var iv=setInterval(function(){remaining--;if(remaining<=0){clearInterval(iv);td.textContent='00:00';td.className='timer-display urgent';return;}td.textContent=fmt(remaining);if(remaining<=60)td.className='timer-display urgent';else if(remaining<=180)td.className='timer-display warning';else td.className='timer-display';},1000);
+function rev(btn){var a=btn.nextElementSibling;a.style.display='inline';btn.style.display='none';}
+function openModal(){var n=localStorage.getItem('ef_student_name')||'';document.getElementById('studentName').value=n;document.getElementById('waModal').classList.add('open');}
+function closeModal(){document.getElementById('waModal').classList.remove('open');}
+function sendWA(){
+  var name=document.getElementById('studentName').value.trim()||'Student';
+  localStorage.setItem('ef_student_name',name);
+  var now=new Date();
+  var date=now.toLocaleDateString('pt-BR');
+  var time=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  var a1=document.getElementById('ans1').value.trim()||'(no answer)';
+  var a2=document.getElementById('ans2').value.trim()||'(no answer)';
+  var msg='👤 '+name+'\n📅 '+date+' às '+time+'\n🎙️ Vocabulary — Unit 12 — Repairs and Maintenance\n📌 Activity 2: '+a1+'\n📌 Activity 3: '+a2+'\n👇 Áudio na mensagem seguinte';
+  window.open('https://wa.me/5522999585058?text='+encodeURIComponent(msg),'_blank');
+  closeModal();
+}
+document.getElementById('waModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+</script>
+</body>
+</html>

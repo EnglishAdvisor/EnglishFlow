@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>It's My Job · Unit 15 — Petrochemicals</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
+.header{background:#0d1b2a;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid rgba(168,85,247,.25)}
+.pill-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:700;color:#cc99fb;line-height:1}
+.pill-title span{color:#a855f7;font-size:clamp(14px,2.5vw,22px);font-weight:600;display:block;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.icon-box{width:48px;height:48px;border:1.5px solid rgba(168,85,247,.4);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.icon-box svg{width:26px;height:26px;stroke:#a855f7;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(168,85,247,.2);padding:6px 24px;font-size:11px;color:#cc99fb;text-align:center}
+.translate-warning strong{color:#a855f7}
+.audio-bar{background:#0d1b2a;border-bottom:1px solid rgba(168,85,247,.15);padding:8px 24px;display:flex;align-items:center;gap:10px}
+.audio-label{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#a855f7;text-transform:uppercase;letter-spacing:.08em;flex-shrink:0}
+.audio-bar audio{flex:1;height:32px;min-width:0;accent-color:#a855f7}
+.content{max-width:900px;margin:0 auto;padding:20px 16px 32px;display:flex;gap:16px;align-items:flex-start}
+.left-col{flex:1;min-width:0}
+.zone-support{width:220px;flex-shrink:0}
+@media(max-width:640px){.content{flex-direction:column}.zone-support{width:100%}}
+.profile-card{background:#111827;border:1px solid rgba(168,85,247,.18);border-radius:12px;padding:16px;margin-bottom:10px;display:flex;gap:14px;align-items:flex-start}
+.avatar{width:54px;height:54px;border-radius:50%;background:#a855f7;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.avatar svg{width:30px;height:30px;stroke:#fff;fill:none;stroke-width:1.5}
+.profile-info{flex:1}
+.profile-name{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:#cc99fb;line-height:1;margin-bottom:2px}
+.profile-role{font-size:12px;color:#a855f7;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.profile-company{font-size:12px;color:#4a6a8a}
+.bio-box{background:#111827;border:1px solid rgba(168,85,247,.18);border-radius:12px;padding:16px;margin-bottom:10px;font-size:13px;color:#c8d8e8;line-height:1.85}
+.bio-box p{margin-bottom:10px}
+.bio-box p:last-child{margin-bottom:0}
+.bio-box strong{color:#cc99fb}
+.act-card{background:#111827;border:1px solid rgba(168,85,247,.18);border-radius:12px;padding:16px;margin-bottom:10px}
+.act-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:#a855f7;margin-bottom:10px}
+.q-item{font-size:13px;color:#c8d8e8;padding:7px 0;border-bottom:1px solid rgba(168,85,247,.08);line-height:1.5}
+.q-item:last-child{border-bottom:none}
+.q-num{color:#a855f7;font-weight:700;margin-right:6px}
+.ans-chip{display:inline-block;background:#a855f7;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;padding:2px 8px;border-radius:8px;margin-left:4px}
+.tests-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+.test-box{background:#0a1628;border:1px solid rgba(168,85,247,.2);border-radius:10px;padding:12px;flex:1;min-width:100px;text-align:center}
+.test-name{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:#a855f7;margin-bottom:4px}
+.test-desc{font-size:11px;color:#c8d8e8;line-height:1.4}
+.sidebar-box{background:#111827;border:1px solid rgba(168,85,247,.18);border-radius:12px;padding:14px;margin-bottom:10px}
+.sidebar-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:#a855f7;margin-bottom:10px}
+.kw-item{display:flex;flex-direction:column;padding:5px 0;border-bottom:1px solid rgba(168,85,247,.1)}
+.kw-item:last-child{border-bottom:none}
+.kw-en{font-size:13px;color:#cc99fb;font-weight:600}
+.kw-def{font-size:11px;color:#4a6a8a;margin-top:1px}
+.wa-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:#a855f7;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:none;border-radius:10px;padding:13px 20px;width:100%;cursor:pointer;transition:background .2s;margin-top:6px}
+.wa-btn:hover{background:#cc99fb}
+.wa-btn svg{width:20px;height:20px;fill:#fff;flex-shrink:0}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal-overlay.open{display:flex}
+.modal{background:#111827;border:1px solid rgba(168,85,247,.3);border-radius:14px;padding:22px;width:100%;max-width:420px;max-height:90vh;overflow-y:auto}
+.modal-title{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:#cc99fb;margin-bottom:4px}
+.modal-sub{font-size:12px;color:#4a6a8a;margin-bottom:14px}
+.modal label{font-size:12px;color:#cc99fb;font-weight:600;display:block;margin-bottom:4px}
+.modal input,.modal textarea{width:100%;background:#0a0f1e;border:1px solid rgba(168,85,247,.3);border-radius:8px;padding:9px 12px;font-size:13px;color:#c8d8e8;margin-bottom:12px;font-family:'Barlow',sans-serif;resize:vertical}
+.modal-note{font-size:12px;color:#4a6a8a;background:#0a0f1e;border-radius:8px;padding:10px 12px;margin-bottom:14px;line-height:1.5}
+.modal-btns{display:flex;gap:8px}
+.modal-send{flex:1;background:#a855f7;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;border:none;border-radius:8px;padding:10px;cursor:pointer}
+.modal-cancel{background:transparent;border:1px solid rgba(168,85,247,.3);color:#4a6a8a;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;border-radius:8px;padding:10px 16px;cursor:pointer}
+.footer{background:#0d1b2a;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(168,85,247,.2);margin-top:4px}
+.footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a8a}
+.footer-right{display:flex;align-items:center;gap:10px}
+.footer-icon svg{width:22px;height:22px;stroke:#a855f7;fill:none;stroke-width:1.5}
+.footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;color:#a855f7;letter-spacing:.06em;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="pill-title">It's My Job<span>Debbie Johnson — Test Technician</span></div>
+  <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+</div>
+<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
+<div class="audio-bar">
+  <span class="audio-label">Teacher Audio</span>
+  <audio controls src="teacher-audio-unit15-its-my-job.mp3">Your browser does not support audio.</audio>
+</div>
+<div class="content">
+  <div class="left-col">
+    <div class="profile-card">
+      <div class="avatar"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+      <div class="profile-info">
+        <div class="profile-name">Debbie Johnson</div>
+        <div class="profile-role">Test Technician</div>
+        <div class="profile-company">Specialist Plastics Limited — Test Department</div>
+      </div>
+    </div>
+
+    <div class="bio-box">
+      <p>I'm a test technician for <strong>Specialist Plastics Limited</strong>. My company makes special polymers — plastics — and I work in the test department. I have been here since I left school, and I have been trained to use most of the test equipment.</p>
+      <p>We test all of our materials for strength. We <strong>bend</strong> them in the bend test, we <strong>pull</strong> them in the tensile test, and we <strong>hit</strong> them with a hammer in the impact test. We need to see how easily they break. This includes testing them at different temperatures. We also test them with different chemicals. We need to understand how chemicals might change our materials. For example, when we put some of our plastics in sea water, they become very weak. We also have to burn them because some materials make <strong>toxic chemicals</strong> when they burn. We need to know about that.</p>
+      <p>My company supplies plastics for larger plastics manufacturers. We also make products for other industries such as aerospace, oil and gas, and <strong>domestic appliance</strong> companies.</p>
+      <p>I didn't learn much about chemistry at school, but I've learned a lot about it in this job. There are so many plastics. People use them in so many different ways. And most of them are made from petroleum. It's amazing.</p>
+      <p>This morning I tested special <strong>resins</strong> used with <strong>carbon fibre</strong> to make aircraft wings. We test this kind of product very carefully because the quality must be very high.</p>
+    </div>
+
+    <div class="act-card">
+      <div class="act-title">Activity 1 — Answer the questions</div>
+      <div class="q-item"><span class="q-num">1</span>What is the name of Debbie's company? <span class="ans-chip">Specialist Plastics Limited</span></div>
+      <div class="q-item"><span class="q-num">2</span>Which part of the company does she work in? <span class="ans-chip">test department</span></div>
+      <div class="q-item"><span class="q-num">3</span>What has she been trained to use? <span class="ans-chip">most of the test equipment</span></div>
+      <div class="q-item"><span class="q-num">4</span>Who buys her company's products? <span class="ans-chip">larger plastics manufacturers; aerospace/oil & gas/domestic appliance companies</span></div>
+      <div class="q-item"><span class="q-num">5</span>What subject has her job taught her about? <span class="ans-chip">chemistry</span></div>
+      <div class="q-item"><span class="q-num">6</span>Why must the product she tested this morning have very high quality? <span class="ans-chip">it is used to make aircraft wings — a safety-critical application</span></div>
+    </div>
+
+    <div class="act-card">
+      <div class="act-title">Activity 2 — The three strength tests</div>
+      <div class="tests-row">
+        <div class="test-box"><div class="test-name">Bend Test</div><div class="test-desc">The material is bent. Tests how flexible or brittle it is.</div></div>
+        <div class="test-box"><div class="test-name">Tensile Test</div><div class="test-desc">The material is pulled. Tests how much force it can resist before breaking.</div></div>
+        <div class="test-box"><div class="test-name">Impact Test</div><div class="test-desc">The material is hit with a hammer. Tests resistance to sudden force.</div></div>
+      </div>
+    </div>
+
+    <button class="wa-btn" onclick="openModal()">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.535 5.858L.057 23.48a.5.5 0 0 0 .61.632l5.788-1.517A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.95 9.95 0 0 1-5.187-1.448l-.372-.22-3.433.9.916-3.345-.242-.384A9.953 9.953 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Enviar respostas
+    </button>
+  </div>
+  <div class="zone-support">
+    <div class="sidebar-box">
+      <div class="sidebar-title">Key vocabulary</div>
+      <div class="kw-item"><span class="kw-en">test technician</span><span class="kw-def">person who tests materials and products</span></div>
+      <div class="kw-item"><span class="kw-en">polymer</span><span class="kw-def">plastic — chains of linked molecules</span></div>
+      <div class="kw-item"><span class="kw-en">resin</span><span class="kw-def">thick substance used with carbon fibre</span></div>
+      <div class="kw-item"><span class="kw-en">toxic chemical</span><span class="kw-def">dangerous substance released when burned</span></div>
+      <div class="kw-item"><span class="kw-en">domestic appliance</span><span class="kw-def">home machine (dishwasher, toaster, oven)</span></div>
+      <div class="kw-item"><span class="kw-en">carbon fibre</span><span class="kw-def">very strong, light material for aircraft/cars</span></div>
+    </div>
+    <div class="sidebar-box">
+      <div class="sidebar-title">British vs American English</div>
+      <div class="kw-item"><span class="kw-en">left school (BrE)</span><span class="kw-def">graduated from high school (AmE)</span></div>
+      <div class="kw-item"><span class="kw-en">at school (BrE)</span><span class="kw-def">in school (AmE)</span></div>
+    </div>
+  </div>
+</div>
+<div class="footer">
+  <div class="footer-left">Capsule 200 de 203 · Unit 15 — Petrochemicals</div>
+  <div class="footer-right">
+    <div class="footer-icon"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+    <div class="footer-text">Unit 15 — Petrochemicals</div>
+  </div>
+</div>
+<div class="modal-overlay" id="waModal">
+  <div class="modal">
+    <div class="modal-title">Enviar respostas — It's My Job</div>
+    <div class="modal-sub">Unit 15 — Debbie Johnson</div>
+    <label for="studentName">Your name</label>
+    <input type="text" id="studentName" placeholder="Type your name" oninput="localStorage.setItem('ef_student_name',this.value)">
+    <label for="ans1">Activity 1 — Your answers (questions 1–6)</label>
+    <textarea id="ans1" rows="6" placeholder="1. Company: ...&#10;2. Department: ...&#10;3. Trained to use: ...&#10;4. Customers: ...&#10;5. Subject learned: ...&#10;6. Why high quality: ..."></textarea>
+    <div class="modal-note">🎙️ Após enviar, grave seu áudio e envie na mesma conversa.</div>
+    <div class="modal-btns">
+      <button class="modal-cancel" onclick="closeModal()">Cancelar</button>
+      <button class="modal-send" onclick="sendWA()">Enviar no WhatsApp</button>
+    </div>
+  </div>
+</div>
+<script>
+function openModal(){var n=localStorage.getItem('ef_student_name')||'';document.getElementById('studentName').value=n;document.getElementById('waModal').classList.add('open');}
+function closeModal(){document.getElementById('waModal').classList.remove('open');}
+function sendWA(){
+  var name=document.getElementById('studentName').value.trim()||'Student';
+  localStorage.setItem('ef_student_name',name);
+  var now=new Date();
+  var date=now.toLocaleDateString('pt-BR');
+  var time=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  var a1=document.getElementById('ans1').value.trim()||'—';
+  var msg='👤 '+name+'\n📅 '+date+' às '+time+'\n🎙️ It\'s My Job — Unit 15 — Petrochemicals\n📌 Activity 1:\n'+a1+'\n👇 Áudio na mensagem seguinte';
+  window.open('https://wa.me/5522999585058?text='+encodeURIComponent(msg),'_blank');
+  closeModal();
+}
+document.getElementById('waModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+</script>
+</body>
+</html>

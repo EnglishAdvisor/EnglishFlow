@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Listening · Unit 2 — Upstream</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
+.header{background:#0d1b2a;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid rgba(245,166,35,.25)}
+.pill-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:700;color:#f5c87a;line-height:1}
+.pill-title span{color:#f5a623;font-size:clamp(14px,2.5vw,22px);font-weight:600;display:block;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.icon-box{width:48px;height:48px;border:1.5px solid rgba(245,166,35,.4);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.icon-box svg{width:26px;height:26px;stroke:#f5a623;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.countdown-bar{background:#0d1b2a;border-bottom:1px solid rgba(245,166,35,.2);padding:8px 24px;display:flex;align-items:center;gap:12px}
+.countdown-display{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:#f5a623;letter-spacing:.08em;min-width:60px}
+.countdown-display.warning{color:#f59e0b}.countdown-display.urgent{color:#ef4444}
+.progress-track{flex:1;height:4px;background:rgba(245,166,35,.13);border-radius:2px;overflow:hidden}
+.progress-fill{height:100%;background:#f5a623;border-radius:2px;transition:width 1s linear,background .5s}
+.progress-fill.warning{background:#f59e0b}.progress-fill.urgent{background:#ef4444}
+.audio-bar{background:#0a1628;border-bottom:1px solid rgba(245,166,35,.2);padding:8px 24px;display:flex;align-items:center;gap:12px}
+.audio-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#f5a623;font-weight:600;white-space:nowrap}
+.audio-bar audio{flex:1;height:32px;accent-color:#f5a623}
+.translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(245,166,35,.2);padding:6px 24px;font-size:11px;color:#f5c87a;text-align:center}
+.translate-warning strong{color:#f5a623}
+.steps{display:flex;gap:6px;padding:8px 16px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.steps::-webkit-scrollbar{display:none}
+.step{flex-shrink:0;display:flex;align-items:center;gap:6px;background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.25);border-radius:20px;padding:6px 12px;font-size:11.5px;color:#f5c87a;font-weight:500;white-space:nowrap}
+.step svg{width:13px;height:13px;stroke:#f5a623;fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0}
+.content{display:grid;grid-template-columns:1fr 300px;gap:12px;padding:0 16px 16px}
+.left-col{display:flex;flex-direction:column;gap:12px}
+.main-area{background:#111827;border-radius:10px;padding:14px 16px}
+.zone-label{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#f5a623;font-weight:600;margin-bottom:10px}
+.context-box{background:#0a1628;border:1px solid rgba(245,166,35,.2);border-radius:8px;padding:10px 14px;margin-bottom:12px;font-size:12px;color:#c8d8e8;line-height:1.65}
+.context-box strong{color:#f5c87a}
+.activity-title{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:#f5a623;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+.stats-table{width:100%;border-collapse:collapse;font-size:11.5px;margin-bottom:12px}
+.stats-table th{background:rgba(245,166,35,.15);color:#f5c87a;padding:7px 10px;text-align:left;font-weight:600;letter-spacing:.04em;border-bottom:1px solid rgba(245,166,35,.25)}
+.stats-table td{padding:7px 10px;color:#c8d8e8;border-bottom:1px solid rgba(245,166,35,.08)}
+.stats-table .blank-cell{color:#0a1628;background:linear-gradient(to right, rgba(245,166,35,.1) 0%, rgba(245,166,35,.1) 100%);border-bottom:1.5px solid rgba(245,166,35,.4);min-width:80px}
+.stats-table tr:last-child td{border-bottom:none}
+.note-box{font-size:11px;color:#4a6a8a;font-style:italic;margin-bottom:10px}
+.q-list{display:flex;flex-direction:column;gap:5px}
+.q-item{background:#0a1628;border:1px solid rgba(245,166,35,.14);border-radius:6px;padding:7px 10px;font-size:11.5px;color:#c8d8e8;line-height:1.4}
+.q-num{color:#f5a623;font-weight:700}
+.task-box{background:#0a1628;border:1px solid rgba(245,166,35,.25);border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.task-box p{font-size:11px;color:#f5c87a;font-style:italic;line-height:1.45}
+.whatsapp-btn{display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;border:none;border-radius:8px;padding:7px 12px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:background .2s;width:100%}
+.whatsapp-btn:hover{background:#1ebc58}
+.whatsapp-btn svg{width:16px;height:16px;fill:#fff;flex-shrink:0}
+.zone-support{background:#111827;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:6px;align-self:start}
+.sidebar-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;color:#f5c87a;text-transform:uppercase;letter-spacing:.08em;padding-bottom:8px;border-bottom:1px solid rgba(245,166,35,.2);margin-bottom:4px}
+.key-item{padding:5px 0;border-bottom:1px solid rgba(245,166,35,.09);font-size:11.5px;color:#c8d8e8;display:flex;gap:6px;align-items:baseline}
+.key-item:last-child{border-bottom:none}
+.key-word{color:#f5a623;font-weight:700;font-family:'Barlow Condensed',sans-serif;font-size:13px;white-space:nowrap}
+.footer{background:#0d1b2a;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(245,166,35,.2);margin-top:4px}
+.footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a8a;letter-spacing:.04em}
+.footer-right{display:flex;align-items:center;gap:10px}
+.footer-icon svg{width:22px;height:22px;stroke:#f5a623;fill:none;stroke-width:1.5}
+.footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;color:#f5a623;letter-spacing:.06em;text-transform:uppercase}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);display:flex;align-items:center;justify-content:center;z-index:100;padding:16px}
+.modal-box{background:#111827;border:1px solid rgba(245,166,35,.25);border-radius:14px;padding:24px;max-width:480px;width:100%;max-height:85vh;overflow-y:auto;display:flex;flex-direction:column;gap:14px}
+.modal-title{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:#f5c87a}
+.modal-field label{font-size:11px;color:#f5a623;text-transform:uppercase;letter-spacing:.08em;font-weight:600;display:block;margin-bottom:5px}
+.modal-field input[type='text']{width:100%;background:#0a1628;border:1px solid rgba(245,166,35,.25);border-radius:6px;padding:9px;font-size:12px;color:#c8d8e8;font-family:'Barlow',sans-serif;outline:none}
+.modal-field input[type='text']:focus{border-color:#f5a623}
+.modal-field textarea{width:100%;background:#0a1628;border:1px solid rgba(245,166,35,.25);border-radius:6px;padding:9px;font-size:12px;color:#c8d8e8;font-family:'Barlow',sans-serif;resize:vertical;min-height:72px;outline:none}
+.modal-field textarea:focus{border-color:#f5a623}
+.modal-reminder{font-size:11px;color:#4a6a8a;font-style:italic;border-top:1px solid rgba(245,166,35,.13);padding-top:10px}
+.modal-actions{display:flex;gap:8px}
+.modal-cancel{flex:1;background:transparent;border:1px solid rgba(245,166,35,.25);color:#4a6a8a;border-radius:8px;padding:9px;font-family:'Barlow Condensed',sans-serif;font-size:14px;cursor:pointer}
+.modal-send{flex:2;display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;border:none;border-radius:8px;padding:9px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;cursor:pointer}
+.modal-send:hover{background:#1ebc58}
+.modal-send svg{width:15px;height:15px;fill:#fff}
+@media(max-width:700px){.content{grid-template-columns:1fr}.steps{padding:6px 12px}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="pill-title">Listening<span>Upstream</span></div>
+  <div class="icon-box">
+    <svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+  </div>
+</div>
+
+<div class="countdown-bar">
+  <span class="countdown-display" id="timer">20:00</span>
+  <div class="progress-track"><div class="progress-fill" id="progress" style="width:100%"></div></div>
+</div>
+
+<div class="audio-bar">
+  <span class="audio-label">▶ Audio</span>
+  <audio controls src="teacher-audio-unit2-listening.mp3"></audio>
+</div>
+
+<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
+
+<div class="steps">
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>1. Listen carefully</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>2. Complete the table</div>
+  <div class="step"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>3. Answer the questions</div>
+</div>
+
+<div class="content">
+  <div class="left-col">
+    <div class="main-area">
+      <div class="zone-label">Listening — Big numbers: the Ghawar field</div>
+
+      <div class="context-box">
+        <strong>The Ghawar field</strong> in Saudi Arabia is the largest conventional oilfield in the world. Listen to the audio and complete the statistics table with the numbers you hear.
+      </div>
+
+      <div class="activity-title">Activity 1 — Complete the table</div>
+      <table class="stats-table">
+        <tr>
+          <th>Category</th>
+          <th>Information</th>
+        </tr>
+        <tr>
+          <td>Location</td>
+          <td>Saudi Arabia (Eastern Province)</td>
+        </tr>
+        <tr>
+          <td>Length</td>
+          <td class="blank-cell">________ km</td>
+        </tr>
+        <tr>
+          <td>Width</td>
+          <td class="blank-cell">________ km</td>
+        </tr>
+        <tr>
+          <td>Oil production</td>
+          <td class="blank-cell">________ bbl/d</td>
+        </tr>
+        <tr>
+          <td>Gas production</td>
+          <td class="blank-cell">________ m³/d</td>
+        </tr>
+        <tr>
+          <td>Operating company</td>
+          <td>Saudi Aramco</td>
+        </tr>
+      </table>
+      <div class="note-box">💡 Listen for large numbers: million, thousand. Pay attention to units: bbl/d, m³/d</div>
+
+      <div class="activity-title">Activity 2 — Comprehension questions</div>
+      <div class="q-list">
+        <div class="q-item"><span class="q-num">1.</span> Where is the Ghawar field located?</div>
+        <div class="q-item"><span class="q-num">2.</span> Is the production measured in litres or barrels?</div>
+        <div class="q-item"><span class="q-num">3.</span> Do you know any large oilfields in your country? What are they called?</div>
+      </div>
+
+      <div class="task-box">
+        <p>📝 Answer in writing OR record a short audio. Send via WhatsApp.</p>
+        <button class="whatsapp-btn" onclick="openModal()">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="#fff"/></svg>
+          Enviar respostas
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="zone-support">
+    <div class="sidebar-title">Key vocabulary</div>
+    <div class="key-item"><span class="key-word">oilfield</span>area with oil/gas</div>
+    <div class="key-item"><span class="key-word">conventional</span>traditional type</div>
+    <div class="key-item"><span class="key-word">production</span>amount produced</div>
+    <div class="key-item"><span class="key-word">bbl/d</span>barrels per day</div>
+    <div class="key-item"><span class="key-word">m³/d</span>cubic metres/day</div>
+    <div style="height:6px"></div>
+    <div class="sidebar-title">Numbers tip</div>
+    <div style="font-size:11px;color:#c8d8e8;line-height:1.6;padding:5px 0">
+      Listen for:<br>
+      <span style="color:#f5a623;font-weight:700">million</span> = 1,000,000<br>
+      <span style="color:#f5a623;font-weight:700">thousand</span> = 1,000<br>
+      <span style="color:#f5a623;font-weight:700">and</span> after hundreds<br>
+      e.g. <em>five million, two hundred thousand</em>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-left">Capsule 25 de 30 · Unit 2 — Upstream</div>
+  <div class="footer-right">
+    <div class="footer-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+    <div class="footer-text">Unit 2 — Upstream</div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal" style="display:none">
+  <div class="modal-box">
+    <div class="modal-title">Listening — Enviar respostas</div>
+    <div class="modal-field"><label>Your name</label><input type="text" id="studentName" placeholder="Type your name..." autocomplete="off"></div>
+    <div class="modal-field"><label>Activity 1 — Complete the table (length, width, oil production, gas production)</label><textarea id="act1" placeholder="Length: ___ km | Width: ___ km | Oil: ___ bbl/d | Gas: ___ m³/d"></textarea></div>
+    <div class="modal-field"><label>Activity 2 — Comprehension questions (Q1, Q2, Q3)</label><textarea id="act2" placeholder="1. ... 2. ... 3. ..."></textarea></div>
+    <div class="modal-reminder">🎙️ Após enviar, grave seu áudio e envie na mesma conversa.</div>
+    <div class="modal-actions">
+      <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+      <button class="modal-send" onclick="sendWA()">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="#fff"/></svg>
+        Enviar no WhatsApp
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+const TOTAL=20*60;let remaining=TOTAL;
+const iv=setInterval(function(){
+  remaining--;
+  var m=Math.floor(remaining/60).toString().padStart(2,'0'),s=(remaining%60).toString().padStart(2,'0');
+  var el=document.getElementById('timer'),bar=document.getElementById('progress');
+  el.textContent=m+':'+s;bar.style.width=((remaining/TOTAL)*100)+'%';
+  el.className='countdown-display';bar.className='progress-fill';
+  if(remaining<=0){clearInterval(iv);el.textContent='00:00';bar.style.width='0%';bar.classList.add('urgent');}
+  else if(remaining<=60){el.classList.add('urgent');bar.classList.add('urgent');}
+  else if(remaining<=180){el.classList.add('warning');bar.classList.add('warning');}
+},1000);
+
+function openModal(){
+  var saved=localStorage.getItem('ef_student_name');
+  if(saved)document.getElementById('studentName').value=saved;
+  document.getElementById('modal').style.display='flex';
+}
+function closeModal(){document.getElementById('modal').style.display='none';}
+
+function sendWA(){
+  var name=document.getElementById('studentName').value.trim()||'Aluno';
+  localStorage.setItem('ef_student_name',name);
+  var now=new Date(),date=now.toLocaleDateString('pt-BR'),time=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  var a1=document.getElementById('act1').value||'(not answered)';
+  var a2=document.getElementById('act2').value||'(not answered)';
+  var msg='👤 '+name+'\n📅 '+date+' às '+time+'\n🎙️ Listening — Unit 2 — Upstream\n\n📌 Activity 1 — Ghawar field statistics:\n'+a1+'\n\n📌 Activity 2 — Comprehension questions:\n'+a2+'\n\n👇 Áudio na mensagem seguinte';
+  window.open('https://wa.me/5522999585058?text='+encodeURIComponent(msg),'_blank');
+}
+
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+</script>
+</body>
+</html>

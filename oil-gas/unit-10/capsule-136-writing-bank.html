@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Writing Bank — Environmental Incident Report · Unit 10 — Oil and the Environment</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
+.header{background:#0d1b2a;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid rgba(46,204,113,.25)}
+.pill-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:700;color:#82e0aa;line-height:1}
+.pill-title span{color:#2ecc71;font-size:clamp(14px,2.5vw,22px);font-weight:600;display:block;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.icon-box{width:48px;height:48px;border:1.5px solid rgba(46,204,113,.4);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.icon-box svg{width:26px;height:26px;stroke:#2ecc71;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(46,204,113,.2);padding:6px 24px;font-size:11px;color:#82e0aa;text-align:center}
+.translate-warning strong{color:#2ecc71}
+.content{max-width:960px;margin:0 auto;padding:20px 16px 32px;display:grid;grid-template-columns:1fr 260px;gap:20px}
+@media(max-width:700px){.content{grid-template-columns:1fr}}
+.word-bank{background:#0a1628;border:1px solid rgba(46,204,113,.25);border-radius:10px;padding:12px 16px;margin-bottom:16px}
+.wb-title{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;color:#82e0aa;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
+.wb-chips{display:flex;flex-wrap:wrap;gap:6px}
+.wb-chip{background:#111827;border:1px solid rgba(46,204,113,.2);border-radius:20px;padding:3px 12px;font-size:12px;color:#82e0aa;font-family:'Barlow Condensed',sans-serif;font-weight:600}
+.form-card{background:#111827;border:1px solid rgba(46,204,113,.25);border-radius:12px;padding:20px;margin-bottom:14px}
+.form-title{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:#2ecc71;text-transform:uppercase;letter-spacing:.06em;margin-bottom:16px;text-align:center;border-bottom:2px solid rgba(46,204,113,.2);padding-bottom:10px}
+.form-field{margin-bottom:12px}
+.form-label{font-size:12px;color:#4a6a8a;font-weight:600;margin-bottom:4px;display:block}
+.form-input{width:100%;background:#0a0f1e;border:1px solid rgba(46,204,113,.2);border-radius:7px;padding:8px 12px;font-size:13px;color:#c8d8e8;font-family:'Barlow',sans-serif;transition:border-color .2s}
+.form-input:focus{outline:none;border-color:#2ecc71}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:450px){.form-row{grid-template-columns:1fr}}
+.form-section{background:#0a0f1e;border-radius:8px;padding:10px 12px;margin-top:8px;margin-bottom:8px}
+.form-section-title{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;color:#2ecc71;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
+.check-row{display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.check-row input{accent-color:#2ecc71}
+.check-row label{font-size:12px;color:#c8d8e8}
+.reveal-btn{background:transparent;border:1px solid rgba(46,204,113,.35);color:#4a6a8a;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;border-radius:6px;padding:3px 8px;cursor:pointer;white-space:nowrap;margin-left:4px;vertical-align:middle}
+.reveal-btn:hover{border-color:#2ecc71;color:#2ecc71}
+.reveal-all-btn{background:rgba(46,204,113,.1);border:1px solid rgba(46,204,113,.3);color:#2ecc71;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;border-radius:7px;padding:6px 14px;cursor:pointer;margin-bottom:12px;letter-spacing:.05em}
+.countdown{background:#0a1628;border:1px solid rgba(46,204,113,.25);border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.countdown-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;color:#4a6a8a;text-transform:uppercase;letter-spacing:.08em}
+.countdown-time{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:#2ecc71;min-width:60px}
+.task-box{background:#0a1628;border:1px solid rgba(46,204,113,.3);border-radius:10px;padding:14px;margin-bottom:14px;font-size:13px;color:#c8d8e8;line-height:1.6}
+.task-box strong{color:#2ecc71}
+.wa-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:#2ecc71;color:#0a0f1e;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:none;border-radius:10px;padding:13px 20px;width:100%;cursor:pointer;transition:background .2s}
+.wa-btn:hover{background:#82e0aa}
+.wa-btn svg{width:20px;height:20px;fill:#0a0f1e;flex-shrink:0}
+.zone-support{display:flex;flex-direction:column;gap:12px}
+.tips-card{background:#111827;border:1px solid rgba(46,204,113,.18);border-radius:12px;padding:14px}
+.tips-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#2ecc71;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.tip-item{padding:5px 0;border-bottom:1px solid rgba(46,204,113,.1);font-size:12px;color:#c8d8e8;line-height:1.4}
+.tip-item:last-child{border-bottom:none}
+.tip-item strong{color:#82e0aa}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal-overlay.open{display:flex}
+.modal{background:#111827;border:1px solid rgba(46,204,113,.3);border-radius:14px;padding:22px;width:100%;max-width:420px;max-height:90vh;overflow-y:auto}
+.modal-title{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:#82e0aa;margin-bottom:4px}
+.modal-sub{font-size:12px;color:#4a6a8a;margin-bottom:14px}
+.modal label{font-size:12px;color:#82e0aa;font-weight:600;display:block;margin-bottom:4px}
+.modal input,.modal textarea{width:100%;background:#0a0f1e;border:1px solid rgba(46,204,113,.3);border-radius:8px;padding:9px 12px;font-size:13px;color:#c8d8e8;margin-bottom:12px;font-family:'Barlow',sans-serif;resize:vertical}
+.modal textarea{min-height:80px}
+.modal-note{font-size:12px;color:#4a6a8a;background:#0a0f1e;border-radius:8px;padding:10px 12px;margin-bottom:14px;line-height:1.5}
+.modal-btns{display:flex;gap:8px}
+.modal-send{flex:1;background:#2ecc71;color:#0a0f1e;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;border:none;border-radius:8px;padding:10px;cursor:pointer}
+.modal-cancel{background:transparent;border:1px solid rgba(46,204,113,.3);color:#4a6a8a;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;border-radius:8px;padding:10px 16px;cursor:pointer}
+.footer{background:#0d1b2a;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(46,204,113,.2);margin-top:4px}
+.footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a8a}
+.footer-right{display:flex;align-items:center;gap:10px}
+.footer-icon svg{width:22px;height:22px;stroke:#2ecc71;fill:none;stroke-width:1.5}
+.footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;color:#2ecc71;letter-spacing:.06em;text-transform:uppercase}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="pill-title">Writing Bank<span>Environmental Incident Report</span></div>
+  <div class="icon-box">
+    <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+  </div>
+</div>
+
+<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
+
+<div class="content">
+  <div class="left-col">
+
+    <div class="countdown">
+      <div class="countdown-label">Time remaining</div>
+      <div class="countdown-time" id="cdTime">25:00</div>
+    </div>
+
+    <div class="word-bank">
+      <div class="wb-title">Words to use — complete the report form below</div>
+      <div class="wb-chips">
+        <span class="wb-chip">20,000 litres</span>
+        <span class="wb-chip">no immediate risk</span>
+        <span class="wb-chip">27 March</span>
+        <span class="wb-chip">Fazwan Area, Pipeline 32, Station 6</span>
+        <span class="wb-chip">16.30</span>
+        <span class="wb-chip">no damage after clean up</span>
+        <span class="wb-chip">sand</span>
+        <span class="wb-chip">pipeline leak</span>
+      </div>
+    </div>
+
+    <button class="reveal-all-btn" onclick="revealAll()">Reveal all answers</button>
+
+    <div class="form-card">
+      <div class="form-title">Environmental Incident Report</div>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label class="form-label">1. Date of incident <button class="reveal-btn" onclick="rev('f1','27 March')">Answer</button></label>
+          <input class="form-input" id="f1" placeholder="DD Month...">
+        </div>
+        <div class="form-field">
+          <label class="form-label">2. Time reported <button class="reveal-btn" onclick="rev('f2','16.30')">Answer</button></label>
+          <input class="form-input" id="f2" placeholder="HH.MM...">
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label class="form-label">3. Location <button class="reveal-btn" onclick="rev('f3','Fazwan Area, Pipeline 32, Station 6')">Answer</button></label>
+        <input class="form-input" id="f3" placeholder="Area / Pipeline / Station...">
+      </div>
+
+      <div class="form-field">
+        <label class="form-label">4. Type of incident <button class="reveal-btn" onclick="rev('f4','pipeline leak')">Answer</button></label>
+        <input class="form-input" id="f4" placeholder="Type of incident...">
+      </div>
+
+      <div class="form-field">
+        <label class="form-label">5. Volume of oil <button class="reveal-btn" onclick="rev('f5','20,000 litres')">Answer</button></label>
+        <input class="form-input" id="f5" placeholder="XX,XXX litres...">
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-title">Damage to: (select all that apply)</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px">
+          <div class="check-row"><input type="checkbox" id="dp"><label for="dp">plants</label></div>
+          <div class="check-row"><input type="checkbox" id="dw"><label for="dw">wildlife</label></div>
+          <div class="check-row"><input type="checkbox" id="dwt"><label for="dwt">water</label></div>
+          <div class="check-row"><input type="checkbox" id="ds" checked><label for="ds">soil</label></div>
+          <div class="check-row"><input type="checkbox" id="dai"><label for="dai">air</label></div>
+        </div>
+        <p style="font-size:11px;color:#4a6a8a;margin-top:6px">Answer: <span style="color:#2ecc71">sand (soil)</span> — tick "soil" only</p>
+      </div>
+
+      <div class="form-field">
+        <label class="form-label">6. Damage to (material) <button class="reveal-btn" onclick="rev('f6','sand')">Answer</button></label>
+        <input class="form-input" id="f6" placeholder="What was damaged?...">
+      </div>
+
+      <div class="form-field">
+        <label class="form-label">7. Risk assessment <button class="reveal-btn" onclick="rev('f7','no immediate risk')">Answer</button></label>
+        <input class="form-input" id="f7" placeholder="Risk level...">
+      </div>
+
+      <div class="form-field">
+        <label class="form-label">8. Possible environmental damage <button class="reveal-btn" onclick="rev('f8','no damage after clean up')">Answer</button></label>
+        <input class="form-input" id="f8" placeholder="Environmental assessment...">
+      </div>
+    </div>
+
+    <div class="task-box"><strong>Task:</strong> Complete the form and send your answers. Record a short audio explaining the incident.</div>
+
+    <button class="wa-btn" onclick="openModal()">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.535 5.858L.057 23.48a.5.5 0 0 0 .61.632l5.788-1.517A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.95 9.95 0 0 1-5.187-1.448l-.372-.22-3.433.9.916-3.345-.242-.384A9.953 9.953 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Enviar respostas
+    </button>
+  </div>
+
+  <div class="zone-support">
+    <div class="tips-card">
+      <div class="tips-title">Writing Tips</div>
+      <div class="tip-item"><strong>Be precise</strong> — use exact dates, times, locations, and quantities</div>
+      <div class="tip-item"><strong>Use standard forms</strong> — fill each field clearly so others can act quickly</div>
+      <div class="tip-item"><strong>Past Simple</strong> — use past tense for what happened (<em>leaked, occurred, spilled</em>)</div>
+      <div class="tip-item"><strong>Damage assessment</strong> — report actual damage and potential future damage separately</div>
+    </div>
+    <div class="tips-card">
+      <div class="tips-title">Completed Report</div>
+      <div class="tip-item"><strong>Date:</strong> 27 March</div>
+      <div class="tip-item"><strong>Time:</strong> 16.30</div>
+      <div class="tip-item"><strong>Location:</strong> Fazwan Area, Pipeline 32, Station 6</div>
+      <div class="tip-item"><strong>Type:</strong> pipeline leak</div>
+      <div class="tip-item"><strong>Volume:</strong> 20,000 litres</div>
+      <div class="tip-item"><strong>Damage to:</strong> sand (soil)</div>
+      <div class="tip-item"><strong>Risk:</strong> no immediate risk</div>
+      <div class="tip-item"><strong>Environment:</strong> no damage after clean up</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-left">Capsule 136 de 139 · Unit 10 — Oil and the Environment</div>
+  <div class="footer-right">
+    <div class="footer-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+    <div class="footer-text">Unit 10 — Oil and the Environment</div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="waModal">
+  <div class="modal">
+    <div class="modal-title">Enviar respostas — Writing Bank</div>
+    <div class="modal-sub">Unit 10 — Environmental Incident Report</div>
+    <label for="studentName">Your name</label>
+    <input type="text" id="studentName" placeholder="Type your name" oninput="localStorage.setItem('ef_student_name',this.value)">
+    <label>Completed report fields (1–8)</label>
+    <textarea id="ans1" placeholder="1. Date: ... &#10;2. Time: ... &#10;3. Location: ... &#10;4. Type: ... &#10;5. Volume: ... &#10;6. Damage: ... &#10;7. Risk: ... &#10;8. Environment: ..."></textarea>
+    <div class="modal-note">🎙️ Após enviar, grave seu áudio e envie na mesma conversa.</div>
+    <div class="modal-btns">
+      <button class="modal-cancel" onclick="closeModal()">Cancelar</button>
+      <button class="modal-send" onclick="sendWA()">Enviar no WhatsApp</button>
+    </div>
+  </div>
+</div>
+
+<script>
+var secs=25*60;
+function pad(n){return n<10?'0'+n:n;}
+function tick(){if(secs<=0){document.getElementById('cdTime').textContent='00:00';return;}secs--;document.getElementById('cdTime').textContent=pad(Math.floor(secs/60))+':'+pad(secs%60);var el=document.getElementById('cdTime');if(secs<=60)el.style.color='#e74c3c';else if(secs<=180)el.style.color='#f1c40f';else el.style.color='#2ecc71';setTimeout(tick,1000);}
+tick();
+var answers={f1:'27 March',f2:'16.30',f3:'Fazwan Area, Pipeline 32, Station 6',f4:'pipeline leak',f5:'20,000 litres',f6:'sand',f7:'no immediate risk',f8:'no damage after clean up'};
+function rev(id,ans){document.getElementById(id).value=ans;document.getElementById(id).style.color='#2ecc71';}
+function revealAll(){Object.keys(answers).forEach(function(id){rev(id,answers[id]);});}
+function openModal(){var n=localStorage.getItem('ef_student_name')||'';document.getElementById('studentName').value=n;document.getElementById('waModal').classList.add('open');}
+function closeModal(){document.getElementById('waModal').classList.remove('open');}
+function sendWA(){
+  var name=document.getElementById('studentName').value.trim()||'Student';
+  localStorage.setItem('ef_student_name',name);
+  var now=new Date();
+  var date=now.toLocaleDateString('pt-BR');
+  var time=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  var a1=document.getElementById('ans1').value.trim()||'(no answer)';
+  var msg='👤 '+name+'\n📅 '+date+' às '+time+'\n🎙️ Writing Bank — Unit 10 — Oil and the Environment\n📌 Report: '+a1+'\n👇 Áudio na mensagem seguinte';
+  window.open('https://wa.me/5522999585058?text='+encodeURIComponent(msg),'_blank');
+  closeModal();
+}
+document.getElementById('waModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+</script>
+</body>
+</html>

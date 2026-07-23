@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Speaking · Unit 4 — Safety First</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
+.header{background:#0d1b2a;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid rgba(241,196,15,.25)}
+.pill-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:700;color:#f5da6e;line-height:1}
+.pill-title span{color:#f1c40f;font-size:clamp(14px,2.5vw,22px);font-weight:600;display:block;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.icon-box{width:48px;height:48px;border:1.5px solid rgba(241,196,15,.4);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.icon-box svg{width:26px;height:26px;stroke:#f1c40f;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.countdown-bar{background:#0d1b2a;border-bottom:1px solid rgba(241,196,15,.2);padding:8px 24px;display:flex;align-items:center;gap:12px}
+.countdown-display{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:#f1c40f;letter-spacing:.08em;min-width:60px}
+.countdown-display.warning{color:#f59e0b}.countdown-display.urgent{color:#ef4444}
+.progress-track{flex:1;height:4px;background:rgba(241,196,15,.13);border-radius:2px;overflow:hidden}
+.progress-fill{height:100%;background:#f1c40f;border-radius:2px;transition:width 1s linear,background .5s}
+.progress-fill.warning{background:#f59e0b}.progress-fill.urgent{background:#ef4444}
+.translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(241,196,15,.2);padding:6px 24px;font-size:11px;color:#f5da6e;text-align:center}
+.translate-warning strong{color:#f1c40f}
+.steps{display:flex;gap:6px;padding:8px 16px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.steps::-webkit-scrollbar{display:none}
+.step{flex-shrink:0;display:flex;align-items:center;gap:6px;background:rgba(241,196,15,.08);border:1px solid rgba(241,196,15,.25);border-radius:20px;padding:6px 12px;font-size:11.5px;color:#f5da6e;font-weight:500;white-space:nowrap}
+.step svg{width:13px;height:13px;stroke:#f1c40f;fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0}
+.content{padding:0 16px 16px;display:flex;flex-direction:column;gap:12px}
+.panel{background:#111827;border-radius:10px;padding:14px 16px}
+.zone-label{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#f1c40f;font-weight:600;margin-bottom:10px}
+.dialogue-box{background:#0a1628;border-radius:8px;padding:14px;font-size:12px;color:#c8d8e8;line-height:2;margin-bottom:12px}
+.dialogue-box strong{color:#f5da6e}
+.sign-practice-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.sp-card{background:#0a1628;border-radius:8px;padding:10px 12px}
+.sp-num{font-size:9px;color:#f1c40f;font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.sp-icon{font-size:18px;margin-bottom:4px}
+.sp-sign{font-size:12px;color:#c8d8e8}
+.task-box{background:#0a1628;border:1px solid rgba(241,196,15,.25);border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:8px}
+.task-box p{font-size:11px;color:#f5da6e;font-style:italic;line-height:1.45}
+.whatsapp-btn{display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;border:none;border-radius:8px;padding:9px 12px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:background .2s;width:100%}
+.whatsapp-btn:hover{background:#1ebc58}
+.whatsapp-btn svg{width:16px;height:16px;fill:#fff;flex-shrink:0}
+.footer{background:#0d1b2a;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(241,196,15,.2);margin-top:4px}
+.footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a8a;letter-spacing:.04em}
+.footer-right{display:flex;align-items:center;gap:10px}
+.footer-icon svg{width:22px;height:22px;stroke:#f1c40f;fill:none;stroke-width:1.5}
+.footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;color:#f1c40f;letter-spacing:.06em;text-transform:uppercase}
+@media(max-width:700px){.sign-practice-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="pill-title">Speaking<span>Safety First</span></div>
+  <div class="icon-box">
+    <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.59 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.1 6.1l.91-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg>
+  </div>
+</div>
+
+<div class="countdown-bar">
+  <span class="countdown-display" id="timer">20:00</span>
+  <div class="progress-track"><div class="progress-fill" id="progress" style="width:100%"></div></div>
+</div>
+
+<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
+
+<div class="steps">
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>1. Study the dialogue</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.59 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.1 6.1l.91-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg>2. Practise the signs</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>3. Record a dialogue</div>
+</div>
+
+<div class="content">
+  <div class="panel">
+    <div class="zone-label">What does it mean? — Dialogue pattern</div>
+    <div class="dialogue-box">
+      <strong>A:</strong> What does the blue sign mean?<br>
+      <strong>B:</strong> Which one?<br>
+      <strong>A:</strong> The one with a man and a book. Can you see it?<br>
+      <strong>B:</strong> Yes. That means <em style="color:#f5da6e">'Read the instructions before you use the machine.'</em>
+    </div>
+    <p style="font-size:11.5px;color:#c8d8e8;margin-bottom:12px">Use the same pattern to describe and explain these signs:</p>
+    <div class="sign-practice-grid">
+      <div class="sp-card"><div class="sp-num">Sign 1</div><div class="sp-icon">🪖</div><div class="sp-sign">Blue circle — hard hat symbol</div></div>
+      <div class="sp-card"><div class="sp-num">Sign 2</div><div class="sp-icon">🚪</div><div class="sp-sign">Green square — exit arrow</div></div>
+      <div class="sp-card"><div class="sp-num">Sign 3</div><div class="sp-icon">🚬</div><div class="sp-sign">Red circle — cigarette crossed out</div></div>
+      <div class="sp-card"><div class="sp-num">Sign 4</div><div class="sp-icon">⚠️</div><div class="sp-sign">Yellow triangle — load overhead</div></div>
+      <div class="sp-card"><div class="sp-num">Sign 5</div><div class="sp-icon">🥽</div><div class="sp-sign">Blue circle — goggles symbol</div></div>
+      <div class="sp-card"><div class="sp-num">Sign 6</div><div class="sp-icon">⚡</div><div class="sp-sign">Yellow triangle — lightning bolt</div></div>
+    </div>
+    <div style="background:#0a1628;border-radius:8px;padding:10px 12px">
+      <div style="font-size:10px;color:#f1c40f;font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Useful phrases</div>
+      <div style="font-size:11.5px;color:#c8d8e8;line-height:1.8">
+        "What does the [colour] sign mean?" / "Which one?" / "The one with [description]." / "That means '[rule]'." / "You must / You must not / Wear [PPE]."
+      </div>
+    </div>
+  </div>
+
+  <div class="task-box">
+    <p>🎙️ Record a dialogue about 2 safety signs (use the pattern). Send via WhatsApp.</p>
+    <button class="whatsapp-btn" onclick="sendWA()">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="#fff"/></svg>
+      Enviar áudio
+    </button>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-left">Capsule 48 de 57 · Unit 4 — Safety First</div>
+  <div class="footer-right">
+    <div class="footer-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.59 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.1 6.1l.91-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg></div>
+    <div class="footer-text">Unit 4 — Safety First</div>
+  </div>
+</div>
+
+<script>
+const TOTAL=20*60;let remaining=TOTAL;
+const iv=setInterval(function(){
+  remaining--;
+  var m=Math.floor(remaining/60).toString().padStart(2,'0'),s=(remaining%60).toString().padStart(2,'0');
+  var el=document.getElementById('timer'),bar=document.getElementById('progress');
+  el.textContent=m+':'+s;bar.style.width=((remaining/TOTAL)*100)+'%';
+  el.className='countdown-display';bar.className='progress-fill';
+  if(remaining<=0){clearInterval(iv);el.textContent='00:00';bar.style.width='0%';bar.classList.add('urgent');}
+  else if(remaining<=60){el.classList.add('urgent');bar.classList.add('urgent');}
+  else if(remaining<=180){el.classList.add('warning');bar.classList.add('warning');}
+},1000);
+function sendWA(){
+  var name=localStorage.getItem('ef_student_name')||'Aluno';
+  var now=new Date(),date=now.toLocaleDateString('pt-BR'),time=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  var msg='👤 '+name+'\n📅 '+date+' às '+time+'\n🎙️ Speaking — Unit 4 — Safety First\n👇 Áudio na mensagem seguinte';
+  window.open('https://wa.me/5522999585058?text='+encodeURIComponent(msg),'_blank');
+}
+</script>
+</body>
+</html>

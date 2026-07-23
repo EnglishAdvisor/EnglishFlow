@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Reading · Unit 15 — Petrochemicals</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
+.header{background:#0d1b2a;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid rgba(168,85,247,.25)}
+.pill-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:700;color:#cc99fb;line-height:1}
+.pill-title span{color:#a855f7;font-size:clamp(14px,2.5vw,22px);font-weight:600;display:block;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.icon-box{width:48px;height:48px;border:1.5px solid rgba(168,85,247,.4);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.icon-box svg{width:26px;height:26px;stroke:#a855f7;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(168,85,247,.2);padding:6px 24px;font-size:11px;color:#cc99fb;text-align:center}
+.translate-warning strong{color:#a855f7}
+.content{max-width:900px;margin:0 auto;padding:20px 16px 32px;display:flex;gap:16px;align-items:flex-start}
+.left-col{flex:1;min-width:0}
+.zone-support{width:220px;flex-shrink:0}
+@media(max-width:640px){.content{flex-direction:column}.zone-support{width:100%}}
+.reading-box{background:#111827;border:1px solid rgba(168,85,247,.18);border-radius:12px;padding:18px;margin-bottom:10px}
+.reading-title{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:#cc99fb;margin-bottom:12px;text-align:center;text-transform:uppercase;letter-spacing:.06em}
+.reading-text{font-size:13px;color:#c8d8e8;line-height:1.9}
+.reading-text p{margin-bottom:12px}
+.reading-text p:last-child{margin-bottom:0}
+.reading-text strong{color:#cc99fb}
+.polymer-box{background:#0a1628;border:1px solid rgba(168,85,247,.25);border-radius:10px;padding:14px;margin-top:10px}
+.polymer-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:#a855f7;margin-bottom:8px}
+.polymer-text{font-size:12px;color:#c8d8e8;line-height:1.7}
+.polymer-text strong{color:#cc99fb}
+.act-card{background:#111827;border:1px solid rgba(168,85,247,.18);border-radius:12px;padding:16px;margin-bottom:10px}
+.act-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:#a855f7;margin-bottom:10px}
+.q-item{font-size:13px;color:#c8d8e8;padding:7px 0;border-bottom:1px solid rgba(168,85,247,.08);line-height:1.5}
+.q-item:last-child{border-bottom:none}
+.q-num{color:#a855f7;font-weight:700;margin-right:6px}
+.mc-row{display:flex;gap:6px;margin-top:4px;flex-wrap:wrap}
+.mc-btn{padding:4px 12px;background:#0a1628;border:1px solid rgba(168,85,247,.2);border-radius:20px;font-size:12px;color:#c8d8e8;cursor:pointer;transition:all .15s}
+.mc-btn:hover{border-color:#a855f7;color:#cc99fb}
+.mc-btn.correct{background:#a855f7;border-color:#a855f7;color:#fff}
+.mc-btn.wrong{background:rgba(231,76,60,.15);border-color:#e74c3c;color:#e74c3c}
+.sidebar-box{background:#111827;border:1px solid rgba(168,85,247,.18);border-radius:12px;padding:14px;margin-bottom:10px}
+.sidebar-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:#a855f7;margin-bottom:10px}
+.kw-item{display:flex;flex-direction:column;padding:5px 0;border-bottom:1px solid rgba(168,85,247,.1)}
+.kw-item:last-child{border-bottom:none}
+.kw-en{font-size:13px;color:#cc99fb;font-weight:600}
+.kw-def{font-size:11px;color:#4a6a8a;margin-top:1px}
+.ans-chip{display:inline-block;background:#a855f7;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;padding:2px 10px;border-radius:10px;margin-left:6px}
+.wa-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:#a855f7;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:none;border-radius:10px;padding:13px 20px;width:100%;cursor:pointer;transition:background .2s;margin-top:6px}
+.wa-btn:hover{background:#cc99fb}
+.wa-btn svg{width:20px;height:20px;fill:#fff;flex-shrink:0}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal-overlay.open{display:flex}
+.modal{background:#111827;border:1px solid rgba(168,85,247,.3);border-radius:14px;padding:22px;width:100%;max-width:420px;max-height:90vh;overflow-y:auto}
+.modal-title{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:#cc99fb;margin-bottom:4px}
+.modal-sub{font-size:12px;color:#4a6a8a;margin-bottom:14px}
+.modal label{font-size:12px;color:#cc99fb;font-weight:600;display:block;margin-bottom:4px}
+.modal input,.modal textarea{width:100%;background:#0a0f1e;border:1px solid rgba(168,85,247,.3);border-radius:8px;padding:9px 12px;font-size:13px;color:#c8d8e8;margin-bottom:12px;font-family:'Barlow',sans-serif;resize:vertical}
+.modal-note{font-size:12px;color:#4a6a8a;background:#0a0f1e;border-radius:8px;padding:10px 12px;margin-bottom:14px;line-height:1.5}
+.modal-btns{display:flex;gap:8px}
+.modal-send{flex:1;background:#a855f7;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;border:none;border-radius:8px;padding:10px;cursor:pointer}
+.modal-cancel{background:transparent;border:1px solid rgba(168,85,247,.3);color:#4a6a8a;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;border-radius:8px;padding:10px 16px;cursor:pointer}
+.footer{background:#0d1b2a;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(168,85,247,.2);margin-top:4px}
+.footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a8a}
+.footer-right{display:flex;align-items:center;gap:10px}
+.footer-icon svg{width:22px;height:22px;stroke:#a855f7;fill:none;stroke-width:1.5}
+.footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;color:#a855f7;letter-spacing:.06em;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="pill-title">Reading<span>From Carbon Black to PVC</span></div>
+  <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+</div>
+<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
+<div class="content">
+  <div class="left-col">
+    <div class="reading-box">
+      <div class="reading-title">From Carbon Black to PVC</div>
+      <div class="reading-text">
+        <p>Before oil and gas were freely available, people made everyday things from natural materials. Clothes were made from <strong>cotton, wool, and leather</strong>. Containers, for example bottles and cups, were made from <strong>metal, glass, and clay</strong>. Paints and cosmetics were made from plants and minerals.</p>
+        <p>One example of a natural product is <strong>carbon black</strong>. It's a colouring used in ink for writing and drawing and for paint. It is made by burning wood, oil, or other natural materials. It was discovered in prehistoric times, and it's commonly used today.</p>
+        <p>The first petrochemical factory was built in <strong>1872</strong>, and it made carbon black from natural gas. Carbon black wasn't a new product, but using a factory was a new way of making it. It became possible to make large amounts of it cheaply because natural gas was plentiful and inexpensive. At that time, carbon black was used to make ink, paint, and crayons. It is now used mostly to make <strong>car tyres</strong>.</p>
+        <p>In the early 1900s, the petrochemical business began to grow. There were a lot of oil refineries, and they created chemical by-products. Oil companies wanted to find ways to use these chemicals.</p>
+        <p>Soon scientists and engineers learned to change the hydrocarbon molecules in coal, petroleum, and refinery by-products. From the <strong>1920s to the 1940s</strong>, familiar man-made products like <strong>nylon, polystyrene, and polyvinyl chloride (PVC)</strong> were developed. Synthetic dyes, paints, and medicines were invented.</p>
+        <p>Today, petrochemical products are everywhere. They are very useful, but they also have some problems. People throw away a lot of plastic products because they are inexpensive. One problem with plastics is that generally they do not rot or break up like natural materials. Plastic bags are already polluting oceans and killing wildlife. They cannot easily be remelted and reused.</p>
+        <p>Scientists and petrochemical manufacturers continue their work to develop safe and useful products.</p>
+      </div>
+      <div class="polymer-box">
+        <div class="polymer-title">Polymers</div>
+        <div class="polymer-text">Nylon, polystyrene, and PVC are <strong>polymers</strong>. <em>Poly</em> means many, and <em>mer</em> means part. A polymer is many single molecules (called <strong>monomers</strong>) formed into a chain.<br><br>The first synthetic polymer — <strong>Bakelite</strong> — was first sold in <strong>1909</strong>. It was used to make casings for radios and telephones, and also for kitchenware, jewellery, and toys.<br><br>Not all polymers are synthetic. Many natural products, for example <strong>rubber</strong>, are polymers.</div>
+      </div>
+    </div>
+
+    <div class="act-card">
+      <div class="act-title">Activity 1 — Vocabulary: choose the correct definition</div>
+      <div class="q-item"><span class="q-num">1</span>carbon black <div class="mc-row"><button class="mc-btn" onclick="ans(this,'w')">a fuel</button><button class="mc-btn" onclick="ans(this,'c')">a colouring</button></div></div>
+      <div class="q-item"><span class="q-num">2</span>in prehistoric times <div class="mc-row"><button class="mc-btn" onclick="ans(this,'c')">a very long time ago</button><button class="mc-btn" onclick="ans(this,'w')">recently</button></div></div>
+      <div class="q-item"><span class="q-num">3</span>plentiful <div class="mc-row"><button class="mc-btn" onclick="ans(this,'w')">dangerous</button><button class="mc-btn" onclick="ans(this,'c')">easy to find</button></div></div>
+      <div class="q-item"><span class="q-num">4</span>inexpensive <div class="mc-row"><button class="mc-btn" onclick="ans(this,'c')">cheap</button><button class="mc-btn" onclick="ans(this,'w')">hard to get</button></div></div>
+      <div class="q-item"><span class="q-num">5</span>crayon <div class="mc-row"><button class="mc-btn" onclick="ans(this,'w')">a type of tyre</button><button class="mc-btn" onclick="ans(this,'c')">a drawing tool</button></div></div>
+      <div class="q-item"><span class="q-num">6</span>by-product <div class="mc-row"><button class="mc-btn" onclick="ans(this,'c')">an extra, unneeded product</button><button class="mc-btn" onclick="ans(this,'w')">a flammable product</button></div></div>
+      <div class="q-item"><span class="q-num">7</span>synthetic <div class="mc-row"><button class="mc-btn" onclick="ans(this,'c')">man-made</button><button class="mc-btn" onclick="ans(this,'w')">natural</button></div></div>
+    </div>
+
+    <div class="act-card">
+      <div class="act-title">Activity 2 — Comprehension questions</div>
+      <div class="q-item"><span class="q-num">1</span>What natural clothing materials does the text mention? <span class="ans-chip">cotton, wool, leather</span></div>
+      <div class="q-item"><span class="q-num">2</span>What did the first big petrochemical plant (1872) make? <span class="ans-chip">carbon black</span></div>
+      <div class="q-item"><span class="q-num">3</span>Why did the petrochemical business grow in the early 1900s? <span class="ans-chip">refineries created chemical by-products</span></div>
+      <div class="q-item"><span class="q-num">4</span>When were nylon, polystyrene, and PVC developed? <span class="ans-chip">1920s–1940s</span></div>
+      <div class="q-item"><span class="q-num">5</span>What is one problem with plastics today? <span class="ans-chip">they don't rot / they pollute oceans</span></div>
+      <div class="q-item"><span class="q-num">6</span>True or False: Bakelite was the first natural polymer. <span class="ans-chip">False — it was the first synthetic polymer</span></div>
+    </div>
+
+    <button class="wa-btn" onclick="openModal()">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.535 5.858L.057 23.48a.5.5 0 0 0 .61.632l5.788-1.517A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.95 9.95 0 0 1-5.187-1.448l-.372-.22-3.433.9.916-3.345-.242-.384A9.953 9.953 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Enviar respostas
+    </button>
+  </div>
+  <div class="zone-support">
+    <div class="sidebar-box">
+      <div class="sidebar-title">Key vocabulary</div>
+      <div class="kw-item"><span class="kw-en">carbon black</span><span class="kw-def">a black colouring from burned materials</span></div>
+      <div class="kw-item"><span class="kw-en">by-product</span><span class="kw-def">extra chemical created in refining</span></div>
+      <div class="kw-item"><span class="kw-en">hydrocarbon</span><span class="kw-def">molecule of hydrogen + carbon atoms</span></div>
+      <div class="kw-item"><span class="kw-en">polymer</span><span class="kw-def">many monomers linked in a chain</span></div>
+      <div class="kw-item"><span class="kw-en">monomer</span><span class="kw-def">a single molecule (building block)</span></div>
+      <div class="kw-item"><span class="kw-en">synthetic</span><span class="kw-def">man-made, not from nature</span></div>
+      <div class="kw-item"><span class="kw-en">prehistoric</span><span class="kw-def">before written history</span></div>
+      <div class="kw-item"><span class="kw-en">plentiful</span><span class="kw-def">available in large quantities</span></div>
+    </div>
+    <div class="sidebar-box">
+      <div class="sidebar-title">Timeline</div>
+      <div class="kw-item"><span class="kw-en">prehistoric</span><span class="kw-def">carbon black discovered</span></div>
+      <div class="kw-item"><span class="kw-en">1872</span><span class="kw-def">first petrochemical factory</span></div>
+      <div class="kw-item"><span class="kw-en">early 1900s</span><span class="kw-def">petrochemical business grows</span></div>
+      <div class="kw-item"><span class="kw-en">1909</span><span class="kw-def">Bakelite — first synthetic polymer</span></div>
+      <div class="kw-item"><span class="kw-en">1920s–1940s</span><span class="kw-def">nylon, polystyrene, PVC developed</span></div>
+      <div class="kw-item"><span class="kw-en">today</span><span class="kw-def">plastic pollution is a major problem</span></div>
+    </div>
+  </div>
+</div>
+<div class="footer">
+  <div class="footer-left">Capsule 194 de 203 · Unit 15 — Petrochemicals</div>
+  <div class="footer-right">
+    <div class="footer-icon"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+    <div class="footer-text">Unit 15 — Petrochemicals</div>
+  </div>
+</div>
+<div class="modal-overlay" id="waModal">
+  <div class="modal">
+    <div class="modal-title">Enviar respostas — Reading</div>
+    <div class="modal-sub">Unit 15 — From Carbon Black to PVC</div>
+    <label for="studentName">Your name</label>
+    <input type="text" id="studentName" placeholder="Type your name" oninput="localStorage.setItem('ef_student_name',this.value)">
+    <label for="ans1">Activity 2 — Comprehension answers</label>
+    <textarea id="ans1" rows="5" placeholder="1. Natural clothing materials: ...&#10;2. First factory (1872) made ...&#10;3. The business grew because ...&#10;4. Nylon/polystyrene/PVC were developed in ...&#10;5. Problem with plastics: ...&#10;6. Bakelite: True/False?"></textarea>
+    <div class="modal-note">🎙️ Após enviar, grave seu áudio e envie na mesma conversa.</div>
+    <div class="modal-btns">
+      <button class="modal-cancel" onclick="closeModal()">Cancelar</button>
+      <button class="modal-send" onclick="sendWA()">Enviar no WhatsApp</button>
+    </div>
+  </div>
+</div>
+<script>
+function ans(btn,type){var row=btn.parentElement;row.querySelectorAll('.mc-btn').forEach(function(b){b.classList.remove('correct','wrong');});btn.classList.add(type==='c'?'correct':'wrong');}
+function openModal(){var n=localStorage.getItem('ef_student_name')||'';document.getElementById('studentName').value=n;document.getElementById('waModal').classList.add('open');}
+function closeModal(){document.getElementById('waModal').classList.remove('open');}
+function sendWA(){
+  var name=document.getElementById('studentName').value.trim()||'Student';
+  localStorage.setItem('ef_student_name',name);
+  var now=new Date();
+  var date=now.toLocaleDateString('pt-BR');
+  var time=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  var a1=document.getElementById('ans1').value.trim()||'—';
+  var msg='👤 '+name+'\n📅 '+date+' às '+time+'\n🎙️ Reading — Unit 15 — Petrochemicals\n📌 Activity 2:\n'+a1+'\n👇 Áudio na mensagem seguinte';
+  window.open('https://wa.me/5522999585058?text='+encodeURIComponent(msg),'_blank');
+  closeModal();
+}
+document.getElementById('waModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+</script>
+</body>
+</html>

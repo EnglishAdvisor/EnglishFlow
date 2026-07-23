@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Reading — Wytch Farm · Unit 10 — Oil and the Environment</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
+.header{background:#0d1b2a;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid rgba(46,204,113,.25)}
+.pill-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:700;color:#82e0aa;line-height:1}
+.pill-title span{color:#2ecc71;font-size:clamp(14px,2.5vw,22px);font-weight:600;display:block;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.icon-box{width:48px;height:48px;border:1.5px solid rgba(46,204,113,.4);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.icon-box svg{width:26px;height:26px;stroke:#2ecc71;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(46,204,113,.2);padding:6px 24px;font-size:11px;color:#82e0aa;text-align:center}
+.translate-warning strong{color:#2ecc71}
+.content{max-width:960px;margin:0 auto;padding:20px 16px 32px;display:grid;grid-template-columns:1fr 260px;gap:20px}
+@media(max-width:700px){.content{grid-template-columns:1fr}}
+.callout{background:rgba(231,76,60,.08);border:1px solid rgba(231,76,60,.3);border-radius:10px;padding:12px 16px;margin-bottom:14px;font-size:12px;color:#c8d8e8;line-height:1.5}
+.callout strong{color:#e74c3c}
+.text-card{background:#111827;border:1px solid rgba(46,204,113,.18);border-radius:12px;padding:18px;margin-bottom:12px}
+.text-title{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:#82e0aa;margin-bottom:12px}
+.text-body{font-size:14px;color:#c8d8e8;line-height:1.8}
+.text-body p{margin-bottom:10px}
+.text-body p:last-child{margin-bottom:0}
+.text-body strong{color:#2ecc71}
+.text-body ul{margin:8px 0 8px 18px}
+.text-body ul li{margin-bottom:4px}
+.act-card{background:#111827;border:1px solid rgba(46,204,113,.18);border-radius:12px;padding:16px;margin-bottom:12px}
+.act-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:#2ecc71;margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em}
+.q-row{margin-bottom:8px;padding:8px;background:#0a0f1e;border-radius:8px}
+.q-num{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;color:#2ecc71;margin-bottom:4px}
+.q-text{font-size:13px;color:#c8d8e8;margin-bottom:5px;line-height:1.4}
+.q-input{width:100%;background:#111827;border:1px solid rgba(46,204,113,.25);border-radius:6px;padding:5px 10px;font-size:13px;color:#c8d8e8;font-family:'Barlow',sans-serif;resize:none}
+.reveal-btn{background:transparent;border:1px solid rgba(46,204,113,.35);color:#4a6a8a;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;border-radius:6px;padding:3px 8px;cursor:pointer;white-space:nowrap;margin-top:4px}
+.reveal-btn:hover{border-color:#2ecc71;color:#2ecc71}
+.verb-grid{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.verb-chip{background:#0a1628;border:1px solid rgba(46,204,113,.2);border-radius:5px;padding:3px 8px;font-size:12px;color:#82e0aa;font-family:'Barlow Condensed',sans-serif;font-weight:600;cursor:pointer;transition:all .2s}
+.verb-chip:hover{border-color:#2ecc71;color:#2ecc71}
+.verb-chip.found{background:rgba(46,204,113,.15);border-color:#2ecc71;color:#2ecc71}
+.countdown{background:#0a1628;border:1px solid rgba(46,204,113,.25);border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.countdown-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;color:#4a6a8a;text-transform:uppercase;letter-spacing:.08em}
+.countdown-time{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:#2ecc71;min-width:60px}
+.task-box{background:#0a1628;border:1px solid rgba(46,204,113,.3);border-radius:10px;padding:14px;margin-bottom:14px;font-size:13px;color:#c8d8e8;line-height:1.6}
+.task-box strong{color:#2ecc71}
+.wa-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:#2ecc71;color:#0a0f1e;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:none;border-radius:10px;padding:13px 20px;width:100%;cursor:pointer;transition:background .2s}
+.wa-btn:hover{background:#82e0aa}
+.wa-btn svg{width:20px;height:20px;fill:#0a0f1e;flex-shrink:0}
+.zone-support{display:flex;flex-direction:column;gap:12px}
+.kw-card{background:#111827;border:1px solid rgba(46,204,113,.18);border-radius:12px;padding:14px}
+.kw-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#2ecc71;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.kw-item{padding:5px 0;border-bottom:1px solid rgba(46,204,113,.1);font-size:12px;color:#c8d8e8;line-height:1.4}
+.kw-item:last-child{border-bottom:none}
+.kw-item strong{color:#82e0aa}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal-overlay.open{display:flex}
+.modal{background:#111827;border:1px solid rgba(46,204,113,.3);border-radius:14px;padding:22px;width:100%;max-width:420px;max-height:90vh;overflow-y:auto}
+.modal-title{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:#82e0aa;margin-bottom:4px}
+.modal-sub{font-size:12px;color:#4a6a8a;margin-bottom:14px}
+.modal label{font-size:12px;color:#82e0aa;font-weight:600;display:block;margin-bottom:4px}
+.modal input,.modal textarea{width:100%;background:#0a0f1e;border:1px solid rgba(46,204,113,.3);border-radius:8px;padding:9px 12px;font-size:13px;color:#c8d8e8;margin-bottom:12px;font-family:'Barlow',sans-serif;resize:vertical}
+.modal textarea{min-height:80px}
+.modal-note{font-size:12px;color:#4a6a8a;background:#0a0f1e;border-radius:8px;padding:10px 12px;margin-bottom:14px;line-height:1.5}
+.modal-btns{display:flex;gap:8px}
+.modal-send{flex:1;background:#2ecc71;color:#0a0f1e;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;border:none;border-radius:8px;padding:10px;cursor:pointer}
+.modal-cancel{background:transparent;border:1px solid rgba(46,204,113,.3);color:#4a6a8a;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;border-radius:8px;padding:10px 16px;cursor:pointer}
+.footer{background:#0d1b2a;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(46,204,113,.2);margin-top:4px}
+.footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a8a}
+.footer-right{display:flex;align-items:center;gap:10px}
+.footer-icon svg{width:22px;height:22px;stroke:#2ecc71;fill:none;stroke-width:1.5}
+.footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;color:#2ecc71;letter-spacing:.06em;text-transform:uppercase}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="pill-title">Reading<span>Preventing Environmental Damage</span></div>
+  <div class="icon-box">
+    <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+  </div>
+</div>
+
+<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
+
+<div class="content">
+  <div class="left-col">
+
+    <div class="countdown">
+      <div class="countdown-label">Time remaining</div>
+      <div class="countdown-time" id="cdTime">25:00</div>
+    </div>
+
+    <div class="callout">
+      <strong>⚠️ Deepwater Horizon:</strong> On 20 April 2010, the drilling rig Deepwater Horizon exploded in the Gulf of Mexico. This caused an oil leak and a huge environmental disaster. The accident could have been prevented.
+    </div>
+
+    <div class="text-card">
+      <div class="text-title">Wytch Farm</div>
+      <div class="text-body">
+        <p>In <strong>1973</strong>, the British Gas Corporation <strong>discovered</strong> a large oilfield in the south of England. There <strong>were</strong> 65 million tonnes of crude oil in the ground. And on the ground? A <strong>nature reserve</strong> including forests, trees, animals, birds, and a perfect beach and seaside — and a village. The engineers <strong>faced</strong> many challenges:</p>
+        <ul>
+          <li>noise from construction and drilling</li>
+          <li>noise from trucks going to and from the site</li>
+          <li>bad smells from the site</li>
+          <li>possible oil spills, fires, and explosions</li>
+          <li>possible damage to plants and animals in the area</li>
+        </ul>
+        <p>British Gas <strong>planned</strong> the work very carefully. They <strong>studied</strong> the plants and animals in the area and <strong>developed</strong> a wildlife protection programme. In <strong>1979</strong>, they <strong>began</strong> drilling. They <strong>put</strong> the drilling rig in a wood. It <strong>was</strong> behind the trees so people <strong>couldn't see</strong> it easily. And they <strong>used</strong> a special drilling technique: <strong>horizontal drilling</strong>.</p>
+        <p>The easiest way to drill oil is straight down vertically into the oil. Horizontal drilling (sometimes called <strong>extended reach drilling</strong>) starts straight down, but then it turns. The drill goes into the oil from the side. Oil companies sometimes drill this way to help the oil flow into the well more easily. But at Wytch Farm, it was a way to protect the environment. When you use horizontal drilling, the oil can be under a beautiful forest, a village, or even the sea, but the drilling rig and the gathering station can be far away. At Wytch Farm, some of the drilling <strong>started</strong> more than <strong>ten kilometres</strong> away from the oil.</p>
+        <p>Wytch Farm is the <strong>largest onshore oilfield in Western Europe</strong>. But environmental damage at the site is very small.</p>
+      </div>
+    </div>
+
+    <div class="act-card">
+      <div class="act-title">Activity 1 — Comprehension questions</div>
+      <div class="q-row">
+        <div class="q-num">1</div>
+        <div class="q-text">What can you see in the area around Wytch Farm?</div>
+        <textarea class="q-input" rows="2" id="q1" placeholder="Your answer..."></textarea>
+        <button class="reveal-btn" onclick="revShow('q1','forests, trees, animals, birds, a perfect beach and seaside, a village, an oil well')">Answer</button>
+      </div>
+      <div class="q-row">
+        <div class="q-num">2</div>
+        <div class="q-text">How many years passed between discovery and drilling?</div>
+        <textarea class="q-input" rows="1" id="q2" placeholder="Your answer..."></textarea>
+        <button class="reveal-btn" onclick="revShow('q2','About six years (discovered 1973, drilling began 1979)')">Answer</button>
+      </div>
+      <div class="q-row">
+        <div class="q-num">3</div>
+        <div class="q-text">What special drilling technique did British Gas use?</div>
+        <textarea class="q-input" rows="1" id="q3" placeholder="Your answer..."></textarea>
+        <button class="reveal-btn" onclick="revShow('q3','Horizontal drilling (also called extended reach drilling)')">Answer</button>
+      </div>
+      <div class="q-row">
+        <div class="q-num">4</div>
+        <div class="q-text">How far did some of the drilling go from the oil?</div>
+        <textarea class="q-input" rows="1" id="q4" placeholder="Your answer..."></textarea>
+        <button class="reveal-btn" onclick="revShow('q4','More than ten kilometres')">Answer</button>
+      </div>
+    </div>
+
+    <div class="act-card">
+      <div class="act-title">Activity 2 — Find Past Simple verbs in the text</div>
+      <p style="font-size:12px;color:#4a6a8a;margin-bottom:10px">Tap each verb when you find it in the text above. There are 12 Past Simple verbs (including "couldn't see").</p>
+      <div class="verb-grid">
+        <span class="verb-chip" onclick="this.classList.toggle('found')">discovered</span>
+        <span class="verb-chip" onclick="this.classList.toggle('found')">were</span>
+        <span class="verb-chip" onclick="this.classList.toggle('found')">faced</span>
+        <span class="verb-chip" onclick="this.classList.toggle('found')">planned</span>
+        <span class="verb-chip" onclick="this.classList.toggle('found')">studied</span>
+        <span class="verb-chip" onclick="this.classList.toggle('found')">developed</span>
+        <span class="verb-chip" onclick="this.classList.toggle('found')">began</span>
+        <span class="verb-chip" onclick="this.classList.toggle('found')">put</span>
+        <span class="verb-chip" onclick="this.classList.toggle('found')">was</span>
+        <span class="verb-chip" onclick="this.classList.toggle('found')">couldn't see</span>
+        <span class="verb-chip" onclick="this.classList.toggle('found')">used</span>
+        <span class="verb-chip" onclick="this.classList.toggle('found')">started</span>
+      </div>
+    </div>
+
+    <div class="task-box"><strong>Task:</strong> Answer in writing OR record a short audio. Send via WhatsApp.</div>
+
+    <button class="wa-btn" onclick="openModal()">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.535 5.858L.057 23.48a.5.5 0 0 0 .61.632l5.788-1.517A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.95 9.95 0 0 1-5.187-1.448l-.372-.22-3.433.9.916-3.345-.242-.384A9.953 9.953 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Enviar respostas
+    </button>
+  </div>
+
+  <div class="zone-support">
+    <div class="kw-card">
+      <div class="kw-title">Key Vocabulary</div>
+      <div class="kw-item"><strong>nature reserve</strong> — an area where plants and animals are protected from development</div>
+      <div class="kw-item"><strong>challenge</strong> — a new or difficult task that tests ability and skill</div>
+      <div class="kw-item"><strong>horizontal drilling</strong> — drilling that turns sideways underground to reach oil far from the rig</div>
+      <div class="kw-item"><strong>extended reach drilling</strong> — another name for horizontal drilling; reaches farther from the surface location</div>
+      <div class="kw-item"><strong>gathering station</strong> — a facility that collects and processes oil or gas from multiple wells</div>
+      <div class="kw-item"><strong>onshore oilfield</strong> — an oilfield on land (not offshore at sea)</div>
+    </div>
+    <div class="kw-card">
+      <div class="kw-title">Key Facts</div>
+      <div class="kw-item"><strong>1973</strong> — British Gas discovered the oilfield</div>
+      <div class="kw-item"><strong>1979</strong> — Drilling began (6 years of planning)</div>
+      <div class="kw-item"><strong>65M tonnes</strong> — crude oil reserves</div>
+      <div class="kw-item"><strong>&gt;10 km</strong> — maximum extended reach distance</div>
+      <div class="kw-item"><strong>Largest</strong> onshore oilfield in Western Europe</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-left">Capsule 134 de 139 · Unit 10 — Oil and the Environment</div>
+  <div class="footer-right">
+    <div class="footer-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+    <div class="footer-text">Unit 10 — Oil and the Environment</div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="waModal">
+  <div class="modal">
+    <div class="modal-title">Enviar respostas — Reading</div>
+    <div class="modal-sub">Unit 10 — Wytch Farm</div>
+    <label for="studentName">Your name</label>
+    <input type="text" id="studentName" placeholder="Type your name" oninput="localStorage.setItem('ef_student_name',this.value)">
+    <label>Activity 1 — Comprehension (questions 1–4)</label>
+    <textarea id="ans1" placeholder="1. ... &#10;2. ... &#10;3. ... &#10;4. ..."></textarea>
+    <label>Activity 2 — Past Simple verbs you found</label>
+    <textarea id="ans2" placeholder="List the 12 verbs: discovered, were, ..."></textarea>
+    <div class="modal-note">🎙️ Após enviar, grave seu áudio e envie na mesma conversa.</div>
+    <div class="modal-btns">
+      <button class="modal-cancel" onclick="closeModal()">Cancelar</button>
+      <button class="modal-send" onclick="sendWA()">Enviar no WhatsApp</button>
+    </div>
+  </div>
+</div>
+
+<script>
+var secs=25*60;
+function pad(n){return n<10?'0'+n:n;}
+function tick(){if(secs<=0){document.getElementById('cdTime').textContent='00:00';return;}secs--;document.getElementById('cdTime').textContent=pad(Math.floor(secs/60))+':'+pad(secs%60);var el=document.getElementById('cdTime');if(secs<=60)el.style.color='#e74c3c';else if(secs<=180)el.style.color='#f1c40f';else el.style.color='#2ecc71';setTimeout(tick,1000);}
+tick();
+function revShow(id,ans){document.getElementById(id).value=ans;document.getElementById(id).style.color='#2ecc71';}
+function openModal(){var n=localStorage.getItem('ef_student_name')||'';document.getElementById('studentName').value=n;document.getElementById('waModal').classList.add('open');}
+function closeModal(){document.getElementById('waModal').classList.remove('open');}
+function sendWA(){
+  var name=document.getElementById('studentName').value.trim()||'Student';
+  localStorage.setItem('ef_student_name',name);
+  var now=new Date();
+  var date=now.toLocaleDateString('pt-BR');
+  var time=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  var a1=document.getElementById('ans1').value.trim()||'(no answer)';
+  var a2=document.getElementById('ans2').value.trim()||'(no answer)';
+  var msg='👤 '+name+'\n📅 '+date+' às '+time+'\n🎙️ Reading — Unit 10 — Oil and the Environment\n📌 Activity 1: '+a1+'\n📌 Activity 2: '+a2+'\n👇 Áudio na mensagem seguinte';
+  window.open('https://wa.me/5522999585058?text='+encodeURIComponent(msg),'_blank');
+  closeModal();
+}
+document.getElementById('waModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+</script>
+</body>
+</html>

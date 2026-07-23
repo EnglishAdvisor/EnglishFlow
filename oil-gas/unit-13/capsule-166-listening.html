@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Listening · Unit 13 — The Refinery</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
+.header{background:#0d1b2a;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid rgba(231,76,60,.25)}
+.pill-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:700;color:#f0958d;line-height:1}
+.pill-title span{color:#e74c3c;font-size:clamp(14px,2.5vw,22px);font-weight:600;display:block;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.icon-box{width:48px;height:48px;border:1.5px solid rgba(231,76,60,.4);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.icon-box svg{width:26px;height:26px;stroke:#e74c3c;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(231,76,60,.2);padding:6px 24px;font-size:11px;color:#f0958d;text-align:center}
+.translate-warning strong{color:#e74c3c}
+.content{max-width:900px;margin:0 auto;padding:20px 16px 32px;display:flex;gap:16px;align-items:flex-start}
+.left-col{flex:1;min-width:0}
+.zone-support{width:200px;flex-shrink:0}
+@media(max-width:640px){.content{flex-direction:column}.zone-support{width:100%}}
+.act-card{background:#111827;border:1px solid rgba(231,76,60,.18);border-radius:12px;padding:16px;margin-bottom:12px}
+.act-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:#e74c3c;margin-bottom:10px}
+.intro-text{font-size:13px;color:#c8d8e8;line-height:1.7;margin-bottom:12px}
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:480px){.match-grid{grid-template-columns:1fr}}
+.match-col-title{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;color:#e74c3c;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.match-item{background:#0a1628;border:1px solid rgba(231,76,60,.15);border-radius:7px;padding:7px 10px;font-size:12px;color:#c8d8e8;display:flex;align-items:flex-start;gap:6px}
+.match-num{color:#e74c3c;font-family:'Barlow Condensed',sans-serif;font-weight:700;min-width:16px;font-size:13px}
+.rev-btn{background:rgba(231,76,60,.12);border:1px solid rgba(231,76,60,.3);color:#f0958d;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;border-radius:6px;padding:3px 10px;cursor:pointer;flex-shrink:0}
+.rev-ans{display:none;font-size:12px;color:#f0958d;font-weight:700}
+.qa-item{padding:8px 0;border-bottom:1px solid rgba(231,76,60,.1)}
+.qa-item:last-child{border-bottom:none}
+.qa-q{font-size:13px;color:#c8d8e8;margin-bottom:4px}
+.reveal-row{display:flex;align-items:center;gap:8px;margin-top:4px}
+.fill-item{display:flex;align-items:baseline;gap:8px;padding:6px 0;border-bottom:1px solid rgba(231,76,60,.1);font-size:13px;color:#c8d8e8}
+.fill-item:last-child{border-bottom:none}
+.fill-num{color:#e74c3c;font-family:'Barlow Condensed',sans-serif;font-weight:700;min-width:16px}
+.fill-blank{color:#4a6a8a;font-style:italic}
+.fill-answer{display:none;color:#f0958d;font-weight:600}
+.reveal-all-btn{background:rgba(231,76,60,.12);border:1px solid rgba(231,76,60,.3);color:#f0958d;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;border-radius:8px;padding:6px 14px;cursor:pointer;margin-bottom:8px}
+.sidebar-box{background:#111827;border:1px solid rgba(231,76,60,.18);border-radius:12px;padding:14px}
+.sidebar-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:#e74c3c;margin-bottom:10px}
+.kw-item{display:flex;flex-direction:column;padding:5px 0;border-bottom:1px solid rgba(231,76,60,.1)}
+.kw-item:last-child{border-bottom:none}
+.kw-en{font-size:13px;color:#f0958d;font-weight:600}
+.kw-def{font-size:11px;color:#4a6a8a;margin-top:1px}
+.wa-wrap{max-width:340px;margin:0 auto}
+.wa-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:#e74c3c;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:none;border-radius:10px;padding:13px 20px;width:100%;cursor:pointer;transition:background .2s;margin-top:6px}
+.wa-btn:hover{background:#f0958d}
+.wa-btn svg{width:20px;height:20px;fill:#fff;flex-shrink:0}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal-overlay.open{display:flex}
+.modal{background:#111827;border:1px solid rgba(231,76,60,.3);border-radius:14px;padding:22px;width:100%;max-width:420px;max-height:90vh;overflow-y:auto}
+.modal-title{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:#f0958d;margin-bottom:4px}
+.modal-sub{font-size:12px;color:#4a6a8a;margin-bottom:14px}
+.modal label{font-size:12px;color:#f0958d;font-weight:600;display:block;margin-bottom:4px}
+.modal input,.modal textarea{width:100%;background:#0a0f1e;border:1px solid rgba(231,76,60,.3);border-radius:8px;padding:9px 12px;font-size:13px;color:#c8d8e8;margin-bottom:12px;font-family:'Barlow',sans-serif;resize:vertical}
+.modal-note{font-size:12px;color:#4a6a8a;background:#0a0f1e;border-radius:8px;padding:10px 12px;margin-bottom:14px;line-height:1.5}
+.modal-btns{display:flex;gap:8px}
+.modal-send{flex:1;background:#e74c3c;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;border:none;border-radius:8px;padding:10px;cursor:pointer}
+.modal-cancel{background:transparent;border:1px solid rgba(231,76,60,.3);color:#4a6a8a;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;border-radius:8px;padding:10px 16px;cursor:pointer}
+.footer{background:#0d1b2a;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(231,76,60,.2);margin-top:4px}
+.footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a8a}
+.footer-right{display:flex;align-items:center;gap:10px}
+.footer-icon svg{width:22px;height:22px;stroke:#e74c3c;fill:none;stroke-width:1.5}
+.footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;color:#e74c3c;letter-spacing:.06em;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="pill-title">Listening<span>A Refinery Tour</span></div>
+  <div class="icon-box"><svg viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg></div>
+</div>
+<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
+<div class="content">
+  <div class="left-col">
+
+    <div class="act-card">
+      <div class="act-title">Activity 1 — Oakton Refinery Tour: Match places (a–i) to descriptions (1–9)</div>
+      <p class="intro-text">Listen to the refinery tour presentation. Match each description number (1–9) with the correct place letter (a–i). Use the answers below to check.</p>
+      <div class="match-grid">
+        <div>
+          <div class="match-col-title">Places (a–i)</div>
+          <div class="match-item">a) The jetty</div>
+          <div class="match-item">b) The pipes (from jetty to tanks)</div>
+          <div class="match-item">c) The tank farm (storage tanks)</div>
+          <div class="match-item">d) The main refinery / distillation towers</div>
+          <div class="match-item">e) The product pipes (out of refinery)</div>
+          <div class="match-item">f) The cooling water system / salt marsh</div>
+          <div class="match-item">g) The main road / entrance</div>
+          <div class="match-item">h) The admin block</div>
+          <div class="match-item">i) Oakton village (nearby)</div>
+        </div>
+        <div>
+          <div class="match-col-title">Answers (1–9 → a–i)</div>
+          <div class="match-item"><span class="match-num">1</span>→ a) jetty (tankers unload crude oil here)</div>
+          <div class="match-item"><span class="match-num">2</span>→ b) pipes (crude oil travels along these)</div>
+          <div class="match-item"><span class="match-num">3</span>→ c) tank farm (stored until refined)</div>
+          <div class="match-item"><span class="match-num">4</span>→ d) distillation towers (crude oil is refined)</div>
+          <div class="match-item"><span class="match-num">5</span>→ e) product pipes (take products out)</div>
+          <div class="match-item"><span class="match-num">6</span>→ f) salt marsh (used water is returned)</div>
+          <div class="match-item"><span class="match-num">7</span>→ g) main road (workers + tankers come and go)</div>
+          <div class="match-item"><span class="match-num">8</span>→ h) admin block (managers + office workers)</div>
+          <div class="match-item"><span class="match-num">9</span>→ i) Oakton village (hidden by trees)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="act-card">
+      <div class="act-title">Activity 2 — Complete the sentences (Passive)</div>
+      <p class="intro-text">Use the words: <em>bring · is connected · is hidden · is refined · is returned · is stored · manage · take · travels</em></p>
+      <button class="reveal-all-btn" onclick="revealAll()">Reveal all answers</button>
+      <div class="fill-item"><span class="fill-num">1</span><span>Tankers <span class="fill-blank">bring</span><span class="fill-answer">bring</span> crude oil to the refinery.</span><button class="rev-btn" onclick="revFill(this)">Show</button></div>
+      <div class="fill-item"><span class="fill-num">2</span><span>The crude oil <span class="fill-blank">travels</span><span class="fill-answer">travels</span> along these pipes into the tanks.</span><button class="rev-btn" onclick="revFill(this)">Show</button></div>
+      <div class="fill-item"><span class="fill-num">3</span><span>The crude oil <span class="fill-blank">is stored</span><span class="fill-answer">is stored</span> in these tanks until it is refined.</span><button class="rev-btn" onclick="revFill(this)">Show</button></div>
+      <div class="fill-item"><span class="fill-num">4</span><span>This is where the oil <span class="fill-blank">is refined</span><span class="fill-answer">is refined</span> in the distillation towers.</span><button class="rev-btn" onclick="revFill(this)">Show</button></div>
+      <div class="fill-item"><span class="fill-num">5</span><span>Some of the pipes <span class="fill-blank">take</span><span class="fill-answer">take</span> kerosene to the airport.</span><button class="rev-btn" onclick="revFill(this)">Show</button></div>
+      <div class="fill-item"><span class="fill-num">6</span><span>The used water <span class="fill-blank">is returned</span><span class="fill-answer">is returned</span> here, to the salt marsh.</span><button class="rev-btn" onclick="revFill(this)">Show</button></div>
+      <div class="fill-item"><span class="fill-num">7</span><span>The refinery <span class="fill-blank">is connected</span><span class="fill-answer">is connected</span> to the main road here.</span><button class="rev-btn" onclick="revFill(this)">Show</button></div>
+      <div class="fill-item"><span class="fill-num">8</span><span>The people who work here <span class="fill-blank">manage</span><span class="fill-answer">manage</span> the people and all of the machinery.</span><button class="rev-btn" onclick="revFill(this)">Show</button></div>
+      <div class="fill-item"><span class="fill-num">9</span><span>Oakton is <span class="fill-blank">hidden</span><span class="fill-answer">hidden</span> from the village by trees.</span><button class="rev-btn" onclick="revFill(this)">Show</button></div>
+    </div>
+
+    <div class="act-card">
+      <div class="act-title">Activity 3 — Comprehension questions</div>
+      <div class="qa-item"><div class="qa-q">1. Where is the crude oil stored?</div><div class="reveal-row"><button class="rev-btn" onclick="revAns(this)">Show answer</button><span class="rev-ans">In the tanks at the tank farm.</span></div></div>
+      <div class="qa-item"><div class="qa-q">2. Where is the crude oil refined?</div><div class="reveal-row"><button class="rev-btn" onclick="revAns(this)">Show answer</button><span class="rev-ans">In the distillation towers at the main refinery.</span></div></div>
+      <div class="qa-item"><div class="qa-q">3. Where is water returned to?</div><div class="reveal-row"><button class="rev-btn" onclick="revAns(this)">Show answer</button><span class="rev-ans">To the salt marsh.</span></div></div>
+      <div class="qa-item"><div class="qa-q">4. Where are products taken out of the refinery?</div><div class="reveal-row"><button class="rev-btn" onclick="revAns(this)">Show answer</button><span class="rev-ans">Through the product pipes near the distillation towers.</span></div></div>
+    </div>
+
+    <div class="wa-wrap">
+      <button class="wa-btn" onclick="openModal()">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.535 5.858L.057 23.48a.5.5 0 0 0 .61.632l5.788-1.517A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.95 9.95 0 0 1-5.187-1.448l-.372-.22-3.433.9.916-3.345-.242-.384A9.953 9.953 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        Enviar respostas
+      </button>
+    </div>
+  </div>
+
+  <div class="zone-support">
+    <div class="sidebar-box">
+      <div class="sidebar-title">Oakton Refinery</div>
+      <div class="kw-item"><span class="kw-en">jetty</span><span class="kw-def">where tankers unload crude oil</span></div>
+      <div class="kw-item"><span class="kw-en">tank farm</span><span class="kw-def">area of large storage tanks</span></div>
+      <div class="kw-item"><span class="kw-en">distillation tower</span><span class="kw-def">where crude oil is refined</span></div>
+      <div class="kw-item"><span class="kw-en">salt marsh</span><span class="kw-def">wetland where cooling water is returned</span></div>
+      <div class="kw-item"><span class="kw-en">admin block</span><span class="kw-def">offices — managers run refinery from here</span></div>
+      <div class="sidebar-title" style="margin-top:12px">Active vs Passive</div>
+      <div class="kw-item"><span class="kw-en">Active:</span><span class="kw-def">Pipes take the oil from ships.</span></div>
+      <div class="kw-item"><span class="kw-en">Passive:</span><span class="kw-def">The oil is taken from ships by pipes.</span></div>
+    </div>
+  </div>
+</div>
+<div class="footer">
+  <div class="footer-left">Capsule 166 de 176 · Unit 13 — The Refinery</div>
+  <div class="footer-right">
+    <div class="footer-icon"><svg viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/></svg></div>
+    <div class="footer-text">Unit 13 — The Refinery</div>
+  </div>
+</div>
+<div class="modal-overlay" id="waModal">
+  <div class="modal">
+    <div class="modal-title">Enviar respostas — Listening</div>
+    <div class="modal-sub">Unit 13 — A Refinery Tour</div>
+    <label for="studentName">Your name</label>
+    <input type="text" id="studentName" placeholder="Type your name" oninput="localStorage.setItem('ef_student_name',this.value)">
+    <label for="ans1">Activity 3 — Comprehension (1–4)</label>
+    <textarea id="ans1" rows="4" placeholder="1. ...\n2. ...\n3. ...\n4. ..."></textarea>
+    <div class="modal-note">🎙️ Após enviar, grave seu áudio e envie na mesma conversa.</div>
+    <div class="modal-btns">
+      <button class="modal-cancel" onclick="closeModal()">Cancelar</button>
+      <button class="modal-send" onclick="sendWA()">Enviar no WhatsApp</button>
+    </div>
+  </div>
+</div>
+<script>
+function revFill(btn){var bl=btn.previousElementSibling.querySelector('.fill-blank');var ans=btn.previousElementSibling.querySelector('.fill-answer');if(bl)bl.style.display='none';if(ans)ans.style.display='inline';btn.style.display='none';}
+function revealAll(){document.querySelectorAll('.fill-blank').forEach(function(el){el.style.display='none';});document.querySelectorAll('.fill-answer').forEach(function(el){el.style.display='inline';});document.querySelectorAll('.rev-btn').forEach(function(btn){btn.style.display='none';});}
+function revAns(btn){var a=btn.nextElementSibling;a.style.display='inline';btn.style.display='none';}
+function openModal(){var n=localStorage.getItem('ef_student_name')||'';document.getElementById('studentName').value=n;document.getElementById('waModal').classList.add('open');}
+function closeModal(){document.getElementById('waModal').classList.remove('open');}
+function sendWA(){
+  var name=document.getElementById('studentName').value.trim()||'Student';
+  localStorage.setItem('ef_student_name',name);
+  var now=new Date();
+  var date=now.toLocaleDateString('pt-BR');
+  var time=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  var a1=document.getElementById('ans1').value.trim()||'—';
+  var msg='👤 '+name+'\n📅 '+date+' às '+time+'\n🎙️ Listening — Unit 13 — The Refinery\n📌 Comprehension: '+a1+'\n👇 Áudio na mensagem seguinte';
+  window.open('https://wa.me/5522999585058?text='+encodeURIComponent(msg),'_blank');
+  closeModal();
+}
+document.getElementById('waModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+</script>
+</body>
+</html>

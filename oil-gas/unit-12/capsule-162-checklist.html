@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Checklist · Unit 12 — Repairs and Maintenance</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
+.header{background:#0d1b2a;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid rgba(230,126,34,.25)}
+.pill-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:700;color:#f0ad72;line-height:1}
+.pill-title span{color:#e67e22;font-size:clamp(14px,2.5vw,22px);font-weight:600;display:block;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.icon-box{width:48px;height:48px;border:1.5px solid rgba(230,126,34,.4);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.icon-box svg{width:26px;height:26px;stroke:#e67e22;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(230,126,34,.2);padding:6px 24px;font-size:11px;color:#f0ad72;text-align:center}
+.translate-warning strong{color:#e67e22}
+.content{max-width:640px;margin:0 auto;padding:24px 16px 40px}
+.cl-intro{font-size:13px;color:#4a6a8a;margin-bottom:20px;text-align:center}
+.cl-item{background:#111827;border:1px solid rgba(230,126,34,.15);border-radius:12px;padding:16px;margin-bottom:10px;display:flex;align-items:flex-start;gap:14px;cursor:pointer;transition:border-color .2s,background .2s}
+.cl-item.done{background:#0a1628;border-color:rgba(230,126,34,.5)}
+.cl-check{width:28px;height:28px;border-radius:50%;border:2px solid rgba(230,126,34,.35);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:background .2s,border-color .2s;margin-top:1px}
+.cl-item.done .cl-check{background:#e67e22;border-color:#e67e22}
+.cl-check svg{width:14px;height:14px;stroke:#0a0f1e;stroke-width:3;fill:none;display:none}
+.cl-item.done .cl-check svg{display:block}
+.cl-text{flex:1}
+.cl-num{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;color:#e67e22;text-transform:uppercase;letter-spacing:.08em;margin-bottom:3px}
+.cl-statement{font-size:14px;color:#c8d8e8;line-height:1.5}
+.cl-item.done .cl-statement{color:#f0ad72}
+.score-bar{background:#111827;border:1px solid rgba(230,126,34,.18);border-radius:12px;padding:16px;margin-top:20px;text-align:center}
+.score-label{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:#e67e22;margin-bottom:8px}
+.score-track{height:8px;background:#0a1628;border-radius:4px;overflow:hidden;margin:0 auto;max-width:280px}
+.score-fill{height:100%;background:#e67e22;border-radius:4px;width:0;transition:width .4s}
+.score-num{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:700;color:#f0ad72;margin-top:8px}
+.score-msg{font-size:12px;color:#4a6a8a;margin-top:4px}
+.footer{background:#0d1b2a;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(230,126,34,.2);margin-top:4px}
+.footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a8a}
+.footer-right{display:flex;align-items:center;gap:10px}
+.footer-icon svg{width:22px;height:22px;stroke:#e67e22;fill:none;stroke-width:1.5}
+.footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;color:#e67e22;letter-spacing:.06em;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="pill-title">Checklist<span>Unit 12 — Self Assessment</span></div>
+  <div class="icon-box"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+</div>
+<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
+<div class="content">
+  <p class="cl-intro">Tap each item when you feel confident. Aim for all five!</p>
+
+  <div class="cl-item" onclick="toggle(this)">
+    <div class="cl-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+    <div class="cl-text">
+      <div class="cl-num">Item 1</div>
+      <div class="cl-statement">I can describe equipment problems using the correct adjectives: <em>frozen, broken, split, bent, corroded, worn, jammed, rusted, loose, leaking, damaged.</em></div>
+    </div>
+  </div>
+
+  <div class="cl-item" onclick="toggle(this)">
+    <div class="cl-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+    <div class="cl-text">
+      <div class="cl-num">Item 2</div>
+      <div class="cl-statement">I can use <em>will</em> to make immediate decisions and talk about the future: <em>"I'll replace it." / "We won't finish before midnight."</em></div>
+    </div>
+  </div>
+
+  <div class="cl-item" onclick="toggle(this)">
+    <div class="cl-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+    <div class="cl-text">
+      <div class="cl-num">Item 3</div>
+      <div class="cl-statement">I can read and understand a routine maintenance schedule and record, and identify what has or hasn't been done.</div>
+    </div>
+  </div>
+
+  <div class="cl-item" onclick="toggle(this)">
+    <div class="cl-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+    <div class="cl-text">
+      <div class="cl-num">Item 4</div>
+      <div class="cl-statement">I can follow a conversation about planning a day's work, including job titles, task assignments, and status updates.</div>
+    </div>
+  </div>
+
+  <div class="cl-item" onclick="toggle(this)">
+    <div class="cl-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+    <div class="cl-text">
+      <div class="cl-num">Item 5</div>
+      <div class="cl-statement">I can complete a repair record with the correct information: equipment, problem, troubleshooting steps, cause, and repair.</div>
+    </div>
+  </div>
+
+  <div class="score-bar">
+    <div class="score-label">Your progress</div>
+    <div class="score-track"><div class="score-fill" id="fill"></div></div>
+    <div class="score-num" id="scoreNum">0 / 5</div>
+    <div class="score-msg" id="scoreMsg">Tap the items above as you complete them.</div>
+  </div>
+</div>
+<div class="footer">
+  <div class="footer-left">Capsule 162 de 163 · Unit 12 — Repairs and Maintenance</div>
+  <div class="footer-right">
+    <div class="footer-icon"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+    <div class="footer-text">Unit 12 — Repairs and Maintenance</div>
+  </div>
+</div>
+<script>
+var msgs=['Tap the items above as you complete them.','Good start — keep going!','Halfway there!','Almost there — great work!','Excellent progress!','Unit 12 complete! Well done!'];
+function toggle(el){el.classList.toggle('done');update();}
+function update(){
+  var items=document.querySelectorAll('.cl-item');
+  var done=document.querySelectorAll('.cl-item.done').length;
+  var total=items.length;
+  document.getElementById('fill').style.width=(done/total*100)+'%';
+  document.getElementById('scoreNum').textContent=done+' / '+total;
+  document.getElementById('scoreMsg').textContent=msgs[done];
+}
+</script>
+</body>
+</html>

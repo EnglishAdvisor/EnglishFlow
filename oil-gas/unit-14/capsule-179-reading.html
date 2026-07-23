@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Reading · Unit 14 — Emergencies</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
+.header{background:#0d1b2a;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid rgba(231,76,60,.25)}
+.pill-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:700;color:#f0958d;line-height:1}
+.pill-title span{color:#e74c3c;font-size:clamp(14px,2.5vw,22px);font-weight:600;display:block;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.icon-box{width:48px;height:48px;border:1.5px solid rgba(231,76,60,.4);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.icon-box svg{width:26px;height:26px;stroke:#e74c3c;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(231,76,60,.2);padding:6px 24px;font-size:11px;color:#f0958d;text-align:center}
+.translate-warning strong{color:#e74c3c}
+.content{max-width:900px;margin:0 auto;padding:20px 16px 32px;display:flex;gap:16px;align-items:flex-start}
+.left-col{flex:1;min-width:0}
+.zone-support{width:220px;flex-shrink:0}
+@media(max-width:640px){.content{flex-direction:column}.zone-support{width:100%}}
+.reading-card{background:#111827;border:1px solid rgba(231,76,60,.18);border-radius:12px;padding:18px;margin-bottom:12px}
+.reading-title{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;color:#e74c3c;margin-bottom:12px;text-transform:uppercase;letter-spacing:.04em}
+.step-block{background:#0a1628;border-left:3px solid #e74c3c;border-radius:0 8px 8px 0;padding:10px 14px;margin-bottom:8px}
+.step-title{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:#f0958d;margin-bottom:4px}
+.step-body{font-size:13px;color:#c8d8e8;line-height:1.7}
+.step-body ul{list-style:none;margin-top:4px}
+.step-body ul li{padding:2px 0;padding-left:12px;position:relative}
+.step-body ul li::before{content:"•";color:#e74c3c;position:absolute;left:0}
+.react-box{background:#0a1628;border:1px solid rgba(231,76,60,.3);border-radius:10px;padding:14px;margin-bottom:12px}
+.react-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:#f0958d;margin-bottom:10px;text-align:center}
+.react-row{display:flex;align-items:flex-start;gap:10px;padding:6px 0;border-bottom:1px solid rgba(231,76,60,.1)}
+.react-row:last-child{border-bottom:none}
+.react-letter{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:#e74c3c;width:28px;flex-shrink:0;line-height:1}
+.react-word{font-size:13px;color:#c8d8e8;line-height:1.5}
+.react-word strong{color:#f0958d}
+.act-card{background:#111827;border:1px solid rgba(231,76,60,.18);border-radius:12px;padding:16px;margin-bottom:10px}
+.act-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:#e74c3c;margin-bottom:10px}
+.q-list{list-style:none}
+.q-list li{display:flex;gap:8px;padding:6px 0;border-bottom:1px solid rgba(231,76,60,.1);font-size:13px;color:#c8d8e8;line-height:1.5}
+.q-list li:last-child{border-bottom:none}
+.q-num{color:#e74c3c;font-weight:700;flex-shrink:0;font-family:'Barlow Condensed',sans-serif;font-size:14px;min-width:18px}
+.fill-word{display:inline-block;background:rgba(231,76,60,.1);border-bottom:1.5px solid #e74c3c;min-width:60px;color:#f0958d;font-weight:600;text-align:center;padding:0 4px;border-radius:2px 2px 0 0}
+.sidebar-box{background:#111827;border:1px solid rgba(231,76,60,.18);border-radius:12px;padding:14px;margin-bottom:10px}
+.sidebar-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:#e74c3c;margin-bottom:10px}
+.kw-item{display:flex;flex-direction:column;padding:5px 0;border-bottom:1px solid rgba(231,76,60,.1)}
+.kw-item:last-child{border-bottom:none}
+.kw-en{font-size:13px;color:#f0958d;font-weight:600}
+.kw-def{font-size:11px;color:#4a6a8a;margin-top:1px}
+.wa-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:#e74c3c;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:none;border-radius:10px;padding:13px 20px;width:100%;cursor:pointer;transition:background .2s;margin-top:6px}
+.wa-btn:hover{background:#f0958d}
+.wa-btn svg{width:20px;height:20px;fill:#fff;flex-shrink:0}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal-overlay.open{display:flex}
+.modal{background:#111827;border:1px solid rgba(231,76,60,.3);border-radius:14px;padding:22px;width:100%;max-width:420px;max-height:90vh;overflow-y:auto}
+.modal-title{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:#f0958d;margin-bottom:4px}
+.modal-sub{font-size:12px;color:#4a6a8a;margin-bottom:14px}
+.modal label{font-size:12px;color:#f0958d;font-weight:600;display:block;margin-bottom:4px}
+.modal input,.modal textarea{width:100%;background:#0a0f1e;border:1px solid rgba(231,76,60,.3);border-radius:8px;padding:9px 12px;font-size:13px;color:#c8d8e8;margin-bottom:12px;font-family:'Barlow',sans-serif;resize:vertical}
+.modal-note{font-size:12px;color:#4a6a8a;background:#0a0f1e;border-radius:8px;padding:10px 12px;margin-bottom:14px;line-height:1.5}
+.modal-btns{display:flex;gap:8px}
+.modal-send{flex:1;background:#e74c3c;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;border:none;border-radius:8px;padding:10px;cursor:pointer}
+.modal-cancel{background:transparent;border:1px solid rgba(231,76,60,.3);color:#4a6a8a;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;border-radius:8px;padding:10px 16px;cursor:pointer}
+.footer{background:#0d1b2a;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(231,76,60,.2);margin-top:4px}
+.footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a8a}
+.footer-right{display:flex;align-items:center;gap:10px}
+.footer-icon svg{width:22px;height:22px;stroke:#e74c3c;fill:none;stroke-width:1.5}
+.footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;color:#e74c3c;letter-spacing:.06em;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="pill-title">Reading<span>Dealing with Emergencies</span></div>
+  <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+</div>
+<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
+<div class="content">
+  <div class="left-col">
+    <div class="reading-card">
+      <div class="reading-title">When there's an accident…</div>
+      <div class="step-block">
+        <div class="step-title">Step 1 — Assess the situation</div>
+        <div class="step-body"><ul><li>Try to understand what happened. Do this quickly and calmly.</li><li>Check for danger. If something injured somebody, will it also injure you?</li><li>Never do something that will injure you. If you do, there may be two injured people.</li></ul></div>
+      </div>
+      <div class="step-block">
+        <div class="step-title">Step 2 — Make the area safe</div>
+        <div class="step-body"><ul><li>Protect the injured person from danger.</li><li>Be careful — don't put yourself at risk.</li></ul></div>
+      </div>
+      <div class="step-block">
+        <div class="step-title">Step 3 — Assess the injured people and give emergency first aid</div>
+        <div class="step-body"><ul><li>Assess each person.</li><li>Help the people with the worst injuries first.</li><li>Only treat an injured person if you are competent to do so.</li></ul></div>
+      </div>
+      <div class="step-block">
+        <div class="step-title">Step 4 — Get help</div>
+        <div class="step-body"><ul><li>Call emergency services or make sure that someone has called them.</li></ul></div>
+      </div>
+    </div>
+
+    <div class="react-box">
+      <div class="react-title">When there's a fire — REACT</div>
+      <div class="react-row"><div class="react-letter">R</div><div class="react-word"><strong>Remove</strong> people from danger if you can do it safely.</div></div>
+      <div class="react-row"><div class="react-letter">E</div><div class="react-word"><strong>Ensure</strong> the doors are closed to stop the smoke and fire spreading.</div></div>
+      <div class="react-row"><div class="react-letter">A</div><div class="react-word"><strong>Activate</strong> the fire alarm.</div></div>
+      <div class="react-row"><div class="react-letter">C</div><div class="react-word"><strong>Call</strong> emergency services.</div></div>
+      <div class="react-row"><div class="react-letter">T</div><div class="react-word"><strong>Try</strong> to put out the fire or help people leave the area.</div></div>
+    </div>
+
+    <div class="act-card">
+      <div class="act-title">Activity 1 — Vocabulary: find words in the text</div>
+      <ul class="q-list">
+        <li><span class="q-num">1</span><span>(v) to judge and have an opinion about something → <span class="fill-word">assess</span></span></li>
+        <li><span class="q-num">2</span><span>(adv) in a quiet way, not excited or angry → <span class="fill-word">calmly</span></span></li>
+        <li><span class="q-num">3</span><span>(v) to keep someone or something safe → <span class="fill-word">protect</span></span></li>
+        <li><span class="q-num">4</span><span>(v) to make something start working → <span class="fill-word">activate</span></span></li>
+      </ul>
+    </div>
+
+    <div class="act-card">
+      <div class="act-title">Activity 2 — Match each action with a step (1–4)</div>
+      <ul class="q-list">
+        <li><span class="q-num">a</span>I could see that he was burned, so I poured cold water on the burn. → Step <span class="fill-word">3</span></li>
+        <li><span class="q-num">b</span>I saw him lying on the floor. Then I saw there was a broken power cable. → Step <span class="fill-word">1</span></li>
+        <li><span class="q-num">c</span>I used my mobile and phoned emergency services. → Step <span class="fill-word">4</span></li>
+        <li><span class="q-num">d</span>I switched off the electricity so I wouldn't get shocked. → Step <span class="fill-word">2</span></li>
+      </ul>
+    </div>
+
+    <div class="act-card">
+      <div class="act-title">Activity 3 — Comprehension questions</div>
+      <ul class="q-list">
+        <li><span class="q-num">1</span>Why is it important to check for danger before helping someone?</li>
+        <li><span class="q-num">2</span>In Step 3, why should you help the worst-injured people first?</li>
+        <li><span class="q-num">3</span>What does REACT stand for?</li>
+        <li><span class="q-num">4</span>Why should you close doors during a fire?</li>
+        <li><span class="q-num">5</span>What does "competent" mean in Step 3?</li>
+      </ul>
+    </div>
+
+    <button class="wa-btn" onclick="openModal()">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.535 5.858L.057 23.48a.5.5 0 0 0 .61.632l5.788-1.517A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.95 9.95 0 0 1-5.187-1.448l-.372-.22-3.433.9.916-3.345-.242-.384A9.953 9.953 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Enviar respostas
+    </button>
+  </div>
+  <div class="zone-support">
+    <div class="sidebar-box">
+      <div class="sidebar-title">Key Vocabulary</div>
+      <div class="kw-item"><span class="kw-en">assess (v)</span><span class="kw-def">judge and understand a situation</span></div>
+      <div class="kw-item"><span class="kw-en">calmly (adv)</span><span class="kw-def">quietly; without panic</span></div>
+      <div class="kw-item"><span class="kw-en">protect (v)</span><span class="kw-def">keep someone safe from danger</span></div>
+      <div class="kw-item"><span class="kw-en">competent (adj)</span><span class="kw-def">trained and able to do something safely</span></div>
+      <div class="kw-item"><span class="kw-en">activate (v)</span><span class="kw-def">make a system start working (e.g. alarm)</span></div>
+      <div class="kw-item"><span class="kw-en">ensure (v)</span><span class="kw-def">make sure that something happens</span></div>
+      <div class="kw-item"><span class="kw-en">evacuate (v)</span><span class="kw-def">move people away from danger</span></div>
+    </div>
+    <div class="sidebar-box">
+      <div class="sidebar-title">4-Step Summary</div>
+      <div class="kw-item"><span class="kw-en">1 — Assess</span><span class="kw-def">understand what happened; check for danger</span></div>
+      <div class="kw-item"><span class="kw-en">2 — Make safe</span><span class="kw-def">protect the injured; remove danger</span></div>
+      <div class="kw-item"><span class="kw-en">3 — First aid</span><span class="kw-def">treat the worst injuries first</span></div>
+      <div class="kw-item"><span class="kw-en">4 — Get help</span><span class="kw-def">call emergency services</span></div>
+    </div>
+  </div>
+</div>
+<div class="footer">
+  <div class="footer-left">Capsule 179 de 191 · Unit 14 — Emergencies</div>
+  <div class="footer-right">
+    <div class="footer-icon"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/></svg></div>
+    <div class="footer-text">Unit 14 — Emergencies</div>
+  </div>
+</div>
+<div class="modal-overlay" id="waModal">
+  <div class="modal">
+    <div class="modal-title">Enviar respostas — Reading</div>
+    <div class="modal-sub">Unit 14 — Dealing with Emergencies</div>
+    <label for="studentName">Your name</label>
+    <input type="text" id="studentName" placeholder="Type your name" oninput="localStorage.setItem('ef_student_name',this.value)">
+    <label for="ans1">Activity 2 — Match actions to steps (a, b, c, d)</label>
+    <textarea id="ans1" rows="3" placeholder="a=Step?, b=Step?, c=Step?, d=Step?"></textarea>
+    <label for="ans2">Activity 3 — Comprehension answers</label>
+    <textarea id="ans2" rows="5" placeholder="1. ... 2. ... 3. ... 4. ... 5. ..."></textarea>
+    <div class="modal-note">🎙️ Após enviar, grave seu áudio e envie na mesma conversa.</div>
+    <div class="modal-btns">
+      <button class="modal-cancel" onclick="closeModal()">Cancelar</button>
+      <button class="modal-send" onclick="sendWA()">Enviar no WhatsApp</button>
+    </div>
+  </div>
+</div>
+<script>
+function openModal(){var n=localStorage.getItem('ef_student_name')||'';document.getElementById('studentName').value=n;document.getElementById('waModal').classList.add('open');}
+function closeModal(){document.getElementById('waModal').classList.remove('open');}
+function sendWA(){
+  var name=document.getElementById('studentName').value.trim()||'Student';
+  localStorage.setItem('ef_student_name',name);
+  var now=new Date();
+  var date=now.toLocaleDateString('pt-BR');
+  var time=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  var a1=document.getElementById('ans1').value.trim()||'—';
+  var a2=document.getElementById('ans2').value.trim()||'—';
+  var msg='👤 '+name+'\n📅 '+date+' às '+time+'\n🎙️ Reading — Unit 14 — Emergencies\n📌 Activity 2: '+a1+'\n📌 Activity 3: '+a2+'\n👇 Áudio na mensagem seguinte';
+  window.open('https://wa.me/5522999585058?text='+encodeURIComponent(msg),'_blank');
+  closeModal();
+}
+document.getElementById('waModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+</script>
+</body>
+</html>

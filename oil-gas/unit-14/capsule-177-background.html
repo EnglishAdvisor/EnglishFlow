@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Background · Unit 14 — Emergencies</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
+.header{background:#0d1b2a;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid rgba(231,76,60,.25)}
+.pill-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:700;color:#f0958d;line-height:1}
+.pill-title span{color:#e74c3c;font-size:clamp(14px,2.5vw,22px);font-weight:600;display:block;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.icon-box{width:48px;height:48px;border:1.5px solid rgba(231,76,60,.4);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.icon-box svg{width:26px;height:26px;stroke:#e74c3c;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(231,76,60,.2);padding:6px 24px;font-size:11px;color:#f0958d;text-align:center}
+.translate-warning strong{color:#e74c3c}
+.content{max-width:900px;margin:0 auto;padding:20px 16px 32px;display:flex;gap:16px;align-items:flex-start}
+.left-col{flex:1;min-width:0}
+.zone-support{width:220px;flex-shrink:0}
+@media(max-width:640px){.content{flex-direction:column}.zone-support{width:100%;order:2}}
+.bg-text{background:#111827;border:1px solid rgba(231,76,60,.18);border-radius:12px;padding:18px;margin-bottom:12px;font-size:14px;color:#c8d8e8;line-height:1.9}
+.bg-text h3{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;color:#e74c3c;margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em}
+.bg-text strong{color:#f0958d}
+.bg-text p{margin-bottom:10px}
+.bg-text p:last-child{margin-bottom:0}
+.audio-bar{background:#0a1628;border:1px solid rgba(231,76,60,.3);border-radius:10px;padding:12px 16px;display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.audio-label{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;color:#f0958d;flex:1}
+.audio-note{font-size:11px;color:#4a6a8a;margin-top:2px}
+.audio-icon svg{width:28px;height:28px;stroke:#e74c3c;fill:none;stroke-width:1.5}
+.sidebar-box{background:#111827;border:1px solid rgba(231,76,60,.18);border-radius:12px;padding:14px;margin-bottom:10px}
+.sidebar-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:#e74c3c;margin-bottom:10px}
+.kw-item{display:flex;flex-direction:column;padding:5px 0;border-bottom:1px solid rgba(231,76,60,.1)}
+.kw-item:last-child{border-bottom:none}
+.kw-en{font-size:13px;color:#f0958d;font-weight:600}
+.kw-def{font-size:11px;color:#4a6a8a;margin-top:1px}
+.wa-wrap{margin-top:4px}
+.wa-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:#e74c3c;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:none;border-radius:10px;padding:13px 20px;width:100%;cursor:pointer;transition:background .2s}
+.wa-btn:hover{background:#f0958d}
+.wa-btn svg{width:20px;height:20px;fill:#fff;flex-shrink:0}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal-overlay.open{display:flex}
+.modal{background:#111827;border:1px solid rgba(231,76,60,.3);border-radius:14px;padding:22px;width:100%;max-width:420px;max-height:90vh;overflow-y:auto}
+.modal-title{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:#f0958d;margin-bottom:4px}
+.modal-sub{font-size:12px;color:#4a6a8a;margin-bottom:14px}
+.modal label{font-size:12px;color:#f0958d;font-weight:600;display:block;margin-bottom:4px}
+.modal input{width:100%;background:#0a0f1e;border:1px solid rgba(231,76,60,.3);border-radius:8px;padding:9px 12px;font-size:13px;color:#c8d8e8;margin-bottom:12px;font-family:'Barlow',sans-serif}
+.modal-instr{font-size:12px;color:#c8d8e8;background:#0a1628;border-radius:8px;padding:10px 12px;margin-bottom:14px;line-height:1.6}
+.modal-btns{display:flex;gap:8px}
+.modal-send{flex:1;background:#e74c3c;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;border:none;border-radius:8px;padding:10px;cursor:pointer}
+.modal-cancel{background:transparent;border:1px solid rgba(231,76,60,.3);color:#4a6a8a;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;border-radius:8px;padding:10px 16px;cursor:pointer}
+.footer{background:#0d1b2a;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(231,76,60,.2);margin-top:4px}
+.footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a8a}
+.footer-right{display:flex;align-items:center;gap:10px}
+.footer-icon svg{width:22px;height:22px;stroke:#e74c3c;fill:none;stroke-width:1.5}
+.footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;color:#e74c3c;letter-spacing:.06em;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="pill-title">Background<span>Unit 14 — Emergencies</span></div>
+  <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+</div>
+<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
+<div class="content">
+  <div class="left-col">
+    <div class="audio-bar">
+      <div class="audio-icon"><svg viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg></div>
+      <div><div class="audio-label">Listen to the teacher introduction</div><div class="audio-note">teacher-audio-unit14-background.mp3</div></div>
+    </div>
+
+    <div class="bg-text">
+      <h3>Emergencies in Oil &amp; Gas</h3>
+      <p>The oil and gas industry is one of the most <strong>high-risk</strong> industries in the world. Workers face hazards every day — fires, chemical leaks, explosions, falls from height, electrical shocks, and industrial accidents. This is why <strong>emergency response</strong> is a core skill for every person on site.</p>
+      <p>When an emergency happens, workers must act <strong>quickly and calmly</strong>. The first step is always to <strong>assess</strong> the situation — understand what happened, check for danger, and make sure you don't become a second casualty. Then you protect the injured person, give emergency first aid if you are trained to do so, and call for help.</p>
+      <p>Every oil and gas facility has a range of <strong>emergency equipment</strong>: fire extinguishers, first aid kits, defibrillators, emergency showers, SCBA (self-contained breathing apparatus), stretchers, and more. Workers must know where this equipment is and how to use it.</p>
+      <p>Facilities also have trained <strong>emergency specialists</strong> — medics, fire teams, and safety officers. On drilling rigs, a medic like <strong>Saresh Budhrani</strong> is responsible for treating the sick and injured, training workers in basic first aid, and coordinating evacuations.</p>
+      <p>In this unit, you will learn how to deal with accidents and emergencies in English — the procedures, the vocabulary, the grammar, and the communication skills you need to stay safe and help others.</p>
+    </div>
+
+    <div class="wa-wrap">
+      <button class="wa-btn" onclick="openModal()">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.535 5.858L.057 23.48a.5.5 0 0 0 .61.632l5.788-1.517A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.95 9.95 0 0 1-5.187-1.448l-.372-.22-3.433.9.916-3.345-.242-.384A9.953 9.953 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        Enviar áudio
+      </button>
+    </div>
+  </div>
+
+  <div class="zone-support">
+    <div class="sidebar-box">
+      <div class="sidebar-title">Key Terms</div>
+      <div class="kw-item"><span class="kw-en">emergency</span><span class="kw-def">serious and dangerous situation needing fast action</span></div>
+      <div class="kw-item"><span class="kw-en">assess</span><span class="kw-def">judge and understand what has happened</span></div>
+      <div class="kw-item"><span class="kw-en">casualty</span><span class="kw-def">person who is injured or killed in an accident</span></div>
+      <div class="kw-item"><span class="kw-en">first aid</span><span class="kw-def">basic medical help given immediately after an accident</span></div>
+      <div class="kw-item"><span class="kw-en">evacuation</span><span class="kw-def">moving people away from a dangerous place</span></div>
+      <div class="kw-item"><span class="kw-en">SCBA</span><span class="kw-def">self-contained breathing apparatus — for smoke/toxic gas</span></div>
+      <div class="kw-item"><span class="kw-en">defibrillator</span><span class="kw-def">device that restarts the heart with an electric shock</span></div>
+      <div class="kw-item"><span class="kw-en">medic</span><span class="kw-def">trained medical professional on a rig or site</span></div>
+    </div>
+    <div class="sidebar-box">
+      <div class="sidebar-title">In this unit</div>
+      <div class="kw-item"><span class="kw-en">if / when / in case</span><span class="kw-def">talking about emergencies and plans</span></div>
+      <div class="kw-item"><span class="kw-en">Past Continuous</span><span class="kw-def">actions in progress when something happened</span></div>
+      <div class="kw-item"><span class="kw-en">Emergency equipment</span><span class="kw-def">9 items to identify and use</span></div>
+      <div class="kw-item"><span class="kw-en">Accident report</span><span class="kw-def">written record of an incident</span></div>
+    </div>
+  </div>
+</div>
+<div class="footer">
+  <div class="footer-left">Capsule 177 de 191 · Unit 14 — Emergencies</div>
+  <div class="footer-right">
+    <div class="footer-icon"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+    <div class="footer-text">Unit 14 — Emergencies</div>
+  </div>
+</div>
+<div class="modal-overlay" id="waModal">
+  <div class="modal">
+    <div class="modal-title">Enviar áudio — Background</div>
+    <div class="modal-sub">Unit 14 — Emergencies</div>
+    <label for="studentName">Your name</label>
+    <input type="text" id="studentName" placeholder="Type your name" oninput="localStorage.setItem('ef_student_name',this.value)">
+    <div class="modal-instr">Clique em <strong>Enviar no WhatsApp</strong> — o texto completo vai junto. Leia e grave o áudio de voz direto no WhatsApp.</div>
+    <div class="modal-btns">
+      <button class="modal-cancel" onclick="closeModal()">Cancelar</button>
+      <button class="modal-send" onclick="sendWA()">Enviar no WhatsApp</button>
+    </div>
+  </div>
+</div>
+<script>
+var bgText="The oil and gas industry is one of the most high-risk industries in the world. Workers face hazards every day — fires, chemical leaks, explosions, falls from height, electrical shocks, and industrial accidents. This is why emergency response is a core skill for every person on site.\n\nWhen an emergency happens, workers must act quickly and calmly. The first step is always to assess the situation — understand what happened, check for danger, and make sure you don't become a second casualty. Then you protect the injured person, give emergency first aid if you are trained to do so, and call for help.\n\nEvery oil and gas facility has a range of emergency equipment: fire extinguishers, first aid kits, defibrillators, emergency showers, SCBA (self-contained breathing apparatus), stretchers, and more. Workers must know where this equipment is and how to use it.\n\nFacilities also have trained emergency specialists — medics, fire teams, and safety officers. On drilling rigs, a medic like Saresh Budhrani is responsible for treating the sick and injured, training workers in basic first aid, and coordinating evacuations.\n\nIn this unit, you will learn how to deal with accidents and emergencies in English — the procedures, the vocabulary, the grammar, and the communication skills you need to stay safe and help others.";
+function openModal(){var n=localStorage.getItem('ef_student_name')||'';document.getElementById('studentName').value=n;document.getElementById('waModal').classList.add('open');}
+function closeModal(){document.getElementById('waModal').classList.remove('open');}
+function sendWA(){
+  var name=document.getElementById('studentName').value.trim()||'Student';
+  localStorage.setItem('ef_student_name',name);
+  var now=new Date();
+  var date=now.toLocaleDateString('pt-BR');
+  var time=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  var msg='👤 '+name+'\n📅 '+date+' às '+time+'\n🎙️ Background — Unit 14 — Emergencies\n👇 Grave e envie seu áudio aqui. Texto para leitura:\n\n'+bgText;
+  window.open('https://wa.me/5522999585058?text='+encodeURIComponent(msg),'_blank');
+  closeModal();
+}
+document.getElementById('waModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+</script>
+</body>
+</html>

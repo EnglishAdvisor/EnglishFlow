@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Writing Bank 5 · Unit 5 — Finding Oil and Gas</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
+.header{background:#0d1b2a;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid rgba(212,167,106,.25)}
+.pill-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:700;color:#e8ccaa;line-height:1}
+.pill-title span{color:#d4a76a;font-size:clamp(14px,2.5vw,22px);font-weight:600;display:block;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.icon-box{width:48px;height:48px;border:1.5px solid rgba(212,167,106,.4);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.icon-box svg{width:26px;height:26px;stroke:#d4a76a;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.countdown-bar{background:#0d1b2a;border-bottom:1px solid rgba(212,167,106,.2);padding:8px 24px;display:flex;align-items:center;gap:12px}
+.countdown-display{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:#d4a76a;letter-spacing:.08em;min-width:60px}
+.countdown-display.warning{color:#f59e0b}.countdown-display.urgent{color:#ef4444}
+.progress-track{flex:1;height:4px;background:rgba(212,167,106,.13);border-radius:2px;overflow:hidden}
+.progress-fill{height:100%;background:#d4a76a;border-radius:2px;transition:width 1s linear,background .5s}
+.progress-fill.warning{background:#f59e0b}.progress-fill.urgent{background:#ef4444}
+.translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(212,167,106,.2);padding:6px 24px;font-size:11px;color:#e8ccaa;text-align:center}
+.translate-warning strong{color:#d4a76a}
+.steps{display:flex;gap:6px;padding:8px 16px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.steps::-webkit-scrollbar{display:none}
+.step{flex-shrink:0;display:flex;align-items:center;gap:6px;background:rgba(212,167,106,.08);border:1px solid rgba(212,167,106,.25);border-radius:20px;padding:6px 12px;font-size:11.5px;color:#e8ccaa;font-weight:500;white-space:nowrap}
+.step svg{width:13px;height:13px;stroke:#d4a76a;fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0}
+.content{display:grid;grid-template-columns:1fr 260px;gap:12px;padding:0 16px 16px}
+.left-col{display:flex;flex-direction:column;gap:12px}
+.panel{background:#111827;border-radius:10px;padding:14px 16px}
+.zone-label{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#d4a76a;font-weight:600;margin-bottom:10px}
+.rules-box{background:#0a1628;border-radius:8px;padding:12px;margin-bottom:12px}
+.rules-title{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:#e8ccaa;margin-bottom:8px}
+.rule-line{font-size:12px;color:#c8d8e8;padding:3px 0;line-height:1.6;border-bottom:1px solid rgba(212,167,106,.06)}
+.rule-line:last-child{border-bottom:none}
+.rule-line strong{color:#d4a76a}
+.notes-grid{display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
+.note-card{background:#0a1628;border:1px solid rgba(212,167,106,.2);border-radius:10px;padding:12px 14px;position:relative}
+.note-label{font-size:9px;color:#d4a76a;text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-bottom:8px}
+.note-paper{background:#1a1a0a;border:1px dashed rgba(212,167,106,.25);border-radius:6px;padding:10px;font-family:Georgia,serif;font-size:12.5px;color:#e8ddb5;line-height:1.8;white-space:pre-line}
+.note-paper em{font-style:normal;color:#d4a76a;text-decoration:underline}
+.explain{font-size:11px;color:#4a6a8a;font-style:italic;margin-top:6px;line-height:1.5}
+.activity-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#e8ccaa;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.activity-title .num{background:#d4a76a;color:#0a0f1e;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;font-weight:700}
+.fill-grid{display:flex;flex-direction:column;gap:5px;margin-bottom:10px}
+.fill-row{background:#0a1628;border-radius:6px;padding:7px 10px;font-size:12px;color:#c8d8e8;line-height:1.6}
+.fill-row .blank{display:inline-block;min-width:60px;border-bottom:1px solid rgba(212,167,106,.5);color:#e8ccaa;text-align:center}
+.fill-row .ans{color:#2ecc71;font-style:italic}
+.task-box{background:#0a1628;border:1px solid rgba(212,167,106,.25);border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:8px}
+.task-box p{font-size:11px;color:#e8ccaa;font-style:italic;line-height:1.45}
+.whatsapp-btn{display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;border:none;border-radius:8px;padding:9px 12px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:background .2s;width:100%}
+.whatsapp-btn:hover{background:#1ebc58}
+.whatsapp-btn svg{width:16px;height:16px;fill:#fff;flex-shrink:0}
+.zone-support{background:#111827;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:6px;align-self:start}
+.keyword-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;color:#e8ccaa;text-transform:uppercase;letter-spacing:.08em;padding-bottom:8px;border-bottom:1px solid rgba(212,167,106,.2);margin-bottom:4px}
+.kw-row{font-size:11px;color:#c8d8e8;padding:4px 0;border-bottom:1px solid rgba(212,167,106,.07);line-height:1.5}
+.kw-row:last-child{border-bottom:none}
+.kw-row strong{color:#d4a76a}
+.footer{background:#0d1b2a;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(212,167,106,.2);margin-top:4px}
+.footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a8a;letter-spacing:.04em}
+.footer-right{display:flex;align-items:center;gap:10px}
+.footer-icon svg{width:22px;height:22px;stroke:#d4a76a;fill:none;stroke-width:1.5}
+.footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;color:#d4a76a;letter-spacing:.06em;text-transform:uppercase}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);display:flex;align-items:center;justify-content:center;z-index:100;padding:16px}
+.modal-box{background:#111827;border:1px solid rgba(212,167,106,.25);border-radius:14px;padding:24px;max-width:480px;width:100%;max-height:85vh;overflow-y:auto;display:flex;flex-direction:column;gap:14px}
+.modal-title{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:#e8ccaa}
+.modal-field label{font-size:11px;color:#d4a76a;text-transform:uppercase;letter-spacing:.08em;font-weight:600;display:block;margin-bottom:5px}
+.modal-field input[type='text'],.modal-field textarea{width:100%;background:#0a1628;border:1px solid rgba(212,167,106,.25);border-radius:6px;padding:9px;font-size:12px;color:#c8d8e8;font-family:'Barlow',sans-serif;outline:none}
+.modal-field textarea{resize:vertical;min-height:80px}
+.modal-field input[type='text']:focus,.modal-field textarea:focus{border-color:#d4a76a}
+.modal-reminder{font-size:11px;color:#4a6a8a;font-style:italic;border-top:1px solid rgba(212,167,106,.13);padding-top:10px}
+.modal-actions{display:flex;gap:8px}
+.modal-cancel{flex:1;background:transparent;border:1px solid rgba(212,167,106,.25);color:#4a6a8a;border-radius:8px;padding:9px;font-family:'Barlow Condensed',sans-serif;font-size:14px;cursor:pointer}
+.modal-send{flex:2;display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;border:none;border-radius:8px;padding:9px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;cursor:pointer}
+.modal-send:hover{background:#1ebc58}
+.modal-send svg{width:15px;height:15px;fill:#fff}
+@media(max-width:700px){.content{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="pill-title">Writing Bank 5<span>Finding Oil and Gas</span></div>
+  <div class="icon-box">
+    <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+  </div>
+</div>
+
+<div class="countdown-bar">
+  <span class="countdown-display" id="timer">20:00</span>
+  <div class="progress-track"><div class="progress-fill" id="progress" style="width:100%"></div></div>
+</div>
+
+<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
+
+<div class="steps">
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>1. Study notes</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>2. Write your note</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>3. Send via WhatsApp</div>
+</div>
+
+<div class="content">
+  <div class="left-col">
+    <div class="panel">
+      <div class="zone-label">Writing Bank 5 — Notes with warnings</div>
+
+      <div class="rules-box">
+        <div class="rules-title">Grammar focus: this / these</div>
+        <div class="rule-line"><strong>this</strong> — singular: <em style="color:#e8ccaa">this item / this report / this form</em></div>
+        <div class="rule-line"><strong>these</strong> — plural: <em style="color:#e8ccaa">these items / these reports / these forms</em></div>
+        <div class="rule-line"><strong>Please don't remove this from...</strong> — strong polite instruction</div>
+        <div class="rule-line"><strong>Please take this/these to...</strong> — polite request with direction</div>
+        <div class="rule-line"><strong>Warning:</strong> important safety information before instructions</div>
+      </div>
+
+      <div class="notes-grid">
+        <div class="note-card">
+          <div class="note-label">Example note 1</div>
+          <div class="note-paper">Warning: Please don't remove <em>this</em> from the control room.
+
+<em>This</em> document contains sensitive position data.
+Please return <em>this</em> to the operations manager after reading.</div>
+          <div class="explain">Used for: keeping official documents in the right place</div>
+        </div>
+        <div class="note-card">
+          <div class="note-label">Example note 2</div>
+          <div class="note-paper">Please take <em>these</em> GPS readings to the survey team.
+
+Warning: Do not change any of <em>these</em> figures.
+<em>These</em> coordinates are final.</div>
+          <div class="explain">Used for: passing data between teams</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="activity-title"><span class="num">1</span>Fill in: this or these?</div>
+      <div class="fill-grid">
+        <div class="fill-row">1. Please don't remove <span class="blank">this</span> from the survey vehicle. <span class="ans">✓ this (singular item)</span></div>
+        <div class="fill-row">2. Please take <span class="blank">these</span> reports to the manager. <span class="ans">✓ these (plural reports)</span></div>
+        <div class="fill-row">3. Warning: do not damage <span class="blank">these</span> geophones. <span class="ans">✓ these (plural)</span></div>
+        <div class="fill-row">4. Please store <span class="blank">this</span> equipment safely. <span class="ans">✓ this (singular)</span></div>
+        <div class="fill-row">5. <span class="blank">These</span> coordinates are confidential. <span class="ans">✓ these (plural)</span></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="activity-title"><span class="num">2</span>Write your own note with a warning</div>
+      <div style="background:#0a1628;border-radius:8px;padding:10px;font-size:12px;color:#c8d8e8;margin-bottom:8px;line-height:1.7">
+        Write a short note (4–6 lines) for one of these situations:<br>
+        <em style="color:#e8ccaa">a)</em> A GPS receiver left in the field — warn people not to move it.<br>
+        <em style="color:#e8ccaa">b)</em> Seismic survey data — instructions to take it to the team.<br>
+        <em style="color:#e8ccaa">c)</em> Safety equipment — remind workers to return it.
+      </div>
+    </div>
+
+    <div class="task-box">
+      <p>✏️ Write your answers to Activities 1 and 2, then send via WhatsApp.</p>
+      <button class="whatsapp-btn" onclick="openModal()">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="#fff"/></svg>
+        Enviar respostas
+      </button>
+    </div>
+  </div>
+
+  <div class="zone-support">
+    <div class="keyword-title">Note-writing tips</div>
+    <div class="kw-row"><strong>Start with Warning:</strong> for safety info</div>
+    <div class="kw-row"><strong>Please + infinitive</strong> for polite instructions</div>
+    <div class="kw-row"><strong>this</strong> = one thing (singular)</div>
+    <div class="kw-row"><strong>these</strong> = more than one (plural)</div>
+    <div class="kw-row"><strong>Don't remove</strong> — do not take away</div>
+    <div class="kw-row"><strong>Take to</strong> — carry / deliver to someone</div>
+    <div class="kw-row"><strong>Return to</strong> — give back to</div>
+    <div class="kw-row"><strong>Store safely</strong> — keep in a safe place</div>
+    <div style="background:#0a1628;border-radius:8px;padding:10px;margin-top:8px">
+      <div style="font-size:10px;color:#d4a76a;font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Model note</div>
+      <div style="font-family:Georgia,serif;font-size:11px;color:#e8ddb5;line-height:1.8;font-style:italic">
+        Warning: Please don't remove this GPS receiver from the survey area.<br><br>
+        This device is recording positions. Please return this to Faisal when the survey is complete.
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-left">Capsule 71 de 84 · Unit 5 — Finding Oil and Gas</div>
+  <div class="footer-right">
+    <div class="footer-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+    <div class="footer-text">Unit 5 — Finding Oil and Gas</div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal" style="display:none">
+  <div class="modal-box">
+    <div class="modal-title">Writing Bank 5 — Enviar respostas</div>
+    <div class="modal-field"><label>Your name</label><input type="text" id="studentName" placeholder="Type your name..." autocomplete="off"></div>
+    <div class="modal-field"><label>Activity 1 — this or these (5 answers)</label><textarea id="ans1" placeholder="1. this  2. these  3. these  4. this  5. These"></textarea></div>
+    <div class="modal-field"><label>Activity 2 — Your note with a warning</label><textarea id="ans2" placeholder="Warning: Please don't remove these geophones from the survey area..."></textarea></div>
+    <div class="modal-reminder">🎙️ Após enviar, grave seu áudio e envie na mesma conversa.</div>
+    <div class="modal-actions">
+      <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+      <button class="modal-send" onclick="sendWA()">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="#fff"/></svg>
+        Enviar no WhatsApp
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+const TOTAL=20*60;let remaining=TOTAL;
+const iv=setInterval(function(){
+  remaining--;
+  var m=Math.floor(remaining/60).toString().padStart(2,'0'),s=(remaining%60).toString().padStart(2,'0');
+  var el=document.getElementById('timer'),bar=document.getElementById('progress');
+  el.textContent=m+':'+s;bar.style.width=((remaining/TOTAL)*100)+'%';
+  el.className='countdown-display';bar.className='progress-fill';
+  if(remaining<=0){clearInterval(iv);el.textContent='00:00';bar.style.width='0%';bar.classList.add('urgent');}
+  else if(remaining<=60){el.classList.add('urgent');bar.classList.add('urgent');}
+  else if(remaining<=180){el.classList.add('warning');bar.classList.add('warning');}
+},1000);
+function openModal(){
+  var saved=localStorage.getItem('ef_student_name');
+  if(saved)document.getElementById('studentName').value=saved;
+  document.getElementById('modal').style.display='flex';
+}
+function closeModal(){document.getElementById('modal').style.display='none';}
+function sendWA(){
+  var name=document.getElementById('studentName').value.trim()||'Aluno';
+  localStorage.setItem('ef_student_name',name);
+  var a1=document.getElementById('ans1').value.trim()||'—';
+  var a2=document.getElementById('ans2').value.trim()||'—';
+  var now=new Date(),date=now.toLocaleDateString('pt-BR'),time=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  var msg='👤 '+name+'\n📅 '+date+' às '+time+'\n🎙️ Writing Bank 5 — Unit 5 — Finding Oil and Gas\n📌 Activity 1: '+a1+'\n📌 Activity 2: '+a2+'\n👇 Áudio na mensagem seguinte';
+  window.open('https://wa.me/5522999585058?text='+encodeURIComponent(msg),'_blank');
+}
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+</script>
+</body>
+</html>

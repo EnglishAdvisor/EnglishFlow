@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Writing · Unit 4 — Safety First</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
+.header{background:#0d1b2a;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid rgba(241,196,15,.25)}
+.pill-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:700;color:#f5da6e;line-height:1}
+.pill-title span{color:#f1c40f;font-size:clamp(14px,2.5vw,22px);font-weight:600;display:block;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.icon-box{width:48px;height:48px;border:1.5px solid rgba(241,196,15,.4);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.icon-box svg{width:26px;height:26px;stroke:#f1c40f;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.countdown-bar{background:#0d1b2a;border-bottom:1px solid rgba(241,196,15,.2);padding:8px 24px;display:flex;align-items:center;gap:12px}
+.countdown-display{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:#f1c40f;letter-spacing:.08em;min-width:60px}
+.countdown-display.warning{color:#f59e0b}.countdown-display.urgent{color:#ef4444}
+.progress-track{flex:1;height:4px;background:rgba(241,196,15,.13);border-radius:2px;overflow:hidden}
+.progress-fill{height:100%;background:#f1c40f;border-radius:2px;transition:width 1s linear,background .5s}
+.progress-fill.warning{background:#f59e0b}.progress-fill.urgent{background:#ef4444}
+.translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(241,196,15,.2);padding:6px 24px;font-size:11px;color:#f5da6e;text-align:center}
+.translate-warning strong{color:#f1c40f}
+.steps{display:flex;gap:6px;padding:8px 16px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.steps::-webkit-scrollbar{display:none}
+.step{flex-shrink:0;display:flex;align-items:center;gap:6px;background:rgba(241,196,15,.08);border:1px solid rgba(241,196,15,.25);border-radius:20px;padding:6px 12px;font-size:11.5px;color:#f5da6e;font-weight:500;white-space:nowrap}
+.step svg{width:13px;height:13px;stroke:#f1c40f;fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0}
+.content{display:grid;grid-template-columns:1fr 280px;gap:12px;padding:0 16px 16px}
+.left-col{display:flex;flex-direction:column;gap:12px}
+.panel{background:#111827;border-radius:10px;padding:14px 16px}
+.zone-label{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#f1c40f;font-weight:600;margin-bottom:10px}
+.vowel-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin-bottom:12px}
+.vowel-card{background:#0a1628;border-radius:8px;padding:7px 10px;display:flex;align-items:center;gap:8px}
+.vc-num{color:#f1c40f;font-weight:700;font-size:11px;min-width:16px}
+.vc-word{font-family:'Barlow Condensed',sans-serif;font-size:16px;color:#f5da6e;font-weight:600}
+.vc-clue{font-size:10px;color:#4a6a8a}
+.activity-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#f5da6e;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.activity-title .num{background:#f1c40f;color:#0a0f1e;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;font-weight:700}
+.notice-prompts{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:10px}
+.notice-prompt{background:#0a1628;border-radius:8px;padding:10px 12px;border-left:3px solid rgba(241,196,15,.3)}
+.np-icon{font-size:18px;margin-bottom:4px}
+.np-situation{font-size:11px;color:#f5da6e;font-weight:600;margin-bottom:3px}
+.np-hint{font-size:10px;color:#4a6a8a}
+.tip-box{background:#0a1628;border-left:3px solid #f1c40f;border-radius:0 8px 8px 0;padding:10px 12px;margin-bottom:12px}
+.tip-box p{font-size:11.5px;color:#c8d8e8;line-height:1.6}
+.tip-box strong{color:#f5da6e}
+.task-box{background:#0a1628;border:1px solid rgba(241,196,15,.25);border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:8px}
+.task-box p{font-size:11px;color:#f5da6e;font-style:italic;line-height:1.45}
+.whatsapp-btn{display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;border:none;border-radius:8px;padding:9px 12px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:background .2s;width:100%}
+.whatsapp-btn:hover{background:#1ebc58}
+.whatsapp-btn svg{width:16px;height:16px;fill:#fff;flex-shrink:0}
+.zone-support{background:#111827;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:6px;align-self:start}
+.kw-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;color:#f5da6e;text-transform:uppercase;letter-spacing:.08em;padding-bottom:8px;border-bottom:1px solid rgba(241,196,15,.2);margin-bottom:4px}
+.ans-row{font-size:11px;color:#c8d8e8;padding:4px 0;border-bottom:1px solid rgba(241,196,15,.07);line-height:1.5}
+.ans-row:last-child{border-bottom:none}
+.ans-row strong{color:#f1c40f}
+.footer{background:#0d1b2a;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(241,196,15,.2);margin-top:4px}
+.footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a8a;letter-spacing:.04em}
+.footer-right{display:flex;align-items:center;gap:10px}
+.footer-icon svg{width:22px;height:22px;stroke:#f1c40f;fill:none;stroke-width:1.5}
+.footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;color:#f1c40f;letter-spacing:.06em;text-transform:uppercase}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);display:flex;align-items:center;justify-content:center;z-index:100;padding:16px}
+.modal-box{background:#111827;border:1px solid rgba(241,196,15,.25);border-radius:14px;padding:24px;max-width:480px;width:100%;max-height:85vh;overflow-y:auto;display:flex;flex-direction:column;gap:14px}
+.modal-title{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:#f5da6e}
+.modal-field label{font-size:11px;color:#f1c40f;text-transform:uppercase;letter-spacing:.08em;font-weight:600;display:block;margin-bottom:5px}
+.modal-field input[type='text'],.modal-field textarea{width:100%;background:#0a1628;border:1px solid rgba(241,196,15,.25);border-radius:6px;padding:9px;font-size:12px;color:#c8d8e8;font-family:'Barlow',sans-serif;outline:none}
+.modal-field textarea{resize:vertical;min-height:64px}
+.modal-field input[type='text']:focus,.modal-field textarea:focus{border-color:#f1c40f}
+.modal-reminder{font-size:11px;color:#4a6a8a;font-style:italic;border-top:1px solid rgba(241,196,15,.13);padding-top:10px}
+.modal-actions{display:flex;gap:8px}
+.modal-cancel{flex:1;background:transparent;border:1px solid rgba(241,196,15,.25);color:#4a6a8a;border-radius:8px;padding:9px;font-family:'Barlow Condensed',sans-serif;font-size:14px;cursor:pointer}
+.modal-send{flex:2;display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;border:none;border-radius:8px;padding:9px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;cursor:pointer}
+.modal-send:hover{background:#1ebc58}
+.modal-send svg{width:15px;height:15px;fill:#fff}
+@media(max-width:700px){.content{grid-template-columns:1fr}.vowel-grid{grid-template-columns:1fr}.notice-prompts{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="pill-title">Writing<span>Safety First</span></div>
+  <div class="icon-box">
+    <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
+  </div>
+</div>
+
+<div class="countdown-bar">
+  <span class="countdown-display" id="timer">25:00</span>
+  <div class="progress-track"><div class="progress-fill" id="progress" style="width:100%"></div></div>
+</div>
+
+<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
+
+<div class="steps">
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/></svg>1. Spell the words</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>2. Write safety notices</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>3. Check your spelling</div>
+</div>
+
+<div class="content">
+  <div class="left-col">
+    <div class="panel">
+      <div class="zone-label">Activity 1 — Spelling: add the missing vowels (a, e, i, o, u)</div>
+      <div class="tip-box">
+        <p><strong>Good spelling tip:</strong> Safety notices must be clear and correct. Always check your vowels — they change the whole word! Example: <em style="color:#f5da6e">p_r_t_ct</em> → <strong style="color:#f5da6e">protect</strong></p>
+      </div>
+      <div class="vowel-grid">
+        <div class="vowel-card"><span class="vc-num">1</span><div><div class="vc-word">pr_t_ct</div><div class="vc-clue">keep safe from harm</div></div></div>
+        <div class="vowel-card"><span class="vc-num">2</span><div><div class="vc-word">f_c_ g__rd</div><div class="vc-clue">PPE for your face</div></div></div>
+        <div class="vowel-card"><span class="vc-num">3</span><div><div class="vc-word">s_rf_c_</div><div class="vc-clue">the top of a floor or table</div></div></div>
+        <div class="vowel-card"><span class="vc-num">4</span><div><div class="vc-word">d_ng_r</div><div class="vc-clue">hazard / risk</div></div></div>
+        <div class="vowel-card"><span class="vc-num">5</span><div><div class="vc-word">_m_rg_ncy</div><div class="vc-clue">a very serious hazard situation</div></div></div>
+        <div class="vowel-card"><span class="vc-num">6</span><div><div class="vc-word">c_rcl_</div><div class="vc-clue">a round shape</div></div></div>
+        <div class="vowel-card"><span class="vc-num">7</span><div><div class="vc-word">tr__ngl_</div><div class="vc-clue">3-sided shape (warning signs)</div></div></div>
+        <div class="vowel-card"><span class="vc-num">8</span><div><div class="vc-word">r_ct_ngl_</div><div class="vc-clue">4-sided shape (info signs)</div></div></div>
+        <div class="vowel-card"><span class="vc-num">9</span><div><div class="vc-word">h_z_rd</div><div class="vc-clue">a possible danger</div></div></div>
+        <div class="vowel-card"><span class="vc-num">10</span><div><div class="vc-word">t_rch</div><div class="vc-clue">a portable light / flashlight</div></div></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="activity-title"><span class="num">2</span>Write short safety notices (3–5 words each)</div>
+      <p style="font-size:11.5px;color:#c8d8e8;margin-bottom:10px;line-height:1.6">
+        Write a short notice for each situation below. Use imperative verbs like <em style="color:#f5da6e">Wear / Do not / Report / Keep</em>.
+      </p>
+      <div class="notice-prompts">
+        <div class="notice-prompt">
+          <div class="np-icon">🧊</div>
+          <div class="np-situation">Slippery surface</div>
+          <div class="np-hint">Example: <em>Caution: slippery surface</em></div>
+        </div>
+        <div class="notice-prompt">
+          <div class="np-icon">⚙️</div>
+          <div class="np-situation">Unsafe machine</div>
+          <div class="np-hint">Hint: don't use it / out of order</div>
+        </div>
+        <div class="notice-prompt">
+          <div class="np-icon">🚪</div>
+          <div class="np-situation">Blocked fire exit</div>
+          <div class="np-hint">Hint: must be clear / never block</div>
+        </div>
+        <div class="notice-prompt">
+          <div class="np-icon">👷</div>
+          <div class="np-situation">Visitors must wear hard hats</div>
+          <div class="np-hint">Hint: all visitors / hard hat area</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="task-box">
+      <p>✏️ Answer Activities 1 and 2. Send via WhatsApp.</p>
+      <button class="whatsapp-btn" onclick="openModal()">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="#fff"/></svg>
+        Enviar respostas
+      </button>
+    </div>
+  </div>
+
+  <div class="zone-support">
+    <div class="kw-title">Answers — Activity 1</div>
+    <div class="ans-row">1. <strong>protect</strong></div>
+    <div class="ans-row">2. <strong>face guard</strong></div>
+    <div class="ans-row">3. <strong>surface</strong></div>
+    <div class="ans-row">4. <strong>danger</strong></div>
+    <div class="ans-row">5. <strong>emergency</strong></div>
+    <div class="ans-row">6. <strong>circle</strong></div>
+    <div class="ans-row">7. <strong>triangle</strong></div>
+    <div class="ans-row">8. <strong>rectangle</strong></div>
+    <div class="ans-row">9. <strong>hazard</strong></div>
+    <div class="ans-row">10. <strong>torch</strong></div>
+    <div style="background:#0a1628;border-radius:8px;padding:10px;margin-top:8px">
+      <div style="font-size:10px;color:#f1c40f;font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Activity 2 — Model notices</div>
+      <div style="font-size:11px;color:#c8d8e8;line-height:1.9">
+        🧊 <em style="color:#f5da6e">Caution: slippery surface</em><br>
+        ⚙️ <em style="color:#f5da6e">Do not use — unsafe machine</em><br>
+        🚪 <em style="color:#f5da6e">Keep fire exit clear</em><br>
+        👷 <em style="color:#f5da6e">All visitors: wear hard hats</em>
+      </div>
+    </div>
+    <div style="background:#0a1628;border-radius:8px;padding:10px;margin-top:4px">
+      <div style="font-size:10px;color:#f1c40f;font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Useful imperatives</div>
+      <div style="font-size:11px;color:#c8d8e8;line-height:1.9">
+        <em style="color:#f5da6e">Wear</em> / <em style="color:#f5da6e">Keep</em> / <em style="color:#f5da6e">Report</em><br>
+        <em style="color:#f5da6e">Caution:</em> / <em style="color:#f5da6e">Warning:</em><br>
+        <em style="color:#f5da6e">Do not</em> / <em style="color:#f5da6e">No</em> + noun
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-left">Capsule 54 de 57 · Unit 4 — Safety First</div>
+  <div class="footer-right">
+    <div class="footer-icon"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></div>
+    <div class="footer-text">Unit 4 — Safety First</div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal" style="display:none">
+  <div class="modal-box">
+    <div class="modal-title">Writing — Enviar respostas</div>
+    <div class="modal-field"><label>Your name</label><input type="text" id="studentName" placeholder="Type your name..." autocomplete="off"></div>
+    <div class="modal-field"><label>Activity 1 — Spelling (10 words)</label><textarea id="ans1" placeholder="1. protect  2. face guard  3. surface  4. danger  5. emergency  6. circle  7. triangle  8. rectangle  9. hazard  10. torch"></textarea></div>
+    <div class="modal-field"><label>Activity 2 — Safety notices (4 notices)</label><textarea id="ans2" placeholder="1. Caution: slippery surface  2. Do not use — unsafe machine  3. Keep fire exit clear  4. All visitors wear hard hats"></textarea></div>
+    <div class="modal-reminder">🎙️ Após enviar, grave seu áudio e envie na mesma conversa.</div>
+    <div class="modal-actions">
+      <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+      <button class="modal-send" onclick="sendWA()">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="#fff"/></svg>
+        Enviar no WhatsApp
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+const TOTAL=25*60;let remaining=TOTAL;
+const iv=setInterval(function(){
+  remaining--;
+  var m=Math.floor(remaining/60).toString().padStart(2,'0'),s=(remaining%60).toString().padStart(2,'0');
+  var el=document.getElementById('timer'),bar=document.getElementById('progress');
+  el.textContent=m+':'+s;bar.style.width=((remaining/TOTAL)*100)+'%';
+  el.className='countdown-display';bar.className='progress-fill';
+  if(remaining<=0){clearInterval(iv);el.textContent='00:00';bar.style.width='0%';bar.classList.add('urgent');}
+  else if(remaining<=60){el.classList.add('urgent');bar.classList.add('urgent');}
+  else if(remaining<=180){el.classList.add('warning');bar.classList.add('warning');}
+},1000);
+function openModal(){
+  var saved=localStorage.getItem('ef_student_name');
+  if(saved)document.getElementById('studentName').value=saved;
+  document.getElementById('modal').style.display='flex';
+}
+function closeModal(){document.getElementById('modal').style.display='none';}
+function sendWA(){
+  var name=document.getElementById('studentName').value.trim()||'Aluno';
+  localStorage.setItem('ef_student_name',name);
+  var a1=document.getElementById('ans1').value.trim()||'—';
+  var a2=document.getElementById('ans2').value.trim()||'—';
+  var now=new Date(),date=now.toLocaleDateString('pt-BR'),time=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  var msg='👤 '+name+'\n📅 '+date+' às '+time+'\n🎙️ Writing — Unit 4 — Safety First\n📌 Activity 1: '+a1+'\n📌 Activity 2: '+a2+'\n👇 Áudio na mensagem seguinte (se preferiu enviar por áudio)';
+  window.open('https://wa.me/5522999585058?text='+encodeURIComponent(msg),'_blank');
+}
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+</script>
+</body>
+</html>

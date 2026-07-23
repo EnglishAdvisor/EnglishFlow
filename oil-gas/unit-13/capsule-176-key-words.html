@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Key Words · Unit 13 — The Refinery</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
+.header{background:#0d1b2a;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid rgba(231,76,60,.25)}
+.pill-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:700;color:#f0958d;line-height:1}
+.pill-title span{color:#e74c3c;font-size:clamp(14px,2.5vw,22px);font-weight:600;display:block;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.icon-box{width:48px;height:48px;border:1.5px solid rgba(231,76,60,.4);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.icon-box svg{width:26px;height:26px;stroke:#e74c3c;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(231,76,60,.2);padding:6px 24px;font-size:11px;color:#f0958d;text-align:center}
+.translate-warning strong{color:#e74c3c}
+.content{max-width:700px;margin:0 auto;padding:20px 16px 40px}
+.section-label{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;color:#e74c3c;text-transform:uppercase;letter-spacing:.1em;margin:16px 0 8px}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
+.flip-card{height:100px;perspective:600px;cursor:pointer}
+.flip-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .45s}
+.flip-card.flipped .flip-inner{transform:rotateY(180deg)}
+.flip-front,.flip-back{position:absolute;inset:0;border-radius:10px;backface-visibility:hidden;display:flex;align-items:center;justify-content:center;padding:8px;text-align:center}
+.flip-front{background:#111827;border:1px solid rgba(231,76,60,.25);flex-direction:column;gap:4px}
+.flip-back{background:#0a1628;border:1px solid rgba(231,76,60,.4);transform:rotateY(180deg)}
+.word{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:#f0958d}
+.pos{font-size:10px;color:#4a6a8a;text-transform:uppercase;letter-spacing:.06em}
+.def{font-size:11px;color:#c8d8e8;line-height:1.4}
+.progress{text-align:center;margin-top:20px;font-family:'Barlow Condensed',sans-serif;font-size:14px;color:#4a6a8a}
+.progress span{color:#e74c3c;font-size:18px;font-weight:700}
+.reset-btn{display:block;margin:12px auto 0;background:transparent;border:1px solid rgba(231,76,60,.3);color:#e74c3c;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;border-radius:8px;padding:7px 20px;cursor:pointer}
+.footer{background:#0d1b2a;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(231,76,60,.2);margin-top:4px}
+.footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a8a}
+.footer-right{display:flex;align-items:center;gap:10px}
+.footer-icon svg{width:22px;height:22px;stroke:#e74c3c;fill:none;stroke-width:1.5}
+.footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;color:#e74c3c;letter-spacing:.06em;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="pill-title">Key Words<span>Unit 13 — 15 words</span></div>
+  <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+</div>
+<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
+<div class="content">
+  <p style="font-size:12px;color:#4a6a8a;text-align:center;margin-bottom:4px">Tap a card to see its meaning. Tap again to flip back.</p>
+
+  <div class="section-label">Nouns — Petroleum Products (6)</div>
+  <div class="card-grid">
+    <div class="flip-card" onclick="flip(this)"><div class="flip-inner"><div class="flip-front"><div class="word">asphalt</div><div class="pos">noun</div></div><div class="flip-back"><div class="def">heaviest petroleum product — used for roads and roofing</div></div></div></div>
+    <div class="flip-card" onclick="flip(this)"><div class="flip-inner"><div class="flip-front"><div class="word">bulk tanker</div><div class="pos">noun</div></div><div class="flip-back"><div class="def">large truck that transports liquid petroleum products</div></div></div></div>
+    <div class="flip-card" onclick="flip(this)"><div class="flip-inner"><div class="flip-front"><div class="word">fuel oil</div><div class="pos">noun</div></div><div class="flip-back"><div class="def">heavy oil used for ships and power stations</div></div></div></div>
+    <div class="flip-card" onclick="flip(this)"><div class="flip-inner"><div class="flip-front"><div class="word">kerosene</div><div class="pos">noun</div></div><div class="flip-back"><div class="def">jet fuel — also used for cooking and heating</div></div></div></div>
+    <div class="flip-card" onclick="flip(this)"><div class="flip-inner"><div class="flip-front"><div class="word">LPG</div><div class="pos">noun</div></div><div class="flip-back"><div class="def">liquid petroleum gas — lightest product, stored under pressure</div></div></div></div>
+    <div class="flip-card" onclick="flip(this)"><div class="flip-inner"><div class="flip-front"><div class="word">petrodiesel</div><div class="pos">noun</div></div><div class="flip-back"><div class="def">diesel fuel refined from crude oil — for trucks and buses</div></div></div></div>
+  </div>
+
+  <div class="section-label">Nouns — Refinery Process (4)</div>
+  <div class="card-grid">
+    <div class="flip-card" onclick="flip(this)"><div class="flip-inner"><div class="flip-front"><div class="word">degrees Celsius</div><div class="pos">noun</div></div><div class="flip-back"><div class="def">unit for measuring temperature (symbol: °C)</div></div></div></div>
+    <div class="flip-card" onclick="flip(this)"><div class="flip-inner"><div class="flip-front"><div class="word">fractional distillation</div><div class="pos">noun</div></div><div class="flip-back"><div class="def">process of separating crude oil by boiling point</div></div></div></div>
+    <div class="flip-card" onclick="flip(this)"><div class="flip-inner"><div class="flip-front"><div class="word">furnace</div><div class="pos">noun</div></div><div class="flip-back"><div class="def">equipment that heats crude oil before distillation</div></div></div></div>
+    <div class="flip-card" onclick="flip(this)"><div class="flip-inner"><div class="flip-front"><div class="word">production</div><div class="pos">noun</div></div><div class="flip-back"><div class="def">amount of product made (e.g. 14.5 million litres/day)</div></div></div></div>
+  </div>
+
+  <div class="section-label">Adjective (1)</div>
+  <div class="card-grid">
+    <div class="flip-card" onclick="flip(this)"><div class="flip-inner"><div class="flip-front"><div class="word">solid</div><div class="pos">adj</div></div><div class="flip-back"><div class="def">in solid (not liquid or gas) form — asphalt is a solid</div></div></div></div>
+  </div>
+
+  <div class="section-label">Verbs (4)</div>
+  <div class="card-grid">
+    <div class="flip-card" onclick="flip(this)"><div class="flip-inner"><div class="flip-front"><div class="word">earth</div><div class="pos">verb</div></div><div class="flip-back"><div class="def">connect electrical device to ground (BrE; AmE = ground)</div></div></div></div>
+    <div class="flip-card" onclick="flip(this)"><div class="flip-inner"><div class="flip-front"><div class="word">melt</div><div class="pos">verb</div></div><div class="flip-back"><div class="def">change from solid to liquid — ice melts at 0°C</div></div></div></div>
+    <div class="flip-card" onclick="flip(this)"><div class="flip-inner"><div class="flip-front"><div class="word">refine</div><div class="pos">verb</div></div><div class="flip-back"><div class="def">process crude oil into useful petroleum products</div></div></div></div>
+    <div class="flip-card" onclick="flip(this)"><div class="flip-inner"><div class="flip-front"><div class="word">monitor</div><div class="pos">verb</div></div><div class="flip-back"><div class="def">watch and check something over time to detect changes</div></div></div></div>
+  </div>
+
+  <div class="progress">Flipped: <span id="cnt">0</span> / 15</div>
+  <button class="reset-btn" onclick="resetAll()">Reset all cards</button>
+</div>
+<div class="footer">
+  <div class="footer-left">Capsule 176 de 176 · Unit 13 — The Refinery</div>
+  <div class="footer-right">
+    <div class="footer-icon"><svg viewBox="0 0 24 24"><path d="M12 20h9"/></svg></div>
+    <div class="footer-text">Unit 13 — The Refinery</div>
+  </div>
+</div>
+<script>
+var flipped=new Set();
+function flip(el){
+  var idx=Array.from(document.querySelectorAll('.flip-card')).indexOf(el);
+  el.classList.toggle('flipped');
+  if(el.classList.contains('flipped'))flipped.add(idx);else flipped.delete(idx);
+  document.getElementById('cnt').textContent=flipped.size;
+}
+function resetAll(){
+  document.querySelectorAll('.flip-card').forEach(function(c){c.classList.remove('flipped');});
+  flipped.clear();
+  document.getElementById('cnt').textContent='0';
+}
+</script>
+</body>
+</html>

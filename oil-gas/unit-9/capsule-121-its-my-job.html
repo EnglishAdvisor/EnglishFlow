@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>It's My Job · Unit 9 — Natural Gas</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
+.header{background:#0d1b2a;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid rgba(0,180,216,.25)}
+.pill-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:700;color:#80d8ec;line-height:1}
+.pill-title span{color:#00b4d8;font-size:clamp(14px,2.5vw,22px);font-weight:600;display:block;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.icon-box{width:48px;height:48px;border:1.5px solid rgba(0,180,216,.4);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.icon-box svg{width:26px;height:26px;stroke:#00b4d8;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(0,180,216,.2);padding:6px 24px;font-size:11px;color:#80d8ec;text-align:center}
+.translate-warning strong{color:#00b4d8}
+.steps{background:#0d1b2a;padding:8px 24px;display:flex;gap:0;border-bottom:1px solid rgba(0,180,216,.15);overflow-x:auto;scrollbar-width:none}
+.steps::-webkit-scrollbar{display:none}
+.step{display:flex;align-items:center;gap:6px;padding:5px 14px;border-radius:20px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#4a6a8a;white-space:nowrap}
+.step.active{background:#0a1628;color:#80d8ec;border:1px solid rgba(0,180,216,.35)}
+.step-num{width:18px;height:18px;border-radius:50%;background:rgba(0,180,216,.15);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#00b4d8}
+.content{max-width:960px;margin:0 auto;padding:20px 16px;display:grid;grid-template-columns:1fr 260px;gap:20px}
+@media(max-width:700px){.content{grid-template-columns:1fr}}
+.audio-bar{background:#111827;border:1px solid rgba(0,180,216,.25);border-radius:12px;padding:14px 16px;margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.audio-label{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;color:#00b4d8;text-transform:uppercase;letter-spacing:.06em;white-space:nowrap}
+.audio-bar audio{flex:1;height:36px;min-width:0}
+.card{background:#111827;border:1px solid rgba(0,180,216,.18);border-radius:12px;padding:16px;margin-bottom:14px}
+.card-title{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;color:#80d8ec;margin-bottom:12px}
+.profile-badge{display:flex;align-items:flex-start;gap:12px;background:#0a0f1e;border-radius:10px;padding:14px;margin-bottom:12px}
+.profile-avatar{width:48px;height:48px;border-radius:50%;background:rgba(0,180,216,.2);border:2px solid rgba(0,180,216,.4);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:20px}
+.profile-info{flex:1}
+.profile-name{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:#80d8ec}
+.profile-role{font-size:12px;color:#00b4d8;margin-top:2px}
+.profile-loc{font-size:11px;color:#4a6a8a;margin-top:2px}
+.reading-text{font-size:13.5px;color:#c8d8e8;line-height:1.8}
+.reading-text p{margin-bottom:10px}
+.reading-text p:last-child{margin-bottom:0}
+.plant-diagram{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:12px}
+@media(max-width:420px){.plant-diagram{grid-template-columns:1fr}}
+.plant-part{background:#0a0f1e;border:1px solid rgba(0,180,216,.2);border-radius:8px;padding:10px 12px}
+.part-name{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#00b4d8;display:block;margin-bottom:3px}
+.part-desc{font-size:11px;color:#80d8ec}
+.tf-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.tf-item{background:#0a0f1e;border-radius:8px;padding:10px 12px;display:flex;align-items:flex-start;gap:10px}
+.tf-num{color:#00b4d8;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;min-width:16px;margin-top:1px}
+.tf-text{font-size:13px;color:#c8d8e8;flex:1;line-height:1.5}
+.tf-opts{display:flex;gap:6px;margin-left:auto;flex-shrink:0}
+.tf-btn{padding:4px 10px;border:1px solid rgba(0,180,216,.25);border-radius:6px;font-size:12px;color:#4a6a8a;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-weight:700;transition:all .15s;user-select:none}
+.tf-btn:hover{border-color:#00b4d8;color:#80d8ec}
+.tf-btn.sel{background:#0a1628;border-color:#00b4d8;color:#80d8ec}
+.tf-btn.correct{background:rgba(46,204,113,.15);border-color:#2ecc71;color:#2ecc71}
+.tf-btn.wrong{background:rgba(231,76,60,.15);border-color:#e74c3c;color:#e74c3c}
+.check-btn{background:rgba(0,180,216,.15);border:1px solid rgba(0,180,216,.3);color:#00b4d8;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;border-radius:8px;padding:8px 16px;cursor:pointer;margin-top:10px}
+.feedback{font-size:12px;margin-top:6px;padding:8px 10px;border-radius:7px;display:none}
+.feedback.show{display:block}
+.feedback.ok{background:rgba(46,204,113,.12);color:#2ecc71;border:1px solid rgba(46,204,113,.3)}
+.feedback.no{background:rgba(231,76,60,.12);color:#e74c3c;border:1px solid rgba(231,76,60,.3)}
+.zone-support{display:flex;flex-direction:column;gap:12px}
+.sidebar-card{background:#111827;border:1px solid rgba(0,180,216,.18);border-radius:12px;padding:14px}
+.sidebar-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#00b4d8;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
+.info-item{padding:5px 0;border-bottom:1px solid rgba(0,180,216,.1);font-size:12px;color:#c8d8e8;line-height:1.4}
+.info-item:last-child{border-bottom:none}
+.info-item strong{color:#80d8ec}
+.timer-box{background:#111827;border:1px solid rgba(0,180,216,.18);border-radius:12px;padding:12px 14px;text-align:center}
+.timer-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;color:#4a6a8a;text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px}
+.timer-display{font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:700;color:#00b4d8;letter-spacing:.04em}
+.wa-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:#00b4d8;color:#0a0f1e;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:none;border-radius:10px;padding:12px 20px;width:100%;cursor:pointer;margin-top:4px;transition:background .2s}
+.wa-btn:hover{background:#80d8ec}
+.wa-btn svg{width:20px;height:20px;fill:#0a0f1e;flex-shrink:0}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal-overlay.open{display:flex}
+.modal{background:#111827;border:1px solid rgba(0,180,216,.3);border-radius:14px;padding:22px;width:100%;max-width:420px}
+.modal-title{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:#80d8ec;margin-bottom:4px}
+.modal-sub{font-size:12px;color:#4a6a8a;margin-bottom:14px}
+.modal label{font-size:12px;color:#80d8ec;font-weight:600;display:block;margin-bottom:4px}
+.modal input,.modal textarea{width:100%;background:#0a0f1e;border:1px solid rgba(0,180,216,.3);border-radius:8px;padding:9px 12px;font-size:13px;color:#c8d8e8;margin-bottom:12px;font-family:'Barlow',sans-serif;resize:vertical}
+.modal textarea{min-height:70px}
+.modal-note{font-size:12px;color:#4a6a8a;background:#0a0f1e;border-radius:8px;padding:10px 12px;margin-bottom:14px;line-height:1.5}
+.modal-btns{display:flex;gap:8px}
+.modal-send{flex:1;background:#00b4d8;color:#0a0f1e;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:.05em;border:none;border-radius:8px;padding:10px;cursor:pointer}
+.modal-cancel{background:transparent;border:1px solid rgba(0,180,216,.3);color:#4a6a8a;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;border-radius:8px;padding:10px 16px;cursor:pointer}
+.footer{background:#0d1b2a;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(0,180,216,.2);margin-top:4px}
+.footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a8a}
+.footer-right{display:flex;align-items:center;gap:10px}
+.footer-icon svg{width:22px;height:22px;stroke:#00b4d8;fill:none;stroke-width:1.5}
+.footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;color:#00b4d8;letter-spacing:.06em;text-transform:uppercase}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="pill-title">It's My Job<span>Natural Gas</span></div>
+  <div class="icon-box">
+    <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+  </div>
+</div>
+
+<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
+
+<div class="steps">
+  <div class="step active"><span class="step-num">1</span>Listen &amp; read</div>
+  <div class="step active"><span class="step-num">2</span>Describe the plant</div>
+  <div class="step active"><span class="step-num">3</span>True or False</div>
+</div>
+
+<div class="content">
+  <div class="left-col">
+
+    <div class="audio-bar">
+      <span class="audio-label">Teacher audio</span>
+      <audio controls src="teacher-audio-unit9-its-my-job.mp3"></audio>
+    </div>
+
+    <div class="card">
+      <div class="profile-badge">
+        <div class="profile-avatar">👨🏾</div>
+        <div class="profile-info">
+          <div class="profile-name">Jean-Claude Hakizimana</div>
+          <div class="profile-role">Biogas Engineer</div>
+          <div class="profile-loc">📍 Rwanda, Central Africa</div>
+        </div>
+      </div>
+      <div class="reading-text">
+        <p>Biogas can come from organic matter, for example rotting plants and animal waste. When these things rot and there is no oxygen, they make methane.</p>
+        <p>I live in Rwanda, near the centre of Africa. We are a very poor country. Most people here have no electricity and no gas. But we are improving our country. Most people here live by farming. Most people in the countryside have cows, so in fact, we have plenty of animal waste.</p>
+        <p>We are making small biogas plants. They can make gas from animal waste. The dung from two or three cows is enough to make gas for cooking and lighting for one house. We now have more than 300 biogas plants around the country, and we're building more.</p>
+        <p>I am happy making life better here. And we are doing this with waste. Amazing.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Activity 1 — Describe the biogas plant equipment</div>
+      <div class="plant-diagram">
+        <div class="plant-part"><span class="part-name">Mixing tank</span><span class="part-desc">Shape? Location?</span></div>
+        <div class="plant-part"><span class="part-name">Digester tank</span><span class="part-desc">Shape? Location?</span></div>
+        <div class="plant-part"><span class="part-name">Gas holder</span><span class="part-desc">Shape? Location?</span></div>
+        <div class="plant-part"><span class="part-name">Overflow tank</span><span class="part-desc">Shape? Location?</span></div>
+      </div>
+      <p style="font-size:12px;color:#4a6a8a">Use: cylindrical / cuboid · vertical / horizontal · above-ground / underground</p>
+      <details style="margin-top:8px">
+        <summary style="font-size:12px;color:#00b4d8;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.05em">Show answers</summary>
+        <div style="font-size:12px;color:#80d8ec;background:#0a0f1e;border-radius:7px;padding:10px;margin-top:6px;line-height:1.7">
+          Mixing tank → <strong>cuboid</strong><br>
+          Digester tank → <strong>underground</strong><br>
+          Gas holder → <strong>cylindrical, above-ground</strong><br>
+          Overflow tank → <strong>cuboid</strong>
+        </div>
+      </details>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Activity 2 — True (T) or False (F)?</div>
+      <ul class="tf-list">
+        <li class="tf-item">
+          <span class="tf-num">1</span>
+          <span class="tf-text">Biogas comes from underground reserves.</span>
+          <div class="tf-opts"><div class="tf-btn" onclick="pick(this,'1','T')">T</div><div class="tf-btn" onclick="pick(this,'1','F')">F</div></div>
+        </li>
+        <li class="tf-item">
+          <span class="tf-num">2</span>
+          <span class="tf-text">Biogas is mostly methane.</span>
+          <div class="tf-opts"><div class="tf-btn" onclick="pick(this,'2','T')">T</div><div class="tf-btn" onclick="pick(this,'2','F')">F</div></div>
+        </li>
+        <li class="tf-item">
+          <span class="tf-num">3</span>
+          <span class="tf-text">Electricity and gas are easy to get in Rwanda.</span>
+          <div class="tf-opts"><div class="tf-btn" onclick="pick(this,'3','T')">T</div><div class="tf-btn" onclick="pick(this,'3','F')">F</div></div>
+        </li>
+        <li class="tf-item">
+          <span class="tf-num">4</span>
+          <span class="tf-text">A lot of Rwandans are farmers.</span>
+          <div class="tf-opts"><div class="tf-btn" onclick="pick(this,'4','T')">T</div><div class="tf-btn" onclick="pick(this,'4','F')">F</div></div>
+        </li>
+        <li class="tf-item">
+          <span class="tf-num">5</span>
+          <span class="tf-text">Rwanda is planning 300 biogas plants.</span>
+          <div class="tf-opts"><div class="tf-btn" onclick="pick(this,'5','T')">T</div><div class="tf-btn" onclick="pick(this,'5','F')">F</div></div>
+        </li>
+      </ul>
+      <button class="check-btn" onclick="checkTF()">Check answers</button>
+      <div class="feedback" id="tfFb"></div>
+    </div>
+
+  </div>
+
+  <div class="zone-support">
+    <div class="timer-box">
+      <div class="timer-label">Time remaining</div>
+      <div class="timer-display" id="timerDisplay">25:00</div>
+    </div>
+
+    <div class="sidebar-card">
+      <div class="sidebar-title">Biogas Facts</div>
+      <div class="info-item"><strong>Biogas</strong> — gas made from organic waste (not from underground)</div>
+      <div class="info-item"><strong>Methane (CH₄)</strong> — the main gas produced by organic decomposition</div>
+      <div class="info-item"><strong>No oxygen</strong> — decomposition without O₂ produces methane (anaerobic)</div>
+      <div class="info-item"><strong>2–3 cows</strong> → enough gas for cooking &amp; lighting for one house</div>
+      <div class="info-item"><strong>300+ plants</strong> already built in Rwanda</div>
+    </div>
+
+    <button class="wa-btn" onclick="openModal()">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.535 5.858L.057 23.48a.5.5 0 0 0 .61.632l5.788-1.517A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.95 9.95 0 0 1-5.187-1.448l-.372-.22-3.433.9.916-3.345-.242-.384A9.953 9.953 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Enviar respostas
+    </button>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-left">Capsule 121 de 139 · Unit 9 — Natural Gas</div>
+  <div class="footer-right">
+    <div class="footer-icon"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+    <div class="footer-text">Unit 9 — Natural Gas</div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="waModal">
+  <div class="modal">
+    <div class="modal-title">Enviar respostas — It's My Job</div>
+    <div class="modal-sub">Unit 9 — Natural Gas</div>
+    <label for="studentName">Your name</label>
+    <input type="text" id="studentName" placeholder="Type your name" oninput="localStorage.setItem('ef_student_name',this.value)">
+    <label>Activity 2 — True/False answers (1–5)</label>
+    <textarea id="ans1" placeholder="e.g. 1F  2T  3F  4T  5F"></textarea>
+    <div class="modal-note">🎙️ Após enviar, grave seu áudio e envie na mesma conversa.</div>
+    <div class="modal-btns">
+      <button class="modal-cancel" onclick="closeModal()">Cancelar</button>
+      <button class="modal-send" onclick="sendWA()">Enviar no WhatsApp</button>
+    </div>
+  </div>
+</div>
+
+<script>
+var picks={};
+var TF_ANS={1:'F',2:'T',3:'F',4:'T',5:'F'};
+function pick(el,q,val){
+  var row=el.closest('.tf-opts');
+  row.querySelectorAll('.tf-btn').forEach(function(b){b.classList.remove('sel');});
+  el.classList.add('sel');
+  picks[q]=val;
+}
+function checkTF(){
+  var s=0,t=5;
+  for(var q in TF_ANS){
+    var row=document.querySelector('.tf-item:nth-child('+q+') .tf-opts');
+    if(!row)continue;
+    var btns=row.querySelectorAll('.tf-btn');
+    btns.forEach(function(b){
+      b.classList.remove('correct','wrong');
+      var bval=b.textContent.trim();
+      if(bval===TF_ANS[q]){
+        if(b.classList.contains('sel')){b.classList.add('correct');s++;}
+        else b.classList.add('correct');
+      } else if(b.classList.contains('sel')){b.classList.add('wrong');}
+    });
+  }
+  var fb=document.getElementById('tfFb');
+  fb.className='feedback show '+(s===t?'ok':'no');
+  fb.textContent=s+'/'+t+' correct. '+(s===t?'Excellent!':'Answers: 1F · 2T · 3F · 4T · 5F');
+}
+function openModal(){
+  var n=localStorage.getItem('ef_student_name')||'';
+  document.getElementById('studentName').value=n;
+  document.getElementById('waModal').classList.add('open');
+}
+function closeModal(){document.getElementById('waModal').classList.remove('open');}
+function sendWA(){
+  var name=document.getElementById('studentName').value.trim()||'Student';
+  localStorage.setItem('ef_student_name',name);
+  var now=new Date();
+  var date=now.toLocaleDateString('pt-BR');
+  var time=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  var a1=document.getElementById('ans1').value.trim()||'(no answer)';
+  var msg='👤 '+name+'\n📅 '+date+' às '+time+'\n🎙️ It\'s My Job — Unit 9 — Natural Gas\n📌 Activity 2: '+a1+'\n👇 Áudio na mensagem seguinte';
+  window.open('https://wa.me/5522999585058?text='+encodeURIComponent(msg),'_blank');
+  closeModal();
+}
+document.getElementById('waModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+var secs=25*60;
+function tick(){
+  var m=Math.floor(secs/60),s=secs%60;
+  var disp=document.getElementById('timerDisplay');
+  disp.textContent=(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+  if(secs<=60)disp.style.color='#e74c3c';
+  else if(secs<=180)disp.style.color='#f1c40f';
+  else disp.style.color='#00b4d8';
+  if(secs>0){secs--;setTimeout(tick,1000);}
+}
+tick();
+</script>
+</body>
+</html>

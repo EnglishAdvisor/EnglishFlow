@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>It's My Job · Unit 14 — Emergencies</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
+.header{background:#0d1b2a;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid rgba(231,76,60,.25)}
+.pill-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:700;color:#f0958d;line-height:1}
+.pill-title span{color:#e74c3c;font-size:clamp(14px,2.5vw,22px);font-weight:600;display:block;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.icon-box{width:48px;height:48px;border:1.5px solid rgba(231,76,60,.4);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.icon-box svg{width:26px;height:26px;stroke:#e74c3c;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(231,76,60,.2);padding:6px 24px;font-size:11px;color:#f0958d;text-align:center}
+.translate-warning strong{color:#e74c3c}
+.content{max-width:900px;margin:0 auto;padding:20px 16px 32px;display:flex;gap:16px;align-items:flex-start}
+.left-col{flex:1;min-width:0}
+.zone-support{width:220px;flex-shrink:0}
+@media(max-width:640px){.content{flex-direction:column}.zone-support{width:100%;order:2}}
+.audio-bar{background:#0a1628;border:1px solid rgba(231,76,60,.3);border-radius:10px;padding:12px 16px;display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.audio-label{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;color:#f0958d;flex:1}
+.audio-note{font-size:11px;color:#4a6a8a;margin-top:2px}
+.audio-icon svg{width:28px;height:28px;stroke:#e74c3c;fill:none;stroke-width:1.5}
+.profile-card{background:#111827;border:1px solid rgba(231,76,60,.2);border-radius:12px;padding:18px;margin-bottom:12px;display:flex;gap:14px;align-items:flex-start}
+.profile-avatar{width:64px;height:64px;border-radius:50%;background:#0a1628;border:2px solid rgba(231,76,60,.4);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.profile-avatar svg{width:36px;height:36px;stroke:#e74c3c;fill:none;stroke-width:1.2}
+.profile-info{flex:1}
+.profile-name{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:#f0958d}
+.profile-role{font-size:12px;color:#e74c3c;font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px}
+.profile-loc{font-size:12px;color:#4a6a8a}
+.bio-card{background:#111827;border:1px solid rgba(231,76,60,.18);border-radius:12px;padding:16px;margin-bottom:12px;font-size:13px;color:#c8d8e8;line-height:1.8}
+.bio-card p{margin-bottom:8px}
+.bio-card p:last-child{margin-bottom:0}
+.bio-card strong{color:#f0958d}
+.act-card{background:#111827;border:1px solid rgba(231,76,60,.18);border-radius:12px;padding:16px;margin-bottom:10px}
+.act-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:#e74c3c;margin-bottom:10px}
+.fill-row{display:flex;align-items:baseline;gap:6px;padding:7px 0;border-bottom:1px solid rgba(231,76,60,.1);font-size:13px;color:#c8d8e8;flex-wrap:wrap}
+.fill-row:last-child{border-bottom:none}
+.fill-num{color:#e74c3c;font-weight:700;font-family:'Barlow Condensed',sans-serif;font-size:14px;flex-shrink:0}
+.fill-ans{display:inline-block;background:rgba(231,76,60,.1);border-bottom:1.5px solid #e74c3c;min-width:80px;color:#f0958d;font-weight:600;text-align:center;padding:0 4px;border-radius:2px 2px 0 0}
+.q-list{list-style:none}
+.q-item{padding:7px 0;border-bottom:1px solid rgba(231,76,60,.1);font-size:13px;color:#c8d8e8;line-height:1.6;display:flex;gap:8px}
+.q-item:last-child{border-bottom:none}
+.q-num{color:#e74c3c;font-weight:700;flex-shrink:0;font-family:'Barlow Condensed',sans-serif;font-size:14px;min-width:18px}
+.sidebar-box{background:#111827;border:1px solid rgba(231,76,60,.18);border-radius:12px;padding:14px;margin-bottom:10px}
+.sidebar-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:#e74c3c;margin-bottom:10px}
+.kw-item{display:flex;flex-direction:column;padding:5px 0;border-bottom:1px solid rgba(231,76,60,.1)}
+.kw-item:last-child{border-bottom:none}
+.kw-en{font-size:13px;color:#f0958d;font-weight:600}
+.kw-def{font-size:11px;color:#4a6a8a;margin-top:1px}
+.wa-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:#e74c3c;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:none;border-radius:10px;padding:13px 20px;width:100%;cursor:pointer;transition:background .2s;margin-top:6px}
+.wa-btn:hover{background:#f0958d}
+.wa-btn svg{width:20px;height:20px;fill:#fff;flex-shrink:0}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal-overlay.open{display:flex}
+.modal{background:#111827;border:1px solid rgba(231,76,60,.3);border-radius:14px;padding:22px;width:100%;max-width:420px;max-height:90vh;overflow-y:auto}
+.modal-title{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:#f0958d;margin-bottom:4px}
+.modal-sub{font-size:12px;color:#4a6a8a;margin-bottom:14px}
+.modal label{font-size:12px;color:#f0958d;font-weight:600;display:block;margin-bottom:4px}
+.modal input,.modal textarea{width:100%;background:#0a0f1e;border:1px solid rgba(231,76,60,.3);border-radius:8px;padding:9px 12px;font-size:13px;color:#c8d8e8;margin-bottom:12px;font-family:'Barlow',sans-serif;resize:vertical}
+.modal-note{font-size:12px;color:#4a6a8a;background:#0a0f1e;border-radius:8px;padding:10px 12px;margin-bottom:14px;line-height:1.5}
+.modal-btns{display:flex;gap:8px}
+.modal-send{flex:1;background:#e74c3c;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;border:none;border-radius:8px;padding:10px;cursor:pointer}
+.modal-cancel{background:transparent;border:1px solid rgba(231,76,60,.3);color:#4a6a8a;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;border-radius:8px;padding:10px 16px;cursor:pointer}
+.footer{background:#0d1b2a;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(231,76,60,.2);margin-top:4px}
+.footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a8a}
+.footer-right{display:flex;align-items:center;gap:10px}
+.footer-icon svg{width:22px;height:22px;stroke:#e74c3c;fill:none;stroke-width:1.5}
+.footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;color:#e74c3c;letter-spacing:.06em;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="pill-title">It's My Job<span>Saresh Budhrani — Rig Medic</span></div>
+  <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+</div>
+<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
+<div class="content">
+  <div class="left-col">
+    <div class="audio-bar">
+      <div class="audio-icon"><svg viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg></div>
+      <div><div class="audio-label">Listen to Saresh Budhrani</div><div class="audio-note">teacher-audio-unit14-its-my-job.mp3</div></div>
+    </div>
+
+    <div class="profile-card">
+      <div class="profile-avatar"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+      <div class="profile-info">
+        <div class="profile-role">It's My Job</div>
+        <div class="profile-name">Saresh Budhrani</div>
+        <div class="profile-loc">Rig Medic · Offshore Drilling Rig</div>
+      </div>
+    </div>
+
+    <div class="bio-card">
+      <p>My name is Saresh Budhrani and I am a <strong>rig medic</strong> on an offshore drilling rig. I work on board the rig, and my job is to keep the workers healthy and safe.</p>
+      <p>When someone is sick or injured, I <strong>take care of them</strong>. If someone is badly injured or very sick, I arrange <strong>evacuation</strong> — we use a helicopter or a support vessel to get them to a hospital on shore.</p>
+      <p>When new employees arrive on the rig, I give them <strong>basic health and safety training</strong>. I teach them what to do in an emergency, where the emergency equipment is, and how to use it.</p>
+      <p>We have a <strong>fire-fighting plan</strong> and a full <strong>evacuation plan</strong> for the rig. In case of a serious emergency, we need to get everyone off the rig quickly and safely. I help to coordinate these plans.</p>
+      <p>If there are problems with <strong>noise, waste management, or hygiene</strong> on the rig, I also deal with those. My job is to make sure the rig is a healthy environment for everyone.</p>
+    </div>
+
+    <div class="act-card">
+      <div class="act-title">Activity 1 — Complete the sentences with the correct verb</div>
+      <div class="fill-row"><span class="fill-num">1</span>When someone is sick or injured, I <span class="fill-ans">take care</span> of them.</div>
+      <div class="fill-row"><span class="fill-num">2</span>If someone is badly injured, I <span class="fill-ans">arrange</span> evacuation.</div>
+      <div class="fill-row"><span class="fill-num">3</span>When new employees arrive, I <span class="fill-ans">give</span> them basic health and safety training.</div>
+      <div class="fill-row"><span class="fill-num">4</span>If there's a fire, we <span class="fill-ans">follow</span> a fire-fighting plan.</div>
+      <div class="fill-row"><span class="fill-num">5</span>We have an evacuation plan, in case we need to <span class="fill-ans">get</span> everyone off the rig quickly.</div>
+      <div class="fill-row"><span class="fill-num">6</span>If there are problems with noise or waste, I <span class="fill-ans">deal with</span> them.</div>
+    </div>
+
+    <div class="act-card">
+      <div class="act-title">Activity 2 — Comprehension questions</div>
+      <ul class="q-list">
+        <li class="q-item"><span class="q-num">1</span>What is Saresh's job title?</li>
+        <li class="q-item"><span class="q-num">2</span>How does evacuation happen if someone is badly injured?</li>
+        <li class="q-item"><span class="q-num">3</span>What does Saresh teach new employees?</li>
+        <li class="q-item"><span class="q-num">4</span>What two emergency plans does the rig have?</li>
+        <li class="q-item"><span class="q-num">5</span>Besides medical care, what other problems does Saresh deal with?</li>
+      </ul>
+    </div>
+
+    <button class="wa-btn" onclick="openModal()">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.535 5.858L.057 23.48a.5.5 0 0 0 .61.632l5.788-1.517A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.95 9.95 0 0 1-5.187-1.448l-.372-.22-3.433.9.916-3.345-.242-.384A9.953 9.953 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Enviar respostas
+    </button>
+  </div>
+  <div class="zone-support">
+    <div class="sidebar-box">
+      <div class="sidebar-title">Saresh's duties</div>
+      <div class="kw-item"><span class="kw-en">Takes care of sick/injured</span><span class="kw-def">first medical response on the rig</span></div>
+      <div class="kw-item"><span class="kw-en">Arranges evacuation</span><span class="kw-def">helicopter or vessel to shore hospital</span></div>
+      <div class="kw-item"><span class="kw-en">Trains new employees</span><span class="kw-def">emergency procedures, equipment location</span></div>
+      <div class="kw-item"><span class="kw-en">Fire-fighting plan</span><span class="kw-def">coordinates response to fire onboard</span></div>
+      <div class="kw-item"><span class="kw-en">Evacuation plan</span><span class="kw-def">gets everyone off the rig safely</span></div>
+      <div class="kw-item"><span class="kw-en">Manages hygiene/noise/waste</span><span class="kw-def">general health environment</span></div>
+    </div>
+    <div class="sidebar-box">
+      <div class="sidebar-title">Key verbs</div>
+      <div class="kw-item"><span class="kw-en">take care of</span><span class="kw-def">look after someone who is sick</span></div>
+      <div class="kw-item"><span class="kw-en">arrange</span><span class="kw-def">organise something to happen</span></div>
+      <div class="kw-item"><span class="kw-en">deal with</span><span class="kw-def">manage or handle a problem</span></div>
+      <div class="kw-item"><span class="kw-en">coordinate</span><span class="kw-def">organise different people to work together</span></div>
+    </div>
+  </div>
+</div>
+<div class="footer">
+  <div class="footer-left">Capsule 181 de 191 · Unit 14 — Emergencies</div>
+  <div class="footer-right">
+    <div class="footer-icon"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+    <div class="footer-text">Unit 14 — Emergencies</div>
+  </div>
+</div>
+<div class="modal-overlay" id="waModal">
+  <div class="modal">
+    <div class="modal-title">Enviar respostas — It's My Job</div>
+    <div class="modal-sub">Unit 14 — Saresh Budhrani</div>
+    <label for="studentName">Your name</label>
+    <input type="text" id="studentName" placeholder="Type your name" oninput="localStorage.setItem('ef_student_name',this.value)">
+    <label for="ans1">Activity 2 — Comprehension (1–5)</label>
+    <textarea id="ans1" rows="6" placeholder="1. ... 2. ... 3. ... 4. ... 5. ..."></textarea>
+    <div class="modal-note">🎙️ Após enviar, grave seu áudio e envie na mesma conversa.</div>
+    <div class="modal-btns">
+      <button class="modal-cancel" onclick="closeModal()">Cancelar</button>
+      <button class="modal-send" onclick="sendWA()">Enviar no WhatsApp</button>
+    </div>
+  </div>
+</div>
+<script>
+function openModal(){var n=localStorage.getItem('ef_student_name')||'';document.getElementById('studentName').value=n;document.getElementById('waModal').classList.add('open');}
+function closeModal(){document.getElementById('waModal').classList.remove('open');}
+function sendWA(){
+  var name=document.getElementById('studentName').value.trim()||'Student';
+  localStorage.setItem('ef_student_name',name);
+  var now=new Date();
+  var date=now.toLocaleDateString('pt-BR');
+  var time=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  var a1=document.getElementById('ans1').value.trim()||'—';
+  var msg='👤 '+name+'\n📅 '+date+' às '+time+'\n🎙️ It\'s My Job — Unit 14 — Emergencies\n📌 Activity 2: '+a1+'\n👇 Áudio na mensagem seguinte';
+  window.open('https://wa.me/5522999585058?text='+encodeURIComponent(msg),'_blank');
+  closeModal();
+}
+document.getElementById('waModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+</script>
+</body>
+</html>

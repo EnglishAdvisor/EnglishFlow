@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Speaking · Unit 11 — Workshop Operations</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
+.header{background:#0d1b2a;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid rgba(241,196,15,.25)}
+.pill-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:700;color:#f5da6e;line-height:1}
+.pill-title span{color:#f1c40f;font-size:clamp(14px,2.5vw,22px);font-weight:600;display:block;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.icon-box{width:48px;height:48px;border:1.5px solid rgba(241,196,15,.4);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.icon-box svg{width:26px;height:26px;stroke:#f1c40f;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(241,196,15,.2);padding:6px 24px;font-size:11px;color:#f5da6e;text-align:center}
+.translate-warning strong{color:#f1c40f}
+.content{max-width:900px;margin:0 auto;padding:20px 16px 32px;display:grid;grid-template-columns:1fr 260px;gap:20px}
+@media(max-width:700px){.content{grid-template-columns:1fr}}
+.left-col{display:flex;flex-direction:column;gap:16px}
+.scenario-card{background:#0a1628;border:1px solid rgba(241,196,15,.35);border-radius:14px;padding:20px}
+.scenario-title{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:#f5da6e;margin-bottom:12px}
+.scenario-text{font-size:14px;color:#c8d8e8;line-height:1.7;margin-bottom:14px}
+.scenario-text strong{color:#f1c40f}
+.project-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.project-item{background:#111827;border:1px solid rgba(241,196,15,.2);border-radius:10px;padding:12px}
+.project-label{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;color:#f1c40f;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+.project-status{font-size:22px;margin-bottom:4px}
+.project-name{font-size:13px;color:#c8d8e8;font-weight:500}
+.project-done{color:#2ecc71}
+.project-pending{color:#e74c3c}
+.day-tag{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:600;color:#4a6a8a;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.act-card{background:#111827;border:1px solid rgba(241,196,15,.18);border-radius:12px;padding:16px}
+.act-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:#f1c40f;margin-bottom:8px}
+.role-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+.role-card{background:#0a0f1e;border:1px solid rgba(241,196,15,.2);border-radius:10px;padding:12px}
+.role-tag{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;color:#f1c40f;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.role-text{font-size:12px;color:#c8d8e8;line-height:1.6}
+.q-row{padding:7px 0;border-bottom:1px solid rgba(241,196,15,.1);font-size:13px;color:#c8d8e8;line-height:1.5}
+.q-row:last-child{border-bottom:none}
+.zone-support{display:flex;flex-direction:column;gap:14px}
+.useful-card{background:#0d1b2a;border:1px solid rgba(241,196,15,.2);border-radius:12px;padding:14px}
+.useful-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#f1c40f;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
+.ul-item{font-size:12px;color:#c8d8e8;padding:4px 0;border-bottom:1px solid rgba(241,196,15,.08);line-height:1.4}
+.ul-item:last-child{border-bottom:none}
+.ul-item strong{color:#f5da6e}
+.task-box{background:#0a1628;border:1px solid rgba(241,196,15,.35);border-radius:12px;padding:16px}
+.task-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;color:#f1c40f;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+.task-text{font-size:12px;color:#c8d8e8;line-height:1.6}
+.wa-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:#f1c40f;color:#0a0f1e;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:none;border-radius:10px;padding:13px 20px;width:100%;cursor:pointer;transition:background .2s;margin-top:6px}
+.wa-btn:hover{background:#f5da6e}
+.wa-btn svg{width:20px;height:20px;fill:#0a0f1e;flex-shrink:0}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal-overlay.open{display:flex}
+.modal{background:#111827;border:1px solid rgba(241,196,15,.3);border-radius:14px;padding:22px;width:100%;max-width:420px}
+.modal-title{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:#f5da6e;margin-bottom:4px}
+.modal-sub{font-size:12px;color:#4a6a8a;margin-bottom:14px}
+.modal label{font-size:12px;color:#f5da6e;font-weight:600;display:block;margin-bottom:4px}
+.modal input{width:100%;background:#0a0f1e;border:1px solid rgba(241,196,15,.3);border-radius:8px;padding:9px 12px;font-size:13px;color:#c8d8e8;margin-bottom:12px;font-family:'Barlow',sans-serif}
+.modal-note{font-size:12px;color:#4a6a8a;background:#0a0f1e;border-radius:8px;padding:10px 12px;margin-bottom:14px;line-height:1.5}
+.modal-btns{display:flex;gap:8px}
+.modal-send{flex:1;background:#f1c40f;color:#0a0f1e;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;border:none;border-radius:8px;padding:10px;cursor:pointer}
+.modal-cancel{background:transparent;border:1px solid rgba(241,196,15,.3);color:#4a6a8a;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;border-radius:8px;padding:10px 16px;cursor:pointer}
+.footer{background:#0d1b2a;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(241,196,15,.2);margin-top:4px}
+.footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a8a}
+.footer-right{display:flex;align-items:center;gap:10px}
+.footer-icon svg{width:22px;height:22px;stroke:#f1c40f;fill:none;stroke-width:1.5}
+.footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;color:#f1c40f;letter-spacing:.06em;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="pill-title">Speaking<span>Saying What's Been Done</span></div>
+  <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+</div>
+<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
+<div class="content">
+  <div class="left-col">
+    <div class="scenario-card">
+      <div class="scenario-title">Oil Tank Containment Project</div>
+      <div class="scenario-text">Your team is building an <strong>oil tank containment</strong> in the workshop. The containment will be delivered by truck to the site. You need to report progress to your manager using the Present Perfect.</div>
+      <div class="day-tag">Status — Tuesday</div>
+      <div class="project-grid">
+        <div class="project-item">
+          <div class="project-label">Task 1</div>
+          <div class="project-status project-done">✅</div>
+          <div class="project-name">Build base</div>
+        </div>
+        <div class="project-item">
+          <div class="project-label">Task 2</div>
+          <div class="project-status project-done">✅</div>
+          <div class="project-name">Assemble containment</div>
+        </div>
+        <div class="project-item">
+          <div class="project-label">Task 3</div>
+          <div class="project-status project-pending">❌</div>
+          <div class="project-name">Put tank in containment</div>
+        </div>
+        <div class="project-item">
+          <div class="project-label">Task 4</div>
+          <div class="project-status project-pending">❌</div>
+          <div class="project-name">Weld containment</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="act-card">
+      <div class="act-title">Role-play — Wednesday Update</div>
+      <div class="q-row">Student A telephones to ask about progress. Student B (in the workshop) answers.</div>
+      <div class="role-grid">
+        <div class="role-card">
+          <div class="role-tag">Student A — Manager</div>
+          <div class="role-text">Ask questions using <em>Have they...?</em><br>• done the grinding?<br>• checked inside the tank?<br>• attached the cover?<br>• put the tank on the truck?</div>
+        </div>
+        <div class="role-card">
+          <div class="role-tag">Student B — Workshop</div>
+          <div class="role-text">Answer Yes, we have / No, we haven't.<br><br>Then tell A three things you have done today and three things you haven't done.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="zone-support">
+    <div class="useful-card">
+      <div class="useful-title">Useful Language</div>
+      <div class="ul-item"><strong>Have they built the base?</strong><br>Yes, they have. / No, they haven't.</div>
+      <div class="ul-item"><strong>We've done the grinding.</strong></div>
+      <div class="ul-item"><strong>We haven't attached the cover yet.</strong></div>
+      <div class="ul-item"><strong>Has Simon checked the inside?</strong><br>Yes, he has.</div>
+    </div>
+    <div class="task-box">
+      <div class="task-label">Task</div>
+      <div class="task-text">Do the role-play with a partner. Record a short audio and send via WhatsApp.</div>
+    </div>
+    <button class="wa-btn" onclick="openModal()">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.535 5.858L.057 23.48a.5.5 0 0 0 .61.632l5.788-1.517A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.95 9.95 0 0 1-5.187-1.448l-.372-.22-3.433.9.916-3.345-.242-.384A9.953 9.953 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Enviar áudio
+    </button>
+  </div>
+</div>
+<div class="footer">
+  <div class="footer-left">Capsule 147 de 163 · Unit 11 — Workshop Operations</div>
+  <div class="footer-right">
+    <div class="footer-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+    <div class="footer-text">Unit 11 — Workshop Operations</div>
+  </div>
+</div>
+<div class="modal-overlay" id="waModal">
+  <div class="modal">
+    <div class="modal-title">Enviar áudio — Speaking</div>
+    <div class="modal-sub">Unit 11 — Workshop Operations</div>
+    <label for="studentName">Your name</label>
+    <input type="text" id="studentName" placeholder="Type your name" oninput="localStorage.setItem('ef_student_name',this.value)">
+    <div class="modal-note">Clique em <strong>Enviar no WhatsApp</strong> — depois grave e envie o áudio da conversa direto no WhatsApp.</div>
+    <div class="modal-btns">
+      <button class="modal-cancel" onclick="closeModal()">Cancelar</button>
+      <button class="modal-send" onclick="sendWA()">Enviar no WhatsApp</button>
+    </div>
+  </div>
+</div>
+<script>
+function openModal(){var n=localStorage.getItem('ef_student_name')||'';document.getElementById('studentName').value=n;document.getElementById('waModal').classList.add('open');}
+function closeModal(){document.getElementById('waModal').classList.remove('open');}
+function sendWA(){
+  var name=document.getElementById('studentName').value.trim()||'Student';
+  localStorage.setItem('ef_student_name',name);
+  var now=new Date();
+  var date=now.toLocaleDateString('pt-BR');
+  var time=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  var msg='👤 '+name+'\n📅 '+date+' às '+time+'\n🎙️ Speaking — Unit 11 — Workshop Operations\n👇 Áudio na mensagem seguinte';
+  window.open('https://wa.me/5522999585058?text='+encodeURIComponent(msg),'_blank');
+  closeModal();
+}
+document.getElementById('waModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+</script>
+</body>
+</html>

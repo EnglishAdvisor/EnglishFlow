@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Writing · Unit 2 — Upstream</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
+.header{background:#0d1b2a;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid rgba(245,166,35,.25)}
+.pill-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:700;color:#f5c87a;line-height:1}
+.pill-title span{color:#f5a623;font-size:clamp(14px,2.5vw,22px);font-weight:600;display:block;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.icon-box{width:48px;height:48px;border:1.5px solid rgba(245,166,35,.4);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.icon-box svg{width:26px;height:26px;stroke:#f5a623;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.countdown-bar{background:#0d1b2a;border-bottom:1px solid rgba(245,166,35,.2);padding:8px 24px;display:flex;align-items:center;gap:12px}
+.countdown-display{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:#f5a623;letter-spacing:.08em;min-width:60px}
+.countdown-display.warning{color:#f59e0b}.countdown-display.urgent{color:#ef4444}
+.progress-track{flex:1;height:4px;background:rgba(245,166,35,.13);border-radius:2px;overflow:hidden}
+.progress-fill{height:100%;background:#f5a623;border-radius:2px;transition:width 1s linear,background .5s}
+.progress-fill.warning{background:#f59e0b}.progress-fill.urgent{background:#ef4444}
+.audio-bar{background:#0a1628;border-bottom:1px solid rgba(245,166,35,.2);padding:8px 24px;display:flex;align-items:center;gap:12px}
+.audio-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#f5a623;font-weight:600;white-space:nowrap}
+.audio-bar audio{flex:1;height:32px;accent-color:#f5a623}
+.translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(245,166,35,.2);padding:6px 24px;font-size:11px;color:#f5c87a;text-align:center}
+.translate-warning strong{color:#f5a623}
+.steps{display:flex;gap:6px;padding:8px 16px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.steps::-webkit-scrollbar{display:none}
+.step{flex-shrink:0;display:flex;align-items:center;gap:6px;background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.25);border-radius:20px;padding:6px 12px;font-size:11.5px;color:#f5c87a;font-weight:500;white-space:nowrap}
+.step svg{width:13px;height:13px;stroke:#f5a623;fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0}
+.content{display:grid;grid-template-columns:1fr 300px;gap:12px;padding:0 16px 16px}
+.left-col{display:flex;flex-direction:column;gap:12px}
+.main-area{background:#111827;border-radius:10px;padding:14px 16px}
+.zone-label{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#f5a623;font-weight:600;margin-bottom:10px}
+.spelling-box{background:#0a1628;border:1.5px solid rgba(245,166,35,.3);border-radius:10px;padding:12px 14px;margin-bottom:12px}
+.spelling-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:#f5a623;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+.rule-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:7px;font-size:12px;color:#c8d8e8;line-height:1.5}
+.rule-tag{background:rgba(245,166,35,.15);color:#f5a623;font-weight:700;font-family:'Barlow Condensed',sans-serif;font-size:12px;padding:2px 8px;border-radius:4px;white-space:nowrap;flex-shrink:0;margin-top:1px}
+.word-chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:5px}
+.chip{background:rgba(245,166,35,.12);border:1px solid rgba(245,166,35,.25);border-radius:5px;padding:3px 8px;font-size:11.5px;color:#f5c87a;font-family:'Barlow Condensed',sans-serif;font-weight:600}
+.chip em{color:#ef4444;font-style:normal}
+.activity-title{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:#f5a623;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;margin-top:12px}
+.exercise-list{display:flex;flex-direction:column;gap:5px;margin-bottom:10px}
+.exercise-item{background:#0a1628;border:1px solid rgba(245,166,35,.14);border-radius:6px;padding:7px 10px;font-size:11.5px;color:#c8d8e8;line-height:1.5}
+.exercise-num{color:#f5a623;font-weight:700}
+.answer-toggle{font-size:10px;color:#4a6a8a;cursor:pointer;text-decoration:underline;margin-top:4px;display:block;text-align:right}
+.answers-box{display:none;background:#0a1628;border:1px solid rgba(245,166,35,.18);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:11px;color:#c8d8e8;line-height:1.7}
+.answers-box.open{display:block}
+.task-box{background:#0a1628;border:1px solid rgba(245,166,35,.25);border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.task-box p{font-size:11px;color:#f5c87a;font-style:italic;line-height:1.45}
+.whatsapp-btn{display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;border:none;border-radius:8px;padding:7px 12px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:background .2s;width:100%}
+.whatsapp-btn:hover{background:#1ebc58}
+.whatsapp-btn svg{width:16px;height:16px;fill:#fff;flex-shrink:0}
+.zone-support{background:#111827;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:6px;align-self:start}
+.sidebar-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;color:#f5c87a;text-transform:uppercase;letter-spacing:.08em;padding-bottom:8px;border-bottom:1px solid rgba(245,166,35,.2);margin-bottom:4px}
+.key-item{padding:5px 0;border-bottom:1px solid rgba(245,166,35,.09);font-size:11.5px;color:#c8d8e8;display:flex;flex-direction:column;gap:2px}
+.key-item:last-child{border-bottom:none}
+.key-word{color:#f5a623;font-weight:700;font-family:'Barlow Condensed',sans-serif;font-size:13px}
+.key-def{font-size:10.5px;color:#4a6a8a}
+.footer{background:#0d1b2a;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(245,166,35,.2);margin-top:4px}
+.footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a8a;letter-spacing:.04em}
+.footer-right{display:flex;align-items:center;gap:10px}
+.footer-icon svg{width:22px;height:22px;stroke:#f5a623;fill:none;stroke-width:1.5}
+.footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;color:#f5a623;letter-spacing:.06em;text-transform:uppercase}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);display:flex;align-items:center;justify-content:center;z-index:100;padding:16px}
+.modal-box{background:#111827;border:1px solid rgba(245,166,35,.25);border-radius:14px;padding:24px;max-width:480px;width:100%;max-height:85vh;overflow-y:auto;display:flex;flex-direction:column;gap:14px}
+.modal-title{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:#f5c87a}
+.modal-field label{font-size:11px;color:#f5a623;text-transform:uppercase;letter-spacing:.08em;font-weight:600;display:block;margin-bottom:5px}
+.modal-field input[type='text']{width:100%;background:#0a1628;border:1px solid rgba(245,166,35,.25);border-radius:6px;padding:9px;font-size:12px;color:#c8d8e8;font-family:'Barlow',sans-serif;outline:none}
+.modal-field input[type='text']:focus{border-color:#f5a623}
+.modal-field textarea{width:100%;background:#0a1628;border:1px solid rgba(245,166,35,.25);border-radius:6px;padding:9px;font-size:12px;color:#c8d8e8;font-family:'Barlow',sans-serif;resize:vertical;min-height:72px;outline:none}
+.modal-field textarea:focus{border-color:#f5a623}
+.modal-reminder{font-size:11px;color:#4a6a8a;font-style:italic;border-top:1px solid rgba(245,166,35,.13);padding-top:10px}
+.modal-actions{display:flex;gap:8px}
+.modal-cancel{flex:1;background:transparent;border:1px solid rgba(245,166,35,.25);color:#4a6a8a;border-radius:8px;padding:9px;font-family:'Barlow Condensed',sans-serif;font-size:14px;cursor:pointer}
+.modal-send{flex:2;display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;border:none;border-radius:8px;padding:9px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;cursor:pointer}
+.modal-send:hover{background:#1ebc58}
+.modal-send svg{width:15px;height:15px;fill:#fff}
+@media(max-width:700px){.content{grid-template-columns:1fr}.steps{padding:6px 12px}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="pill-title">Writing<span>Upstream</span></div>
+  <div class="icon-box">
+    <svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+  </div>
+</div>
+
+<div class="countdown-bar">
+  <span class="countdown-display" id="timer">20:00</span>
+  <div class="progress-track"><div class="progress-fill" id="progress" style="width:100%"></div></div>
+</div>
+
+<div class="audio-bar">
+  <span class="audio-label">▶ Audio</span>
+  <audio controls src="teacher-audio-unit2-writing.mp3"></audio>
+</div>
+
+<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
+
+<div class="steps">
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/></svg>1. Listen &amp; study</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>2. Do the exercises</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>3. Record audio</div>
+</div>
+
+<div class="content">
+  <div class="left-col">
+    <div class="main-area">
+      <div class="zone-label">Writing — Spelling: the letter e</div>
+
+      <!-- Rule 1: silent e -->
+      <div class="spelling-box">
+        <div class="spelling-title">Rule 1 — Silent e at the end of words</div>
+        <div class="rule-row">
+          <span class="rule-tag">Silent e</span>
+          Many words end in a silent <strong style="color:#f5a623">e</strong>. The e is not pronounced but it changes the vowel sound before it (makes it long).
+        </div>
+        <div class="word-chips">
+          <span class="chip">pipelin<em>e</em></span>
+          <span class="chip">explor<em>e</em></span>
+          <span class="chip">produc<em>e</em></span>
+          <span class="chip">locat<em>e</em></span>
+          <span class="chip">operat<em>e</em></span>
+          <span class="chip">hav<em>e</em></span>
+          <span class="chip">mak<em>e</em></span>
+          <span class="chip">tak<em>e</em></span>
+        </div>
+      </div>
+
+      <!-- Rule 2: e before s -->
+      <div class="spelling-box">
+        <div class="spelling-title">Rule 2 — e before s (plurals &amp; 3rd person)</div>
+        <div class="rule-row">
+          <span class="rule-tag">-es</span>
+          Words ending in -e or -ch/-sh/-s/-x/-z add <strong style="color:#f5a623">es</strong> or keep the e:
+        </div>
+        <div class="word-chips">
+          <span class="chip">compani<em>es</em></span>
+          <span class="chip">industri<em>es</em></span>
+          <span class="chip">produc<em>es</em></span>
+          <span class="chip">explor<em>es</em></span>
+          <span class="chip">operat<em>es</em></span>
+          <span class="chip">locat<em>es</em></span>
+        </div>
+      </div>
+
+      <!-- Rule 3: ee/ea words -->
+      <div class="spelling-box">
+        <div class="spelling-title">Rule 3 — ee and ea vowel sounds</div>
+        <div class="rule-row">
+          <span class="rule-tag">ee / ea</span>
+          Both <strong style="color:#f5a623">ee</strong> and <strong style="color:#f5a623">ea</strong> usually make the /iː/ sound:
+        </div>
+        <div class="word-chips">
+          <span class="chip">n<em>ee</em>d</span>
+          <span class="chip">f<em>ee</em>d</span>
+          <span class="chip">agr<em>ee</em></span>
+          <span class="chip">s<em>ea</em></span>
+          <span class="chip">t<em>ea</em>m</span>
+          <span class="chip">r<em>ea</em>d</span>
+          <span class="chip">d<em>ea</em>l</span>
+        </div>
+      </div>
+
+      <div class="activity-title">Activity 1 — Add e or es to complete the words</div>
+      <div class="exercise-list">
+        <div class="exercise-item"><span class="exercise-num">1.</span> The company operat___ in Kazakhstan.</div>
+        <div class="exercise-item"><span class="exercise-num">2.</span> The driller explor___ new locations.</div>
+        <div class="exercise-item"><span class="exercise-num">3.</span> Oil and gas industry___ employ millions of people.</div>
+        <div class="exercise-item"><span class="exercise-num">4.</span> They build a pipelin___ to transport oil.</div>
+        <div class="exercise-item"><span class="exercise-num">5.</span> The geologist locat___ the best place to drill.</div>
+      </div>
+      <span class="answer-toggle" onclick="toggleAnswers()">▼ Show answers</span>
+      <div class="answers-box" id="answersBox">1: operates · 2: explores · 3: industries · 4: pipeline · 5: locates</div>
+
+      <div class="activity-title">Activity 2 — Write these words correctly (add the missing e)</div>
+      <div class="exercise-list">
+        <div class="exercise-item"><span class="exercise-num">1.</span> nead → _____ (need)</div>
+        <div class="exercise-item"><span class="exercise-num">2.</span> piplin → _____</div>
+        <div class="exercise-item"><span class="exercise-num">3.</span> explor → _____</div>
+        <div class="exercise-item"><span class="exercise-num">4.</span> tam → _____</div>
+        <div class="exercise-item"><span class="exercise-num">5.</span> oprat → _____</div>
+      </div>
+
+      <div class="task-box">
+        <p>📝 Answer in writing OR record a short audio. Send via WhatsApp.</p>
+        <button class="whatsapp-btn" onclick="openModal()">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="#fff"/></svg>
+          Enviar respostas
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="zone-support">
+    <div class="sidebar-title">Spelling rules</div>
+    <div class="key-item"><span class="key-word">Silent e</span><span class="key-def">pipeline, explore, locate</span></div>
+    <div class="key-item"><span class="key-word">-es (3rd pers.)</span><span class="key-def">operates, produces</span></div>
+    <div class="key-item"><span class="key-word">-ies (plural)</span><span class="key-def">industries, companies</span></div>
+    <div class="key-item"><span class="key-word">ee = /iː/</span><span class="key-def">need, feed, agree</span></div>
+    <div class="key-item"><span class="key-word">ea = /iː/</span><span class="key-def">sea, team, read</span></div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-left">Capsule 26 de 30 · Unit 2 — Upstream</div>
+  <div class="footer-right">
+    <div class="footer-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+    <div class="footer-text">Unit 2 — Upstream</div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal" style="display:none">
+  <div class="modal-box">
+    <div class="modal-title">Writing — Enviar respostas</div>
+    <div class="modal-field"><label>Your name</label><input type="text" id="studentName" placeholder="Type your name..." autocomplete="off"></div>
+    <div class="modal-field"><label>Activity 1 — Add e or es (1–5)</label><textarea id="act1" placeholder="1: operates 2: explores 3: industries 4: pipeline 5: locates"></textarea></div>
+    <div class="modal-field"><label>Activity 2 — Correct the spelling (1–5)</label><textarea id="act2" placeholder="1: need 2: pipeline 3: explore 4: team 5: operate"></textarea></div>
+    <div class="modal-reminder">🎙️ Após enviar, grave seu áudio e envie na mesma conversa.</div>
+    <div class="modal-actions">
+      <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+      <button class="modal-send" onclick="sendWA()">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="#fff"/></svg>
+        Enviar no WhatsApp
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+const TOTAL=20*60;let remaining=TOTAL;
+const iv=setInterval(function(){
+  remaining--;
+  var m=Math.floor(remaining/60).toString().padStart(2,'0'),s=(remaining%60).toString().padStart(2,'0');
+  var el=document.getElementById('timer'),bar=document.getElementById('progress');
+  el.textContent=m+':'+s;bar.style.width=((remaining/TOTAL)*100)+'%';
+  el.className='countdown-display';bar.className='progress-fill';
+  if(remaining<=0){clearInterval(iv);el.textContent='00:00';bar.style.width='0%';bar.classList.add('urgent');}
+  else if(remaining<=60){el.classList.add('urgent');bar.classList.add('urgent');}
+  else if(remaining<=180){el.classList.add('warning');bar.classList.add('warning');}
+},1000);
+
+function toggleAnswers(){
+  var b=document.getElementById('answersBox');
+  b.classList.toggle('open');
+  event.target.textContent=b.classList.contains('open')?'▲ Hide answers':'▼ Show answers';
+}
+
+function openModal(){
+  var saved=localStorage.getItem('ef_student_name');
+  if(saved)document.getElementById('studentName').value=saved;
+  document.getElementById('modal').style.display='flex';
+}
+function closeModal(){document.getElementById('modal').style.display='none';}
+
+function sendWA(){
+  var name=document.getElementById('studentName').value.trim()||'Aluno';
+  localStorage.setItem('ef_student_name',name);
+  var now=new Date(),date=now.toLocaleDateString('pt-BR'),time=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  var a1=document.getElementById('act1').value||'(not answered)';
+  var a2=document.getElementById('act2').value||'(not answered)';
+  var msg='👤 '+name+'\n📅 '+date+' às '+time+'\n🎙️ Writing — Unit 2 — Upstream\n\n📌 Activity 1 — Add e or es:\n'+a1+'\n\n📌 Activity 2 — Correct spelling:\n'+a2+'\n\n👇 Áudio na mensagem seguinte';
+  window.open('https://wa.me/5522999585058?text='+encodeURIComponent(msg),'_blank');
+}
+
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+</script>
+</body>
+</html>

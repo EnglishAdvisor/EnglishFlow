@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Checklist · Unit 5 — Finding Oil and Gas</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh;display:flex;flex-direction:column}
+.header{background:#0d1b2a;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid rgba(212,167,106,.25)}
+.pill-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:700;color:#e8ccaa;line-height:1}
+.pill-title span{color:#d4a76a;font-size:clamp(14px,2.5vw,22px);font-weight:600;display:block;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.icon-box{width:48px;height:48px;border:1.5px solid rgba(212,167,106,.4);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.icon-box svg{width:26px;height:26px;stroke:#d4a76a;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(212,167,106,.2);padding:6px 24px;font-size:11px;color:#e8ccaa;text-align:center}
+.translate-warning strong{color:#d4a76a}
+.main-content{flex:1;display:flex;flex-direction:column;align-items:center;padding:20px 16px;gap:12px}
+.score-bar{background:#111827;border-radius:10px;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;max-width:540px;width:100%}
+.score-label{font-size:11px;color:#4a6a8a;text-transform:uppercase;letter-spacing:.08em}
+.score-val{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:#d4a76a}
+.checklist{display:flex;flex-direction:column;gap:6px;max-width:540px;width:100%}
+.cl-item{background:#111827;border:1px solid rgba(212,167,106,.2);border-radius:10px;padding:12px 16px;cursor:pointer;display:flex;align-items:center;gap:12px;transition:background .2s,border-color .2s;user-select:none;-webkit-tap-highlight-color:transparent}
+.cl-item:hover{background:#131f2e}
+.cl-item.checked{background:#0a1f0a;border-color:rgba(46,204,113,.4)}
+.cl-icon{width:28px;height:28px;border-radius:50%;border:2px solid rgba(212,167,106,.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s,border-color .2s}
+.cl-item.checked .cl-icon{background:#2ecc71;border-color:#2ecc71}
+.cl-icon svg{width:14px;height:14px;stroke:#fff;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;opacity:0;transition:opacity .2s}
+.cl-item.checked .cl-icon svg{opacity:1}
+.cl-text{font-size:13px;color:#c8d8e8;line-height:1.5;flex:1}
+.cl-item.checked .cl-text{color:#82e0aa}
+.feedback-box{background:#111827;border-radius:10px;padding:12px 16px;max-width:540px;width:100%;min-height:36px;text-align:center;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:600;color:#4a6a8a;letter-spacing:.04em;transition:color .3s}
+.footer{background:#0d1b2a;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(212,167,106,.2)}
+.footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a8a;letter-spacing:.04em}
+.footer-right{display:flex;align-items:center;gap:10px}
+.footer-icon svg{width:22px;height:22px;stroke:#d4a76a;fill:none;stroke-width:1.5}
+.footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;color:#d4a76a;letter-spacing:.06em;text-transform:uppercase}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="pill-title">Checklist<span>Finding Oil and Gas</span></div>
+  <div class="icon-box">
+    <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+  </div>
+</div>
+
+<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
+
+<div class="main-content">
+  <div class="score-bar">
+    <div class="score-label">Unit 5 progress</div>
+    <div class="score-val" id="scoreVal">0 / 6</div>
+  </div>
+
+  <div class="checklist">
+    <div class="cl-item" onclick="toggle(this)">
+      <div class="cl-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div class="cl-text">I can talk about the job of a geologist, physicist and geophysicist.</div>
+    </div>
+    <div class="cl-item" onclick="toggle(this)">
+      <div class="cl-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div class="cl-text">I understand how seismic surveying works — vibrations, waves, geophones, 3D maps.</div>
+    </div>
+    <div class="cl-item" onclick="toggle(this)">
+      <div class="cl-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div class="cl-text">I can use GPS vocabulary: coordinates, bearing, heading, waypoint, latitude, longitude.</div>
+    </div>
+    <div class="cl-item" onclick="toggle(this)">
+      <div class="cl-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div class="cl-text">I can say and understand degrees and GPS coordinates in English.</div>
+    </div>
+    <div class="cl-item" onclick="toggle(this)">
+      <div class="cl-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div class="cl-text">I can identify nouns, verbs, adjectives and adverbs in a sentence.</div>
+    </div>
+    <div class="cl-item" onclick="toggle(this)">
+      <div class="cl-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div class="cl-text">I can write sentences with correct punctuation: capital letters, full stops, question marks.</div>
+    </div>
+  </div>
+
+  <div class="feedback-box" id="feedback">Tap each item when you feel confident.</div>
+</div>
+
+<div class="footer">
+  <div class="footer-left">Capsule 69 de 84 · Unit 5 — Finding Oil and Gas</div>
+  <div class="footer-right">
+    <div class="footer-icon"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+    <div class="footer-text">Unit 5 — Finding Oil and Gas</div>
+  </div>
+</div>
+
+<script>
+var total=6;
+var msgs=['Tap each item when you feel confident.','Good start — keep going!','You\'re making progress!','Halfway there — well done!','Almost there — keep it up!','One more to go!','Unit 5 complete! 🎉 Excellent work!'];
+function toggle(el){
+  el.classList.toggle('checked');
+  var score=document.querySelectorAll('.cl-item.checked').length;
+  document.getElementById('scoreVal').textContent=score+' / '+total;
+  document.getElementById('feedback').textContent=msgs[score];
+}
+</script>
+</body>
+</html>

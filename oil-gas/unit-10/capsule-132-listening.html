@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Listening — Problems and Solutions · Unit 10 — Oil and the Environment</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
+.header{background:#0d1b2a;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid rgba(46,204,113,.25)}
+.pill-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:700;color:#82e0aa;line-height:1}
+.pill-title span{color:#2ecc71;font-size:clamp(14px,2.5vw,22px);font-weight:600;display:block;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.icon-box{width:48px;height:48px;border:1.5px solid rgba(46,204,113,.4);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.icon-box svg{width:26px;height:26px;stroke:#2ecc71;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(46,204,113,.2);padding:6px 24px;font-size:11px;color:#82e0aa;text-align:center}
+.translate-warning strong{color:#2ecc71}
+.audio-bar{background:#0d1b2a;padding:10px 24px;display:flex;align-items:center;gap:12px;border-bottom:1px solid rgba(46,204,113,.15)}
+.audio-label{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;color:#82e0aa;text-transform:uppercase;letter-spacing:.08em;white-space:nowrap}
+audio{flex:1;height:32px;min-width:0;accent-color:#2ecc71}
+.content{max-width:960px;margin:0 auto;padding:20px 16px 32px;display:grid;grid-template-columns:1fr 260px;gap:20px}
+@media(max-width:700px){.content{grid-template-columns:1fr}}
+.act-card{background:#111827;border:1px solid rgba(46,204,113,.18);border-radius:12px;padding:16px;margin-bottom:12px}
+.act-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:#2ecc71;margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em}
+.match-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;padding:8px;background:#0a0f1e;border-radius:8px;flex-wrap:wrap}
+.match-lbl{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;color:#82e0aa;min-width:120px}
+.match-sel{background:#0a0f1e;border:1px solid rgba(46,204,113,.3);border-radius:6px;padding:4px 8px;font-size:13px;color:#c8d8e8;font-family:'Barlow',sans-serif;min-width:160px}
+.reveal-btn{background:transparent;border:1px solid rgba(46,204,113,.35);color:#4a6a8a;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;border-radius:6px;padding:3px 8px;cursor:pointer;white-space:nowrap}
+.reveal-btn:hover{border-color:#2ecc71;color:#2ecc71}
+.choose-group{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px}
+@media(max-width:500px){.choose-group{grid-template-columns:1fr}}
+.choose-item{display:flex;align-items:center;gap:8px;cursor:pointer;background:#0a0f1e;border:1px solid rgba(46,204,113,.15);border-radius:7px;padding:8px 10px;transition:border-color .2s}
+.choose-item input{accent-color:#2ecc71;cursor:pointer;width:14px;height:14px;flex-shrink:0}
+.choose-item span{font-size:13px;color:#c8d8e8}
+.choose-item.selected{border-color:#2ecc71;background:#0a1628}
+.choose-item.correct{border-color:#2ecc71;background:#0a1e14}
+.choose-item.correct span{color:#2ecc71}
+.conv-section{margin-bottom:12px}
+.conv-label{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;color:#82e0aa;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;padding:2px 8px;background:rgba(46,204,113,.1);border-radius:4px;display:inline-block}
+.pair-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+@media(max-width:500px){.pair-row{grid-template-columns:1fr}}
+.pair-item{background:#0a0f1e;border-radius:8px;padding:8px}
+.pair-sentence{font-size:13px;color:#c8d8e8;margin-bottom:5px;line-height:1.4}
+.pair-sentence em{color:#82e0aa;font-style:normal}
+.pair-options{display:flex;gap:6px;flex-wrap:wrap}
+.option-btn{background:#111827;border:1px solid rgba(46,204,113,.2);border-radius:20px;padding:3px 10px;font-size:12px;color:#4a6a8a;font-family:'Barlow Condensed',sans-serif;font-weight:600;cursor:pointer;transition:all .2s}
+.option-btn:hover{border-color:#2ecc71;color:#82e0aa}
+.option-btn.selected{background:rgba(46,204,113,.2);border-color:#2ecc71;color:#2ecc71}
+.answer-tag{display:inline-block;background:rgba(46,204,113,.15);border:1px solid rgba(46,204,113,.3);border-radius:4px;padding:2px 8px;font-size:12px;color:#2ecc71;font-weight:600;font-family:'Barlow Condensed',sans-serif}
+.countdown{background:#0a1628;border:1px solid rgba(46,204,113,.25);border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.countdown-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;color:#4a6a8a;text-transform:uppercase;letter-spacing:.08em}
+.countdown-time{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:#2ecc71;min-width:60px}
+.task-box{background:#0a1628;border:1px solid rgba(46,204,113,.3);border-radius:10px;padding:14px;margin-bottom:14px;font-size:13px;color:#c8d8e8;line-height:1.6}
+.task-box strong{color:#2ecc71}
+.wa-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:#2ecc71;color:#0a0f1e;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:none;border-radius:10px;padding:13px 20px;width:100%;cursor:pointer;transition:background .2s}
+.wa-btn:hover{background:#82e0aa}
+.wa-btn svg{width:20px;height:20px;fill:#0a0f1e;flex-shrink:0}
+.zone-support{display:flex;flex-direction:column;gap:12px}
+.kw-card{background:#111827;border:1px solid rgba(46,204,113,.18);border-radius:12px;padding:14px}
+.kw-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#2ecc71;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.kw-item{padding:5px 0;border-bottom:1px solid rgba(46,204,113,.1);font-size:12px;color:#c8d8e8;line-height:1.4}
+.kw-item:last-child{border-bottom:none}
+.kw-item strong{color:#82e0aa}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal-overlay.open{display:flex}
+.modal{background:#111827;border:1px solid rgba(46,204,113,.3);border-radius:14px;padding:22px;width:100%;max-width:420px;max-height:90vh;overflow-y:auto}
+.modal-title{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:#82e0aa;margin-bottom:4px}
+.modal-sub{font-size:12px;color:#4a6a8a;margin-bottom:14px}
+.modal label{font-size:12px;color:#82e0aa;font-weight:600;display:block;margin-bottom:4px}
+.modal input,.modal textarea{width:100%;background:#0a0f1e;border:1px solid rgba(46,204,113,.3);border-radius:8px;padding:9px 12px;font-size:13px;color:#c8d8e8;margin-bottom:12px;font-family:'Barlow',sans-serif;resize:vertical}
+.modal textarea{min-height:80px}
+.modal-note{font-size:12px;color:#4a6a8a;background:#0a0f1e;border-radius:8px;padding:10px 12px;margin-bottom:14px;line-height:1.5}
+.modal-btns{display:flex;gap:8px}
+.modal-send{flex:1;background:#2ecc71;color:#0a0f1e;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;border:none;border-radius:8px;padding:10px;cursor:pointer}
+.modal-cancel{background:transparent;border:1px solid rgba(46,204,113,.3);color:#4a6a8a;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;border-radius:8px;padding:10px 16px;cursor:pointer}
+.footer{background:#0d1b2a;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(46,204,113,.2);margin-top:4px}
+.footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a8a}
+.footer-right{display:flex;align-items:center;gap:10px}
+.footer-icon svg{width:22px;height:22px;stroke:#2ecc71;fill:none;stroke-width:1.5}
+.footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;color:#2ecc71;letter-spacing:.06em;text-transform:uppercase}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="pill-title">Listening<span>Problems and Solutions</span></div>
+  <div class="icon-box">
+    <svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+  </div>
+</div>
+
+<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
+
+<div class="audio-bar">
+  <div class="audio-label">Teacher audio</div>
+  <audio controls src="teacher-audio-unit10-listening.mp3"></audio>
+</div>
+
+<div class="content">
+  <div class="left-col">
+
+    <div class="countdown">
+      <div class="countdown-label">Time remaining</div>
+      <div class="countdown-time" id="cdTime">20:00</div>
+    </div>
+
+    <div class="act-card">
+      <div class="act-title">Activity 1 — Match conversations with problems</div>
+      <div style="font-size:12px;color:#4a6a8a;margin-bottom:10px">Listen to 3 conversations. Match each one with the correct problem.</div>
+
+      <div style="display:flex;gap:8px;flex-wrap:wrap;padding:10px;background:#0a0f1e;border-radius:8px;margin-bottom:12px">
+        <span style="font-size:12px;color:#82e0aa"><strong>a</strong> — a leak</span>
+        <span style="font-size:12px;color:#82e0aa"><strong>b</strong> — an oil spill</span>
+        <span style="font-size:12px;color:#82e0aa"><strong>c</strong> — a noisy compressor</span>
+      </div>
+
+      <div class="match-row">
+        <div class="match-lbl">Conversation 1</div>
+        <select class="match-sel" id="c1"><option value="">—</option><option>a — a leak</option><option>b — an oil spill</option><option>c — a noisy compressor</option></select>
+        <button class="reveal-btn" onclick="revSel('c1','b — an oil spill')">Check</button>
+      </div>
+      <div class="match-row">
+        <div class="match-lbl">Conversation 2</div>
+        <select class="match-sel" id="c2"><option value="">—</option><option>a — a leak</option><option>b — an oil spill</option><option>c — a noisy compressor</option></select>
+        <button class="reveal-btn" onclick="revSel('c2','c — a noisy compressor')">Check</button>
+      </div>
+      <div class="match-row">
+        <div class="match-lbl">Conversation 3</div>
+        <select class="match-sel" id="c3"><option value="">—</option><option>a — a leak</option><option>b — an oil spill</option><option>c — a noisy compressor</option></select>
+        <button class="reveal-btn" onclick="revSel('c3','a — a leak')">Check</button>
+      </div>
+    </div>
+
+    <div class="act-card">
+      <div class="act-title">Activity 2 — Choose the correct word</div>
+      <div style="font-size:12px;color:#4a6a8a;margin-bottom:12px">Click the correct option in each pair of sentences.</div>
+
+      <div class="conv-section">
+        <div class="conv-label">Conversation 1</div>
+        <div class="pair-row">
+          <div class="pair-item">
+            <div class="pair-sentence">1a — It's <em>happen</em> / <em>happened</em> last night.</div>
+            <div class="pair-options">
+              <button class="option-btn" id="o1a1" onclick="choose('o1a1','o1a2',false)">happen</button>
+              <button class="option-btn" id="o1a2" onclick="choose('o1a2','o1a1',true)">happened ✓</button>
+            </div>
+          </div>
+          <div class="pair-item">
+            <div class="pair-sentence">1b — We <em>closed</em> / <em>close</em> the main valve.</div>
+            <div class="pair-options">
+              <button class="option-btn" id="o1b1" onclick="choose('o1b1','o1b2',true)">closed ✓</button>
+              <button class="option-btn" id="o1b2" onclick="choose('o1b2','o1b1',false)">close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="conv-section">
+        <div class="conv-label">Conversation 2</div>
+        <div class="pair-row">
+          <div class="pair-item">
+            <div class="pair-sentence">2a — Did it <em>work</em> / <em>worked</em>?</div>
+            <div class="pair-options">
+              <button class="option-btn" id="o2a1" onclick="choose('o2a1','o2a2',true)">work ✓</button>
+              <button class="option-btn" id="o2a2" onclick="choose('o2a2','o2a1',false)">worked</button>
+            </div>
+          </div>
+          <div class="pair-item">
+            <div class="pair-sentence">2b — It <em>work</em> / <em>worked</em> very well.</div>
+            <div class="pair-options">
+              <button class="option-btn" id="o2b1" onclick="choose('o2b1','o2b2',false)">work</button>
+              <button class="option-btn" id="o2b2" onclick="choose('o2b2','o2b1',true)">worked ✓</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="conv-section">
+        <div class="conv-label">Conversation 3</div>
+        <div class="pair-row">
+          <div class="pair-item">
+            <div class="pair-sentence">3a — It's <em>started</em> / It <em>started</em> two days ago.</div>
+            <div class="pair-options">
+              <button class="option-btn" id="o3a1" onclick="choose('o3a1','o3a2',false)">It's started</button>
+              <button class="option-btn" id="o3a2" onclick="choose('o3a2','o3a1',true)">It started ✓</button>
+            </div>
+          </div>
+          <div class="pair-item">
+            <div class="pair-sentence">3b — I <em>wait</em> / <em>waited</em> all day yesterday.</div>
+            <div class="pair-options">
+              <button class="option-btn" id="o3b1" onclick="choose('o3b1','o3b2',false)">wait</button>
+              <button class="option-btn" id="o3b2" onclick="choose('o3b2','o3b1',true)">waited ✓</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="task-box"><strong>Task:</strong> Answer in writing OR record a short audio. Send via WhatsApp.</div>
+
+    <button class="wa-btn" onclick="openModal()">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.535 5.858L.057 23.48a.5.5 0 0 0 .61.632l5.788-1.517A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.95 9.95 0 0 1-5.187-1.448l-.372-.22-3.433.9.916-3.345-.242-.384A9.953 9.953 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Enviar respostas
+    </button>
+  </div>
+
+  <div class="zone-support">
+    <div class="kw-card">
+      <div class="kw-title">Grammar Reminder</div>
+      <div class="kw-item"><strong>It happened</strong> — Past Simple (not "it's happened")</div>
+      <div class="kw-item"><strong>Did it work?</strong> — Question with base form</div>
+      <div class="kw-item"><strong>It worked</strong> — Past Simple positive</div>
+      <div class="kw-item"><strong>It started</strong> — Past Simple (use for specific past time)</div>
+      <div class="kw-item"><strong>I waited</strong> — Regular verb: wait → waited</div>
+    </div>
+    <div class="kw-card">
+      <div class="kw-title">Problem Vocabulary</div>
+      <div class="kw-item"><strong>oil spill</strong> — oil released accidentally into the environment</div>
+      <div class="kw-item"><strong>noisy compressor</strong> — a compressor making excessive sound</div>
+      <div class="kw-item"><strong>leak</strong> — uncontrolled escape of fluid or gas from a pipe or fitting</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-left">Capsule 132 de 139 · Unit 10 — Oil and the Environment</div>
+  <div class="footer-right">
+    <div class="footer-icon"><svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg></div>
+    <div class="footer-text">Unit 10 — Oil and the Environment</div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="waModal">
+  <div class="modal">
+    <div class="modal-title">Enviar respostas — Listening</div>
+    <div class="modal-sub">Unit 10 — Problems and Solutions</div>
+    <label for="studentName">Your name</label>
+    <input type="text" id="studentName" placeholder="Type your name" oninput="localStorage.setItem('ef_student_name',this.value)">
+    <label>Activity 1 — Conversations and problems</label>
+    <textarea id="ans1" placeholder="Conv 1=__ · Conv 2=__ · Conv 3=__"></textarea>
+    <label>Activity 2 — Choose the correct word (1a, 1b, 2a, 2b, 3a, 3b)</label>
+    <textarea id="ans2" placeholder="1a=__ · 1b=__ · 2a=__ · 2b=__ · 3a=__ · 3b=__"></textarea>
+    <div class="modal-note">🎙️ Após enviar, grave seu áudio e envie na mesma conversa.</div>
+    <div class="modal-btns">
+      <button class="modal-cancel" onclick="closeModal()">Cancelar</button>
+      <button class="modal-send" onclick="sendWA()">Enviar no WhatsApp</button>
+    </div>
+  </div>
+</div>
+
+<script>
+var secs=20*60;
+function pad(n){return n<10?'0'+n:n;}
+function tick(){if(secs<=0){document.getElementById('cdTime').textContent='00:00';return;}secs--;document.getElementById('cdTime').textContent=pad(Math.floor(secs/60))+':'+pad(secs%60);var el=document.getElementById('cdTime');if(secs<=60)el.style.color='#e74c3c';else if(secs<=180)el.style.color='#f1c40f';else el.style.color='#2ecc71';setTimeout(tick,1000);}
+tick();
+function revSel(id,ans){var el=document.getElementById(id);for(var i=0;i<el.options.length;i++){if(el.options[i].value===ans||el.options[i].text===ans){el.selectedIndex=i;break;}}el.style.color='#2ecc71';}
+function choose(id,otherId,correct){document.getElementById(id).classList.add('selected');document.getElementById(otherId).classList.remove('selected');if(correct){document.getElementById(id).style.background='rgba(46,204,113,.2)';document.getElementById(id).style.color='#2ecc71';document.getElementById(id).style.borderColor='#2ecc71';}else{document.getElementById(id).style.background='rgba(231,76,60,.1)';document.getElementById(id).style.color='#e74c3c';document.getElementById(id).style.borderColor='#e74c3c';}}
+function openModal(){var n=localStorage.getItem('ef_student_name')||'';document.getElementById('studentName').value=n;document.getElementById('waModal').classList.add('open');}
+function closeModal(){document.getElementById('waModal').classList.remove('open');}
+function sendWA(){
+  var name=document.getElementById('studentName').value.trim()||'Student';
+  localStorage.setItem('ef_student_name',name);
+  var now=new Date();
+  var date=now.toLocaleDateString('pt-BR');
+  var time=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  var a1=document.getElementById('ans1').value.trim()||'(no answer)';
+  var a2=document.getElementById('ans2').value.trim()||'(no answer)';
+  var msg='👤 '+name+'\n📅 '+date+' às '+time+'\n🎙️ Listening — Unit 10 — Oil and the Environment\n📌 Activity 1: '+a1+'\n📌 Activity 2: '+a2+'\n👇 Áudio na mensagem seguinte';
+  window.open('https://wa.me/5522999585058?text='+encodeURIComponent(msg),'_blank');
+  closeModal();
+}
+document.getElementById('waModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+</script>
+</body>
+</html>

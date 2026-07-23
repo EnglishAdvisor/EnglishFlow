@@ -1,0 +1,182 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Writing — A Job Card · Unit 11</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
+.header{background:#0d1b2a;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid rgba(241,196,15,.25)}
+.pill-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:700;color:#f5da6e;line-height:1}
+.pill-title span{color:#f1c40f;font-size:clamp(14px,2.5vw,22px);font-weight:600;display:block;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.icon-box{width:48px;height:48px;border:1.5px solid rgba(241,196,15,.4);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.icon-box svg{width:26px;height:26px;stroke:#f1c40f;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(241,196,15,.2);padding:6px 24px;font-size:11px;color:#f5da6e;text-align:center}
+.translate-warning strong{color:#f1c40f}
+.content{max-width:900px;margin:0 auto;padding:20px 16px 32px;display:grid;grid-template-columns:1fr 260px;gap:20px}
+@media(max-width:700px){.content{grid-template-columns:1fr}}
+.left-col{display:flex;flex-direction:column;gap:16px}
+.note-card{background:#0a1628;border:1px solid rgba(241,196,15,.35);border-radius:12px;padding:18px}
+.note-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;color:#f1c40f;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.note-text{font-size:14px;color:#c8d8e8;line-height:1.9;font-style:italic}
+.note-text strong{color:#f5da6e;font-style:normal}
+.form-card{background:#111827;border:1px solid rgba(241,196,15,.18);border-radius:12px;padding:16px}
+.form-title{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;color:#f5da6e;text-align:center;border:2px solid rgba(241,196,15,.4);border-radius:8px;padding:8px;margin-bottom:14px}
+.form-row{display:flex;align-items:center;padding:8px 0;border-bottom:1px solid rgba(241,196,15,.1);gap:8px}
+.form-row:last-child{border-bottom:none}
+.form-label{font-size:12px;color:#4a6a8a;min-width:160px;flex-shrink:0}
+.form-blank{flex:1;border-bottom:2px solid rgba(241,196,15,.4);min-height:24px;display:flex;align-items:center;padding:0 4px;font-size:13px;color:#c8d8e8;gap:8px}
+.reveal-btn{background:rgba(241,196,15,.12);border:1px solid rgba(241,196,15,.3);color:#f5da6e;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;border-radius:6px;padding:3px 10px;cursor:pointer;white-space:nowrap;flex-shrink:0;margin-left:auto}
+.form-answer{display:none;color:#f5da6e;font-weight:600}
+.q-row{padding:8px 0;border-bottom:1px solid rgba(241,196,15,.1);font-size:13px;color:#c8d8e8;display:flex;align-items:flex-start;gap:8px}
+.q-row:last-child{border-bottom:none}
+.q-num{color:#f1c40f;font-family:'Barlow Condensed',sans-serif;font-weight:700;min-width:18px}
+.answer{display:none;color:#f5da6e;font-weight:600;margin-left:4px}
+.zone-support{display:flex;flex-direction:column;gap:14px}
+.def-card{background:#0d1b2a;border:1px solid rgba(241,196,15,.2);border-radius:12px;padding:14px}
+.def-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#f1c40f;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
+.def-row{font-size:12px;color:#c8d8e8;padding:4px 0;border-bottom:1px solid rgba(241,196,15,.08);line-height:1.5}
+.def-row:last-child{border-bottom:none}
+.def-row strong{color:#f5da6e}
+.task-box{background:#0a1628;border:1px solid rgba(241,196,15,.35);border-radius:12px;padding:16px}
+.task-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;color:#f1c40f;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+.task-text{font-size:12px;color:#c8d8e8;line-height:1.6}
+.timer-box{background:#111827;border-radius:10px;padding:12px;text-align:center}
+.timer-label{font-size:10px;color:#4a6a8a;text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px}
+.timer-display{font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:700;color:#f5da6e}
+.timer-display.urgent{color:#e74c3c}
+.timer-display.warning{color:#f39c12}
+.wa-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:#f1c40f;color:#0a0f1e;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:none;border-radius:10px;padding:13px 20px;width:100%;cursor:pointer;transition:background .2s;margin-top:6px}
+.wa-btn:hover{background:#f5da6e}
+.wa-btn svg{width:20px;height:20px;fill:#0a0f1e;flex-shrink:0}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal-overlay.open{display:flex}
+.modal{background:#111827;border:1px solid rgba(241,196,15,.3);border-radius:14px;padding:22px;width:100%;max-width:420px;max-height:90vh;overflow-y:auto}
+.modal-title{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:#f5da6e;margin-bottom:4px}
+.modal-sub{font-size:12px;color:#4a6a8a;margin-bottom:14px}
+.modal label{font-size:12px;color:#f5da6e;font-weight:600;display:block;margin-bottom:4px}
+.modal input,.modal textarea{width:100%;background:#0a0f1e;border:1px solid rgba(241,196,15,.3);border-radius:8px;padding:9px 12px;font-size:13px;color:#c8d8e8;margin-bottom:12px;font-family:'Barlow',sans-serif;resize:vertical}
+.modal textarea{min-height:90px}
+.modal-note{font-size:12px;color:#4a6a8a;background:#0a0f1e;border-radius:8px;padding:10px 12px;margin-bottom:14px;line-height:1.5}
+.modal-btns{display:flex;gap:8px}
+.modal-send{flex:1;background:#f1c40f;color:#0a0f1e;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;border:none;border-radius:8px;padding:10px;cursor:pointer}
+.modal-cancel{background:transparent;border:1px solid rgba(241,196,15,.3);color:#4a6a8a;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;border-radius:8px;padding:10px 16px;cursor:pointer}
+.footer{background:#0d1b2a;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(241,196,15,.2);margin-top:4px}
+.footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a8a}
+.footer-right{display:flex;align-items:center;gap:10px}
+.footer-icon svg{width:22px;height:22px;stroke:#f1c40f;fill:none;stroke-width:1.5}
+.footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;color:#f1c40f;letter-spacing:.06em;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="pill-title">Writing<span>A Job Card</span></div>
+  <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div>
+</div>
+<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
+<div class="content">
+  <div class="left-col">
+
+    <div class="note-card">
+      <div class="note-label">Note from Roger to Simon</div>
+      <div class="note-text">
+        Simon,<br><br>
+        The discharge hose in the bulk tanker loading area, <strong>Bay 3</strong>, is leaky. Could you check it, please? <strong>Take a spare valve with you.</strong><br><br>
+        Go over there at <strong>8.00 tomorrow (Wednesday 12 April)</strong> morning. You should finish by <strong>11.00</strong>. I've already done the paperwork (risk assessment, permit to work).<br><br>
+        Thanks,<br>Roger
+      </div>
+    </div>
+
+    <div class="form-card">
+      <div class="form-title">JOB CARD — No. J27250SG</div>
+      <div class="form-row"><div class="form-label">Area / Location:</div><div class="form-blank"><span class="form-answer" id="a1">Bulk tanker loading area, Bay 3</span><button class="reveal-btn" onclick="showField('a1',this)">Reveal</button></div></div>
+      <div class="form-row"><div class="form-label">Tasks:</div><div class="form-blank"><span class="form-answer" id="a2">Check valve on discharge hose</span><button class="reveal-btn" onclick="showField('a2',this)">Reveal</button></div></div>
+      <div class="form-row"><div class="form-label">Materials required:</div><div class="form-blank"><span class="form-answer" id="a3">Spare valve</span><button class="reveal-btn" onclick="showField('a3',this)">Reveal</button></div></div>
+      <div class="form-row"><div class="form-label">Scheduled start:</div><div class="form-blank"><span class="form-answer" id="a4">12 April, 8.00 a.m.</span><button class="reveal-btn" onclick="showField('a4',this)">Reveal</button></div></div>
+      <div class="form-row"><div class="form-label">Scheduled finish:</div><div class="form-blank"><span class="form-answer" id="a5">12 April, 11.00 a.m.</span><button class="reveal-btn" onclick="showField('a5',this)">Reveal</button></div></div>
+      <div class="form-row"><div class="form-label">Risk assessment:</div><div class="form-blank"><span class="form-answer" id="a6">Yes ✅</span><button class="reveal-btn" onclick="showField('a6',this)">Reveal</button></div></div>
+      <div class="form-row"><div class="form-label">Permit to work:</div><div class="form-blank"><span class="form-answer" id="a7">Yes ✅</span><button class="reveal-btn" onclick="showField('a7',this)">Reveal</button></div></div>
+      <div class="form-row"><div class="form-label">Assigned to:</div><div class="form-blank"><span class="form-answer" id="a8">Simon Meeks</span><button class="reveal-btn" onclick="showField('a8',this)">Reveal</button></div></div>
+      <div class="form-row"><div class="form-label">Approved by:</div><div class="form-blank"><span class="form-answer" id="a9">Roger Bridge — 11 April</span><button class="reveal-btn" onclick="showField('a9',this)">Reveal</button></div></div>
+    </div>
+
+    <div class="form-card">
+      <div class="act-title">Now it's 8.10 on Wednesday — True or False?</div>
+      <div class="q-row"><span class="q-num">1</span>Has Roger done the risk assessment?<button class="reveal-btn" onclick="rev(this)">Reveal</button><span class="answer">Yes, he has.</span></div>
+      <div class="q-row"><span class="q-num">2</span>Has Simon started the job?<button class="reveal-btn" onclick="rev(this)">Reveal</button><span class="answer">Yes, he has (it's 8.10 — 10 minutes after start time).</span></div>
+      <div class="q-row"><span class="q-num">3</span>Has Simon finished the job?<button class="reveal-btn" onclick="rev(this)">Reveal</button><span class="answer">No, he hasn't (finish is 11.00).</span></div>
+    </div>
+
+  </div>
+  <div class="zone-support">
+    <div class="def-card">
+      <div class="def-title">Job Card Vocabulary</div>
+      <div class="def-row"><strong>job card</strong> — document describing a specific task, its schedule, materials, and safety status</div>
+      <div class="def-row"><strong>risk assessment</strong> — a written check identifying possible hazards before work starts</div>
+      <div class="def-row"><strong>permit to work</strong> — official authorization to carry out a specific job in a defined area</div>
+      <div class="def-row"><strong>leaky</strong> — losing fluid through a small hole or gap</div>
+      <div class="def-row"><strong>discharge hose</strong> — a hose that carries liquid away from a tank or vessel</div>
+      <div class="def-row"><strong>spare valve</strong> — a replacement valve kept for emergencies or repairs</div>
+    </div>
+    <div class="task-box">
+      <div class="task-label">Task</div>
+      <div class="task-text">Complete the job card and answer the questions. Send your answers via WhatsApp.</div>
+    </div>
+    <div class="timer-box">
+      <div class="timer-label">Time remaining</div>
+      <div class="timer-display" id="timerDisplay">25:00</div>
+    </div>
+    <button class="wa-btn" onclick="openModal()">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.535 5.858L.057 23.48a.5.5 0 0 0 .61.632l5.788-1.517A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.95 9.95 0 0 1-5.187-1.448l-.372-.22-3.433.9.916-3.345-.242-.384A9.953 9.953 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Enviar respostas
+    </button>
+  </div>
+</div>
+<div class="footer">
+  <div class="footer-left">Capsule 149 de 163 · Unit 11 — Workshop Operations</div>
+  <div class="footer-right">
+    <div class="footer-icon"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div>
+    <div class="footer-text">Unit 11 — Workshop Operations</div>
+  </div>
+</div>
+<div class="modal-overlay" id="waModal">
+  <div class="modal">
+    <div class="modal-title">Enviar respostas — Writing</div>
+    <div class="modal-sub">Unit 11 — A Job Card</div>
+    <label for="studentName">Your name</label>
+    <input type="text" id="studentName" placeholder="Type your name" oninput="localStorage.setItem('ef_student_name',this.value)">
+    <label>Job Card + Questions 1–3</label>
+    <textarea id="ans1" placeholder="Area: ... / Tasks: ... / Materials: ... / Start: ... / Finish: ...&#10;Q1: Yes... / Q2: Yes... / Q3: No..."></textarea>
+    <div class="modal-note">🎙️ Após enviar, grave seu áudio e envie na mesma conversa.</div>
+    <div class="modal-btns">
+      <button class="modal-cancel" onclick="closeModal()">Cancelar</button>
+      <button class="modal-send" onclick="sendWA()">Enviar no WhatsApp</button>
+    </div>
+  </div>
+</div>
+<script>
+var total=25*60,remaining=total;
+function fmt(s){return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');}
+var td=document.getElementById('timerDisplay');
+var iv=setInterval(function(){remaining--;if(remaining<=0){clearInterval(iv);td.textContent='00:00';td.className='timer-display urgent';return;}td.textContent=fmt(remaining);if(remaining<=60)td.className='timer-display urgent';else if(remaining<=180)td.className='timer-display warning';else td.className='timer-display';},1000);
+function showField(id,btn){document.getElementById(id).style.display='inline';btn.style.display='none';}
+function rev(btn){var a=btn.nextElementSibling;a.style.display='inline';btn.style.display='none';}
+function openModal(){var n=localStorage.getItem('ef_student_name')||'';document.getElementById('studentName').value=n;document.getElementById('waModal').classList.add('open');}
+function closeModal(){document.getElementById('waModal').classList.remove('open');}
+function sendWA(){
+  var name=document.getElementById('studentName').value.trim()||'Student';
+  localStorage.setItem('ef_student_name',name);
+  var now=new Date();
+  var date=now.toLocaleDateString('pt-BR');
+  var time=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  var a1=document.getElementById('ans1').value.trim()||'(no answer)';
+  var msg='👤 '+name+'\n📅 '+date+' às '+time+'\n🎙️ Writing — Unit 11 — Workshop Operations\n📌 Activity 1: '+a1+'\n👇 Áudio na mensagem seguinte';
+  window.open('https://wa.me/5522999585058?text='+encodeURIComponent(msg),'_blank');
+  closeModal();
+}
+document.getElementById('waModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+</script>
+</body>
+</html>

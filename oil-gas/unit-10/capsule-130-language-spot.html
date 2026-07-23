@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Language Spot — Past Simple · Unit 10 — Oil and the Environment</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
+.header{background:#0d1b2a;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid rgba(46,204,113,.25)}
+.pill-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:700;color:#82e0aa;line-height:1}
+.pill-title span{color:#2ecc71;font-size:clamp(14px,2.5vw,22px);font-weight:600;display:block;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.icon-box{width:48px;height:48px;border:1.5px solid rgba(46,204,113,.4);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.icon-box svg{width:26px;height:26px;stroke:#2ecc71;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(46,204,113,.2);padding:6px 24px;font-size:11px;color:#82e0aa;text-align:center}
+.translate-warning strong{color:#2ecc71}
+.content{max-width:960px;margin:0 auto;padding:20px 16px 32px;display:grid;grid-template-columns:1fr 260px;gap:20px}
+@media(max-width:700px){.content{grid-template-columns:1fr}}
+.grammar-box{background:#0a1628;border:1px solid rgba(46,204,113,.35);border-radius:12px;padding:16px;margin-bottom:16px}
+.grammar-title{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:#2ecc71;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.grammar-row{display:grid;grid-template-columns:100px 1fr;gap:8px;margin-bottom:6px;align-items:start}
+.grammar-tag{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:2px 7px;border-radius:4px}
+.grammar-tag.pos{background:rgba(46,204,113,.2);color:#2ecc71}
+.grammar-tag.neg{background:rgba(231,76,60,.15);color:#e74c3c}
+.grammar-tag.q{background:rgba(241,196,15,.15);color:#f1c40f}
+.grammar-example{font-size:13px;color:#c8d8e8;font-style:italic}
+.grammar-example em{color:#82e0aa;font-style:normal;font-weight:600}
+.verb-bank{background:#0a1628;border:1px solid rgba(46,204,113,.2);border-radius:8px;padding:10px 14px;margin-bottom:14px;display:flex;flex-wrap:wrap;gap:6px}
+.verb-chip{background:#111827;border:1px solid rgba(46,204,113,.2);border-radius:20px;padding:3px 10px;font-size:12px;color:#82e0aa;font-family:'Barlow Condensed',sans-serif;font-weight:600}
+.act-card{background:#111827;border:1px solid rgba(46,204,113,.18);border-radius:12px;padding:16px;margin-bottom:12px}
+.act-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:#2ecc71;margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em}
+.gap-row{margin-bottom:8px;padding:8px;background:#0a0f1e;border-radius:8px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.gap-num{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;color:#2ecc71;min-width:16px}
+.gap-sentence{font-size:13px;color:#c8d8e8;flex:1;line-height:1.5}
+.gap-input{background:#111827;border:1px solid rgba(46,204,113,.3);border-radius:6px;padding:4px 10px;font-size:13px;color:#c8d8e8;font-family:'Barlow',sans-serif;width:110px}
+.reveal-btn{background:transparent;border:1px solid rgba(46,204,113,.35);color:#4a6a8a;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;border-radius:6px;padding:3px 8px;cursor:pointer;transition:all .2s;white-space:nowrap}
+.reveal-btn:hover{border-color:#2ecc71;color:#2ecc71}
+.scramble-row{margin-bottom:10px;padding:10px;background:#0a0f1e;border-radius:8px}
+.scramble-num{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;color:#2ecc71;margin-bottom:4px}
+.scramble-words{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px}
+.word-tag{background:#111827;border:1px solid rgba(46,204,113,.15);border-radius:4px;padding:2px 8px;font-size:12px;color:#82e0aa}
+.scramble-input{width:100%;background:#111827;border:1px solid rgba(46,204,113,.3);border-radius:6px;padding:5px 10px;font-size:13px;color:#c8d8e8;font-family:'Barlow',sans-serif}
+.answer-tag{display:inline-block;background:rgba(46,204,113,.15);border:1px solid rgba(46,204,113,.3);border-radius:4px;padding:2px 8px;font-size:12px;color:#2ecc71;font-weight:600;font-family:'Barlow Condensed',sans-serif;margin-top:4px}
+.countdown{background:#0a1628;border:1px solid rgba(46,204,113,.25);border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.countdown-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;color:#4a6a8a;text-transform:uppercase;letter-spacing:.08em}
+.countdown-time{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:#2ecc71;min-width:60px}
+.task-box{background:#0a1628;border:1px solid rgba(46,204,113,.3);border-radius:10px;padding:14px;margin-bottom:14px;font-size:13px;color:#c8d8e8;line-height:1.6}
+.task-box strong{color:#2ecc71}
+.wa-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:#2ecc71;color:#0a0f1e;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:none;border-radius:10px;padding:13px 20px;width:100%;cursor:pointer;transition:background .2s}
+.wa-btn:hover{background:#82e0aa}
+.wa-btn svg{width:20px;height:20px;fill:#0a0f1e;flex-shrink:0}
+.zone-support{display:flex;flex-direction:column;gap:12px}
+.ref-card{background:#111827;border:1px solid rgba(46,204,113,.18);border-radius:12px;padding:14px}
+.ref-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#2ecc71;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.ref-table{width:100%;border-collapse:collapse;font-size:11px}
+.ref-table th{font-family:'Barlow Condensed',sans-serif;font-weight:700;color:#4a6a8a;text-transform:uppercase;letter-spacing:.06em;padding:4px 6px;border-bottom:1px solid rgba(46,204,113,.15);text-align:left}
+.ref-table td{padding:5px 6px;color:#c8d8e8;border-bottom:1px solid rgba(46,204,113,.08)}
+.ref-table td:first-child{color:#82e0aa;font-weight:600}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal-overlay.open{display:flex}
+.modal{background:#111827;border:1px solid rgba(46,204,113,.3);border-radius:14px;padding:22px;width:100%;max-width:420px;max-height:90vh;overflow-y:auto}
+.modal-title{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:#82e0aa;margin-bottom:4px}
+.modal-sub{font-size:12px;color:#4a6a8a;margin-bottom:14px}
+.modal label{font-size:12px;color:#82e0aa;font-weight:600;display:block;margin-bottom:4px}
+.modal input,.modal textarea{width:100%;background:#0a0f1e;border:1px solid rgba(46,204,113,.3);border-radius:8px;padding:9px 12px;font-size:13px;color:#c8d8e8;margin-bottom:12px;font-family:'Barlow',sans-serif;resize:vertical}
+.modal textarea{min-height:80px}
+.modal-note{font-size:12px;color:#4a6a8a;background:#0a0f1e;border-radius:8px;padding:10px 12px;margin-bottom:14px;line-height:1.5}
+.modal-btns{display:flex;gap:8px}
+.modal-send{flex:1;background:#2ecc71;color:#0a0f1e;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;border:none;border-radius:8px;padding:10px;cursor:pointer}
+.modal-cancel{background:transparent;border:1px solid rgba(46,204,113,.3);color:#4a6a8a;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;border-radius:8px;padding:10px 16px;cursor:pointer}
+.footer{background:#0d1b2a;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(46,204,113,.2);margin-top:4px}
+.footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a8a}
+.footer-right{display:flex;align-items:center;gap:10px}
+.footer-icon svg{width:22px;height:22px;stroke:#2ecc71;fill:none;stroke-width:1.5}
+.footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;color:#2ecc71;letter-spacing:.06em;text-transform:uppercase}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="pill-title">Language Spot<span>Past Simple</span></div>
+  <div class="icon-box">
+    <svg viewBox="0 0 24 24"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
+  </div>
+</div>
+
+<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
+
+<div class="content">
+  <div class="left-col">
+
+    <div class="countdown">
+      <div class="countdown-label">Time remaining</div>
+      <div class="countdown-time" id="cdTime">25:00</div>
+    </div>
+
+    <div class="grammar-box">
+      <div class="grammar-title">Past Simple</div>
+      <div class="grammar-row">
+        <span class="grammar-tag pos">Positive</span>
+        <span class="grammar-example">We <em>started</em> cleaning up last night.</span>
+      </div>
+      <div class="grammar-row">
+        <span class="grammar-tag neg">Negative</span>
+        <span class="grammar-example">We <em>didn't start</em> cleaning up last night.</span>
+      </div>
+      <div class="grammar-row">
+        <span class="grammar-tag q">Question</span>
+        <span class="grammar-example"><em>Did</em> you <em>start</em> cleaning up last night?</span>
+      </div>
+    </div>
+
+    <div class="act-card">
+      <div class="act-title">Activity 1 — Complete with Past Simple</div>
+      <div style="font-size:12px;color:#4a6a8a;margin-bottom:10px">Use the Past Simple form of the verb. For questions 5–8, "Did" is already given — write the base form.</div>
+      <div class="verb-bank">
+        <span class="verb-chip">arrive</span><span class="verb-chip">burn</span><span class="verb-chip">go</span><span class="verb-chip">have</span><span class="verb-chip">make</span><span class="verb-chip">stop</span><span class="verb-chip">do</span><span class="verb-chip">see</span>
+      </div>
+
+      <div class="gap-row">
+        <div class="gap-num">1</div>
+        <div class="gap-sentence">The crew ___ at 6.30.</div>
+        <input class="gap-input" id="g1" placeholder="verb...">
+        <button class="reveal-btn" onclick="rev('g1','arrived')">Check</button>
+      </div>
+      <div class="gap-row">
+        <div class="gap-num">2</div>
+        <div class="gap-sentence">The refinery fire ___ for three days.</div>
+        <input class="gap-input" id="g2" placeholder="verb...">
+        <button class="reveal-btn" onclick="rev('g2','burned')">Check</button>
+      </div>
+      <div class="gap-row">
+        <div class="gap-num">3</div>
+        <div class="gap-sentence">I ___ to college in Abu Dhabi.</div>
+        <input class="gap-input" id="g3" placeholder="verb...">
+        <button class="reveal-btn" onclick="rev('g3','went')">Check</button>
+      </div>
+      <div class="gap-row">
+        <div class="gap-num">4</div>
+        <div class="gap-sentence">When we opened the flow, we ___ a lot of problems with the new pipeline.</div>
+        <input class="gap-input" id="g4" placeholder="verb...">
+        <button class="reveal-btn" onclick="rev('g4','had')">Check</button>
+      </div>
+      <div class="gap-row">
+        <div class="gap-num">5</div>
+        <div class="gap-sentence">Did we ___ a phone call to head office this morning?</div>
+        <input class="gap-input" id="g5" placeholder="base form...">
+        <button class="reveal-btn" onclick="rev('g5','make')">Check</button>
+      </div>
+      <div class="gap-row">
+        <div class="gap-num">6</div>
+        <div class="gap-sentence">Did they ___ work at three o'clock yesterday because of the bad weather?</div>
+        <input class="gap-input" id="g6" placeholder="base form...">
+        <button class="reveal-btn" onclick="rev('g6','stop')">Check</button>
+      </div>
+      <div class="gap-row">
+        <div class="gap-num">7</div>
+        <div class="gap-sentence">Did you ___ a training course in the UAE last summer?</div>
+        <input class="gap-input" id="g7" placeholder="base form...">
+        <button class="reveal-btn" onclick="rev('g7','do')">Check</button>
+      </div>
+      <div class="gap-row">
+        <div class="gap-num">8</div>
+        <div class="gap-sentence">Did he ___ Khaled and Sami yesterday?</div>
+        <input class="gap-input" id="g8" placeholder="base form...">
+        <button class="reveal-btn" onclick="rev('g8','see')">Check</button>
+      </div>
+    </div>
+
+    <div class="act-card">
+      <div class="act-title">Activity 2 — Make sentences 1–4 negative</div>
+      <p style="font-size:12px;color:#4a6a8a;margin-bottom:10px">Example: <em>We started cleaning up. → We didn't start cleaning up.</em></p>
+
+      <div class="scramble-row">
+        <div class="scramble-num">1 — The crew arrived at 6.30.</div>
+        <input class="scramble-input" id="neg1" placeholder="The crew didn't...">
+        <button class="reveal-btn" style="margin-top:4px" onclick="rev('neg1','The crew didn\'t arrive at 6.30.')">Answer</button>
+      </div>
+      <div class="scramble-row">
+        <div class="scramble-num">2 — The refinery fire burned for three days.</div>
+        <input class="scramble-input" id="neg2" placeholder="The refinery fire didn't...">
+        <button class="reveal-btn" style="margin-top:4px" onclick="rev('neg2','The refinery fire didn\'t burn for three days.')">Answer</button>
+      </div>
+      <div class="scramble-row">
+        <div class="scramble-num">3 — I went to college in Abu Dhabi.</div>
+        <input class="scramble-input" id="neg3" placeholder="I didn't...">
+        <button class="reveal-btn" style="margin-top:4px" onclick="rev('neg3','I didn\'t go to college in Abu Dhabi.')">Answer</button>
+      </div>
+      <div class="scramble-row">
+        <div class="scramble-num">4 — We had a lot of problems with the new pipeline.</div>
+        <input class="scramble-input" id="neg4" placeholder="We didn't...">
+        <button class="reveal-btn" style="margin-top:4px" onclick="rev('neg4','We didn\'t have a lot of problems with the new pipeline.')">Answer</button>
+      </div>
+    </div>
+
+    <div class="act-card">
+      <div class="act-title">Activity 3 — Unscramble the questions</div>
+      <div class="scramble-row">
+        <div class="scramble-num">1</div>
+        <div class="scramble-words"><span class="word-tag">you</span><span class="word-tag">/</span><span class="word-tag">about</span><span class="word-tag">/</span><span class="word-tag">Did</span><span class="word-tag">/</span><span class="word-tag">the</span><span class="word-tag">/</span><span class="word-tag">learn</span><span class="word-tag">/</span><span class="word-tag">oil</span><span class="word-tag">/</span><span class="word-tag">industry</span><span class="word-tag">/</span><span class="word-tag">at</span><span class="word-tag">/</span><span class="word-tag">school</span><span class="word-tag">/</span><span class="word-tag">?</span></div>
+        <input class="scramble-input" id="q1" placeholder="Type the question...">
+        <button class="reveal-btn" style="margin-top:4px" onclick="rev('q1','Did you learn about the oil industry at school?')">Answer</button>
+      </div>
+      <div class="scramble-row">
+        <div class="scramble-num">2</div>
+        <div class="scramble-words"><span class="word-tag">industry</span><span class="word-tag">/</span><span class="word-tag">Why</span><span class="word-tag">/</span><span class="word-tag">you</span><span class="word-tag">/</span><span class="word-tag">did</span><span class="word-tag">/</span><span class="word-tag">choose</span><span class="word-tag">/</span><span class="word-tag">oil</span><span class="word-tag">/</span><span class="word-tag">the</span><span class="word-tag">/</span><span class="word-tag">?</span></div>
+        <input class="scramble-input" id="q2" placeholder="Type the question...">
+        <button class="reveal-btn" style="margin-top:4px" onclick="rev('q2','Why did you choose the oil industry?')">Answer</button>
+      </div>
+      <div class="scramble-row">
+        <div class="scramble-num">3</div>
+        <div class="scramble-words"><span class="word-tag">tools</span><span class="word-tag">/</span><span class="word-tag">school</span><span class="word-tag">/</span><span class="word-tag">Did</span><span class="word-tag">/</span><span class="word-tag">use</span><span class="word-tag">/</span><span class="word-tag">you</span><span class="word-tag">/</span><span class="word-tag">power</span><span class="word-tag">/</span><span class="word-tag">at</span><span class="word-tag">/</span><span class="word-tag">?</span></div>
+        <input class="scramble-input" id="q3" placeholder="Type the question...">
+        <button class="reveal-btn" style="margin-top:4px" onclick="rev('q3','Did you use power tools at school?')">Answer</button>
+      </div>
+      <div class="scramble-row">
+        <div class="scramble-num">4</div>
+        <div class="scramble-words"><span class="word-tag">you</span><span class="word-tag">/</span><span class="word-tag">How</span><span class="word-tag">/</span><span class="word-tag">learn</span><span class="word-tag">/</span><span class="word-tag">did</span><span class="word-tag">/</span><span class="word-tag">about</span><span class="word-tag">/</span><span class="word-tag">oil</span><span class="word-tag">/</span><span class="word-tag">jobs</span><span class="word-tag">/</span><span class="word-tag">?</span></div>
+        <input class="scramble-input" id="q4" placeholder="Type the question...">
+        <button class="reveal-btn" style="margin-top:4px" onclick="rev('q4','How did you learn about oil jobs?')">Answer</button>
+      </div>
+      <div class="scramble-row">
+        <div class="scramble-num">5</div>
+        <div class="scramble-words"><span class="word-tag">did</span><span class="word-tag">/</span><span class="word-tag">lessons</span><span class="word-tag">/</span><span class="word-tag">When</span><span class="word-tag">/</span><span class="word-tag">you</span><span class="word-tag">/</span><span class="word-tag">English</span><span class="word-tag">/</span><span class="word-tag">begin</span><span class="word-tag">/</span><span class="word-tag">?</span></div>
+        <input class="scramble-input" id="q5" placeholder="Type the question...">
+        <button class="reveal-btn" style="margin-top:4px" onclick="rev('q5','When did you begin English lessons?')">Answer</button>
+      </div>
+    </div>
+
+    <div class="task-box"><strong>Task:</strong> Answer in writing OR record a short audio. Send via WhatsApp.</div>
+
+    <button class="wa-btn" onclick="openModal()">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.535 5.858L.057 23.48a.5.5 0 0 0 .61.632l5.788-1.517A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.95 9.95 0 0 1-5.187-1.448l-.372-.22-3.433.9.916-3.345-.242-.384A9.953 9.953 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Enviar respostas
+    </button>
+  </div>
+
+  <div class="zone-support">
+    <div class="ref-card">
+      <div class="ref-title">Regular vs Irregular</div>
+      <table class="ref-table">
+        <tr><th>Base</th><th>Past</th><th>Type</th></tr>
+        <tr><td>arrive</td><td>arrived</td><td style="color:#4a6a8a">regular</td></tr>
+        <tr><td>burn</td><td>burned</td><td style="color:#4a6a8a">regular</td></tr>
+        <tr><td>start</td><td>started</td><td style="color:#4a6a8a">regular</td></tr>
+        <tr><td>go</td><td>went</td><td style="color:#f5a623">irregular</td></tr>
+        <tr><td>have</td><td>had</td><td style="color:#f5a623">irregular</td></tr>
+        <tr><td>make</td><td>made</td><td style="color:#f5a623">irregular</td></tr>
+        <tr><td>see</td><td>saw</td><td style="color:#f5a623">irregular</td></tr>
+        <tr><td>do</td><td>did</td><td style="color:#f5a623">irregular</td></tr>
+        <tr><td>stop</td><td>stopped</td><td style="color:#4a6a8a">regular (×2)</td></tr>
+      </table>
+    </div>
+    <div class="ref-card">
+      <div class="ref-title">Negatives &amp; Questions</div>
+      <div style="font-size:12px;color:#c8d8e8;line-height:1.6">
+        <p style="margin-bottom:6px"><span style="color:#2ecc71">Negative:</span> didn't + base form</p>
+        <p style="margin-bottom:6px"><span style="color:#2ecc71">Question:</span> Did + subject + base form?</p>
+        <p style="color:#4a6a8a">Note: Use the base form (not past) after didn't and did.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-left">Capsule 130 de 139 · Unit 10 — Oil and the Environment</div>
+  <div class="footer-right">
+    <div class="footer-icon"><svg viewBox="0 0 24 24"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg></div>
+    <div class="footer-text">Unit 10 — Oil and the Environment</div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="waModal">
+  <div class="modal">
+    <div class="modal-title">Enviar respostas — Language Spot</div>
+    <div class="modal-sub">Unit 10 — Past Simple</div>
+    <label for="studentName">Your name</label>
+    <input type="text" id="studentName" placeholder="Type your name" oninput="localStorage.setItem('ef_student_name',this.value)">
+    <label>Activity 1 — Gap fill (1–8)</label>
+    <textarea id="ans1" placeholder="1=__ · 2=__ · 3=__ · 4=__ · 5=__ · 6=__ · 7=__ · 8=__"></textarea>
+    <label>Activity 2 — Negative sentences (1–4)</label>
+    <textarea id="ans2" placeholder="1. The crew didn't... &#10;2. ...&#10;3. ...&#10;4. ..."></textarea>
+    <label>Activity 3 — Questions (1–5)</label>
+    <textarea id="ans3" placeholder="1. Did you...? &#10;2. ...&#10;3. ..."></textarea>
+    <div class="modal-note">🎙️ Após enviar, grave seu áudio e envie na mesma conversa.</div>
+    <div class="modal-btns">
+      <button class="modal-cancel" onclick="closeModal()">Cancelar</button>
+      <button class="modal-send" onclick="sendWA()">Enviar no WhatsApp</button>
+    </div>
+  </div>
+</div>
+
+<script>
+var secs=25*60;
+function pad(n){return n<10?'0'+n:n;}
+function tick(){if(secs<=0){document.getElementById('cdTime').textContent='00:00';return;}secs--;document.getElementById('cdTime').textContent=pad(Math.floor(secs/60))+':'+pad(secs%60);var el=document.getElementById('cdTime');if(secs<=60)el.style.color='#e74c3c';else if(secs<=180)el.style.color='#f1c40f';else el.style.color='#2ecc71';setTimeout(tick,1000);}
+tick();
+function rev(id,ans){var el=document.getElementById(id);el.value=ans;el.style.color='#2ecc71';}
+function openModal(){var n=localStorage.getItem('ef_student_name')||'';document.getElementById('studentName').value=n;document.getElementById('waModal').classList.add('open');}
+function closeModal(){document.getElementById('waModal').classList.remove('open');}
+function sendWA(){
+  var name=document.getElementById('studentName').value.trim()||'Student';
+  localStorage.setItem('ef_student_name',name);
+  var now=new Date();
+  var date=now.toLocaleDateString('pt-BR');
+  var time=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  var a1=document.getElementById('ans1').value.trim()||'(no answer)';
+  var a2=document.getElementById('ans2').value.trim()||'(no answer)';
+  var a3=document.getElementById('ans3').value.trim()||'(no answer)';
+  var msg='👤 '+name+'\n📅 '+date+' às '+time+'\n🎙️ Language Spot — Unit 10 — Oil and the Environment\n📌 Activity 1: '+a1+'\n📌 Activity 2: '+a2+'\n📌 Activity 3: '+a3+'\n👇 Áudio na mensagem seguinte';
+  window.open('https://wa.me/5522999585058?text='+encodeURIComponent(msg),'_blank');
+  closeModal();
+}
+document.getElementById('waModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+</script>
+</body>
+</html>

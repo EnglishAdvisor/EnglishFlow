@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oil & Gas 1 — Árvore de Cápsulas</title>
+<style>
+  /* Paleta oficial da Deep Flow (Oil & Gas 1): âmbar sobre azul-abissal.
+     Mesmas variáveis de 2-PEDAGÓGICO/1 - OIL & GAS/og-1/deep-flow/css/style.css,
+     pra árvore de cápsulas ficar visualmente igual ao jogo que o aluno já usa. */
+  :root {
+    --bg: #041e30;
+    --bg2: #02141f;
+    --card: rgba(255, 255, 255, .05);
+    --card2: rgba(255, 255, 255, .08);
+    --line: rgba(255, 255, 255, .12);
+    --tx: #eef4f8;
+    --tx2: #9fb4c6;
+    --ac: #f59e0b;
+    --ac2: #d97706;
+    --gold: #fbbf24;
+    --fh: 'Bahnschrift', 'Arial Narrow', 'Roboto Condensed', 'Liberation Sans Narrow', system-ui, sans-serif;
+    --fb: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: var(--fb);
+    background: linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+    color: var(--tx);
+    padding: 24px 16px 60px;
+    min-height: 100vh;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; }
+  header {
+    margin-bottom: 24px;
+  }
+  header .kicker {
+    font-family: var(--fh);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 700;
+  }
+  header h1 {
+    font-family: var(--fh);
+    font-size: 26px;
+    margin: 6px 0 4px;
+    color: var(--tx);
+  }
+  header p {
+    color: var(--tx2);
+    font-size: 14px;
+    margin: 0;
+  }
+  .unit {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    backdrop-filter: blur(6px);
+  }
+  .unit summary {
+    cursor: pointer;
+    padding: 14px 16px;
+    font-weight: 600;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+    color: var(--tx);
+  }
+  .unit summary::-webkit-details-marker { display: none; }
+  .unit summary .num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: rgba(245, 158, 11, .15);
+    color: var(--gold);
+    font-size: 13px;
+    font-weight: 700;
+    margin-right: 10px;
+    flex-shrink: 0;
+  }
+  .unit summary .title { flex: 1; font-family: var(--fh); }
+  .unit summary .count {
+    font-size: 12px;
+    color: var(--tx2);
+    font-weight: 400;
+  }
+  .unit summary .chev {
+    color: var(--ac);
+    transition: transform 0.15s ease;
+    margin-left: 8px;
+  }
+  .unit[open] summary .chev { transform: rotate(90deg); }
+  .unit--target {
+    border-color: var(--ac);
+    box-shadow: 0 0 0 2px rgba(245, 158, 11, .25);
+  }
+  .unit--target summary .num {
+    background: var(--ac);
+    color: var(--bg2);
+  }
+  .caps {
+    padding: 4px 16px 14px 52px;
+    border-top: 1px solid var(--line);
+  }
+  .cap-link {
+    display: block;
+    padding: 8px 10px;
+    margin: 4px 0;
+    border-radius: 8px;
+    color: var(--tx);
+    text-decoration: none;
+    font-size: 14px;
+    border: 1px solid transparent;
+  }
+  .cap-link:hover {
+    background: var(--card2);
+    border-color: var(--line);
+  }
+  .cap-link .n {
+    color: var(--ac);
+    font-weight: 700;
+    margin-right: 6px;
+  }
+  footer {
+    text-align: center;
+    color: var(--tx2);
+    font-size: 12px;
+    margin-top: 30px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="kicker">Oil & Gas 1 · EnglishFlow</div>
+    <h1>Árvore de Cápsulas</h1>
+    <p>Todas as unidades e cápsulas HTML da trilha, num link só. Toque numa unidade pra abrir.</p>
+  </header>
+
+  <div id="units"></div>
+
+  <footer>EnglishFlow · material de apoio, no seu ritmo</footer>
+</div>
+
+<script>
+const UNITS = [
+  { u: 1, open: false, caps: [
+    ["1","Background"],["2","Kickoff"],["3","It's My Job"],["4","Language Spot"],
+    ["5","Pronunciation"],["6","Number Talk"],["7","Listening"],["8","Vocabulary"],
+    ["9","Speaking"],["10","Reading"],["11","Project"],["12","Language Spot B"],
+    ["13","Writing"],["14","Checklist"],["15","Key Words"],["16","Writing Bank"]
+  ]},
+  { u: 2, open: false, caps: [
+    ["17","Background"],["18","Kickoff"],["19","Reading"],["20","It's My Job"],
+    ["21","Vocabulary"],["22","Language Spot"],["23","Speaking"],["24","Number Talk"],
+    ["25","Listening"],["26","Writing"],["27","Project"],["28","Checklist"],
+    ["29","Key Words"],["30","Writing Bank"]
+  ]},
+  { u: 3, open: false, caps: [
+    ["31","Background"],["32","Kickoff"],["32","Language Spot"],["33","It's My Job"],
+    ["35","Pronunciation"],["36","Number Talk"],["37","Listening"],["38","Vocabulary"],
+    ["39","Speaking"],["40","Reading"],["41","Writing"],["42","Checklist"],
+    ["43","Key Words"],["44","Writing Bank"]
+  ], files: {"32-kickoff":"32-Kickoff", "32-language-spot":"32-Language Spot"} },
+  { u: 4, open: false, caps: [
+    ["45","Background"],["46","Kickoff"],["47","Reading"],["48","Speaking"],
+    ["49","It's My Job"],["50","Number Talk"],["51","Vocabulary"],["52","Listening"],
+    ["53","Language Spot"],["54","Writing"],["55","Checklist"],["56","Key Words"],
+    ["57","Writing Bank"]
+  ]},
+  { u: 5, open: false, caps: [
+    ["58","Background"],["59","Kickoff"],["60","Vocabulary"],["61","Reading"],
+    ["62","It's My Job"],["63","Pronunciation"],["64","Language Spot"],["65","Writing"],
+    ["66","Number Talk"],["67","Listening"],["68","Speaking"],["69","Checklist"],
+    ["70","Key Words"],["71","Writing Bank"]
+  ]},
+  { u: 6, open: false, caps: [
+    ["72","Background"],["73","Kickoff"],["74","Reading"],["75","Listening"],
+    ["76","Language Spot"],["77","Pronunciation"],["78","Writing"],["79","Speaking"],
+    ["80","Vocabulary"],["81","Project"],["82","Checklist"],["83","Key Words"],
+    ["84","Writing Bank"]
+  ]},
+  { u: 7, open: false, caps: [
+    ["85","Background"],["86","Kickoff"],["87","Reading"],["88","Vocabulary"],
+    ["89","It's My Job"],["90","Listening"],["91","Speaking"],["92","Language Spot"],
+    ["93","Number Talk"],["94","Reading B"],["95","Writing Bank"],["96","Checklist"],
+    ["97","Key Words"]
+  ]},
+  { u: 8, open: true, caps: [
+    ["98","Background"],["99","Kickoff"],["100","Reading A"],["100","Reading B"],
+    ["101","Language Spot"],["102","Number Talk"],["103","It's My Job"],
+    ["104","Language Spot CD"],["105","Vocabulary"],["106","Writing A"],
+    ["106","Writing B"],["107","Listening"],["108","Vocabulary B"],["109","Speaking"],
+    ["110","Pronunciation"],["111","Checklist"],["112","Key Words"]
+  ], dupSuffix: {"100":["a","b"], "106":["a","b"]} },
+  { u: 9, open: false, caps: [
+    ["113","Background"],["114","Kickoff"],["115","Vocabulary"],["116","Number Talk"],
+    ["117","Language Spot"],["118","Listening"],["119","Reading"],["120","Speaking"],
+    ["121","It's My Job"],["122","Writing Bank"],["123","Project"],["124","Checklist"],
+    ["125","Key Words"]
+  ]},
+  { u: 10, open: false, caps: [
+    ["126","Background"],["127","Kickoff"],["128","Vocabulary"],["129","Vocabulary Prevention"],
+    ["130","Language Spot"],["131","It's My Job"],["132","Listening"],["133","Pronunciation"],
+    ["134","Reading"],["135","Speaking"],["136","Writing Bank"],["137","Project"],
+    ["138","Checklist"],["139","Key Words"]
+  ]},
+  { u: 11, open: false, caps: [
+    ["140","Background"],["141","Kickoff"],["142","Listening"],["143","Reading"],
+    ["144","Vocabulary"],["145","Vocabulary Tools Table"],["146","Language Spot"],
+    ["147","Speaking"],["148","Number Talk"],["149","Writing"],["150","Checklist"],
+    ["151","Key Words"]
+  ]},
+  { u: 12, open: false, caps: [
+    ["152","Background"],["153","Kickoff"],["154","Vocabulary"],["155","Vocabulary B"],
+    ["156","Language Spot"],["157","Pronunciation"],["158","Reading"],["159","Listening"],
+    ["160","It's My Job"],["161","Writing"],["162","Checklist"],["163","Key Words"]
+  ]},
+  { u: 13, open: false, caps: [
+    ["164","Background"],["165","Kickoff"],["166","Listening"],["167","Language Spot"],
+    ["168","Language Spot B"],["169","Speaking"],["170","Number Talk"],["171","It's My Job"],
+    ["172","Reading"],["173","Writing"],["174","Project"],["175","Checklist"],
+    ["176","Key Words"]
+  ]},
+  { u: 14, open: false, caps: [
+    ["177","Background"],["178","Kickoff"],["179","Reading"],["180","Language Spot"],
+    ["181","It's My Job"],["182","Vocabulary"],["183","Vocabulary B"],["184","Listening"],
+    ["185","Language Spot B"],["186","Number Talk"],["187","Pronunciation"],["188","Speaking"],
+    ["189","Writing"],["190","Checklist"],["191","Key Words"]
+  ]},
+  { u: 15, open: false, caps: [
+    ["192","Background"],["193","Kick-off"],["194","Reading"],["195","Language Spot"],
+    ["196","Vocabulary"],["197","Number Talk"],["198","Listening"],["199","Speaking"],
+    ["200","It's My Job"],["201","Writing"],["202","Checklist"],["203","Key Words"]
+  ]}
+];
+
+// mapa manual dos casos com nome de arquivo != slug simples do título
+const FILE_OVERRIDES = {
+  "3|32|Kickoff": "capsule-32-kickoff.html",
+  "3|32|Language Spot": "capsule-32-language-spot.html",
+  "8|100|Reading A": "capsule-100-reading-a.html",
+  "8|100|Reading B": "capsule-100-reading-b.html",
+  "8|106|Writing A": "capsule-106-writing-a.html",
+  "8|106|Writing B": "capsule-106-writing-b.html",
+  "15|193|Kick-off": "capsule-193-kick-off.html"
+};
+
+function slug(title) {
+  return title.toLowerCase()
+    .replace(/'/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+// abre direto na unidade do link (ex.: arvore-de-capsulas.html#unit-8)
+const hashUnit = (location.hash.match(/^#unit-(\d+)$/) || [])[1];
+const targetUnit = hashUnit ? parseInt(hashUnit, 10) : null;
+
+const root = document.getElementById("units");
+let targetEl = null;
+UNITS.forEach(unit => {
+  const details = document.createElement("details");
+  details.id = `unit-${unit.u}`;
+  details.className = "unit";
+  const shouldOpen = targetUnit ? unit.u === targetUnit : unit.open;
+  if (shouldOpen) details.open = true;
+  if (targetUnit && unit.u === targetUnit) targetEl = details;
+
+  const summary = document.createElement("summary");
+  summary.innerHTML = `<span class="num">${unit.u}</span><span class="title">Unit ${unit.u}</span><span class="count">${unit.caps.length} cápsulas</span><span class="chev">›</span>`;
+  details.appendChild(summary);
+
+  const capsDiv = document.createElement("div");
+  capsDiv.className = "caps";
+
+  unit.caps.forEach(([n, title]) => {
+    const key = `${unit.u}|${n}|${title}`;
+    const file = FILE_OVERRIDES[key] || `capsule-${n}-${slug(title)}.html`;
+    const a = document.createElement("a");
+    a.className = "cap-link";
+    a.href = `unit-${unit.u}/${file}`;
+    a.innerHTML = `<span class="n">${n}.</span>${title}`;
+    capsDiv.appendChild(a);
+  });
+
+  details.appendChild(capsDiv);
+  root.appendChild(details);
+});
+
+if (targetEl) {
+  targetEl.classList.add("unit--target");
+  targetEl.scrollIntoView({ behavior: "instant", block: "start" });
+}
+</script>
+</body>
+</html>

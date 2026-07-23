@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Writing Bank · Unit 4 — Safety First</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
+.header{background:#0d1b2a;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid rgba(241,196,15,.25)}
+.pill-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:700;color:#f5da6e;line-height:1}
+.pill-title span{color:#f1c40f;font-size:clamp(14px,2.5vw,22px);font-weight:600;display:block;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.icon-box{width:48px;height:48px;border:1.5px solid rgba(241,196,15,.4);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.icon-box svg{width:26px;height:26px;stroke:#f1c40f;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.countdown-bar{background:#0d1b2a;border-bottom:1px solid rgba(241,196,15,.2);padding:8px 24px;display:flex;align-items:center;gap:12px}
+.countdown-display{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:#f1c40f;letter-spacing:.08em;min-width:60px}
+.countdown-display.warning{color:#f59e0b}.countdown-display.urgent{color:#ef4444}
+.progress-track{flex:1;height:4px;background:rgba(241,196,15,.13);border-radius:2px;overflow:hidden}
+.progress-fill{height:100%;background:#f1c40f;border-radius:2px;transition:width 1s linear,background .5s}
+.progress-fill.warning{background:#f59e0b}.progress-fill.urgent{background:#ef4444}
+.translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(241,196,15,.2);padding:6px 24px;font-size:11px;color:#f5da6e;text-align:center}
+.translate-warning strong{color:#f1c40f}
+.steps{display:flex;gap:6px;padding:8px 16px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.steps::-webkit-scrollbar{display:none}
+.step{flex-shrink:0;display:flex;align-items:center;gap:6px;background:rgba(241,196,15,.08);border:1px solid rgba(241,196,15,.25);border-radius:20px;padding:6px 12px;font-size:11.5px;color:#f5da6e;font-weight:500;white-space:nowrap}
+.step svg{width:13px;height:13px;stroke:#f1c40f;fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0}
+.content{padding:0 16px 16px;display:flex;flex-direction:column;gap:12px}
+.panel{background:#111827;border-radius:10px;padding:14px 16px}
+.zone-label{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#f1c40f;font-weight:600;margin-bottom:10px}
+.wb-title{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:#f5da6e;margin-bottom:6px}
+.wb-intro{font-size:12px;color:#c8d8e8;line-height:1.65;margin-bottom:14px}
+.structure-cards{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.struct-card{display:flex;align-items:flex-start;gap:10px;background:#0a1628;border-radius:8px;padding:10px 12px}
+.struct-num{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:#f1c40f;min-width:24px;line-height:1}
+.struct-body{}
+.struct-label{font-size:10px;color:#4a6a8a;text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+.struct-text{font-size:12px;color:#c8d8e8;margin-top:2px;line-height:1.5}
+.struct-example{font-size:11px;color:#f5da6e;margin-top:3px;font-style:italic}
+.model-box{background:#0a1628;border:1px solid rgba(241,196,15,.2);border-radius:10px;padding:14px;margin-bottom:14px}
+.model-tag{font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:#f1c40f;font-weight:600;margin-bottom:8px}
+.model-header{font-size:11px;color:#4a6a8a;margin-bottom:8px}
+.model-body{font-size:12px;color:#c8d8e8;line-height:2}
+.model-body strong{color:#f5da6e}
+.model-body .highlight{background:rgba(241,196,15,.1);padding:1px 4px;border-radius:3px;color:#f5da6e}
+.activity-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#f5da6e;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.activity-title .num{background:#f1c40f;color:#0a0f1e;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;font-weight:700}
+.scenario-box{background:#0a1628;border-left:3px solid #f1c40f;border-radius:0 8px 8px 0;padding:10px 12px;margin-bottom:10px}
+.scenario-box p{font-size:12px;color:#c8d8e8;line-height:1.65}
+.scenario-box strong{color:#f5da6e}
+.task-box{background:#0a1628;border:1px solid rgba(241,196,15,.25);border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:8px}
+.task-box p{font-size:11px;color:#f5da6e;font-style:italic;line-height:1.45}
+.whatsapp-btn{display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;border:none;border-radius:8px;padding:9px 12px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:background .2s;width:100%}
+.whatsapp-btn:hover{background:#1ebc58}
+.whatsapp-btn svg{width:16px;height:16px;fill:#fff;flex-shrink:0}
+.footer{background:#0d1b2a;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(241,196,15,.2);margin-top:4px}
+.footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a8a;letter-spacing:.04em}
+.footer-right{display:flex;align-items:center;gap:10px}
+.footer-icon svg{width:22px;height:22px;stroke:#f1c40f;fill:none;stroke-width:1.5}
+.footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;color:#f1c40f;letter-spacing:.06em;text-transform:uppercase}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);display:flex;align-items:center;justify-content:center;z-index:100;padding:16px}
+.modal-box{background:#111827;border:1px solid rgba(241,196,15,.25);border-radius:14px;padding:24px;max-width:480px;width:100%;max-height:85vh;overflow-y:auto;display:flex;flex-direction:column;gap:14px}
+.modal-title{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:#f5da6e}
+.modal-field label{font-size:11px;color:#f1c40f;text-transform:uppercase;letter-spacing:.08em;font-weight:600;display:block;margin-bottom:5px}
+.modal-field input[type='text'],.modal-field textarea{width:100%;background:#0a1628;border:1px solid rgba(241,196,15,.25);border-radius:6px;padding:9px;font-size:12px;color:#c8d8e8;font-family:'Barlow',sans-serif;outline:none}
+.modal-field textarea{resize:vertical;min-height:80px}
+.modal-field input[type='text']:focus,.modal-field textarea:focus{border-color:#f1c40f}
+.modal-reminder{font-size:11px;color:#4a6a8a;font-style:italic;border-top:1px solid rgba(241,196,15,.13);padding-top:10px}
+.modal-actions{display:flex;gap:8px}
+.modal-cancel{flex:1;background:transparent;border:1px solid rgba(241,196,15,.25);color:#4a6a8a;border-radius:8px;padding:9px;font-family:'Barlow Condensed',sans-serif;font-size:14px;cursor:pointer}
+.modal-send{flex:2;display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;border:none;border-radius:8px;padding:9px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;cursor:pointer}
+.modal-send:hover{background:#1ebc58}
+.modal-send svg{width:15px;height:15px;fill:#fff}
+@media(max-width:700px){.content{padding:0 10px 10px}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="pill-title">Writing Bank 4<span>Safety First</span></div>
+  <div class="icon-box">
+    <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+  </div>
+</div>
+
+<div class="countdown-bar">
+  <span class="countdown-display" id="timer">30:00</span>
+  <div class="progress-track"><div class="progress-fill" id="progress" style="width:100%"></div></div>
+</div>
+
+<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
+
+<div class="steps">
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>1. Study the structure</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>2. Read the model</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>3. Write your report</div>
+</div>
+
+<div class="content">
+  <div class="panel">
+    <div class="zone-label">Writing Bank 4 — A safety incident report</div>
+    <div class="wb-title">Reporting a safety incident</div>
+    <div class="wb-intro">In the oil and gas industry, workers must report all accidents and near misses in writing. A safety incident report tells: what happened, where and when, who was involved, and what action was taken.</div>
+
+    <div class="structure-cards">
+      <div class="struct-card">
+        <div class="struct-num">1</div>
+        <div class="struct-body">
+          <div class="struct-label">Date and location</div>
+          <div class="struct-text">Write the date, time, and exact location.</div>
+          <div class="struct-example">Date: 10 June 2026 · Time: 09:30 · Location: Deck B, Platform 4</div>
+        </div>
+      </div>
+      <div class="struct-card">
+        <div class="struct-num">2</div>
+        <div class="struct-body">
+          <div class="struct-label">What happened</div>
+          <div class="struct-text">Describe the incident clearly using Past Simple.</div>
+          <div class="struct-example">A worker slipped on a wet surface near the crane.</div>
+        </div>
+      </div>
+      <div class="struct-card">
+        <div class="struct-num">3</div>
+        <div class="struct-body">
+          <div class="struct-label">The hazard</div>
+          <div class="struct-text">Identify the hazard and say what caused it.</div>
+          <div class="struct-example">The surface was wet because of a chemical spill.</div>
+        </div>
+      </div>
+      <div class="struct-card">
+        <div class="struct-num">4</div>
+        <div class="struct-body">
+          <div class="struct-label">Action taken</div>
+          <div class="struct-text">Say what was done immediately after the incident.</div>
+          <div class="struct-example">The area was closed. The worker received first aid.</div>
+        </div>
+      </div>
+      <div class="struct-card">
+        <div class="struct-num">5</div>
+        <div class="struct-body">
+          <div class="struct-label">Recommendation</div>
+          <div class="struct-text">Use <em style="color:#f5da6e">must / should</em> to say what should change.</div>
+          <div class="struct-example">Workers must wear non-slip boots. The area should have a warning sign.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="model-box">
+      <div class="model-tag">Model incident report</div>
+      <div class="model-header">From: Ali Hassan, Safety Officer · To: Supervisor's Report File</div>
+      <div class="model-body">
+        <strong>Date:</strong> 8 June 2026 · <strong>Time:</strong> 14:15 · <strong>Location:</strong> Pump Room, Level 2<br><br>
+        <span class="highlight">What happened:</span> A rigger slipped on the floor near Pump 3 and fell. He hurt his left arm.<br><br>
+        <span class="highlight">The hazard:</span> The floor was wet because of an oil leak from a pipe joint. There was no warning sign in the area.<br><br>
+        <span class="highlight">Action taken:</span> The rigger received first aid immediately. The area was closed and cleaned. Maintenance checked the pipe.<br><br>
+        <span class="highlight">Recommendation:</span> All workers <strong>must</strong> check floors before starting work. Warning signs <strong>must</strong> be placed in wet areas. The pipe joint <strong>should</strong> be replaced.
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="activity-title"><span class="num">1</span>Write your incident report</div>
+    <div class="scenario-box">
+      <p><strong>Situation:</strong> You are a safety officer on an offshore platform. Yesterday at 10:45, a worker received an electric shock from a damaged cable near the generator room on Deck A. The cable was damaged because someone drove a vehicle over it. The worker recovered after first aid. Write the full incident report using the 5-part structure.</p>
+    </div>
+  </div>
+
+  <div class="task-box">
+    <p>✏️ Write your incident report. Send via WhatsApp.</p>
+    <button class="whatsapp-btn" onclick="openModal()">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="#fff"/></svg>
+      Enviar relatório
+    </button>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-left">Capsule 57 de 57 · Unit 4 — Safety First</div>
+  <div class="footer-right">
+    <div class="footer-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+    <div class="footer-text">Unit 4 — Safety First</div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal" style="display:none">
+  <div class="modal-box">
+    <div class="modal-title">Writing Bank 4 — Enviar relatório</div>
+    <div class="modal-field"><label>Your name</label><input type="text" id="studentName" placeholder="Type your name..." autocomplete="off"></div>
+    <div class="modal-field"><label>Your incident report (full text)</label><textarea id="ans1" rows="8" placeholder="Date: ...  Time: ...  Location: ...&#10;What happened: ...&#10;The hazard: ...&#10;Action taken: ...&#10;Recommendation: ..."></textarea></div>
+    <div class="modal-reminder">🎙️ Após enviar, grave seu áudio e envie na mesma conversa.</div>
+    <div class="modal-actions">
+      <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+      <button class="modal-send" onclick="sendWA()">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="#fff"/></svg>
+        Enviar no WhatsApp
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+const TOTAL=30*60;let remaining=TOTAL;
+const iv=setInterval(function(){
+  remaining--;
+  var m=Math.floor(remaining/60).toString().padStart(2,'0'),s=(remaining%60).toString().padStart(2,'0');
+  var el=document.getElementById('timer'),bar=document.getElementById('progress');
+  el.textContent=m+':'+s;bar.style.width=((remaining/TOTAL)*100)+'%';
+  el.className='countdown-display';bar.className='progress-fill';
+  if(remaining<=0){clearInterval(iv);el.textContent='00:00';bar.style.width='0%';bar.classList.add('urgent');}
+  else if(remaining<=60){el.classList.add('urgent');bar.classList.add('urgent');}
+  else if(remaining<=180){el.classList.add('warning');bar.classList.add('warning');}
+},1000);
+function openModal(){
+  var saved=localStorage.getItem('ef_student_name');
+  if(saved)document.getElementById('studentName').value=saved;
+  document.getElementById('modal').style.display='flex';
+}
+function closeModal(){document.getElementById('modal').style.display='none';}
+function sendWA(){
+  var name=document.getElementById('studentName').value.trim()||'Aluno';
+  localStorage.setItem('ef_student_name',name);
+  var a1=document.getElementById('ans1').value.trim()||'—';
+  var now=new Date(),date=now.toLocaleDateString('pt-BR'),time=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  var msg='👤 '+name+'\n📅 '+date+' às '+time+'\n🎙️ Writing Bank 4 — Unit 4 — Safety First\n📌 Incident Report:\n'+a1+'\n👇 Áudio na mensagem seguinte (se preferiu enviar por áudio)';
+  window.open('https://wa.me/5522999585058?text='+encodeURIComponent(msg),'_blank');
+}
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+</script>
+</body>
+</html>
