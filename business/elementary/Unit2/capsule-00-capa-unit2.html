@@ -39,6 +39,14 @@ body{background:#E8EAED;font-family:'Barlow',sans-serif;min-height:100vh;color:#
 .ef-logo{width:26px;height:26px;border-radius:50%}
 .footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:#0D9268;letter-spacing:.06em;text-transform:uppercase}
 @media(max-width:480px){.cover-card{padding:26px 18px}.header{padding:10px 16px}.footer{padding:8px 16px}}
+
+/* EF-INDEX-CSS */
+.unit-index{list-style:none;text-align:left;max-width:340px;margin:0 auto 20px;counter-reset:ix}
+.unit-index li{counter-increment:ix;border-bottom:1px solid rgba(255,149,0,.12)}
+.unit-index li:last-child{border-bottom:none}
+.unit-index a{display:flex;align-items:center;gap:10px;padding:9px 6px;font-size:13px;color:#2C3E50;text-decoration:none;min-height:40px}
+.unit-index a:hover{background:rgba(255,149,0,.08);border-radius:6px}
+.unit-index a::before{content:counter(ix);flex:0 0 22px;height:22px;border-radius:50%;background:#FF9500;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
 </style>
 </head>
 <body>
@@ -72,12 +80,22 @@ body{background:#E8EAED;font-family:'Barlow',sans-serif;min-height:100vh;color:#
       <li>say <b>numbers</b>: years, prices, phone numbers</li>
       <li>make a complete <b>phone call</b> in English</li>
     </ul>
+    <!-- EF-INDEX -->
+    <div class="learn-title">Unit index</div>
+    <ol class="unit-index">
+      <li><a href="capsule-07-starting-point.html">Starting Point</a></li>
+      <li><a href="capsule-08-working-with-words.html">Working with Words</a></li>
+      <li><a href="capsule-09-language-at-work.html">Language at Work</a></li>
+      <li><a href="capsule-10-practically-speaking.html">Practically Speaking</a></li>
+      <li><a href="capsule-11-business-communication.html">Business Communication</a></li>
+      <li><a href="capsule-12-talking-point.html">Talking Point</a></li>
+    </ol>
     <a class="start-btn" href="capsule-07-starting-point.html">Start Unit →</a>
   </div>
 </div>
 
 <div class="footer">
-  <div class="footer-left">Capa · Unit 2 — Products &amp; Services · Business Elementary</div>
+  <div class="footer-left">Cover · Unit 2 — Products &amp; Services · Business Elementary</div>
   <div class="footer-right">
     <img class="ef-logo" src="logo-englishflow.png" alt="EnglishFlow" onerror="this.style.display='none'">
     <div class="footer-text">Unit 2 — Products &amp; Services</div>
