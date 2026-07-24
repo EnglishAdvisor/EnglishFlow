@@ -90,6 +90,16 @@ body{background:#E8EAED;font-family:'Barlow',sans-serif;min-height:100vh;color:#
 .tip-box{background:rgba(255,149,0,.07);border:1px solid rgba(255,149,0,.2);border-radius:8px;padding:8px 12px;font-size:11px;margin:8px 0;color:#2C3E50}
 .text-block ol{margin-left:16px;margin-bottom:7px}
 .text-block li{margin-bottom:5px}
+
+/* EF-NAV-CSS */
+.capsule-nav{display:flex;gap:8px;justify-content:space-between;align-items:center;max-width:900px;margin:18px auto 6px;padding:0 16px}
+.capsule-nav a,.capsule-nav span{flex:1;text-align:center;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:11px 8px;border-radius:10px;min-height:44px;display:flex;align-items:center;justify-content:center;text-decoration:none}
+.capsule-nav a{background:#FFFFFF;color:#CC7700;border:1px solid rgba(255,149,0,.35)}
+.capsule-nav a:hover{background:#FF9500;color:#fff}
+.capsule-nav a.nav-index{background:#FF9500;color:#fff;border-color:#FF9500}
+.capsule-nav a.nav-index:hover{background:#CC7700}
+.capsule-nav span{color:#B7C0C9;border:1px dashed rgba(44,62,80,.15)}
+@media(max-width:480px){.capsule-nav{font-size:12px;padding:0 10px}.capsule-nav a,.capsule-nav span{font-size:12px;padding:10px 4px}}
 </style>
 </head>
 <body>
@@ -174,8 +184,15 @@ body{background:#E8EAED;font-family:'Barlow',sans-serif;min-height:100vh;color:#
   </div>
 </div>
 
+<!-- EF-NAV -->
+<nav class="capsule-nav">
+  <a href="capsule-08-working-with-words-a.html">&larr; Previous</a>
+  <a class="nav-index" href="capsule-00-capa-unit2.html">Unit index</a>
+  <a href="capsule-09-language-at-work.html">Next &rarr;</a>
+</nav>
+
 <div class="footer">
-  <div class="footer-left">Cápsula 8-B de 54 · Unit 2 — Company · Business Starter</div>
+  <div class="footer-left">Capsule 8-B of 54 · Unit 2 — Company · Business Starter</div>
   <div class="footer-right">
     <img class="ef-logo" src="logo-englishflow.png" alt="EnglishFlow" onerror="this.style.display='none'">
     <div class="footer-text">Unit 2 — Company</div>
