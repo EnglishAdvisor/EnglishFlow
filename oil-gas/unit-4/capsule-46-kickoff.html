@@ -68,6 +68,17 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 .modal-send:hover{background:#1ebc58}
 .modal-send svg{width:15px;height:15px;fill:#fff}
 @media(max-width:700px){.content{grid-template-columns:1fr}.ppe-grid{grid-template-columns:1fr 1fr}}
+
+/* ==== EF: campos de resposta na propria capsula (padrao 25/07/2026) ==== */
+.ef-answers{background:#0a1628;border:1px solid #f1c40f44;border-radius:10px;padding:12px 14px;margin-top:12px}
+.ef-answers-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#f1c40f;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+.ef-field{margin-bottom:10px}
+.ef-field:last-child{margin-bottom:0}
+.ef-label{display:block;font-size:10.5px;color:#8fa3b8;text-transform:uppercase;letter-spacing:.07em;font-weight:600;margin-bottom:4px}
+.ef-ans{width:100%;background:#111827;border:1px solid #f1c40f44;border-radius:6px;padding:8px 10px;font-size:12px;color:#c8d8e8;font-family:'Barlow',sans-serif;outline:none;resize:vertical;min-height:64px;line-height:1.55;transition:border .2s}
+.ef-ans:focus{border-color:#f1c40f}
+.ef-ans.filled{border-color:rgba(37,211,102,.55)}
+.ef-preview{background:#0a1628;border:1px solid #f1c40f44;border-radius:6px;padding:10px;font-size:11.5px;color:#c8d8e8;white-space:pre-wrap;max-height:220px;overflow-y:auto;line-height:1.5}
 </style>
 </head>
 <body>
@@ -78,10 +89,6 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
     <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
   </div>
 </div>
-
-<div class="countdown-bar">
-  <span class="countdown-display" id="timer">25:00</span>
-  <div class="progress-track"><div class="progress-fill" id="progress" style="width:100%"></div></div>
 </div>
 
 <div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
@@ -131,6 +138,12 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
       </div>
     </div>
 
+      <div class="ef-answers">
+        <div class="ef-answers-title">✍️ Your answers</div>
+        <div class="ef-field"><label class="ef-label">Activity 1 — PPE completions (1–8)</label><textarea class="ef-ans" id="ans1" data-lab="Activity 1 — PPE completions (1–8)" data-emo="🔤" placeholder="Write your answer here..."></textarea></div>
+        <div class="ef-field"><label class="ef-label">Activity 2 — Your opinion</label><textarea class="ef-ans" id="ans2" data-lab="Activity 2 — Your opinion" data-emo="✅" placeholder="Write your answer here..."></textarea></div>
+      </div>
+
     <div class="task-box">
       <p>✏️ Answer Activity 1 and write your opinion (Activity 2). Send via WhatsApp.</p>
       <button class="whatsapp-btn" onclick="openModal()">
@@ -177,8 +190,7 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
   <div class="modal-box">
     <div class="modal-title">Kick Off — Enviar respostas</div>
     <div class="modal-field"><label>Your name</label><input type="text" id="studentName" placeholder="Type your name..." autocomplete="off"></div>
-    <div class="modal-field"><label>Activity 1 — PPE completions (1–8)</label><textarea id="ans1" placeholder="1. head  2. face  3. feet  4. Ear protectors  5. Gloves  6. Goggles  7. respirator  8. safety harness"></textarea></div>
-    <div class="modal-field"><label>Activity 2 — Your opinion</label><textarea id="ans2" placeholder="Three common hazards: ...  Most important PPE: ...  Example from my company: ..."></textarea></div>
+    <div class="modal-field"><label>Preview da mensagem</label><div class="ef-preview" id="msg-preview"></div></div>
     <div class="modal-reminder">🎙️ Após enviar, grave seu áudio e envie na mesma conversa.</div>
     <div class="modal-actions">
       <button class="modal-cancel" onclick="closeModal()">Cancel</button>
@@ -191,33 +203,47 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 </div>
 
 <script>
-const TOTAL=25*60;let remaining=TOTAL;
-const iv=setInterval(function(){
-  remaining--;
-  var m=Math.floor(remaining/60).toString().padStart(2,'0'),s=(remaining%60).toString().padStart(2,'0');
-  var el=document.getElementById('timer'),bar=document.getElementById('progress');
-  el.textContent=m+':'+s;bar.style.width=((remaining/TOTAL)*100)+'%';
-  el.className='countdown-display';bar.className='progress-fill';
-  if(remaining<=0){clearInterval(iv);el.textContent='00:00';bar.style.width='0%';bar.classList.add('urgent');}
-  else if(remaining<=60){el.classList.add('urgent');bar.classList.add('urgent');}
-  else if(remaining<=180){el.classList.add('warning');bar.classList.add('warning');}
-},1000);
-function openModal(){
-  var saved=localStorage.getItem('ef_student_name');
-  if(saved)document.getElementById('studentName').value=saved;
-  document.getElementById('modal').style.display='flex';
-}
-function closeModal(){document.getElementById('modal').style.display='none';}
-function sendWA(){
-  var name=document.getElementById('studentName').value.trim()||'Aluno';
-  localStorage.setItem('ef_student_name',name);
-  var a1=document.getElementById('ans1').value.trim()||'—';
-  var a2=document.getElementById('ans2').value.trim()||'—';
-  var now=new Date(),date=now.toLocaleDateString('pt-BR'),time=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
-  var msg='🧑‍🎓 '+name+'\n📅 '+date+' às '+time+'\n🛢️ Kick Off — Unit 4 — Safety First\n📌 Activity 1: '+a1+'\n📌 Activity 2: '+a2+'\n👇 Áudio na mensagem seguinte (se preferiu enviar por áudio)';
-  if(navigator.share){navigator.share({text:msg}).catch(function(){});}else{window.open('https://wa.me/?text='+encodeURIComponent(msg),'_blank');}
-}
-document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+
+/* ===== EnglishFlow - padrao de capsula (25/07/2026) =====
+   aluno responde na propria pagina | respostas salvas no aparelho
+   envio por compartilhamento nativo (o aluno escolhe pra quem manda) */
+var CAP_KEY='ef_ans_og1_u4_kickoff';
+var CAP_EMOJI='\uD83D\uDEE2\uFE0F';
+var CAP_TITLE="Kick Off — Unit 4 — Safety First";
+function efFields(){return [].slice.call(document.querySelectorAll('.ef-ans'));}
+function efName(){return document.getElementById('studentName')||document.getElementById('student-name');}
+function efModal(){return document.getElementById('modal')||document.getElementById('waModal');}
+function efSave(){var d={};efFields().forEach(function(el){d[el.id]=el.value;});
+  try{localStorage.setItem(CAP_KEY,JSON.stringify(d));}catch(e){}}
+function efRestore(){try{var d=JSON.parse(localStorage.getItem(CAP_KEY)||'{}');
+  efFields().forEach(function(el){if(d[el.id])el.value=d[el.id];});}catch(e){}efMark();}
+function efMark(){efFields().forEach(function(el){
+  if(el.value.trim())el.classList.add('filled');else el.classList.remove('filled');});}
+function buildMessage(){
+  var n=efName();var name=((n&&n.value)||'').trim()||'Aluno';var now=new Date();
+  var out='\uD83E\uDDD1\u200D\uD83C\uDF93 *'+name+'*\n'
+    +'\uD83D\uDCC5 '+now.toLocaleDateString('pt-BR')+' \u00e0s '+now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})+'\n'
+    +CAP_EMOJI+' *'+CAP_TITLE+'*\n';
+  efFields().forEach(function(el){
+    out+='\n'+(el.getAttribute('data-emo')||'\u270D\uFE0F')+' *'+(el.getAttribute('data-lab')||'')+'*\n'
+       +(el.value.trim()||'_(nao respondido)_')+'\n';});
+  out+='\n\uD83C\uDF99\uFE0F \u00c1udio na mensagem seguinte (se preferiu enviar por \u00e1udio)';
+  return out;}
+function openModal(){var n=efName();var s=localStorage.getItem('ef_student_name');
+  if(s&&n)n.value=s;var pv=document.getElementById('msg-preview');
+  if(pv)pv.textContent=buildMessage();
+  var m=efModal();if(m){m.style.display='flex';m.classList.add('open');}}
+function closeModal(){var m=efModal();if(m){m.style.display='none';m.classList.remove('open');}}
+function sendWA(){var n=efName();var name=((n&&n.value)||'').trim();
+  if(name)localStorage.setItem('ef_student_name',name);var msg=buildMessage();
+  if(navigator.share){navigator.share({text:msg}).catch(function(){});}
+  else{window.open('https://wa.me/?text='+encodeURIComponent(msg),'_blank');}}
+(function(){var m=efModal();
+  if(m)m.addEventListener('click',function(e){if(e.target===this)closeModal();});
+  var n=efName();if(n)n.addEventListener('input',function(){
+    var pv=document.getElementById('msg-preview');if(pv)pv.textContent=buildMessage();});
+  efFields().forEach(function(el){el.addEventListener('input',function(){efSave();efMark();});});
+  efRestore();})();
 </script>
 </body>
 </html>
