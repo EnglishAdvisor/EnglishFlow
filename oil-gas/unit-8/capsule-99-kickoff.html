@@ -35,6 +35,16 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 .text-block li{margin-bottom:5px}
 .info-box{background:#0a1628;border:1px solid rgba(0,119,182,.25);border-radius:8px;padding:10px 12px;margin-bottom:10px;font-size:12px;color:#c8d8e8;line-height:1.6;font-style:italic}
 .act-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;color:#0077b6;text-transform:uppercase;letter-spacing:.06em;margin:10px 0 5px}
+/* Campos de resposta na própria cápsula (padrão 25/07/2026) */
+.q-list{list-style:none;margin:6px 0 4px;padding:0}
+.q-item{display:flex;gap:9px;align-items:flex-start;margin-bottom:9px}
+.q-num{flex:0 0 auto;width:20px;height:20px;border-radius:50%;background:#0077b6;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.q-body{flex:1;min-width:0}
+.q-text{margin-bottom:4px}
+.q-input,.q-area{width:100%;background:#0a1628;border:1px solid rgba(0,119,182,.25);border-radius:6px;padding:7px 9px;font-size:12px;color:#c8d8e8;font-family:'Barlow',sans-serif;outline:none;transition:border .2s}
+.q-input:focus,.q-area:focus{border-color:#0077b6}
+.q-input.filled,.q-area.filled{border-color:rgba(37,211,102,.5)}
+.q-area{margin-top:7px;resize:vertical;min-height:70px;line-height:1.5}
 .hazard-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:5px}
 .htag{background:rgba(0,119,182,.12);border:1px solid rgba(0,119,182,.3);border-radius:12px;padding:3px 9px;font-size:11px;color:#90c8e0}
 .img-side{display:flex;flex-direction:column;gap:10px}
@@ -141,18 +151,29 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
           <div class="info-box">"This production platform in the Campos Basin, off the Brazilian coast, is one of the biggest in the country."</div>
           <div class="act-title">Activity 1 — Study the platform &amp; answer</div>
           <p>Look at the image and answer the questions:</p>
-          <ol>
-            <li>Where can helicopters land on the platform?</li>
-            <li>Where do the workers eat and sleep?</li>
-            <li>How can they escape in an emergency?</li>
-            <li>Which part of the platform processes crude oil?</li>
-            <li>Where do they burn gas if there is too much?</li>
-          </ol>
+          <ul class="q-list">
+            <li class="q-item"><span class="q-num">1</span><div class="q-body">
+              <div class="q-text">Where can helicopters land on the platform?</div>
+              <input class="q-input a1" id="q1" placeholder="Your answer…" autocomplete="off"></div></li>
+            <li class="q-item"><span class="q-num">2</span><div class="q-body">
+              <div class="q-text">Where do the workers eat and sleep?</div>
+              <input class="q-input a1" id="q2" placeholder="Your answer…" autocomplete="off"></div></li>
+            <li class="q-item"><span class="q-num">3</span><div class="q-body">
+              <div class="q-text">How can they escape in an emergency?</div>
+              <input class="q-input a1" id="q3" placeholder="Your answer…" autocomplete="off"></div></li>
+            <li class="q-item"><span class="q-num">4</span><div class="q-body">
+              <div class="q-text">Which part of the platform processes crude oil?</div>
+              <input class="q-input a1" id="q4" placeholder="Your answer…" autocomplete="off"></div></li>
+            <li class="q-item"><span class="q-num">5</span><div class="q-body">
+              <div class="q-text">Where do they burn gas if there is too much?</div>
+              <input class="q-input a1" id="q5" placeholder="Your answer…" autocomplete="off"></div></li>
+          </ul>
           <div class="act-title">Activity 2 — Give your opinion</div>
           <p>Which are the <strong style="color:#90c8e0">three biggest hazards</strong> on a platform, and why?</p>
           <div class="hazard-tags">
             <span class="htag">flammable gas</span><span class="htag">bad weather</span><span class="htag">electrical equipment</span><span class="htag">sparks</span><span class="htag">big waves</span><span class="htag">strong ocean currents</span><span class="htag">other things</span>
           </div>
+          <textarea class="q-area" id="qop" placeholder="I think the three biggest hazards are…"></textarea>
         </div>
       </div>
       <div class="img-side">
@@ -201,8 +222,7 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
       <label>Your name</label>
       <input type="text" id="student-name" placeholder="Your name" autocomplete="off">
     </div>
-    <div class="modal-field"><label>Activity 1 — Answers to the 5 questions</label><textarea id="act1" placeholder="1. Helicopters land on the helideck..."></textarea></div>
-    <div class="modal-field"><label>Activity 2 — Your 3 biggest hazards and reasons</label><textarea id="act2" placeholder="I think the 3 biggest hazards are..."></textarea></div>
+    <div class="modal-field"><label>Preview da mensagem</label><div id="msg-preview" style="background:#0a1628;border:1px solid rgba(0,119,182,.25);border-radius:6px;padding:10px;font-size:11.5px;color:#c8d8e8;white-space:pre-wrap;max-height:220px;overflow-y:auto;line-height:1.5"></div></div>
     <div class="modal-reminder">🎙️ Após enviar suas respostas, grave seu áudio e envie na mesma conversa.</div>
     <div class="modal-actions">
       <button class="modal-cancel" onclick="closeModal()">Cancel</button>
@@ -216,52 +236,85 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 
 <script>
 
-function openModal(){
-  var saved=localStorage.getItem('ef_student_name');
-  if(saved)document.getElementById('student-name').value=saved;
-  document.getElementById('modal').style.display='flex';
-}
-function closeModal(){document.getElementById('modal').style.display='none';}
+/* ===== EnglishFlow — padrão de envio de respostas (25/07/2026) =====
+   1. Aluno responde nos campos da própria cápsula
+   2. Ao enviar, as respostas já vêm montadas na mensagem
+   3. Compartilhamento nativo — o aluno escolhe pra quem envia            */
+var CAP_KEY='ef_ans_og1_u8_kickoff';   /* chave única desta cápsula */
+var CAP_EMOJI='🛢️';                    /* emoji da trilha Oil & Gas */
+var CAP_TITLE='Kick Off — Unit 8 — Working Offshore';
+
 function numberEmoji(n){
   var e=['1️⃣','2️⃣','3️⃣','4️⃣','5️⃣','6️⃣','7️⃣','8️⃣','9️⃣','🔟'];
   return e[n-1]||(n+'.');
 }
-function formatAnswer(text){
-  /* numera linha a linha com emoji, preservando o que o aluno escreveu */
-  var lines=text.split('\n').filter(function(l){return l.trim()!=='';});
-  if(lines.length<2) return text;
-  return lines.map(function(l,i){
-    return numberEmoji(i+1)+' '+l.replace(/^\s*\d+[\).\-\s]*/,'').trim();
-  }).join('\n');
+function allInputs(){
+  return [].slice.call(document.querySelectorAll('.a1'));
+}
+/* salva o que o aluno digitou, pra não perder se fechar a página */
+function saveAnswers(){
+  var d={};
+  allInputs().forEach(function(el){d[el.id]=el.value;});
+  d.qop=document.getElementById('qop').value;
+  try{localStorage.setItem(CAP_KEY,JSON.stringify(d));}catch(e){}
+}
+function restoreAnswers(){
+  try{
+    var d=JSON.parse(localStorage.getItem(CAP_KEY)||'{}');
+    allInputs().forEach(function(el){if(d[el.id])el.value=d[el.id];});
+    if(d.qop)document.getElementById('qop').value=d.qop;
+  }catch(e){}
+  markFilled();
+}
+function markFilled(){
+  allInputs().concat([document.getElementById('qop')]).forEach(function(el){
+    if(el.value.trim())el.classList.add('filled');else el.classList.remove('filled');
+  });
 }
 function buildMessage(){
-  var name=document.getElementById('student-name').value.trim()||'Aluno';
-  localStorage.setItem('ef_student_name',name);
+  var name=(document.getElementById('student-name').value||'').trim()||'Aluno';
   var now=new Date();
   var date=now.toLocaleDateString('pt-BR');
   var time=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
-  var act1=document.getElementById('act1').value.trim();
-  var act2=document.getElementById('act2').value.trim();
+  var a1=allInputs().map(function(el,i){
+    var v=el.value.trim();
+    return numberEmoji(i+1)+' '+(v||'—');
+  }).join('\n');
+  var op=document.getElementById('qop').value.trim();
   return '🧑‍🎓 *'+name+'*\n'
        + '📅 '+date+' às '+time+'\n'
-       + '📦 *Kick Off — Unit 8 — Working Offshore*\n\n'
-       + '🔤 *Activity 1 — Study the platform*\n'
-       + (act1?formatAnswer(act1):'_(não respondido)_')+'\n\n'
+       + CAP_EMOJI+' *'+CAP_TITLE+'*\n\n'
+       + '🔤 *Activity 1 — Study the platform*\n'+a1+'\n\n'
        + '✍️ *Activity 2 — Hazards*\n'
-       + (act2?act2:'_(não respondido)_')+'\n\n'
+       + (op||'_(não respondido)_')+'\n\n'
        + '🎙️ Áudio na mensagem seguinte (se preferiu enviar por áudio)';
 }
+function openModal(){
+  var saved=localStorage.getItem('ef_student_name');
+  if(saved)document.getElementById('student-name').value=saved;
+  document.getElementById('msg-preview').textContent=buildMessage();
+  document.getElementById('modal').style.display='flex';
+}
+function closeModal(){document.getElementById('modal').style.display='none';}
 function sendWA(){
+  var name=(document.getElementById('student-name').value||'').trim();
+  if(name)localStorage.setItem('ef_student_name',name);
   var msg=buildMessage();
-  /* Compartilhamento nativo: o aluno escolhe pra quem envia (contato, grupo, outro app) */
   if(navigator.share){
     navigator.share({text:msg}).catch(function(){});
   }else{
-    /* Fallback pra navegadores sem suporte (ex.: Chrome desktop) */
+    /* Fallback: navegadores sem compartilhamento nativo (ex.: Chrome desktop) */
     window.open('https://wa.me/?text='+encodeURIComponent(msg),'_blank');
   }
 }
 document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+document.getElementById('student-name').addEventListener('input',function(){
+  document.getElementById('msg-preview').textContent=buildMessage();
+});
+allInputs().concat([document.getElementById('qop')]).forEach(function(el){
+  el.addEventListener('input',function(){saveAnswers();markFilled();});
+});
+restoreAnswers();
 </script>
 <script>
 /* EnglishFlow — rastreio de frequência (injetado 10/07/2026) */
