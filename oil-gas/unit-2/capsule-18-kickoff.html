@@ -76,6 +76,28 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 @media(max-width:700px){.content{grid-template-columns:1fr}.match-grid{grid-template-columns:1fr}.steps{padding:6px 12px}}
 
 /* ==== EF: campos de resposta na propria capsula (padrao 25/07/2026) ==== */
+/* ==== EF: exercicios (padrao Unit 1) ==== */
+.q-list{list-style:none;margin:6px 0 4px;padding:0}
+.q-item{display:flex;gap:9px;align-items:flex-start;margin-bottom:9px}
+.q-num{flex:0 0 auto;display:inline-flex;width:20px;height:20px;border-radius:50%;background:#f5a623;color:#0a0f1e;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;align-items:center;justify-content:center;margin-right:4px}
+.q-body{flex:1;min-width:0}
+.q-text{margin-bottom:4px}
+.q-area{width:100%;background:#0a1628;border:1px solid rgba(245,166,35,.25);border-radius:6px;padding:7px 9px;font-size:12px;color:#c8d8e8;font-family:'Barlow',sans-serif;outline:none;resize:vertical;min-height:60px;line-height:1.5;transition:border .2s}
+.q-area:focus{border-color:#f5a623}
+.q-area.filled{border-color:rgba(37,211,102,.55)}
+.opt-row{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px;align-items:center}
+.opt{background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.28);border-radius:14px;padding:4px 11px;font-size:11px;color:#f5c87a;cursor:pointer;font-family:'Barlow',sans-serif;transition:.15s}
+.opt:hover{background:rgba(245,166,35,.18)}
+.opt.sel{background:#f5a623;color:#0a0f1e;border-color:#f5a623;font-weight:600}
+.opt.correct{background:#16a34a;border-color:#16a34a;color:#fff}
+.opt.wrong{background:#dc2626;border-color:#dc2626;color:#fff}
+.sent-item{background:rgba(245,166,35,.05);border:1px solid rgba(245,166,35,.15);border-radius:8px;padding:9px 11px;margin-bottom:7px;font-size:11.5px;color:#c8d8e8;line-height:1.5}
+.check-btn{width:100%;background:transparent;border:1px solid rgba(245,166,35,.45);color:#f5a623;border-radius:8px;padding:9px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;margin-top:10px;transition:.2s}
+.check-btn:hover{background:rgba(245,166,35,.12)}
+.score-box{margin-top:8px;padding:9px 12px;border-radius:8px;font-size:12px;text-align:center;display:none;font-weight:600}
+.score-box.show{display:block}
+.score-box.perfect{background:rgba(22,163,74,.15);border:1px solid #16a34a;color:#4ade80}
+.score-box.partial{background:rgba(245,166,35,.12);border:1px solid rgba(245,166,35,.5);color:#f5c87a}
 .ef-answers{background:#0a1628;border:1px solid #f5a62344;border-radius:10px;padding:12px 14px;margin-top:12px}
 .ef-answers-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#f5a623;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
 .ef-field{margin-bottom:10px}
@@ -123,41 +145,57 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
       </div>
 
       <div class="activity-title">Activity 1 — Match the term to what a technician would actually say</div>
-      <div class="match-grid">
-        <div style="display:flex;flex-direction:column;gap:6px">
-          <div class="match-left"><span class="match-num">1</span>"Fill her up with this — it's what comes out of the refinery, ready to burn."</div>
-          <div class="match-left"><span class="match-num">2</span>"Straight from the well, thick and dark — hasn't been touched yet."</div>
-          <div class="match-left"><span class="match-num">3</span>"Get it out of the ground and up to the platform."</div>
-          <div class="match-left"><span class="match-num">4</span>"There are two branches in this business — I work on one, my cousin works on the other."</div>
-          <div class="match-left"><span class="match-num">5</span>"My team finds it and pumps it — we never see what happens after."</div>
-          <div class="match-left"><span class="match-num">6</span>"My team turns the raw stuff into something you can actually sell."</div>
-        </div>
-        <div class="match-right">
-          <div class="match-item">fuel</div>
-          <div class="match-item">crude oil</div>
-          <div class="match-item">produce</div>
-          <div class="match-item">sectors</div>
-          <div class="match-item">upstream sector</div>
-          <div class="match-item">downstream sector</div>
+      <p style="font-size:11.5px;color:#8fa3b8;margin-bottom:8px">Tap the term that matches each sentence.</p>
+
+      <div class="sent-item" data-s="1" data-key="fuel">
+        <span class="q-num">1</span> "Fill her up with this — it's what comes out of the refinery, ready to burn."
+        <div class="opt-row">
+          <span class="opt" data-g="m1" data-v="fuel">fuel</span><span class="opt" data-g="m1" data-v="crude oil">crude oil</span><span class="opt" data-g="m1" data-v="produce">produce</span><span class="opt" data-g="m1" data-v="sectors">sectors</span><span class="opt" data-g="m1" data-v="upstream sector">upstream</span><span class="opt" data-g="m1" data-v="downstream sector">downstream</span>
         </div>
       </div>
-      <span class="answer-toggle" onclick="toggleAnswers()">▼ Show answers</span>
-      <div class="answers-box" id="answersBox">
-        1 → fuel &nbsp;|&nbsp; 2 → crude oil &nbsp;|&nbsp; 3 → produce &nbsp;|&nbsp; 4 → sectors &nbsp;|&nbsp; 5 → upstream sector &nbsp;|&nbsp; 6 → downstream sector
+      <div class="sent-item" data-s="2" data-key="crude oil">
+        <span class="q-num">2</span> "Straight from the well, thick and dark — hasn't been touched yet."
+        <div class="opt-row">
+          <span class="opt" data-g="m2" data-v="fuel">fuel</span><span class="opt" data-g="m2" data-v="crude oil">crude oil</span><span class="opt" data-g="m2" data-v="produce">produce</span><span class="opt" data-g="m2" data-v="sectors">sectors</span><span class="opt" data-g="m2" data-v="upstream sector">upstream</span><span class="opt" data-g="m2" data-v="downstream sector">downstream</span>
+        </div>
+      </div>
+      <div class="sent-item" data-s="3" data-key="produce">
+        <span class="q-num">3</span> "Get it out of the ground and up to the platform."
+        <div class="opt-row">
+          <span class="opt" data-g="m3" data-v="fuel">fuel</span><span class="opt" data-g="m3" data-v="crude oil">crude oil</span><span class="opt" data-g="m3" data-v="produce">produce</span><span class="opt" data-g="m3" data-v="sectors">sectors</span><span class="opt" data-g="m3" data-v="upstream sector">upstream</span><span class="opt" data-g="m3" data-v="downstream sector">downstream</span>
+        </div>
+      </div>
+      <div class="sent-item" data-s="4" data-key="sectors">
+        <span class="q-num">4</span> "There are two branches in this business — I work on one, my cousin works on the other."
+        <div class="opt-row">
+          <span class="opt" data-g="m4" data-v="fuel">fuel</span><span class="opt" data-g="m4" data-v="crude oil">crude oil</span><span class="opt" data-g="m4" data-v="produce">produce</span><span class="opt" data-g="m4" data-v="sectors">sectors</span><span class="opt" data-g="m4" data-v="upstream sector">upstream</span><span class="opt" data-g="m4" data-v="downstream sector">downstream</span>
+        </div>
+      </div>
+      <div class="sent-item" data-s="5" data-key="upstream sector">
+        <span class="q-num">5</span> "My team finds it and pumps it — we never see what happens after."
+        <div class="opt-row">
+          <span class="opt" data-g="m5" data-v="fuel">fuel</span><span class="opt" data-g="m5" data-v="crude oil">crude oil</span><span class="opt" data-g="m5" data-v="produce">produce</span><span class="opt" data-g="m5" data-v="sectors">sectors</span><span class="opt" data-g="m5" data-v="upstream sector">upstream</span><span class="opt" data-g="m5" data-v="downstream sector">downstream</span>
+        </div>
+      </div>
+      <div class="sent-item" data-s="6" data-key="downstream sector">
+        <span class="q-num">6</span> "My team turns the raw stuff into something you can actually sell."
+        <div class="opt-row">
+          <span class="opt" data-g="m6" data-v="fuel">fuel</span><span class="opt" data-g="m6" data-v="crude oil">crude oil</span><span class="opt" data-g="m6" data-v="produce">produce</span><span class="opt" data-g="m6" data-v="sectors">sectors</span><span class="opt" data-g="m6" data-v="upstream sector">upstream</span><span class="opt" data-g="m6" data-v="downstream sector">downstream</span>
+        </div>
       </div>
 
       <div class="activity-title">Activity 2 — Your opinion</div>
-      <div class="opinion-box">
-        <strong>Think about these questions:</strong><br>
-        If you had to pick a side of the barrel — platform (upstream) or refinery (downstream) — which one matches your skills?<br>
-        Name one job on an offshore platform that belongs to the upstream sector.
-      </div>
+      <ul class="q-list">
+        <li class="q-item"><span class="q-num">1</span><div class="q-body">
+          <div class="q-text">If you had to pick a side of the barrel — platform (upstream) or refinery (downstream) — which one matches your skills?</div>
+          <textarea class="q-area ef-ans" id="op1" data-lab="Which side matches your skills?" data-emo="🗣️" placeholder="Write your answer…"></textarea></div></li>
+        <li class="q-item"><span class="q-num">2</span><div class="q-body">
+          <div class="q-text">Name one job on an offshore platform that belongs to the upstream sector.</div>
+          <textarea class="q-area ef-ans" id="op2" data-lab="One upstream job on a platform" data-emo="🗣️" placeholder="Write your answer…"></textarea></div></li>
+      </ul>
 
-      <div class="ef-answers">
-        <div class="ef-answers-title">✍️ Your answers</div>
-        <div class="ef-field"><label class="ef-label">Activity 1 — Match the bold words (write the pairs: 1→? 2→? …)</label><textarea class="ef-ans" id="act1" data-lab="Activity 1 — Match the bold words (write the pairs: 1→? 2→? …)" data-emo="🔤" placeholder="Write your answer here..."></textarea></div>
-        <div class="ef-field"><label class="ef-label">Activity 2 — Your opinion (upstream or downstream? Why?)</label><textarea class="ef-ans" id="act2" data-lab="Activity 2 — Your opinion (upstream or downstream? Why?)" data-emo="✅" placeholder="Write your answer here..."></textarea></div>
-      </div>
+      <button class="check-btn" onclick="checkAll()">✓ Check answers</button>
+      <div class="score-box" id="scoreBox"></div>
 
       <div class="task-box">
         <p>📝 Answer in writing OR record a short audio. Send via WhatsApp.</p>
@@ -204,42 +242,75 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
   </div>
 </div>
 
-<script>function toggleAnswers(){
-  var b=document.getElementById('answersBox');
-  b.classList.toggle('open');
-  event.target.textContent=b.classList.contains('open')?'▲ Hide answers':'▼ Show answers';
-}
-function toggleAnswers(){
-  var b=document.getElementById('answersBox');
-  b.classList.toggle('open');
-  event.target.textContent=b.classList.contains('open')?'▲ Hide answers':'▼ Show answers';
-}
-
-/* ===== EnglishFlow - padrao de capsula (25/07/2026) =====
-   aluno responde na propria pagina | respostas salvas no aparelho
-   envio por compartilhamento nativo (o aluno escolhe pra quem manda) */
+<script>
+/* ===== EnglishFlow - padrao de capsula (Unit 1 model) ===== */
 var CAP_KEY='ef_ans_og1_u2_kickoff';
 var CAP_EMOJI='\uD83D\uDEE2\uFE0F';
-var CAP_TITLE="Kick Off — Unit 2 — Upstream";
+var CAP_TITLE="Kick Off \u2014 Unit 2 \u2014 Upstream";
+var NUM=['1\uFE0F\u20E3','2\uFE0F\u20E3','3\uFE0F\u20E3','4\uFE0F\u20E3','5\uFE0F\u20E3','6\uFE0F\u20E3'];
+
 function efFields(){return [].slice.call(document.querySelectorAll('.ef-ans'));}
+function sents(){return [].slice.call(document.querySelectorAll('.sent-item'));}
 function efName(){return document.getElementById('studentName')||document.getElementById('student-name');}
 function efModal(){return document.getElementById('modal')||document.getElementById('waModal');}
-function efSave(){var d={};efFields().forEach(function(el){d[el.id]=el.value;});
-  try{localStorage.setItem(CAP_KEY,JSON.stringify(d));}catch(e){}}
-function efRestore(){try{var d=JSON.parse(localStorage.getItem(CAP_KEY)||'{}');
-  efFields().forEach(function(el){if(d[el.id])el.value=d[el.id];});}catch(e){}efMark();}
+function pick(g){var s=document.querySelector('.opt[data-g="'+g+'"].sel');return s?s.getAttribute('data-v'):'';}
+
+document.querySelectorAll('.opt').forEach(function(o){
+  o.addEventListener('click',function(){
+    var g=o.getAttribute('data-g');
+    document.querySelectorAll('.opt[data-g="'+g+'"]').forEach(function(x){x.classList.remove('sel','correct','wrong');});
+    o.classList.add('sel');efSave();
+  });
+});
+
+function efSave(){
+  var d={t:{},o:{}};
+  efFields().forEach(function(el){d.t[el.id]=el.value;});
+  document.querySelectorAll('.opt.sel').forEach(function(o){d.o[o.getAttribute('data-g')]=o.getAttribute('data-v');});
+  try{localStorage.setItem(CAP_KEY,JSON.stringify(d));}catch(e){}
+}
+function efRestore(){
+  try{var d=JSON.parse(localStorage.getItem(CAP_KEY)||'{}');
+    if(d.t)efFields().forEach(function(el){if(d.t[el.id])el.value=d.t[el.id];});
+    if(d.o)Object.keys(d.o).forEach(function(g){
+      var el=document.querySelector('.opt[data-g="'+g+'"][data-v="'+d.o[g]+'"]');if(el)el.classList.add('sel');});
+  }catch(e){}
+  efMark();
+}
 function efMark(){efFields().forEach(function(el){
   if(el.value.trim())el.classList.add('filled');else el.classList.remove('filled');});}
+
+function checkAll(){
+  var hit=0,total=0;
+  sents().forEach(function(s){
+    total++;
+    var n=s.getAttribute('data-s'),right=s.getAttribute('data-key'),g='m'+n;
+    document.querySelectorAll('.opt[data-g="'+g+'"]').forEach(function(o){
+      o.classList.remove('correct','wrong');
+      if(o.getAttribute('data-v')===right)o.classList.add('correct');
+      else if(o.classList.contains('sel'))o.classList.add('wrong');
+    });
+    if(pick(g)===right)hit++;
+  });
+  var box=document.getElementById('scoreBox');
+  box.className='score-box show '+(hit===total?'perfect':'partial');
+  box.textContent=hit===total?'\uD83C\uDF89 All correct \u2014 '+hit+'/'+total+'!':hit+'/'+total+' correct \u2014 the right answers are shown in green.';
+  efSave();
+}
+
 function buildMessage(){
   var n=efName();var name=((n&&n.value)||'').trim()||'Aluno';var now=new Date();
+  var a1=sents().map(function(s,i){return NUM[i]+' '+(pick('m'+s.getAttribute('data-s'))||'\u2014');}).join('\n');
   var out='\uD83E\uDDD1\u200D\uD83C\uDF93 *'+name+'*\n'
     +'\uD83D\uDCC5 '+now.toLocaleDateString('pt-BR')+' \u00e0s '+now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})+'\n'
-    +CAP_EMOJI+' *'+CAP_TITLE+'*\n';
+    +CAP_EMOJI+' *'+CAP_TITLE+'*\n\n'
+    +'\uD83D\uDD24 *Activity 1 \u2014 Match the terms*\n'+a1+'\n';
   efFields().forEach(function(el){
     out+='\n'+(el.getAttribute('data-emo')||'\u270D\uFE0F')+' *'+(el.getAttribute('data-lab')||'')+'*\n'
        +(el.value.trim()||'_(nao respondido)_')+'\n';});
   out+='\n\uD83C\uDF99\uFE0F \u00c1udio na mensagem seguinte (se preferiu enviar por \u00e1udio)';
-  return out;}
+  return out;
+}
 function openModal(){var n=efName();var s=localStorage.getItem('ef_student_name');
   if(s&&n)n.value=s;var pv=document.getElementById('msg-preview');
   if(pv)pv.textContent=buildMessage();
