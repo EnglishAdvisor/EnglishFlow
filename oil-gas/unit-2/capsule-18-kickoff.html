@@ -223,8 +223,8 @@ function sendWA(){
   var now=new Date(),date=now.toLocaleDateString('pt-BR'),time=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
   var a1=document.getElementById('act1').value||'(not answered)';
   var a2=document.getElementById('act2').value||'(not answered)';
-  var msg='👤 '+name+'\n📅 '+date+' às '+time+'\n🎙️ Kick Off — Unit 2 — Upstream\n\n📌 Activity 1 — Match the bold words:\n'+a1+'\n\n📌 Activity 2 — Your opinion:\n'+a2+'\n\n👇 Áudio na mensagem seguinte';
-  window.open('https://wa.me/5522999585058?text='+encodeURIComponent(msg),'_blank');
+  var msg='🧑‍🎓 '+name+'\n📅 '+date+' às '+time+'\n🛢️ Kick Off — Unit 2 — Upstream\n\n📌 Activity 1 — Match the bold words:\n'+a1+'\n\n📌 Activity 2 — Your opinion:\n'+a2+'\n\n👇 Áudio na mensagem seguinte';
+  if(navigator.share){navigator.share({text:msg}).catch(function(){});}else{window.open('https://wa.me/?text='+encodeURIComponent(msg),'_blank');}
 }
 
 document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
