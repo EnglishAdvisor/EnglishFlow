@@ -176,8 +176,8 @@ function sendWA(){
   var time=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
   var a1=document.getElementById('ans1').value.trim()||'(no answer)';
   var a2=document.getElementById('ans2').value.trim()||'(no answer)';
-  var msg='👤 '+name+'\n📅 '+date+' às '+time+'\n🎙️ Kick Off — Unit 12 — Repairs and Maintenance\n📌 Activity 1: '+a1+'\n📌 Activity 2: '+a2+'\n👇 Áudio na mensagem seguinte';
-  window.open('https://wa.me/5522999585058?text='+encodeURIComponent(msg),'_blank');
+  var msg='🧑‍🎓 '+name+'\n📅 '+date+' às '+time+'\n🛢️ Kick Off — Unit 12 — Repairs and Maintenance\n📌 Activity 1: '+a1+'\n📌 Activity 2: '+a2+'\n👇 Áudio na mensagem seguinte';
+  if(navigator.share){navigator.share({text:msg}).catch(function(){});}else{window.open('https://wa.me/?text='+encodeURIComponent(msg),'_blank');}
   closeModal();
 }
 document.getElementById('waModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
