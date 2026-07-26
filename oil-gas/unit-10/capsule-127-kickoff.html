@@ -73,6 +73,17 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 .footer-right{display:flex;align-items:center;gap:10px}
 .footer-icon svg{width:22px;height:22px;stroke:#2ecc71;fill:none;stroke-width:1.5}
 .footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;color:#2ecc71;letter-spacing:.06em;text-transform:uppercase}
+
+/* ==== EF: campos de resposta na propria capsula (padrao 25/07/2026) ==== */
+.ef-answers{background:#0a1628;border:1px solid #2ecc7144;border-radius:10px;padding:12px 14px;margin-top:12px}
+.ef-answers-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#2ecc71;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+.ef-field{margin-bottom:10px}
+.ef-field:last-child{margin-bottom:0}
+.ef-label{display:block;font-size:10.5px;color:#8fa3b8;text-transform:uppercase;letter-spacing:.07em;font-weight:600;margin-bottom:4px}
+.ef-ans{width:100%;background:#111827;border:1px solid #2ecc7144;border-radius:6px;padding:8px 10px;font-size:12px;color:#c8d8e8;font-family:'Barlow',sans-serif;outline:none;resize:vertical;min-height:64px;line-height:1.55;transition:border .2s}
+.ef-ans:focus{border-color:#2ecc71}
+.ef-ans.filled{border-color:rgba(37,211,102,.55)}
+.ef-preview{background:#0a1628;border:1px solid #2ecc7144;border-radius:6px;padding:10px;font-size:11.5px;color:#c8d8e8;white-space:pre-wrap;max-height:220px;overflow-y:auto;line-height:1.5}
 </style>
 </head>
 <body>
@@ -94,11 +105,6 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 
 <div class="content">
   <div class="left-col">
-
-    <div class="countdown" id="countdownBox">
-      <div class="countdown-label">Time remaining</div>
-      <div class="countdown-time" id="cdTime">25:00</div>
-    </div>
 
     <div class="pictures-grid">
       <div class="pic-card">
@@ -216,6 +222,13 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
       </div>
     </div>
 
+      <div class="ef-answers">
+        <div class="ef-answers-title">✍️ Your answers</div>
+        <div class="ef-field"><label class="ef-label">Activity 1 — Match pictures with descriptions</label><textarea class="ef-ans" id="ans1" data-lab="Activity 1 — Match pictures with descriptions" data-emo="🔤" placeholder="Write your answer here..."></textarea></div>
+        <div class="ef-field"><label class="ef-label">Activity 2 — Pollution types (which pictures?)</label><textarea class="ef-ans" id="ans2" data-lab="Activity 2 — Pollution types (which pictures?)" data-emo="✅" placeholder="Write your answer here..."></textarea></div>
+        <div class="ef-field"><label class="ef-label">Activity 3 — Match solutions with pictures</label><textarea class="ef-ans" id="ans3" data-lab="Activity 3 — Match solutions with pictures" data-emo="🗣️" placeholder="Write your answer here..."></textarea></div>
+      </div>
+
     <div class="task-box"><strong>Task:</strong> Answer in writing OR record a short audio. Send via WhatsApp.</div>
 
     <button class="wa-btn" onclick="openModal()">
@@ -257,12 +270,8 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
     <div class="modal-sub">Unit 10 — Oil and the Environment</div>
     <label for="studentName">Your name</label>
     <input type="text" id="studentName" placeholder="Type your name" oninput="localStorage.setItem('ef_student_name',this.value)">
-    <label>Activity 1 — Match pictures with descriptions</label>
-    <textarea id="ans1" placeholder="1 oil spill = picture __ · 2 noisy equipment = __ · 3 broken equipment = __ · 4 gas flare = __"></textarea>
-    <label>Activity 2 — Pollution types (which pictures?)</label>
-    <textarea id="ans2" placeholder="Noise: __ · Water: __ · Soil: __ · Air: __"></textarea>
-    <label>Activity 3 — Match solutions with pictures</label>
-    <textarea id="ans3" placeholder="1 Reduce noise → __ · 2 Make safe, clean up → __ · 3 Repair → __ · 4 Limit/stop → __"></textarea>
+    <label style="display:block;font-size:11px;color:#8fa3b8;text-transform:uppercase;letter-spacing:.07em;font-weight:600;margin:10px 0 5px">Preview da mensagem</label>
+    <div class="ef-preview" id="msg-preview"></div>
     <div class="modal-note">🎙️ Após enviar, grave seu áudio e envie na mesma conversa.</div>
     <div class="modal-btns">
       <button class="modal-cancel" onclick="closeModal()">Cancelar</button>
@@ -271,29 +280,49 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
   </div>
 </div>
 
-<script>
-var secs=25*60;
-function pad(n){return n<10?'0'+n:n;}
-function tick(){if(secs<=0){document.getElementById('cdTime').textContent='00:00';return;}secs--;document.getElementById('cdTime').textContent=pad(Math.floor(secs/60))+':'+pad(secs%60);var el=document.getElementById('cdTime');if(secs<=60)el.style.color='#e74c3c';else if(secs<=180)el.style.color='#f1c40f';else el.style.color='#2ecc71';setTimeout(tick,1000);}
-tick();
-function reveal(id,ans){var el=document.getElementById(id);el.value=ans;el.style.color='#2ecc71';}
+<script>function reveal(id,ans){var el=document.getElementById(id);el.value=ans;el.style.color='#2ecc71';}
 function showAns(id,ans){document.getElementById(id).style.display='inline';}
-function openModal(){var n=localStorage.getItem('ef_student_name')||'';document.getElementById('studentName').value=n;document.getElementById('waModal').classList.add('open');}
-function closeModal(){document.getElementById('waModal').classList.remove('open');}
-function sendWA(){
-  var name=document.getElementById('studentName').value.trim()||'Student';
-  localStorage.setItem('ef_student_name',name);
-  var now=new Date();
-  var date=now.toLocaleDateString('pt-BR');
-  var time=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
-  var a1=document.getElementById('ans1').value.trim()||'(no answer)';
-  var a2=document.getElementById('ans2').value.trim()||'(no answer)';
-  var a3=document.getElementById('ans3').value.trim()||'(no answer)';
-  var msg='🧑‍🎓 '+name+'\n📅 '+date+' às '+time+'\n🛢️ Kick Off — Unit 10 — Oil and the Environment\n📌 Activity 1: '+a1+'\n📌 Activity 2: '+a2+'\n📌 Activity 3: '+a3+'\n👇 Áudio na mensagem seguinte';
-  if(navigator.share){navigator.share({text:msg}).catch(function(){});}else{window.open('https://wa.me/?text='+encodeURIComponent(msg),'_blank');}
-  closeModal();
-}
-document.getElementById('waModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+
+/* ===== EnglishFlow - padrao de capsula (25/07/2026) =====
+   aluno responde na propria pagina | respostas salvas no aparelho
+   envio por compartilhamento nativo (o aluno escolhe pra quem manda) */
+var CAP_KEY='ef_ans_og1_u10_kickoff';
+var CAP_EMOJI='\uD83D\uDEE2\uFE0F';
+var CAP_TITLE="Kick Off — Unit 10 — Oil and the Environment";
+function efFields(){return [].slice.call(document.querySelectorAll('.ef-ans'));}
+function efName(){return document.getElementById('studentName')||document.getElementById('student-name');}
+function efModal(){return document.getElementById('modal')||document.getElementById('waModal');}
+function efSave(){var d={};efFields().forEach(function(el){d[el.id]=el.value;});
+  try{localStorage.setItem(CAP_KEY,JSON.stringify(d));}catch(e){}}
+function efRestore(){try{var d=JSON.parse(localStorage.getItem(CAP_KEY)||'{}');
+  efFields().forEach(function(el){if(d[el.id])el.value=d[el.id];});}catch(e){}efMark();}
+function efMark(){efFields().forEach(function(el){
+  if(el.value.trim())el.classList.add('filled');else el.classList.remove('filled');});}
+function buildMessage(){
+  var n=efName();var name=((n&&n.value)||'').trim()||'Aluno';var now=new Date();
+  var out='\uD83E\uDDD1\u200D\uD83C\uDF93 *'+name+'*\n'
+    +'\uD83D\uDCC5 '+now.toLocaleDateString('pt-BR')+' \u00e0s '+now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})+'\n'
+    +CAP_EMOJI+' *'+CAP_TITLE+'*\n';
+  efFields().forEach(function(el){
+    out+='\n'+(el.getAttribute('data-emo')||'\u270D\uFE0F')+' *'+(el.getAttribute('data-lab')||'')+'*\n'
+       +(el.value.trim()||'_(nao respondido)_')+'\n';});
+  out+='\n\uD83C\uDF99\uFE0F \u00c1udio na mensagem seguinte (se preferiu enviar por \u00e1udio)';
+  return out;}
+function openModal(){var n=efName();var s=localStorage.getItem('ef_student_name');
+  if(s&&n)n.value=s;var pv=document.getElementById('msg-preview');
+  if(pv)pv.textContent=buildMessage();
+  var m=efModal();if(m){m.style.display='flex';m.classList.add('open');}}
+function closeModal(){var m=efModal();if(m){m.style.display='none';m.classList.remove('open');}}
+function sendWA(){var n=efName();var name=((n&&n.value)||'').trim();
+  if(name)localStorage.setItem('ef_student_name',name);var msg=buildMessage();
+  if(navigator.share){navigator.share({text:msg}).catch(function(){});}
+  else{window.open('https://wa.me/?text='+encodeURIComponent(msg),'_blank');}}
+(function(){var m=efModal();
+  if(m)m.addEventListener('click',function(e){if(e.target===this)closeModal();});
+  var n=efName();if(n)n.addEventListener('input',function(){
+    var pv=document.getElementById('msg-preview');if(pv)pv.textContent=buildMessage();});
+  efFields().forEach(function(el){el.addEventListener('input',function(){efSave();efMark();});});
+  efRestore();})();
 </script>
 </body>
 </html>
