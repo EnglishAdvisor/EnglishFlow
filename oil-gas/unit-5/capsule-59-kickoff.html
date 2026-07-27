@@ -73,6 +73,27 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 @media(max-width:700px){.content{grid-template-columns:1fr}}
 
 /* ==== EF: campos de resposta na propria capsula (padrao 25/07/2026) ==== */
+/* ==== EF: campos e correcao (padrao Unit 1) ==== */
+.qz-list{list-style:none;margin:6px 0 4px;padding:0;color:#c8d8e8}
+.qz-item{display:flex;gap:9px;align-items:flex-start;margin-bottom:9px;font-size:12px;line-height:1.55;color:#c8d8e8}
+.qz-num{flex:0 0 auto;width:20px;height:20px;border-radius:50%;background:#d4a76a;color:#0a0f1e;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.qz-body{flex:1;min-width:0}
+.qz-text{margin-bottom:4px;color:#c8d8e8}
+.qz-input,.qz-area{width:100%;background:#0a1628;border:1px solid rgba(212,167,106,.25);border-radius:6px;padding:7px 9px;font-size:12px;color:#c8d8e8;font-family:'Barlow',sans-serif;outline:none;transition:border .2s,background .2s}
+.qz-input:focus,.qz-area:focus{border-color:#d4a76a}
+.qz-area{resize:vertical;min-height:56px;line-height:1.5}
+.qz-input.correct{border-color:#16a34a;background:rgba(22,163,74,.08)}
+.qz-input.wrong{border-color:#dc2626;background:rgba(220,38,38,.07)}
+.qz-fb{font-size:10.5px;margin-top:3px;font-style:italic;display:none}
+.qz-fb.show{display:block}
+.qz-fb.ok{color:#4ade80}.qz-fb.no{color:#f87171}
+.qz-area.filled{border-color:rgba(37,211,102,.55)}
+.check-btn{width:100%;background:transparent;border:1px solid rgba(212,167,106,.45);color:#d4a76a;border-radius:8px;padding:9px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;margin-top:10px;transition:.2s}
+.check-btn:hover{background:rgba(212,167,106,.12)}
+.score-box{margin-top:8px;padding:9px 12px;border-radius:8px;font-size:12px;text-align:center;display:none;font-weight:600}
+.score-box.show{display:block}
+.score-box.perfect{background:rgba(22,163,74,.15);border:1px solid #16a34a;color:#4ade80}
+.score-box.partial{background:rgba(212,167,106,.12);border:1px solid rgba(212,167,106,.5);color:#e8ccaa}
 .ef-answers{background:#0a1628;border:1px solid #d4a76a44;border-radius:10px;padding:12px 14px;margin-top:12px}
 .ef-answers-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#d4a76a;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
 .ef-field{margin-bottom:10px}
@@ -117,27 +138,41 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
       </div>
 
       <div class="activity-title"><span class="num">1</span>Study the diagram and answer the questions</div>
-      <div class="q-list">
-        <div class="q-item"><strong>Q1:</strong> Which rock can hold water, oil, and gas?</div>
-        <div class="q-item"><strong>Q2:</strong> Which rock is hard and very solid?</div>
-        <div class="q-item"><strong>Q3:</strong> Why is the gas above the oil?</div>
-        <div class="q-item"><strong>Q4:</strong> Why can't the oil and gas go up to the surface?</div>
-        <div class="q-item"><strong>Q5:</strong> Which diagrams in Unit 5 are about geology? Physics? Technology?</div>
-      </div>
+      <ul class="qz-list">
+        <li class="qz-item"><span class="qz-num">1</span><div class="qz-body">
+          <div class="qz-text">Which rock can hold water, oil, and gas?</div>
+          <input class="qz-input" id="d1" data-key="porous" placeholder="Your answer…" autocomplete="off">
+          <div class="qz-fb" id="fb-d1"></div></div></li>
+        <li class="qz-item"><span class="qz-num">2</span><div class="qz-body">
+          <div class="qz-text">Which rock is hard and very solid?</div>
+          <input class="qz-input" id="d2" data-key="non-porous" placeholder="Your answer…" autocomplete="off">
+          <div class="qz-fb" id="fb-d2"></div></div></li>
+        <li class="qz-item"><span class="qz-num">3</span><div class="qz-body">
+          <div class="qz-text">Why is the gas above the oil?</div>
+          <textarea class="qz-area ef-ans" id="op-d3" data-lab="Why the gas is above the oil" data-emo="🔤" placeholder="Write your answer…"></textarea></div></li>
+        <li class="qz-item"><span class="qz-num">4</span><div class="qz-body">
+          <div class="qz-text">Why can't the oil and gas go up to the surface?</div>
+          <textarea class="qz-area ef-ans" id="op-d4" data-lab="Why oil/gas can't reach the surface" data-emo="🔤" placeholder="Write your answer…"></textarea></div></li>
+        <li class="qz-item"><span class="qz-num">5</span><div class="qz-body">
+          <div class="qz-text">Which diagrams in Unit 5 are about geology? Physics? Technology?</div>
+          <textarea class="qz-area ef-ans" id="op-d5" data-lab="Diagrams: geology / physics / technology" data-emo="🔤" placeholder="Write your answer…"></textarea></div></li>
+      </ul>
+      <button class="check-btn" onclick="checkAll()">✓ Check answers</button>
+      <div class="score-box" id="scoreBox"></div>
 
-      <div class="activity-title"><span class="num">2</span>Your opinion — seismic technology</div>
-      <div class="q-list">
-        <div class="q-item">Imagine you are looking at a 3D screen showing underground rock layers. <br>What do you think the geologists are looking for?</div>
-        <div class="q-item">Why do you think oil companies need to make 3D maps before drilling?</div>
-        <div class="q-item">What risks might there be when surveying in desert or marine environments?</div>
-      </div>
+      <div class="activity-title" style="margin-top:14px"><span class="num">2</span>Your opinion — seismic technology</div>
+      <ul class="qz-list">
+        <li class="qz-item"><span class="qz-num">1</span><div class="qz-body">
+          <div class="qz-text">Imagine you are looking at a 3D screen showing underground rock layers. What do you think the geologists are looking for?</div>
+          <textarea class="qz-area ef-ans" id="op1" data-lab="What geologists look for on the 3D screen" data-emo="🗣️" placeholder="Write your answer…"></textarea></div></li>
+        <li class="qz-item"><span class="qz-num">2</span><div class="qz-body">
+          <div class="qz-text">Why do you think oil companies need to make 3D maps before drilling?</div>
+          <textarea class="qz-area ef-ans" id="op2" data-lab="Why 3D maps are needed before drilling" data-emo="🗣️" placeholder="Write your answer…"></textarea></div></li>
+        <li class="qz-item"><span class="qz-num">3</span><div class="qz-body">
+          <div class="qz-text">What risks might there be when surveying in desert or marine environments?</div>
+          <textarea class="qz-area ef-ans" id="op3" data-lab="Risks of surveying in desert/marine environments" data-emo="🗣️" placeholder="Write your answer…"></textarea></div></li>
+      </ul>
     </div>
-
-      <div class="ef-answers">
-        <div class="ef-answers-title">✍️ Your answers</div>
-        <div class="ef-field"><label class="ef-label">Activity 1 — Diagram questions (1–5)</label><textarea class="ef-ans" id="ans1" data-lab="Activity 1 — Diagram questions (1–5)" data-emo="🔤" placeholder="Write your answer here..."></textarea></div>
-        <div class="ef-field"><label class="ef-label">Activity 2 — Your opinion</label><textarea class="ef-ans" id="ans2" data-lab="Activity 2 — Your opinion" data-emo="✅" placeholder="Write your answer here..."></textarea></div>
-      </div>
 
     <div class="task-box">
       <p>✏️ Answer Activity 1 and write your opinion (Activity 2). Send via WhatsApp.</p>
@@ -196,32 +231,65 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 </div>
 
 <script>
-
-/* ===== EnglishFlow - padrao de capsula (25/07/2026) =====
-   aluno responde na propria pagina | respostas salvas no aparelho
-   envio por compartilhamento nativo (o aluno escolhe pra quem manda) */
+/* ===== EnglishFlow - padrao de capsula (Unit 1 model) ===== */
 var CAP_KEY='ef_ans_og1_u5_kickoff';
 var CAP_EMOJI='\uD83D\uDEE2\uFE0F';
-var CAP_TITLE="Kick Off — Unit 5 — Finding Oil and Gas";
+var CAP_TITLE="Kick Off \u2014 Unit 5 \u2014 Finding Oil and Gas";
+
 function efFields(){return [].slice.call(document.querySelectorAll('.ef-ans'));}
+function qzInputs(){return [].slice.call(document.querySelectorAll('.qz-input'));}
 function efName(){return document.getElementById('studentName')||document.getElementById('student-name');}
 function efModal(){return document.getElementById('modal')||document.getElementById('waModal');}
-function efSave(){var d={};efFields().forEach(function(el){d[el.id]=el.value;});
-  try{localStorage.setItem(CAP_KEY,JSON.stringify(d));}catch(e){}}
-function efRestore(){try{var d=JSON.parse(localStorage.getItem(CAP_KEY)||'{}');
-  efFields().forEach(function(el){if(d[el.id])el.value=d[el.id];});}catch(e){}efMark();}
+
+function efSave(){
+  var d={};
+  efFields().forEach(function(el){d[el.id]=el.value;});
+  qzInputs().forEach(function(el){d[el.id]=el.value;});
+  try{localStorage.setItem(CAP_KEY,JSON.stringify(d));}catch(e){}
+}
+function efRestore(){
+  try{var d=JSON.parse(localStorage.getItem(CAP_KEY)||'{}');
+    efFields().forEach(function(el){if(d[el.id])el.value=d[el.id];});
+    qzInputs().forEach(function(el){if(d[el.id])el.value=d[el.id];});
+  }catch(e){}
+  efMark();
+}
 function efMark(){efFields().forEach(function(el){
   if(el.value.trim())el.classList.add('filled');else el.classList.remove('filled');});}
+
+function checkAll(){
+  var hit=0,total=0;
+  qzInputs().forEach(function(el){
+    total++;
+    var v=el.value.toLowerCase();
+    var key=el.getAttribute('data-key');
+    var ok=v.indexOf(key)!==-1;
+    el.classList.remove('correct','wrong');
+    el.classList.add(ok?'correct':'wrong');
+    var fb=document.getElementById('fb-'+el.id);
+    fb.className='qz-fb show '+(ok?'ok':'no');
+    fb.textContent=ok?'\u2713 Correct':'\u2717 Answer: '+(key==='porous'?'porous rock':'non-porous rock');
+    if(ok)hit++;
+  });
+  var box=document.getElementById('scoreBox');
+  box.className='score-box show '+(hit===total?'perfect':'partial');
+  box.textContent=hit===total?'\uD83C\uDF89 All correct \u2014 '+hit+'/'+total+'!':hit+'/'+total+' correct \u2014 the right answers are shown above.';
+  efSave();
+}
+
 function buildMessage(){
   var n=efName();var name=((n&&n.value)||'').trim()||'Aluno';var now=new Date();
+  var a1=qzInputs().map(function(el,i){return (i+1)+'. '+(el.value.trim()||'\u2014');}).join('\n');
   var out='\uD83E\uDDD1\u200D\uD83C\uDF93 *'+name+'*\n'
     +'\uD83D\uDCC5 '+now.toLocaleDateString('pt-BR')+' \u00e0s '+now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})+'\n'
-    +CAP_EMOJI+' *'+CAP_TITLE+'*\n';
+    +CAP_EMOJI+' *'+CAP_TITLE+'*\n\n'
+    +'\uD83D\uDD24 *Activity 1 \u2014 Diagram (Q1-Q2)*\n'+a1+'\n';
   efFields().forEach(function(el){
     out+='\n'+(el.getAttribute('data-emo')||'\u270D\uFE0F')+' *'+(el.getAttribute('data-lab')||'')+'*\n'
        +(el.value.trim()||'_(nao respondido)_')+'\n';});
   out+='\n\uD83C\uDF99\uFE0F \u00c1udio na mensagem seguinte (se preferiu enviar por \u00e1udio)';
-  return out;}
+  return out;
+}
 function openModal(){var n=efName();var s=localStorage.getItem('ef_student_name');
   if(s&&n)n.value=s;var pv=document.getElementById('msg-preview');
   if(pv)pv.textContent=buildMessage();
@@ -235,7 +303,7 @@ function sendWA(){var n=efName();var name=((n&&n.value)||'').trim();
   if(m)m.addEventListener('click',function(e){if(e.target===this)closeModal();});
   var n=efName();if(n)n.addEventListener('input',function(){
     var pv=document.getElementById('msg-preview');if(pv)pv.textContent=buildMessage();});
-  efFields().forEach(function(el){el.addEventListener('input',function(){efSave();efMark();});});
+  efFields().concat(qzInputs()).forEach(function(el){el.addEventListener('input',function(){efSave();efMark();});});
   efRestore();})();
 </script>
 </body>
