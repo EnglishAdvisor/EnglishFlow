@@ -19,10 +19,10 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 .steps::-webkit-scrollbar{display:none}
 .step{flex-shrink:0;display:flex;align-items:center;gap:6px;background:rgba(231,76,60,.08);border:1px solid rgba(231,76,60,.25);border-radius:20px;padding:6px 12px;font-size:11.5px;color:#f0958d;font-weight:500;white-space:nowrap}
 .step svg{width:13px;height:13px;stroke:#e74c3c;fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0}
-.content{max-width:900px;margin:0 auto;padding:20px 16px 32px;display:flex;gap:16px;align-items:flex-start}
-.left-col{flex:1;min-width:0}
-.zone-support{width:220px;flex-shrink:0}
-@media(max-width:640px){.content{flex-direction:column}.zone-support{width:100%;order:2}}
+.content{display:grid;grid-template-columns:1fr 300px;gap:16px;padding:0 16px 16px}
+.left-col{min-width:0}
+.zone-support{}
+@media(max-width:640px){.content{grid-template-columns:1fr}.zone-support{order:2}}
 .hero-img{width:100%;aspect-ratio:16/9;max-height:340px;object-fit:cover;object-position:center;border-radius:10px;margin-bottom:12px;display:block}
 .bg-text{background:#111827;border:1px solid rgba(231,76,60,.18);border-radius:12px;padding:18px;margin-bottom:12px;font-size:14px;color:#c8d8e8;line-height:1.9}
 .bg-text h3{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;color:#e74c3c;margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em}
