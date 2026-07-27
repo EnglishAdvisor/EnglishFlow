@@ -71,6 +71,28 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 @media(max-width:700px){.content{grid-template-columns:1fr}.ppe-grid{grid-template-columns:1fr 1fr}}
 
 /* ==== EF: campos de resposta na propria capsula (padrao 25/07/2026) ==== */
+/* ==== EF: campos e alternativas (padrao Unit 1) ==== */
+.q-list{list-style:none;margin:6px 0 4px;padding:0;color:#c8d8e8}
+.q-item{display:flex;gap:9px;align-items:flex-start;margin-bottom:9px;font-size:12px;line-height:1.55;color:#c8d8e8}
+.q-num{flex:0 0 auto;width:20px;height:20px;border-radius:50%;background:#f1c40f;color:#0a0f1e;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.q-body{flex:1;min-width:0}
+.q-text{margin-bottom:4px;color:#c8d8e8}
+.q-area{width:100%;background:#0a1628;border:1px solid rgba(241,196,15,.25);border-radius:6px;padding:7px 9px;font-size:12px;color:#c8d8e8;font-family:'Barlow',sans-serif;outline:none;resize:vertical;min-height:56px;line-height:1.5;transition:border .2s}
+.q-area:focus{border-color:#f1c40f}
+.q-area.filled{border-color:rgba(37,211,102,.55)}
+.sent-item{background:rgba(241,196,15,.05);border:1px solid rgba(241,196,15,.15);border-radius:8px;padding:9px 11px;margin-bottom:7px;font-size:11.5px;color:#c8d8e8;line-height:1.5}
+.opt-row{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.opt{background:rgba(241,196,15,.08);border:1px solid rgba(241,196,15,.28);border-radius:14px;padding:4px 11px;font-size:11px;color:#f5da6e;cursor:pointer;font-family:'Barlow',sans-serif;transition:.15s}
+.opt:hover{background:rgba(241,196,15,.18)}
+.opt.sel{background:#f1c40f;color:#0a0f1e;border-color:#f1c40f;font-weight:600}
+.opt.correct{background:#16a34a;border-color:#16a34a;color:#fff}
+.opt.wrong{background:#dc2626;border-color:#dc2626;color:#fff}
+.check-btn{width:100%;background:transparent;border:1px solid rgba(241,196,15,.45);color:#f1c40f;border-radius:8px;padding:9px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;margin-top:10px;transition:.2s}
+.check-btn:hover{background:rgba(241,196,15,.12)}
+.score-box{margin-top:8px;padding:9px 12px;border-radius:8px;font-size:12px;text-align:center;display:none;font-weight:600}
+.score-box.show{display:block}
+.score-box.perfect{background:rgba(22,163,74,.15);border:1px solid #16a34a;color:#4ade80}
+.score-box.partial{background:rgba(241,196,15,.12);border:1px solid rgba(241,196,15,.5);color:#f5da6e}
 .ef-answers{background:#0a1628;border:1px solid #f1c40f44;border-radius:10px;padding:12px 14px;margin-top:12px}
 .ef-answers-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#f1c40f;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
 .ef-field{margin-bottom:10px}
@@ -119,31 +141,73 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 
     <div class="panel">
       <div class="activity-title"><span class="num">1</span>Complete the sentences — what does PPE protect?</div>
-      <div class="completion-list">
-        <div class="comp-item">A hard hat protects your <span>___________</span>.</div>
-        <div class="comp-item">A face guard protects your <span>___________</span>.</div>
-        <div class="comp-item">Boots protect your <span>___________</span>.</div>
-        <div class="comp-item"><span>___________</span> protect your ears from noise.</div>
-        <div class="comp-item"><span>___________</span> protect your hands.</div>
-        <div class="comp-item"><span>___________</span> protect your eyes.</div>
-        <div class="comp-item">A <span>___________</span> protects you from smoke and dangerous fumes.</div>
-        <div class="comp-item">A <span>___________</span> protects you from a fall.</div>
+      <p style="font-size:11.5px;color:#8fa3b8;margin-bottom:8px">Tap the equipment that completes each sentence.</p>
+
+      <div class="sent-item" data-s="1" data-key="hard hat">
+        1. A ___ protects your head.
+        <div class="opt-row">
+          <span class="opt" data-g="p1" data-v="hard hat">hard hat</span><span class="opt" data-g="p1" data-v="face guard">face guard</span><span class="opt" data-g="p1" data-v="boots">boots</span><span class="opt" data-g="p1" data-v="ear protectors">ear protectors</span><span class="opt" data-g="p1" data-v="gloves">gloves</span><span class="opt" data-g="p1" data-v="goggles">goggles</span><span class="opt" data-g="p1" data-v="respirator">respirator</span><span class="opt" data-g="p1" data-v="safety harness">safety harness</span>
+        </div>
+      </div>
+      <div class="sent-item" data-s="2" data-key="face guard">
+        2. A ___ protects your face.
+        <div class="opt-row">
+          <span class="opt" data-g="p2" data-v="hard hat">hard hat</span><span class="opt" data-g="p2" data-v="face guard">face guard</span><span class="opt" data-g="p2" data-v="boots">boots</span><span class="opt" data-g="p2" data-v="ear protectors">ear protectors</span><span class="opt" data-g="p2" data-v="gloves">gloves</span><span class="opt" data-g="p2" data-v="goggles">goggles</span><span class="opt" data-g="p2" data-v="respirator">respirator</span><span class="opt" data-g="p2" data-v="safety harness">safety harness</span>
+        </div>
+      </div>
+      <div class="sent-item" data-s="3" data-key="boots">
+        3. ___ protect your feet.
+        <div class="opt-row">
+          <span class="opt" data-g="p3" data-v="hard hat">hard hat</span><span class="opt" data-g="p3" data-v="face guard">face guard</span><span class="opt" data-g="p3" data-v="boots">boots</span><span class="opt" data-g="p3" data-v="ear protectors">ear protectors</span><span class="opt" data-g="p3" data-v="gloves">gloves</span><span class="opt" data-g="p3" data-v="goggles">goggles</span><span class="opt" data-g="p3" data-v="respirator">respirator</span><span class="opt" data-g="p3" data-v="safety harness">safety harness</span>
+        </div>
+      </div>
+      <div class="sent-item" data-s="4" data-key="ear protectors">
+        4. ___ protect your ears from noise.
+        <div class="opt-row">
+          <span class="opt" data-g="p4" data-v="hard hat">hard hat</span><span class="opt" data-g="p4" data-v="face guard">face guard</span><span class="opt" data-g="p4" data-v="boots">boots</span><span class="opt" data-g="p4" data-v="ear protectors">ear protectors</span><span class="opt" data-g="p4" data-v="gloves">gloves</span><span class="opt" data-g="p4" data-v="goggles">goggles</span><span class="opt" data-g="p4" data-v="respirator">respirator</span><span class="opt" data-g="p4" data-v="safety harness">safety harness</span>
+        </div>
+      </div>
+      <div class="sent-item" data-s="5" data-key="gloves">
+        5. ___ protect your hands.
+        <div class="opt-row">
+          <span class="opt" data-g="p5" data-v="hard hat">hard hat</span><span class="opt" data-g="p5" data-v="face guard">face guard</span><span class="opt" data-g="p5" data-v="boots">boots</span><span class="opt" data-g="p5" data-v="ear protectors">ear protectors</span><span class="opt" data-g="p5" data-v="gloves">gloves</span><span class="opt" data-g="p5" data-v="goggles">goggles</span><span class="opt" data-g="p5" data-v="respirator">respirator</span><span class="opt" data-g="p5" data-v="safety harness">safety harness</span>
+        </div>
+      </div>
+      <div class="sent-item" data-s="6" data-key="goggles">
+        6. ___ protect your eyes.
+        <div class="opt-row">
+          <span class="opt" data-g="p6" data-v="hard hat">hard hat</span><span class="opt" data-g="p6" data-v="face guard">face guard</span><span class="opt" data-g="p6" data-v="boots">boots</span><span class="opt" data-g="p6" data-v="ear protectors">ear protectors</span><span class="opt" data-g="p6" data-v="gloves">gloves</span><span class="opt" data-g="p6" data-v="goggles">goggles</span><span class="opt" data-g="p6" data-v="respirator">respirator</span><span class="opt" data-g="p6" data-v="safety harness">safety harness</span>
+        </div>
+      </div>
+      <div class="sent-item" data-s="7" data-key="respirator">
+        7. A ___ protects you from smoke and dangerous fumes.
+        <div class="opt-row">
+          <span class="opt" data-g="p7" data-v="hard hat">hard hat</span><span class="opt" data-g="p7" data-v="face guard">face guard</span><span class="opt" data-g="p7" data-v="boots">boots</span><span class="opt" data-g="p7" data-v="ear protectors">ear protectors</span><span class="opt" data-g="p7" data-v="gloves">gloves</span><span class="opt" data-g="p7" data-v="goggles">goggles</span><span class="opt" data-g="p7" data-v="respirator">respirator</span><span class="opt" data-g="p7" data-v="safety harness">safety harness</span>
+        </div>
+      </div>
+      <div class="sent-item" data-s="8" data-key="safety harness">
+        8. A ___ protects you from a fall.
+        <div class="opt-row">
+          <span class="opt" data-g="p8" data-v="hard hat">hard hat</span><span class="opt" data-g="p8" data-v="face guard">face guard</span><span class="opt" data-g="p8" data-v="boots">boots</span><span class="opt" data-g="p8" data-v="ear protectors">ear protectors</span><span class="opt" data-g="p8" data-v="gloves">gloves</span><span class="opt" data-g="p8" data-v="goggles">goggles</span><span class="opt" data-g="p8" data-v="respirator">respirator</span><span class="opt" data-g="p8" data-v="safety harness">safety harness</span>
+        </div>
       </div>
 
-      <div class="activity-title"><span class="num">2</span>Your opinion — hazards and PPE</div>
-      <div style="font-size:12px;color:#c8d8e8;margin-bottom:8px">Answer the questions:</div>
-      <div class="completion-list">
-        <div class="comp-item">What are the three most common hazards in oil and gas work?</div>
-        <div class="comp-item">Which PPE do you think is most important? Why?</div>
-        <div class="comp-item">Do workers in your company always wear PPE? Give an example.</div>
-      </div>
+      <button class="check-btn" onclick="checkAll()">✓ Check answers</button>
+      <div class="score-box" id="scoreBox"></div>
+
+      <div class="activity-title" style="margin-top:14px"><span class="num">2</span>Your opinion — hazards and PPE</div>
+      <ul class="q-list">
+        <li class="q-item"><span class="q-num">1</span><div class="q-body">
+          <div class="q-text">What are the three most common hazards in oil and gas work?</div>
+          <textarea class="q-area ef-ans" id="op1" data-lab="Three most common hazards" data-emo="🗣️" placeholder="Write your answer…"></textarea></div></li>
+        <li class="q-item"><span class="q-num">2</span><div class="q-body">
+          <div class="q-text">Which PPE do you think is most important? Why?</div>
+          <textarea class="q-area ef-ans" id="op2" data-lab="Most important PPE and why" data-emo="🗣️" placeholder="Write your answer…"></textarea></div></li>
+        <li class="q-item"><span class="q-num">3</span><div class="q-body">
+          <div class="q-text">Do workers in your company always wear PPE? Give an example.</div>
+          <textarea class="q-area ef-ans" id="op3" data-lab="PPE use at your company" data-emo="🗣️" placeholder="Write your answer…"></textarea></div></li>
+      </ul>
     </div>
-
-      <div class="ef-answers">
-        <div class="ef-answers-title">✍️ Your answers</div>
-        <div class="ef-field"><label class="ef-label">Activity 1 — PPE completions (1–8)</label><textarea class="ef-ans" id="ans1" data-lab="Activity 1 — PPE completions (1–8)" data-emo="🔤" placeholder="Write your answer here..."></textarea></div>
-        <div class="ef-field"><label class="ef-label">Activity 2 — Your opinion</label><textarea class="ef-ans" id="ans2" data-lab="Activity 2 — Your opinion" data-emo="✅" placeholder="Write your answer here..."></textarea></div>
-      </div>
 
     <div class="task-box">
       <p>✏️ Answer Activity 1 and write your opinion (Activity 2). Send via WhatsApp.</p>
@@ -204,32 +268,73 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 </div>
 
 <script>
-
-/* ===== EnglishFlow - padrao de capsula (25/07/2026) =====
-   aluno responde na propria pagina | respostas salvas no aparelho
-   envio por compartilhamento nativo (o aluno escolhe pra quem manda) */
+/* ===== EnglishFlow - padrao de capsula (Unit 1 model) ===== */
 var CAP_KEY='ef_ans_og1_u4_kickoff';
 var CAP_EMOJI='\uD83D\uDEE2\uFE0F';
-var CAP_TITLE="Kick Off — Unit 4 — Safety First";
+var CAP_TITLE="Kick Off \u2014 Unit 4 \u2014 Safety First";
+
 function efFields(){return [].slice.call(document.querySelectorAll('.ef-ans'));}
+function sents(){return [].slice.call(document.querySelectorAll('.sent-item'));}
 function efName(){return document.getElementById('studentName')||document.getElementById('student-name');}
 function efModal(){return document.getElementById('modal')||document.getElementById('waModal');}
-function efSave(){var d={};efFields().forEach(function(el){d[el.id]=el.value;});
-  try{localStorage.setItem(CAP_KEY,JSON.stringify(d));}catch(e){}}
-function efRestore(){try{var d=JSON.parse(localStorage.getItem(CAP_KEY)||'{}');
-  efFields().forEach(function(el){if(d[el.id])el.value=d[el.id];});}catch(e){}efMark();}
+function pick(g){var s=document.querySelector('.opt[data-g="'+g+'"].sel');return s?s.getAttribute('data-v'):'';}
+
+document.querySelectorAll('.opt').forEach(function(o){
+  o.addEventListener('click',function(){
+    var g=o.getAttribute('data-g');
+    document.querySelectorAll('.opt[data-g="'+g+'"]').forEach(function(x){x.classList.remove('sel','correct','wrong');});
+    o.classList.add('sel');efSave();
+  });
+});
+
+function efSave(){
+  var d={t:{},o:{}};
+  efFields().forEach(function(el){d.t[el.id]=el.value;});
+  document.querySelectorAll('.opt.sel').forEach(function(o){d.o[o.getAttribute('data-g')]=o.getAttribute('data-v');});
+  try{localStorage.setItem(CAP_KEY,JSON.stringify(d));}catch(e){}
+}
+function efRestore(){
+  try{var d=JSON.parse(localStorage.getItem(CAP_KEY)||'{}');
+    if(d.t)efFields().forEach(function(el){if(d.t[el.id])el.value=d.t[el.id];});
+    if(d.o)Object.keys(d.o).forEach(function(g){
+      var el=document.querySelector('.opt[data-g="'+g+'"][data-v="'+d.o[g]+'"]');if(el)el.classList.add('sel');});
+  }catch(e){}
+  efMark();
+}
 function efMark(){efFields().forEach(function(el){
   if(el.value.trim())el.classList.add('filled');else el.classList.remove('filled');});}
+
+function checkAll(){
+  var hit=0,total=0;
+  sents().forEach(function(s){
+    total++;
+    var n=s.getAttribute('data-s'),right=s.getAttribute('data-key'),g='p'+n;
+    document.querySelectorAll('.opt[data-g="'+g+'"]').forEach(function(o){
+      o.classList.remove('correct','wrong');
+      if(o.getAttribute('data-v')===right)o.classList.add('correct');
+      else if(o.classList.contains('sel'))o.classList.add('wrong');
+    });
+    if(pick(g)===right)hit++;
+  });
+  var box=document.getElementById('scoreBox');
+  box.className='score-box show '+(hit===total?'perfect':'partial');
+  box.textContent=hit===total?'\uD83C\uDF89 All correct \u2014 '+hit+'/'+total+'!':hit+'/'+total+' correct \u2014 the right answers are shown in green.';
+  efSave();
+}
+
 function buildMessage(){
   var n=efName();var name=((n&&n.value)||'').trim()||'Aluno';var now=new Date();
+  var a1=sents().map(function(s,i){return (i+1)+'. '+(pick('p'+s.getAttribute('data-s'))||'\u2014');}).join('\n');
   var out='\uD83E\uDDD1\u200D\uD83C\uDF93 *'+name+'*\n'
     +'\uD83D\uDCC5 '+now.toLocaleDateString('pt-BR')+' \u00e0s '+now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})+'\n'
-    +CAP_EMOJI+' *'+CAP_TITLE+'*\n';
+    +CAP_EMOJI+' *'+CAP_TITLE+'*\n\n'
+    +'\uD83D\uDD24 *Activity 1 \u2014 PPE completions*\n'+a1+'\n';
   efFields().forEach(function(el){
     out+='\n'+(el.getAttribute('data-emo')||'\u270D\uFE0F')+' *'+(el.getAttribute('data-lab')||'')+'*\n'
        +(el.value.trim()||'_(nao respondido)_')+'\n';});
   out+='\n\uD83C\uDF99\uFE0F \u00c1udio na mensagem seguinte (se preferiu enviar por \u00e1udio)';
-  return out;}
+  return out;
+}
 function openModal(){var n=efName();var s=localStorage.getItem('ef_student_name');
   if(s&&n)n.value=s;var pv=document.getElementById('msg-preview');
   if(pv)pv.textContent=buildMessage();
