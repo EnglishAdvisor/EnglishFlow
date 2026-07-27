@@ -15,13 +15,18 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 .icon-box svg{width:26px;height:26px;stroke:#a855f7;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 .translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(168,85,247,.2);padding:6px 24px;font-size:11px;color:#cc99fb;text-align:center}
 .translate-warning strong{color:#a855f7}
-.audio-bar{background:#0d1b2a;border-bottom:1px solid rgba(168,85,247,.15);padding:8px 24px;display:flex;align-items:center;gap:10px}
-.audio-label{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#a855f7;text-transform:uppercase;letter-spacing:.08em;flex-shrink:0}
-.audio-bar audio{flex:1;height:32px;min-width:0;accent-color:#a855f7}
+.audio-bar{background:#0d1b2a;border-bottom:1px solid rgba(168,85,247,.2);padding:8px 24px;display:flex;align-items:center;gap:12px}
+.audio-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#a855f7;font-weight:600;white-space:nowrap}
+.audio-bar audio{flex:1;height:32px;accent-color:#a855f7}
+.steps{display:flex;gap:6px;padding:8px 16px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;border-bottom:1px solid rgba(168,85,247,.15)}
+.steps::-webkit-scrollbar{display:none}
+.step{flex-shrink:0;display:flex;align-items:center;gap:6px;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.25);border-radius:20px;padding:6px 12px;font-size:11.5px;color:#cc99fb;font-weight:500;white-space:nowrap}
+.step svg{width:13px;height:13px;stroke:#a855f7;fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0}
 .content{max-width:900px;margin:0 auto;padding:20px 16px 32px;display:flex;gap:16px;align-items:flex-start}
 .left-col{flex:1;min-width:0}
 .zone-support{width:220px;flex-shrink:0}
 @media(max-width:640px){.content{flex-direction:column}.zone-support{width:100%;order:2}.left-col{order:1}}
+.hero-img{width:100%;height:220px;object-fit:cover;border-radius:10px;margin-bottom:12px;display:block}
 .bg-text{background:#111827;border:1px solid rgba(168,85,247,.18);border-radius:12px;padding:18px;font-size:14px;color:#c8d8e8;line-height:1.85}
 .bg-text p{margin-bottom:12px}
 .bg-text p:last-child{margin-bottom:0}
@@ -31,6 +36,8 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 .kw-item{display:flex;flex-direction:column;padding:5px 0;border-bottom:1px solid rgba(168,85,247,.1)}
 .kw-item:last-child{border-bottom:none}
 .kw-en{font-size:13px;color:#cc99fb;font-weight:600}
+a.kw-en{text-decoration:none;transition:color .2s}
+a.kw-en:hover{color:#a855f7}
 .kw-def{font-size:11px;color:#4a6a8a;margin-top:1px}
 .wa-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:#a855f7;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:none;border-radius:10px;padding:13px 20px;width:100%;cursor:pointer;transition:background .2s;margin-top:10px}
 .wa-btn:hover{background:#cc99fb}
@@ -58,13 +65,23 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
   <div class="pill-title">Background<span>Unit 15 — Petrochemicals</span></div>
   <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M9.5 2a.5.5 0 0 1 .5.5V4h4V2.5a.5.5 0 0 1 1 0V4h1a2 2 0 0 1 2 2v1h1a1 1 0 0 1 0 2h-1v2h1a1 1 0 0 1 0 2h-1v2h1a1 1 0 0 1 0 2h-1v1a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1V2.5a.5.5 0 0 1 .5-.5z"/></svg></div>
 </div>
-<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
 <div class="audio-bar">
-  <span class="audio-label">Teacher Audio</span>
-  <audio controls src="teacher-audio-unit15-background.mp3">Your browser does not support audio.</audio>
+  <span class="audio-label">🎧 Teacher's audio</span>
+  <audio controls preload="none">
+    <source src="teacher-audio-unit15-background.mp3" type="audio/mpeg">
+    Audio not available.
+  </audio>
+</div>
+<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
+<div class="steps">
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>1. Listen to teacher's audio</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>2. Read the text</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>3. Study the highlighted words</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>4. Send an audio reading</div>
 </div>
 <div class="content">
   <div class="left-col">
+    <img class="hero-img" src="unit15-background.png" alt="Petrochemical plant" onerror="this.style.display='none'">
     <div class="bg-text">
       <p>Every time you put on a nylon jacket, take a medicine, or drive a car, you are using <strong>petrochemicals</strong>. Petrochemicals are chemicals made from petroleum and petroleum gas. They are found in thousands of everyday products — from <strong>plastics</strong> and <strong>fertilizers</strong> to <strong>cosmetics</strong>, <strong>medications</strong>, and <strong>rubber</strong>.</p>
       <p>The petrochemical industry began in <strong>1872</strong>, when the first petrochemical factory was built to make carbon black from natural gas. In the early 1900s, oil refineries produced large amounts of chemical by-products, and companies began to find ways to use them. From the <strong>1920s to the 1940s</strong>, scientists developed familiar synthetic materials — nylon, polystyrene, and PVC. These new materials were strong, cheap, and easy to produce in large quantities.</p>
@@ -79,14 +96,15 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
   <div class="zone-support">
     <div class="sidebar-box">
       <div class="sidebar-title">Key terms</div>
-      <div class="kw-item"><span class="kw-en">petrochemical</span><span class="kw-def">a chemical made from petroleum or gas</span></div>
-      <div class="kw-item"><span class="kw-en">polymer</span><span class="kw-def">a substance made of many linked molecules</span></div>
-      <div class="kw-item"><span class="kw-en">by-product</span><span class="kw-def">an extra product created during manufacturing</span></div>
-      <div class="kw-item"><span class="kw-en">synthetic</span><span class="kw-def">man-made, not found in nature</span></div>
-      <div class="kw-item"><span class="kw-en">requisition</span><span class="kw-def">an official request for materials or supplies</span></div>
-      <div class="kw-item"><span class="kw-en">carbon fibre</span><span class="kw-def">a very strong, light material for industry</span></div>
-      <div class="kw-item"><span class="kw-en">monomer</span><span class="kw-def">a single molecule that links to form a polymer</span></div>
-      <div class="kw-item"><span class="kw-en">composite fibre</span><span class="kw-def">thread made from two or more combined materials</span></div>
+      <div style="font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#a855f7;font-weight:600;margin-bottom:8px">Click to open Cambridge / Linguee</div>
+      <div class="kw-item"><a class="kw-en" href="https://dictionary.cambridge.org/dictionary/english-portuguese/petrochemical" target="_blank">petrochemical</a><span class="kw-def">a chemical made from petroleum or gas</span></div>
+      <div class="kw-item"><a class="kw-en" href="https://dictionary.cambridge.org/dictionary/english-portuguese/polymer" target="_blank">polymer</a><span class="kw-def">a substance made of many linked molecules</span></div>
+      <div class="kw-item"><a class="kw-en" href="https://dictionary.cambridge.org/dictionary/english-portuguese/by-product" target="_blank">by-product</a><span class="kw-def">an extra product created during manufacturing</span></div>
+      <div class="kw-item"><a class="kw-en" href="https://dictionary.cambridge.org/dictionary/english-portuguese/synthetic" target="_blank">synthetic</a><span class="kw-def">man-made, not found in nature</span></div>
+      <div class="kw-item"><a class="kw-en" href="https://www.linguee.com.br/ingles-portugues/traducao/requisition.html" target="_blank">requisition</a><span class="kw-def">an official request for materials or supplies</span></div>
+      <div class="kw-item"><a class="kw-en" href="https://www.linguee.com.br/ingles-portugues/traducao/carbon+fibre.html" target="_blank">carbon fibre</a><span class="kw-def">a very strong, light material for industry</span></div>
+      <div class="kw-item"><a class="kw-en" href="https://dictionary.cambridge.org/dictionary/english-portuguese/monomer" target="_blank">monomer</a><span class="kw-def">a single molecule that links to form a polymer</span></div>
+      <div class="kw-item"><a class="kw-en" href="https://www.linguee.com.br/ingles-portugues/traducao/composite+fibre.html" target="_blank">composite fibre</a><span class="kw-def">thread made from two or more combined materials</span></div>
     </div>
     <div class="sidebar-box">
       <div class="sidebar-title">In this unit</div>

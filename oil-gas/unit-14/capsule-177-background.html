@@ -15,24 +15,30 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 .icon-box svg{width:26px;height:26px;stroke:#e74c3c;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 .translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(231,76,60,.2);padding:6px 24px;font-size:11px;color:#f0958d;text-align:center}
 .translate-warning strong{color:#e74c3c}
+.steps{display:flex;gap:6px;padding:8px 16px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;border-bottom:1px solid rgba(231,76,60,.15)}
+.steps::-webkit-scrollbar{display:none}
+.step{flex-shrink:0;display:flex;align-items:center;gap:6px;background:rgba(231,76,60,.08);border:1px solid rgba(231,76,60,.25);border-radius:20px;padding:6px 12px;font-size:11.5px;color:#f0958d;font-weight:500;white-space:nowrap}
+.step svg{width:13px;height:13px;stroke:#e74c3c;fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0}
 .content{max-width:900px;margin:0 auto;padding:20px 16px 32px;display:flex;gap:16px;align-items:flex-start}
 .left-col{flex:1;min-width:0}
 .zone-support{width:220px;flex-shrink:0}
 @media(max-width:640px){.content{flex-direction:column}.zone-support{width:100%;order:2}}
+.hero-img{width:100%;height:220px;object-fit:cover;border-radius:10px;margin-bottom:12px;display:block}
 .bg-text{background:#111827;border:1px solid rgba(231,76,60,.18);border-radius:12px;padding:18px;margin-bottom:12px;font-size:14px;color:#c8d8e8;line-height:1.9}
 .bg-text h3{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;color:#e74c3c;margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em}
 .bg-text strong{color:#f0958d}
 .bg-text p{margin-bottom:10px}
 .bg-text p:last-child{margin-bottom:0}
-.audio-bar{background:#0a1628;border:1px solid rgba(231,76,60,.3);border-radius:10px;padding:12px 16px;display:flex;align-items:center;gap:10px;margin-bottom:12px}
-.audio-label{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;color:#f0958d;flex:1}
-.audio-note{font-size:11px;color:#4a6a8a;margin-top:2px}
-.audio-icon svg{width:28px;height:28px;stroke:#e74c3c;fill:none;stroke-width:1.5}
+.audio-bar{background:#0d1b2a;border-bottom:1px solid rgba(231,76,60,.2);padding:8px 24px;display:flex;align-items:center;gap:12px}
+.audio-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#e74c3c;font-weight:600;white-space:nowrap}
+.audio-bar audio{flex:1;height:32px;accent-color:#e74c3c}
 .sidebar-box{background:#111827;border:1px solid rgba(231,76,60,.18);border-radius:12px;padding:14px;margin-bottom:10px}
 .sidebar-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:#e74c3c;margin-bottom:10px}
 .kw-item{display:flex;flex-direction:column;padding:5px 0;border-bottom:1px solid rgba(231,76,60,.1)}
 .kw-item:last-child{border-bottom:none}
 .kw-en{font-size:13px;color:#f0958d;font-weight:600}
+a.kw-en{text-decoration:none;transition:color .2s}
+a.kw-en:hover{color:#e74c3c}
 .kw-def{font-size:11px;color:#4a6a8a;margin-top:1px}
 .wa-wrap{margin-top:4px}
 .wa-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:#e74c3c;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:none;border-radius:10px;padding:13px 20px;width:100%;cursor:pointer;transition:background .2s}
@@ -61,16 +67,26 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
   <div class="pill-title">Background<span>Unit 14 — Emergencies</span></div>
   <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
 </div>
+<div class="audio-bar">
+  <span class="audio-label">🎧 Teacher's audio</span>
+  <audio controls preload="none">
+    <source src="teacher-audio-unit14-background.mp3" type="audio/mpeg">
+    Audio not available.
+  </audio>
+</div>
+
 <div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
+<div class="steps">
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>1. Listen to teacher's audio</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>2. Read the text</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>3. Study the highlighted words</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>4. Send an audio reading</div>
+</div>
 <div class="content">
   <div class="left-col">
-    <div class="audio-bar">
-      <div class="audio-icon"><svg viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg></div>
-      <div><div class="audio-label">Listen to the teacher introduction</div><div class="audio-note">teacher-audio-unit14-background.mp3</div></div>
-    </div>
-
     <div class="bg-text">
       <h3>Emergencies in Oil &amp; Gas</h3>
+      <img class="hero-img" src="unit14-background.png" alt="Emergency response drill on an industrial site" onerror="this.style.display='none'">
       <p>The oil and gas industry is one of the most <strong>high-risk</strong> industries in the world. Workers face hazards every day — fires, chemical leaks, explosions, falls from height, electrical shocks, and industrial accidents. This is why <strong>emergency response</strong> is a core skill for every person on site.</p>
       <p>When an emergency happens, workers must act <strong>quickly and calmly</strong>. The first step is always to <strong>assess</strong> the situation — understand what happened, check for danger, and make sure you don't become a second casualty. Then you protect the injured person, give emergency first aid if you are trained to do so, and call for help.</p>
       <p>Every oil and gas facility has a range of <strong>emergency equipment</strong>: fire extinguishers, first aid kits, defibrillators, emergency showers, SCBA (self-contained breathing apparatus), stretchers, and more. Workers must know where this equipment is and how to use it.</p>
@@ -89,14 +105,15 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
   <div class="zone-support">
     <div class="sidebar-box">
       <div class="sidebar-title">Key Terms</div>
-      <div class="kw-item"><span class="kw-en">emergency</span><span class="kw-def">serious and dangerous situation needing fast action</span></div>
-      <div class="kw-item"><span class="kw-en">assess</span><span class="kw-def">judge and understand what has happened</span></div>
-      <div class="kw-item"><span class="kw-en">casualty</span><span class="kw-def">person who is injured or killed in an accident</span></div>
-      <div class="kw-item"><span class="kw-en">first aid</span><span class="kw-def">basic medical help given immediately after an accident</span></div>
-      <div class="kw-item"><span class="kw-en">evacuation</span><span class="kw-def">moving people away from a dangerous place</span></div>
-      <div class="kw-item"><span class="kw-en">SCBA</span><span class="kw-def">self-contained breathing apparatus — for smoke/toxic gas</span></div>
-      <div class="kw-item"><span class="kw-en">defibrillator</span><span class="kw-def">device that restarts the heart with an electric shock</span></div>
-      <div class="kw-item"><span class="kw-en">medic</span><span class="kw-def">trained medical professional on a rig or site</span></div>
+      <div style="font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#e74c3c;font-weight:600;margin-bottom:8px">Click to open Cambridge / Linguee</div>
+      <div class="kw-item"><a class="kw-en" href="https://dictionary.cambridge.org/dictionary/english-portuguese/emergency" target="_blank">emergency</a><span class="kw-def">serious and dangerous situation needing fast action</span></div>
+      <div class="kw-item"><a class="kw-en" href="https://dictionary.cambridge.org/dictionary/english-portuguese/assess" target="_blank">assess</a><span class="kw-def">judge and understand what has happened</span></div>
+      <div class="kw-item"><a class="kw-en" href="https://dictionary.cambridge.org/dictionary/english-portuguese/casualty" target="_blank">casualty</a><span class="kw-def">person who is injured or killed in an accident</span></div>
+      <div class="kw-item"><a class="kw-en" href="https://dictionary.cambridge.org/dictionary/english-portuguese/first-aid" target="_blank">first aid</a><span class="kw-def">basic medical help given immediately after an accident</span></div>
+      <div class="kw-item"><a class="kw-en" href="https://dictionary.cambridge.org/dictionary/english-portuguese/evacuation" target="_blank">evacuation</a><span class="kw-def">moving people away from a dangerous place</span></div>
+      <div class="kw-item"><a class="kw-en" href="https://www.linguee.com.br/ingles-portugues/traducao/self-contained+breathing+apparatus.html" target="_blank">SCBA</a><span class="kw-def">self-contained breathing apparatus — for smoke/toxic gas</span></div>
+      <div class="kw-item"><a class="kw-en" href="https://dictionary.cambridge.org/dictionary/english-portuguese/defibrillator" target="_blank">defibrillator</a><span class="kw-def">device that restarts the heart with an electric shock</span></div>
+      <div class="kw-item"><a class="kw-en" href="https://dictionary.cambridge.org/dictionary/english-portuguese/medic" target="_blank">medic</a><span class="kw-def">trained medical professional on a rig or site</span></div>
     </div>
     <div class="sidebar-box">
       <div class="sidebar-title">In this unit</div>

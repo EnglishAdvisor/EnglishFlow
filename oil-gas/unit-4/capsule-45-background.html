@@ -13,12 +13,6 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 .pill-title span{color:#f1c40f;font-size:clamp(14px,2.5vw,22px);font-weight:600;display:block;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
 .icon-box{width:48px;height:48px;border:1.5px solid rgba(241,196,15,.4);border-radius:50%;display:flex;align-items:center;justify-content:center}
 .icon-box svg{width:26px;height:26px;stroke:#f1c40f;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
-.countdown-bar{background:#0d1b2a;border-bottom:1px solid rgba(241,196,15,.2);padding:8px 24px;display:flex;align-items:center;gap:12px}
-.countdown-display{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:#f1c40f;letter-spacing:.08em;min-width:60px}
-.countdown-display.warning{color:#f59e0b}.countdown-display.urgent{color:#ef4444}
-.progress-track{flex:1;height:4px;background:rgba(241,196,15,.13);border-radius:2px;overflow:hidden}
-.progress-fill{height:100%;background:#f1c40f;border-radius:2px;transition:width 1s linear,background .5s}
-.progress-fill.warning{background:#f59e0b}.progress-fill.urgent{background:#ef4444}
 .translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(241,196,15,.2);padding:6px 24px;font-size:11px;color:#f5da6e;text-align:center}
 .translate-warning strong{color:#f1c40f}
 .steps{display:flex;gap:6px;padding:8px 16px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
@@ -29,12 +23,10 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 .left-col{display:flex;flex-direction:column;gap:12px}
 .panel{background:#111827;border-radius:10px;padding:14px 16px}
 .zone-label{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#f1c40f;font-weight:600;margin-bottom:10px}
-.audio-bar{display:flex;align-items:center;gap:10px;background:#0a1628;border:1px solid rgba(241,196,15,.2);border-radius:8px;padding:10px 12px;margin-bottom:12px}
-.audio-icon{width:32px;height:32px;background:rgba(241,196,15,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.audio-icon svg{width:16px;height:16px;stroke:#f1c40f;fill:none;stroke-width:2}
-.audio-info{display:flex;flex-direction:column;gap:2px}
-.audio-title{font-size:12px;font-weight:600;color:#f5da6e}
-.audio-sub{font-size:10px;color:#4a6a8a}
+.audio-bar{background:#0d1b2a;border-bottom:1px solid rgba(241,196,15,.2);padding:8px 24px;display:flex;align-items:center;gap:12px}
+.audio-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#f1c40f;font-weight:600;white-space:nowrap}
+.audio-bar audio{flex:1;height:32px;accent-color:#f1c40f}
+.hero-img{width:100%;height:210px;object-fit:cover;border-radius:8px;border:1px solid rgba(241,196,15,.2);margin-bottom:12px;display:block}
 .bg-text{font-size:12.5px;color:#c8d8e8;line-height:1.85}
 .bg-text p{margin-bottom:10px}
 .bg-text p:last-child{margin-bottom:0}
@@ -48,7 +40,8 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 .keyword-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;color:#f5da6e;text-transform:uppercase;letter-spacing:.08em;padding-bottom:8px;border-bottom:1px solid rgba(241,196,15,.2);margin-bottom:2px}
 .keyword-item{padding:5px 0;border-bottom:1px solid rgba(241,196,15,.09);display:flex;flex-direction:column;gap:3px}
 .keyword-item:last-child{border-bottom:none}
-.kw{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#f1c40f;letter-spacing:.04em}
+.kw{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#f1c40f;letter-spacing:.04em;text-decoration:none;transition:color .2s}
+.kw:hover{color:#f5da6e}
 .kw-def{font-size:10px;color:#4a6a8a;font-style:italic}
 .footer{background:#0d1b2a;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(241,196,15,.2);margin-top:4px}
 .footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a8a;letter-spacing:.04em}
@@ -81,30 +74,28 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
   </div>
 </div>
 
-<div class="countdown-bar">
-  <span class="countdown-display" id="timer">20:00</span>
-  <div class="progress-track"><div class="progress-fill" id="progress" style="width:100%"></div></div>
+<div class="audio-bar">
+  <span class="audio-label">🎧 Teacher's audio</span>
+  <audio controls preload="none">
+    <source src="teacher-audio-unit4-background.mp3" type="audio/mpeg">
+    Audio not available.
+  </audio>
 </div>
 
 <div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
 
 <div class="steps">
-  <div class="step"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>1. Listen &amp; read</div>
-  <div class="step"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>2. Study vocabulary</div>
-  <div class="step"><svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>3. Record audio</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>1. Listen to teacher's audio</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>2. Read the text</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>3. Study the highlighted words</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>4. Send an audio reading</div>
 </div>
 
 <div class="content">
   <div class="left-col">
     <div class="panel">
       <div class="zone-label">Background text — listen and read</div>
-      <div class="audio-bar">
-        <div class="audio-icon"><svg viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg></div>
-        <div class="audio-info">
-          <span class="audio-title">Teacher audio</span>
-          <span class="audio-sub">teacher-audio-unit4-background.mp3</span>
-        </div>
-      </div>
+      <img class="hero-img" src="unit4-background.png" alt="Safety training on an oil and gas site" onerror="this.style.display='none'">
       <div class="bg-text">
         <p>The oil and gas industry is one of the most <strong>hazardous</strong> industries in the world. Workers face many dangers every day. These dangers include <strong>electricity</strong>, <strong>chemicals</strong>, <strong>fire</strong>, <strong>fumes</strong>, heavy machines, and working at <strong>high places</strong>. Any of these can cause serious injury or even death.</p>
         <p>Because of these hazards, <strong>safety is the number one priority</strong> in every oil and gas company. Every worker must follow the safety <strong>rules</strong>. Rules protect workers from accidents and injuries.</p>
@@ -124,17 +115,18 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
   </div>
 
   <div class="zone-support">
+    <div class="zone-label">Click to open Cambridge / Linguee</div>
     <div class="keyword-title">Key vocabulary</div>
-    <div class="keyword-item"><span class="kw">hazard</span><span class="kw-def">a possible danger</span></div>
-    <div class="keyword-item"><span class="kw">PPE</span><span class="kw-def">Personal Protective Equipment</span></div>
-    <div class="keyword-item"><span class="kw">fumes</span><span class="kw-def">dangerous smoke or gas</span></div>
-    <div class="keyword-item"><span class="kw">safety sign</span><span class="kw-def">a sign that warns or protects</span></div>
-    <div class="keyword-item"><span class="kw">toolbox talk</span><span class="kw-def">safety meeting before work</span></div>
-    <div class="keyword-item"><span class="kw">rule</span><span class="kw-def">what you must / must not do</span></div>
-    <div class="keyword-item"><span class="kw">injury</span><span class="kw-def">damage to the body</span></div>
-    <div class="keyword-item"><span class="kw">protect</span><span class="kw-def">to keep safe from danger</span></div>
-    <div class="keyword-item"><span class="kw">respirator</span><span class="kw-def">a mask that protects from fumes</span></div>
-    <div class="keyword-item"><span class="kw">shock</span><span class="kw-def">electric shock — danger from electricity</span></div>
+    <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/hazard" target="_blank">hazard</a><span class="kw-def">a possible danger</span></div>
+    <div class="keyword-item"><a class="kw" href="https://www.linguee.com.br/ingles-portugues/traducao/personal+protective+equipment.html" target="_blank">PPE</a><span class="kw-def">Personal Protective Equipment</span></div>
+    <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/fumes" target="_blank">fumes</a><span class="kw-def">dangerous smoke or gas</span></div>
+    <div class="keyword-item"><a class="kw" href="https://www.linguee.com.br/ingles-portugues/traducao/safety+sign.html" target="_blank">safety sign</a><span class="kw-def">a sign that warns or protects</span></div>
+    <div class="keyword-item"><a class="kw" href="https://www.linguee.com.br/ingles-portugues/traducao/toolbox+talk.html" target="_blank">toolbox talk</a><span class="kw-def">safety meeting before work</span></div>
+    <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/rule" target="_blank">rule</a><span class="kw-def">what you must / must not do</span></div>
+    <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/injury" target="_blank">injury</a><span class="kw-def">damage to the body</span></div>
+    <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/protect" target="_blank">protect</a><span class="kw-def">to keep safe from danger</span></div>
+    <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/respirator" target="_blank">respirator</a><span class="kw-def">a mask that protects from fumes</span></div>
+    <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/shock" target="_blank">shock</a><span class="kw-def">electric shock — danger from electricity</span></div>
   </div>
 </div>
 
@@ -167,17 +159,6 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 
 <script>
 var BG_TEXT="The oil and gas industry is one of the most hazardous industries in the world. Workers face many dangers every day. These dangers include electricity, chemicals, fire, fumes, heavy machines, and working at high places. Any of these can cause serious injury or even death.\n\nBecause of these hazards, safety is the number one priority in every oil and gas company. Every worker must follow the safety rules. Rules protect workers from accidents and injuries.\n\nPersonal Protective Equipment — or PPE — is an important part of safety. PPE includes hard hats, safety boots, goggles, gloves, ear protectors, and face guards. A worker must always wear the correct PPE for the job.\n\nSafety signs also protect workers. These signs tell workers about hazards nearby, what they must not do, and what they must wear or carry.\n\nA toolbox talk is a short safety meeting before work starts. A supervisor talks to the team about the hazards for that day's job. 'Safety first' is not just a phrase — it is a way of working every day.";
-const TOTAL=20*60;let remaining=TOTAL;
-const iv=setInterval(function(){
-  remaining--;
-  var m=Math.floor(remaining/60).toString().padStart(2,'0'),s=(remaining%60).toString().padStart(2,'0');
-  var el=document.getElementById('timer'),bar=document.getElementById('progress');
-  el.textContent=m+':'+s;bar.style.width=((remaining/TOTAL)*100)+'%';
-  el.className='countdown-display';bar.className='progress-fill';
-  if(remaining<=0){clearInterval(iv);el.textContent='00:00';bar.style.width='0%';bar.classList.add('urgent');}
-  else if(remaining<=60){el.classList.add('urgent');bar.classList.add('urgent');}
-  else if(remaining<=180){el.classList.add('warning');bar.classList.add('warning');}
-},1000);
 function openModal(){
   var saved=localStorage.getItem('ef_student_name');
   if(saved)document.getElementById('studentName').value=saved;

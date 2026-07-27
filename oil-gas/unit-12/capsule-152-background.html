@@ -15,13 +15,18 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 .icon-box svg{width:26px;height:26px;stroke:#e67e22;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 .translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(230,126,34,.2);padding:6px 24px;font-size:11px;color:#f0ad72;text-align:center}
 .translate-warning strong{color:#e67e22}
-.audio-bar{background:#0d1b2a;border-bottom:1px solid rgba(230,126,34,.2);padding:8px 24px;display:flex;align-items:center;gap:10px}
-.audio-label{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;color:#e67e22;text-transform:uppercase;letter-spacing:.08em;white-space:nowrap}
+.audio-bar{background:#0d1b2a;border-bottom:1px solid rgba(230,126,34,.2);padding:8px 24px;display:flex;align-items:center;gap:12px}
+.audio-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#e67e22;font-weight:600;white-space:nowrap}
 .audio-bar audio{flex:1;height:32px;accent-color:#e67e22}
+.steps{display:flex;gap:6px;padding:8px 16px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;border-bottom:1px solid rgba(230,126,34,.15)}
+.steps::-webkit-scrollbar{display:none}
+.step{flex-shrink:0;display:flex;align-items:center;gap:6px;background:rgba(230,126,34,.08);border:1px solid rgba(230,126,34,.25);border-radius:20px;padding:6px 12px;font-size:11.5px;color:#f0ad72;font-weight:500;white-space:nowrap}
+.step svg{width:13px;height:13px;stroke:#e67e22;fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0}
 .content{max-width:900px;margin:0 auto;padding:20px 16px 32px;display:grid;grid-template-columns:1fr 260px;gap:20px}
 @media(max-width:700px){.content{grid-template-columns:1fr}}
 .left-col{display:flex;flex-direction:column;gap:16px}
 .text-card{background:#111827;border:1px solid rgba(230,126,34,.18);border-radius:12px;padding:18px}
+.hero-img{width:100%;height:220px;object-fit:cover;border-radius:10px;margin-bottom:14px;display:block}
 .text-card p{font-size:14px;color:#c8d8e8;line-height:1.9;margin-bottom:12px}
 .text-card p:last-child{margin-bottom:0}
 .text-card p strong{color:#f0ad72}
@@ -31,6 +36,8 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 .term-row{font-size:12px;color:#c8d8e8;padding:4px 0;border-bottom:1px solid rgba(230,126,34,.08);line-height:1.5;display:flex;gap:6px}
 .term-row:last-child{border-bottom:none}
 .term-word{color:#f0ad72;font-weight:600;min-width:130px;flex-shrink:0}
+a.term-word{text-decoration:none;transition:color .2s}
+a.term-word:hover{color:#e67e22}
 .task-box{background:#0a1628;border:1px solid rgba(230,126,34,.35);border-radius:12px;padding:16px}
 .task-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;color:#e67e22;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
 .task-text{font-size:12px;color:#c8d8e8;line-height:1.6}
@@ -60,14 +67,24 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
   <div class="pill-title">Background<span>Repairs and Maintenance</span></div>
   <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
 </div>
-<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
 <div class="audio-bar">
-  <span class="audio-label">Teacher audio</span>
-  <audio controls src="teacher-audio-unit12-background.mp3"></audio>
+  <span class="audio-label">🎧 Teacher's audio</span>
+  <audio controls preload="none">
+    <source src="teacher-audio-unit12-background.mp3" type="audio/mpeg">
+    Audio not available.
+  </audio>
+</div>
+<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
+<div class="steps">
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>1. Listen to teacher's audio</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>2. Read the text</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>3. Study the highlighted words</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>4. Send an audio reading</div>
 </div>
 <div class="content">
   <div class="left-col">
     <div class="text-card">
+      <img class="hero-img" src="unit12-background.png" alt="Mechanic and electrician repairing equipment" onerror="this.style.display='none'">
       <p>In oil and gas facilities, equipment must be kept in good working condition at all times. A breakdown can stop production, create safety hazards, and cost money. For this reason, <strong>maintenance</strong> is one of the most critical functions in the industry.</p>
       <p>There are two main types of maintenance. <strong>Routine maintenance</strong> — also called preventive maintenance — is carried out on a regular schedule to prevent breakdowns before they happen. Tasks are planned in advance and recorded in a maintenance schedule. For example, a generator may need an oil check every 8 hours, a battery inspection every month, and a spark plug replacement every 300 hours.</p>
       <p><strong>Corrective maintenance</strong> happens after a problem or breakdown is discovered. A technician <strong>troubleshoots</strong> the problem — identifying the cause — and then carries out the repair. The repair is recorded in a <strong>repair record</strong>.</p>
@@ -78,14 +95,15 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
   <div class="zone-support">
     <div class="terms-card">
       <div class="terms-title">Key Terms</div>
-      <div class="term-row"><span class="term-word">maintenance</span>keeping equipment in good working condition through regular checks and repairs</div>
-      <div class="term-row"><span class="term-word">routine maintenance</span>planned, scheduled tasks done regularly to prevent breakdowns</div>
-      <div class="term-row"><span class="term-word">corrective maintenance</span>unplanned repair work done after a problem or failure occurs</div>
-      <div class="term-row"><span class="term-word">troubleshoot</span>to investigate and identify the cause of a problem before repairing it</div>
-      <div class="term-row"><span class="term-word">repair record</span>a document recording the problem found, its cause, and the repair made</div>
-      <div class="term-row"><span class="term-word">mechanic</span>a technician who repairs engines, pumps, compressors, and mechanical parts</div>
-      <div class="term-row"><span class="term-word">electrician</span>a technician who installs and repairs wiring, motors, and electrical systems</div>
-      <div class="term-row"><span class="term-word">breakdown</span>a sudden failure of a machine or system that stops it from working</div>
+      <div style="font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#e67e22;font-weight:600;margin-bottom:8px">Click to open Cambridge / Linguee</div>
+      <div class="term-row"><a class="term-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/maintenance" target="_blank">maintenance</a>keeping equipment in good working condition through regular checks and repairs</div>
+      <div class="term-row"><a class="term-word" href="https://www.linguee.com.br/ingles-portugues/traducao/routine+maintenance.html" target="_blank">routine maintenance</a>planned, scheduled tasks done regularly to prevent breakdowns</div>
+      <div class="term-row"><a class="term-word" href="https://www.linguee.com.br/ingles-portugues/traducao/corrective+maintenance.html" target="_blank">corrective maintenance</a>unplanned repair work done after a problem or failure occurs</div>
+      <div class="term-row"><a class="term-word" href="https://www.linguee.com.br/ingles-portugues/traducao/troubleshoot.html" target="_blank">troubleshoot</a>to investigate and identify the cause of a problem before repairing it</div>
+      <div class="term-row"><a class="term-word" href="https://www.linguee.com.br/ingles-portugues/traducao/repair+record.html" target="_blank">repair record</a>a document recording the problem found, its cause, and the repair made</div>
+      <div class="term-row"><a class="term-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/mechanic" target="_blank">mechanic</a>a technician who repairs engines, pumps, compressors, and mechanical parts</div>
+      <div class="term-row"><a class="term-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/electrician" target="_blank">electrician</a>a technician who installs and repairs wiring, motors, and electrical systems</div>
+      <div class="term-row"><a class="term-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/breakdown" target="_blank">breakdown</a>a sudden failure of a machine or system that stops it from working</div>
     </div>
     <div class="task-box">
       <div class="task-label">Task</div>

@@ -13,13 +13,7 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 .pill-title span{color:#c0392b;font-size:clamp(14px,2.5vw,22px);font-weight:600;display:block;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
 .icon-box{width:48px;height:48px;border:1.5px solid rgba(192,57,43,.4);border-radius:50%;display:flex;align-items:center;justify-content:center}
 .icon-box svg{width:26px;height:26px;stroke:#c0392b;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
-.countdown-bar{background:#0d1b2a;border-bottom:1px solid rgba(192,57,43,.2);padding:8px 24px;display:flex;align-items:center;gap:12px}
-.countdown-display{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:#c0392b;letter-spacing:.08em;min-width:60px}
-.countdown-display.warning{color:#f59e0b}.countdown-display.urgent{color:#ef4444}
-.progress-track{flex:1;height:4px;background:rgba(192,57,43,.13);border-radius:2px;overflow:hidden}
-.progress-fill{height:100%;background:#c0392b;border-radius:2px;transition:width 1s linear,background .5s}
-.progress-fill.warning{background:#f59e0b}.progress-fill.urgent{background:#ef4444}
-.audio-bar{background:#0a1628;border-bottom:1px solid rgba(192,57,43,.2);padding:8px 24px;display:flex;align-items:center;gap:12px}
+.audio-bar{background:#0d1b2a;border-bottom:1px solid rgba(192,57,43,.2);padding:8px 24px;display:flex;align-items:center;gap:12px}
 .audio-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#c0392b;font-weight:600;white-space:nowrap}
 .audio-bar audio{flex:1;height:32px;accent-color:#c0392b}
 .translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(192,57,43,.2);padding:6px 24px;font-size:11px;color:#e07a74;text-align:center}
@@ -36,6 +30,7 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 .text-block p{margin-bottom:9px}
 .hl{color:#c0392b;text-decoration:none;border-bottom:1px dotted rgba(192,57,43,.4)}
 .hl:hover{color:#e07a74}
+.hero-img{width:100%;height:210px;object-fit:cover;border-radius:8px;border:1px solid rgba(192,57,43,.2);margin-bottom:12px;display:block}
 .task-box{background:#0a1628;border:1px solid rgba(192,57,43,.25);border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:8px;margin-top:12px}
 .task-box p{font-size:11px;color:#e07a74;font-style:italic;line-height:1.45}
 .whatsapp-btn{display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;border:none;border-radius:8px;padding:7px 12px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:background .2s;width:100%}
@@ -46,7 +41,8 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 .keywords-grid{display:grid;grid-template-columns:1fr;gap:0}
 .keyword-item{padding:6px 0;border-bottom:1px solid rgba(192,57,43,.09);display:flex;flex-direction:column;gap:3px}
 .keyword-item:last-child{border-bottom:none}
-.kw{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#c0392b;letter-spacing:.04em}
+.kw{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#c0392b;letter-spacing:.04em;text-decoration:none;transition:color .2s}
+.kw:hover{color:#e07a74}
 .kw-hint{font-size:10px;color:#4a6a8a;font-style:italic}
 .footer{background:#0d1b2a;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(192,57,43,.2);margin-top:4px}
 .footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a8a;letter-spacing:.04em}
@@ -77,39 +73,39 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
   </div>
 </div>
 
-<div class="countdown-bar">
-  <span class="countdown-display" id="timer">20:00</span>
-  <div class="progress-track"><div class="progress-fill" id="progress" style="width:100%"></div></div>
-</div>
-
 <div class="audio-bar">
-  <span class="audio-label">▶ Audio</span>
-  <audio controls src="teacher-audio-unit3-background.mp3"></audio>
+  <span class="audio-label">🎧 Teacher's audio</span>
+  <audio controls preload="none">
+    <source src="teacher-audio-unit3-background.mp3" type="audio/mpeg">
+    Audio not available.
+  </audio>
 </div>
 
 <div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
 
 <div class="steps">
-  <div class="step"><svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>1. Listen &amp; read</div>
-  <div class="step"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>2. Study vocabulary</div>
-  <div class="step"><svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>3. Record audio</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>1. Listen to teacher's audio</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>2. Read the text</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>3. Study the highlighted words</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>4. Send an audio reading</div>
 </div>
 
 <div class="content">
   <div class="left-col">
     <div class="main-area">
       <div class="zone-label">Background — The downstream sector</div>
+      <img class="hero-img" src="unit3-background.png" alt="Oil refinery at dusk" onerror="this.style.display='none'">
 
       <div class="text-block">
-        <p>The oil and gas industry has two main sectors: the upstream sector and the <a class="hl" href="https://dictionary.cambridge.org/dictionary/english/downstream" target="_blank">downstream</a> sector. The downstream sector <a class="hl" href="https://dictionary.cambridge.org/dictionary/english/process" target="_blank">processes</a> <a class="hl" href="https://dictionary.cambridge.org/dictionary/english/crude-oil" target="_blank">crude oil</a> and natural gas into useful products for everyday life.</p>
+        <p>The oil and gas industry has two main sectors: the upstream sector and the <a class="hl" href="https://dictionary.cambridge.org/dictionary/english-portuguese/downstream" target="_blank">downstream</a> sector. The downstream sector <a class="hl" href="https://dictionary.cambridge.org/dictionary/english-portuguese/process" target="_blank">processes</a> <a class="hl" href="https://www.linguee.com.br/ingles-portugues/traducao/crude+oil.html" target="_blank">crude oil</a> and natural gas into useful products for everyday life.</p>
 
-        <p><strong>Refineries</strong> are the key facilities in the downstream sector. They receive crude oil from <a class="hl" href="https://dictionary.cambridge.org/dictionary/english/pipeline" target="_blank">pipelines</a> or tankers and <a class="hl" href="https://dictionary.cambridge.org/dictionary/english/separate" target="_blank">separate</a> it into <strong>light</strong> and <strong>heavy</strong> products. Light products include <a class="hl" href="https://dictionary.cambridge.org/dictionary/english/petrol" target="_blank">petrol</a> (gasoline), diesel, and jet fuel. Heavy products include <a class="hl" href="https://dictionary.cambridge.org/dictionary/english/asphalt" target="_blank">asphalt</a> — the material used to build roads. Refineries also produce <strong>propane</strong>, a gas used in homes and industry.</p>
+        <p><strong>Refineries</strong> are the key facilities in the downstream sector. They receive crude oil from <a class="hl" href="https://dictionary.cambridge.org/dictionary/english-portuguese/pipeline" target="_blank">pipelines</a> or tankers and <a class="hl" href="https://dictionary.cambridge.org/dictionary/english-portuguese/separate" target="_blank">separate</a> it into <strong>light</strong> and <strong>heavy</strong> products. Light products include <a class="hl" href="https://dictionary.cambridge.org/dictionary/english-portuguese/petrol" target="_blank">petrol</a> (gasoline), diesel, and jet fuel. Heavy products include <a class="hl" href="https://dictionary.cambridge.org/dictionary/english-portuguese/asphalt" target="_blank">asphalt</a> — the material used to build roads. Refineries also produce <strong>propane</strong>, a gas used in homes and industry.</p>
 
-        <p>The <strong>petrochemical</strong> industry is also part of downstream. Petrochemical plants take hydrocarbons from refineries and produce <a class="hl" href="https://dictionary.cambridge.org/dictionary/english/chemical" target="_blank">chemicals</a>. Industries use these chemicals to make <strong>plastics</strong>, <strong>detergents</strong>, <strong>fertilizers</strong>, and synthetic rubber for car <strong>tyres</strong>.</p>
+        <p>The <strong>petrochemical</strong> industry is also part of downstream. Petrochemical plants take hydrocarbons from refineries and produce <a class="hl" href="https://dictionary.cambridge.org/dictionary/english-portuguese/chemical" target="_blank">chemicals</a>. Industries use these chemicals to make <strong>plastics</strong>, <strong>detergents</strong>, <strong>fertilizers</strong>, and synthetic rubber for car <strong>tyres</strong>.</p>
 
         <p><strong>Gas processing plants</strong> separate natural gas into different gases such as methane, ethane, and propane. Methane is the main component of natural gas for heating and cooking. Ethylene is an important chemical for the plastics industry.</p>
 
-        <p>Products reach consumers by sea in large <a class="hl" href="https://dictionary.cambridge.org/dictionary/english/tanker" target="_blank">tankers</a>, by road in petrol tankers, by rail, and by pipeline. <strong>Control rooms</strong> monitor and control the whole <a class="hl" href="https://dictionary.cambridge.org/dictionary/english/process" target="_blank">process</a> 24 hours a day, seven days a week.</p>
+        <p>Products reach consumers by sea in large <a class="hl" href="https://dictionary.cambridge.org/dictionary/english-portuguese/tanker" target="_blank">tankers</a>, by road in petrol tankers, by rail, and by pipeline. <strong>Control rooms</strong> monitor and control the whole <a class="hl" href="https://dictionary.cambridge.org/dictionary/english-portuguese/process" target="_blank">process</a> 24 hours a day, seven days a week.</p>
       </div>
 
       <div class="task-box">
@@ -123,18 +119,19 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
   </div>
 
   <div class="zone-support">
+    <div class="zone-label">Click to open Cambridge / Linguee</div>
     <div class="keyword-title">Key vocabulary</div>
     <div class="keywords-grid">
-      <div class="keyword-item"><span class="kw">downstream</span><span class="kw-hint">processing &amp; selling products</span></div>
-      <div class="keyword-item"><span class="kw">refinery</span><span class="kw-hint">processes crude oil</span></div>
-      <div class="keyword-item"><span class="kw">separate</span><span class="kw-hint">divide into parts</span></div>
-      <div class="keyword-item"><span class="kw">light products</span><span class="kw-hint">petrol, diesel, jet fuel</span></div>
-      <div class="keyword-item"><span class="kw">heavy products</span><span class="kw-hint">asphalt, bitumen</span></div>
-      <div class="keyword-item"><span class="kw">petrochemical</span><span class="kw-hint">chemicals from hydrocarbons</span></div>
-      <div class="keyword-item"><span class="kw">processing plant</span><span class="kw-hint">separates gas components</span></div>
-      <div class="keyword-item"><span class="kw">tanker</span><span class="kw-hint">large transport vessel/truck</span></div>
-      <div class="keyword-item"><span class="kw">control room</span><span class="kw-hint">monitors the process</span></div>
-      <div class="keyword-item"><span class="kw">valve</span><span class="kw-hint">controls flow in pipes</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/downstream" target="_blank">downstream</a><span class="kw-hint">processing &amp; selling products</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/refinery" target="_blank">refinery</a><span class="kw-hint">processes crude oil</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/separate" target="_blank">separate</a><span class="kw-hint">divide into parts</span></div>
+      <div class="keyword-item"><a class="kw" href="https://www.linguee.com.br/ingles-portugues/traducao/light+products.html" target="_blank">light products</a><span class="kw-hint">petrol, diesel, jet fuel</span></div>
+      <div class="keyword-item"><a class="kw" href="https://www.linguee.com.br/ingles-portugues/traducao/heavy+products.html" target="_blank">heavy products</a><span class="kw-hint">asphalt, bitumen</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/petrochemical" target="_blank">petrochemical</a><span class="kw-hint">chemicals from hydrocarbons</span></div>
+      <div class="keyword-item"><a class="kw" href="https://www.linguee.com.br/ingles-portugues/traducao/processing+plant.html" target="_blank">processing plant</a><span class="kw-hint">separates gas components</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/tanker" target="_blank">tanker</a><span class="kw-hint">large transport vessel/truck</span></div>
+      <div class="keyword-item"><a class="kw" href="https://www.linguee.com.br/ingles-portugues/traducao/control+room.html" target="_blank">control room</a><span class="kw-hint">monitors the process</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/valve" target="_blank">valve</a><span class="kw-hint">controls flow in pipes</span></div>
     </div>
   </div>
 </div>
@@ -164,18 +161,6 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 
 <script>
 var BG_TEXT="The oil and gas industry has two main sectors: upstream and downstream. The downstream sector processes crude oil and natural gas into useful products for everyday life.\n\nRefineries are the key facilities in the downstream sector. They receive crude oil from pipelines or tankers and separate it into light and heavy products. Light products include petrol, diesel, and jet fuel. Heavy products include asphalt — the material used to build roads. Refineries also produce propane, a gas used in homes and industry.\n\nThe petrochemical industry is also part of downstream. Petrochemical plants take hydrocarbons from refineries and produce chemicals. Industries use these chemicals to make plastics, detergents, fertilizers, and synthetic rubber for car tyres.\n\nGas processing plants separate natural gas into different gases such as methane, ethane, and propane. Methane is the main component of natural gas for heating and cooking. Ethylene is an important chemical for the plastics industry.\n\nProducts reach consumers by sea in large tankers, by road in petrol tankers, by rail, and by pipeline. Control rooms monitor and control the whole process 24 hours a day, seven days a week.";
-
-const TOTAL=20*60;let remaining=TOTAL;
-const iv=setInterval(function(){
-  remaining--;
-  var m=Math.floor(remaining/60).toString().padStart(2,'0'),s=(remaining%60).toString().padStart(2,'0');
-  var el=document.getElementById('timer'),bar=document.getElementById('progress');
-  el.textContent=m+':'+s;bar.style.width=((remaining/TOTAL)*100)+'%';
-  el.className='countdown-display';bar.className='progress-fill';
-  if(remaining<=0){clearInterval(iv);el.textContent='00:00';bar.style.width='0%';bar.classList.add('urgent');}
-  else if(remaining<=60){el.classList.add('urgent');bar.classList.add('urgent');}
-  else if(remaining<=180){el.classList.add('warning');bar.classList.add('warning');}
-},1000);
 
 function openModal(){
   var saved=localStorage.getItem('ef_student_name');

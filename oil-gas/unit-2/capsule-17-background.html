@@ -13,13 +13,7 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 .pill-title span{color:#f5a623;font-size:clamp(14px,2.5vw,22px);font-weight:600;display:block;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
 .icon-box{width:48px;height:48px;border:1.5px solid rgba(245,166,35,.4);border-radius:50%;display:flex;align-items:center;justify-content:center}
 .icon-box svg{width:26px;height:26px;stroke:#f5a623;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
-.countdown-bar{background:#0d1b2a;border-bottom:1px solid rgba(245,166,35,.2);padding:8px 24px;display:flex;align-items:center;gap:12px}
-.countdown-display{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:#f5a623;letter-spacing:.08em;min-width:60px}
-.countdown-display.warning{color:#f59e0b}.countdown-display.urgent{color:#ef4444}
-.progress-track{flex:1;height:4px;background:rgba(245,166,35,.13);border-radius:2px;overflow:hidden}
-.progress-fill{height:100%;background:#f5a623;border-radius:2px;transition:width 1s linear,background .5s}
-.progress-fill.warning{background:#f59e0b}.progress-fill.urgent{background:#ef4444}
-.audio-bar{background:#0a1628;border-bottom:1px solid rgba(245,166,35,.2);padding:8px 24px;display:flex;align-items:center;gap:12px}
+.audio-bar{background:#0d1b2a;border-bottom:1px solid rgba(245,166,35,.2);padding:8px 24px;display:flex;align-items:center;gap:12px}
 .audio-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#f5a623;font-weight:600;white-space:nowrap}
 .audio-bar audio{flex:1;height:32px;accent-color:#f5a623}
 .translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(245,166,35,.2);padding:6px 24px;font-size:11px;color:#f5c87a;text-align:center}
@@ -36,6 +30,7 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 .text-block p{margin-bottom:9px}
 .hl{color:#f5a623;text-decoration:none;border-bottom:1px dotted rgba(245,166,35,.4)}
 .hl:hover{color:#f5c87a}
+.hero-img{width:100%;height:210px;object-fit:cover;border-radius:8px;border:1px solid rgba(245,166,35,.2);margin-bottom:12px;display:block}
 .task-box{background:#0a1628;border:1px solid rgba(245,166,35,.25);border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:8px;margin-top:12px}
 .task-box p{font-size:11px;color:#f5c87a;font-style:italic;line-height:1.45}
 .whatsapp-btn{display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;border:none;border-radius:8px;padding:7px 12px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:background .2s;width:100%}
@@ -46,7 +41,8 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 .keywords-grid{display:grid;grid-template-columns:1fr;gap:0}
 .keyword-item{padding:6px 0;border-bottom:1px solid rgba(245,166,35,.09);display:flex;flex-direction:column;gap:3px}
 .keyword-item:last-child{border-bottom:none}
-.kw{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#f5a623;letter-spacing:.04em}
+.kw{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#f5a623;letter-spacing:.04em;text-decoration:none;transition:color .2s}
+.kw:hover{color:#f5c87a}
 .kw-hint{font-size:10px;color:#4a6a8a;font-style:italic}
 .footer{background:#0d1b2a;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(245,166,35,.2);margin-top:4px}
 .footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a8a;letter-spacing:.04em}
@@ -77,37 +73,37 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
   </div>
 </div>
 
-<div class="countdown-bar">
-  <span class="countdown-display" id="timer">20:00</span>
-  <div class="progress-track"><div class="progress-fill" id="progress" style="width:100%"></div></div>
-</div>
-
 <div class="audio-bar">
-  <span class="audio-label">▶ Audio</span>
-  <audio controls src="teacher-audio-unit2-background.mp3"></audio>
+  <span class="audio-label">🎧 Teacher's audio</span>
+  <audio controls preload="none">
+    <source src="teacher-audio-unit2-background.mp3" type="audio/mpeg">
+    Audio not available.
+  </audio>
 </div>
 
 <div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
 
 <div class="steps">
-  <div class="step"><svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>1. Listen &amp; read</div>
-  <div class="step"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>2. Study vocabulary</div>
-  <div class="step"><svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>3. Record audio</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>1. Listen to teacher's audio</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>2. Read the text</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>3. Study the highlighted words</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>4. Send an audio reading</div>
 </div>
 
 <div class="content">
   <div class="left-col">
     <div class="main-area">
       <div class="zone-label">Background — The upstream sector</div>
+      <img class="hero-img" src="unit2-background.png" alt="Upstream oil exploration and drilling" onerror="this.style.display='none'">
 
       <div class="text-block">
-        <p>The oil and gas industry has two main sectors: the <a class="hl" href="https://dictionary.cambridge.org/dictionary/english/upstream" target="_blank">upstream</a> sector and the <a class="hl" href="https://dictionary.cambridge.org/dictionary/english/downstream" target="_blank">downstream</a> sector.</p>
+        <p>The oil and gas industry has two main sectors: the <a class="hl" href="https://dictionary.cambridge.org/dictionary/english-portuguese/upstream" target="_blank">upstream</a> sector and the <a class="hl" href="https://dictionary.cambridge.org/dictionary/english-portuguese/downstream" target="_blank">downstream</a> sector.</p>
 
-        <p>Workers in the <strong>upstream</strong> sector find and <a class="hl" href="https://dictionary.cambridge.org/dictionary/english/produce" target="_blank">produce</a> <a class="hl" href="https://dictionary.cambridge.org/dictionary/english/crude-oil" target="_blank">crude oil</a> and gas. Crude oil is oil that comes directly from the ground — it is usually dark brown in colour. Workers in the <strong>downstream</strong> sector produce useful products from crude oil and natural gas, such as <a class="hl" href="https://dictionary.cambridge.org/dictionary/english/fuel" target="_blank">fuel</a> for cars and planes.</p>
+        <p>Workers in the <strong>upstream</strong> sector find and <a class="hl" href="https://dictionary.cambridge.org/dictionary/english-portuguese/produce" target="_blank">produce</a> <a class="hl" href="https://www.linguee.com.br/ingles-portugues/traducao/crude+oil.html" target="_blank">crude oil</a> and gas. Crude oil is oil that comes directly from the ground — it is usually dark brown in colour. Workers in the <strong>downstream</strong> sector produce useful products from crude oil and natural gas, such as <a class="hl" href="https://dictionary.cambridge.org/dictionary/english-portuguese/fuel" target="_blank">fuel</a> for cars and planes.</p>
 
-        <p>The upstream process has four main steps. First, <strong>exploration</strong>: scientists study <a class="hl" href="https://dictionary.cambridge.org/dictionary/english/rock" target="_blank">rocks</a> and do scientific tests to find places where <a class="hl" href="https://dictionary.cambridge.org/dictionary/english/hydrocarbon" target="_blank">hydrocarbons</a> may be present. Hydrocarbons are compounds made of hydrogen and carbon — oil and gas are both hydrocarbons.</p>
+        <p>The upstream process has four main steps. First, <strong>exploration</strong>: scientists study <a class="hl" href="https://dictionary.cambridge.org/dictionary/english-portuguese/rock" target="_blank">rocks</a> and do scientific tests to find places where <a class="hl" href="https://dictionary.cambridge.org/dictionary/english-portuguese/hydrocarbon" target="_blank">hydrocarbons</a> may be present. Hydrocarbons are compounds made of hydrogen and carbon — oil and gas are both hydrocarbons.</p>
 
-        <p>The second step is <strong>drilling</strong>. Drillers drill a well in a promising location. They do not always find hydrocarbons. If they do, the company then carries out more tests. This leads to the third step: <strong>development</strong>. The company prepares for full production — for example, by building a <a class="hl" href="https://dictionary.cambridge.org/dictionary/english/pipeline" target="_blank">pipeline</a> to <a class="hl" href="https://dictionary.cambridge.org/dictionary/english/transport" target="_blank">transport</a> the oil or gas to market. Development can take a few weeks or many years.</p>
+        <p>The second step is <strong>drilling</strong>. Drillers drill a well in a promising location. They do not always find hydrocarbons. If they do, the company then carries out more tests. This leads to the third step: <strong>development</strong>. The company prepares for full production — for example, by building a <a class="hl" href="https://dictionary.cambridge.org/dictionary/english-portuguese/pipeline" target="_blank">pipeline</a> to <a class="hl" href="https://dictionary.cambridge.org/dictionary/english-portuguese/transport" target="_blank">transport</a> the oil or gas to market. Development can take a few weeks or many years.</p>
 
         <p>Finally, <strong>production</strong> begins. Crude oil and gas flow from the well and along the pipeline. The upstream sector is often called the <em>E&amp;P sector</em> — exploration and production.</p>
       </div>
@@ -123,18 +119,19 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
   </div>
 
   <div class="zone-support">
+    <div class="zone-label">Click to open Cambridge / Linguee</div>
     <div class="keyword-title">Key vocabulary</div>
     <div class="keywords-grid">
-      <div class="keyword-item"><span class="kw">upstream</span><span class="kw-hint">finding &amp; producing oil</span></div>
-      <div class="keyword-item"><span class="kw">downstream</span><span class="kw-hint">making &amp; selling products</span></div>
-      <div class="keyword-item"><span class="kw">crude oil</span><span class="kw-hint">oil from the ground</span></div>
-      <div class="keyword-item"><span class="kw">fuel</span><span class="kw-hint">petrol, diesel, gas…</span></div>
-      <div class="keyword-item"><span class="kw">hydrocarbons</span><span class="kw-hint">H + C compounds</span></div>
-      <div class="keyword-item"><span class="kw">exploration</span><span class="kw-hint">step 1: find oil</span></div>
-      <div class="keyword-item"><span class="kw">drilling</span><span class="kw-hint">step 2: drill a well</span></div>
-      <div class="keyword-item"><span class="kw">development</span><span class="kw-hint">step 3: prepare</span></div>
-      <div class="keyword-item"><span class="kw">production</span><span class="kw-hint">step 4: oil flows</span></div>
-      <div class="keyword-item"><span class="kw">pipeline</span><span class="kw-hint">transports oil/gas</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/upstream" target="_blank">upstream</a><span class="kw-hint">finding &amp; producing oil</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/downstream" target="_blank">downstream</a><span class="kw-hint">making &amp; selling products</span></div>
+      <div class="keyword-item"><a class="kw" href="https://www.linguee.com.br/ingles-portugues/traducao/crude+oil.html" target="_blank">crude oil</a><span class="kw-hint">oil from the ground</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/fuel" target="_blank">fuel</a><span class="kw-hint">petrol, diesel, gas…</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/hydrocarbon" target="_blank">hydrocarbons</a><span class="kw-hint">H + C compounds</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/exploration" target="_blank">exploration</a><span class="kw-hint">step 1: find oil</span></div>
+      <div class="keyword-item"><a class="kw" href="https://www.linguee.com.br/ingles-portugues/traducao/drilling.html" target="_blank">drilling</a><span class="kw-hint">step 2: drill a well</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/development" target="_blank">development</a><span class="kw-hint">step 3: prepare</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/production" target="_blank">production</a><span class="kw-hint">step 4: oil flows</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/pipeline" target="_blank">pipeline</a><span class="kw-hint">transports oil/gas</span></div>
     </div>
   </div>
 </div>
@@ -164,18 +161,6 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 
 <script>
 var BG_TEXT="The oil and gas industry has two main sectors: the upstream sector and the downstream sector.\n\nWorkers in the upstream sector find and produce crude oil and gas. Crude oil is oil that comes directly from the ground. Workers in the downstream sector produce useful products from crude oil, such as fuel for cars and planes.\n\nThe upstream process has four main steps. First, exploration: scientists study rocks and do scientific tests to find hydrocarbons. The second step is drilling. Drillers drill a well. If they find hydrocarbons, the company carries out more tests. This leads to development: the company prepares for production, for example by building a pipeline. Finally, production begins. Crude oil and gas flow from the well and along the pipeline.";
-
-const TOTAL=20*60;let remaining=TOTAL;
-const iv=setInterval(function(){
-  remaining--;
-  var m=Math.floor(remaining/60).toString().padStart(2,'0'),s=(remaining%60).toString().padStart(2,'0');
-  var el=document.getElementById('timer'),bar=document.getElementById('progress');
-  el.textContent=m+':'+s;bar.style.width=((remaining/TOTAL)*100)+'%';
-  el.className='countdown-display';bar.className='progress-fill';
-  if(remaining<=0){clearInterval(iv);el.textContent='00:00';bar.style.width='0%';bar.classList.add('urgent');}
-  else if(remaining<=60){el.classList.add('urgent');bar.classList.add('urgent');}
-  else if(remaining<=180){el.classList.add('warning');bar.classList.add('warning');}
-},1000);
 
 function openModal(){
   var saved=localStorage.getItem('ef_student_name');

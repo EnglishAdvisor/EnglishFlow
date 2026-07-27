@@ -15,14 +15,19 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 .icon-box svg{width:26px;height:26px;stroke:#2ecc71;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 .translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(46,204,113,.2);padding:6px 24px;font-size:11px;color:#82e0aa;text-align:center}
 .translate-warning strong{color:#2ecc71}
-.audio-bar{background:#0d1b2a;padding:10px 24px;display:flex;align-items:center;gap:12px;border-bottom:1px solid rgba(46,204,113,.15)}
-.audio-label{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;color:#82e0aa;text-transform:uppercase;letter-spacing:.08em;white-space:nowrap}
-audio{flex:1;height:32px;min-width:0;accent-color:#2ecc71}
+.audio-bar{background:#0d1b2a;padding:8px 24px;display:flex;align-items:center;gap:12px;border-bottom:1px solid rgba(46,204,113,.2)}
+.audio-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#2ecc71;font-weight:600;white-space:nowrap}
+.audio-bar audio{flex:1;height:32px;accent-color:#2ecc71}
+.steps{display:flex;gap:6px;padding:8px 16px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;border-bottom:1px solid rgba(46,204,113,.15)}
+.steps::-webkit-scrollbar{display:none}
+.step{flex-shrink:0;display:flex;align-items:center;gap:6px;background:rgba(46,204,113,.08);border:1px solid rgba(46,204,113,.25);border-radius:20px;padding:6px 12px;font-size:11.5px;color:#82e0aa;font-weight:500;white-space:nowrap}
+.step svg{width:13px;height:13px;stroke:#2ecc71;fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0}
 .content{max-width:960px;margin:0 auto;padding:20px 16px 32px;display:grid;grid-template-columns:1fr 260px;gap:20px}
 @media(max-width:700px){.content{grid-template-columns:1fr}}
 .left-col{}
 .bg-card{background:#111827;border:1px solid rgba(46,204,113,.18);border-radius:14px;padding:22px;margin-bottom:16px}
 .bg-title{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:#82e0aa;margin-bottom:14px;letter-spacing:.03em}
+.hero-img{width:100%;height:220px;object-fit:cover;border-radius:10px;margin-bottom:14px;display:block}
 .bg-text{font-size:14px;color:#c8d8e8;line-height:1.8}
 .bg-text p{margin-bottom:12px}
 .bg-text p:last-child{margin-bottom:0}
@@ -39,6 +44,8 @@ audio{flex:1;height:32px;min-width:0;accent-color:#2ecc71}
 .kw-item:last-child{border-bottom:none}
 .kw-dot{color:#2ecc71;font-weight:700;flex-shrink:0}
 .kw-term{color:#82e0aa;font-weight:600}
+a.kw-term{text-decoration:none;transition:color .2s}
+a.kw-term:hover{color:#2ecc71}
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;align-items:center;justify-content:center;padding:16px}
 .modal-overlay.open{display:flex}
 .modal{background:#111827;border:1px solid rgba(46,204,113,.3);border-radius:14px;padding:22px;width:100%;max-width:440px}
@@ -66,17 +73,28 @@ audio{flex:1;height:32px;min-width:0;accent-color:#2ecc71}
   </div>
 </div>
 
+<div class="audio-bar">
+  <span class="audio-label">🎧 Teacher's audio</span>
+  <audio controls preload="none">
+    <source src="teacher-audio-unit10-background.mp3" type="audio/mpeg">
+    Audio not available.
+  </audio>
+</div>
+
 <div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
 
-<div class="audio-bar">
-  <div class="audio-label">Teacher audio</div>
-  <audio controls src="teacher-audio-unit10-background.mp3"></audio>
+<div class="steps">
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>1. Listen to teacher's audio</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>2. Read the text</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>3. Study the highlighted words</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>4. Send an audio reading</div>
 </div>
 
 <div class="content">
   <div class="left-col">
     <div class="bg-card">
       <div class="bg-title">Oil and the Environment</div>
+      <img class="hero-img" src="unit10-background.png" alt="Industry and nature coexisting" onerror="this.style.display='none'">
       <div class="bg-text">
         <p>The oil industry has an <strong>environmental impact</strong> at every stage — from exploration and development to <strong>decommissioning</strong>. The world consumes about <strong>90 million barrels</strong> of oil every day. Companies must plan carefully to minimise environmental damage.</p>
         <p>When working in <strong>desert areas</strong>, companies must protect desert plants and animals. In <strong>arctic conditions</strong>, engineers must design equipment that works in extreme cold. When drilling near <strong>towns and villages</strong>, companies must think about traffic, noise, and bad smells.</p>
@@ -100,16 +118,17 @@ audio{flex:1;height:32px;min-width:0;accent-color:#2ecc71}
   <div class="zone-support">
     <div class="kw-card">
       <div class="kw-title">Key Terms</div>
-      <div class="kw-item"><span class="kw-dot">▸</span><span><span class="kw-term">environmental impact</span> — the effect of human activity on nature</span></div>
-      <div class="kw-item"><span class="kw-dot">▸</span><span><span class="kw-term">decommissioning</span> — safely closing down an oil facility at the end of its life</span></div>
-      <div class="kw-item"><span class="kw-dot">▸</span><span><span class="kw-term">flaring</span> — burning off unwanted gas into the atmosphere</span></div>
-      <div class="kw-item"><span class="kw-dot">▸</span><span><span class="kw-term">cooling water</span> — water used to cool equipment and processes</span></div>
-      <div class="kw-item"><span class="kw-dot">▸</span><span><span class="kw-term">wildlife protection</span> — programmes to keep animals and plants safe during operations</span></div>
-      <div class="kw-item"><span class="kw-dot">▸</span><span><span class="kw-term">sustainable energy</span> — energy that can be used without running out</span></div>
-      <div class="kw-item"><span class="kw-dot">▸</span><span><span class="kw-term">renewable energy</span> — energy from sources that are naturally replenished (sun, wind)</span></div>
-      <div class="kw-item"><span class="kw-dot">▸</span><span><span class="kw-term">nature reserve</span> — an area where plants and animals are protected</span></div>
-      <div class="kw-item"><span class="kw-dot">▸</span><span><span class="kw-term">eco-hazard</span> — something that can harm the environment</span></div>
-      <div class="kw-item"><span class="kw-dot">▸</span><span><span class="kw-term">extended reach drilling</span> — drilling at an angle to reach oil far from the rig</span></div>
+      <div style="font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#2ecc71;font-weight:600;margin-bottom:8px">Click to open Cambridge / Linguee</div>
+      <div class="kw-item"><span class="kw-dot">▸</span><span><a class="kw-term" href="https://www.linguee.com.br/ingles-portugues/traducao/environmental+impact.html" target="_blank">environmental impact</a> — the effect of human activity on nature</span></div>
+      <div class="kw-item"><span class="kw-dot">▸</span><span><a class="kw-term" href="https://dictionary.cambridge.org/dictionary/english-portuguese/decommission" target="_blank">decommissioning</a> — safely closing down an oil facility at the end of its life</span></div>
+      <div class="kw-item"><span class="kw-dot">▸</span><span><a class="kw-term" href="https://www.linguee.com.br/ingles-portugues/traducao/gas+flaring.html" target="_blank">flaring</a> — burning off unwanted gas into the atmosphere</span></div>
+      <div class="kw-item"><span class="kw-dot">▸</span><span><a class="kw-term" href="https://www.linguee.com.br/ingles-portugues/traducao/cooling+water.html" target="_blank">cooling water</a> — water used to cool equipment and processes</span></div>
+      <div class="kw-item"><span class="kw-dot">▸</span><span><a class="kw-term" href="https://www.linguee.com.br/ingles-portugues/traducao/wildlife+protection.html" target="_blank">wildlife protection</a> — programmes to keep animals and plants safe during operations</span></div>
+      <div class="kw-item"><span class="kw-dot">▸</span><span><a class="kw-term" href="https://www.linguee.com.br/ingles-portugues/traducao/sustainable+energy.html" target="_blank">sustainable energy</a> — energy that can be used without running out</span></div>
+      <div class="kw-item"><span class="kw-dot">▸</span><span><a class="kw-term" href="https://www.linguee.com.br/ingles-portugues/traducao/renewable+energy.html" target="_blank">renewable energy</a> — energy from sources that are naturally replenished (sun, wind)</span></div>
+      <div class="kw-item"><span class="kw-dot">▸</span><span><a class="kw-term" href="https://dictionary.cambridge.org/dictionary/english-portuguese/nature-reserve" target="_blank">nature reserve</a> — an area where plants and animals are protected</span></div>
+      <div class="kw-item"><span class="kw-dot">▸</span><span><a class="kw-term" href="https://www.linguee.com.br/ingles-portugues/traducao/environmental+hazard.html" target="_blank">eco-hazard</a> — something that can harm the environment</span></div>
+      <div class="kw-item"><span class="kw-dot">▸</span><span><a class="kw-term" href="https://www.linguee.com.br/ingles-portugues/traducao/extended+reach+drilling.html" target="_blank">extended reach drilling</a> — drilling at an angle to reach oil far from the rig</span></div>
     </div>
   </div>
 </div>

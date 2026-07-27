@@ -15,13 +15,18 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 .icon-box svg{width:26px;height:26px;stroke:#e74c3c;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 .translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(231,76,60,.2);padding:6px 24px;font-size:11px;color:#f0958d;text-align:center}
 .translate-warning strong{color:#e74c3c}
-.audio-bar{background:#0d1b2a;border-bottom:1px solid rgba(231,76,60,.18);padding:10px 24px;display:flex;align-items:center;gap:12px}
-.audio-label{font-family:'Barlow Condensed',sans-serif;font-size:13px;color:#4a6a8a;letter-spacing:.04em;white-space:nowrap}
-.audio-bar audio{flex:1;height:36px;min-width:0;accent-color:#e74c3c}
+.audio-bar{background:#0d1b2a;border-bottom:1px solid rgba(231,76,60,.2);padding:8px 24px;display:flex;align-items:center;gap:12px}
+.audio-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#e74c3c;font-weight:600;white-space:nowrap}
+.audio-bar audio{flex:1;height:32px;accent-color:#e74c3c}
+.steps{display:flex;gap:6px;padding:8px 16px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;border-bottom:1px solid rgba(231,76,60,.15)}
+.steps::-webkit-scrollbar{display:none}
+.step{flex-shrink:0;display:flex;align-items:center;gap:6px;background:rgba(231,76,60,.08);border:1px solid rgba(231,76,60,.25);border-radius:20px;padding:6px 12px;font-size:11.5px;color:#f0958d;font-weight:500;white-space:nowrap}
+.step svg{width:13px;height:13px;stroke:#e74c3c;fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0}
 .content{max-width:900px;margin:0 auto;padding:20px 16px 32px;display:flex;gap:16px;align-items:flex-start}
 .left-col{flex:1;min-width:0}
 .zone-support{width:200px;flex-shrink:0}
 @media(max-width:640px){.content{flex-direction:column}.zone-support{width:100%}}
+.hero-img{width:100%;height:220px;object-fit:cover;border-radius:10px;margin-bottom:12px;display:block}
 .bg-text{background:#111827;border:1px solid rgba(231,76,60,.18);border-radius:12px;padding:18px;margin-bottom:12px;font-size:14px;color:#c8d8e8;line-height:1.8}
 .bg-text p{margin-bottom:12px}
 .bg-text p:last-child{margin-bottom:0}
@@ -46,6 +51,8 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 .kw-item{display:flex;flex-direction:column;padding:5px 0;border-bottom:1px solid rgba(231,76,60,.1)}
 .kw-item:last-child{border-bottom:none}
 .kw-en{font-size:13px;color:#f0958d;font-weight:600}
+a.kw-en{text-decoration:none;transition:color .2s}
+a.kw-en:hover{color:#e74c3c}
 .kw-def{font-size:11px;color:#4a6a8a;margin-top:1px}
 .footer{background:#0d1b2a;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(231,76,60,.2);margin-top:4px}
 .footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a8a}
@@ -59,13 +66,23 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
   <div class="pill-title">Background<span>Unit 13 — The Refinery</span></div>
   <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
 </div>
-<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
 <div class="audio-bar">
-  <span class="audio-label">Teacher audio</span>
-  <audio controls><source src="teacher-audio-unit13-background.mp3" type="audio/mpeg">Your browser does not support audio.</audio>
+  <span class="audio-label">🎧 Teacher's audio</span>
+  <audio controls preload="none">
+    <source src="teacher-audio-unit13-background.mp3" type="audio/mpeg">
+    Audio not available.
+  </audio>
+</div>
+<div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
+<div class="steps">
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>1. Listen to teacher's audio</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>2. Read the text</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>3. Study the highlighted words</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>4. Send an audio reading</div>
 </div>
 <div class="content">
   <div class="left-col">
+    <img class="hero-img" src="unit13-background.png" alt="Oil refinery distillation towers at dusk" onerror="this.style.display='none'">
     <div class="bg-text">
       <p>An <strong>oil refinery</strong> is a large industrial facility that processes <strong>crude oil</strong> — raw oil from the ground — into useful petroleum products. The refinery is one of the most important steps in the oil and gas industry: without it, crude oil would have no commercial value.</p>
       <p>Crude oil is delivered to the refinery by <strong>tanker ship</strong>, <strong>pipeline</strong>, or <strong>rail tanker</strong>. When it arrives, it is stored in large <strong>storage tanks</strong> — some over 80 metres high — before processing begins.</p>
@@ -83,14 +100,15 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
   <div class="zone-support">
     <div class="sidebar-box">
       <div class="sidebar-title">Key Terms</div>
-      <div class="kw-item"><span class="kw-en">crude oil</span><span class="kw-def">raw unprocessed oil from the ground</span></div>
-      <div class="kw-item"><span class="kw-en">refinery</span><span class="kw-def">facility that processes crude oil</span></div>
-      <div class="kw-item"><span class="kw-en">furnace</span><span class="kw-def">equipment that heats the crude oil</span></div>
-      <div class="kw-item"><span class="kw-en">distillation tower</span><span class="kw-def">tall column where oil is separated</span></div>
-      <div class="kw-item"><span class="kw-en">fractional distillation</span><span class="kw-def">process of separating by boiling point</span></div>
-      <div class="kw-item"><span class="kw-en">petroleum gas (LPG)</span><span class="kw-def">lightest product — rises to top</span></div>
-      <div class="kw-item"><span class="kw-en">asphalt / bitumen</span><span class="kw-def">heaviest product — sinks to bottom</span></div>
-      <div class="kw-item"><span class="kw-en">process technician</span><span class="kw-def">monitors and troubleshoots equipment</span></div>
+      <div style="font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#e74c3c;font-weight:600;margin-bottom:8px">Click to open Cambridge / Linguee</div>
+      <div class="kw-item"><a class="kw-en" href="https://www.linguee.com.br/ingles-portugues/traducao/crude+oil.html" target="_blank">crude oil</a><span class="kw-def">raw unprocessed oil from the ground</span></div>
+      <div class="kw-item"><a class="kw-en" href="https://dictionary.cambridge.org/dictionary/english-portuguese/refinery" target="_blank">refinery</a><span class="kw-def">facility that processes crude oil</span></div>
+      <div class="kw-item"><a class="kw-en" href="https://dictionary.cambridge.org/dictionary/english-portuguese/furnace" target="_blank">furnace</a><span class="kw-def">equipment that heats the crude oil</span></div>
+      <div class="kw-item"><a class="kw-en" href="https://www.linguee.com.br/ingles-portugues/traducao/distillation+tower.html" target="_blank">distillation tower</a><span class="kw-def">tall column where oil is separated</span></div>
+      <div class="kw-item"><a class="kw-en" href="https://www.linguee.com.br/ingles-portugues/traducao/fractional+distillation.html" target="_blank">fractional distillation</a><span class="kw-def">process of separating by boiling point</span></div>
+      <div class="kw-item"><a class="kw-en" href="https://www.linguee.com.br/ingles-portugues/traducao/liquefied+petroleum+gas.html" target="_blank">petroleum gas (LPG)</a><span class="kw-def">lightest product — rises to top</span></div>
+      <div class="kw-item"><a class="kw-en" href="https://dictionary.cambridge.org/dictionary/english-portuguese/bitumen" target="_blank">asphalt / bitumen</a><span class="kw-def">heaviest product — sinks to bottom</span></div>
+      <div class="kw-item"><a class="kw-en" href="https://www.linguee.com.br/ingles-portugues/traducao/process+technician.html" target="_blank">process technician</a><span class="kw-def">monitors and troubleshoots equipment</span></div>
     </div>
   </div>
 </div>
