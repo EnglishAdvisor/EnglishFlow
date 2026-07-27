@@ -71,6 +71,23 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 @media(max-width:700px){.content{grid-template-columns:1fr}.parts-grid{grid-template-columns:1fr}}
 
 /* ==== EF: campos de resposta na propria capsula (padrao 25/07/2026) ==== */
+/* ==== EF: alternativas e campos (padrao Unit 1) ==== */
+.q-area{width:100%;background:#0a1628;border:1px solid rgba(127,179,211,.25);border-radius:6px;padding:7px 9px;font-size:12px;color:#c8d8e8;font-family:'Barlow',sans-serif;outline:none;resize:vertical;min-height:56px;line-height:1.5;transition:border .2s}
+.q-area:focus{border-color:#7fb3d3}
+.q-area.filled{border-color:rgba(37,211,102,.55)}
+.sent-item{background:rgba(127,179,211,.05);border:1px solid rgba(127,179,211,.15);border-radius:8px;padding:9px 11px;margin-bottom:7px;font-size:11.5px;color:#c8d8e8;line-height:1.5}
+.opt-row{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.opt{background:rgba(127,179,211,.08);border:1px solid rgba(127,179,211,.28);border-radius:14px;padding:4px 11px;font-size:11px;color:#b0d0e8;cursor:pointer;font-family:'Barlow',sans-serif;transition:.15s}
+.opt:hover{background:rgba(127,179,211,.18)}
+.opt.sel{background:#7fb3d3;color:#0a0f1e;border-color:#7fb3d3;font-weight:600}
+.opt.correct{background:#16a34a;border-color:#16a34a;color:#fff}
+.opt.wrong{background:#dc2626;border-color:#dc2626;color:#fff}
+.check-btn{width:100%;background:transparent;border:1px solid rgba(127,179,211,.45);color:#7fb3d3;border-radius:8px;padding:9px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;margin-top:10px;transition:.2s}
+.check-btn:hover{background:rgba(127,179,211,.12)}
+.score-box{margin-top:8px;padding:9px 12px;border-radius:8px;font-size:12px;text-align:center;display:none;font-weight:600}
+.score-box.show{display:block}
+.score-box.perfect{background:rgba(22,163,74,.15);border:1px solid #16a34a;color:#4ade80}
+.score-box.partial{background:rgba(127,179,211,.12);border:1px solid rgba(127,179,211,.5);color:#b0d0e8}
 .ef-answers{background:#0a1628;border:1px solid #7fb3d344;border-radius:10px;padding:12px 14px;margin-top:12px}
 .ef-answers-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#7fb3d3;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
 .ef-field{margin-bottom:10px}
@@ -118,31 +135,37 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 
     <div class="panel">
       <div class="activity-title"><span class="num">1</span>Match each part with its function</div>
-      <div class="qa-grid">
-        <div class="qa-row"><div class="qa-q">1. What connects two pipes with bolts and a gasket?</div><div class="qa-a">✓ Flanged joint (a).</div></div>
-        <div class="qa-row"><div class="qa-q">2. Which fitting allows the pipe to branch into two directions?</div><div class="qa-a">✓ Tee (b).</div></div>
-        <div class="qa-row"><div class="qa-q">3. What controls the flow through a pipe?</div><div class="qa-a">✓ Valve (c).</div></div>
-        <div class="qa-row"><div class="qa-q">4. Which fitting changes the direction of a pipe?</div><div class="qa-a">✓ Elbow (d).</div></div>
-        <div class="qa-row"><div class="qa-q">5. What holds the pipe above the ground?</div><div class="qa-a">✓ Pipe support (e).</div></div>
-        <div class="qa-row"><div class="qa-q">6. What measures how much fluid passes through?</div><div class="qa-a">✓ Flowmeter (f).</div></div>
-        <div class="qa-row"><div class="qa-q">7. Where does the pipeline go below ground level?</div><div class="qa-a">✓ Underground pipeline (g).</div></div>
-        <div class="qa-row"><div class="qa-q">8. What do you call one straight length of pipe?</div><div class="qa-a">✓ Section of pipe (h).</div></div>
-      </div>
+      <p style="font-size:11.5px;color:#8fa3b8;margin-bottom:8px">Tap the part that matches each function.</p>
+
+      <div class="sent-item" data-s="1" data-key="flanged joint">1. What connects two pipes with bolts and a gasket?
+        <div class="opt-row"><span class="opt" data-g="p1" data-v="flanged joint">flanged joint</span><span class="opt" data-g="p1" data-v="tee">tee</span><span class="opt" data-g="p1" data-v="valve">valve</span><span class="opt" data-g="p1" data-v="elbow">elbow</span><span class="opt" data-g="p1" data-v="pipe support">pipe support</span><span class="opt" data-g="p1" data-v="flowmeter">flowmeter</span><span class="opt" data-g="p1" data-v="underground pipeline">underground pipeline</span><span class="opt" data-g="p1" data-v="section of pipe">section of pipe</span></div></div>
+      <div class="sent-item" data-s="2" data-key="tee">2. Which fitting allows the pipe to branch into two directions?
+        <div class="opt-row"><span class="opt" data-g="p2" data-v="flanged joint">flanged joint</span><span class="opt" data-g="p2" data-v="tee">tee</span><span class="opt" data-g="p2" data-v="valve">valve</span><span class="opt" data-g="p2" data-v="elbow">elbow</span><span class="opt" data-g="p2" data-v="pipe support">pipe support</span><span class="opt" data-g="p2" data-v="flowmeter">flowmeter</span><span class="opt" data-g="p2" data-v="underground pipeline">underground pipeline</span><span class="opt" data-g="p2" data-v="section of pipe">section of pipe</span></div></div>
+      <div class="sent-item" data-s="3" data-key="valve">3. What controls the flow through a pipe?
+        <div class="opt-row"><span class="opt" data-g="p3" data-v="flanged joint">flanged joint</span><span class="opt" data-g="p3" data-v="tee">tee</span><span class="opt" data-g="p3" data-v="valve">valve</span><span class="opt" data-g="p3" data-v="elbow">elbow</span><span class="opt" data-g="p3" data-v="pipe support">pipe support</span><span class="opt" data-g="p3" data-v="flowmeter">flowmeter</span><span class="opt" data-g="p3" data-v="underground pipeline">underground pipeline</span><span class="opt" data-g="p3" data-v="section of pipe">section of pipe</span></div></div>
+      <div class="sent-item" data-s="4" data-key="elbow">4. Which fitting changes the direction of a pipe?
+        <div class="opt-row"><span class="opt" data-g="p4" data-v="flanged joint">flanged joint</span><span class="opt" data-g="p4" data-v="tee">tee</span><span class="opt" data-g="p4" data-v="valve">valve</span><span class="opt" data-g="p4" data-v="elbow">elbow</span><span class="opt" data-g="p4" data-v="pipe support">pipe support</span><span class="opt" data-g="p4" data-v="flowmeter">flowmeter</span><span class="opt" data-g="p4" data-v="underground pipeline">underground pipeline</span><span class="opt" data-g="p4" data-v="section of pipe">section of pipe</span></div></div>
+      <div class="sent-item" data-s="5" data-key="pipe support">5. What holds the pipe above the ground?
+        <div class="opt-row"><span class="opt" data-g="p5" data-v="flanged joint">flanged joint</span><span class="opt" data-g="p5" data-v="tee">tee</span><span class="opt" data-g="p5" data-v="valve">valve</span><span class="opt" data-g="p5" data-v="elbow">elbow</span><span class="opt" data-g="p5" data-v="pipe support">pipe support</span><span class="opt" data-g="p5" data-v="flowmeter">flowmeter</span><span class="opt" data-g="p5" data-v="underground pipeline">underground pipeline</span><span class="opt" data-g="p5" data-v="section of pipe">section of pipe</span></div></div>
+      <div class="sent-item" data-s="6" data-key="flowmeter">6. What measures how much fluid passes through?
+        <div class="opt-row"><span class="opt" data-g="p6" data-v="flanged joint">flanged joint</span><span class="opt" data-g="p6" data-v="tee">tee</span><span class="opt" data-g="p6" data-v="valve">valve</span><span class="opt" data-g="p6" data-v="elbow">elbow</span><span class="opt" data-g="p6" data-v="pipe support">pipe support</span><span class="opt" data-g="p6" data-v="flowmeter">flowmeter</span><span class="opt" data-g="p6" data-v="underground pipeline">underground pipeline</span><span class="opt" data-g="p6" data-v="section of pipe">section of pipe</span></div></div>
+      <div class="sent-item" data-s="7" data-key="underground pipeline">7. Where does the pipeline go below ground level?
+        <div class="opt-row"><span class="opt" data-g="p7" data-v="flanged joint">flanged joint</span><span class="opt" data-g="p7" data-v="tee">tee</span><span class="opt" data-g="p7" data-v="valve">valve</span><span class="opt" data-g="p7" data-v="elbow">elbow</span><span class="opt" data-g="p7" data-v="pipe support">pipe support</span><span class="opt" data-g="p7" data-v="flowmeter">flowmeter</span><span class="opt" data-g="p7" data-v="underground pipeline">underground pipeline</span><span class="opt" data-g="p7" data-v="section of pipe">section of pipe</span></div></div>
+      <div class="sent-item" data-s="8" data-key="section of pipe">8. What do you call one straight length of pipe?
+        <div class="opt-row"><span class="opt" data-g="p8" data-v="flanged joint">flanged joint</span><span class="opt" data-g="p8" data-v="tee">tee</span><span class="opt" data-g="p8" data-v="valve">valve</span><span class="opt" data-g="p8" data-v="elbow">elbow</span><span class="opt" data-g="p8" data-v="pipe support">pipe support</span><span class="opt" data-g="p8" data-v="flowmeter">flowmeter</span><span class="opt" data-g="p8" data-v="underground pipeline">underground pipeline</span><span class="opt" data-g="p8" data-v="section of pipe">section of pipe</span></div></div>
+
+      <button class="check-btn" onclick="checkAll()">✓ Check answers</button>
+      <div class="score-box" id="scoreBox"></div>
     </div>
 
     <div class="panel">
       <div class="activity-title"><span class="num">2</span>Are there any pipelines near where you are? Give your opinion</div>
-      <div style="background:#0a1628;border-radius:6px;padding:9px 12px;font-size:12px;color:#c8d8e8;line-height:1.7">
+      <div style="background:#0a1628;border-radius:6px;padding:9px 12px;font-size:12px;color:#c8d8e8;line-height:1.7;margin-bottom:8px">
         Think about: <em style="color:#7fb3d3">Where are the pipes? What do they carry? What size are they?</em><br>
         Also: <em style="color:#7fb3d3">Are there major pipelines in your country? Can you name some world-famous pipelines?</em>
       </div>
+      <textarea class="q-area ef-ans" id="op1" data-lab="Your opinion about pipelines" data-emo="🗣️" placeholder="Write your answer…"></textarea>
     </div>
-
-      <div class="ef-answers">
-        <div class="ef-answers-title">✍️ Your answers</div>
-        <div class="ef-field"><label class="ef-label">Activity 1 — 8 matching answers</label><textarea class="ef-ans" id="ans1" data-lab="Activity 1 — 8 matching answers" data-emo="🔤" placeholder="Write your answer here..."></textarea></div>
-        <div class="ef-field"><label class="ef-label">Activity 2 — Your opinion about pipelines</label><textarea class="ef-ans" id="ans2" data-lab="Activity 2 — Your opinion about pipelines" data-emo="✅" placeholder="Write your answer here..."></textarea></div>
-      </div>
 
     <div class="task-box">
       <p>✏️ Answer Activities 1 and 2. Send via WhatsApp.</p>
@@ -201,32 +224,73 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 </div>
 
 <script>
-
-/* ===== EnglishFlow - padrao de capsula (25/07/2026) =====
-   aluno responde na propria pagina | respostas salvas no aparelho
-   envio por compartilhamento nativo (o aluno escolhe pra quem manda) */
+/* ===== EnglishFlow - padrao de capsula (Unit 1 model) ===== */
 var CAP_KEY='ef_ans_og1_u7_kickoff';
 var CAP_EMOJI='\uD83D\uDEE2\uFE0F';
-var CAP_TITLE="Kick Off — Unit 7 — Pipes and Pipelines";
+var CAP_TITLE="Kick Off \u2014 Unit 7 \u2014 Pipes and Pipelines";
+
 function efFields(){return [].slice.call(document.querySelectorAll('.ef-ans'));}
+function sents(){return [].slice.call(document.querySelectorAll('.sent-item'));}
 function efName(){return document.getElementById('studentName')||document.getElementById('student-name');}
 function efModal(){return document.getElementById('modal')||document.getElementById('waModal');}
-function efSave(){var d={};efFields().forEach(function(el){d[el.id]=el.value;});
-  try{localStorage.setItem(CAP_KEY,JSON.stringify(d));}catch(e){}}
-function efRestore(){try{var d=JSON.parse(localStorage.getItem(CAP_KEY)||'{}');
-  efFields().forEach(function(el){if(d[el.id])el.value=d[el.id];});}catch(e){}efMark();}
+function pick(g){var s=document.querySelector('.opt[data-g="'+g+'"].sel');return s?s.getAttribute('data-v'):'';}
+
+document.querySelectorAll('.opt').forEach(function(o){
+  o.addEventListener('click',function(){
+    var g=o.getAttribute('data-g');
+    document.querySelectorAll('.opt[data-g="'+g+'"]').forEach(function(x){x.classList.remove('sel','correct','wrong');});
+    o.classList.add('sel');efSave();
+  });
+});
+
+function efSave(){
+  var d={t:{},o:{}};
+  efFields().forEach(function(el){d.t[el.id]=el.value;});
+  document.querySelectorAll('.opt.sel').forEach(function(o){d.o[o.getAttribute('data-g')]=o.getAttribute('data-v');});
+  try{localStorage.setItem(CAP_KEY,JSON.stringify(d));}catch(e){}
+}
+function efRestore(){
+  try{var d=JSON.parse(localStorage.getItem(CAP_KEY)||'{}');
+    if(d.t)efFields().forEach(function(el){if(d.t[el.id])el.value=d.t[el.id];});
+    if(d.o)Object.keys(d.o).forEach(function(g){
+      var el=document.querySelector('.opt[data-g="'+g+'"][data-v="'+d.o[g]+'"]');if(el)el.classList.add('sel');});
+  }catch(e){}
+  efMark();
+}
 function efMark(){efFields().forEach(function(el){
   if(el.value.trim())el.classList.add('filled');else el.classList.remove('filled');});}
+
+function checkAll(){
+  var hit=0,total=0;
+  sents().forEach(function(s){
+    total++;
+    var n=s.getAttribute('data-s'),right=s.getAttribute('data-key'),g='p'+n;
+    document.querySelectorAll('.opt[data-g="'+g+'"]').forEach(function(o){
+      o.classList.remove('correct','wrong');
+      if(o.getAttribute('data-v')===right)o.classList.add('correct');
+      else if(o.classList.contains('sel'))o.classList.add('wrong');
+    });
+    if(pick(g)===right)hit++;
+  });
+  var box=document.getElementById('scoreBox');
+  box.className='score-box show '+(hit===total?'perfect':'partial');
+  box.textContent=hit===total?'\uD83C\uDF89 All correct \u2014 '+hit+'/'+total+'!':hit+'/'+total+' correct \u2014 the right answers are shown in green.';
+  efSave();
+}
+
 function buildMessage(){
   var n=efName();var name=((n&&n.value)||'').trim()||'Aluno';var now=new Date();
+  var a1=sents().map(function(s,i){return (i+1)+'. '+(pick('p'+s.getAttribute('data-s'))||'\u2014');}).join('\n');
   var out='\uD83E\uDDD1\u200D\uD83C\uDF93 *'+name+'*\n'
     +'\uD83D\uDCC5 '+now.toLocaleDateString('pt-BR')+' \u00e0s '+now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})+'\n'
-    +CAP_EMOJI+' *'+CAP_TITLE+'*\n';
+    +CAP_EMOJI+' *'+CAP_TITLE+'*\n\n'
+    +'\uD83D\uDD24 *Activity 1 \u2014 Match the parts*\n'+a1+'\n';
   efFields().forEach(function(el){
     out+='\n'+(el.getAttribute('data-emo')||'\u270D\uFE0F')+' *'+(el.getAttribute('data-lab')||'')+'*\n'
        +(el.value.trim()||'_(nao respondido)_')+'\n';});
   out+='\n\uD83C\uDF99\uFE0F \u00c1udio na mensagem seguinte (se preferiu enviar por \u00e1udio)';
-  return out;}
+  return out;
+}
 function openModal(){var n=efName();var s=localStorage.getItem('ef_student_name');
   if(s&&n)n.value=s;var pv=document.getElementById('msg-preview');
   if(pv)pv.textContent=buildMessage();
