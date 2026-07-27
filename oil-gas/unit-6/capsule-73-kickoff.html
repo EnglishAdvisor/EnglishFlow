@@ -76,6 +76,32 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 @media(max-width:700px){.content{grid-template-columns:1fr}.rig-parts{grid-template-columns:1fr}}
 
 /* ==== EF: campos de resposta na propria capsula (padrao 25/07/2026) ==== */
+/* ==== EF: campos, correcao e alternativas (padrao Unit 1) ==== */
+.qz-list{list-style:none;margin:6px 0 4px;padding:0;color:#c8d8e8}
+.qz-item{display:flex;gap:9px;align-items:flex-start;margin-bottom:9px;font-size:12px;line-height:1.55;color:#c8d8e8}
+.qz-num{flex:0 0 auto;width:20px;height:20px;border-radius:50%;background:#e67e22;color:#0a0f1e;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.qz-body{flex:1;min-width:0}
+.qz-text{margin-bottom:4px;color:#c8d8e8}
+.qz-input{width:100%;background:#0a1628;border:1px solid rgba(230,126,34,.25);border-radius:6px;padding:7px 9px;font-size:12px;color:#c8d8e8;font-family:'Barlow',sans-serif;outline:none;transition:border .2s,background .2s}
+.qz-input:focus{border-color:#e67e22}
+.qz-input.correct{border-color:#16a34a;background:rgba(22,163,74,.08)}
+.qz-input.wrong{border-color:#dc2626;background:rgba(220,38,38,.07)}
+.qz-fb{font-size:10.5px;margin-top:3px;font-style:italic;display:none}
+.qz-fb.show{display:block}
+.qz-fb.ok{color:#4ade80}.qz-fb.no{color:#f87171}
+.sent-item{background:rgba(230,126,34,.05);border:1px solid rgba(230,126,34,.15);border-radius:8px;padding:9px 11px;margin-bottom:7px;font-size:11.5px;color:#c8d8e8;line-height:1.5}
+.opt-row{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.opt{background:rgba(230,126,34,.08);border:1px solid rgba(230,126,34,.28);border-radius:14px;padding:4px 11px;font-size:11px;color:#f0ad72;cursor:pointer;font-family:'Barlow',sans-serif;transition:.15s}
+.opt:hover{background:rgba(230,126,34,.18)}
+.opt.sel{background:#e67e22;color:#0a0f1e;border-color:#e67e22;font-weight:600}
+.opt.correct{background:#16a34a;border-color:#16a34a;color:#fff}
+.opt.wrong{background:#dc2626;border-color:#dc2626;color:#fff}
+.check-btn{width:100%;background:transparent;border:1px solid rgba(230,126,34,.45);color:#e67e22;border-radius:8px;padding:9px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;margin-top:10px;transition:.2s}
+.check-btn:hover{background:rgba(230,126,34,.12)}
+.score-box{margin-top:8px;padding:9px 12px;border-radius:8px;font-size:12px;text-align:center;display:none;font-weight:600}
+.score-box.show{display:block}
+.score-box.perfect{background:rgba(22,163,74,.15);border:1px solid #16a34a;color:#4ade80}
+.score-box.partial{background:rgba(230,126,34,.12);border:1px solid rgba(230,126,34,.5);color:#f0ad72}
 .ef-answers{background:#0a1628;border:1px solid #e67e2244;border-radius:10px;padding:12px 14px;margin-top:12px}
 .ef-answers-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#e67e22;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
 .ef-field{margin-bottom:10px}
@@ -127,32 +153,71 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 
     <div class="panel">
       <div class="activity-title"><span class="num">1</span>Answer these questions about the drilling rig diagram</div>
-      <div class="qa-grid">
-        <div class="qa-row"><div class="qa-q">1. Which part rotates and drills through rock?</div><div class="qa-a">✓ The drill bit (D).</div></div>
-        <div class="qa-row"><div class="qa-q">2. What is between the bit and the surface?</div><div class="qa-a">✓ The drill string (B).</div></div>
-        <div class="qa-row"><div class="qa-q">3. Where do the pipes stand before they go into the hole?</div><div class="qa-a">✓ On the pipe rack (H).</div></div>
-        <div class="qa-row"><div class="qa-q">4. What tall thing supports the lifting equipment and drill string?</div><div class="qa-a">✓ The derrick (A).</div></div>
-        <div class="qa-row"><div class="qa-q">5. What does the rotary table do to the drill string?</div><div class="qa-a">✓ It rotates the drill string.</div></div>
-        <div class="qa-row"><div class="qa-q">6. What is mud?</div><div class="qa-a">✓ A mixture of water, clay, weighting material, and chemicals.</div></div>
-        <div class="qa-row"><div class="qa-q">7. Which machine sends mud down to the bit?</div><div class="qa-a">✓ The mud pump (E).</div></div>
-        <div class="qa-row"><div class="qa-q">8. What comes up to the surface with the mud?</div><div class="qa-a">✓ Rock cuttings.</div></div>
-        <div class="qa-row"><div class="qa-q">9. Why must the derrick be very strong for deep wells?</div><div class="qa-a">✓ Because a long drill string is very heavy.</div></div>
-      </div>
+      <ul class="qz-list">
+        <li class="qz-item"><span class="qz-num">1</span><div class="qz-body">
+          <div class="qz-text">Which part rotates and drills through rock?</div>
+          <input class="qz-input" id="d1" data-key="bit" placeholder="Your answer…" autocomplete="off">
+          <div class="qz-fb" id="fb-d1"></div></div></li>
+        <li class="qz-item"><span class="qz-num">2</span><div class="qz-body">
+          <div class="qz-text">What is between the bit and the surface?</div>
+          <input class="qz-input" id="d2" data-key="drill string" placeholder="Your answer…" autocomplete="off">
+          <div class="qz-fb" id="fb-d2"></div></div></li>
+        <li class="qz-item"><span class="qz-num">3</span><div class="qz-body">
+          <div class="qz-text">Where do the pipes stand before they go into the hole?</div>
+          <input class="qz-input" id="d3" data-key="pipe rack" placeholder="Your answer…" autocomplete="off">
+          <div class="qz-fb" id="fb-d3"></div></div></li>
+        <li class="qz-item"><span class="qz-num">4</span><div class="qz-body">
+          <div class="qz-text">What tall thing supports the lifting equipment and drill string?</div>
+          <input class="qz-input" id="d4" data-key="derrick" placeholder="Your answer…" autocomplete="off">
+          <div class="qz-fb" id="fb-d4"></div></div></li>
+        <li class="qz-item"><span class="qz-num">5</span><div class="qz-body">
+          <div class="qz-text">What does the rotary table do to the drill string?</div>
+          <input class="qz-input" id="d5" data-key="rotat" placeholder="Your answer…" autocomplete="off">
+          <div class="qz-fb" id="fb-d5"></div></div></li>
+        <li class="qz-item"><span class="qz-num">6</span><div class="qz-body">
+          <div class="qz-text">What is mud?</div>
+          <input class="qz-input" id="d6" data-key="water|clay" placeholder="Your answer…" autocomplete="off">
+          <div class="qz-fb" id="fb-d6"></div></div></li>
+        <li class="qz-item"><span class="qz-num">7</span><div class="qz-body">
+          <div class="qz-text">Which machine sends mud down to the bit?</div>
+          <input class="qz-input" id="d7" data-key="mud pump" placeholder="Your answer…" autocomplete="off">
+          <div class="qz-fb" id="fb-d7"></div></div></li>
+        <li class="qz-item"><span class="qz-num">8</span><div class="qz-body">
+          <div class="qz-text">What comes up to the surface with the mud?</div>
+          <input class="qz-input" id="d8" data-key="cutting" placeholder="Your answer…" autocomplete="off">
+          <div class="qz-fb" id="fb-d8"></div></div></li>
+        <li class="qz-item"><span class="qz-num">9</span><div class="qz-body">
+          <div class="qz-text">Why must the derrick be very strong for deep wells?</div>
+          <input class="qz-input" id="d9" data-key="heavy" placeholder="Your answer…" autocomplete="off">
+          <div class="qz-fb" id="fb-d9"></div></div></li>
+      </ul>
     </div>
 
     <div class="panel">
       <div class="activity-title"><span class="num">2</span>Complete the description of the mud process</div>
-      <div class="answer-label">Words: mud pump · mud tank · drill string · bit · rock cuttings · mud screen · mud tank</div>
-      <div class="fill-block">
-        Drilling mud is a mixture of water, clay, and other materials. The <span class="blank">mud pump</span> pumps mud from the <span class="blank">mud tank</span> into the top of the drill string. The mud flows down inside the <span class="blank">drill string</span> and cools the <span class="blank">bit</span>. It cleans the bit and carries <span class="blank">rock cuttings</span> up with it. The mud and cuttings go to the <span class="blank">mud screen</span>. The mud screen separates the cuttings from the mud. The mud flows through to the <span class="blank">mud tank</span> below.
+      <div class="fill-block" style="font-size:12px;color:#c8d8e8;line-height:1.9;margin-bottom:10px">
+        Drilling mud is a mixture of water, clay, and other materials. The <strong>(1)</strong> pumps mud from the <strong>(2)</strong> into the top of the drill string. The mud flows down inside the <strong>(3)</strong> and cools the <strong>(4)</strong>. It cleans the bit and carries <strong>(5)</strong> up with it. The mud and cuttings go to the <strong>(6)</strong>. The mud screen separates the cuttings from the mud. The mud flows through to the <strong>(7)</strong> below.
       </div>
-    </div>
+      <p style="font-size:11.5px;color:#8fa3b8;margin-bottom:8px">Tap the term that fills each gap.</p>
 
-      <div class="ef-answers">
-        <div class="ef-answers-title">✍️ Your answers</div>
-        <div class="ef-field"><label class="ef-label">Activity 1 — Drilling rig questions (9 answers)</label><textarea class="ef-ans" id="ans1" data-lab="Activity 1 — Drilling rig questions (9 answers)" data-emo="🔤" placeholder="Write your answer here..."></textarea></div>
-        <div class="ef-field"><label class="ef-label">Activity 2 — Mud process (7 gaps)</label><textarea class="ef-ans" id="ans2" data-lab="Activity 2 — Mud process (7 gaps)" data-emo="✅" placeholder="Write your answer here..."></textarea></div>
-      </div>
+      <div class="sent-item" data-s="1" data-key="mud pump">Gap (1) — "The ___ pumps mud from the tank."
+        <div class="opt-row"><span class="opt" data-g="m1" data-v="mud pump">mud pump</span><span class="opt" data-g="m1" data-v="mud tank">mud tank</span><span class="opt" data-g="m1" data-v="drill string">drill string</span><span class="opt" data-g="m1" data-v="bit">bit</span><span class="opt" data-g="m1" data-v="rock cuttings">rock cuttings</span><span class="opt" data-g="m1" data-v="mud screen">mud screen</span></div></div>
+      <div class="sent-item" data-s="2" data-key="mud tank">Gap (2) — "…pumps mud from the ___ into the drill string."
+        <div class="opt-row"><span class="opt" data-g="m2" data-v="mud pump">mud pump</span><span class="opt" data-g="m2" data-v="mud tank">mud tank</span><span class="opt" data-g="m2" data-v="drill string">drill string</span><span class="opt" data-g="m2" data-v="bit">bit</span><span class="opt" data-g="m2" data-v="rock cuttings">rock cuttings</span><span class="opt" data-g="m2" data-v="mud screen">mud screen</span></div></div>
+      <div class="sent-item" data-s="3" data-key="drill string">Gap (3) — "The mud flows down inside the ___."
+        <div class="opt-row"><span class="opt" data-g="m3" data-v="mud pump">mud pump</span><span class="opt" data-g="m3" data-v="mud tank">mud tank</span><span class="opt" data-g="m3" data-v="drill string">drill string</span><span class="opt" data-g="m3" data-v="bit">bit</span><span class="opt" data-g="m3" data-v="rock cuttings">rock cuttings</span><span class="opt" data-g="m3" data-v="mud screen">mud screen</span></div></div>
+      <div class="sent-item" data-s="4" data-key="bit">Gap (4) — "…and cools the ___."
+        <div class="opt-row"><span class="opt" data-g="m4" data-v="mud pump">mud pump</span><span class="opt" data-g="m4" data-v="mud tank">mud tank</span><span class="opt" data-g="m4" data-v="drill string">drill string</span><span class="opt" data-g="m4" data-v="bit">bit</span><span class="opt" data-g="m4" data-v="rock cuttings">rock cuttings</span><span class="opt" data-g="m4" data-v="mud screen">mud screen</span></div></div>
+      <div class="sent-item" data-s="5" data-key="rock cuttings">Gap (5) — "It cleans the bit and carries ___ up with it."
+        <div class="opt-row"><span class="opt" data-g="m5" data-v="mud pump">mud pump</span><span class="opt" data-g="m5" data-v="mud tank">mud tank</span><span class="opt" data-g="m5" data-v="drill string">drill string</span><span class="opt" data-g="m5" data-v="bit">bit</span><span class="opt" data-g="m5" data-v="rock cuttings">rock cuttings</span><span class="opt" data-g="m5" data-v="mud screen">mud screen</span></div></div>
+      <div class="sent-item" data-s="6" data-key="mud screen">Gap (6) — "The mud and cuttings go to the ___."
+        <div class="opt-row"><span class="opt" data-g="m6" data-v="mud pump">mud pump</span><span class="opt" data-g="m6" data-v="mud tank">mud tank</span><span class="opt" data-g="m6" data-v="drill string">drill string</span><span class="opt" data-g="m6" data-v="bit">bit</span><span class="opt" data-g="m6" data-v="rock cuttings">rock cuttings</span><span class="opt" data-g="m6" data-v="mud screen">mud screen</span></div></div>
+      <div class="sent-item" data-s="7" data-key="mud tank">Gap (7) — "The mud flows through to the ___ below."
+        <div class="opt-row"><span class="opt" data-g="m7" data-v="mud pump">mud pump</span><span class="opt" data-g="m7" data-v="mud tank">mud tank</span><span class="opt" data-g="m7" data-v="drill string">drill string</span><span class="opt" data-g="m7" data-v="bit">bit</span><span class="opt" data-g="m7" data-v="rock cuttings">rock cuttings</span><span class="opt" data-g="m7" data-v="mud screen">mud screen</span></div></div>
+
+      <button class="check-btn" onclick="checkAll()">✓ Check answers</button>
+      <div class="score-box" id="scoreBox"></div>
+    </div>
 
     <div class="task-box">
       <p>✏️ Answer Activities 1 and 2 in your own words. Send via WhatsApp.</p>
@@ -206,32 +271,81 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 </div>
 
 <script>
-
-/* ===== EnglishFlow - padrao de capsula (25/07/2026) =====
-   aluno responde na propria pagina | respostas salvas no aparelho
-   envio por compartilhamento nativo (o aluno escolhe pra quem manda) */
+/* ===== EnglishFlow - padrao de capsula (Unit 1 model) ===== */
 var CAP_KEY='ef_ans_og1_u6_kickoff';
 var CAP_EMOJI='\uD83D\uDEE2\uFE0F';
-var CAP_TITLE="Kick Off — Unit 6 — Drilling";
-function efFields(){return [].slice.call(document.querySelectorAll('.ef-ans'));}
+var CAP_TITLE="Kick Off \u2014 Unit 6 \u2014 Drilling";
+
+function qzInputs(){return [].slice.call(document.querySelectorAll('.qz-input'));}
+function sents(){return [].slice.call(document.querySelectorAll('.sent-item'));}
 function efName(){return document.getElementById('studentName')||document.getElementById('student-name');}
 function efModal(){return document.getElementById('modal')||document.getElementById('waModal');}
-function efSave(){var d={};efFields().forEach(function(el){d[el.id]=el.value;});
-  try{localStorage.setItem(CAP_KEY,JSON.stringify(d));}catch(e){}}
-function efRestore(){try{var d=JSON.parse(localStorage.getItem(CAP_KEY)||'{}');
-  efFields().forEach(function(el){if(d[el.id])el.value=d[el.id];});}catch(e){}efMark();}
-function efMark(){efFields().forEach(function(el){
-  if(el.value.trim())el.classList.add('filled');else el.classList.remove('filled');});}
+function pick(g){var s=document.querySelector('.opt[data-g="'+g+'"].sel');return s?s.getAttribute('data-v'):'';}
+
+document.querySelectorAll('.opt').forEach(function(o){
+  o.addEventListener('click',function(){
+    var g=o.getAttribute('data-g');
+    document.querySelectorAll('.opt[data-g="'+g+'"]').forEach(function(x){x.classList.remove('sel','correct','wrong');});
+    o.classList.add('sel');efSave();
+  });
+});
+
+function efSave(){
+  var d={t:{},o:{}};
+  qzInputs().forEach(function(el){d.t[el.id]=el.value;});
+  document.querySelectorAll('.opt.sel').forEach(function(o){d.o[o.getAttribute('data-g')]=o.getAttribute('data-v');});
+  try{localStorage.setItem(CAP_KEY,JSON.stringify(d));}catch(e){}
+}
+function efRestore(){
+  try{var d=JSON.parse(localStorage.getItem(CAP_KEY)||'{}');
+    if(d.t)qzInputs().forEach(function(el){if(d.t[el.id])el.value=d.t[el.id];});
+    if(d.o)Object.keys(d.o).forEach(function(g){
+      var el=document.querySelector('.opt[data-g="'+g+'"][data-v="'+d.o[g]+'"]');if(el)el.classList.add('sel');});
+  }catch(e){}
+}
+
+function checkAll(){
+  var hit=0,total=0;
+  qzInputs().forEach(function(el){
+    total++;
+    var v=el.value.toLowerCase();
+    var keys=el.getAttribute('data-key').split('|');
+    var ok=keys.every(function(k){return v.indexOf(k)!==-1;});
+    el.classList.remove('correct','wrong');
+    el.classList.add(ok?'correct':'wrong');
+    var fb=document.getElementById('fb-'+el.id);
+    fb.className='qz-fb show '+(ok?'ok':'no');
+    fb.textContent=ok?'\u2713 Correct':'\u2717 Answer: '+keys.join(' + ');
+    if(ok)hit++;
+  });
+  sents().forEach(function(s){
+    total++;
+    var n=s.getAttribute('data-s'),right=s.getAttribute('data-key'),g='m'+n;
+    document.querySelectorAll('.opt[data-g="'+g+'"]').forEach(function(o){
+      o.classList.remove('correct','wrong');
+      if(o.getAttribute('data-v')===right)o.classList.add('correct');
+      else if(o.classList.contains('sel'))o.classList.add('wrong');
+    });
+    if(pick(g)===right)hit++;
+  });
+  var box=document.getElementById('scoreBox');
+  box.className='score-box show '+(hit===total?'perfect':'partial');
+  box.textContent=hit===total?'\uD83C\uDF89 All correct \u2014 '+hit+'/'+total+'!':hit+'/'+total+' correct \u2014 the right answers are shown above/in green.';
+  efSave();
+}
+
 function buildMessage(){
   var n=efName();var name=((n&&n.value)||'').trim()||'Aluno';var now=new Date();
+  var a1=qzInputs().map(function(el,i){return (i+1)+'. '+(el.value.trim()||'\u2014');}).join('\n');
+  var a2=sents().map(function(s){var n2=s.getAttribute('data-s');return '('+n2+') '+(pick('m'+n2)||'\u2014');}).join('\n');
   var out='\uD83E\uDDD1\u200D\uD83C\uDF93 *'+name+'*\n'
     +'\uD83D\uDCC5 '+now.toLocaleDateString('pt-BR')+' \u00e0s '+now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})+'\n'
-    +CAP_EMOJI+' *'+CAP_TITLE+'*\n';
-  efFields().forEach(function(el){
-    out+='\n'+(el.getAttribute('data-emo')||'\u270D\uFE0F')+' *'+(el.getAttribute('data-lab')||'')+'*\n'
-       +(el.value.trim()||'_(nao respondido)_')+'\n';});
-  out+='\n\uD83C\uDF99\uFE0F \u00c1udio na mensagem seguinte (se preferiu enviar por \u00e1udio)';
-  return out;}
+    +CAP_EMOJI+' *'+CAP_TITLE+'*\n\n'
+    +'\uD83D\uDD24 *Activity 1 \u2014 Drilling rig questions*\n'+a1+'\n\n'
+    +'\u2705 *Activity 2 \u2014 Mud process gaps*\n'+a2+'\n'
+    +'\n\uD83C\uDF99\uFE0F \u00c1udio na mensagem seguinte (se preferiu enviar por \u00e1udio)';
+  return out;
+}
 function openModal(){var n=efName();var s=localStorage.getItem('ef_student_name');
   if(s&&n)n.value=s;var pv=document.getElementById('msg-preview');
   if(pv)pv.textContent=buildMessage();
@@ -245,7 +359,7 @@ function sendWA(){var n=efName();var name=((n&&n.value)||'').trim();
   if(m)m.addEventListener('click',function(e){if(e.target===this)closeModal();});
   var n=efName();if(n)n.addEventListener('input',function(){
     var pv=document.getElementById('msg-preview');if(pv)pv.textContent=buildMessage();});
-  efFields().forEach(function(el){el.addEventListener('input',function(){efSave();efMark();});});
+  qzInputs().forEach(function(el){el.addEventListener('input',efSave);});
   efRestore();})();
 </script>
 </body>
