@@ -26,7 +26,7 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 @media(max-width:700px){.content{grid-template-columns:1fr}}
 .left-col{display:flex;flex-direction:column;gap:16px}
 .text-card{background:#111827;border:1px solid rgba(230,126,34,.18);border-radius:12px;padding:18px}
-.hero-img{width:100%;height:220px;object-fit:cover;border-radius:10px;margin-bottom:14px;display:block}
+.hero-img{width:100%;aspect-ratio:16/9;max-height:340px;object-fit:cover;object-position:center;border-radius:10px;margin-bottom:14px;display:block}
 .text-card p{font-size:14px;color:#c8d8e8;line-height:1.9;margin-bottom:12px}
 .text-card p:last-child{margin-bottom:0}
 .text-card p strong{color:#f0ad72}
@@ -41,9 +41,9 @@ a.term-word:hover{color:#e67e22}
 .task-box{background:#0a1628;border:1px solid rgba(230,126,34,.35);border-radius:12px;padding:16px}
 .task-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;color:#e67e22;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
 .task-text{font-size:12px;color:#c8d8e8;line-height:1.6}
-.wa-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:#e67e22;color:#0a0f1e;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:none;border-radius:10px;padding:13px 20px;width:100%;cursor:pointer;transition:background .2s;margin-top:6px}
-.wa-btn:hover{background:#f0ad72}
-.wa-btn svg{width:20px;height:20px;fill:#0a0f1e;flex-shrink:0}
+.wa-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:#25D366;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:none;border-radius:10px;padding:13px 20px;width:100%;cursor:pointer;transition:background .2s;margin-top:6px}
+.wa-btn:hover{background:#1ebc58}
+.wa-btn svg{width:20px;height:20px;fill:#fff;flex-shrink:0}
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;align-items:center;justify-content:center;padding:16px}
 .modal-overlay.open{display:flex}
 .modal{background:#111827;border:1px solid rgba(230,126,34,.3);border-radius:14px;padding:22px;width:100%;max-width:420px;max-height:90vh;overflow-y:auto}
@@ -65,7 +65,7 @@ a.term-word:hover{color:#e67e22}
 <body>
 <div class="header">
   <div class="pill-title">Background<span>Repairs and Maintenance</span></div>
-  <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+  <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
 </div>
 <div class="audio-bar">
   <span class="audio-label">🎧 Teacher's audio</span>
@@ -118,7 +118,7 @@ a.term-word:hover{color:#e67e22}
 <div class="footer">
   <div class="footer-left">Capsule 152 de 163 · Unit 12 — Repairs and Maintenance</div>
   <div class="footer-right">
-    <div class="footer-icon"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+    <div class="footer-icon"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
     <div class="footer-text">Unit 12 — Repairs and Maintenance</div>
   </div>
 </div>
