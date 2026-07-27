@@ -73,6 +73,23 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 .footer-icon svg{width:22px;height:22px;stroke:#e67e22;fill:none;stroke-width:1.5}
 .footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;color:#e67e22;letter-spacing:.06em;text-transform:uppercase}
 
+/* ==== EF: correcao unificada (conserta "Reveal" que dava resposta de graca) ==== */
+.q-list{list-style:none;margin:6px 0 4px;padding:0;color:#c8d8e8}
+.q-item{display:flex;gap:9px;align-items:flex-start;margin-bottom:9px;font-size:12px;line-height:1.55;color:#c8d8e8}
+.q-num{flex:0 0 auto;width:20px;height:20px;border-radius:50%;background:#e67e22;color:#0a0f1e;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.q-body{flex:1;min-width:0}
+.q-text{margin-bottom:4px;color:#c8d8e8}
+.q-area{width:100%;background:#0a1628;border:1px solid rgba(230,126,34,.25);border-radius:6px;padding:7px 9px;font-size:12px;color:#c8d8e8;font-family:'Barlow',sans-serif;outline:none;resize:vertical;min-height:56px;line-height:1.5;transition:border .2s}
+.q-area:focus{border-color:#e67e22}
+.q-area.filled{border-color:rgba(37,211,102,.55)}
+.qc-sel.correct{border-color:#16a34a;background:rgba(22,163,74,.15);color:#4ade80}
+.qc-sel.wrong{border-color:#dc2626;background:rgba(220,38,38,.12);color:#f87171}
+.check-btn{width:100%;background:transparent;border:1px solid rgba(230,126,34,.45);color:#e67e22;border-radius:8px;padding:9px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;transition:.2s}
+.check-btn:hover{background:rgba(230,126,34,.12)}
+.score-box{margin-top:8px;padding:9px 12px;border-radius:8px;font-size:12px;text-align:center;display:none;font-weight:600}
+.score-box.show{display:block}
+.score-box.perfect{background:rgba(22,163,74,.15);border:1px solid #16a34a;color:#4ade80}
+.score-box.partial{background:rgba(230,126,34,.12);border:1px solid rgba(230,126,34,.5);color:#f0ad72}
 /* ==== EF: campos de resposta na propria capsula (padrao 25/07/2026) ==== */
 .ef-answers{background:#0a1628;border:1px solid #e67e2244;border-radius:10px;padding:12px 14px;margin-top:12px}
 .ef-answers-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#e67e22;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
@@ -110,19 +127,37 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
       </div>
     </div>
     <div class="act-card">
-      <div class="act-title">Activity 1 — Answers (tap to reveal)</div>
-      <div class="q-row"><span class="q-num">1</span><div>c — We installed the pump.</div><button class="reveal-btn" onclick="rev(this)">Reveal</button><span class="answer">c = installed (original installation)</span></div>
-      <div class="q-row"><span class="q-num">2</span><div>b — The pump stopped working.</div><button class="reveal-btn" onclick="rev(this)">Reveal</button><span class="answer">b = stopped working</span></div>
-      <div class="q-row"><span class="q-num">3</span><div>f — We removed the pump.</div><button class="reveal-btn" onclick="rev(this)">Reveal</button><span class="answer">f = removed (to access and repair)</span></div>
-      <div class="q-row"><span class="q-num">4</span><div>e — We replaced the bearing.</div><button class="reveal-btn" onclick="rev(this)">Reveal</button><span class="answer">e = replaced bearing</span></div>
-      <div class="q-row"><span class="q-num">5</span><div>a — We repaired the hose.</div><button class="reveal-btn" onclick="rev(this)">Reveal</button><span class="answer">a = repaired hose</span></div>
-      <div class="q-row"><span class="q-num">6</span><div>d — We reinstalled the pump.</div><button class="reveal-btn" onclick="rev(this)">Reveal</button><span class="answer">d = reinstalled (put back)</span></div>
+      <div class="act-title">Activity 1 — Put the sequence in order</div>
+      <p style="font-size:11.5px;color:#8fa3b8;margin-bottom:8px">Choose the letter (a–f) that belongs in each position.</p>
+      <div class="act-row"><div class="act-label">Position 1</div>
+        <select class="act-select qc-sel" id="p1" data-key="c"><option value="">—</option><option>a</option><option>b</option><option>c</option><option>d</option><option>e</option><option>f</option></select></div>
+      <div class="act-row"><div class="act-label">Position 2</div>
+        <select class="act-select qc-sel" id="p2" data-key="b"><option value="">—</option><option>a</option><option>b</option><option>c</option><option>d</option><option>e</option><option>f</option></select></div>
+      <div class="act-row"><div class="act-label">Position 3</div>
+        <select class="act-select qc-sel" id="p3" data-key="f"><option value="">—</option><option>a</option><option>b</option><option>c</option><option>d</option><option>e</option><option>f</option></select></div>
+      <div class="act-row"><div class="act-label">Position 4</div>
+        <select class="act-select qc-sel" id="p4" data-key="e"><option value="">—</option><option>a</option><option>b</option><option>c</option><option>d</option><option>e</option><option>f</option></select></div>
+      <div class="act-row"><div class="act-label">Position 5</div>
+        <select class="act-select qc-sel" id="p5" data-key="a"><option value="">—</option><option>a</option><option>b</option><option>c</option><option>d</option><option>e</option><option>f</option></select></div>
+      <div class="act-row"><div class="act-label">Position 6</div>
+        <select class="act-select qc-sel" id="p6" data-key="d"><option value="">—</option><option>a</option><option>b</option><option>c</option><option>d</option><option>e</option><option>f</option></select></div>
+
+      <button class="check-btn" onclick="checkAll()" style="margin-top:10px">✓ Check answers</button>
+      <div class="score-box" id="scoreBox"></div>
     </div>
     <div class="act-card">
       <div class="act-title">Activity 2 — Your opinion</div>
-      <div class="q-row"><span class="q-num">1</span><div>What type of maintenance is described in Activity 1 — routine or corrective? Why?</div></div>
-      <div class="q-row"><span class="q-num">2</span><div>Have you ever repaired or maintained a machine or piece of equipment? What did you do?</div></div>
-      <div class="q-row"><span class="q-num">3</span><div>In your workplace, who is responsible for maintenance — a dedicated team or the operators?</div></div>
+      <ul class="q-list">
+        <li class="q-item"><span class="q-num">1</span><div class="q-body">
+          <div class="q-text">What type of maintenance is described in Activity 1 — routine or corrective? Why?</div>
+          <textarea class="q-area ef-ans" id="op1" data-lab="Routine or corrective maintenance? Why?" data-emo="🗣️" placeholder="Write your answer…"></textarea></div></li>
+        <li class="q-item"><span class="q-num">2</span><div class="q-body">
+          <div class="q-text">Have you ever repaired or maintained a machine or piece of equipment? What did you do?</div>
+          <textarea class="q-area ef-ans" id="op2" data-lab="Your own repair/maintenance experience" data-emo="🗣️" placeholder="Write your answer…"></textarea></div></li>
+        <li class="q-item"><span class="q-num">3</span><div class="q-body">
+          <div class="q-text">In your workplace, who is responsible for maintenance — a dedicated team or the operators?</div>
+          <textarea class="q-area ef-ans" id="op3" data-lab="Who is responsible for maintenance at your workplace" data-emo="🗣️" placeholder="Write your answer…"></textarea></div></li>
+      </ul>
     </div>
   </div>
   <div class="zone-support">
@@ -134,12 +169,6 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
       <div class="def-row"><strong>replace</strong> — to take out a damaged part and put a new one in</div>
       <div class="def-row"><strong>reinstall</strong> — to put a machine or part back in position after repair</div>
     </div>
-      <div class="ef-answers">
-        <div class="ef-answers-title">✍️ Your answers</div>
-        <div class="ef-field"><label class="ef-label">Activity 1 — Sequence (write the order: e.g. c, b, f, e, a, d)</label><textarea class="ef-ans" id="ans1" data-lab="Activity 1 — Sequence (write the order: e.g. c, b, f, e, a, d)" data-emo="🔤" placeholder="Write your answer here..."></textarea></div>
-        <div class="ef-field"><label class="ef-label">Activity 2 — Your answers</label><textarea class="ef-ans" id="ans2" data-lab="Activity 2 — Your answers" data-emo="✅" placeholder="Write your answer here..."></textarea></div>
-      </div>
-
     <div class="task-box">
       <div class="task-label">Task</div>
       <div class="task-text">Put the sequence in order and answer the questions. Send your answers via WhatsApp — write OR record a short audio.</div>
@@ -173,32 +202,63 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
   </div>
 </div>
 <script>
-
-/* ===== EnglishFlow - padrao de capsula (25/07/2026) =====
-   aluno responde na propria pagina | respostas salvas no aparelho
-   envio por compartilhamento nativo (o aluno escolhe pra quem manda) */
+/* ===== EnglishFlow - padrao de capsula (Unit 1 model) =====
+   corrige "Activity 1 - Answers (tap to reveal)" que era o gabarito puro */
 var CAP_KEY='ef_ans_og1_u12_kickoff';
 var CAP_EMOJI='\uD83D\uDEE2\uFE0F';
-var CAP_TITLE="Kick Off — Unit 12 — Repairs and Maintenance";
+var CAP_TITLE="Kick Off \u2014 Unit 12 \u2014 Repairs and Maintenance";
+
+function qcSels(){return [].slice.call(document.querySelectorAll('.qc-sel'));}
 function efFields(){return [].slice.call(document.querySelectorAll('.ef-ans'));}
 function efName(){return document.getElementById('studentName')||document.getElementById('student-name');}
 function efModal(){return document.getElementById('modal')||document.getElementById('waModal');}
-function efSave(){var d={};efFields().forEach(function(el){d[el.id]=el.value;});
-  try{localStorage.setItem(CAP_KEY,JSON.stringify(d));}catch(e){}}
-function efRestore(){try{var d=JSON.parse(localStorage.getItem(CAP_KEY)||'{}');
-  efFields().forEach(function(el){if(d[el.id])el.value=d[el.id];});}catch(e){}efMark();}
+
+function efSave(){
+  var d={s:{},t:{}};
+  qcSels().forEach(function(el){d.s[el.id]=el.value;});
+  efFields().forEach(function(el){d.t[el.id]=el.value;});
+  try{localStorage.setItem(CAP_KEY,JSON.stringify(d));}catch(e){}
+}
+function efRestore(){
+  try{var d=JSON.parse(localStorage.getItem(CAP_KEY)||'{}');
+    if(d.s)qcSels().forEach(function(el){if(d.s[el.id])el.value=d.s[el.id];});
+    if(d.t)efFields().forEach(function(el){if(d.t[el.id])el.value=d.t[el.id];});
+  }catch(e){}
+  efMark();
+}
 function efMark(){efFields().forEach(function(el){
   if(el.value.trim())el.classList.add('filled');else el.classList.remove('filled');});}
+qcSels().forEach(function(el){el.addEventListener('change',efSave);});
+
+function checkAll(){
+  var hit=0,total=0;
+  qcSels().forEach(function(el){
+    total++;
+    var right=el.getAttribute('data-key'),ok=el.value===right;
+    el.classList.remove('correct','wrong');
+    el.classList.add(ok?'correct':'wrong');
+    el.title=ok?'':'Correct: '+right;
+    if(ok)hit++;
+  });
+  var box=document.getElementById('scoreBox');
+  box.className='score-box show '+(hit===total?'perfect':'partial');
+  box.textContent=hit===total?'\uD83C\uDF89 All correct \u2014 '+hit+'/'+total+'!':hit+'/'+total+' correct \u2014 wrong ones show the answer if you hover.';
+  efSave();
+}
+
 function buildMessage(){
   var n=efName();var name=((n&&n.value)||'').trim()||'Aluno';var now=new Date();
+  var a1=qcSels().map(function(el,i){return 'Position '+(i+1)+': '+(el.value||'\u2014');}).join('\n');
   var out='\uD83E\uDDD1\u200D\uD83C\uDF93 *'+name+'*\n'
     +'\uD83D\uDCC5 '+now.toLocaleDateString('pt-BR')+' \u00e0s '+now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})+'\n'
-    +CAP_EMOJI+' *'+CAP_TITLE+'*\n';
+    +CAP_EMOJI+' *'+CAP_TITLE+'*\n\n'
+    +'\uD83D\uDD24 *Activity 1 \u2014 Sequence*\n'+a1+'\n';
   efFields().forEach(function(el){
     out+='\n'+(el.getAttribute('data-emo')||'\u270D\uFE0F')+' *'+(el.getAttribute('data-lab')||'')+'*\n'
        +(el.value.trim()||'_(nao respondido)_')+'\n';});
   out+='\n\uD83C\uDF99\uFE0F \u00c1udio na mensagem seguinte (se preferiu enviar por \u00e1udio)';
-  return out;}
+  return out;
+}
 function openModal(){var n=efName();var s=localStorage.getItem('ef_student_name');
   if(s&&n)n.value=s;var pv=document.getElementById('msg-preview');
   if(pv)pv.textContent=buildMessage();

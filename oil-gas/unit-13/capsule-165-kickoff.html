@@ -58,6 +58,27 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 .footer-icon svg{width:22px;height:22px;stroke:#e74c3c;fill:none;stroke-width:1.5}
 .footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;color:#e74c3c;letter-spacing:.06em;text-transform:uppercase}
 
+/* ==== EF: campos com correcao (conserta "Show answer" que dava resposta de graca) ==== */
+.q-list{list-style:none;margin:6px 0 4px;padding:0;color:#c8d8e8}
+.q-item{display:flex;gap:9px;align-items:flex-start;margin-bottom:9px;font-size:12px;line-height:1.55;color:#c8d8e8}
+.q-num{flex:0 0 auto;width:20px;height:20px;border-radius:50%;background:#e74c3c;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.q-body{flex:1;min-width:0}
+.q-text{margin-bottom:4px;color:#c8d8e8}
+.qz-input,.q-area{width:100%;background:#0a1628;border:1px solid rgba(231,76,60,.25);border-radius:6px;padding:7px 9px;font-size:12px;color:#c8d8e8;font-family:'Barlow',sans-serif;outline:none;transition:border .2s,background .2s}
+.qz-input:focus,.q-area:focus{border-color:#e74c3c}
+.q-area{resize:vertical;min-height:56px;line-height:1.5}
+.q-area.filled{border-color:rgba(37,211,102,.55)}
+.qz-input.correct{border-color:#16a34a;background:rgba(22,163,74,.08)}
+.qz-input.wrong{border-color:#dc2626;background:rgba(220,38,38,.07)}
+.qz-fb{font-size:10.5px;margin-top:3px;font-style:italic;display:none}
+.qz-fb.show{display:block}
+.qz-fb.ok{color:#4ade80}.qz-fb.no{color:#f87171}
+.check-btn{width:100%;background:transparent;border:1px solid rgba(231,76,60,.45);color:#e74c3c;border-radius:8px;padding:9px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;margin-top:10px;transition:.2s}
+.check-btn:hover{background:rgba(231,76,60,.12)}
+.score-box{margin-top:8px;padding:9px 12px;border-radius:8px;font-size:12px;text-align:center;display:none;font-weight:600}
+.score-box.show{display:block}
+.score-box.perfect{background:rgba(22,163,74,.15);border:1px solid #16a34a;color:#4ade80}
+.score-box.partial{background:rgba(231,76,60,.12);border:1px solid rgba(231,76,60,.5);color:#f0958d}
 .ef-answers{background:#0a1628;border:1px solid #e74c3c44;border-radius:10px;padding:12px 14px;margin-top:12px}
 .ef-answers-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#e74c3c;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
 .ef-field{margin-bottom:10px}.ef-field:last-child{margin-bottom:0}
@@ -126,39 +147,43 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 
   <div class="act-card">
     <div class="act-title">Activity 2 — Questions about the products</div>
-    <div class="qa-item">
-      <div class="qa-q">1. Which product is the heaviest?</div>
-      <div class="reveal-row"><button class="rev-btn" onclick="revAns(this)">Show answer</button><span class="rev-ans">Asphalt / bitumen — it sinks to the bottom of the distillation tower.</span></div>
-    </div>
-    <div class="qa-item">
-      <div class="qa-q">2. Which is the lightest?</div>
-      <div class="reveal-row"><button class="rev-btn" onclick="revAns(this)">Show answer</button><span class="rev-ans">Petroleum gas (LPG) — it rises to the top.</span></div>
-    </div>
-    <div class="qa-item">
-      <div class="qa-q">3. Which is a solid?</div>
-      <div class="reveal-row"><button class="rev-btn" onclick="revAns(this)">Show answer</button><span class="rev-ans">Asphalt / bitumen.</span></div>
-    </div>
-    <div class="qa-item">
-      <div class="qa-q">4. Which ones are liquids?</div>
-      <div class="reveal-row"><button class="rev-btn" onclick="revAns(this)">Show answer</button><span class="rev-ans">Petrol, kerosene, diesel, and fuel oil.</span></div>
-    </div>
-    <div class="qa-item">
-      <div class="qa-q">5. Which burns as a gas?</div>
-      <div class="reveal-row"><button class="rev-btn" onclick="revAns(this)">Show answer</button><span class="rev-ans">Petroleum gas (LPG).</span></div>
-    </div>
+    <ul class="q-list">
+      <li class="q-item"><span class="q-num">1</span><div class="q-body">
+        <div class="q-text">Which product is the heaviest?</div>
+        <input class="qz-input" id="q1" data-key="asphalt" placeholder="Your answer…" autocomplete="off">
+        <div class="qz-fb" id="fb-q1"></div></div></li>
+      <li class="q-item"><span class="q-num">2</span><div class="q-body">
+        <div class="q-text">Which is the lightest?</div>
+        <input class="qz-input" id="q2" data-key="gas" placeholder="Your answer…" autocomplete="off">
+        <div class="qz-fb" id="fb-q2"></div></div></li>
+      <li class="q-item"><span class="q-num">3</span><div class="q-body">
+        <div class="q-text">Which is a solid?</div>
+        <input class="qz-input" id="q3" data-key="asphalt" placeholder="Your answer…" autocomplete="off">
+        <div class="qz-fb" id="fb-q3"></div></div></li>
+      <li class="q-item"><span class="q-num">4</span><div class="q-body">
+        <div class="q-text">Which ones are liquids?</div>
+        <input class="qz-input" id="q4" data-key="petrol" placeholder="Your answer…" autocomplete="off">
+        <div class="qz-fb" id="fb-q4"></div></div></li>
+      <li class="q-item"><span class="q-num">5</span><div class="q-body">
+        <div class="q-text">Which burns as a gas?</div>
+        <input class="qz-input" id="q5" data-key="gas" placeholder="Your answer…" autocomplete="off">
+        <div class="qz-fb" id="fb-q5"></div></div></li>
+    </ul>
+    <button class="check-btn" onclick="checkAll()">✓ Check answers</button>
+    <div class="score-box" id="scoreBox"></div>
   </div>
 
   <div class="act-card">
     <div class="act-title">Activity 3 — Your opinion</div>
     <p class="intro-text">Answer in writing OR record a short audio. Send via WhatsApp.</p>
-    <div class="qa-item"><div class="qa-q">Which petroleum product do you use most in your daily life? Why?</div></div>
-    <div class="qa-item"><div class="qa-q">Can you think of other uses for any of the six products listed above?</div></div>
-  </div>
-
-  <div class="ef-answers">
-    <div class="ef-answers-title">✍️ Your answers</div>
-      <div class="ef-field"><label class="ef-label">Activity 2 — Questions 1–5</label><textarea class="ef-ans" id="ans1" data-lab="Activity 2 — Questions 1–5" data-emo="🔤" placeholder="Write your answer here..."></textarea></div>
-      <div class="ef-field"><label class="ef-label">Activity 3 — Your opinion</label><textarea class="ef-ans" id="ans2" data-lab="Activity 3 — Your opinion" data-emo="✅" placeholder="Write your answer here..."></textarea></div>
+    <ul class="q-list">
+      <li class="q-item"><span class="q-num">1</span><div class="q-body">
+        <div class="q-text">Which petroleum product do you use most in your daily life? Why?</div>
+        <textarea class="q-area ef-ans" id="op1" data-lab="Petroleum product you use most, and why" data-emo="🗣️" placeholder="Write your answer…"></textarea></div></li>
+      <li class="q-item"><span class="q-num">2</span><div class="q-body">
+        <div class="q-text">Can you think of other uses for any of the six products listed above?</div>
+        <textarea class="q-area ef-ans" id="op2" data-lab="Other uses for the products" data-emo="🗣️" placeholder="Write your answer…"></textarea></div></li>
+    </ul>
   </div>
 
   <div class="wa-wrap">
@@ -190,33 +215,67 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
     </div>
   </div>
 </div>
-<script>function revAns(btn){var a=btn.nextElementSibling;a.style.display='inline';btn.style.display='none';}
-
-/* ===== EnglishFlow - padrao de capsula (25/07/2026) =====
-   aluno responde na propria pagina | respostas salvas no aparelho
-   envio por compartilhamento nativo (o aluno escolhe pra quem manda) */
+<script>
+/* ===== EnglishFlow - padrao de capsula (Unit 1 model) =====
+   corrige "Show answer" que dava a resposta de graca */
 var CAP_KEY='ef_ans_og1_u13_kickoff';
 var CAP_EMOJI='\uD83D\uDEE2\uFE0F';
-var CAP_TITLE="Kick Off — Unit 13 — The Refinery";
+var CAP_TITLE="Kick Off \u2014 Unit 13 \u2014 The Refinery";
+
+function qzInputs(){return [].slice.call(document.querySelectorAll('.qz-input'));}
 function efFields(){return [].slice.call(document.querySelectorAll('.ef-ans'));}
 function efName(){return document.getElementById('studentName')||document.getElementById('student-name');}
 function efModal(){return document.getElementById('modal')||document.getElementById('waModal');}
-function efSave(){var d={};efFields().forEach(function(el){d[el.id]=el.value;});
-  try{localStorage.setItem(CAP_KEY,JSON.stringify(d));}catch(e){}}
-function efRestore(){try{var d=JSON.parse(localStorage.getItem(CAP_KEY)||'{}');
-  efFields().forEach(function(el){if(d[el.id])el.value=d[el.id];});}catch(e){}efMark();}
+
+function efSave(){
+  var d={q:{},t:{}};
+  qzInputs().forEach(function(el){d.q[el.id]=el.value;});
+  efFields().forEach(function(el){d.t[el.id]=el.value;});
+  try{localStorage.setItem(CAP_KEY,JSON.stringify(d));}catch(e){}
+}
+function efRestore(){
+  try{var d=JSON.parse(localStorage.getItem(CAP_KEY)||'{}');
+    if(d.q)qzInputs().forEach(function(el){if(d.q[el.id])el.value=d.q[el.id];});
+    if(d.t)efFields().forEach(function(el){if(d.t[el.id])el.value=d.t[el.id];});
+  }catch(e){}
+  efMark();
+}
 function efMark(){efFields().forEach(function(el){
   if(el.value.trim())el.classList.add('filled');else el.classList.remove('filled');});}
+
+function checkAll(){
+  var hit=0,total=0;
+  qzInputs().forEach(function(el){
+    total++;
+    var v=el.value.toLowerCase();
+    var key=el.getAttribute('data-key');
+    var ok=v.indexOf(key)!==-1;
+    el.classList.remove('correct','wrong');
+    el.classList.add(ok?'correct':'wrong');
+    var fb=document.getElementById('fb-'+el.id);
+    fb.className='qz-fb show '+(ok?'ok':'no');
+    fb.textContent=ok?'\u2713 Correct':'\u2717 Think about: "'+key+'"';
+    if(ok)hit++;
+  });
+  var box=document.getElementById('scoreBox');
+  box.className='score-box show '+(hit===total?'perfect':'partial');
+  box.textContent=hit===total?'\uD83C\uDF89 All correct \u2014 '+hit+'/'+total+'!':hit+'/'+total+' correct.';
+  efSave();
+}
+
 function buildMessage(){
   var n=efName();var name=((n&&n.value)||'').trim()||'Aluno';var now=new Date();
+  var a1=qzInputs().map(function(el,i){return (i+1)+'. '+(el.value.trim()||'\u2014');}).join('\n');
   var out='\uD83E\uDDD1\u200D\uD83C\uDF93 *'+name+'*\n'
     +'\uD83D\uDCC5 '+now.toLocaleDateString('pt-BR')+' \u00e0s '+now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})+'\n'
-    +CAP_EMOJI+' *'+CAP_TITLE+'*\n';
+    +CAP_EMOJI+' *'+CAP_TITLE+'*\n\n'
+    +'\uD83D\uDD24 *Activity 2 \u2014 Product questions*\n'+a1+'\n';
   efFields().forEach(function(el){
     out+='\n'+(el.getAttribute('data-emo')||'\u270D\uFE0F')+' *'+(el.getAttribute('data-lab')||'')+'*\n'
        +(el.value.trim()||'_(nao respondido)_')+'\n';});
   out+='\n\uD83C\uDF99\uFE0F \u00c1udio na mensagem seguinte (se preferiu enviar por \u00e1udio)';
-  return out;}
+  return out;
+}
 function openModal(){var n=efName();var s=localStorage.getItem('ef_student_name');
   if(s&&n)n.value=s;var pv=document.getElementById('msg-preview');
   if(pv)pv.textContent=buildMessage();
@@ -230,7 +289,7 @@ function sendWA(){var n=efName();var name=((n&&n.value)||'').trim();
   if(m)m.addEventListener('click',function(e){if(e.target===this)closeModal();});
   var n=efName();if(n)n.addEventListener('input',function(){
     var pv=document.getElementById('msg-preview');if(pv)pv.textContent=buildMessage();});
-  efFields().forEach(function(el){el.addEventListener('input',function(){efSave();efMark();});});
+  qzInputs().concat(efFields()).forEach(function(el){el.addEventListener('input',function(){efSave();efMark();});});
   efRestore();})();
 </script>
 </body>
