@@ -147,7 +147,7 @@ function sendWA(){
   var date=now.toLocaleDateString('pt-BR');
   var time=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
   var msg='👤 '+name+'\n📅 '+date+' às '+time+'\n🎙️ Background — Unit 15 — Petrochemicals\n👇 Grave e envie seu áudio aqui. Texto para leitura:\n\n'+bgText;
-  window.open('https://wa.me/5522999585058?text='+encodeURIComponent(msg),'_blank');
+  if(navigator.share){navigator.share({text:msg}).catch(function(){});}else{window.open('https://wa.me/?text='+encodeURIComponent(msg),'_blank');}
   closeModal();
 }
 document.getElementById('waModal').addEventListener('click',function(e){if(e.target===this)closeModal();});

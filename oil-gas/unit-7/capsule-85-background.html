@@ -165,7 +165,7 @@ function sendWA(){
   var now=new Date(),date=now.toLocaleDateString('pt-BR'),time=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
   var text='Pipes carry liquids and gases from wells to platforms, under the sea, across countries, and within refineries. Pipes are joined using flanges with gaskets. Fittings like tees, elbows, and reducers change direction and size. Designers use CAD to produce Material Take Offs (MTOs) and isometric drawings. Pipeline inspection gauges (PIGs) clean and inspect the inside of long-distance pipelines.';
   var msg='👤 '+name+'\n📅 '+date+' às '+time+'\n🎙️ Background — Unit 7 — Pipes and Pipelines\n👇 Grave e envie seu áudio de voz direto no WhatsApp. Texto para leitura:\n'+text;
-  window.open('https://wa.me/5522999585058?text='+encodeURIComponent(msg),'_blank');
+  if(navigator.share){navigator.share({text:msg}).catch(function(){});}else{window.open('https://wa.me/?text='+encodeURIComponent(msg),'_blank');}
 }
 document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
 </script>

@@ -173,7 +173,7 @@ function sendWA(){
   localStorage.setItem('ef_student_name',name);
   var now=new Date(),date=now.toLocaleDateString('pt-BR'),time=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
   var msg='👤 '+name+'\n📅 '+date+' às '+time+'\n🎙️ Background — Unit 3 — Downstream\n👇 Grave e envie seu áudio de voz direto no WhatsApp. Texto para leitura:\n\n'+BG_TEXT;
-  window.open('https://wa.me/5522999585058?text='+encodeURIComponent(msg),'_blank');
+  if(navigator.share){navigator.share({text:msg}).catch(function(){});}else{window.open('https://wa.me/?text='+encodeURIComponent(msg),'_blank');}
 }
 document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
 </script>
