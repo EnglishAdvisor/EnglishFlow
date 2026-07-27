@@ -75,6 +75,19 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 .footer-icon svg{width:22px;height:22px;stroke:#2ecc71;fill:none;stroke-width:1.5}
 .footer-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;color:#2ecc71;letter-spacing:.06em;text-transform:uppercase}
 
+/* ==== EF: correcao unificada (conserta o "reveal" que dava a resposta de graca) ==== */
+.qc-sel.correct{border-color:#16a34a;background:rgba(22,163,74,.15);color:#4ade80}
+.qc-sel.wrong{border-color:#dc2626;background:rgba(220,38,38,.12);color:#f87171}
+.check-group.correct{outline:1px solid #16a34a;border-radius:8px;padding:4px}
+.check-group.wrong{outline:1px solid #dc2626;border-radius:8px;padding:4px}
+.check-key{font-size:10.5px;color:#4ade80;margin-top:3px;font-style:italic;display:none}
+.check-key.show{display:block}
+.check-btn{width:100%;background:transparent;border:1px solid rgba(46,204,113,.45);color:#2ecc71;border-radius:8px;padding:9px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;transition:.2s}
+.check-btn:hover{background:rgba(46,204,113,.12)}
+.score-box{margin-top:8px;padding:9px 12px;border-radius:8px;font-size:12px;text-align:center;display:none;font-weight:600}
+.score-box.show{display:block}
+.score-box.perfect{background:rgba(22,163,74,.15);border:1px solid #16a34a;color:#4ade80}
+.score-box.partial{background:rgba(46,204,113,.12);border:1px solid rgba(46,204,113,.5);color:#82e0aa}
 /* ==== EF: campos de resposta na propria capsula (padrao 25/07/2026) ==== */
 .ef-answers{background:#0a1628;border:1px solid #2ecc7144;border-radius:10px;padding:12px 14px;margin-top:12px}
 .ef-answers-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#2ecc71;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
@@ -132,26 +145,14 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 
     <div class="act-card">
       <div class="act-title">Activity 1 — What does each picture show?</div>
-      <div class="act-row">
-        <div class="act-label">1 An oil spill</div>
-        <select class="act-select" id="s1"><option value="">—</option><option>a</option><option>b</option><option>c</option><option>d</option></select>
-        <button class="reveal-btn" onclick="reveal('s1','b')">Check</button>
-      </div>
-      <div class="act-row">
-        <div class="act-label">2 Noisy equipment</div>
-        <select class="act-select" id="s2"><option value="">—</option><option>a</option><option>b</option><option>c</option><option>d</option></select>
-        <button class="reveal-btn" onclick="reveal('s2','c')">Check</button>
-      </div>
-      <div class="act-row">
-        <div class="act-label">3 Broken equipment</div>
-        <select class="act-select" id="s3"><option value="">—</option><option>a</option><option>b</option><option>c</option><option>d</option></select>
-        <button class="reveal-btn" onclick="reveal('s3','a')">Check</button>
-      </div>
-      <div class="act-row">
-        <div class="act-label">4 A gas flare</div>
-        <select class="act-select" id="s4"><option value="">—</option><option>a</option><option>b</option><option>c</option><option>d</option></select>
-        <button class="reveal-btn" onclick="reveal('s4','d')">Check</button>
-      </div>
+      <div class="act-row"><div class="act-label">1 An oil spill</div>
+        <select class="act-select qc-sel" id="s1" data-key="b"><option value="">—</option><option>a</option><option>b</option><option>c</option><option>d</option></select></div>
+      <div class="act-row"><div class="act-label">2 Noisy equipment</div>
+        <select class="act-select qc-sel" id="s2" data-key="c"><option value="">—</option><option>a</option><option>b</option><option>c</option><option>d</option></select></div>
+      <div class="act-row"><div class="act-label">3 Broken equipment</div>
+        <select class="act-select qc-sel" id="s3" data-key="a"><option value="">—</option><option>a</option><option>b</option><option>c</option><option>d</option></select></div>
+      <div class="act-row"><div class="act-label">4 A gas flare</div>
+        <select class="act-select qc-sel" id="s4" data-key="d"><option value="">—</option><option>a</option><option>b</option><option>c</option><option>d</option></select></div>
     </div>
 
     <div class="act-card">
@@ -159,76 +160,52 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
       <p style="font-size:12px;color:#4a6a8a;margin-bottom:10px">Select all pictures (a–d) that apply to each pollution type.</p>
 
       <p style="font-size:13px;color:#82e0aa;margin-bottom:6px">1 Noise pollution</p>
-      <div class="check-group" style="margin-bottom:12px">
+      <div class="check-group qc-multi" data-key="a,c,d" style="margin-bottom:12px">
         <label class="check-item"><input type="checkbox" id="n1a"><span>a</span></label>
         <label class="check-item"><input type="checkbox" id="n1b"><span>b</span></label>
         <label class="check-item"><input type="checkbox" id="n1c"><span>c</span></label>
         <label class="check-item"><input type="checkbox" id="n1d"><span>d</span></label>
-        <button class="reveal-btn" onclick="showAns('noise','a, c, d')">Answer</button>
-        <span id="noise" style="display:none"><span class="answer-tag">a, c, d</span></span>
       </div>
 
       <p style="font-size:13px;color:#82e0aa;margin-bottom:6px">2 Water pollution</p>
-      <div class="check-group" style="margin-bottom:12px">
+      <div class="check-group qc-multi" data-key="a,b,d" style="margin-bottom:12px">
         <label class="check-item"><input type="checkbox" id="w2a"><span>a</span></label>
         <label class="check-item"><input type="checkbox" id="w2b"><span>b</span></label>
         <label class="check-item"><input type="checkbox" id="w2c"><span>c</span></label>
         <label class="check-item"><input type="checkbox" id="w2d"><span>d</span></label>
-        <button class="reveal-btn" onclick="showAns('water','a, b, d')">Answer</button>
-        <span id="water" style="display:none"><span class="answer-tag">a, b, d</span></span>
       </div>
 
       <p style="font-size:13px;color:#82e0aa;margin-bottom:6px">3 Soil pollution</p>
-      <div class="check-group" style="margin-bottom:12px">
+      <div class="check-group qc-multi" data-key="a,b,d" style="margin-bottom:12px">
         <label class="check-item"><input type="checkbox" id="s5a"><span>a</span></label>
         <label class="check-item"><input type="checkbox" id="s5b"><span>b</span></label>
         <label class="check-item"><input type="checkbox" id="s5c"><span>c</span></label>
         <label class="check-item"><input type="checkbox" id="s5d"><span>d</span></label>
-        <button class="reveal-btn" onclick="showAns('soil','a, b, d')">Answer</button>
-        <span id="soil" style="display:none"><span class="answer-tag">a, b, d</span></span>
       </div>
 
       <p style="font-size:13px;color:#82e0aa;margin-bottom:6px">4 Air pollution</p>
-      <div class="check-group" style="margin-bottom:12px">
+      <div class="check-group qc-multi" data-key="a,d" style="margin-bottom:12px">
         <label class="check-item"><input type="checkbox" id="a4a"><span>a</span></label>
         <label class="check-item"><input type="checkbox" id="a4b"><span>b</span></label>
         <label class="check-item"><input type="checkbox" id="a4c"><span>c</span></label>
         <label class="check-item"><input type="checkbox" id="a4d"><span>d</span></label>
-        <button class="reveal-btn" onclick="showAns('air','a, d')">Answer</button>
-        <span id="air" style="display:none"><span class="answer-tag">a, d</span></span>
       </div>
     </div>
 
     <div class="act-card">
       <div class="act-title">Activity 3 — Match solutions with pictures</div>
-      <div class="act-row">
-        <div class="act-label" style="min-width:180px">1 Reduce the noise.</div>
-        <select class="act-select" id="sol1"><option value="">—</option><option>a</option><option>b</option><option>c</option><option>d</option></select>
-        <button class="reveal-btn" onclick="reveal('sol1','c')">Check</button>
-      </div>
-      <div class="act-row">
-        <div class="act-label" style="min-width:180px">2 Make it safe. Clean it up.</div>
-        <select class="act-select" id="sol2"><option value="">—</option><option>a</option><option>b</option><option>c</option><option>d</option></select>
-        <button class="reveal-btn" onclick="reveal('sol2','b')">Check</button>
-      </div>
-      <div class="act-row">
-        <div class="act-label" style="min-width:180px">3 Repair it.</div>
-        <select class="act-select" id="sol3"><option value="">—</option><option>a</option><option>b</option><option>c</option><option>d</option></select>
-        <button class="reveal-btn" onclick="reveal('sol3','a')">Check</button>
-      </div>
-      <div class="act-row">
-        <div class="act-label" style="min-width:180px">4 Limit or stop it.</div>
-        <select class="act-select" id="sol4"><option value="">—</option><option>a</option><option>b</option><option>c</option><option>d</option></select>
-        <button class="reveal-btn" onclick="reveal('sol4','d')">Check</button>
-      </div>
-    </div>
+      <div class="act-row"><div class="act-label" style="min-width:180px">1 Reduce the noise.</div>
+        <select class="act-select qc-sel" id="sol1" data-key="c"><option value="">—</option><option>a</option><option>b</option><option>c</option><option>d</option></select></div>
+      <div class="act-row"><div class="act-label" style="min-width:180px">2 Make it safe. Clean it up.</div>
+        <select class="act-select qc-sel" id="sol2" data-key="b"><option value="">—</option><option>a</option><option>b</option><option>c</option><option>d</option></select></div>
+      <div class="act-row"><div class="act-label" style="min-width:180px">3 Repair it.</div>
+        <select class="act-select qc-sel" id="sol3" data-key="a"><option value="">—</option><option>a</option><option>b</option><option>c</option><option>d</option></select></div>
+      <div class="act-row"><div class="act-label" style="min-width:180px">4 Limit or stop it.</div>
+        <select class="act-select qc-sel" id="sol4" data-key="d"><option value="">—</option><option>a</option><option>b</option><option>c</option><option>d</option></select></div>
 
-      <div class="ef-answers">
-        <div class="ef-answers-title">✍️ Your answers</div>
-        <div class="ef-field"><label class="ef-label">Activity 1 — Match pictures with descriptions</label><textarea class="ef-ans" id="ans1" data-lab="Activity 1 — Match pictures with descriptions" data-emo="🔤" placeholder="Write your answer here..."></textarea></div>
-        <div class="ef-field"><label class="ef-label">Activity 2 — Pollution types (which pictures?)</label><textarea class="ef-ans" id="ans2" data-lab="Activity 2 — Pollution types (which pictures?)" data-emo="✅" placeholder="Write your answer here..."></textarea></div>
-        <div class="ef-field"><label class="ef-label">Activity 3 — Match solutions with pictures</label><textarea class="ef-ans" id="ans3" data-lab="Activity 3 — Match solutions with pictures" data-emo="🗣️" placeholder="Write your answer here..."></textarea></div>
-      </div>
+      <button class="check-btn" onclick="checkAll()" style="margin-top:12px">✓ Check answers</button>
+      <div class="score-box" id="scoreBox"></div>
+    </div>
 
     <div class="task-box"><strong>Task:</strong> Answer in writing OR record a short audio. Send via WhatsApp.</div>
 
@@ -281,34 +258,81 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
   </div>
 </div>
 
-<script>function reveal(id,ans){var el=document.getElementById(id);el.value=ans;el.style.color='#2ecc71';}
-function showAns(id,ans){document.getElementById(id).style.display='inline';}
-
-/* ===== EnglishFlow - padrao de capsula (25/07/2026) =====
-   aluno responde na propria pagina | respostas salvas no aparelho
-   envio por compartilhamento nativo (o aluno escolhe pra quem manda) */
+<script>
+/* ===== EnglishFlow - padrao de capsula (Unit 1 model) =====
+   corrige o "reveal" que dava a resposta de graca -> agora confere
+   a escolha do aluno, 1 botao unico no fim */
 var CAP_KEY='ef_ans_og1_u10_kickoff';
 var CAP_EMOJI='\uD83D\uDEE2\uFE0F';
-var CAP_TITLE="Kick Off — Unit 10 — Oil and the Environment";
-function efFields(){return [].slice.call(document.querySelectorAll('.ef-ans'));}
+var CAP_TITLE="Kick Off \u2014 Unit 10 \u2014 Oil and the Environment";
+
+function qcSels(){return [].slice.call(document.querySelectorAll('.qc-sel'));}
+function qcMultis(){return [].slice.call(document.querySelectorAll('.qc-multi'));}
 function efName(){return document.getElementById('studentName')||document.getElementById('student-name');}
 function efModal(){return document.getElementById('modal')||document.getElementById('waModal');}
-function efSave(){var d={};efFields().forEach(function(el){d[el.id]=el.value;});
-  try{localStorage.setItem(CAP_KEY,JSON.stringify(d));}catch(e){}}
-function efRestore(){try{var d=JSON.parse(localStorage.getItem(CAP_KEY)||'{}');
-  efFields().forEach(function(el){if(d[el.id])el.value=d[el.id];});}catch(e){}efMark();}
-function efMark(){efFields().forEach(function(el){
-  if(el.value.trim())el.classList.add('filled');else el.classList.remove('filled');});}
+
+function efSave(){
+  var d={s:{},c:{}};
+  qcSels().forEach(function(el){d.s[el.id]=el.value;});
+  document.querySelectorAll('.check-item input').forEach(function(el){d.c[el.id]=el.checked;});
+  try{localStorage.setItem(CAP_KEY,JSON.stringify(d));}catch(e){}
+}
+function efRestore(){
+  try{var d=JSON.parse(localStorage.getItem(CAP_KEY)||'{}');
+    if(d.s)qcSels().forEach(function(el){if(d.s[el.id])el.value=d.s[el.id];});
+    if(d.c)document.querySelectorAll('.check-item input').forEach(function(el){if(d.c[el.id])el.checked=true;});
+  }catch(e){}
+}
+qcSels().forEach(function(el){el.addEventListener('change',efSave);});
+document.querySelectorAll('.check-item input').forEach(function(el){el.addEventListener('change',efSave);});
+
+function checkAll(){
+  var hit=0,total=0;
+  qcSels().forEach(function(el){
+    total++;
+    var right=el.getAttribute('data-key'),ok=el.value===right;
+    el.classList.remove('correct','wrong');
+    el.classList.add(ok?'correct':'wrong');
+    el.title=ok?'':'Correct: '+right;
+    if(ok)hit++;
+  });
+  qcMultis().forEach(function(grp){
+    total++;
+    var right=grp.getAttribute('data-key').split(',').sort().join(',');
+    var chosen=[].slice.call(grp.querySelectorAll('input:checked'))
+      .map(function(i){return i.id.slice(-1);}).sort().join(',');
+    var ok=chosen===right;
+    grp.classList.remove('correct','wrong');
+    grp.classList.add(ok?'correct':'wrong');
+    var key=grp.nextElementSibling && grp.nextElementSibling.classList.contains('check-key')?grp.nextElementSibling:null;
+    if(!key){key=document.createElement('div');key.className='check-key';grp.parentNode.insertBefore(key,grp.nextSibling);}
+    key.className='check-key show';
+    key.textContent=ok?'\u2713 Correct':'\u2717 Correct answer: '+grp.getAttribute('data-key');
+    if(ok)hit++;
+  });
+  var box=document.getElementById('scoreBox');
+  box.className='score-box show '+(hit===total?'perfect':'partial');
+  box.textContent=hit===total?'\uD83C\uDF89 All correct \u2014 '+hit+'/'+total+'!':hit+'/'+total+' correct \u2014 wrong answers show the key.';
+  efSave();
+}
+
 function buildMessage(){
   var n=efName();var name=((n&&n.value)||'').trim()||'Aluno';var now=new Date();
+  var a1=qcSels().slice(0,4).map(function(el,i){return (i+1)+'. '+(el.value||'\u2014');}).join('\n');
+  var a2=qcMultis().map(function(g,i){
+    var ch=[].slice.call(g.querySelectorAll('input:checked')).map(function(x){return x.id.slice(-1);}).join(', ');
+    return (i+1)+'. '+(ch||'\u2014');
+  }).join('\n');
+  var a3=qcSels().slice(4).map(function(el,i){return (i+1)+'. '+(el.value||'\u2014');}).join('\n');
   var out='\uD83E\uDDD1\u200D\uD83C\uDF93 *'+name+'*\n'
     +'\uD83D\uDCC5 '+now.toLocaleDateString('pt-BR')+' \u00e0s '+now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})+'\n'
-    +CAP_EMOJI+' *'+CAP_TITLE+'*\n';
-  efFields().forEach(function(el){
-    out+='\n'+(el.getAttribute('data-emo')||'\u270D\uFE0F')+' *'+(el.getAttribute('data-lab')||'')+'*\n'
-       +(el.value.trim()||'_(nao respondido)_')+'\n';});
-  out+='\n\uD83C\uDF99\uFE0F \u00c1udio na mensagem seguinte (se preferiu enviar por \u00e1udio)';
-  return out;}
+    +CAP_EMOJI+' *'+CAP_TITLE+'*\n\n'
+    +'\uD83D\uDD24 *Activity 1 \u2014 Pictures*\n'+a1+'\n\n'
+    +'\u2705 *Activity 2 \u2014 Pollution types*\n'+a2+'\n\n'
+    +'\uD83D\uDDE3\uFE0F *Activity 3 \u2014 Solutions*\n'+a3+'\n'
+    +'\n\uD83C\uDF99\uFE0F \u00c1udio na mensagem seguinte (se preferiu enviar por \u00e1udio)';
+  return out;
+}
 function openModal(){var n=efName();var s=localStorage.getItem('ef_student_name');
   if(s&&n)n.value=s;var pv=document.getElementById('msg-preview');
   if(pv)pv.textContent=buildMessage();
@@ -322,7 +346,6 @@ function sendWA(){var n=efName();var name=((n&&n.value)||'').trim();
   if(m)m.addEventListener('click',function(e){if(e.target===this)closeModal();});
   var n=efName();if(n)n.addEventListener('input',function(){
     var pv=document.getElementById('msg-preview');if(pv)pv.textContent=buildMessage();});
-  efFields().forEach(function(el){el.addEventListener('input',function(){efSave();efMark();});});
   efRestore();})();
 </script>
 </body>
