@@ -9,6 +9,10 @@
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
+.steps{display:flex;gap:6px;padding:8px 16px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.steps::-webkit-scrollbar{display:none}
+.step{flex-shrink:0;display:flex;align-items:center;gap:6px;background:rgba(231,76,60,.08);border:1px solid rgba(231,76,60,.25);border-radius:20px;padding:6px 12px;font-size:11.5px;color:#f0958d;font-weight:500;white-space:nowrap}
+.step svg{width:13px;height:13px;stroke:#e74c3c;fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0}
 .header{background:#0d1b2a;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid rgba(231,76,60,.25)}
 .pill-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:700;color:#f0958d;line-height:1}
 .pill-title span{color:#e74c3c;font-size:clamp(14px,2.5vw,22px);font-weight:600;display:block;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
@@ -16,12 +20,6 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 .icon-box svg{width:26px;height:26px;stroke:#e74c3c;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 .translate-warning{background:#0d1b2a;border-bottom:1px solid rgba(231,76,60,.2);padding:6px 24px;font-size:11px;color:#f0958d;text-align:center}
 .translate-warning strong{color:#e74c3c}
-.steps-bar{background:#0d1b2a;padding:10px 24px;display:flex;gap:0;border-bottom:1px solid rgba(231,76,60,.15);overflow-x:auto;scrollbar-width:none}
-.steps-bar::-webkit-scrollbar{display:none}
-.step{display:flex;align-items:center;gap:6px;flex-shrink:0}
-.step-num{width:22px;height:22px;border-radius:50%;background:rgba(231,76,60,.15);border:1px solid rgba(231,76,60,.3);font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;color:#e74c3c;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.step-label{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;color:#4a6a8a;text-transform:uppercase;letter-spacing:.06em;white-space:nowrap}
-.step-arrow{color:#2a3a4a;font-size:14px;margin:0 8px}
 .content{display:grid;grid-template-columns:1fr 340px;gap:12px;padding:0 16px 16px}
 .left-col{min-width:0}
 .hero-img{width:100%;max-width:640px;aspect-ratio:1536/904;object-fit:cover;object-position:center;margin-left:auto;margin-right:auto;border-radius:8px;border:1px solid rgba(231,76,60,.2);margin-bottom:12px;display:block}
@@ -89,12 +87,11 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
   </div>
 </div>
 <div class="translate-warning">🌐 <strong>This page is in English on purpose.</strong> If your browser offers to translate it, please decline / <em>Por favor, não traduza esta página.</em></div>
-<div class="steps-bar">
-  <div class="step"><div class="step-num">1</div><div class="step-label">Study the scenarios</div></div>
-  <div class="step-arrow">›</div>
-  <div class="step"><div class="step-num">2</div><div class="step-label">Answer the questions</div></div>
-  <div class="step-arrow">›</div>
-  <div class="step"><div class="step-num">3</div><div class="step-label">Give your opinion</div></div>
+<div class="steps">
+  <div class="step"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>1. Look at the images</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>2. Study the vocabulary</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>3. Do the activities</div>
+  <div class="step"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>4. Give your opinion</div>
 </div>
 <div class="content">
   <div class="left-col">
