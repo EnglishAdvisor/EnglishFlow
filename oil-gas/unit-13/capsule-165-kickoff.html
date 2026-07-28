@@ -21,7 +21,12 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 .step{display:flex;align-items:center;gap:6px;white-space:nowrap;font-family:'Barlow Condensed',sans-serif;font-size:13px;color:#4a6a8a}
 .step-num{width:22px;height:22px;border-radius:50%;border:1px solid rgba(231,76,60,.3);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#e74c3c;flex-shrink:0}
 .step-sep{color:#2a3a4a;margin:0 2px}
-.content{padding:20px 16px 32px}
+.content{display:grid;grid-template-columns:1fr 340px;gap:12px;padding:0 16px 16px}
+.left-col{min-width:0}
+.zone-support{display:flex;flex-direction:column;gap:12px;align-self:start}
+@media(max-width:700px){.content{grid-template-columns:1fr;padding:0 12px 16px}}
+.task-box{background:#0a1628;border:1px solid rgba(231,76,60,.25);border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
+.task-box p{font-size:11px;color:#f0958d;font-style:italic;line-height:1.45}
 .act-card{background:#111827;border:1px solid rgba(231,76,60,.18);border-radius:12px;padding:16px;margin-bottom:12px}
 .zone-label{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#e74c3c;font-weight:600;margin-bottom:8px}
 .cn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-top:8px}
@@ -44,9 +49,9 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 .rev-btn{background:rgba(231,76,60,.12);border:1px solid rgba(231,76,60,.3);color:#f0958d;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;border-radius:6px;padding:3px 10px;cursor:pointer}
 .rev-ans{display:none;font-size:12px;color:#f0958d;font-style:italic}
 .wa-wrap{max-width:340px;margin:0 auto}
-.wa-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:#e74c3c;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:none;border-radius:10px;padding:13px 20px;width:100%;cursor:pointer;transition:background .2s;margin-top:6px}
-.wa-btn:hover{background:#f0958d}
-.wa-btn svg{width:20px;height:20px;fill:#fff;flex-shrink:0}
+.wa-btn{display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;border:none;border-radius:8px;padding:9px 12px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:background .2s;width:100%}
+.wa-btn:hover{background:#1ebc58}
+.wa-btn svg{width:16px;height:16px;fill:#fff;flex-shrink:0}
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;align-items:center;justify-content:center;padding:16px}
 .modal-overlay.open{display:flex}
 .modal{background:#111827;border:1px solid rgba(231,76,60,.3);border-radius:14px;padding:22px;width:100%;max-width:420px;max-height:90vh;overflow-y:auto}
@@ -110,6 +115,7 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
   <div class="step"><div class="step-num">3</div>Give your opinion</div>
 </div>
 <div class="content">
+  <div class="left-col">
   <div class="act-card">
     <div class="act-title">Activity 1 — Petroleum Products from Crude Oil</div>
     <p class="intro-text">Crude oil is refined into 6 main petroleum products. Study each product — its physical state, boiling point range, and typical uses.</p>
@@ -194,24 +200,41 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
     </ul>
   </div>
 
-  <div class="act-card">
-    <div class="zone-label">Tap to hear the pronunciation</div>
-    <div class="act-title">Word Pronunciation</div>
-    <div class="cn-grid">
-      <button class="cn-pill" data-say="asphalt" onclick="sayWord(this)">asphalt</button>
-      <button class="cn-pill" data-say="liquid petroleum gas" onclick="sayWord(this)">liquid petroleum gas</button>
-      <button class="cn-pill" data-say="petrol" onclick="sayWord(this)">petrol</button>
-      <button class="cn-pill" data-say="kerosene" onclick="sayWord(this)">kerosene</button>
-      <button class="cn-pill" data-say="diesel" onclick="sayWord(this)">diesel</button>
-      <button class="cn-pill" data-say="fuel oil" onclick="sayWord(this)">fuel oil</button>
-    </div>
-  </div>
-
-  <div class="wa-wrap">
+  <div class="task-box">
+    <p>✏️ Answer in writing OR record a short audio. Send via WhatsApp.</p>
     <button class="wa-btn" onclick="openModal()">
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.535 5.858L.057 23.48a.5.5 0 0 0 .61.632l5.788-1.517A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.95 9.95 0 0 1-5.187-1.448l-.372-.22-3.433.9.916-3.345-.242-.384A9.953 9.953 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
       Enviar respostas
     </button>
+  </div>
+  </div>
+
+  <div class="zone-support">
+    <div class="act-card">
+      <div class="zone-label">Click to open Cambridge / Linguee</div>
+      <div class="act-title">Key vocabulary</div>
+      <div style="font-size:12px;color:#c8d8e8;line-height:1.9">
+        <strong style="color:#f0958d">LPG</strong> — liquid petroleum gas<br>
+        <strong style="color:#f0958d">petrol</strong> — gasoline (AmE)<br>
+        <strong style="color:#f0958d">kerosene</strong> — jet fuel / paraffin<br>
+        <strong style="color:#f0958d">diesel</strong> — petrodiesel<br>
+        <strong style="color:#f0958d">fuel oil</strong> — heavy oil / bunker fuel<br>
+        <strong style="color:#f0958d">asphalt</strong> — bitumen
+      </div>
+    </div>
+
+    <div class="act-card">
+      <div class="zone-label">Tap to hear the pronunciation</div>
+      <div class="act-title">Word Pronunciation</div>
+      <div class="cn-grid">
+        <button class="cn-pill" data-say="asphalt" onclick="sayWord(this)">asphalt</button>
+        <button class="cn-pill" data-say="liquid petroleum gas" onclick="sayWord(this)">liquid petroleum gas</button>
+        <button class="cn-pill" data-say="petrol" onclick="sayWord(this)">petrol</button>
+        <button class="cn-pill" data-say="kerosene" onclick="sayWord(this)">kerosene</button>
+        <button class="cn-pill" data-say="diesel" onclick="sayWord(this)">diesel</button>
+        <button class="cn-pill" data-say="fuel oil" onclick="sayWord(this)">fuel oil</button>
+      </div>
+    </div>
   </div>
 </div>
 <div class="footer">
