@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link rel="icon" type="image/png" href="logo-englishflow.png">
 <title>Background · Unit 11 — Workshop Operations</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -34,11 +35,12 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 .zone-support{display:flex;flex-direction:column;gap:14px}
 .terms-card{background:#0d1b2a;border:1px solid rgba(241,196,15,.2);border-radius:12px;padding:16px}
 .terms-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#f1c40f;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
-.term-row{padding:7px 0;border-bottom:1px solid rgba(241,196,15,.1);font-size:12px;color:#c8d8e8;line-height:1.5}
-.term-row:last-child{border-bottom:none}
-.term-word{color:#f5da6e;font-weight:600;display:block;margin-bottom:2px}
-a.term-word{text-decoration:none;transition:color .2s}
-a.term-word:hover{color:#f1c40f}
+.keyword-item{padding:6px 0;border-bottom:1px solid rgba(241,196,15,.1);display:flex;flex-direction:column;gap:3px}
+.keyword-item:last-child{border-bottom:none}
+.kw{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#f1c40f;letter-spacing:.04em;text-decoration:none;transition:color .2s}
+.kw:hover{color:#f5da6e}
+.kw-def{font-size:10px;color:#4a6a8a;font-style:italic}
+
 .task-box{background:#0a1628;border:1px solid rgba(241,196,15,.3);border-radius:10px;padding:12px 14px;margin-bottom:6px}
 .wa-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:#25D366;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:none;border-radius:10px;padding:13px 20px;width:100%;cursor:pointer;transition:background .2s;margin-top:14px}
 .wa-btn:hover{background:#1ebc58}
@@ -63,7 +65,7 @@ a.term-word:hover{color:#f1c40f}
 </head>
 <body>
 <div class="header">
-  <div class="pill-title">Background<span>Workshop Operations</span></div>
+  <div class="pill-title">Background<span>Unit 11 — Workshop Operations</span></div>
   <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
 </div>
 <div class="audio-bar">
@@ -104,16 +106,16 @@ a.term-word:hover{color:#f1c40f}
     <div class="terms-card">
       <div class="terms-title">Key Terms</div>
       <div style="font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#f1c40f;font-weight:600;margin-bottom:8px">Click to open Cambridge / Linguee</div>
-      <div class="term-row"><a class="term-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/workshop" target="_blank">workshop</a>a dedicated space with tools and machines for skilled repair and manufacturing work</div>
-      <div class="term-row"><a class="term-word" href="https://www.linguee.com.br/ingles-portugues/traducao/job+card.html" target="_blank">job card</a>a document describing a task, its materials, schedule, and safety requirements</div>
-      <div class="term-row"><a class="term-word" href="https://www.linguee.com.br/ingles-portugues/traducao/safety+zone.html" target="_blank">safety zone</a>a marked area around a large tool — only the operator may stand inside</div>
-      <div class="term-row"><a class="term-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/tolerance" target="_blank">tolerance</a>the allowable variation in a measurement; CNC machines achieve ±25 microns</div>
-      <div class="term-row"><a class="term-word" href="https://www.linguee.com.br/ingles-portugues/traducao/CNC+machine.html" target="_blank">CNC machine</a>computer-controlled machine that shapes parts with very high precision</div>
-      <div class="term-row"><a class="term-word" href="https://www.linguee.com.br/ingles-portugues/traducao/oxyacetylene.html" target="_blank">oxyacetylene</a>oxygen + acetylene gas mix used for high-temperature cutting and welding</div>
-      <div class="term-row"><a class="term-word" href="https://www.linguee.com.br/ingles-portugues/traducao/MIG+welding.html" target="_blank">MIG welding</a>metal inert gas welding using a continuous wire electrode and shielding gas</div>
-      <div class="term-row"><a class="term-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/lathe" target="_blank">lathe</a>a machine that shapes metal or wood by rotating it against a cutting tool</div>
-      <div class="term-row"><a class="term-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/micron" target="_blank">micron (μm)</a>one millionth of a metre; 0.001 mm — narrower than a human hair</div>
-      <div class="term-row"><a class="term-word" href="https://www.linguee.com.br/ingles-portugues/traducao/maintenance+technician.html" target="_blank">maintenance technician</a>a skilled worker who inspects, services, and repairs equipment</div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/workshop" target="_blank">workshop</a><span class="kw-def">a dedicated space with tools and machines for skilled repair and manufacturing work</span></div>
+      <div class="keyword-item"><a class="kw" href="https://www.linguee.com.br/ingles-portugues/traducao/job+card.html" target="_blank">job card</a><span class="kw-def">a document describing a task, its materials, schedule, and safety requirements</span></div>
+      <div class="keyword-item"><a class="kw" href="https://www.linguee.com.br/ingles-portugues/traducao/safety+zone.html" target="_blank">safety zone</a><span class="kw-def">a marked area around a large tool — only the operator may stand inside</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/tolerance" target="_blank">tolerance</a><span class="kw-def">the allowable variation in a measurement; CNC machines achieve ±25 microns</span></div>
+      <div class="keyword-item"><a class="kw" href="https://www.linguee.com.br/ingles-portugues/traducao/CNC+machine.html" target="_blank">CNC machine</a><span class="kw-def">computer-controlled machine that shapes parts with very high precision</span></div>
+      <div class="keyword-item"><a class="kw" href="https://www.linguee.com.br/ingles-portugues/traducao/oxyacetylene.html" target="_blank">oxyacetylene</a><span class="kw-def">oxygen + acetylene gas mix used for high-temperature cutting and welding</span></div>
+      <div class="keyword-item"><a class="kw" href="https://www.linguee.com.br/ingles-portugues/traducao/MIG+welding.html" target="_blank">MIG welding</a><span class="kw-def">metal inert gas welding using a continuous wire electrode and shielding gas</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/lathe" target="_blank">lathe</a><span class="kw-def">a machine that shapes metal or wood by rotating it against a cutting tool</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/micron" target="_blank">micron (μm)</a><span class="kw-def">one millionth of a metre; 0.001 mm — narrower than a human hair</span></div>
+      <div class="keyword-item"><a class="kw" href="https://www.linguee.com.br/ingles-portugues/traducao/maintenance+technician.html" target="_blank">maintenance technician</a><span class="kw-def">a skilled worker who inspects, services, and repairs equipment</span></div>
     <div style="margin-top:14px;padding-top:10px;border-top:1px solid rgba(241,196,15,.2)">
       <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#f1c40f;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">In this unit</div>
       <div style="font-size:12px;color:#c8d8e8;line-height:1.7">• Workshop tools &amp; specialisations<br>• Job cards &amp; scheduling<br>• Safety zones &amp; PPE<br>• Metric vs. imperial measurement</div>

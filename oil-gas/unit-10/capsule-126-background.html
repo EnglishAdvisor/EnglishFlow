@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link rel="icon" type="image/png" href="logo-englishflow.png">
 <title>Background · Unit 10 — Oil and the Environment</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -41,12 +42,12 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 .zone-support{display:flex;flex-direction:column;gap:12px}
 .kw-card{background:#111827;border:1px solid rgba(46,204,113,.18);border-radius:12px;padding:14px}
 .kw-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#2ecc71;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
-.kw-item{padding:6px 0;border-bottom:1px solid rgba(46,204,113,.1);font-size:12px;color:#c8d8e8;display:flex;align-items:flex-start;gap:6px}
-.kw-item:last-child{border-bottom:none}
-.kw-dot{color:#2ecc71;font-weight:700;flex-shrink:0}
-.kw-term{color:#82e0aa;font-weight:600}
-a.kw-term{text-decoration:none;transition:color .2s}
-a.kw-term:hover{color:#2ecc71}
+.keyword-item{padding:6px 0;border-bottom:1px solid rgba(46,204,113,.1);display:flex;flex-direction:column;gap:3px}
+.keyword-item:last-child{border-bottom:none}
+.kw{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#2ecc71;letter-spacing:.04em;text-decoration:none;transition:color .2s}
+.kw:hover{color:#82e0aa}
+.kw-def{font-size:10px;color:#4a6a8a;font-style:italic}
+
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;align-items:center;justify-content:center;padding:16px}
 .modal-overlay.open{display:flex}
 .modal{background:#111827;border:1px solid rgba(46,204,113,.3);border-radius:14px;padding:22px;width:100%;max-width:440px}
@@ -68,7 +69,7 @@ a.kw-term:hover{color:#2ecc71}
 <body>
 
 <div class="header">
-  <div class="pill-title">Background<span>Oil and the Environment</span></div>
+  <div class="pill-title">Background<span>Unit 10 — Oil and the Environment</span></div>
   <div class="icon-box">
     <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
   </div>
@@ -123,16 +124,16 @@ a.kw-term:hover{color:#2ecc71}
     <div class="kw-card">
       <div class="kw-title">Key Terms</div>
       <div style="font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#2ecc71;font-weight:600;margin-bottom:8px">Click to open Cambridge / Linguee</div>
-      <div class="kw-item"><span class="kw-dot">▸</span><span><a class="kw-term" href="https://www.linguee.com.br/ingles-portugues/traducao/environmental+impact.html" target="_blank">environmental impact</a> — the effect of human activity on nature</span></div>
-      <div class="kw-item"><span class="kw-dot">▸</span><span><a class="kw-term" href="https://dictionary.cambridge.org/dictionary/english-portuguese/decommission" target="_blank">decommissioning</a> — safely closing down an oil facility at the end of its life</span></div>
-      <div class="kw-item"><span class="kw-dot">▸</span><span><a class="kw-term" href="https://www.linguee.com.br/ingles-portugues/traducao/gas+flaring.html" target="_blank">flaring</a> — burning off unwanted gas into the atmosphere</span></div>
-      <div class="kw-item"><span class="kw-dot">▸</span><span><a class="kw-term" href="https://www.linguee.com.br/ingles-portugues/traducao/cooling+water.html" target="_blank">cooling water</a> — water used to cool equipment and processes</span></div>
-      <div class="kw-item"><span class="kw-dot">▸</span><span><a class="kw-term" href="https://www.linguee.com.br/ingles-portugues/traducao/wildlife+protection.html" target="_blank">wildlife protection</a> — programmes to keep animals and plants safe during operations</span></div>
-      <div class="kw-item"><span class="kw-dot">▸</span><span><a class="kw-term" href="https://www.linguee.com.br/ingles-portugues/traducao/sustainable+energy.html" target="_blank">sustainable energy</a> — energy that can be used without running out</span></div>
-      <div class="kw-item"><span class="kw-dot">▸</span><span><a class="kw-term" href="https://www.linguee.com.br/ingles-portugues/traducao/renewable+energy.html" target="_blank">renewable energy</a> — energy from sources that are naturally replenished (sun, wind)</span></div>
-      <div class="kw-item"><span class="kw-dot">▸</span><span><a class="kw-term" href="https://dictionary.cambridge.org/dictionary/english-portuguese/nature-reserve" target="_blank">nature reserve</a> — an area where plants and animals are protected</span></div>
-      <div class="kw-item"><span class="kw-dot">▸</span><span><a class="kw-term" href="https://www.linguee.com.br/ingles-portugues/traducao/environmental+hazard.html" target="_blank">eco-hazard</a> — something that can harm the environment</span></div>
-      <div class="kw-item"><span class="kw-dot">▸</span><span><a class="kw-term" href="https://www.linguee.com.br/ingles-portugues/traducao/extended+reach+drilling.html" target="_blank">extended reach drilling</a> — drilling at an angle to reach oil far from the rig</span></div>
+      <div class="keyword-item"><a class="kw" href="https://www.linguee.com.br/ingles-portugues/traducao/environmental+impact.html" target="_blank">environmental impact</a><span class="kw-def">the effect of human activity on nature</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/decommission" target="_blank">decommissioning</a><span class="kw-def">safely closing down an oil facility at the end of its life</span></div>
+      <div class="keyword-item"><a class="kw" href="https://www.linguee.com.br/ingles-portugues/traducao/gas+flaring.html" target="_blank">flaring</a><span class="kw-def">burning off unwanted gas into the atmosphere</span></div>
+      <div class="keyword-item"><a class="kw" href="https://www.linguee.com.br/ingles-portugues/traducao/cooling+water.html" target="_blank">cooling water</a><span class="kw-def">water used to cool equipment and processes</span></div>
+      <div class="keyword-item"><a class="kw" href="https://www.linguee.com.br/ingles-portugues/traducao/wildlife+protection.html" target="_blank">wildlife protection</a><span class="kw-def">programmes to keep animals and plants safe during operations</span></div>
+      <div class="keyword-item"><a class="kw" href="https://www.linguee.com.br/ingles-portugues/traducao/sustainable+energy.html" target="_blank">sustainable energy</a><span class="kw-def">energy that can be used without running out</span></div>
+      <div class="keyword-item"><a class="kw" href="https://www.linguee.com.br/ingles-portugues/traducao/renewable+energy.html" target="_blank">renewable energy</a><span class="kw-def">energy from sources that are naturally replenished (sun, wind)</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/nature-reserve" target="_blank">nature reserve</a><span class="kw-def">an area where plants and animals are protected</span></div>
+      <div class="keyword-item"><a class="kw" href="https://www.linguee.com.br/ingles-portugues/traducao/environmental+hazard.html" target="_blank">eco-hazard</a><span class="kw-def">something that can harm the environment</span></div>
+      <div class="keyword-item"><a class="kw" href="https://www.linguee.com.br/ingles-portugues/traducao/extended+reach+drilling.html" target="_blank">extended reach drilling</a><span class="kw-def">drilling at an angle to reach oil far from the rig</span></div>
     <div style="margin-top:14px;padding-top:10px;border-top:1px solid rgba(46,204,113,.2)">
       <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#2ecc71;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">In this unit</div>
       <div style="font-size:12px;color:#c8d8e8;line-height:1.7">• Environmental impact at every stage<br>• Protecting desert &amp; arctic habitats<br>• Flaring &amp; emergencies<br>• Investing in sustainable energy</div>

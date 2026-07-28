@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link rel="icon" type="image/png" href="logo-englishflow.png">
 <title>Background · Unit 12 — Repairs and Maintenance</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -33,11 +34,12 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 .zone-support{display:flex;flex-direction:column;gap:14px}
 .terms-card{background:#0d1b2a;border:1px solid rgba(230,126,34,.2);border-radius:12px;padding:14px}
 .terms-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#e67e22;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
-.term-row{font-size:12px;color:#c8d8e8;padding:4px 0;border-bottom:1px solid rgba(230,126,34,.08);line-height:1.5;display:flex;gap:6px}
-.term-row:last-child{border-bottom:none}
-.term-word{color:#f0ad72;font-weight:600;min-width:130px;flex-shrink:0}
-a.term-word{text-decoration:none;transition:color .2s}
-a.term-word:hover{color:#e67e22}
+.keyword-item{padding:6px 0;border-bottom:1px solid rgba(230,126,34,.1);display:flex;flex-direction:column;gap:3px}
+.keyword-item:last-child{border-bottom:none}
+.kw{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#e67e22;letter-spacing:.04em;text-decoration:none;transition:color .2s}
+.kw:hover{color:#f0ad72}
+.kw-def{font-size:10px;color:#4a6a8a;font-style:italic}
+
 .task-box{background:#0a1628;border:1px solid rgba(230,126,34,.35);border-radius:12px;padding:16px}
 .task-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;color:#e67e22;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
 .task-text{font-size:12px;color:#c8d8e8;line-height:1.6}
@@ -64,7 +66,7 @@ a.term-word:hover{color:#e67e22}
 </head>
 <body>
 <div class="header">
-  <div class="pill-title">Background<span>Repairs and Maintenance</span></div>
+  <div class="pill-title">Background<span>Unit 12 — Repairs and Maintenance</span></div>
   <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
 </div>
 <div class="audio-bar">
@@ -94,24 +96,24 @@ a.term-word:hover{color:#e67e22}
     <div class="task-box">
       <div class="task-label">Task</div>
       <div class="task-text">🎙️ Listen to the audio, then read the text aloud. Record your audio and send via WhatsApp.</div>
-    </div>
-    <button class="wa-btn" onclick="openModal()">
+    <button class="wa-btn" onclick="openModal()" style="margin-top:10px">
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.535 5.858L.057 23.48a.5.5 0 0 0 .61.632l5.788-1.517A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.95 9.95 0 0 1-5.187-1.448l-.372-.22-3.433.9.916-3.345-.242-.384A9.953 9.953 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
       Enviar áudio
     </button>
+    </div>
   </div>
   <div class="zone-support">
     <div class="terms-card">
       <div class="terms-title">Key Terms</div>
       <div style="font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#e67e22;font-weight:600;margin-bottom:8px">Click to open Cambridge / Linguee</div>
-      <div class="term-row"><a class="term-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/maintenance" target="_blank">maintenance</a>keeping equipment in good working condition through regular checks and repairs</div>
-      <div class="term-row"><a class="term-word" href="https://www.linguee.com.br/ingles-portugues/traducao/routine+maintenance.html" target="_blank">routine maintenance</a>planned, scheduled tasks done regularly to prevent breakdowns</div>
-      <div class="term-row"><a class="term-word" href="https://www.linguee.com.br/ingles-portugues/traducao/corrective+maintenance.html" target="_blank">corrective maintenance</a>unplanned repair work done after a problem or failure occurs</div>
-      <div class="term-row"><a class="term-word" href="https://www.linguee.com.br/ingles-portugues/traducao/troubleshoot.html" target="_blank">troubleshoot</a>to investigate and identify the cause of a problem before repairing it</div>
-      <div class="term-row"><a class="term-word" href="https://www.linguee.com.br/ingles-portugues/traducao/repair+record.html" target="_blank">repair record</a>a document recording the problem found, its cause, and the repair made</div>
-      <div class="term-row"><a class="term-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/mechanic" target="_blank">mechanic</a>a technician who repairs engines, pumps, compressors, and mechanical parts</div>
-      <div class="term-row"><a class="term-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/electrician" target="_blank">electrician</a>a technician who installs and repairs wiring, motors, and electrical systems</div>
-      <div class="term-row"><a class="term-word" href="https://dictionary.cambridge.org/dictionary/english-portuguese/breakdown" target="_blank">breakdown</a>a sudden failure of a machine or system that stops it from working</div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/maintenance" target="_blank">maintenance</a><span class="kw-def">keeping equipment in good working condition through regular checks and repairs</span></div>
+      <div class="keyword-item"><a class="kw" href="https://www.linguee.com.br/ingles-portugues/traducao/routine+maintenance.html" target="_blank">routine maintenance</a><span class="kw-def">planned, scheduled tasks done regularly to prevent breakdowns</span></div>
+      <div class="keyword-item"><a class="kw" href="https://www.linguee.com.br/ingles-portugues/traducao/corrective+maintenance.html" target="_blank">corrective maintenance</a><span class="kw-def">unplanned repair work done after a problem or failure occurs</span></div>
+      <div class="keyword-item"><a class="kw" href="https://www.linguee.com.br/ingles-portugues/traducao/troubleshoot.html" target="_blank">troubleshoot</a><span class="kw-def">to investigate and identify the cause of a problem before repairing it</span></div>
+      <div class="keyword-item"><a class="kw" href="https://www.linguee.com.br/ingles-portugues/traducao/repair+record.html" target="_blank">repair record</a><span class="kw-def">a document recording the problem found, its cause, and the repair made</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/mechanic" target="_blank">mechanic</a><span class="kw-def">a technician who repairs engines, pumps, compressors, and mechanical parts</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/electrician" target="_blank">electrician</a><span class="kw-def">a technician who installs and repairs wiring, motors, and electrical systems</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/breakdown" target="_blank">breakdown</a><span class="kw-def">a sudden failure of a machine or system that stops it from working</span></div>
     <div style="margin-top:14px;padding-top:10px;border-top:1px solid rgba(230,126,34,.2)">
       <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#e67e22;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">In this unit</div>
       <div style="font-size:12px;color:#c8d8e8;line-height:1.7">• Routine vs. corrective maintenance<br>• Troubleshooting &amp; repair records<br>• Mechanics &amp; electricians<br>• Maintenance planning</div>

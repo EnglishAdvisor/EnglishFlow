@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link rel="icon" type="image/png" href="logo-englishflow.png">
 <title>Background · Unit 6 — Drilling</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -37,11 +38,12 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 .whatsapp-btn svg{width:16px;height:16px;fill:#fff;flex-shrink:0}
 .zone-support{background:#111827;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:6px;align-self:start}
 .keyword-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;color:#f0ad72;text-transform:uppercase;letter-spacing:.08em;padding-bottom:8px;border-bottom:1px solid rgba(230,126,34,.2);margin-bottom:4px}
-.kw-row{font-size:11px;color:#c8d8e8;padding:4px 0;border-bottom:1px solid rgba(230,126,34,.07);line-height:1.5}
-.kw-row:last-child{border-bottom:none}
-.kw-row strong{color:#e67e22}
-.kw-row a{color:#e67e22;font-weight:700;text-decoration:none;transition:color .2s}
-.kw-row a:hover{color:#f0ad72}
+.keyword-item{padding:6px 0;border-bottom:1px solid rgba(230,126,34,.1);display:flex;flex-direction:column;gap:3px}
+.keyword-item:last-child{border-bottom:none}
+.kw{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#e67e22;letter-spacing:.04em;text-decoration:none;transition:color .2s}
+.kw:hover{color:#f0ad72}
+.kw-def{font-size:10px;color:#4a6a8a;font-style:italic}
+
 .footer{background:#0d1b2a;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(230,126,34,.2);margin-top:4px}
 .footer-left{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#4a6a8a;letter-spacing:.04em}
 .footer-right{display:flex;align-items:center;gap:10px}
@@ -65,7 +67,7 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 <body>
 
 <div class="header">
-  <div class="pill-title">Background<span>Drilling</span></div>
+  <div class="pill-title">Background<span>Unit 6 — Drilling</span></div>
   <div class="icon-box">
     <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
   </div>
@@ -113,17 +115,17 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
   <div class="zone-support">
     <div class="keyword-title">Key parts — drilling</div>
     <div class="zone-label" style="margin-bottom:6px">Click to open Cambridge / Linguee</div>
-    <div class="kw-row"><a href="https://www.linguee.com.br/ingles-portugues/traducao/drill+bit.html" target="_blank">drill bit</a> — toothed wheels that crush rock</div>
-    <div class="kw-row"><a href="https://www.linguee.com.br/ingles-portugues/traducao/drill+string.html" target="_blank">drill string</a> — long string of connected pipes</div>
-    <div class="kw-row"><a href="https://www.linguee.com.br/ingles-portugues/traducao/kelly+drilling.html" target="_blank">kelly</a> — square pipe connecting rotary table to drill string</div>
-    <div class="kw-row"><a href="https://www.linguee.com.br/ingles-portugues/traducao/rotary+table.html" target="_blank">rotary table</a> — rotates the kelly and drill string</div>
-    <div class="kw-row"><a href="https://dictionary.cambridge.org/dictionary/english-portuguese/derrick" target="_blank">derrick</a> — tall steel structure supporting equipment</div>
-    <div class="kw-row"><a href="https://www.linguee.com.br/ingles-portugues/traducao/crown+block.html" target="_blank">crown block</a> — pulleys at top of derrick</div>
-    <div class="kw-row"><a href="https://www.linguee.com.br/ingles-portugues/traducao/mud+pump.html" target="_blank">mud pump</a> — pumps drilling mud down the drill string</div>
-    <div class="kw-row"><a href="https://www.linguee.com.br/ingles-portugues/traducao/mud+tank.html" target="_blank">mud tank</a> — holds the drilling mud</div>
-    <div class="kw-row"><a href="https://www.linguee.com.br/ingles-portugues/traducao/shale+shaker.html" target="_blank">mud screen</a> — separates cuttings from mud</div>
-    <div class="kw-row"><a href="https://www.linguee.com.br/ingles-portugues/traducao/drill+cuttings.html" target="_blank">cuttings</a> — rock pieces from drilling</div>
-    <div class="kw-row"><a href="https://www.linguee.com.br/ingles-portugues/traducao/top+drive.html" target="_blank">top drive</a> — modern alternative to kelly/rotary table</div>
+    <div class="keyword-item"><a class="kw" href="https://www.linguee.com.br/ingles-portugues/traducao/drill+bit.html" target="_blank">drill bit</a><span class="kw-def">toothed wheels that crush rock</span></div>
+    <div class="keyword-item"><a class="kw" href="https://www.linguee.com.br/ingles-portugues/traducao/drill+string.html" target="_blank">drill string</a><span class="kw-def">long string of connected pipes</span></div>
+    <div class="keyword-item"><a class="kw" href="https://www.linguee.com.br/ingles-portugues/traducao/kelly+drilling.html" target="_blank">kelly</a><span class="kw-def">square pipe connecting rotary table to drill string</span></div>
+    <div class="keyword-item"><a class="kw" href="https://www.linguee.com.br/ingles-portugues/traducao/rotary+table.html" target="_blank">rotary table</a><span class="kw-def">rotates the kelly and drill string</span></div>
+    <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/derrick" target="_blank">derrick</a><span class="kw-def">tall steel structure supporting equipment</span></div>
+    <div class="keyword-item"><a class="kw" href="https://www.linguee.com.br/ingles-portugues/traducao/crown+block.html" target="_blank">crown block</a><span class="kw-def">pulleys at top of derrick</span></div>
+    <div class="keyword-item"><a class="kw" href="https://www.linguee.com.br/ingles-portugues/traducao/mud+pump.html" target="_blank">mud pump</a><span class="kw-def">pumps drilling mud down the drill string</span></div>
+    <div class="keyword-item"><a class="kw" href="https://www.linguee.com.br/ingles-portugues/traducao/mud+tank.html" target="_blank">mud tank</a><span class="kw-def">holds the drilling mud</span></div>
+    <div class="keyword-item"><a class="kw" href="https://www.linguee.com.br/ingles-portugues/traducao/shale+shaker.html" target="_blank">mud screen</a><span class="kw-def">separates cuttings from mud</span></div>
+    <div class="keyword-item"><a class="kw" href="https://www.linguee.com.br/ingles-portugues/traducao/drill+cuttings.html" target="_blank">cuttings</a><span class="kw-def">rock pieces from drilling</span></div>
+    <div class="keyword-item"><a class="kw" href="https://www.linguee.com.br/ingles-portugues/traducao/top+drive.html" target="_blank">top drive</a><span class="kw-def">modern alternative to kelly/rotary table</span></div>
     <div style="margin-top:14px;padding-top:10px;border-top:1px solid rgba(230,126,34,.2)">
       <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#e67e22;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">In this unit</div>
       <div style="font-size:12px;color:#c8d8e8;line-height:1.7">• Drill string &amp; rotary table<br>• The drilling mud cycle<br>• Roughneck, driller &amp; toolpusher<br>• Well completion</div>

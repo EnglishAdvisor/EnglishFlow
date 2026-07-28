@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link rel="icon" type="image/png" href="logo-englishflow.png">
 <title>Background · Unit 9 — Natural Gas</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -33,11 +34,12 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 @media(max-width:700px){.zone-support{margin-top:0}}
 .sidebar-card{background:#111827;border:1px solid rgba(0,180,216,.18);border-radius:12px;padding:14px}
 .sidebar-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#00b4d8;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
-.kw-item{padding:6px 0;border-bottom:1px solid rgba(0,180,216,.1);font-size:12px;color:#c8d8e8}
-.kw-item:last-child{border-bottom:none}
-.kw-item strong{color:#80d8ec;font-weight:600}
-.kw-item a{color:#80d8ec;font-weight:600;text-decoration:none;transition:color .2s}
-.kw-item a:hover{color:#00b4d8}
+.keyword-item{padding:6px 0;border-bottom:1px solid rgba(0,180,216,.1);display:flex;flex-direction:column;gap:3px}
+.keyword-item:last-child{border-bottom:none}
+.kw{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#00b4d8;letter-spacing:.04em;text-decoration:none;transition:color .2s}
+.kw:hover{color:#80d8ec}
+.kw-def{font-size:10px;color:#4a6a8a;font-style:italic}
+
 .task-box{background:#0a1628;border:1px solid rgba(0,180,216,.3);border-radius:10px;padding:12px 14px;margin-bottom:6px}
 .wa-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:#25D366;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:none;border-radius:10px;padding:12px 20px;width:100%;cursor:pointer;margin-top:4px;transition:background .2s}
 .wa-btn:hover{background:#1ebc58}
@@ -63,7 +65,7 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 <body>
 
 <div class="header">
-  <div class="pill-title">Background<span>Natural Gas</span></div>
+  <div class="pill-title">Background<span>Unit 9 — Natural Gas</span></div>
   <div class="icon-box">
     <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
   </div>
@@ -110,16 +112,16 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
     <div class="sidebar-card">
       <div class="sidebar-title">Key Terms</div>
       <div style="font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#00b4d8;font-weight:600;margin-bottom:8px">Click to open Cambridge / Linguee</div>
-      <div class="kw-item"><a href="https://dictionary.cambridge.org/dictionary/english-portuguese/natural-gas" target="_blank">natural gas</a> — gas found underground, mainly methane (CH₄)</div>
-      <div class="kw-item"><a href="https://www.linguee.com.br/ingles-portugues/traducao/liquefied+petroleum+gas.html" target="_blank">LPG</a> — liquefied petroleum gas (propane or butane)</div>
-      <div class="kw-item"><a href="https://www.linguee.com.br/ingles-portugues/traducao/liquefied+natural+gas.html" target="_blank">LNG</a> — liquefied natural gas, cooled to −162 °C</div>
-      <div class="kw-item"><a href="https://dictionary.cambridge.org/dictionary/english-portuguese/reservoir" target="_blank">reservoir</a> — underground rock that holds oil or gas</div>
-      <div class="kw-item"><a href="https://dictionary.cambridge.org/dictionary/english-portuguese/pipeline" target="_blank">pipeline</a> — a long pipe system for transporting gas</div>
-      <div class="kw-item"><a href="https://dictionary.cambridge.org/dictionary/english-portuguese/terminal" target="_blank">terminal</a> — a facility for receiving or processing gas</div>
-      <div class="kw-item"><a href="https://www.linguee.com.br/ingles-portugues/traducao/storage+tank.html" target="_blank">storage tank</a> — an insulated container for LNG</div>
-      <div class="kw-item"><a href="https://dictionary.cambridge.org/dictionary/english-portuguese/onshore" target="_blank">onshore</a> — on land (not at sea)</div>
-      <div class="kw-item"><a href="https://dictionary.cambridge.org/dictionary/english-portuguese/methane" target="_blank">methane</a> — the main component of natural gas (CH₄)</div>
-      <div class="kw-item"><a href="https://dictionary.cambridge.org/dictionary/english-portuguese/domestic" target="_blank">domestic</a> — relating to the home</div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/natural-gas" target="_blank">natural gas</a><span class="kw-def">gas found underground, mainly methane (CH₄)</span></div>
+      <div class="keyword-item"><a class="kw" href="https://www.linguee.com.br/ingles-portugues/traducao/liquefied+petroleum+gas.html" target="_blank">LPG</a><span class="kw-def">liquefied petroleum gas (propane or butane)</span></div>
+      <div class="keyword-item"><a class="kw" href="https://www.linguee.com.br/ingles-portugues/traducao/liquefied+natural+gas.html" target="_blank">LNG</a><span class="kw-def">liquefied natural gas, cooled to −162 °C</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/reservoir" target="_blank">reservoir</a><span class="kw-def">underground rock that holds oil or gas</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/pipeline" target="_blank">pipeline</a><span class="kw-def">a long pipe system for transporting gas</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/terminal" target="_blank">terminal</a><span class="kw-def">a facility for receiving or processing gas</span></div>
+      <div class="keyword-item"><a class="kw" href="https://www.linguee.com.br/ingles-portugues/traducao/storage+tank.html" target="_blank">storage tank</a><span class="kw-def">an insulated container for LNG</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/onshore" target="_blank">onshore</a><span class="kw-def">on land (not at sea)</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/methane" target="_blank">methane</a><span class="kw-def">the main component of natural gas (CH₄)</span></div>
+      <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/domestic" target="_blank">domestic</a><span class="kw-def">relating to the home</span></div>
     <div style="margin-top:14px;padding-top:10px;border-top:1px solid rgba(0,180,216,.2)">
       <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#00b4d8;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">In this unit</div>
       <div style="font-size:12px;color:#c8d8e8;line-height:1.7">• LPG vs. LNG<br>• Gas storage in pipelines<br>• Cooling gas to a liquid<br>• Russia's gas supply routes</div>
