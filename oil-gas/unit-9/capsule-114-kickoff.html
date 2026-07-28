@@ -39,6 +39,18 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 .match-table td{padding:6px 8px;font-size:13px;color:#c8d8e8;border-bottom:1px solid rgba(0,180,216,.1)}
 .match-table td:first-child{color:#00b4d8;font-weight:700;width:20px}
 .match-table select{background:#0a0f1e;border:1px solid rgba(0,180,216,.3);border-radius:6px;color:#c8d8e8;padding:4px 6px;font-size:12px;font-family:'Barlow',sans-serif}
+.match-table select.correct{border-color:#16a34a;background:rgba(22,163,74,.12)}
+.match-table select.wrong{border-color:#dc2626;background:rgba(220,38,38,.1)}
+.q-input{background:#0a0f1e;border:1px solid rgba(0,180,216,.3);border-radius:6px;color:#c8d8e8;padding:6px 9px;font-size:12px;font-family:'Barlow',sans-serif;outline:none;width:140px}
+.q-input.correct{border-color:#16a34a;background:rgba(22,163,74,.12)}
+.q-input.wrong{border-color:#dc2626;background:rgba(220,38,38,.1)}
+.q-fb{font-size:10.5px;margin-top:3px;font-style:italic;display:none}
+.q-fb.show{display:block}
+.q-fb.ok{color:#4ade80}.q-fb.no{color:#f87171}
+.score-box{margin-top:8px;padding:9px 12px;border-radius:8px;font-size:12px;text-align:center;display:none;font-weight:600}
+.score-box.show{display:block}
+.score-box.perfect{background:rgba(22,163,74,.15);border:1px solid #16a34a;color:#4ade80}
+.score-box.partial{background:rgba(0,180,216,.12);border:1px solid rgba(0,180,216,.5);color:#80d8ec}
 .task-box{background:#0a1628;border:1px solid rgba(0,180,216,.3);border-radius:10px;padding:12px 14px;font-size:13px;color:#80d8ec;line-height:1.5;margin-top:4px}
 .task-box strong{display:block;font-family:'Barlow Condensed',sans-serif;font-size:14px;letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px;color:#00b4d8}
 .check-btn{background:rgba(0,180,216,.15);border:1px solid rgba(0,180,216,.3);color:#00b4d8;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;border-radius:8px;padding:8px 16px;cursor:pointer;margin-top:8px}
@@ -148,30 +160,27 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
     <div class="card">
       <div class="card-title">Activity 1 — Match sentences 1–5 with pictures a–e</div>
       <table class="match-table">
-        <tr><td>1</td><td>The Tupolev Tu-155 transport aircraft can be powered by LNG.</td><td><select id="m1"><option value="">—</option><option>a</option><option>b</option><option>c</option><option>d</option><option>e</option></select></td></tr>
-        <tr><td>2</td><td>Gas-fired power stations generate electricity.</td><td><select id="m2"><option value="">—</option><option>a</option><option>b</option><option>c</option><option>d</option><option>e</option></select></td></tr>
-        <tr><td>3</td><td>Some cities fuel buses with natural gas because it burns cleanly.</td><td><select id="m3"><option value="">—</option><option>a</option><option>b</option><option>c</option><option>d</option><option>e</option></select></td></tr>
-        <tr><td>4</td><td>Homes all over the world use natural gas for cooking and heating.</td><td><select id="m4"><option value="">—</option><option>a</option><option>b</option><option>c</option><option>d</option><option>e</option></select></td></tr>
-        <tr><td>5</td><td>Natural gas is used to make ammonia for fertilizer.</td><td><select id="m5"><option value="">—</option><option>a</option><option>b</option><option>c</option><option>d</option><option>e</option></select></td></tr>
+        <tr><td>1</td><td>The Tupolev Tu-155 transport aircraft can be powered by LNG.</td><td><select id="m1" class="m-sel" data-correct="d"><option value="">—</option><option>a</option><option>b</option><option>c</option><option>d</option><option>e</option></select></td></tr>
+        <tr><td>2</td><td>Gas-fired power stations generate electricity.</td><td><select id="m2" class="m-sel" data-correct="a"><option value="">—</option><option>a</option><option>b</option><option>c</option><option>d</option><option>e</option></select></td></tr>
+        <tr><td>3</td><td>Some cities fuel buses with natural gas because it burns cleanly.</td><td><select id="m3" class="m-sel" data-correct="c"><option value="">—</option><option>a</option><option>b</option><option>c</option><option>d</option><option>e</option></select></td></tr>
+        <tr><td>4</td><td>Homes all over the world use natural gas for cooking and heating.</td><td><select id="m4" class="m-sel" data-correct="b"><option value="">—</option><option>a</option><option>b</option><option>c</option><option>d</option><option>e</option></select></td></tr>
+        <tr><td>5</td><td>Natural gas is used to make ammonia for fertilizer.</td><td><select id="m5" class="m-sel" data-correct="e"><option value="">—</option><option>a</option><option>b</option><option>c</option><option>d</option><option>e</option></select></td></tr>
       </table>
-      <button class="check-btn" onclick="checkMatch()">Check answers</button>
-      <div class="feedback" id="matchFb"></div>
     </div>
 
     <div class="card">
       <div class="card-title">Activity 2 — Complete the sentences</div>
       <ul class="q-list">
-        <li class="q-item"><strong>1.</strong> Natural gas is mostly ___ . (chemical symbol for methane)</li>
-        <li class="q-item"><strong>2.</strong> ___ stands for liquefied natural gas.</li>
-        <li class="q-item"><strong>3.</strong> The chemical symbol for ammonia is ___ .</li>
+        <li class="q-item"><strong>1.</strong> Natural gas is mostly <input class="q-input qz-input" id="q1" data-key="ch4|methane" placeholder="chemical symbol" autocomplete="off"> . (chemical symbol for methane)
+          <div class="q-fb" id="fb-q1"></div></li>
+        <li class="q-item"><input class="q-input qz-input" id="q2" data-key="lng" placeholder="abbreviation" autocomplete="off"> stands for liquefied natural gas.
+          <div class="q-fb" id="fb-q2"></div></li>
+        <li class="q-item"><strong>3.</strong> The chemical symbol for ammonia is <input class="q-input qz-input" id="q3" data-key="nh3|nh₃" placeholder="chemical symbol" autocomplete="off"> .
+          <div class="q-fb" id="fb-q3"></div></li>
       </ul>
+      <button class="check-btn" onclick="checkAll()">✓ Check answers</button>
+      <div class="score-box" id="scoreBox"></div>
     </div>
-
-      <div class="ef-answers">
-        <div class="ef-answers-title">✍️ Your answers</div>
-        <div class="ef-field"><label class="ef-label">Activity 1 — Matching answers (e.g. 1d, 2a...)</label><textarea class="ef-ans" id="ans1" data-lab="Activity 1 — Matching answers (e.g. 1d, 2a...)" data-emo="🔤" placeholder="Write your answer here..."></textarea></div>
-        <div class="ef-field"><label class="ef-label">Activity 2 — Complete the sentences</label><textarea class="ef-ans" id="ans2" data-lab="Activity 2 — Complete the sentences" data-emo="✅" placeholder="Write your answer here..."></textarea></div>
-      </div>
 
     <div class="task-box">
       <strong>Your task</strong>
@@ -253,24 +262,53 @@ function sayWord(btn){
   u.onend=function(){btn.classList.remove('playing');};
   window.speechSynthesis.speak(u);
 }
-function efFields(){return [].slice.call(document.querySelectorAll('.ef-ans'));}
+function mSels(){return [].slice.call(document.querySelectorAll('.m-sel'));}
+function qzInputs(){return [].slice.call(document.querySelectorAll('.qz-input'));}
 function efName(){return document.getElementById('studentName')||document.getElementById('student-name');}
 function efModal(){return document.getElementById('modal')||document.getElementById('waModal');}
-function efSave(){var d={};efFields().forEach(function(el){d[el.id]=el.value;});
+function efSave(){var d={};
+  mSels().forEach(function(el){d[el.id]=el.value;});
+  qzInputs().forEach(function(el){d[el.id]=el.value;});
   try{localStorage.setItem(CAP_KEY,JSON.stringify(d));}catch(e){}}
 function efRestore(){try{var d=JSON.parse(localStorage.getItem(CAP_KEY)||'{}');
-  efFields().forEach(function(el){if(d[el.id])el.value=d[el.id];});}catch(e){}efMark();}
-function efMark(){efFields().forEach(function(el){
-  if(el.value.trim())el.classList.add('filled');else el.classList.remove('filled');});}
+  mSels().forEach(function(el){if(d[el.id])el.value=d[el.id];});
+  qzInputs().forEach(function(el){if(d[el.id])el.value=d[el.id];});}catch(e){}}
+function checkAll(){
+  var hit=0,total=0;
+  mSels().forEach(function(el){
+    total++;
+    el.classList.remove('correct','wrong');
+    var ok=el.value===el.getAttribute('data-correct');
+    if(el.value)el.classList.add(ok?'correct':'wrong');
+    if(ok)hit++;
+  });
+  qzInputs().forEach(function(el){
+    total++;
+    var v=el.value.trim().toLowerCase();
+    var keys=el.getAttribute('data-key').split('|');
+    var ok=keys.indexOf(v)!==-1;
+    el.classList.remove('correct','wrong');
+    el.classList.add(ok?'correct':'wrong');
+    var fb=document.getElementById('fb-'+el.id);
+    if(fb){fb.className='q-fb show '+(ok?'ok':'no');
+      fb.textContent=ok?'\u2713 Correct':'\u2717 Answer: '+keys[0].toUpperCase();}
+    if(ok)hit++;
+  });
+  var box=document.getElementById('scoreBox');
+  box.className='score-box show '+(hit===total?'perfect':'partial');
+  box.textContent=hit===total?'\uD83C\uDF89 All correct \u2014 '+hit+'/'+total+'!':hit+'/'+total+' correct \u2014 the right answers are shown in green.';
+  efSave();
+}
 function buildMessage(){
   var n=efName();var name=((n&&n.value)||'').trim()||'Aluno';var now=new Date();
+  var a1=mSels().map(function(el,i){return (i+1)+'. '+(el.value||'\u2014');}).join(' \u00B7 ');
+  var a2=qzInputs().map(function(el){return el.value.trim()||'\u2014';}).join(' \u00B7 ');
   var out='\uD83E\uDDD1\u200D\uD83C\uDF93 *'+name+'*\n'
     +'\uD83D\uDCC5 '+now.toLocaleDateString('pt-BR')+' \u00e0s '+now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})+'\n'
-    +CAP_EMOJI+' *'+CAP_TITLE+'*\n';
-  efFields().forEach(function(el){
-    out+='\n'+(el.getAttribute('data-emo')||'\u270D\uFE0F')+' *'+(el.getAttribute('data-lab')||'')+'*\n'
-       +(el.value.trim()||'_(nao respondido)_')+'\n';});
-  out+='\n\uD83C\uDF99\uFE0F \u00c1udio na mensagem seguinte (se preferiu enviar por \u00e1udio)';
+    +CAP_EMOJI+' *'+CAP_TITLE+'*\n'
+    +'\n\uD83D\uDD24 *Activity 1 \u2014 Matching*\n'+a1+'\n'
+    +'\n\u2705 *Activity 2 \u2014 Complete the sentences*\n'+a2+'\n'
+    +'\n\uD83C\uDF99\uFE0F \u00c1udio na mensagem seguinte (se preferiu enviar por \u00e1udio)';
   return out;}
 function openModal(){var n=efName();var s=localStorage.getItem('ef_student_name');
   if(s&&n)n.value=s;var pv=document.getElementById('msg-preview');
@@ -285,7 +323,7 @@ function sendWA(){var n=efName();var name=((n&&n.value)||'').trim();
   if(m)m.addEventListener('click',function(e){if(e.target===this)closeModal();});
   var n=efName();if(n)n.addEventListener('input',function(){
     var pv=document.getElementById('msg-preview');if(pv)pv.textContent=buildMessage();});
-  efFields().forEach(function(el){el.addEventListener('input',function(){efSave();efMark();});});
+  mSels().concat(qzInputs()).forEach(function(el){el.addEventListener('input',efSave);el.addEventListener('change',efSave);});
   efRestore();})();
 </script>
 </body>
