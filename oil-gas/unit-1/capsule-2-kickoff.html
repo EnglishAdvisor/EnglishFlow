@@ -74,7 +74,13 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 .whatsapp-btn:hover{background:#1ebc58}
 .whatsapp-btn svg{width:16px;height:16px;fill:#fff;flex-shrink:0}
 .zone-support{background:#111827;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:6px}
+.zone-label{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#f5a623;font-weight:600;margin-bottom:8px}
 .keyword-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;color:#f5c87a;text-transform:uppercase;letter-spacing:.08em;padding-bottom:8px;border-bottom:1px solid rgba(245,166,35,.2);margin-bottom:2px}
+.cn-block{margin-top:14px;padding-top:12px;border-top:1px solid rgba(245,166,35,.2)}
+.cn-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:8px}
+.cn-pill{background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.28);border-radius:14px;padding:6px 8px;font-size:11px;color:#f5c87a;cursor:pointer;font-family:'Barlow',sans-serif;text-align:center;transition:.15s}
+.cn-pill:hover{background:rgba(245,166,35,.18)}
+.cn-pill.playing{background:#f5a623;color:#0a0f1e;font-weight:600}
 .keywords-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
 .keyword-item{padding:6px 0;border-bottom:1px solid rgba(245,166,35,.09);display:flex;flex-direction:column;gap:3px}
 .keyword-item:last-child{border-bottom:none}
@@ -234,7 +240,8 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
   </div>
 
   <div class="zone-support">
-    <div class="keyword-title">Key Words</div>
+    <div class="zone-label">Click to open Cambridge / Linguee</div>
+    <div class="keyword-title">Key vocabulary</div>
     <div class="keywords-grid">
       <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/oilfield" target="_blank">Oilfield</a><span class="kw-hint">Area with oil underground</span></div>
       <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/offshore" target="_blank">Offshore</a><span class="kw-hint">In the sea, away from land</span></div>
@@ -242,6 +249,25 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
       <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/region" target="_blank">Region</a><span class="kw-hint">Large area of the world</span></div>
       <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/nationality" target="_blank">Nationality</a><span class="kw-hint">Which country you are from</span></div>
       <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/industry" target="_blank">Industry</a><span class="kw-hint">Organized economic activity</span></div>
+    </div>
+
+    <div class="cn-block">
+      <div class="zone-label">Tap to hear the pronunciation</div>
+      <div class="keyword-title">Countries &amp; Nationalities</div>
+      <div class="cn-grid">
+        <button class="cn-pill" data-say="Brazil" onclick="sayWord(this)">Brazil</button><button class="cn-pill" data-say="Brazilian" onclick="sayWord(this)">Brazilian</button>
+        <button class="cn-pill" data-say="Venezuela" onclick="sayWord(this)">Venezuela</button><button class="cn-pill" data-say="Venezuelan" onclick="sayWord(this)">Venezuelan</button>
+        <button class="cn-pill" data-say="Saudi Arabia" onclick="sayWord(this)">Saudi Arabia</button><button class="cn-pill" data-say="Saudi" onclick="sayWord(this)">Saudi</button>
+        <button class="cn-pill" data-say="Iraq" onclick="sayWord(this)">Iraq</button><button class="cn-pill" data-say="Iraqi" onclick="sayWord(this)">Iraqi</button>
+        <button class="cn-pill" data-say="Nigeria" onclick="sayWord(this)">Nigeria</button><button class="cn-pill" data-say="Nigerian" onclick="sayWord(this)">Nigerian</button>
+        <button class="cn-pill" data-say="Angola" onclick="sayWord(this)">Angola</button><button class="cn-pill" data-say="Angolan" onclick="sayWord(this)">Angolan</button>
+        <button class="cn-pill" data-say="Norway" onclick="sayWord(this)">Norway</button><button class="cn-pill" data-say="Norwegian" onclick="sayWord(this)">Norwegian</button>
+        <button class="cn-pill" data-say="the UK" onclick="sayWord(this)">the UK</button><button class="cn-pill" data-say="British" onclick="sayWord(this)">British</button>
+        <button class="cn-pill" data-say="the USA" onclick="sayWord(this)">the USA</button><button class="cn-pill" data-say="American" onclick="sayWord(this)">American</button>
+        <button class="cn-pill" data-say="Canada" onclick="sayWord(this)">Canada</button><button class="cn-pill" data-say="Canadian" onclick="sayWord(this)">Canadian</button>
+        <button class="cn-pill" data-say="China" onclick="sayWord(this)">China</button><button class="cn-pill" data-say="Chinese" onclick="sayWord(this)">Chinese</button>
+        <button class="cn-pill" data-say="Malaysia" onclick="sayWord(this)">Malaysia</button><button class="cn-pill" data-say="Malaysian" onclick="sayWord(this)">Malaysian</button>
+      </div>
     </div>
   </div>
 </div>
@@ -297,6 +323,17 @@ document.querySelectorAll('.opt').forEach(function(o){
     saveAnswers();
   });
 });
+function sayWord(btn){
+  if(!('speechSynthesis' in window))return;
+  var text=btn.getAttribute('data-say');
+  window.speechSynthesis.cancel();
+  document.querySelectorAll('.cn-pill.playing').forEach(function(p){p.classList.remove('playing');});
+  var u=new SpeechSynthesisUtterance(text);
+  u.lang='en-US';u.rate=0.9;
+  btn.classList.add('playing');
+  u.onend=function(){btn.classList.remove('playing');};
+  window.speechSynthesis.speak(u);
+}
 function pick(g){
   var s=document.querySelector('.opt[data-g="'+g+'"].sel');
   return s?s.getAttribute('data-v'):'';
