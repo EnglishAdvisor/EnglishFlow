@@ -141,7 +141,7 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 
           <div class="act-title">Activity 1 — Sort the producers into regions</div>
           <p>Here are twelve oil-producing countries. Write each one in the correct region:</p>
-          <p style="margin:6px 0"><strong style="color:#f5c87a">Word pool:</strong> Brazil · Venezuela · Saudi Arabia · Iraq · Nigeria · Angola · Norway · the UK · the USA · Canada · China · Malaysia</p>
+          <p style="margin:6px 0"><strong style="color:#f5c87a">Word pool:</strong> Angola · the USA · Iraq · Malaysia · Norway · Brazil · China · Saudi Arabia · the UK · Nigeria · Canada · Venezuela</p>
           <ul class="q-list">
             <li class="q-item"><span class="q-num">1</span><div class="q-body">
               <div class="q-text">South America</div>
@@ -404,9 +404,27 @@ function checkAll(){
 }
 
 /* --- mensagem --- */
+function computeScore(){
+  var hit=0,total=0;
+  txtInputs().forEach(function(el){
+    total++;
+    var v=el.value.toLowerCase();
+    var keys=el.getAttribute('data-key').split('|');
+    if(keys.every(function(k){return v.indexOf(k)!==-1;}))hit++;
+  });
+  sents().forEach(function(s){
+    var n=s.getAttribute('data-s');
+    [['v'+n,s.getAttribute('data-verb')],['t'+n,s.getAttribute('data-tf')]].forEach(function(pair){
+      total++;
+      if(pick(pair[0])===pair[1])hit++;
+    });
+  });
+  return {hit:hit,total:total};
+}
 function buildMessage(){
   var name=(document.getElementById('studentName').value||'').trim()||'Aluno';
   var now=new Date();
+  var sc=computeScore();
   var a1=txtInputs().map(function(el,i){
     return NUM[i]+' '+REG[i]+': '+(el.value.trim()||'—');
   }).join('\n');
@@ -420,7 +438,8 @@ function buildMessage(){
   var own=document.getElementById('own').value.trim();
   return '🧑‍🎓 *'+name+'*\n'
        + '📅 '+now.toLocaleDateString('pt-BR')+' às '+now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})+'\n'
-       + CAP_EMOJI+' *'+CAP_TITLE+'*\n\n'
+       + CAP_EMOJI+' *'+CAP_TITLE+'*\n'
+       + '🎯 *Score: '+sc.hit+'/'+sc.total+' correct*\n\n'
        + '🔤 *Activity 1 — Regions*\n'+a1+'\n'
        + (bonus?'\n✍️ Bonus (nationalities): '+bonus+'\n':'')
        + '\n✅ *Activity 2 — Brazil (is/are · true/false)*\n'+a2+'\n'

@@ -326,12 +326,23 @@ function checkAll(){
   efSave();
 }
 
+function computeScore(){
+  var hit=0,total=0;
+  sents().forEach(function(s){
+    total++;
+    var n=s.getAttribute('data-s'),right=s.getAttribute('data-key'),g='m'+n;
+    if(pick(g)===right)hit++;
+  });
+  return {hit:hit,total:total};
+}
 function buildMessage(){
   var n=efName();var name=((n&&n.value)||'').trim()||'Aluno';var now=new Date();
+  var sc=computeScore();
   var a1=sents().map(function(s,i){return NUM[i]+' '+(pick('m'+s.getAttribute('data-s'))||'\u2014');}).join('\n');
   var out='\uD83E\uDDD1\u200D\uD83C\uDF93 *'+name+'*\n'
     +'\uD83D\uDCC5 '+now.toLocaleDateString('pt-BR')+' \u00e0s '+now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})+'\n'
-    +CAP_EMOJI+' *'+CAP_TITLE+'*\n\n'
+    +CAP_EMOJI+' *'+CAP_TITLE+'*\n'
+    +'\uD83C\uDFAF *Score: '+sc.hit+'/'+sc.total+' correct*\n\n'
     +'\uD83D\uDD24 *Activity 1 \u2014 Match the terms*\n'+a1+'\n';
   efFields().forEach(function(el){
     out+='\n'+(el.getAttribute('data-emo')||'\u270D\uFE0F')+' *'+(el.getAttribute('data-lab')||'')+'*\n'
