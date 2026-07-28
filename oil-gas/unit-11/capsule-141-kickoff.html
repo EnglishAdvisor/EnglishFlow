@@ -24,6 +24,7 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 .content{padding:20px 16px 32px;display:grid;grid-template-columns:1fr 260px;gap:20px}
 @media(max-width:700px){.content{grid-template-columns:1fr}}
 .left-col{display:flex;flex-direction:column;gap:16px}
+.hero-img{width:100%;max-width:640px;aspect-ratio:1536/904;object-fit:cover;object-position:center;margin-left:auto;margin-right:auto;border-radius:8px;border:1px solid rgba(241,196,15,.2);margin-bottom:12px;display:block}
 .img-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .img-card{background:#111827;border:1px solid rgba(241,196,15,.2);border-radius:10px;overflow:hidden}
 .img-card img{width:100%;aspect-ratio:4/3;object-fit:contain;background:#0a0f1e;display:block}
@@ -130,6 +131,7 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 </div>
 <div class="content">
   <div class="left-col">
+    <img class="hero-img" src="unit11-kickoff.jpg" alt="Organized industrial workshop" loading="lazy">
     <div class="img-grid">
       <div class="img-card">
         <img src="img-unit11-workshop-a.jpg" alt="Workshop A — messy, tools on floor, blocked exit">
