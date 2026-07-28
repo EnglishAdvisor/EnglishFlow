@@ -140,7 +140,7 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 <div class="footer">
   <div class="footer-left">Capsule 193 de 203 · Unit 15 — Petrochemicals</div>
   <div class="footer-right">
-    <div class="footer-icon"><svg viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg></div>
+    <div class="footer-icon"><svg viewBox="0 0 24 24"><path d="M9.5 2a.5.5 0 0 1 .5.5V4h4V2.5a.5.5 0 0 1 1 0V4h1a2 2 0 0 1 2 2v1h1a1 1 0 0 1 0 2h-1v2h1a1 1 0 0 1 0 2h-1v2h1a1 1 0 0 1 0 2h-1v1a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1V2.5a.5.5 0 0 1 .5-.5z"/></svg></div>
     <div class="footer-text">Unit 15 — Petrochemicals</div>
   </div>
 </div>
@@ -170,7 +170,7 @@ function sendWA(){
   var time=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
   var a1=document.getElementById('ans1').value.trim()||'—';
   var msg='👤 '+name+'\n📅 '+date+' às '+time+'\n🎙️ Kick Off — Unit 15 — Petrochemicals\n📌 Activity 2:\n'+a1+'\n👇 Áudio na mensagem seguinte';
-  window.open('https://wa.me/5522999585058?text='+encodeURIComponent(msg),'_blank');
+  if(navigator.share){navigator.share({text:msg}).catch(function(){});}else{window.open('https://wa.me/?text='+encodeURIComponent(msg),'_blank');}
   closeModal();
 }
 document.getElementById('waModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
