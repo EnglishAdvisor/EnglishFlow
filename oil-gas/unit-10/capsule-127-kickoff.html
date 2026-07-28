@@ -52,6 +52,11 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 .wa-btn:hover{background:#82e0aa}
 .wa-btn svg{width:20px;height:20px;fill:#0a0f1e;flex-shrink:0}
 .zone-support{display:flex;flex-direction:column;gap:12px}
+.zone-label{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#2ecc71;font-weight:600;margin-bottom:8px}
+.cn-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:8px}
+.cn-pill{background:rgba(46,204,113,.08);border:1px solid rgba(46,204,113,.28);border-radius:14px;padding:6px 8px;font-size:11px;color:#82e0aa;cursor:pointer;font-family:'Barlow',sans-serif;text-align:center;transition:.15s}
+.cn-pill:hover{background:rgba(46,204,113,.18)}
+.cn-pill.playing{background:#2ecc71;color:#0a0f1e;font-weight:600}
 .info-card{background:#111827;border:1px solid rgba(46,204,113,.18);border-radius:12px;padding:14px}
 .info-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#2ecc71;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
 .info-row{padding:5px 0;border-bottom:1px solid rgba(46,204,113,.1);font-size:12px;color:#c8d8e8}
@@ -231,6 +236,17 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
       <div class="info-row"><strong>limit</strong> — keep within a boundary</div>
       <div class="info-row"><strong>stop</strong> — end completely</div>
     </div>
+    <div class="info-card">
+      <div class="zone-label">Tap to hear the pronunciation</div>
+      <div class="info-title">Word Pronunciation</div>
+      <div class="cn-grid">
+        <button class="cn-pill" data-say="oil spill" onclick="sayWord(this)">oil spill</button>
+        <button class="cn-pill" data-say="gasket" onclick="sayWord(this)">gasket</button>
+        <button class="cn-pill" data-say="enclosure" onclick="sayWord(this)">enclosure</button>
+        <button class="cn-pill" data-say="gas flare" onclick="sayWord(this)">gas flare</button>
+        <button class="cn-pill" data-say="pollution" onclick="sayWord(this)">pollution</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -266,6 +282,17 @@ var CAP_KEY='ef_ans_og1_u10_kickoff';
 var CAP_EMOJI='\uD83D\uDEE2\uFE0F';
 var CAP_TITLE="Kick Off \u2014 Unit 10 \u2014 Oil and the Environment";
 
+function sayWord(btn){
+  if(!('speechSynthesis' in window))return;
+  var text=btn.getAttribute('data-say');
+  window.speechSynthesis.cancel();
+  document.querySelectorAll('.cn-pill.playing').forEach(function(p){p.classList.remove('playing');});
+  var u=new SpeechSynthesisUtterance(text);
+  u.lang='en-US';u.rate=0.9;
+  btn.classList.add('playing');
+  u.onend=function(){btn.classList.remove('playing');};
+  window.speechSynthesis.speak(u);
+}
 function qcSels(){return [].slice.call(document.querySelectorAll('.qc-sel'));}
 function qcMultis(){return [].slice.call(document.querySelectorAll('.qc-multi'));}
 function efName(){return document.getElementById('studentName')||document.getElementById('student-name');}

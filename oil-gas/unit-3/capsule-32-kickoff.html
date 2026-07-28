@@ -51,6 +51,11 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 .whatsapp-btn:hover{background:#1ebc58}
 .whatsapp-btn svg{width:16px;height:16px;fill:#fff;flex-shrink:0}
 .zone-support{background:#111827;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:6px;align-self:start}
+.cn-block{margin-top:14px;padding-top:12px;border-top:1px solid rgba(192,57,43,.2)}
+.cn-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:8px}
+.cn-pill{background:rgba(192,57,43,.08);border:1px solid rgba(192,57,43,.28);border-radius:14px;padding:6px 8px;font-size:11px;color:#e07a74;cursor:pointer;font-family:'Barlow',sans-serif;text-align:center;transition:.15s}
+.cn-pill:hover{background:rgba(192,57,43,.18)}
+.cn-pill.playing{background:#c0392b;color:#fff;font-weight:600}
 .keyword-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;color:#e07a74;text-transform:uppercase;letter-spacing:.08em;padding-bottom:8px;border-bottom:1px solid rgba(192,57,43,.2);margin-bottom:2px}
 .keywords-grid{display:grid;grid-template-columns:1fr;gap:0}
 .keyword-item{padding:6px 0;border-bottom:1px solid rgba(192,57,43,.09);display:flex;flex-direction:column;gap:3px}
@@ -176,7 +181,8 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
   </div>
 
   <div class="zone-support">
-    <div class="keyword-title">Key words</div>
+    <div class="zone-label">Click to open Cambridge / Linguee</div>
+    <div class="keyword-title">Key vocabulary</div>
     <div class="keywords-grid">
       <div class="keyword-item"><span class="kw">transport</span><span class="kw-hint">move goods from A to B</span></div>
       <div class="keyword-item"><span class="kw">refinery</span><span class="kw-hint">separates crude oil</span></div>
@@ -187,6 +193,19 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
       <div class="keyword-item"><span class="kw">petrol station</span><span class="kw-hint">filling station (Am E)</span></div>
       <div class="keyword-item"><span class="kw">roughneck</span><span class="kw-hint">drilling crew worker</span></div>
       <div class="keyword-item"><span class="kw">geologist</span><span class="kw-hint">studies rocks</span></div>
+    </div>
+
+    <div class="cn-block">
+      <div class="zone-label">Tap to hear the pronunciation</div>
+      <div class="keyword-title">Word Pronunciation</div>
+      <div class="cn-grid">
+        <button class="cn-pill" data-say="driller" onclick="sayWord(this)">driller</button>
+        <button class="cn-pill" data-say="geologist" onclick="sayWord(this)">geologist</button>
+        <button class="cn-pill" data-say="production operator" onclick="sayWord(this)">production operator</button>
+        <button class="cn-pill" data-say="roughneck" onclick="sayWord(this)">roughneck</button>
+        <button class="cn-pill" data-say="refinery" onclick="sayWord(this)">refinery</button>
+        <button class="cn-pill" data-say="transport" onclick="sayWord(this)">transport</button>
+      </div>
     </div>
   </div>
 </div>
@@ -221,6 +240,17 @@ var CAP_KEY='ef_ans_og1_u3_kickoff';
 var CAP_EMOJI='\uD83D\uDEE2\uFE0F';
 var CAP_TITLE="Kick Off \u2014 Unit 3 \u2014 Downstream";
 
+function sayWord(btn){
+  if(!('speechSynthesis' in window))return;
+  var text=btn.getAttribute('data-say');
+  window.speechSynthesis.cancel();
+  document.querySelectorAll('.cn-pill.playing').forEach(function(p){p.classList.remove('playing');});
+  var u=new SpeechSynthesisUtterance(text);
+  u.lang='en-US';u.rate=0.9;
+  btn.classList.add('playing');
+  u.onend=function(){btn.classList.remove('playing');};
+  window.speechSynthesis.speak(u);
+}
 function efFields(){return [].slice.call(document.querySelectorAll('.ef-ans'));}
 function efName(){return document.getElementById('studentName')||document.getElementById('student-name');}
 function efModal(){return document.getElementById('modal')||document.getElementById('waModal');}

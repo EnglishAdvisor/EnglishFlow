@@ -46,6 +46,11 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 .whatsapp-btn:hover{background:#1ebc58}
 .whatsapp-btn svg{width:16px;height:16px;fill:#fff;flex-shrink:0}
 .zone-support{background:#111827;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:6px;align-self:start}
+.cn-block{margin-top:14px;padding-top:12px;border-top:1px solid rgba(127,179,211,.2)}
+.cn-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:8px}
+.cn-pill{background:rgba(127,179,211,.08);border:1px solid rgba(127,179,211,.28);border-radius:14px;padding:6px 8px;font-size:11px;color:#b0d0e8;cursor:pointer;font-family:'Barlow',sans-serif;text-align:center;transition:.15s}
+.cn-pill:hover{background:rgba(127,179,211,.18)}
+.cn-pill.playing{background:#7fb3d3;color:#0a0f1e;font-weight:600}
 .keyword-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;color:#b0d0e8;text-transform:uppercase;letter-spacing:.08em;padding-bottom:8px;border-bottom:1px solid rgba(127,179,211,.2);margin-bottom:4px}
 .kw-row{font-size:11px;color:#c8d8e8;padding:4px 0;border-bottom:1px solid rgba(127,179,211,.07);line-height:1.5}
 .kw-row:last-child{border-bottom:none}
@@ -195,6 +200,19 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
         <em style="color:#b0d0e8">section</em> — one straight length
       </div>
     </div>
+
+    <div class="cn-block">
+      <div class="zone-label">Tap to hear the pronunciation</div>
+      <div class="keyword-title">Word Pronunciation</div>
+      <div class="cn-grid">
+        <button class="cn-pill" data-say="flanged joint" onclick="sayWord(this)">flanged joint</button>
+        <button class="cn-pill" data-say="valve" onclick="sayWord(this)">valve</button>
+        <button class="cn-pill" data-say="elbow" onclick="sayWord(this)">elbow</button>
+        <button class="cn-pill" data-say="pipe support" onclick="sayWord(this)">pipe support</button>
+        <button class="cn-pill" data-say="flow meter" onclick="sayWord(this)">flow meter</button>
+        <button class="cn-pill" data-say="pipeline" onclick="sayWord(this)">pipeline</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -228,6 +246,17 @@ var CAP_KEY='ef_ans_og1_u7_kickoff';
 var CAP_EMOJI='\uD83D\uDEE2\uFE0F';
 var CAP_TITLE="Kick Off \u2014 Unit 7 \u2014 Pipes and Pipelines";
 
+function sayWord(btn){
+  if(!('speechSynthesis' in window))return;
+  var text=btn.getAttribute('data-say');
+  window.speechSynthesis.cancel();
+  document.querySelectorAll('.cn-pill.playing').forEach(function(p){p.classList.remove('playing');});
+  var u=new SpeechSynthesisUtterance(text);
+  u.lang='en-US';u.rate=0.9;
+  btn.classList.add('playing');
+  u.onend=function(){btn.classList.remove('playing');};
+  window.speechSynthesis.speak(u);
+}
 function efFields(){return [].slice.call(document.querySelectorAll('.ef-ans'));}
 function sents(){return [].slice.call(document.querySelectorAll('.sent-item'));}
 function efName(){return document.getElementById('studentName')||document.getElementById('student-name');}

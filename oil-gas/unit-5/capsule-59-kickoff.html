@@ -48,6 +48,11 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 .whatsapp-btn:hover{background:#1ebc58}
 .whatsapp-btn svg{width:16px;height:16px;fill:#fff;flex-shrink:0}
 .zone-support{background:#111827;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:6px;align-self:start}
+.cn-block{margin-top:14px;padding-top:12px;border-top:1px solid rgba(212,167,106,.2)}
+.cn-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:8px}
+.cn-pill{background:rgba(212,167,106,.08);border:1px solid rgba(212,167,106,.28);border-radius:14px;padding:6px 8px;font-size:11px;color:#e8ccaa;cursor:pointer;font-family:'Barlow',sans-serif;text-align:center;transition:.15s}
+.cn-pill:hover{background:rgba(212,167,106,.18)}
+.cn-pill.playing{background:#d4a76a;color:#0a0f1e;font-weight:600}
 .keyword-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;color:#e8ccaa;text-transform:uppercase;letter-spacing:.08em;padding-bottom:8px;border-bottom:1px solid rgba(212,167,106,.2);margin-bottom:4px}
 .kw-row{font-size:11px;color:#c8d8e8;padding:4px 0;border-bottom:1px solid rgba(212,167,106,.07);line-height:1.5}
 .kw-row:last-child{border-bottom:none}
@@ -183,7 +188,8 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
   </div>
 
   <div class="zone-support">
-    <div class="keyword-title">Key words</div>
+    <div class="zone-label">Click to open Cambridge / Linguee</div>
+    <div class="keyword-title">Key vocabulary</div>
     <div class="kw-row"><strong>geology</strong> — study of rocks and soil</div>
     <div class="kw-row"><strong>physics</strong> — study of natural forces (light, sound, heat)</div>
     <div class="kw-row"><strong>technology</strong> — use of science in industry</div>
@@ -192,14 +198,16 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
     <div class="kw-row"><strong>porous</strong> — allows liquid/air to pass through slowly</div>
     <div class="kw-row"><strong>non-porous</strong> — does not allow fluids through</div>
     <div class="kw-row"><strong>trap</strong> — underground structure holding oil/gas</div>
-    <div style="background:#0a1628;border-radius:8px;padding:10px;margin-top:8px">
-      <div style="font-size:10px;color:#d4a76a;font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Activity 1 — Answers</div>
-      <div style="font-size:11px;color:#c8d8e8;line-height:1.8">
-        1. <em style="color:#e8ccaa">porous rock</em><br>
-        2. <em style="color:#e8ccaa">non-porous rock</em><br>
-        3. <em style="color:#e8ccaa">gas is very light</em><br>
-        4. <em style="color:#e8ccaa">non-porous rock stops it</em><br>
-        5. <em style="color:#e8ccaa">geology: oil trap; physics: waves; technology: GPS/trucks</em>
+
+    <div class="cn-block">
+      <div class="zone-label">Tap to hear the pronunciation</div>
+      <div class="keyword-title">Word Pronunciation</div>
+      <div class="cn-grid">
+        <button class="cn-pill" data-say="geology" onclick="sayWord(this)">geology</button>
+        <button class="cn-pill" data-say="physics" onclick="sayWord(this)">physics</button>
+        <button class="cn-pill" data-say="technology" onclick="sayWord(this)">technology</button>
+        <button class="cn-pill" data-say="two-dimensional" onclick="sayWord(this)">two-dimensional</button>
+        <button class="cn-pill" data-say="three-dimensional" onclick="sayWord(this)">three-dimensional</button>
       </div>
     </div>
   </div>
@@ -235,6 +243,17 @@ var CAP_KEY='ef_ans_og1_u5_kickoff';
 var CAP_EMOJI='\uD83D\uDEE2\uFE0F';
 var CAP_TITLE="Kick Off \u2014 Unit 5 \u2014 Finding Oil and Gas";
 
+function sayWord(btn){
+  if(!('speechSynthesis' in window))return;
+  var text=btn.getAttribute('data-say');
+  window.speechSynthesis.cancel();
+  document.querySelectorAll('.cn-pill.playing').forEach(function(p){p.classList.remove('playing');});
+  var u=new SpeechSynthesisUtterance(text);
+  u.lang='en-US';u.rate=0.9;
+  btn.classList.add('playing');
+  u.onend=function(){btn.classList.remove('playing');};
+  window.speechSynthesis.speak(u);
+}
 function efFields(){return [].slice.call(document.querySelectorAll('.ef-ans'));}
 function qzInputs(){return [].slice.call(document.querySelectorAll('.qz-input'));}
 function efName(){return document.getElementById('studentName')||document.getElementById('student-name');}

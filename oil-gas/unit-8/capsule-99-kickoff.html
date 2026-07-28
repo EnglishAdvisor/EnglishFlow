@@ -56,6 +56,12 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 .whatsapp-btn:hover{background:#1ebc58}
 .whatsapp-btn svg{width:16px;height:16px;fill:#fff;flex-shrink:0}
 .zone-support{background:#111827;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:6px}
+.zone-label{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#0077b6;font-weight:600;margin-bottom:8px}
+.cn-block{margin-top:14px;padding-top:12px;border-top:1px solid rgba(0,119,182,.2)}
+.cn-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:8px}
+.cn-pill{background:rgba(0,119,182,.08);border:1px solid rgba(0,119,182,.28);border-radius:14px;padding:6px 8px;font-size:11px;color:#90c8e0;cursor:pointer;font-family:'Barlow',sans-serif;text-align:center;transition:.15s}
+.cn-pill:hover{background:rgba(0,119,182,.18)}
+.cn-pill.playing{background:#0077b6;color:#fff;font-weight:600}
 .keyword-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;color:#90c8e0;text-transform:uppercase;letter-spacing:.08em;padding-bottom:8px;border-bottom:1px solid rgba(0,119,182,.2);margin-bottom:2px}
 .keywords-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
 .keyword-item{padding:6px 0;border-bottom:1px solid rgba(0,119,182,.09);display:flex;flex-direction:column;gap:3px}
@@ -192,7 +198,8 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
   </div>
 
   <div class="zone-support">
-    <div class="keyword-title">Key Words</div>
+    <div class="zone-label">Click to open Cambridge / Linguee</div>
+    <div class="keyword-title">Key vocabulary</div>
     <div class="keywords-grid">
       <div class="keyword-item"><a class="kw" href="https://www.linguee.com.br/ingles-portugues/traducao/helideck.html" target="_blank">Helideck</a><span class="kw-hint">Helicopter landing area</span></div>
       <div class="keyword-item"><a class="kw" href="https://www.linguee.com.br/ingles-portugues/traducao/derrick.html" target="_blank">Derrick</a><span class="kw-hint">Tall drilling tower</span></div>
@@ -203,12 +210,25 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
       <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/lifeboat" target="_blank">Lifeboats</a><span class="kw-hint">Emergency escape vessels</span></div>
       <div class="keyword-item"><a class="kw" href="https://dictionary.cambridge.org/dictionary/english-portuguese/hazard" target="_blank">Hazard</a><span class="kw-hint">Something dangerous</span></div>
     </div>
+
+    <div class="cn-block">
+      <div class="zone-label">Tap to hear the pronunciation</div>
+      <div class="keyword-title">Word Pronunciation</div>
+      <div class="cn-grid">
+        <button class="cn-pill" data-say="derrick" onclick="sayWord(this)">derrick</button>
+        <button class="cn-pill" data-say="crane" onclick="sayWord(this)">crane</button>
+        <button class="cn-pill" data-say="helideck" onclick="sayWord(this)">helideck</button>
+        <button class="cn-pill" data-say="wellhead" onclick="sayWord(this)">wellhead</button>
+        <button class="cn-pill" data-say="flare boom" onclick="sayWord(this)">flare boom</button>
+        <button class="cn-pill" data-say="lifeboat" onclick="sayWord(this)">lifeboat</button>
+      </div>
+    </div>
   </div>
 </div>
 
 <div class="footer">
   <div class="footer-left">Capsule 99 de 202 · Unit 8 — Working Offshore</div>
-  <div class="footer-right"><img class="ef-logo" src="logo-englishflow.png" alt="EnglishFlow" onerror="this.style.display='none'">
+  <div class="footer-right">
     <div class="footer-icon"><svg viewBox="0 0 24 24"><line x1="4" y1="20" x2="20" y2="20"/><line x1="8" y1="15" x2="8" y2="20"/><line x1="16" y1="15" x2="16" y2="20"/><rect x="6" y="11" width="12" height="4" rx="1"/><line x1="12" y1="7" x2="12" y2="11"/><line x1="9" y1="8" x2="15" y2="8"/><circle cx="12" cy="5" r="2"/></svg></div>
     <div class="footer-text">Unit 8 — Working Offshore</div>
   </div>
@@ -244,6 +264,17 @@ var CAP_KEY='ef_ans_og1_u8_kickoff';   /* chave única desta cápsula */
 var CAP_EMOJI='🛢️';                    /* emoji da trilha Oil & Gas */
 var CAP_TITLE='Kick Off — Unit 8 — Working Offshore';
 
+function sayWord(btn){
+  if(!('speechSynthesis' in window))return;
+  var text=btn.getAttribute('data-say');
+  window.speechSynthesis.cancel();
+  document.querySelectorAll('.cn-pill.playing').forEach(function(p){p.classList.remove('playing');});
+  var u=new SpeechSynthesisUtterance(text);
+  u.lang='en-US';u.rate=0.9;
+  btn.classList.add('playing');
+  u.onend=function(){btn.classList.remove('playing');};
+  window.speechSynthesis.speak(u);
+}
 function numberEmoji(n){
   var e=['1️⃣','2️⃣','3️⃣','4️⃣','5️⃣','6️⃣','7️⃣','8️⃣','9️⃣','🔟'];
   return e[n-1]||(n+'.');

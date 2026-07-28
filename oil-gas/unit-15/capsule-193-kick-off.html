@@ -39,6 +39,11 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 .q-item:last-child{border-bottom:none}
 .q-num{color:#a855f7;font-weight:700;margin-right:6px}
 .sidebar-box{background:#111827;border:1px solid rgba(168,85,247,.18);border-radius:12px;padding:14px;margin-bottom:10px}
+.zone-label{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#a855f7;font-weight:600;margin-bottom:8px}
+.cn-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:8px}
+.cn-pill{background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.28);border-radius:14px;padding:6px 8px;font-size:11px;color:#cc99fb;cursor:pointer;font-family:'Barlow',sans-serif;text-align:center;transition:.15s}
+.cn-pill:hover{background:rgba(168,85,247,.18)}
+.cn-pill.playing{background:#a855f7;color:#fff;font-weight:600}
 .sidebar-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:#a855f7;margin-bottom:10px}
 .kw-item{display:flex;flex-direction:column;padding:5px 0;border-bottom:1px solid rgba(168,85,247,.1)}
 .kw-item:last-child{border-bottom:none}
@@ -135,6 +140,20 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
       <div class="kw-item"><span class="kw-en">medications</span><span class="kw-def">drugs and medical treatments</span></div>
       <div class="kw-item"><span class="kw-en">clothes</span><span class="kw-def">clothing made from synthetic fibres</span></div>
     </div>
+
+    <div class="sidebar-box">
+      <div class="zone-label">Tap to hear the pronunciation</div>
+      <div class="sidebar-title">Word Pronunciation</div>
+      <div class="cn-grid">
+        <button class="cn-pill" data-say="adhesives" onclick="sayWord(this)">adhesives</button>
+        <button class="cn-pill" data-say="fertilizer" onclick="sayWord(this)">fertilizer</button>
+        <button class="cn-pill" data-say="plastics" onclick="sayWord(this)">plastics</button>
+        <button class="cn-pill" data-say="carpeting" onclick="sayWord(this)">carpeting</button>
+        <button class="cn-pill" data-say="cosmetics" onclick="sayWord(this)">cosmetics</button>
+        <button class="cn-pill" data-say="rubber" onclick="sayWord(this)">rubber</button>
+        <button class="cn-pill" data-say="ethylene" onclick="sayWord(this)">ethylene</button>
+      </div>
+    </div>
   </div>
 </div>
 <div class="footer">
@@ -160,6 +179,17 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
   </div>
 </div>
 <script>
+function sayWord(btn){
+  if(!('speechSynthesis' in window))return;
+  var text=btn.getAttribute('data-say');
+  window.speechSynthesis.cancel();
+  document.querySelectorAll('.cn-pill.playing').forEach(function(p){p.classList.remove('playing');});
+  var u=new SpeechSynthesisUtterance(text);
+  u.lang='en-US';u.rate=0.9;
+  btn.classList.add('playing');
+  u.onend=function(){btn.classList.remove('playing');};
+  window.speechSynthesis.speak(u);
+}
 function openModal(){var n=localStorage.getItem('ef_student_name')||'';document.getElementById('studentName').value=n;document.getElementById('waModal').classList.add('open');}
 function closeModal(){document.getElementById('waModal').classList.remove('open');}
 function sendWA(){

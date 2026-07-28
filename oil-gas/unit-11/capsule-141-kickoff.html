@@ -40,6 +40,11 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 .rule-item{font-size:13px;color:#c8d8e8;padding:4px 0;display:flex;align-items:flex-start;gap:6px}
 .rule-bullet{color:#f1c40f;font-size:16px;line-height:1}
 .zone-support{display:flex;flex-direction:column;gap:14px}
+.zone-label{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#f1c40f;font-weight:600;margin-bottom:8px}
+.cn-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:8px}
+.cn-pill{background:rgba(241,196,15,.08);border:1px solid rgba(241,196,15,.28);border-radius:14px;padding:6px 8px;font-size:11px;color:#f5da6e;cursor:pointer;font-family:'Barlow',sans-serif;text-align:center;transition:.15s}
+.cn-pill:hover{background:rgba(241,196,15,.18)}
+.cn-pill.playing{background:#f1c40f;color:#0a0f1e;font-weight:600}
 .task-box{background:#0a1628;border:1px solid rgba(241,196,15,.35);border-radius:12px;padding:16px}
 .task-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;color:#f1c40f;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
 .task-text{font-size:12px;color:#c8d8e8;line-height:1.6}
@@ -192,6 +197,18 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
   <div class="zone-support">
 
     <div class="task-box">
+      <div class="zone-label">Tap to hear the pronunciation</div>
+      <div class="task-label">Word Pronunciation</div>
+      <div class="cn-grid">
+        <button class="cn-pill" data-say="maintain" onclick="sayWord(this)">maintain</button>
+        <button class="cn-pill" data-say="repair" onclick="sayWord(this)">repair</button>
+        <button class="cn-pill" data-say="budget" onclick="sayWord(this)">budget</button>
+        <button class="cn-pill" data-say="schedule" onclick="sayWord(this)">schedule</button>
+        <button class="cn-pill" data-say="replace" onclick="sayWord(this)">replace</button>
+      </div>
+    </div>
+
+    <div class="task-box">
       <div class="task-label">Task</div>
       <div class="task-text">Answer in writing OR record a short audio. Send via WhatsApp.</div>
     </div>
@@ -230,6 +247,17 @@ var CAP_KEY='ef_ans_og1_u11_kickoff';
 var CAP_EMOJI='\uD83D\uDEE2\uFE0F';
 var CAP_TITLE="Kick Off \u2014 Unit 11 \u2014 Workshop Operations";
 
+function sayWord(btn){
+  if(!('speechSynthesis' in window))return;
+  var text=btn.getAttribute('data-say');
+  window.speechSynthesis.cancel();
+  document.querySelectorAll('.cn-pill.playing').forEach(function(p){p.classList.remove('playing');});
+  var u=new SpeechSynthesisUtterance(text);
+  u.lang='en-US';u.rate=0.9;
+  btn.classList.add('playing');
+  u.onend=function(){btn.classList.remove('playing');};
+  window.speechSynthesis.speak(u);
+}
 function qzInputs(){return [].slice.call(document.querySelectorAll('.qz-input'));}
 function sents(){return [].slice.call(document.querySelectorAll('.sent-item'));}
 function efName(){return document.getElementById('studentName')||document.getElementById('student-name');}

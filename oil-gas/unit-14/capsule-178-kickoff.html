@@ -32,6 +32,12 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 .scenario-label{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#f0958d;margin-bottom:4px}
 .scenario-desc{font-size:12px;color:#c8d8e8;line-height:1.5}
 .act-card{background:#111827;border:1px solid rgba(231,76,60,.18);border-radius:12px;padding:16px;margin-bottom:10px}
+.zone-label{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#e74c3c;font-weight:600;margin-bottom:8px}
+.cn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-top:8px}
+.cn-pill{background:rgba(231,76,60,.08);border:1px solid rgba(231,76,60,.28);border-radius:14px;padding:6px 8px;font-size:11px;color:#f0958d;cursor:pointer;font-family:'Barlow',sans-serif;text-align:center;transition:.15s}
+.cn-pill:hover{background:rgba(231,76,60,.18)}
+.cn-pill.playing{background:#e74c3c;color:#fff;font-weight:600}
+@media(max-width:500px){.cn-grid{grid-template-columns:1fr 1fr}}
 .act-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:#e74c3c;margin-bottom:10px}
 .q-list{list-style:none}
 .q-list li{display:flex;gap:8px;padding:6px 0;border-bottom:1px solid rgba(231,76,60,.1);font-size:13px;color:#c8d8e8;line-height:1.5}
@@ -151,6 +157,18 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
         <div class="ef-field"><label class="ef-label">Activity 2 — Your opinion</label><textarea class="ef-ans" id="ans2" data-lab="Activity 2 — Your opinion" data-emo="✅" placeholder="Write your answer here..."></textarea></div>
       </div>
 
+  <div class="act-card">
+    <div class="zone-label">Tap to hear the pronunciation</div>
+    <div class="act-title">Word Pronunciation</div>
+    <div class="cn-grid">
+      <button class="cn-pill" data-say="bleeding" onclick="sayWord(this)">bleeding</button>
+      <button class="cn-pill" data-say="burn" onclick="sayWord(this)">burn</button>
+      <button class="cn-pill" data-say="electric shock" onclick="sayWord(this)">electric shock</button>
+      <button class="cn-pill" data-say="broken leg" onclick="sayWord(this)">broken leg</button>
+      <button class="cn-pill" data-say="bandage" onclick="sayWord(this)">bandage</button>
+    </div>
+  </div>
+
   <div class="task-box"><strong>Task:</strong> Answer in writing OR record a short audio. Send via WhatsApp.</div>
 
   <button class="wa-btn" onclick="openModal()">
@@ -188,6 +206,17 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 var CAP_KEY='ef_ans_og1_u14_kickoff';
 var CAP_EMOJI='\uD83D\uDEE2\uFE0F';
 var CAP_TITLE="Kick Off — Unit 14 — Emergencies";
+function sayWord(btn){
+  if(!('speechSynthesis' in window))return;
+  var text=btn.getAttribute('data-say');
+  window.speechSynthesis.cancel();
+  document.querySelectorAll('.cn-pill.playing').forEach(function(p){p.classList.remove('playing');});
+  var u=new SpeechSynthesisUtterance(text);
+  u.lang='en-US';u.rate=0.9;
+  btn.classList.add('playing');
+  u.onend=function(){btn.classList.remove('playing');};
+  window.speechSynthesis.speak(u);
+}
 function efFields(){return [].slice.call(document.querySelectorAll('.ef-ans'));}
 function efName(){return document.getElementById('studentName')||document.getElementById('student-name');}
 function efModal(){return document.getElementById('modal')||document.getElementById('waModal');}

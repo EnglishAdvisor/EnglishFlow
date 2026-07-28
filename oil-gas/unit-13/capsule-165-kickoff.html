@@ -23,6 +23,12 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 .step-sep{color:#2a3a4a;margin:0 2px}
 .content{padding:20px 16px 32px}
 .act-card{background:#111827;border:1px solid rgba(231,76,60,.18);border-radius:12px;padding:16px;margin-bottom:12px}
+.zone-label{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#e74c3c;font-weight:600;margin-bottom:8px}
+.cn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-top:8px}
+.cn-pill{background:rgba(231,76,60,.08);border:1px solid rgba(231,76,60,.28);border-radius:14px;padding:6px 8px;font-size:11px;color:#f0958d;cursor:pointer;font-family:'Barlow',sans-serif;text-align:center;transition:.15s}
+.cn-pill:hover{background:rgba(231,76,60,.18)}
+.cn-pill.playing{background:#e74c3c;color:#fff;font-weight:600}
+@media(max-width:500px){.cn-grid{grid-template-columns:1fr 1fr}}
 .act-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:#e74c3c;margin-bottom:10px}
 .intro-text{font-size:13px;color:#c8d8e8;line-height:1.7;margin-bottom:12px}
 .products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}
@@ -188,6 +194,19 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
     </ul>
   </div>
 
+  <div class="act-card">
+    <div class="zone-label">Tap to hear the pronunciation</div>
+    <div class="act-title">Word Pronunciation</div>
+    <div class="cn-grid">
+      <button class="cn-pill" data-say="asphalt" onclick="sayWord(this)">asphalt</button>
+      <button class="cn-pill" data-say="liquid petroleum gas" onclick="sayWord(this)">liquid petroleum gas</button>
+      <button class="cn-pill" data-say="petrol" onclick="sayWord(this)">petrol</button>
+      <button class="cn-pill" data-say="kerosene" onclick="sayWord(this)">kerosene</button>
+      <button class="cn-pill" data-say="diesel" onclick="sayWord(this)">diesel</button>
+      <button class="cn-pill" data-say="fuel oil" onclick="sayWord(this)">fuel oil</button>
+    </div>
+  </div>
+
   <div class="wa-wrap">
     <button class="wa-btn" onclick="openModal()">
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.535 5.858L.057 23.48a.5.5 0 0 0 .61.632l5.788-1.517A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.95 9.95 0 0 1-5.187-1.448l-.372-.22-3.433.9.916-3.345-.242-.384A9.953 9.953 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
@@ -224,6 +243,17 @@ var CAP_KEY='ef_ans_og1_u13_kickoff';
 var CAP_EMOJI='\uD83D\uDEE2\uFE0F';
 var CAP_TITLE="Kick Off \u2014 Unit 13 \u2014 The Refinery";
 
+function sayWord(btn){
+  if(!('speechSynthesis' in window))return;
+  var text=btn.getAttribute('data-say');
+  window.speechSynthesis.cancel();
+  document.querySelectorAll('.cn-pill.playing').forEach(function(p){p.classList.remove('playing');});
+  var u=new SpeechSynthesisUtterance(text);
+  u.lang='en-US';u.rate=0.9;
+  btn.classList.add('playing');
+  u.onend=function(){btn.classList.remove('playing');};
+  window.speechSynthesis.speak(u);
+}
 function qzInputs(){return [].slice.call(document.querySelectorAll('.qz-input'));}
 function efFields(){return [].slice.call(document.querySelectorAll('.ef-ans'));}
 function efName(){return document.getElementById('studentName')||document.getElementById('student-name');}

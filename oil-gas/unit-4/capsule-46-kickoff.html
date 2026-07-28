@@ -46,6 +46,11 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 .whatsapp-btn:hover{background:#1ebc58}
 .whatsapp-btn svg{width:16px;height:16px;fill:#fff;flex-shrink:0}
 .zone-support{background:#111827;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:6px;align-self:start}
+.cn-block{margin-top:14px;padding-top:12px;border-top:1px solid rgba(241,196,15,.2)}
+.cn-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:8px}
+.cn-pill{background:rgba(241,196,15,.08);border:1px solid rgba(241,196,15,.28);border-radius:14px;padding:6px 8px;font-size:11px;color:#f5da6e;cursor:pointer;font-family:'Barlow',sans-serif;text-align:center;transition:.15s}
+.cn-pill:hover{background:rgba(241,196,15,.18)}
+.cn-pill.playing{background:#f1c40f;color:#0a0f1e;font-weight:600}
 .keyword-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;color:#f5da6e;text-transform:uppercase;letter-spacing:.08em;padding-bottom:8px;border-bottom:1px solid rgba(241,196,15,.2);margin-bottom:4px}
 .kw-row{font-size:11px;color:#c8d8e8;padding:4px 0;border-bottom:1px solid rgba(241,196,15,.07);line-height:1.5}
 .kw-row:last-child{border-bottom:none}
@@ -218,7 +223,8 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
   </div>
 
   <div class="zone-support">
-    <div class="keyword-title">Body parts</div>
+    <div class="zone-label">Click to open Cambridge / Linguee</div>
+    <div class="keyword-title">Key vocabulary</div>
     <div class="kw-row"><strong>head</strong> — top of your body</div>
     <div class="kw-row"><strong>face</strong> — front of your head</div>
     <div class="kw-row"><strong>eyes</strong> — you see with these</div>
@@ -226,17 +232,19 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
     <div class="kw-row"><strong>hands</strong> — at the end of your arms</div>
     <div class="kw-row"><strong>fingers</strong> — 5 on each hand</div>
     <div class="kw-row"><strong>feet</strong> — at the end of your legs</div>
-    <div style="background:#0a1628;border-radius:8px;padding:10px;margin-top:8px">
-      <div style="font-size:10px;color:#f1c40f;font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Activity 1 — Answers</div>
-      <div style="font-size:11px;color:#c8d8e8;line-height:1.8">
-        1. <em style="color:#f5da6e">head</em><br>
-        2. <em style="color:#f5da6e">face</em><br>
-        3. <em style="color:#f5da6e">feet</em><br>
-        4. <em style="color:#f5da6e">Ear protectors</em><br>
-        5. <em style="color:#f5da6e">Gloves</em><br>
-        6. <em style="color:#f5da6e">Goggles</em><br>
-        7. <em style="color:#f5da6e">respirator</em><br>
-        8. <em style="color:#f5da6e">safety harness</em>
+
+    <div class="cn-block">
+      <div class="zone-label">Tap to hear the pronunciation</div>
+      <div class="keyword-title">Word Pronunciation</div>
+      <div class="cn-grid">
+        <button class="cn-pill" data-say="hard hat" onclick="sayWord(this)">hard hat</button>
+        <button class="cn-pill" data-say="goggles" onclick="sayWord(this)">goggles</button>
+        <button class="cn-pill" data-say="face guard" onclick="sayWord(this)">face guard</button>
+        <button class="cn-pill" data-say="gloves" onclick="sayWord(this)">gloves</button>
+        <button class="cn-pill" data-say="boots" onclick="sayWord(this)">boots</button>
+        <button class="cn-pill" data-say="ear protectors" onclick="sayWord(this)">ear protectors</button>
+        <button class="cn-pill" data-say="safety harness" onclick="sayWord(this)">safety harness</button>
+        <button class="cn-pill" data-say="respirator" onclick="sayWord(this)">respirator</button>
       </div>
     </div>
   </div>
@@ -272,6 +280,17 @@ var CAP_KEY='ef_ans_og1_u4_kickoff';
 var CAP_EMOJI='\uD83D\uDEE2\uFE0F';
 var CAP_TITLE="Kick Off \u2014 Unit 4 \u2014 Safety First";
 
+function sayWord(btn){
+  if(!('speechSynthesis' in window))return;
+  var text=btn.getAttribute('data-say');
+  window.speechSynthesis.cancel();
+  document.querySelectorAll('.cn-pill.playing').forEach(function(p){p.classList.remove('playing');});
+  var u=new SpeechSynthesisUtterance(text);
+  u.lang='en-US';u.rate=0.9;
+  btn.classList.add('playing');
+  u.onend=function(){btn.classList.remove('playing');};
+  window.speechSynthesis.speak(u);
+}
 function efFields(){return [].slice.call(document.querySelectorAll('.ef-ans'));}
 function sents(){return [].slice.call(document.querySelectorAll('.sent-item'));}
 function efName(){return document.getElementById('studentName')||document.getElementById('student-name');}

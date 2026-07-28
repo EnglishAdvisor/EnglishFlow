@@ -39,6 +39,11 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 .reveal-btn{background:rgba(230,126,34,.12);border:1px solid rgba(230,126,34,.3);color:#f0ad72;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;border-radius:6px;padding:3px 10px;cursor:pointer;margin-left:auto;white-space:nowrap;flex-shrink:0}
 .answer{display:none;color:#f0ad72;font-weight:600;margin-left:4px}
 .zone-support{display:flex;flex-direction:column;gap:14px}
+.zone-label{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#e67e22;font-weight:600;margin-bottom:8px}
+.cn-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:8px}
+.cn-pill{background:rgba(230,126,34,.08);border:1px solid rgba(230,126,34,.28);border-radius:14px;padding:6px 8px;font-size:11px;color:#f0ad72;cursor:pointer;font-family:'Barlow',sans-serif;text-align:center;transition:.15s}
+.cn-pill:hover{background:rgba(230,126,34,.18)}
+.cn-pill.playing{background:#e67e22;color:#0a0f1e;font-weight:600}
 .def-card{background:#0d1b2a;border:1px solid rgba(230,126,34,.2);border-radius:12px;padding:14px}
 .def-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:#e67e22;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
 .def-row{font-size:12px;color:#c8d8e8;padding:4px 0;border-bottom:1px solid rgba(230,126,34,.08);line-height:1.5}
@@ -171,6 +176,17 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
       <div class="def-row"><strong>replace</strong> — to take out a damaged part and put a new one in</div>
       <div class="def-row"><strong>reinstall</strong> — to put a machine or part back in position after repair</div>
     </div>
+    <div class="def-card">
+      <div class="zone-label">Tap to hear the pronunciation</div>
+      <div class="def-title">Word Pronunciation</div>
+      <div class="cn-grid">
+        <button class="cn-pill" data-say="motor" onclick="sayWord(this)">motor</button>
+        <button class="cn-pill" data-say="discharge" onclick="sayWord(this)">discharge</button>
+        <button class="cn-pill" data-say="bearing" onclick="sayWord(this)">bearing</button>
+        <button class="cn-pill" data-say="line shaft" onclick="sayWord(this)">line shaft</button>
+        <button class="cn-pill" data-say="impeller" onclick="sayWord(this)">impeller</button>
+      </div>
+    </div>
     <div class="task-box">
       <div class="task-label">Task</div>
       <div class="task-text">Put the sequence in order and answer the questions. Send your answers via WhatsApp — write OR record a short audio.</div>
@@ -210,6 +226,17 @@ var CAP_KEY='ef_ans_og1_u12_kickoff';
 var CAP_EMOJI='\uD83D\uDEE2\uFE0F';
 var CAP_TITLE="Kick Off \u2014 Unit 12 \u2014 Repairs and Maintenance";
 
+function sayWord(btn){
+  if(!('speechSynthesis' in window))return;
+  var text=btn.getAttribute('data-say');
+  window.speechSynthesis.cancel();
+  document.querySelectorAll('.cn-pill.playing').forEach(function(p){p.classList.remove('playing');});
+  var u=new SpeechSynthesisUtterance(text);
+  u.lang='en-US';u.rate=0.9;
+  btn.classList.add('playing');
+  u.onend=function(){btn.classList.remove('playing');};
+  window.speechSynthesis.speak(u);
+}
 function qcSels(){return [].slice.call(document.querySelectorAll('.qc-sel'));}
 function efFields(){return [].slice.call(document.querySelectorAll('.ef-ans'));}
 function efName(){return document.getElementById('studentName')||document.getElementById('student-name');}

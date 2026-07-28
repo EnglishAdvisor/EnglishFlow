@@ -51,6 +51,11 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
 .whatsapp-btn:hover{background:#1ebc58}
 .whatsapp-btn svg{width:16px;height:16px;fill:#fff;flex-shrink:0}
 .zone-support{background:#111827;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:6px;align-self:start}
+.cn-block{margin-top:14px;padding-top:12px;border-top:1px solid rgba(230,126,34,.2)}
+.cn-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:8px}
+.cn-pill{background:rgba(230,126,34,.08);border:1px solid rgba(230,126,34,.28);border-radius:14px;padding:6px 8px;font-size:11px;color:#f0ad72;cursor:pointer;font-family:'Barlow',sans-serif;text-align:center;transition:.15s}
+.cn-pill:hover{background:rgba(230,126,34,.18)}
+.cn-pill.playing{background:#e67e22;color:#0a0f1e;font-weight:600}
 .keyword-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;color:#f0ad72;text-transform:uppercase;letter-spacing:.08em;padding-bottom:8px;border-bottom:1px solid rgba(230,126,34,.2);margin-bottom:4px}
 .kw-row{font-size:11px;color:#c8d8e8;padding:4px 0;border-bottom:1px solid rgba(230,126,34,.07);line-height:1.5}
 .kw-row:last-child{border-bottom:none}
@@ -228,7 +233,8 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
   </div>
 
   <div class="zone-support">
-    <div class="keyword-title">Drilling — quick vocab</div>
+    <div class="zone-label">Click to open Cambridge / Linguee</div>
+    <div class="keyword-title">Key vocabulary</div>
     <div class="kw-row"><strong>derrick</strong> — tall steel structure on rig</div>
     <div class="kw-row"><strong>drill bit</strong> — cuts / crushes rock at the bottom</div>
     <div class="kw-row"><strong>drill string</strong> — long string of connected pipes</div>
@@ -241,6 +247,19 @@ body{background:#0a0f1e;font-family:'Barlow',sans-serif;min-height:100vh}
     <div style="background:#0a1628;border-radius:8px;padding:10px;margin-top:8px">
       <div style="font-size:10px;color:#e67e22;font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Deepest well</div>
       <div style="font-size:11.5px;color:#f0ad72;font-weight:600;line-height:1.6">10,685 metres<br><span style="font-size:10px;color:#c8d8e8;font-weight:400">Gulf of Mexico — BP<br>(the deepest in the world)</span></div>
+    </div>
+
+    <div class="cn-block">
+      <div class="zone-label">Tap to hear the pronunciation</div>
+      <div class="keyword-title">Word Pronunciation</div>
+      <div class="cn-grid">
+        <button class="cn-pill" data-say="derrick" onclick="sayWord(this)">derrick</button>
+        <button class="cn-pill" data-say="drill pipes" onclick="sayWord(this)">drill pipes</button>
+        <button class="cn-pill" data-say="rotary table" onclick="sayWord(this)">rotary table</button>
+        <button class="cn-pill" data-say="mud pump" onclick="sayWord(this)">mud pump</button>
+        <button class="cn-pill" data-say="drill bit" onclick="sayWord(this)">drill bit</button>
+        <button class="cn-pill" data-say="drill string" onclick="sayWord(this)">drill string</button>
+      </div>
     </div>
   </div>
 </div>
@@ -275,6 +294,17 @@ var CAP_KEY='ef_ans_og1_u6_kickoff';
 var CAP_EMOJI='\uD83D\uDEE2\uFE0F';
 var CAP_TITLE="Kick Off \u2014 Unit 6 \u2014 Drilling";
 
+function sayWord(btn){
+  if(!('speechSynthesis' in window))return;
+  var text=btn.getAttribute('data-say');
+  window.speechSynthesis.cancel();
+  document.querySelectorAll('.cn-pill.playing').forEach(function(p){p.classList.remove('playing');});
+  var u=new SpeechSynthesisUtterance(text);
+  u.lang='en-US';u.rate=0.9;
+  btn.classList.add('playing');
+  u.onend=function(){btn.classList.remove('playing');};
+  window.speechSynthesis.speak(u);
+}
 function qzInputs(){return [].slice.call(document.querySelectorAll('.qz-input'));}
 function sents(){return [].slice.call(document.querySelectorAll('.sent-item'));}
 function efName(){return document.getElementById('studentName')||document.getElementById('student-name');}
