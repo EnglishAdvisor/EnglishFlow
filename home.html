@@ -102,15 +102,17 @@ function render(s){
   v.appendChild(el('<div class="offshore">⚓ <b>De volta do embarque?</b> Suas aulas do mês não acumulam — '+
    'fala com o teacher assim que descer pra marcar as que faltam.</div>'));
  }
- v.appendChild(el('<div class="sec">As cápsulas da sua unidade — uma por vez</div>'));
- const l=el('<div class="caps"></div>');
- u.caps.forEach(c=>{
-  const a=document.createElement('a'); a.className='cap';
-  a.href=c.u+'?aluno='+encodeURIComponent(s.nome); a.target='_blank'; a.rel='noopener';
-  a.innerHTML='<span class="n">'+esc(c.n||'•')+'</span><span class="t">'+esc(c.t)+'</span><span class="go">›</span>';
-  l.appendChild(a);
- });
- v.appendChild(l);
+ if(s.book!=='bst'){
+  v.appendChild(el('<div class="sec">As cápsulas da sua unidade — uma por vez</div>'));
+  const l=el('<div class="caps"></div>');
+  u.caps.forEach(c=>{
+   const a=document.createElement('a'); a.className='cap';
+   a.href=c.u+'?aluno='+encodeURIComponent(s.nome); a.target='_blank'; a.rel='noopener';
+   a.innerHTML='<span class="n">'+esc(c.n||'•')+'</span><span class="t">'+esc(c.t)+'</span><span class="go">›</span>';
+   l.appendChild(a);
+  });
+  v.appendChild(l);
+ }
  v.appendChild(el('<div class="sec">Seu treino do dia off</div>'));
  const g=document.createElement('a'); g.className='game';
  g.href=s.game+'?aluno='+encodeURIComponent(s.nome); g.target='_blank'; g.rel='noopener';
