@@ -27,7 +27,13 @@
   function saveOpen() {
     try { localStorage.setItem(OPEN_KEY, JSON.stringify(open)); } catch (e) { /* cheio */ }
   }
-  function wkKey(u, n) { return (DF.state.trail || 'starter') + ':' + u + '.' + n; }
+  // a chave leva o NOME do aluno — sem isso, dois alunos da mesma trilha
+  // testados no mesmo aparelho (o computador do professor) se misturavam:
+  // o "destravado" de um vazava pro outro, porque só trilha+semana não
+  // distingue quem é quem (achado 04/08/2026, ver ESFERA-ARQUITETURA).
+  function wkKey(u, n) {
+    return (DF.state.name || 'sem-nome') + '|' + (DF.state.trail || 'starter') + ':' + u + '.' + n;
+  }
   WK.isOpen = function (u, n) { return !!open[wkKey(u, n)]; };
   WK.openWeek = function (u, n) { open[wkKey(u, n)] = DF.todayKey(); saveOpen(); };
 
@@ -80,8 +86,8 @@
   // trocar "unlock=1.1" por "unlock=1.4" na barra de endereço. Não é segurança
   // de verdade (o sal está no JS do cliente) — o objetivo é pedagógico:
   // a semana abre na aula, junto com o professor.
-  WK.weekKey = function (trail, u, n) {
-    return DF.sign('week|' + trail + '|' + u + '.' + n).slice(0, 6);
+  WK.weekKey = function (nome, trail, u, n) {
+    return DF.sign('week|' + (nome || 'sem-nome') + '|' + trail + '|' + u + '.' + n).slice(0, 6);
   };
 
   // ── progresso por passo (chave "unidade.semana.passo") ──
@@ -574,7 +580,7 @@
     if (un && /^\d+\.\d+$/.test(un)) {
       const parts = un.split('.');
       const u = +parts[0], n = +parts[1];
-      if (q.get('k') === WK.weekKey(DF.state.trail, u, n)) {
+      if (q.get('k') === WK.weekKey(DF.state.name, DF.state.trail, u, n)) {
         const novo = !WK.isOpen(u, n);
         WK.openUpTo(u, n);
         if (novo) setTimeout(function () { DF.toast('🔓 Semana liberada pelo professor!'); }, 700);

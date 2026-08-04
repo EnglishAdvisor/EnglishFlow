@@ -77,7 +77,7 @@
   // o link muda toda semana mesmo — por isso pode carregar as próximas datas
   // marcadas junto (o link fixo do grupo, esse sim, nunca leva isso)
   function linkLiberacao(a, u, n, datas) {
-    let url = linkFixo(a) + '&unlock=' + u + '.' + n + '&k=' + DF.WK.weekKey(a.trilha, u, n);
+    let url = linkFixo(a) + '&unlock=' + u + '.' + n + '&k=' + DF.WK.weekKey(a.nome, a.trilha, u, n);
     if (datas && datas.length) url += '&dates=' + datas.slice(0, 6).join(',');
     return url;
   }

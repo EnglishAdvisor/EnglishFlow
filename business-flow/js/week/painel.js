@@ -51,7 +51,7 @@
   };
   P.linkLiberacao = function (a, u, n) {
     return P.linkFixo(a) + '&unlock=' + u + '.' + n +
-      '&k=' + DF.WK.weekKey(a.trilha, u, n);
+      '&k=' + DF.WK.weekKey(a.nome, a.trilha, u, n);
   };
   P.linkAluno = function (a) {
     return location.href.replace(/[^/]*$/, '') + 'aluno.html?a=' +
