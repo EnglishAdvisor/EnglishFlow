@@ -68,7 +68,7 @@
   DF.PLAN.starter[1] = {
     unit: 1,
     title: 'You',
-    subtitle: 'Marcom Global — seu primeiro mês',
+    subtitle: 'Seu primeiro mês',
     icon: '👋',
 
     mindmap: {

@@ -61,7 +61,7 @@
   DF.PLAN.starter[5] = {
     unit: 5,
     title: 'Products',
-    subtitle: 'O que a Marcom Global e suas parceiras fazem',
+    subtitle: 'O que a empresa e as parceiras fazem',
     icon: '📦',
 
     mindmap: {

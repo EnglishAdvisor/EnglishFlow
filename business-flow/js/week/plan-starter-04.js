@@ -41,7 +41,7 @@
   DF.PLAN.starter[4] = {
     unit: 4,
     title: 'Departments',
-    subtitle: 'Quem faz o quê na Marcom Global',
+    subtitle: 'Quem faz o quê na equipe',
     icon: '🏢',
 
     mindmap: {

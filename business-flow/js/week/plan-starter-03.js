@@ -42,7 +42,7 @@
   DF.PLAN.starter[3] = {
     unit: 3,
     title: 'Workplace',
-    subtitle: 'Por dentro da Marcom Global',
+    subtitle: 'Por dentro da empresa',
     icon: '🏭',
 
     mindmap: {

@@ -48,7 +48,7 @@
   DF.PLAN.starter[2] = {
     unit: 2,
     title: 'Company',
-    subtitle: 'Marcom Global tem filial no mundo todo',
+    subtitle: 'A empresa tem filial no mundo todo',
     icon: '🏢',
 
     mindmap: {
