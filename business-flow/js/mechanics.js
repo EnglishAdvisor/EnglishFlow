@@ -120,7 +120,10 @@
       (item.answers || []).forEach(function (ans) {
         if (a === DF.norm(ans)) ok = true;
       });
-      if (!ok) {
+      // item.exact = sem tolerância a erro de digitação. Obrigatório para
+      // números (telefone, código, voo): errar 2 dígitos e "passar" ensinaria
+      // o contrário do que a competência exige.
+      if (!ok && !item.exact) {
         (item.answers || []).forEach(function (ans) {
           const b = DF.norm(ans);
           const tol = b.length > 5 ? 2 : 1;

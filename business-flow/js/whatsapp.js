@@ -15,6 +15,26 @@
     return a;
   };
 
+  // Compartilhar (padrão das cápsulas): abre o seletor nativo do aparelho —
+  // quem manda escolhe o app (WhatsApp) E o destino (grupo, contato).
+  // Diferente de WA.btn, que manda pra um número FIXO — serve pro aluno
+  // enviar áudio pro mentor, não pro professor mandar link pro grupo de
+  // um aluno específico. Sem suporte a share (desktop, navegador antigo),
+  // cai no seletor de contato do próprio WhatsApp Web.
+  WA.shareBtn = function (label, text, opts) {
+    opts = opts || {};
+    const b = DF.el('button', 'btn wa ' + (opts.cls || ''), label || '📤 Compartilhar');
+    b.type = 'button';
+    b.onclick = function () {
+      if (navigator.share) {
+        navigator.share({ text: text, title: opts.title || '' }).catch(function () { /* aluno cancelou */ });
+      } else {
+        window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
+      }
+    };
+    return b;
+  };
+
   // header padrão das mensagens do jogo
   WA.header = function (secName, unit) {
     const meta = DF.UNITS[unit];

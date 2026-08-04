@@ -1,0 +1,416 @@
+/* ══════════════════════════════════════════════════════════════
+   ENGLISH FLOW — englishflow.css
+   "Consistency beats intensity. Learn daily, speak naturally."
+
+   Paleta oficial, extraída da arte da marca (1-MARKETING/ENGLISH FLOW.png):
+   azul #2898d0 sobre navy #00040c. Metáfora: a ESCADA ILUMINADA subindo a
+   montanha — cada semana é um degrau que acende. Sem torre, sem andares.
+
+   Carregado DEPOIS de style.css: redefine :root e a marca por cima da
+   biblioteca de componentes, sem duplicá-la.
+   ══════════════════════════════════════════════════════════════ */
+:root {
+  --bg: #00060f;
+  --bg2: #00030a;
+  --card: rgba(40, 152, 208, .06);
+  --card2: rgba(40, 152, 208, .12);
+  --glass: rgba(0, 12, 24, .72);
+  --line: rgba(40, 152, 208, .22);
+  --tx: #eaf2f8;
+  --tx2: #8fa8bd;
+  --ac: #2898d0;
+  --ac2: #30a8e0;
+  --acd: #085880;
+  --gold: #f0b429;
+  --good: #22c55e;
+  --bad: #ef4444;
+  --wa: #25D366;
+}
+
+body {
+  background: var(--bg);
+  background-image:
+    radial-gradient(900px 460px at 50% -6%, rgba(40, 152, 208, .18), transparent 62%),
+    radial-gradient(700px 500px at 100% 106%, rgba(8, 88, 128, .18), transparent 60%);
+}
+
+.btn.primary {
+  background: linear-gradient(135deg, var(--ac2), var(--ac));
+  color: #00131f; box-shadow: 0 6px 22px rgba(40, 152, 208, .3);
+}
+.inp:focus { border-color: var(--ac); box-shadow: 0 0 0 3px rgba(40, 152, 208, .25); }
+
+/* ---------- marca ---------- */
+.ef-brand { display: flex; align-items: center; gap: 9px; margin-bottom: 14px; }
+.ef-wave { width: 30px; height: 30px; flex: none; }
+.ef-name {
+  font-family: var(--fh); text-transform: uppercase; line-height: .96;
+  font-size: 15px; letter-spacing: .07em;
+}
+.ef-name em { display: block; font-style: normal; color: var(--ac); }
+.ef-motto {
+  margin-left: auto; text-align: right; font-size: 10.5px;
+  color: var(--tx2); line-height: 1.35; letter-spacing: .02em;
+}
+.ef-motto b { color: var(--ac); font-weight: 600; }
+
+/* ---------- cabeçalho da unidade ---------- */
+.wk-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 5px; }
+.wk-trail {
+  font-family: var(--fh); text-transform: uppercase; letter-spacing: .13em;
+  font-size: 11px; color: var(--tx2);
+}
+.wk-chip {
+  font-family: var(--fh); font-size: 11px; letter-spacing: .08em;
+  background: rgba(40, 152, 208, .16); border: 1px solid rgba(40, 152, 208, .45);
+  color: var(--ac2); padding: 4px 11px; border-radius: 999px; text-transform: uppercase;
+}
+.wk-unit { font-family: var(--fh); font-size: 26px; text-transform: uppercase; letter-spacing: .02em; }
+.wk-hello { color: var(--tx2); font-size: 13.5px; margin-bottom: 18px; }
+
+/* ---------- A ESCADA (o step by step da marca) ---------- */
+.stair {
+  display: flex; align-items: flex-end; gap: 6px; height: 84px;
+  margin-bottom: 6px; padding: 0 2px;
+}
+.stair .sp {
+  flex: 1; position: relative; border-radius: 5px 5px 0 0;
+  background: rgba(40, 152, 208, .10);
+  border-top: 2px solid rgba(40, 152, 208, .22);
+  display: flex; align-items: flex-start; justify-content: center;
+  transition: background .35s, box-shadow .35s, border-color .35s;
+}
+.stair .sp:nth-child(1) { height: 25%; }
+.stair .sp:nth-child(2) { height: 45%; }
+.stair .sp:nth-child(3) { height: 68%; }
+.stair .sp:nth-child(4) { height: 94%; }
+.stair .sp.on {
+  background: linear-gradient(180deg, rgba(40, 152, 208, .42), rgba(40, 152, 208, .07));
+  border-top-color: var(--ac2);
+  box-shadow: 0 -3px 20px rgba(48, 168, 224, .5);
+}
+.stair .sp.done {
+  background: linear-gradient(180deg, rgba(34, 197, 94, .34), rgba(34, 197, 94, .05));
+  border-top-color: var(--good);
+  box-shadow: 0 -3px 16px rgba(34, 197, 94, .34);
+}
+.stair .sp b {
+  font-family: var(--fh); font-size: 10px; letter-spacing: .08em;
+  color: var(--tx2); margin-top: -15px;
+}
+.stair .sp.on b, .stair .sp.done b { color: var(--tx); }
+.stair .flag { position: absolute; top: -30px; font-size: 15px; }
+.stair-cap {
+  text-align: center; font-size: 11px; color: var(--tx2);
+  letter-spacing: .05em; margin-bottom: 20px;
+}
+
+/* ---------- cartão de tópico ---------- */
+.tp {
+  border: 1px solid var(--line); border-radius: 16px; padding: 15px;
+  margin-bottom: 11px; background: var(--card);
+}
+.tp.open {
+  border-color: rgba(40, 152, 208, .6); background: var(--glass);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, .45);
+}
+.tp.done { border-color: rgba(34, 197, 94, .42); }
+.tp.lock { opacity: .78; }
+.tp-head { display: flex; align-items: center; gap: 9px; }
+.tp-ic { font-size: 19px; line-height: 1; }
+.tp-name {
+  flex: 1; font-family: var(--fh); font-size: 16.5px;
+  text-transform: uppercase; letter-spacing: .03em;
+}
+.tp.lock .tp-name { color: var(--tx2); }
+.tp-goal { font-size: 13.5px; color: var(--tx2); line-height: 1.5; margin: 7px 0 0 28px; }
+.tp.open .tp-goal { margin-left: 0; margin-bottom: 13px; color: var(--tx); }
+.tp-week {
+  font-family: var(--fh); font-size: 10.5px; letter-spacing: .1em;
+  color: var(--tx2); text-transform: uppercase;
+}
+
+/* ---------- semana atual em destaque / semanas antigas colapsadas ---------- */
+.tp.current { border-color: var(--ac); box-shadow: 0 0 0 1px rgba(40, 152, 208, .3); }
+.tp-now {
+  font-family: var(--fh); font-size: 10px; letter-spacing: .07em;
+  background: var(--ac); color: #00131f; padding: 2px 8px; border-radius: 999px;
+  text-transform: uppercase; flex: none;
+}
+.tp.collapsed .tp-body { display: none; }
+.tp-caret { color: var(--tx2); font-size: 13px; transition: transform .2s; flex: none; }
+.tp.collapsed .tp-caret { transform: rotate(-90deg); }
+button.tp-head {
+  width: 100%; background: none; border: none; color: var(--tx);
+  font-family: var(--fb); cursor: pointer; text-align: left;
+}
+
+/* ---------- passos do tópico ---------- */
+.st {
+  display: flex; align-items: center; gap: 11px; width: 100%;
+  padding: 12px 0; border: none; border-top: 1px solid var(--line);
+  background: none; color: var(--tx); text-align: left;
+  font-family: var(--fb); font-size: 14.5px; cursor: pointer;
+}
+.st:active { opacity: .55; }
+.st:focus-visible { outline: 2px solid var(--ac); outline-offset: 2px; border-radius: 6px; }
+.st-ic { font-size: 17px; width: 22px; text-align: center; flex: none; }
+.st-name { flex: 1; }
+.st.ok .st-name { color: var(--tx2); }
+.st-tag {
+  font-size: 11px; color: var(--tx2); font-family: var(--fh);
+  letter-spacing: .07em; text-transform: uppercase; flex: none;
+}
+.st-tag.sp { color: var(--gold); }
+
+/* ---------- ponte aula ↔ app (o app estende, não repete) ---------- */
+.bridge {
+  border-left: 2px solid var(--ac); padding: 2px 0 2px 11px;
+  margin: 0 0 13px; border-radius: 0;
+}
+.bridge b {
+  display: block; font-family: var(--fh); font-size: 10.5px; letter-spacing: .12em;
+  color: var(--ac2); text-transform: uppercase; margin-bottom: 4px;
+}
+.bridge span { font-size: 13px; line-height: 1.55; color: var(--tx2); }
+
+/* ---------- competência da semana ---------- */
+.comp {
+  border: 1px solid rgba(240, 180, 41, .35); border-radius: 13px;
+  padding: 11px 13px; margin: 14px 0 0; background: rgba(240, 180, 41, .07);
+}
+.comp b {
+  display: block; font-family: var(--fh); font-size: 11px; letter-spacing: .12em;
+  color: var(--gold); text-transform: uppercase; margin-bottom: 5px;
+}
+.comp span { font-size: 13.5px; line-height: 1.5; color: var(--tx); }
+
+/* ---------- janela de estudo aberta agora ---------- */
+.study-window {
+  border: 1px solid rgba(34, 197, 94, .35); border-radius: 16px; padding: 14px 15px;
+  background: rgba(34, 197, 94, .07); margin-top: 18px;
+}
+.study-window b {
+  display: block; font-family: var(--fh); font-size: 11px; letter-spacing: .12em;
+  color: var(--good); text-transform: uppercase; margin-bottom: 6px;
+}
+.study-window p { font-size: 13.5px; line-height: 1.5; color: var(--tx); }
+
+/* ---------- próxima aula (o gancho) ---------- */
+.next-live {
+  border: 1px solid var(--line); border-radius: 16px; padding: 15px;
+  background: linear-gradient(135deg, rgba(40, 152, 208, .14), rgba(8, 88, 128, .05));
+  margin-top: 18px;
+}
+.next-live b {
+  display: block; font-family: var(--fh); font-size: 11px; letter-spacing: .12em;
+  color: var(--ac2); text-transform: uppercase; margin-bottom: 6px;
+}
+.next-live p { font-size: 14px; line-height: 1.55; color: var(--tx); }
+.next-live .muted { margin-top: 8px; }
+
+/* ---------- mapa mental ---------- */
+.mm-center {
+  text-align: center; border: 1px solid rgba(40, 152, 208, .55); border-radius: 16px;
+  padding: 15px; background: rgba(40, 152, 208, .12); margin-bottom: 4px;
+}
+.mm-center .mm-t { font-family: var(--fh); font-size: 21px; text-transform: uppercase; letter-spacing: .04em; }
+.mm-center .mm-s { font-size: 13px; color: var(--tx2); margin-top: 4px; }
+.mm-spine { width: 2px; height: 16px; background: var(--line); margin: 0 auto; }
+.mm-br { border: 1px solid var(--line); border-radius: 14px; margin-bottom: 10px; overflow: hidden; }
+.mm-br-h {
+  display: flex; align-items: center; gap: 9px; width: 100%; padding: 13px 14px;
+  background: var(--card); border: none; color: var(--tx);
+  font-family: var(--fb); cursor: pointer; text-align: left;
+}
+.mm-br-h .mm-n { flex: 1; font-family: var(--fh); font-size: 14.5px; text-transform: uppercase; letter-spacing: .04em; }
+.mm-br-h .mm-c { font-size: 12px; color: var(--tx2); }
+.mm-br-b { padding: 0 14px 12px; display: none; }
+.mm-br.on .mm-br-b { display: block; }
+.mm-leaf { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-top: 1px solid var(--line); }
+.mm-leaf .l-en { font-weight: 600; font-size: 14.5px; }
+.mm-leaf .l-pt { flex: 1; font-size: 12.5px; color: var(--tx2); }
+.mm-leaf .l-sp {
+  border: 1px solid var(--line); background: var(--card2); color: var(--tx);
+  border-radius: 9px; min-height: 34px; min-width: 38px; font-size: 14px; cursor: pointer;
+}
+.mm-note {
+  font-size: 13px; line-height: 1.6; color: var(--tx2);
+  border-left: 2px solid var(--ac); padding: 3px 0 3px 11px; margin-top: 11px;
+}
+.mm-note b { color: var(--tx); }
+
+/* ---------- diálogo (listening) ---------- */
+.dlg { border: 1px solid var(--line); border-radius: 14px; padding: 13px; background: rgba(0, 0, 0, .3); }
+.dlg-line { display: flex; gap: 9px; padding: 7px 0; font-size: 14.5px; line-height: 1.5; }
+.dlg-line b { color: var(--ac2); font-family: var(--fh); font-size: 13px; letter-spacing: .05em; min-width: 62px; }
+.dlg-hidden { filter: blur(5px); user-select: none; }
+.dlg-playing { color: var(--gold); }
+
+/* ---------- ouvir e repetir (shadowing) ---------- */
+.rp-model {
+  text-align: center; border: 1px solid rgba(40, 152, 208, .45); border-radius: 14px;
+  padding: 17px 14px; background: rgba(40, 152, 208, .1);
+}
+.rp-model .rp-t { font-size: 20px; font-weight: 600; line-height: 1.4; }
+.rp-model .rp-pt { font-size: 13px; color: var(--tx2); margin-top: 7px; }
+.rp-dots { display: flex; gap: 6px; justify-content: center; margin-top: 12px; }
+.rp-dots i { width: 9px; height: 9px; border-radius: 50%; background: rgba(255, 255, 255, .16); }
+.rp-dots i.on { background: var(--good); }
+.rp-heard { font-size: 13.5px; color: var(--tx2); text-align: center; margin-top: 10px; min-height: 20px; }
+
+/* ---------- rever unidades anteriores (discreto, no rodapé) ---------- */
+.review-btn {
+  margin-top: 22px; font-size: 13px; opacity: .72;
+  border-style: dashed;
+}
+.review-btn:active { opacity: 1; }
+.review-card {
+  display: block; width: 100%; text-align: left;
+  font-family: var(--fb); color: var(--tx); cursor: pointer;
+}
+
+/* ---------- hub do professor ---------- */
+.pnl-section-h {
+  font-family: var(--fh); font-size: 13px; letter-spacing: .1em;
+  color: var(--ac2); text-transform: uppercase;
+  margin: 26px 0 12px; padding-top: 14px; border-top: 1px solid var(--line);
+}
+.pnl-section-h:first-of-type { margin-top: 18px; border-top: none; padding-top: 0; }
+
+.aluno-card {
+  display: block; width: 100%; text-align: left; cursor: pointer;
+  font-family: var(--fb); color: var(--tx); background: var(--card);
+}
+.aluno-arrow { margin-left: auto; font-size: 22px; color: var(--ac2); }
+
+.proj-row {
+  display: flex; align-items: center; gap: 11px; padding: 12px 13px;
+  border: 1px solid var(--line); border-radius: 13px; margin-bottom: 9px;
+  background: var(--card); text-decoration: none; color: var(--tx);
+}
+.proj-info { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0; }
+.proj-info b { font-size: 14px; }
+.proj-info small { font-size: 12px; color: var(--tx2); }
+.proj-off { opacity: .5; }
+.proj-off:hover { opacity: .8; }
+
+/* ---------- evolução (painel do aluno) ---------- */
+.evo-stat { flex: 1; text-align: center; padding: 12px 8px; border: 1px solid var(--line);
+  border-radius: 12px; background: var(--card); }
+.evo-stat-n { font-family: var(--fh); font-size: 20px; }
+.evo-stat-l { font-size: 11px; color: var(--tx2); margin-top: 2px; }
+.evo-unit { margin-bottom: 12px; }
+.evo-unit-h { font-size: 13.5px; margin-bottom: 6px; }
+.evo-dots { display: flex; gap: 6px; }
+.evo-dot {
+  width: 30px; height: 30px; border-radius: 8px; display: flex;
+  align-items: center; justify-content: center; font-family: var(--fh); font-size: 12px;
+  background: rgba(255, 255, 255, .06); color: var(--tx2); border: 1px solid var(--line);
+}
+.evo-dot.open { background: rgba(40, 152, 208, .22); color: var(--tx); border-color: var(--ac); }
+
+/* ---------- calendário ---------- */
+.cal-nav { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.cal-label { flex: 1; text-align: center; font-family: var(--fh); text-transform: capitalize; font-size: 14px; }
+.cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
+.cal-dow { text-align: center; font-size: 11px; color: var(--tx2); padding-bottom: 4px; }
+.cal-day {
+  aspect-ratio: 1; border-radius: 9px; border: 1px solid var(--line);
+  background: rgba(255, 255, 255, .04); color: var(--tx); font-size: 13px;
+  display: flex; align-items: center; justify-content: center; cursor: pointer;
+}
+.cal-day.empty { border: none; background: none; cursor: default; }
+.cal-day.today { border-color: var(--ac2); }
+.cal-day.on { background: var(--ac); color: #00131f; font-weight: 700; border-color: var(--ac); }
+
+/* ---------- calendário-mestre (todos os alunos, professor) ---------- */
+.mcal-day {
+  min-height: 54px; border-radius: 9px; border: 1px solid var(--line);
+  background: rgba(255, 255, 255, .04); padding: 3px 3px 4px; display: flex;
+  flex-direction: column; gap: 2px; overflow: hidden;
+  font-family: var(--fb); cursor: pointer; text-align: left; width: 100%;
+}
+.mcal-day:active { opacity: .7; }
+.mcal-day.today { border-color: var(--ac2); }
+.mcal-day.on { background: rgba(40, 152, 208, .14); border-color: var(--ac); }
+.mcal-n { font-size: 11px; color: var(--tx2); }
+.mcal-day.on .mcal-n { color: var(--tx); }
+.mcal-names { display: flex; flex-direction: column; gap: 1px; }
+.mcal-tag {
+  font-size: 9px; line-height: 1.3; background: var(--ac); color: #00131f;
+  border-radius: 4px; padding: 1px 3px; font-weight: 700; white-space: nowrap;
+  overflow: hidden; text-overflow: ellipsis;
+}
+@media (max-width: 380px) { .mcal-day { min-height: 46px; } .mcal-tag { font-size: 8px; } }
+
+/* ---------- painel do professor ---------- */
+.pnl-lbl {
+  font-family: var(--fh); font-size: 10.5px; letter-spacing: .12em;
+  color: var(--ac2); text-transform: uppercase; margin: 14px 0 6px;
+}
+.pnl-url {
+  font-family: var(--fm, monospace); font-size: 11.5px; line-height: 1.5;
+  background: rgba(0, 0, 0, .35); border: 1px solid var(--line);
+  border-radius: 9px; padding: 9px 11px; margin-bottom: 8px;
+  word-break: break-all; color: var(--tx2);
+}
+.pnl-sel { display: grid; grid-template-columns: 1fr; gap: 8px; margin-bottom: 9px; }
+.pnl-sel .inp { min-height: 44px; }
+@media (min-width: 420px) { .pnl-sel { grid-template-columns: 1fr 1fr; } }
+
+/* ---------- drill (substitution drill: só um elemento troca) ---------- */
+.drill {
+  text-align: center; border: 1px solid rgba(40, 152, 208, .45); border-radius: 14px;
+  padding: 20px 14px; background: rgba(40, 152, 208, .1);
+}
+.drill-line { font-size: 21px; font-weight: 600; line-height: 1.45; }
+.drill-line b {
+  color: var(--ac2); font-weight: 700;
+  border-bottom: 2px solid var(--ac2); padding-bottom: 1px;
+}
+.drill-pt { font-size: 13px; color: var(--tx2); margin-top: 8px; min-height: 18px; }
+
+/* ---------- transform (transformation / contraction drill) ---------- */
+.tf {
+  text-align: center; border: 1px solid rgba(40, 152, 208, .45); border-radius: 14px;
+  padding: 18px 14px; background: rgba(40, 152, 208, .1);
+}
+.tf-base { font-size: 19px; font-weight: 600; line-height: 1.4; color: var(--tx); }
+.tf-arrow { font-size: 17px; color: var(--tx2); margin: 7px 0; }
+.tf-cmd {
+  display: inline-block; font-family: var(--fh); font-size: 15px;
+  letter-spacing: .13em; text-transform: uppercase;
+  background: var(--gold); color: #2a1d00;
+  padding: 6px 18px; border-radius: 999px; font-weight: 700;
+}
+.tf-cmd-pt { font-size: 12.5px; color: var(--tx2); margin-top: 7px; }
+
+/* ---------- backchain (de trás pra frente) ---------- */
+.bc {
+  border: 1px solid rgba(40, 152, 208, .45); border-radius: 14px;
+  padding: 14px; background: rgba(40, 152, 208, .1);
+}
+.bc-row { display: flex; align-items: baseline; gap: 10px; padding: 7px 0; }
+.bc-row.past { opacity: .42; }
+.bc-row.now .bc-t { color: var(--ac2); }
+.bc-n {
+  font-family: var(--fh); font-size: 11px; color: var(--tx2);
+  min-width: 16px; flex: none;
+}
+.bc-t { font-size: 18px; font-weight: 600; line-height: 1.4; }
+.bc-row.now .bc-t { font-size: 20px; }
+
+/* ---------- I can… (debrief) ---------- */
+.ican { border: 1px solid rgba(34, 197, 94, .35); border-radius: 14px; padding: 14px; background: rgba(34, 197, 94, .06); }
+.ican b {
+  display: block; font-family: var(--fh); font-size: 11px; letter-spacing: .12em;
+  color: var(--good); text-transform: uppercase; margin-bottom: 9px;
+}
+.ican div { font-size: 14px; line-height: 1.6; padding: 5px 0; }
+
+/* ---------- praticar mais / progresso ---------- */
+.soon { opacity: .42; pointer-events: none; }
+.step-bar { display: flex; gap: 4px; margin-bottom: 16px; }
+.step-bar i { flex: 1; height: 4px; border-radius: 3px; background: rgba(255, 255, 255, .14); }
+.step-bar i.on { background: var(--ac); }
