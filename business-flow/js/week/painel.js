@@ -118,16 +118,48 @@
     }
 
     lista.forEach(function (a) {
-      const card = DF.el('button', 'tp open aluno-card');
-      card.type = 'button';
+      const isOG = a.trilha === 'og1';
+      // div, não button — evita botão dentro de botão (o toggle offshore é um botão interno)
+      const card = DF.el('div', 'tp open aluno-card' + (isOG && a.offshore ? ' offshore' : ''));
+      card.setAttribute('role', 'button'); card.tabIndex = 0;
       const head = DF.el('div', 'tp-head');
       head.appendChild(DF.el('span', 'tp-ic', TRAIL_ICON[a.trilha] || '📘'));
       head.appendChild(DF.el('div', 'tp-name', DF.esc(a.nome)));
       head.appendChild(DF.el('span', 'st-tag', TRAILS[a.trilha] || a.trilha));
+      if (isOG) {
+        const tg = DF.el('button', 'offshore-toggle' + (a.offshore ? ' on' : ''),
+          a.offshore ? '⚓ offshore' : '⚓ marcar offshore');
+        tg.type = 'button';
+        tg.onclick = function (e) {
+          e.stopPropagation();
+          a.offshore = !a.offshore;
+          save(); P.render(filtro);
+        };
+        head.appendChild(tg);
+      }
+      const rm = DF.el('button', 'aluno-rm', '🗑️');
+      rm.type = 'button';
+      rm.title = 'Remover aluno';
+      rm.onclick = function (e) {
+        e.stopPropagation();
+        if (!confirm('Remover "' + a.nome + '" da lista? Isso apaga o cadastro e as notas/' +
+          'calendário dele — não dá pra desfazer.')) return;
+        const i = alunos.indexOf(a);
+        if (i >= 0) alunos.splice(i, 1);
+        save();
+        const notas = loadNotas();
+        delete notas[a.nome + '|' + a.trilha];
+        saveNotasGlobal(notas);
+        P.render(filtro);
+        DF.toast('Aluno removido.');
+      };
+      head.appendChild(rm);
       head.appendChild(DF.el('span', 'aluno-arrow', '›'));
       card.appendChild(head);
-      card.onclick = function () { location.href = 'aluno.html?a=' +
+      const abrir = function () { location.href = 'aluno.html?a=' +
         encodeURIComponent(a.nome) + '&t=' + a.trilha; };
+      card.onclick = abrir;
+      card.onkeydown = function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); abrir(); } };
       c.appendChild(card);
     });
 
@@ -144,6 +176,16 @@
       const o = DF.el('option', '', TRAILS[k]); o.value = k; sel.appendChild(o);
     });
     add.appendChild(sel);
+
+    // nem todo aluno de Oil & Gas é offshore — só pergunta quando a trilha é O&G
+    const offWrap = DF.el('label', 'lbl offshore-check', '');
+    offWrap.style.display = 'none';
+    const offChk = DF.el('input', ''); offChk.type = 'checkbox';
+    offWrap.appendChild(offChk);
+    offWrap.appendChild(document.createTextNode(' ⚓ Regime offshore? (não cumulativo, janela de ~2 semanas)'));
+    add.appendChild(offWrap);
+    sel.onchange = function () { offWrap.style.display = sel.value === 'og1' ? 'flex' : 'none'; };
+
     const go = DF.el('button', 'btn primary wide', 'Adicionar');
     go.onclick = function () {
       const nome = inp.value.trim();
@@ -151,7 +193,7 @@
       if (alunos.some(function (x) { return DF.norm(x.nome) === DF.norm(nome); })) {
         DF.toast('Já existe um aluno com esse nome.'); return;
       }
-      alunos.push({ nome: nome, trilha: sel.value });
+      alunos.push({ nome: nome, trilha: sel.value, offshore: sel.value === 'og1' && offChk.checked });
       save(); P.render('');
       DF.toast('Aluno adicionado. Clique no nome pra abrir o painel dele. ✅');
     };
@@ -190,12 +232,15 @@
       return;
     }
     const notas = loadNotas();
-    // mapa dia → [nomes]
+    // mapa dia → [{ nome, offshore }]
     const porDia = {};
     alunos.forEach(function (a) {
       const rec = notas[a.nome + '|' + a.trilha];
       (rec && rec.aulas || []).forEach(function (d) {
-        (porDia[d] = porDia[d] || []).push(a.nome.split(' ')[0]);
+        (porDia[d] = porDia[d] || []).push({
+          nome: a.nome.split(' ')[0],
+          offshore: a.trilha === 'og1' && !!a.offshore
+        });
       });
     });
 
@@ -229,7 +274,9 @@
       cell.appendChild(DF.el('span', 'mcal-n', String(d)));
       if (nomes.length) {
         const names = DF.el('div', 'mcal-names');
-        nomes.slice(0, 3).forEach(function (nm) { names.appendChild(DF.el('span', 'mcal-tag', nm)); });
+        nomes.slice(0, 3).forEach(function (p) {
+          names.appendChild(DF.el('span', 'mcal-tag' + (p.offshore ? ' offshore' : ''), p.nome));
+        });
         if (nomes.length > 3) names.appendChild(DF.el('span', 'mcal-tag', '+' + (nomes.length - 3)));
         cell.appendChild(names);
       }

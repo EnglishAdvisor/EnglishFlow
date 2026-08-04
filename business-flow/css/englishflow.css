@@ -25,6 +25,8 @@
   --good: #22c55e;
   --bad: #ef4444;
   --wa: #25D366;
+  --offshore: #a78bfa;
+  --offshored: #c4b5fd;
 }
 
 body {
@@ -284,6 +286,26 @@ button.tp-head {
 }
 .aluno-arrow { margin-left: auto; font-size: 22px; color: var(--ac2); }
 
+/* ---------- offshore (O&G) ---------- */
+.aluno-card.offshore { border-left: 3px solid var(--offshore); }
+.offshore-badge {
+  font-size: 10px; font-family: var(--fh); letter-spacing: .06em; text-transform: uppercase;
+  color: var(--offshored); background: rgba(167, 139, 250, .18);
+  border-radius: 999px; padding: 3px 8px; flex: none;
+}
+.offshore-toggle {
+  flex: none; font-size: 11px; border: 1px solid var(--line); background: none;
+  color: var(--tx2); border-radius: 8px; padding: 4px 8px; cursor: pointer;
+}
+.offshore-toggle.on { color: var(--offshored); border-color: var(--offshore); background: rgba(167, 139, 250, .12); }
+.offshore-check { align-items: center; gap: 8px; font-size: 13px; color: var(--tx2); margin: 10px 0; }
+.offshore-check input { flex: none; width: 17px; height: 17px; accent-color: var(--offshore); }
+.aluno-rm {
+  flex: none; font-size: 14px; border: 1px solid var(--line); background: none;
+  color: var(--tx2); border-radius: 8px; width: 30px; height: 30px; cursor: pointer;
+}
+.aluno-rm:hover { border-color: var(--bad); color: var(--bad); }
+
 .proj-row {
   display: flex; align-items: center; gap: 11px; padding: 12px 13px;
   border: 1px solid var(--line); border-radius: 13px; margin-bottom: 9px;
@@ -342,6 +364,7 @@ button.tp-head {
   border-radius: 4px; padding: 1px 3px; font-weight: 700; white-space: nowrap;
   overflow: hidden; text-overflow: ellipsis;
 }
+.mcal-tag.offshore { background: var(--offshore); color: #1e1147; }
 @media (max-width: 380px) { .mcal-day { min-height: 46px; } .mcal-tag { font-size: 8px; } }
 
 /* ---------- painel do professor ---------- */
