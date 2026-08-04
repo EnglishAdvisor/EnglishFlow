@@ -57,6 +57,11 @@
     return location.href.replace(/[^/]*$/, '') + 'aluno.html?a=' +
       encodeURIComponent(a.nome) + '&t=' + a.trilha;
   };
+  // link pro aluno offshore avisar embarque/desembarque (manda WhatsApp pro
+  // professor — não sincroniza sozinho, ver offshore.html)
+  P.linkOffshore = function (a) {
+    return location.href.replace(/[^/]*$/, '') + 'offshore.html?a=' + encodeURIComponent(a.nome);
+  };
 
   // jogos e projetos que já funcionam hoje (edite aqui quando publicar algo novo)
   // Só UM produto fica ativo pra valer: o painel semanal (link do grupo de
@@ -136,6 +141,11 @@
           save(); P.render(filtro);
         };
         head.appendChild(tg);
+        const cp = DF.el('button', 'offshore-toggle', '📤 link');
+        cp.type = 'button';
+        cp.title = 'Copiar link pro aluno avisar embarque/desembarque';
+        cp.onclick = function (e) { e.stopPropagation(); copiar(P.linkOffshore(a), cp, '✅ copiado'); };
+        head.appendChild(cp);
       }
       const rm = DF.el('button', 'aluno-rm', '🗑️');
       rm.type = 'button';
@@ -156,6 +166,24 @@
       head.appendChild(rm);
       head.appendChild(DF.el('span', 'aluno-arrow', '›'));
       card.appendChild(head);
+      // anotação rápida do que o aluno avisou (via WhatsApp, link acima) —
+      // texto livre, o professor digita o que o aluno mandou, não sincroniza sozinho
+      if (isOG) {
+        const mov = DF.el('div', 'aluno-mov');
+        mov.appendChild(DF.el('span', 'aluno-mov-ic', '📅'));
+        mov.appendChild(DF.el('span', 'aluno-mov-tx', a.proxMov ? DF.esc(a.proxMov) : 'Sem próximo movimento anotado'));
+        const ed = DF.el('button', 'aluno-mov-ed', '✏️');
+        ed.type = 'button';
+        ed.onclick = function (e) {
+          e.stopPropagation();
+          const novo = prompt('Próximo movimento (ex.: "Desembarca 06/08"):', a.proxMov || '');
+          if (novo === null) return;
+          a.proxMov = novo.trim();
+          save(); P.render(filtro);
+        };
+        mov.appendChild(ed);
+        card.appendChild(mov);
+      }
       const abrir = function () { location.href = 'aluno.html?a=' +
         encodeURIComponent(a.nome) + '&t=' + a.trilha; };
       card.onclick = abrir;
