@@ -217,25 +217,45 @@
         '⚠️ Nenhuma aula marcada no calendário — o link não vai levar data. Marque abaixo primeiro.'));
     }
 
+    // gerar o link É o ato de destravar — copiar ou compartilhar já atualiza
+    // a evolução sozinho, sem precisar de um segundo clique separado
+    // (achado 04/08/2026: os dois botões desencontrados confundiram o Felipe
+    // testando o Gleydson — "Testar" mostrava uma unidade, "Evolução" outra).
+    function marcarDestravado(u, n) {
+      const rec = registro(a);
+      rec.ate = { u: u, n: n };
+      saveNotas();
+    }
+
     const row = DF.el('div', 'row gap');
     const cpL = DF.el('button', 'btn small primary', '📋 Copiar link');
-    cpL.onclick = function () { copiar(linkLiberacao(a, +selU.value, +selW.value, datasFuturas(a)), cpL); };
+    cpL.onclick = function () {
+      const u = +selU.value, n = +selW.value;
+      marcarDestravado(u, n);
+      copiar(linkLiberacao(a, u, n, datasFuturas(a)), cpL, '✅ Copiado e evolução atualizada!');
+      setTimeout(function () { A.render(a); }, 1700);
+    };
     row.appendChild(cpL);
     // compartilhar (não wa.me fixo): você escolhe o app e o grupo/contato
     // na hora — o número de destino não é decidido pelo código
     const wa = DF.el('button', 'btn small wa', '📤 Compartilhar');
     wa.type = 'button';
     wa.onclick = function () {
+      const u = +selU.value, n = +selW.value;
+      marcarDestravado(u, n);
       const p = plano[selU.value];
-      const w = p && p.weeks.find(function (x) { return x.n === +selW.value; });
-      const link = linkLiberacao(a, +selU.value, +selW.value, datasFuturas(a));
+      const w = p && p.weeks.find(function (x) { return x.n === n; });
+      const link = linkLiberacao(a, u, n, datasFuturas(a));
       const texto = '🔓 ' + a.nome + ', seu app está liberado até aqui!\n' +
         (w ? w.title + '\n' : '') +
         (prox ? '📅 Próxima aula: ' + fmtISO(prox) + '\n' : '') + link;
+      const depoisDeCompartilhar = function () { A.render(a); };
       if (navigator.share) {
-        navigator.share({ text: texto, title: 'ENGLISH FLOW · ' + a.nome }).catch(function () { /* cancelou */ });
+        navigator.share({ text: texto, title: 'ENGLISH FLOW · ' + a.nome })
+          .catch(function () { /* cancelou */ }).then(depoisDeCompartilhar);
       } else {
         window.open('https://wa.me/?text=' + encodeURIComponent(texto), '_blank');
+        depoisDeCompartilhar();
       }
     };
     row.appendChild(wa);
@@ -244,17 +264,8 @@
     test.onclick = function () { test.href = linkLiberacao(a, +selU.value, +selW.value, datasFuturas(a)); };
     row.appendChild(test);
     c.appendChild(row);
-
-    const doApply = DF.el('button', 'btn ghost wide', '✔ Marcar como destravado (atualiza a evolução acima)');
-    doApply.title = 'Só atualiza o registro deste aluno aqui no seu painel — não abre nada no celular dele';
-    doApply.onclick = function () {
-      const rec = registro(a);
-      rec.ate = { u: +selU.value, n: +selW.value };
-      saveNotas();
-      DF.toast('Evolução atualizada. ✅');
-      A.render(a);
-    };
-    c.appendChild(doApply);
+    c.appendChild(DF.el('p', 'muted small',
+      '📋 e 📤 já atualizam a evolução sozinhos. 🧪 só abre pra você conferir, não muda nada.'));
   }
 
   // ══════════════════════════════════════════════════════════
