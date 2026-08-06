@@ -78,7 +78,10 @@
     { icon: '🌳', nome: 'Árvore de cápsulas — OG1', desc: 'Protótipo — navegação das cápsulas por unidade',
       href: '../../1 - OIL & GAS/og-1/capsules/arvore-de-capsulas.html', tag: 'inativo' },
     { icon: '🏢', nome: 'Business Flow (antigo)', desc: 'Protótipo — torre Business, substituída pelo painel semanal',
-      href: 'index.html', tag: 'inativo' }
+      href: 'index.html', tag: 'inativo' },
+    { icon: '📦', nome: 'Cápsulas (antigo)',
+      desc: 'Arquivo — navegação completa por cápsulas (O&G1, Business Starter, Business Elementary, For Life), retirada do menu principal',
+      href: 'https://englishadvisor.github.io/EnglishFlow/capsulas-arquivo.html', tag: 'inativo' }
   ];
 
   function copiar(txt, btn, okLabel) {
