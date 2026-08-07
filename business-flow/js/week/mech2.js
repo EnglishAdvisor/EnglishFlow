@@ -11,20 +11,57 @@
   // O TTS do navegador tem uma voz só por vez; alternamos entre as vozes en
   // disponíveis para que cada personagem soe diferente. Se só houver uma,
   // variamos o rate — ainda assim o aluno distingue quem fala.
-  function voiceFor(i) {
-    const en = DF.SP.enVoices();
-    if (!en.length) return null;
-    return en[i % en.length];
+  //
+  // O pitch/voz NÃO pode depender de "quem fala primeiro" num diálogo — isso
+  // fazia o mesmo personagem soar diferente em exercícios diferentes, e às
+  // vezes soar com o gênero errado (achado 07/08/2026: Elena masculina e
+  // Kenji feminino em plan-elementary-05, porque nesse diálogo Elena falava
+  // primeiro e pegava o pitch "par"). Em vez disso, o gênero é decidido pelo
+  // NOME do personagem, de forma estável em qualquer diálogo do app inteiro.
+  const FEMALE_NAMES = ['aisha', 'amara', 'beatriz', 'camila', 'dora', 'elena',
+    'grace', 'larissa', 'marta', 'nadia', 'priya', 'sara', 'sofia', 'yuki'];
+  const MALE_NAMES = ['diego', 'elias', 'hendrik', 'joaquim', 'kenji', 'luca',
+    'marco', 'mateus', 'noah', 'roberto', 'tom', 'tomás', 'william'];
+
+  function genderFor(name) {
+    const n = String(name || '').toLowerCase().trim();
+    if (FEMALE_NAMES.indexOf(n) >= 0) return 'f';
+    if (MALE_NAMES.indexOf(n) >= 0) return 'm';
+    return null; // papel genérico (Host, Guide, Waiter...) — sem gênero fixo
   }
 
-  function sayAs(text, speakerIdx, rate, onend) {
+  // hash simples e estável, só pra escolher consistentemente entre as vozes
+  // disponíveis e entre o pitch alternativo quando o nome não tem gênero
+  // conhecido (papéis genéricos como "Host" ou "Guide").
+  function hash(str) {
+    let h = 0;
+    for (let i = 0; i < str.length; i++) h = (h * 31 + str.charCodeAt(i)) >>> 0;
+    return h;
+  }
+
+  function voiceFor(name, fallbackIdx) {
+    const en = DF.SP.enVoices();
+    if (!en.length) return null;
+    const key = String(name || '') + '|' + fallbackIdx;
+    return en[hash(key) % en.length];
+  }
+
+  function pitchFor(name, fallbackIdx) {
+    const g = genderFor(name);
+    if (g === 'f') return 1.18;
+    if (g === 'm') return 1;
+    // sem nome conhecido: alterna de forma estável por nome, não por ordem
+    return hash(String(name || '') + '|' + fallbackIdx) % 2 === 0 ? 1 : 1.18;
+  }
+
+  function sayAs(text, speakerName, speakerIdx, rate, onend) {
     if (!DF.SP.ttsAvailable()) { if (onend) onend(); return; }
     try {
       const u = new SpeechSynthesisUtterance(String(text));
-      const v = voiceFor(speakerIdx);
+      const v = voiceFor(speakerName, speakerIdx);
       if (v) { u.voice = v; u.lang = v.lang; } else { u.lang = 'en-GB'; }
       u.rate = rate || (DF.state ? DF.state.settings.rate : 0.9);
-      u.pitch = speakerIdx % 2 === 0 ? 1 : 1.18;
+      u.pitch = pitchFor(speakerName, speakerIdx);
       u.onend = function () { if (onend) onend(); };
       u.onerror = function () { if (onend) onend(); };
       speechSynthesis.speak(u);
@@ -74,7 +111,7 @@
         rows[i].classList.add('dlg-playing');
         const idx = speakers.indexOf(ln.who);
         i++;
-        sayAs(ln.en, idx, rate, function () { setTimeout(next, 420); });
+        sayAs(ln.en, ln.who, idx, rate, function () { setTimeout(next, 420); });
       })();
     }
 
