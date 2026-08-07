@@ -31,9 +31,14 @@
      Semana 4 · Writing + Speaking + Outcomes + Expanding Your Fluency
 
    ═══ NOTA PRO PROFESSOR ═══
-   O livro traz um Review Puzzle de Units 1–3 no fim desta unidade. O motor
-   semanal não tem checkpoint de bloco (isso existe só na torre antiga, em
-   units/index.js). Registrado como pendência — não foi implementado aqui. */
+   O livro traz um Review Puzzle (cruzadinha) de Units 1–3 no fim desta
+   unidade. O motor semanal não tem mecânica de grade nem conceito de
+   checkpoint de bloco (isso só existe na torre antiga, em units/index.js).
+   Decisão com o Felipe (08/08/2026, opção B): manter a FUNÇÃO — revisão
+   acumulada misturando as 3 unidades — e trocar o FORMATO pelas mecânicas
+   que já existem (match/choice/type/order), em vez de construir uma
+   mecânica de cruzadinha nova. Implementado como o step "block-review-1",
+   dentro do "mais" da semana 4 (ver mais abaixo). */
 (function (root) {
   const DF = root.DF = root.DF || {};
   DF.PLAN = DF.PLAN || { starter: {}, elementary: {} };
@@ -849,8 +854,8 @@
                 title: '🗣️ Your own refusal',
                 prompt: 'What is the ONE thing you would refuse to give up, and why? ' +
                         'Be honest.',
-                example: 'I would not give up hot showers. I work outdoors and it is the only ' +
-                         'thing that makes the day end properly.',
+                example: 'I would not give up hot showers, because I work outdoors and it is ' +
+                         'the only thing that makes the day end properly.',
                 mustUse: ['because'],
                 expl: 'A resposta honesta vale mais que a resposta certa — e é o que faz a ' +
                       'aula ao vivo render.' }
@@ -1152,9 +1157,9 @@
                 title: '💭 Which side are you on?',
                 prompt: 'Say whether you would vote yes or no in Porto Verde, and support it ' +
                         'with ONE specific example from the text.',
-                example: 'I would vote yes. The generator already runs nineteen hours a day, ' +
-                         'and a machine from 1978 running nineteen hours a day is not a plan, ' +
-                         'it is a countdown.',
+                example: 'I would vote yes, because the generator already runs nineteen hours ' +
+                         'a day, and a machine from 1978 running that long is not a plan, it ' +
+                         'is a countdown.',
                 mustUse: ['because'],
                 expl: 'Este é o outcome 3. O exemplo tem que ser do texto, não uma segunda ' +
                       'opinião.' },
@@ -1192,7 +1197,7 @@
               { ui: 'build', cat: 'fun', srsId: 'wc1u3w3:dt:3', unit: 3, waSec: 'Energy diet',
                 title: '🍽️ One you already do',
                 prompt: 'Name something you already do, and how long you have been doing it.',
-                example: "I've been hanging clothes outside for years — in this climate a " +
+                example: 'I have been hanging clothes outside for years — in this climate a ' +
                          'dryer makes no sense anyway.',
                 mustUse: ['have'],
                 expl: 'Repare: aqui volta o present perfect da unidade 1. As unidades não são ' +
@@ -1642,6 +1647,131 @@
               ]
             }
           },
+
+          // ═══ REVIEW PUZZLE — Units 1-3 (fechamento de bloco) ═══
+          // O livro fecha o bloco com uma cruzadinha de revisão (p.89, Units
+          // 1-3). O motor semanal não tem mecânica de grade — decisão
+          // registrada com o Felipe (08/08/2026): manter a FUNÇÃO (revisão
+          // acumulada, misturando as 3 unidades) e trocar o FORMATO pelas
+          // mecânicas que já existem (match/choice/type/order), em vez de
+          // construir uma mecânica de cruzadinha nova. Vive aqui — no "mais"
+          // da última semana da unidade 3 — porque só faz sentido depois que
+          // as três unidades foram abertas.
+          {
+            id: 'block-review-1', icon: '🧩', name: 'Review Puzzle — Units 1–3', tag: 'revisão',
+            items: [
+              { ui: 'match', cat: 'voc', srsId: 'wc1blk1:m1',
+                title: '🧩 Unit 1 — match the word to its meaning:',
+                pairs: [
+                  ['ambitious', 'needing great effort to succeed'],
+                  ['determine', 'to find out or confirm'],
+                  ['generation', 'about thirty years'],
+                  ['preserve', 'to protect for the future'],
+                  ['identical', 'exactly the same']
+                ] },
+              { ui: 'match', cat: 'voc', srsId: 'wc1blk1:m2',
+                title: '🧩 Unit 2 — match the word to its meaning:',
+                pairs: [
+                  ['picturesque', 'attractive, old-fashioned way'],
+                  ['tranquil', 'calm and peaceful'],
+                  ['destination', 'the place you are going to'],
+                  ['solitude', 'being alone, by choice'],
+                  ['outsider', 'someone who does not belong']
+                ] },
+              { ui: 'match', cat: 'voc', srsId: 'wc1blk1:m3',
+                title: '🧩 Unit 3 — match the word to its meaning:',
+                pairs: [
+                  ['sustainable', 'long-lasting, good for the environment'],
+                  ['generate', 'to make or produce'],
+                  ['reduce', 'to make smaller in amount'],
+                  ['roadblock', 'something that blocks progress'],
+                  ['residents', 'the people who live there']
+                ] },
+              { ui: 'choice', cat: 'gra', srsId: 'wc1blk1:g1',
+                title: '🧩 Unit 1 grammar — choose the correct form:',
+                main: 'She ___ at the archive since 2019.',
+                options: DF.shuffle([
+                  { label: 'has worked', correct: true }, { label: 'worked' },
+                  { label: 'works' }, { label: 'was working' }
+                ]),
+                expl: 'since + continua até agora → present perfect.' },
+              { ui: 'choice', cat: 'gra', srsId: 'wc1blk1:g2',
+                title: '🧩 Unit 2 grammar — choose the correct form:',
+                main: "I'm looking forward to ___ that coast again.",
+                options: DF.shuffle([
+                  { label: 'seeing', correct: true }, { label: 'see' },
+                  { label: 'to see' }, { label: 'saw' }
+                ]),
+                expl: 'to depois de "forward" é preposição → -ing.' },
+              { ui: 'choice', cat: 'gra', srsId: 'wc1blk1:g3',
+                title: '🧩 Unit 3 grammar — choose the correct form:',
+                main: 'This time next year the town ___ on solar power.',
+                options: DF.shuffle([
+                  { label: 'will be running', correct: true }, { label: 'will run' },
+                  { label: 'is running' }, { label: 'runs' }
+                ]),
+                expl: 'ação em curso num ponto do futuro → will be + -ing.' },
+              { ui: 'type', cat: 'voc', srsId: 'wc1blk1:t1',
+                title: '✍️ Unit 1 — complete with ONE word:',
+                main: 'They came up ___ a plan nobody expected.',
+                answers: ['with'],
+                expl: 'come up with = bolar uma ideia.' },
+              { ui: 'type', cat: 'voc', srsId: 'wc1blk1:t2',
+                title: '✍️ Unit 2 — complete with ONE word:',
+                main: 'The town is famous ___ making cheese.',
+                answers: ['for'],
+                expl: 'famous FOR + -ing.' },
+              { ui: 'type', cat: 'voc', srsId: 'wc1blk1:t3',
+                title: '✍️ Unit 3 — complete with ONE word:',
+                main: 'The village still relies ___ a generator from 1978.',
+                answers: ['on'],
+                expl: 'rely ON.' },
+              { ui: 'order', cat: 'gra', srsId: 'wc1blk1:o1',
+                title: '🧩 Build the sentence (Unit 1 grammar):',
+                answer: 'I have been working here for almost three years',
+                expl: 'present perfect continuous — ênfase na duração.' },
+              { ui: 'order', cat: 'gra', srsId: 'wc1blk1:o2',
+                title: '🧩 Build the sentence (Unit 2 grammar):',
+                answer: 'Walking early is the only way to avoid the crowds',
+                expl: 'gerúndio como sujeito + infinitivo de propósito.' },
+              { ui: 'order', cat: 'gra', srsId: 'wc1blk1:o3',
+                title: '🧩 Build the sentence (Unit 3 grammar):',
+                answer: 'By 2040 most of the coast will run on solar power',
+                expl: 'previsão com will, marcador de data no início.' },
+              { ui: 'choice', cat: 'voc', srsId: 'wc1blk1:cross1',
+                title: '🧩 Which unit does this word belong to?',
+                main: 'picturesque',
+                options: DF.shuffle([
+                  { label: 'Unit 2 — The World Awaits', correct: true },
+                  { label: 'Unit 1 — Who We Are' },
+                  { label: 'Unit 3 — The Great Energy Challenge' }
+                ]) },
+              { ui: 'choice', cat: 'voc', srsId: 'wc1blk1:cross2',
+                title: '🧩 Which unit does this word belong to?',
+                main: 'sustainable',
+                options: DF.shuffle([
+                  { label: 'Unit 3 — The Great Energy Challenge', correct: true },
+                  { label: 'Unit 1 — Who We Are' },
+                  { label: 'Unit 2 — The World Awaits' }
+                ]) },
+              { ui: 'choice', cat: 'voc', srsId: 'wc1blk1:cross3',
+                title: '🧩 Which unit does this word belong to?',
+                main: 'generation',
+                options: DF.shuffle([
+                  { label: 'Unit 1 — Who We Are', correct: true },
+                  { label: 'Unit 2 — The World Awaits' },
+                  { label: 'Unit 3 — The Great Energy Challenge' }
+                ]) },
+              { ui: 'build', cat: 'fun', srsId: 'wc1blk1:build', unit: 3, waSec: 'Review Puzzle',
+                title: '🗣️ Close the block in one breath',
+                prompt: 'In one minute, use one word from each unit (1, 2, and 3) in three ' +
+                        'different sentences about your own life.',
+                example: "I've been ambitious about learning English. Last year I visited a " +
+                         'picturesque town in Minas. I try to be more sustainable at home now.',
+                mustUse: ['ambitious', 'picturesque', 'sustainable'] }
+            ]
+          },
+
           { id: 'more-video-4', icon: '📺', name: 'Vídeo-aula do tópico', tag: 'em breve', soon: true }
         ]
       }

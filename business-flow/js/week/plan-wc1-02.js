@@ -1311,7 +1311,7 @@
                 title: '✍️ Sentence 3 — the honest drawback',
                 prompt: 'Every good description admits one problem. What is the drawback of ' +
                         'your place?',
-                example: 'There is nowhere to sit, and the only café closes at four.',
+                example: 'It is beautiful, but there is nowhere to sit and the café closes at four.',
                 mustUse: ['but'] },
               { ui: 'build', cat: 'fun', srsId: 'wc1u2w4:wr:4', unit: 2, waSec: 'Writing',
                 title: '✍️ Sentence 4 — the recommendation',
