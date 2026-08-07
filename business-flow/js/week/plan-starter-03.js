@@ -373,7 +373,9 @@
                 n: 6
               },
               drills: [
-                { frame: 'We have ___ here.', pool: 'place', focus: 'lugar',
+                // artigo vem no slot ("Temos UM depósito aqui"), então placeArticle —
+                // placeThe daria "We have the cafeteria here."
+                { frame: 'We have ___ here.', pool: 'placeArticle', focus: 'lugar',
                   ptHint: 'Temos ___ aqui.', n: 5 },
                 { frame: "It's a ___ office.", pool: 'adj', focus: 'adjetivo',
                   ptHint: 'É um escritório ___.', n: 4 }
@@ -684,15 +686,15 @@
               waSec: 'Treino infinito',
               transform: {
                 title: '🔀 Transforme — deixas novas a cada rodada',
-                templates: ['They are in {place}.', 'We are in {place}.',
-                            'He is in {place}.', 'She is in {place}.'],
+                templates: ['They are in {placeThe}.', 'We are in {placeThe}.',
+                            'He is in {placeThe}.', 'She is in {placeThe}.'],
                 cmds: ['Negative', 'Question', 'Contraction'],
                 n: 8
               },
               drills: [
-                { frame: 'Are they in ___?', pool: 'place', focus: 'lugar',
+                { frame: 'Are they in ___?', pool: 'placeThe', focus: 'lugar',
                   ptHint: 'Eles estão em ___?', n: 5 },
-                { frame: "No, we aren't. We're in ___.", pool: 'place', focus: 'lugar',
+                { frame: "No, we aren't. We're in ___.", pool: 'placeThe', focus: 'lugar',
                   ptHint: 'Não. Estamos em ___.', n: 5 }
               ]
             }
@@ -1162,7 +1164,7 @@
                 n: 5
               },
               drills: [
-                { frame: 'Are they in ___?', pool: 'place', focus: 'lugar', ptHint: 'Eles estão em ___?', n: 4 },
+                { frame: 'Are they in ___?', pool: 'placeThe', focus: 'lugar', ptHint: 'Eles estão em ___?', n: 4 },
                 { frame: "It's a ___ office.", pool: 'adj', focus: 'adjetivo', ptHint: 'É um escritório ___.', n: 4 },
                 { frame: 'Can you please send me ___?',
                   pool: ['a map', 'the address', 'the details', 'the document'],

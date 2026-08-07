@@ -405,13 +405,13 @@
               waSec: 'Treino infinito',
               drills: [
                 { frame: "I'm ___.", pool: 'job', focus: 'cargo', ptHint: 'Eu sou ___.', n: 5 },
-                { frame: 'She works in ___.', pool: 'place', focus: 'lugar', ptHint: 'Ela trabalha em ___.', n: 5 },
-                { frame: "He's from the ___ department.", pool: 'dept', focus: 'departamento',
+                { frame: 'She works in ___.', pool: 'placeArticle', focus: 'lugar', ptHint: 'Ela trabalha em ___.', n: 5 },
+                { frame: "He's from the ___ department.", pool: 'deptU1', focus: 'departamento',
                   ptHint: 'Ele é do departamento de ___.', n: 5 }
               ],
               backchain: [
-                { text: 'She works in {place}.', ptHint: 'Ela trabalha em…' },
-                { text: "I'm {job} in the {dept} department.", ptHint: 'Eu sou… no departamento de…' }
+                { text: 'She works in {placeArticle}.', ptHint: 'Ela trabalha em…' },
+                { text: "I'm {job} in the {deptU1} department.", ptHint: 'Eu sou… no departamento de…' }
               ]
             }
           },

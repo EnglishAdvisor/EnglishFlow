@@ -395,13 +395,13 @@
                 n: 8
               },
               drills: [
-                { frame: 'I work in the ___ Department.', pool: 'dept', focus: 'departamento',
+                { frame: 'I work in the ___ Department.', pool: 'deptU4', focus: 'departamento',
                   ptHint: 'Trabalho no departamento de ___.', n: 5 },
                 { frame: 'We ___ the products.', pool: ['make', 'sell', 'transport', 'check'],
                   focus: 'ação', ptHint: 'Nós ___ os produtos.', n: 4 }
               ],
               backchain: [
-                { text: 'I work in the {dept} Department.', ptHint: 'Trabalho no departamento de…' }
+                { text: 'I work in the {deptU4} Department.', ptHint: 'Trabalho no departamento de…' }
               ]
             }
           },
@@ -712,7 +712,7 @@
             gen: {
               waSec: 'Treino infinito',
               drills: [
-                { frame: 'Do you work in ___?', pool: 'dept', focus: 'departamento',
+                { frame: 'Do you work in ___?', pool: 'deptU4', focus: 'departamento',
                   ptHint: 'Você trabalha em ___?', n: 5 },
                 { frame: "I don't ___.", pool: ['sell the products', 'manage the money',
                   'meet customers', 'make computers', 'work in Logistics'],
@@ -721,7 +721,7 @@
                   focus: 'verbo', ptHint: 'Nós ___ os produtos.', n: 4 }
               ],
               backchain: [
-                { text: "I don't work in {dept}.", ptHint: 'Eu não trabalho em…' }
+                { text: "I don't work in {deptU4}.", ptHint: 'Eu não trabalho em…' }
               ]
             }
           },
@@ -1119,7 +1119,7 @@
                 { frame: "I'm calling about ___.",
                   pool: ['the new website', 'the sales report', 'the meeting', 'the new product'],
                   focus: 'assunto', ptHint: 'Estou ligando sobre ___.', n: 4 },
-                { frame: "There's ___ here.", pool: 'place', focus: 'o que existe',
+                { frame: "There's ___ here.", pool: 'placeArticle', focus: 'o que existe',
                   ptHint: 'Aqui tem ___.', n: 4 }
               ]
             }
@@ -1370,7 +1370,7 @@
                 n: 6
               },
               drills: [
-                { frame: 'I work in the ___ Department.', pool: 'dept', focus: 'departamento',
+                { frame: 'I work in the ___ Department.', pool: 'deptU4', focus: 'departamento',
                   ptHint: 'Trabalho no departamento de ___.', n: 4 },
                 { frame: "I'm calling about ___.",
                   pool: ['the new products', 'the transport', 'the new employee', 'the invoice'],

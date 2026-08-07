@@ -33,8 +33,10 @@
           'an office assistant', 'the finance director'],
     jobBare: ['engineer', 'accountant', 'receptionist', 'IT technician',
               'marketing manager', 'project coordinator', 'sales representative'],
-    place: ['an office', 'a factory', 'the head office', 'a hotel', 'a bank', 'a warehouse'],
-    dept: ['Sales', 'Finance', 'IT', 'Marketing', 'Human Resources', 'Logistics'],
+    // Unit 1 — lugar com artigo (a/an): o contraste é o ponto do drill,
+    // então nunca troque por uma lista com "the" fixo
+    placeArticle: ['an office', 'a factory', 'the head office', 'a hotel', 'a bank', 'a warehouse'],
+    deptU1: ['Sales', 'Finance', 'IT', 'Marketing', 'Human Resources', 'Logistics'],
     daypart: ['morning', 'afternoon', 'evening'],
     person: ['colleague', 'assistant', 'manager', 'client'],
     // Unit 2 — Company (Italy/India/the UK entraram na Unit 5, pro par nacionalidade)
@@ -45,13 +47,17 @@
     // empresas fictícias do universo Marcom Global — nada do livro, nada de marca real
     company: ['Marcom Global', 'Aurora Systems', 'Delta Foods',
               'Nova Energy', 'Vertex Logistics', 'Orion Bank'],
-    // Unit 3 — Workplace
-    place: ['the warehouse', 'the factory', 'the cafeteria', 'reception',
-            'the office', 'the car park'],
+    // Unit 3 — Workplace. Três formas do MESMO lugar; escolha pela moldura:
+    //   placeThe    → "They are in {placeThe}."     (lugar definido)
+    //   placeBare   → "It's a {adj} {placeBare}."   (o artigo já está na frase)
+    //   placeArticle (Unit 1, acima) → "There's ___ here."  (artigo no slot)
+    placeThe: ['the warehouse', 'the factory', 'the cafeteria', 'reception',
+               'the office', 'the car park'],
     placeBare: ['warehouse', 'factory', 'cafeteria', 'reception', 'office', 'car park'],
     adj: ['new', 'old', 'big', 'small', 'good', 'bad'],
-    // Unit 4 — Departments
-    dept: ['Sales', 'Finance', 'IT', 'Logistics', 'Production', 'Human Resources'],
+    // Unit 4 — Departments (espelha o const DEPTS de plan-starter-04:
+    // Marketing só entra como EXTRA_DEPTS, por isso a lista da U1 é outra)
+    deptU4: ['Sales', 'Finance', 'IT', 'Logistics', 'Production', 'Human Resources'],
     verb: ['work', 'live', 'make', 'manage', 'meet', 'sell'],
     // substantivos que viram plural — cobrem as três regras (-s, -ies, irregular)
     noun: ['company', 'customer', 'person', 'office', 'department',
