@@ -152,13 +152,47 @@
   // ══════════════════════════════════════════════════════════
   // DESTRAVA — onde o aluno está agora + os links
   // ══════════════════════════════════════════════════════════
-  // lembra a última unidade/semana escolhida no seletor, pra não resetar
-  // toda vez que a página re-renderiza (ex.: depois de "marcar destravado")
-  let selecaoLembrada = null;
+  // A ARMADILHA QUE ISSO EVITA (achado 10/08/2026, relatado pelo Felipe):
+  // a versão anterior "lembrava" a última unidade/semana escolhida no
+  // seletor, pra sobreviver ao re-render automático depois de copiar um
+  // link. Só que essa memória era uma variável só pro painel inteiro, sem
+  // dono — navegar pra uma unidade avançada só pra CONFERIR o conteúdo
+  // (ou reabrir a mesma unidade depois de já ter passado por uma semana
+  // adiantada) deixava o dropdown de semana silenciosamente preso naquele
+  // valor. Quem olhasse só o seletor de Unit — sem reparar que o de Semana
+  // não tinha voltado pra 1 — destravava e mandava uma semana bem mais
+  // adiantada do que pretendia. ("Pedi a semana 5, cliquei e fui pra 8.")
+  //
+  // A correção: NENHUMA memória entre interações. Cada vez que o painel
+  // pinta, e cada vez que a unidade muda no seletor, a semana sugerida é
+  // sempre recalculada — a primeira ainda travada NAQUELA unidade (ou a
+  // primeira de todas, se a unidade inteira já foi destravada). Nunca herda
+  // valor de uma escolha anterior, seja de teste, seja de outro aluno.
+  function primeiraTravadaNaUnidade(plano, u, rec) {
+    const semanas = (plano[u] || {}).weeks || [];
+    for (let j = 0; j < semanas.length; j++) {
+      if (!estaAberta(rec, u, semanas[j].n)) return semanas[j].n;
+    }
+    return semanas.length ? semanas[0].n : 1;
+  }
+  function proximaSemanaSugerida(plano, units, rec) {
+    for (let i = 0; i < units.length; i++) {
+      const u = units[i];
+      const semanas = plano[u].weeks || [];
+      for (let j = 0; j < semanas.length; j++) {
+        if (!estaAberta(rec, u, semanas[j].n)) return { u: u, n: semanas[j].n };
+      }
+    }
+    // tudo já destravado — sugere a última semana da última unidade
+    const ultU = units[units.length - 1];
+    const semanasUlt = (plano[ultU] || {}).weeks || [];
+    return { u: ultU, n: semanasUlt.length ? semanasUlt[semanasUlt.length - 1].n : 1 };
+  }
 
   function paintDestrava(c, a) {
     const plano = DF.PLAN[a.trilha] || {};
     const units = Object.keys(plano).map(Number).sort(function (x, y) { return x - y; });
+    const sugestao = units.length ? proximaSemanaSugerida(plano, units, registro(a)) : null;
 
     c.appendChild(DF.el('div', 'pnl-lbl', 'Link fixo — descrição do grupo (nunca muda)'));
     const url = linkFixo(a);
@@ -183,8 +217,11 @@
       const o = DF.el('option', '', 'Unit ' + u + ' — ' + plano[u].title);
       o.value = u; selU.appendChild(o);
     });
-    if (selecaoLembrada && plano[selecaoLembrada.u]) selU.value = selecaoLembrada.u;
+    if (sugestao) selU.value = sugestao.u;
     const selW = DF.el('select', 'inp');
+    // toda vez que a unidade muda — inclusive ao pintar o painel pela
+    // primeira vez — a semana recalcula do zero: a primeira ainda travada
+    // NESSA unidade. Nunca herda o que estava selecionado antes.
     function fillW() {
       selW.innerHTML = '';
       const p = plano[selU.value];
@@ -193,12 +230,10 @@
         const o = DF.el('option', '', w.title + (pronta ? '' : ' (sem conteúdo ainda)'));
         o.value = w.n; selW.appendChild(o);
       });
-      if (selecaoLembrada && +selU.value === selecaoLembrada.u) selW.value = selecaoLembrada.n;
+      selW.value = primeiraTravadaNaUnidade(plano, +selU.value, registro(a));
     }
-    function lembrar() { selecaoLembrada = { u: +selU.value, n: +selW.value }; }
-    selU.onchange = function () { fillW(); lembrar(); };
-    selW.onchange = lembrar;
-    fillW(); lembrar();
+    selU.onchange = fillW;
+    fillW();
     const grid = DF.el('div', 'pnl-sel');
     grid.appendChild(selU); grid.appendChild(selW);
     c.appendChild(grid);
