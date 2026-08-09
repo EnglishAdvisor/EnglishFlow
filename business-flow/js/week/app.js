@@ -230,6 +230,7 @@
     }
 
     c.appendChild(doubtBtn('Unit ' + u + ' — ' + p.title));
+    c.appendChild(progressBtn());
 
     // Unidade concluída fica acessível PARA SEMPRE — mas fora da frente do aluno.
     // O foco é a semana atual; rever é uma escolha dele, no rodapé, sem contagem.
@@ -425,6 +426,58 @@
       '<div class="ef-name">English<em>Flow</em></div>' +
       '<div class="ef-motto"><b>Consistency</b> beats intensity.<br>Learn daily. Speak naturally.</div>';
     return b;
+  }
+
+  // resumo do progresso do aluno pra ele mandar pro professor — não existe
+  // sincronização automática entre o aparelho do aluno e o do professor
+  // (tudo é local storage, sem servidor), então quem "sobe o dado" é o
+  // próprio aluno, apertando o botão quando quiser.
+  WK.progressReport = function () {
+    const t = DF.PLAN[DF.state.trail || 'starter'] || {};
+    const linhas = [];
+    Object.keys(t).map(Number).sort(function (a, b) { return a - b; }).forEach(function (u) {
+      const p = t[u];
+      const abertas = (p.weeks || []).filter(function (w) { return WK.isOpen(u, w.n); });
+      if (!abertas.length) return;
+      const feitas = abertas.filter(function (w) { return WK.weekDone(u, w); }).length;
+      linhas.push((feitas === abertas.length ? '✅' : '🟡') +
+        ' Unit ' + u + ': ' + feitas + '/' + abertas.length + ' semana(s) concluída(s)');
+    });
+
+    let extra = '';
+    if (DF.SRS) {
+      const cats = DF.SRS.catStats();
+      const catLinhas = Object.keys(cats).map(function (k) {
+        const c = DF.CATS[k];
+        const s = cats[k];
+        const pct = s.total ? Math.round(100 * s.ok / s.total) : 0;
+        return (c ? c.e + ' ' + c.label : k) + ': ' + pct + '%';
+      });
+      if (catLinhas.length) extra += '\n\n📊 Acerto por área:\n' + catLinhas.join('\n');
+      const nNcs = DF.SRS.ncs().length;
+      if (nNcs) extra += '\n\n⚠️ ' + nNcs + ' ponto(s) ainda precisando de revisão.';
+    }
+
+    return '📤 Progresso — ' + (DF.state.name || 'Aluno') + '\n\n' +
+      (linhas.length ? linhas.join('\n') : 'Nenhuma semana liberada ainda.') + extra;
+  };
+
+  function progressBtn() {
+    const wrap = DF.el('div', '');
+    wrap.style.marginTop = '10px';
+    const b = DF.WA.shareBtn('📤 Enviar meu progresso pro professor', '', { cls: 'wide' });
+    b.onclick = function () {
+      const texto = WK.progressReport();
+      if (navigator.share) {
+        navigator.share({ text: texto, title: 'ENGLISH FLOW · progresso' }).catch(function () { /* cancelou */ });
+      } else {
+        window.open('https://wa.me/?text=' + encodeURIComponent(texto), '_blank');
+      }
+    };
+    wrap.appendChild(b);
+    wrap.appendChild(DF.el('p', 'muted center small',
+      'Manda esse resumo pro professor quando quiser — ele não vê isso sozinho.'));
+    return wrap;
   }
 
   // botão de dúvida: o aluno chega no WhatsApp já com o tópico nomeado
