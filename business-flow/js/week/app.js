@@ -57,6 +57,11 @@
   const DATES_KEY = 'englishflow_classdates_v1'; // lista inteira, CSV
   const DIAS_SEMANA = ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado'];
 
+  // cada data pode levar horário junto: "2026-08-14T19:00". O "T" é o
+  // mesmo separador ISO que Date() já entende — sem hora, continua
+  // "2026-08-14" como sempre foi (achado 10/08/2026: horário virou
+  // necessário assim que a agenda cresceu e "aula hoje" parou de bastar).
+  const DATE_RE = /^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2})?$/;
   WK.setClassDates = function (csv) {
     try {
       localStorage.setItem(DATES_KEY, csv);
@@ -70,14 +75,15 @@
     if (!csv) return [];
     const hoje = DF.todayKey();
     return csv.split(',').filter(function (d) {
-      return /^\d{4}-\d{2}-\d{2}$/.test(d) && d >= hoje;
+      return DATE_RE.test(d) && d >= hoje;
     }).sort();
   };
   WK.nextClassDate = function () {
     const d = WK.classDates()[0];
     if (!d) return null;
-    const dt = new Date(d + 'T00:00:00');
-    return DF.fmtDate(dt) + ' (' + DIAS_SEMANA[dt.getDay()] + ')';
+    const partes = d.split('T');
+    const dt = new Date(partes[0] + 'T00:00:00');
+    return DF.fmtDate(dt) + ' (' + DIAS_SEMANA[dt.getDay()] + ')' + (partes[1] ? ' · ' + partes[1] : '');
   };
 
   // ONDE O ALUNO ESTÁ = tudo até aqui está liberado, e SÓ até aqui.
@@ -255,9 +261,14 @@
     for (let i = 0; i < startPad; i++) grid.appendChild(DF.el('div', 'cal-day empty'));
     for (let d = 1; d <= daysInMonth; d++) {
       const key = ano + '-' + String(mes + 1).padStart(2, '0') + '-' + String(d).padStart(2, '0');
-      const marcado = datas.indexOf(key) >= 0;
-      grid.appendChild(DF.el('div',
-        'cal-day' + (marcado ? ' on' : '') + (key === todayKey ? ' today' : ''), String(d)));
+      // "datas" pode trazer horário junto ("2026-08-14T19:00") — compara só
+      // a parte da data, senão o dia nunca bate com o marcado.
+      const match = datas.find(function (d2) { return d2.split('T')[0] === key; });
+      const cell = DF.el('div',
+        'cal-day' + (match ? ' on' : '') + (key === todayKey ? ' today' : ''), String(d));
+      const hora = match && match.split('T')[1];
+      if (hora) cell.appendChild(DF.el('span', 'cal-day-hora', hora));
+      grid.appendChild(cell);
     }
     wrap.appendChild(grid);
     return wrap;
@@ -662,7 +673,8 @@
 
     // ?dates=2026-08-10,2026-08-24 — as próximas aulas, mandadas junto no link semanal
     const datesParam = q.get('dates');
-    if (datesParam && /^\d{4}-\d{2}-\d{2}(,\d{4}-\d{2}-\d{2})*$/.test(datesParam)) {
+    const oneOrMoreDates = /^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2})?(,\d{4}-\d{2}-\d{2}(T\d{2}:\d{2})?)*$/;
+    if (datesParam && oneOrMoreDates.test(datesParam)) {
       WK.setClassDates(datesParam);
     }
 

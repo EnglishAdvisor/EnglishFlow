@@ -351,11 +351,13 @@ button.tp-head {
 .cal-day {
   aspect-ratio: 1; border-radius: 9px; border: 1px solid var(--line);
   background: rgba(255, 255, 255, .04); color: var(--tx); font-size: 13px;
-  display: flex; align-items: center; justify-content: center; cursor: pointer;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 1px; cursor: pointer;
 }
 .cal-day.empty { border: none; background: none; cursor: default; }
 .cal-day.today { border-color: var(--ac2); }
 .cal-day.on { background: var(--ac); color: #00131f; font-weight: 700; border-color: var(--ac); }
+.cal-day-hora { font-size: 9px; font-weight: 400; opacity: .85; line-height: 1; }
 
 /* ---------- calendário-mestre (todos os alunos, professor) ---------- */
 .mcal-day {

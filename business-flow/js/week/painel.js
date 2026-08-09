@@ -39,7 +39,8 @@
   // porque é o mesmo local, não uma cópia
   function registroDe(notas, a) {
     const k = a.nome + '|' + a.trilha;
-    notas[k] = notas[k] || { texto: '', aulas: [], ate: null };
+    notas[k] = notas[k] || { texto: '', aulas: [], ate: null, horarios: {} };
+    if (!notas[k].horarios) notas[k].horarios = {};
     return notas[k];
   }
 
@@ -280,6 +281,7 @@
       (rec && rec.aulas || []).forEach(function (d) {
         (porDia[d] = porDia[d] || []).push({
           nome: a.nome.split(' ')[0],
+          hora: (rec.horarios && rec.horarios[d]) || '',
           offshore: a.trilha === 'og1' && !!a.offshore
         });
       });
@@ -316,7 +318,8 @@
       if (nomes.length) {
         const names = DF.el('div', 'mcal-names');
         nomes.slice(0, 3).forEach(function (p) {
-          names.appendChild(DF.el('span', 'mcal-tag' + (p.offshore ? ' offshore' : ''), p.nome));
+          names.appendChild(DF.el('span', 'mcal-tag' + (p.offshore ? ' offshore' : ''),
+            p.nome + (p.hora ? ' ' + p.hora : '')));
         });
         if (nomes.length > 3) names.appendChild(DF.el('span', 'mcal-tag', '+' + (nomes.length - 3)));
         cell.appendChild(names);
@@ -351,14 +354,28 @@
     wrap.appendChild(DF.el('div', 'pnl-lbl', 'Já marcados neste dia'));
     if (!marcados.length) wrap.appendChild(DF.el('p', 'muted small', 'Ninguém ainda.'));
     marcados.forEach(function (a) {
+      const rec0 = notas[a.nome + '|' + a.trilha];
       const row = DF.el('div', 'row gap');
       row.style.marginBottom = '7px';
       row.appendChild(DF.el('span', '', '📅 ' + DF.esc(a.nome)));
+      const horaInp = DF.el('input', 'inp');
+      horaInp.type = 'time';
+      horaInp.value = (rec0.horarios && rec0.horarios[key]) || '';
+      horaInp.onchange = function () {
+        const notas2 = loadNotas();
+        const rec = registroDe(notas2, a);
+        rec.horarios = rec.horarios || {};
+        if (horaInp.value) rec.horarios[key] = horaInp.value; else delete rec.horarios[key];
+        saveNotasGlobal(notas2);
+        P.render('');
+      };
+      row.appendChild(horaInp);
       const rm = DF.el('button', 'btn small danger', '✕ Remover');
       rm.onclick = function () {
         const notas2 = loadNotas();
         const rec = registroDe(notas2, a);
         rec.aulas = rec.aulas.filter(function (x) { return x !== key; });
+        if (rec.horarios) delete rec.horarios[key];
         saveNotasGlobal(notas2);
         P.render('');
         modal.close();
@@ -376,12 +393,17 @@
         const o = DF.el('option', '', a.nome); o.value = a.nome + '|' + a.trilha; sel.appendChild(o);
       });
       row.appendChild(sel);
+      const horaNova = DF.el('input', 'inp');
+      horaNova.type = 'time';
+      row.appendChild(horaNova);
       const add = DF.el('button', 'btn small primary', '+ Marcar');
       add.onclick = function () {
         const notas2 = loadNotas();
         const a = livres.find(function (x) { return (x.nome + '|' + x.trilha) === sel.value; });
         const rec = registroDe(notas2, a);
         if (rec.aulas.indexOf(key) < 0) rec.aulas.push(key);
+        rec.horarios = rec.horarios || {};
+        if (horaNova.value) rec.horarios[key] = horaNova.value; else delete rec.horarios[key];
         saveNotasGlobal(notas2);
         P.render('');
         modal.close();

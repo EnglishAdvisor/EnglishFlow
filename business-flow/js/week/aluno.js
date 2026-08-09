@@ -36,7 +36,10 @@
   // se usássemos DF.WK.isOpen direto).
   function registro(a) {
     const k = chave(a);
-    notas[k] = notas[k] || { texto: '', aulas: [], ate: null };
+    notas[k] = notas[k] || { texto: '', aulas: [], ate: null, horarios: {} };
+    // registros antigos (de antes de 10/08/2026) não têm o campo — cria na
+    // hora sem apagar nada do que já existia.
+    if (!notas[k].horarios) notas[k].horarios = {};
     return notas[k];
   }
   // uma semana está "aberta" se vem antes (ou é) o ponto salvo pra este aluno
@@ -63,16 +66,37 @@
   function base() { return location.href.replace(/[^/]*$/, '') + 'semana.html'; }
   function linkFixo(a) { return base() + '?a=' + encodeURIComponent(a.nome) + '&t=' + a.trilha; }
 
-  // todas as datas futuras marcadas (a próxima é a [0])
+  // todas as datas futuras marcadas (a próxima é a [0]) — sempre datas
+  // PURAS (sem horário). O horário mora à parte, em rec.horarios[data].
   function datasFuturas(a) {
     const rec = registro(a);
     const hoje = DF.todayKey();
     return (rec.aulas || []).filter(function (d) { return d >= hoje; }).sort();
   }
   function proximaAula(a) { return datasFuturas(a)[0] || null; }
+  // o horário marcado pra uma data, ou '' se não foi preenchido
+  function horaDe(a, data) {
+    const rec = registro(a);
+    return (data && rec.horarios && rec.horarios[data]) || '';
+  }
+  // mesma lista de datasFuturas, mas cada item leva "T HH:MM" junto quando
+  // existe — é o formato que vai no link (?dates=) pro app do aluno mostrar
+  // a hora certa, não só o dia.
+  function datasFuturasComHora(a) {
+    return datasFuturas(a).map(function (d) {
+      const h = horaDe(a, d);
+      return h ? d + 'T' + h : d;
+    });
+  }
   // ISO (YYYY-MM-DD) → DD/MM/AAAA sem passar pelo UTC — "2026-08-10" sem hora
   // vira meia-noite UTC, que em fuso negativo (Brasil) volta pro dia anterior.
   function fmtISO(iso) { return DF.fmtDate(iso + 'T00:00:00'); }
+  // idem, mas com o horário junto quando a data tiver um marcado —
+  // "10/08/2026 às 19:00" em vez de só "10/08/2026".
+  function fmtISOComHora(a, data) {
+    const h = horaDe(a, data);
+    return fmtISO(data) + (h ? ' às ' + h : '');
+  }
 
   // o link muda toda semana mesmo — por isso pode carregar as próximas datas
   // marcadas junto (o link fixo do grupo, esse sim, nunca leva isso)
@@ -253,7 +277,7 @@
     if (prox) {
       c.appendChild(DF.el('p', 'muted small',
         '📅 Este link também vai avisar a próxima aula pro aluno: <b>' +
-        fmtISO(prox) + '</b> (a marcada no calendário abaixo).'));
+        fmtISOComHora(a, prox) + '</b> (a marcada no calendário abaixo).'));
     } else {
       c.appendChild(DF.el('p', 'muted small',
         '⚠️ Nenhuma aula marcada no calendário — o link não vai levar data. Marque abaixo primeiro.'));
@@ -274,7 +298,7 @@
     cpL.onclick = function () {
       const u = +selU.value, n = +selW.value;
       marcarDestravado(u, n);
-      copiar(linkLiberacao(a, u, n, datasFuturas(a)), cpL, '✅ Copiado e evolução atualizada!');
+      copiar(linkLiberacao(a, u, n, datasFuturasComHora(a)), cpL, '✅ Copiado e evolução atualizada!');
       setTimeout(function () { A.render(a); }, 1700);
     };
     row.appendChild(cpL);
@@ -287,10 +311,10 @@
       marcarDestravado(u, n);
       const p = plano[selU.value];
       const w = p && p.weeks.find(function (x) { return x.n === n; });
-      const link = linkLiberacao(a, u, n, datasFuturas(a));
+      const link = linkLiberacao(a, u, n, datasFuturasComHora(a));
       const texto = '🔓 ' + a.nome + ', seu app está liberado até aqui!\n' +
         (w ? w.title + '\n' : '') +
-        (prox ? '📅 Próxima aula: ' + fmtISO(prox) + '\n' : '') + link;
+        (prox ? '📅 Próxima aula: ' + fmtISOComHora(a, prox) + '\n' : '') + link;
       const depoisDeCompartilhar = function () { A.render(a); };
       if (navigator.share) {
         navigator.share({ text: texto, title: 'ENGLISH FLOW · ' + a.nome })
@@ -393,6 +417,42 @@
   // ══════════════════════════════════════════════════════════
   let calMonth = new Date().getMonth(), calYear = new Date().getFullYear();
 
+  // modal de marcar/editar/remover uma aula num dia, com horário opcional
+  function abrirEdicaoDia(a, key, rec) {
+    const marcado = rec.aulas.indexOf(key) >= 0;
+    const horaAtual = (rec.horarios && rec.horarios[key]) || '';
+    const body = DF.el('div', 'stack gap');
+    body.appendChild(DF.el('p', 'muted small', fmtISO(key)));
+    const inp = DF.el('input', 'inp');
+    inp.type = 'time';
+    inp.value = horaAtual;
+    body.appendChild(inp);
+    const btns = [
+      {
+        label: marcado ? '✅ Salvar horário' : '✅ Marcar aula', cls: 'primary', cb: function () {
+          if (rec.aulas.indexOf(key) < 0) rec.aulas.push(key);
+          rec.horarios = rec.horarios || {};
+          if (inp.value) rec.horarios[key] = inp.value; else delete rec.horarios[key];
+          saveNotas();
+          A.render(a);
+        }
+      }
+    ];
+    if (marcado) {
+      btns.push({
+        label: '🗑️ Desmarcar', cls: 'ghost', cb: function () {
+          const i = rec.aulas.indexOf(key);
+          if (i >= 0) rec.aulas.splice(i, 1);
+          if (rec.horarios) delete rec.horarios[key];
+          saveNotas();
+          A.render(a);
+        }
+      });
+    }
+    btns.push({ label: 'Cancelar', cls: 'ghost' });
+    DF.modal({ title: marcado ? 'Editar aula' : 'Marcar aula', html: body, buttons: btns });
+  }
+
   function paintCalendario(c, a) {
     const rec = registro(a);
     const nav = DF.el('div', 'cal-nav');
@@ -423,17 +483,14 @@
       const marcado = rec.aulas.indexOf(key) >= 0;
       const cell = DF.el('button', 'cal-day' + (marcado ? ' on' : '') + (key === todayKey ? ' today' : ''), String(d));
       cell.type = 'button';
-      cell.onclick = function () {
-        const i = rec.aulas.indexOf(key);
-        if (i >= 0) rec.aulas.splice(i, 1); else rec.aulas.push(key);
-        saveNotas();
-        A.render(a);
-      };
+      const hora = rec.horarios && rec.horarios[key];
+      if (marcado && hora) cell.appendChild(DF.el('span', 'cal-day-hora', hora));
+      cell.onclick = function () { abrirEdicaoDia(a, key, rec); };
       grid.appendChild(cell);
     }
     c.appendChild(grid);
     c.appendChild(DF.el('p', 'muted small',
-      'Clique num dia pra marcar/desmarcar aula ao vivo. ' +
+      'Clique num dia pra marcar aula ao vivo e definir o horário. ' +
       rec.aulas.length + ' aula(s) marcada(s) ao todo.'));
   }
 
