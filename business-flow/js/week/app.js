@@ -80,15 +80,26 @@
     return DF.fmtDate(dt) + ' (' + DIAS_SEMANA[dt.getDay()] + ')';
   };
 
-  // ONDE O ALUNO ESTÁ = tudo até aqui está liberado.
-  // O professor não manda 14 links pra quem está na semana 14 — ele diz o ponto
-  // e o app abre a semana e tudo que vem antes (nesta unidade e nas anteriores).
+  // ONDE O ALUNO ESTÁ = tudo até aqui está liberado, e SÓ até aqui.
+  // O professor não manda 14 links pra quem está na semana 14 — ele diz o
+  // ponto e o app abre a semana e tudo que vem antes (nesta unidade e nas
+  // anteriores). ATÉ 10/08/2026 isso só ABRIA — nunca fechava o que estava
+  // além do ponto novo, então destravar a semana 5 depois de ter testado
+  // (ou destravado por engano) a semana 8 deixava a 8 aberta pra sempre,
+  // mesmo o novo link dizendo 5. Achado pelo Felipe: "está liberando a
+  // unidade oito por mais que eu coloque qualquer semana". Agora cada link
+  // de destravar é a VERDADE inteira — abre tudo até o ponto marcado e
+  // FECHA de volta qualquer coisa depois dele, nesta trilha. Só afeta o
+  // aparelho que abre o link (o do aluno se for ele quem clica; o seu, se
+  // for você testando) — nunca mexe em outro aluno nem em outra trilha.
   WK.openUpTo = function (u, n) {
     const t = DF.PLAN[DF.state.trail || 'starter'] || {};
     const hoje = DF.todayKey();
     Object.keys(t).map(Number).forEach(function (un) {
       (t[un].weeks || []).forEach(function (w) {
-        if (un < u || (un === u && w.n <= n)) open[wkKey(un, w.n)] = hoje;
+        const k = wkKey(un, w.n);
+        if (un < u || (un === u && w.n <= n)) open[k] = hoje;
+        else delete open[k];
       });
     });
     saveOpen();
