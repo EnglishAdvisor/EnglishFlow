@@ -149,7 +149,12 @@
   // ── progresso por passo (chave "unidade.semana.passo") ──
   function stKey(u, n, id) { return wkKey(u, n) + '.' + id; }
   WK.stepDone = function (u, n, id) { return !!open['done:' + stKey(u, n, id)]; };
-  WK.markStep = function (u, n, id) { open['done:' + stKey(u, n, id)] = 1; saveOpen(); };
+  // no modo teste, marca só em memória (deixa o professor avançar de passo
+  // em passo na cadeia) mas nunca grava no localStorage do aparelho dele.
+  WK.markStep = function (u, n, id) {
+    open['done:' + stKey(u, n, id)] = 1;
+    if (!WK.isPreviewing()) saveOpen();
+  };
 
   function plan(u) {
     const t = DF.PLAN[DF.state.trail || 'starter'] || {};
@@ -544,11 +549,16 @@
       DF.MECH.render(it, box, function (res) {
         const q = (res && res.q) || 0;
         score += q; max += 5;
-        if (it.srsId && DF.SRS) {
-          DF.SRS.tick();
-          DF.SRS.record(it.srsId, it.cat, q, it.sp || null);
+        // no modo teste (🧪 do professor) nada disto grava — nem o SRS nem
+        // o state geral, pra não misturar dado de um aluno de teste com o
+        // de verdade, nem com o de outro aluno testado no mesmo aparelho.
+        if (!WK.isPreviewing()) {
+          if (it.srsId && DF.SRS) {
+            DF.SRS.tick();
+            DF.SRS.record(it.srsId, it.cat, q, it.sp || null);
+          }
+          DF.save();
         }
-        DF.save();
         next();
       });
       window.scrollTo({ top: 0, behavior: 'smooth' });
