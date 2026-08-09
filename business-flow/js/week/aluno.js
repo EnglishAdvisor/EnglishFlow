@@ -81,6 +81,13 @@
     if (datas && datas.length) url += '&dates=' + datas.slice(0, 6).join(',');
     return url;
   }
+  // link de PRÉVIA — mesma assinatura, mas abre com "?preview=" em vez de
+  // "?unlock=". O app (ver app.js) sabe a diferença: preview mostra o
+  // tópico sem gravar nada no aparelho, então testar não destrava de
+  // verdade. Nunca leva ?dates= — é só uma conferência, não o aviso real.
+  function linkPreview(a, u, n) {
+    return linkFixo(a) + '&preview=' + u + '.' + n + '&k=' + DF.WK.weekKey(a.nome, a.trilha, u, n);
+  }
   function copiar(txt, btn, okLabel) {
     DF.copyText(txt).then(function (ok) {
       const antes = btn.textContent;
@@ -296,11 +303,16 @@
     row.appendChild(wa);
     const test = DF.el('a', 'btn small ghost', '🧪 Testar');
     test.target = '_blank';
-    test.onclick = function () { test.href = linkLiberacao(a, +selU.value, +selW.value, datasFuturas(a)); };
+    // achado 10/08/2026: até aqui "Testar" abria o MESMO link real
+    // (?unlock=), então conferir uma semana avançada destravava ela de
+    // verdade — o texto "não muda nada" mentia. Agora usa ?preview=, que o
+    // app mostra sem gravar (ver a checagem de "pv" em app.js WK.boot).
+    test.onclick = function () { test.href = linkPreview(a, +selU.value, +selW.value); };
     row.appendChild(test);
     c.appendChild(row);
     c.appendChild(DF.el('p', 'muted small',
-      '📋 e 📤 já atualizam a evolução sozinhos. 🧪 só abre pra você conferir, não muda nada.'));
+      '📋 e 📤 destravam de verdade e já atualizam a evolução. 🧪 só mostra a semana pra você ' +
+      'conferir — não grava nada no aparelho, nem pra este aluno nem pra nenhum outro.'));
   }
 
   // ══════════════════════════════════════════════════════════

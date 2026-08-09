@@ -34,8 +34,20 @@
   function wkKey(u, n) {
     return (DF.state.name || 'sem-nome') + '|' + (DF.state.trail || 'starter') + ':' + u + '.' + n;
   }
-  WK.isOpen = function (u, n) { return !!open[wkKey(u, n)]; };
+  // "prévia" (link ?preview=) — feita SÓ de memória, nunca gravada em
+  // localStorage. Some sozinha ao recarregar a página. É o que faz o botão
+  // "🧪 Testar" mostrar uma semana sem destravar ela de verdade (achado
+  // 10/08/2026 — antes "Testar" reusava o link real e destravava mesmo).
+  let previewUntil = null;
+  WK.isOpen = function (u, n) {
+    if (open[wkKey(u, n)]) return true;
+    if (previewUntil && (u < previewUntil.u || (u === previewUntil.u && n <= previewUntil.n))) {
+      return true;
+    }
+    return false;
+  };
   WK.openWeek = function (u, n) { open[wkKey(u, n)] = DF.todayKey(); saveOpen(); };
+  WK.isPreviewing = function () { return !!previewUntil; };
 
   // Datas de aula ao vivo. Sem servidor, o único jeito de o app do aluno
   // saber isso é o professor mandar junto no link de destrava (que já muda
@@ -591,6 +603,25 @@
       }
     }
 
+    // Link de PRÉVIA do professor: ?preview=4.2&k=xxxxxx — igual o de cima,
+    // mas NUNCA chama openUpTo nem saveOpen. previewUntil vive só na memória
+    // desta aba; fechar ou recarregar a página apaga. É o botão "🧪 Testar".
+    const pv = q.get('preview');
+    if (pv && /^\d+\.\d+$/.test(pv)) {
+      const parts = pv.split('.');
+      const u = +parts[0], n = +parts[1];
+      if (q.get('k') === WK.weekKey(DF.state.name, DF.state.trail, u, n)) {
+        previewUntil = { u: u, n: n };
+        setTimeout(function () {
+          DF.toast('🧪 Modo teste — isto NÃO destravou nada de verdade.');
+        }, 700);
+      } else {
+        setTimeout(function () {
+          DF.toast('Este link de teste não é válido.');
+        }, 700);
+      }
+    }
+
     // ?dates=2026-08-10,2026-08-24 — as próximas aulas, mandadas junto no link semanal
     const datesParam = q.get('dates');
     if (datesParam && /^\d{4}-\d{2}-\d{2}(,\d{4}-\d{2}-\d{2})*$/.test(datesParam)) {
@@ -606,6 +637,19 @@
         'Minha dúvida: '), '_blank');
     };
     DF.$('#home-btn').onclick = function () { DF.SP.stop(); DF.go('s-dash'); WK.dash(); };
+
+    // faixa fixa avisando "isto é só teste" — some sozinha se recarregar
+    // sem o ?preview= (fechar a aba já resolve, mas o aviso reforça
+    // enquanto ela estiver aberta, pra nunca parecer destrava de verdade).
+    if (WK.isPreviewing()) {
+      const banner = DF.el('div', '', '🧪 MODO TESTE — nada foi destravado pra valer. ' +
+        'Feche esta aba quando terminar de conferir.');
+      banner.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:9999;' +
+        'background:#f59e0b;color:#1a1a1a;font-weight:700;font-size:.85rem;' +
+        'text-align:center;padding:.5rem 1rem;';
+      document.body.appendChild(banner);
+      document.body.style.paddingTop = '2.4rem';
+    }
 
     DF.go('s-dash');
     WK.dash();
