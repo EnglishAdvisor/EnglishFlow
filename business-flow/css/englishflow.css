@@ -159,6 +159,8 @@ button.tp-head {
 .st-ic { font-size: 17px; width: 22px; text-align: center; flex: none; }
 .st-name { flex: 1; }
 .st.ok .st-name { color: var(--tx2); }
+.st.locked { cursor: not-allowed; opacity: .45; }
+.st.locked .st-name { color: var(--tx2); }
 .st-tag {
   font-size: 11px; color: var(--tx2); font-family: var(--fh);
   letter-spacing: .07em; text-transform: uppercase; flex: none;

@@ -382,15 +382,26 @@
       return card;
     }
 
+    // sequência: cada passo só libera quando o anterior foi concluído (60%+).
+    // Passos "em breve" não travam nem exigem conclusão — são passagem livre.
+    let prevOk = true;
     steps.forEach(function (s) {
       const ok = WK.stepDone(u, w.n, s.id);
-      const r = DF.el('button', 'st' + (ok ? ' ok' : ''));
+      const passthrough = !!s.soon;
+      const locked = !prevOk && !passthrough;
+      const r = DF.el('button', 'st' + (ok ? ' ok' : '') + (locked ? ' locked' : ''));
       r.type = 'button';
-      r.appendChild(DF.el('span', 'st-ic', ok ? '✅' : s.icon));
+      r.appendChild(DF.el('span', 'st-ic', ok ? '✅' : (locked ? '🔒' : s.icon)));
       r.appendChild(DF.el('span', 'st-name', DF.esc(s.name)));
       r.appendChild(DF.el('span', 'st-tag' + (s.sp ? ' sp' : ''), DF.esc(s.tag || '')));
-      r.onclick = function () { WK.runStep(u, w, s); };
+      if (locked) {
+        r.disabled = true;
+        r.onclick = function () { DF.toast('Termine o passo anterior primeiro. 🔒'); };
+      } else {
+        r.onclick = function () { WK.runStep(u, w, s); };
+      }
       body.appendChild(r);
+      if (!passthrough) prevOk = ok;
     });
 
     // semana concluída → o debrief "I can…", a prova de evolução que o aluno lê
