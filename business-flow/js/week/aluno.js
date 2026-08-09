@@ -313,6 +313,27 @@
     c.appendChild(DF.el('p', 'muted small',
       '📋 e 📤 destravam de verdade e já atualizam a evolução. 🧪 só mostra a semana pra você ' +
       'conferir — não grava nada no aparelho, nem pra este aluno nem pra nenhum outro.'));
+
+    // ── emergência: apagar o que ESTE aparelho tem destravado pra este aluno ──
+    // Achado 10/08/2026: antes de "Testar" virar prévia de verdade, cada
+    // clique em Testar destravava a semana igual o link real. Quem testou
+    // uma semana avançada antes desse conserto ficou com o próprio navegador
+    // "destravado" além do que a Evolução (este painel) mostra. Isto só
+    // limpa o que está salvo NESTE aparelho — nunca toca no celular do aluno.
+    c.appendChild(DF.el('div', 'pnl-lbl', '⚠️ Meu navegador está mostrando mais destravado do que aqui em cima?'));
+    const resetBtn = DF.el('button', 'btn small danger', '🗑️ Limpar destravamento salvo neste aparelho');
+    resetBtn.onclick = function () {
+      if (!confirm('Isso apaga tudo que ESTE navegador tem gravado como "destravado" pra ' +
+        a.nome + ' (' + (TRAILS[a.trilha] || a.trilha) + '). Não mexe no celular do aluno, ' +
+        'só no que você vê testando aqui. Continuar?')) return;
+      const removidas = DF.WK.resetProgress(a.nome, a.trilha);
+      resetBtn.textContent = removidas ? '✅ Limpo (' + removidas + ' registros apagados)'
+                                        : '✅ Já estava limpo';
+      setTimeout(function () { A.render(a); }, 1400);
+    };
+    c.appendChild(resetBtn);
+    c.appendChild(DF.el('p', 'muted small',
+      'Depois de limpar, teste de novo com 🧪 pra confirmar que a semana certa aparece.'));
   }
 
   // ══════════════════════════════════════════════════════════

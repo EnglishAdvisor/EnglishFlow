@@ -94,6 +94,33 @@
     saveOpen();
   };
 
+  // Apaga TUDO que este navegador tem gravado como "destravado" pra um
+  // aluno+trilha específico. Só afeta ESTE aparelho (achado 10/08/2026: não
+  // existia jeito de desfazer um destravamento indevido — "nada fecha, fica
+  // aberto" era regra sem exceção. Isso serve pra limpar contaminação de
+  // teste/exploração antiga, não pra "trancar" o progresso real do aluno no
+  // celular DELE, que este aparelho nunca vê). Recebe nome/trilha explícitos
+  // porque quem chama isso é o painel do professor (aluno.html), que nunca
+  // seta DF.state.name pro aluno que está olhando.
+  WK.resetProgress = function (nome, trail) {
+    // aluno.html (o painel do professor) nunca chama WK.boot() — só
+    // semana.html chama. Sem recarregar aqui, "open" fica no valor inicial
+    // {} e resetProgress ia (a) sempre reportar 0 removidas, mesmo com
+    // contaminação real, e (b) salvar esse {} vazio por cima do real,
+    // apagando o destravamento de TODOS os alunos deste aparelho. Achado
+    // 10/08/2026, antes de publicar — carregar de novo aqui garante que
+    // estamos operando em cima do que está salvo de verdade.
+    loadOpen();
+    const prefix = (nome || 'sem-nome') + '|' + (trail || 'starter') + ':';
+    const donePrefix = 'done:' + prefix;
+    let removidas = 0;
+    Object.keys(open).forEach(function (k) {
+      if (k.indexOf(prefix) === 0 || k.indexOf(donePrefix) === 0) { delete open[k]; removidas++; }
+    });
+    saveOpen();
+    return removidas;
+  };
+
   // Chave do link de destrava. Trava BRANDA: impede o aluno de simplesmente
   // trocar "unlock=1.1" por "unlock=1.4" na barra de endereço. Não é segurança
   // de verdade (o sal está no JS do cliente) — o objetivo é pedagógico:
