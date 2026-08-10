@@ -188,7 +188,7 @@
       // ══════════════════════ SEMANA 1 ══════════════════════
       {
         n: 1, key: 'grammar', icon: '🧯',
-        title: 'Overview · Vocabulary · Grammar',
+        title: 'Staying Calm Under Pressure',
         goal: 'Talk about a challenging situation using the right adverbial clause.',
         comp: 'Você conta uma situação difícil escolhendo entre tempo, razão, propósito e ' +
               'contraste — e usa a vírgula certa dependendo da ordem da frase.',
@@ -539,7 +539,7 @@
       // ══════════════════════ SEMANA 2 ══════════════════════
       {
         n: 2, key: 'listening', icon: '👂',
-        title: 'Listening · Connections',
+        title: 'Finding Common Ground',
         goal: 'Follow advice on staying calm, and reach a compromise under pressure.',
         comp: 'Você ouve conselhos de um life coach sobre lidar com pânico, e negocia um ' +
               'compromisso quando duas pessoas discordam sob estresse.',
@@ -739,7 +739,7 @@
       // ══════════════════════ SEMANA 3 ══════════════════════
       {
         n: 3, key: 'reading', icon: '📖',
-        title: 'Reading · Video',
+        title: 'The Decisions That Mattered',
         goal: 'Read two survival accounts for the decisions that mattered, and follow a video timeline.',
         comp: 'Você lê dois relatos de sobrevivência e identifica QUAL decisão importou de ' +
               'verdade, e acompanha uma expedição em ordem cronológica.',
@@ -942,7 +942,7 @@
       // ══════════════════════ SEMANA 4 ══════════════════════
       {
         n: 4, key: 'talk', icon: '🎯',
-        title: 'Writing · Expanding Your Fluency · Outcomes',
+        title: 'Step by Step',
         goal: 'Write a step-by-step guide, and follow steps to get through a simulated crisis.',
         comp: 'Você escreve um guia passo a passo pra uma situação de risco, e negocia um ' +
               'plano de fuga sob pressão simulada.',

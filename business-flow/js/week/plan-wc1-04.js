@@ -203,7 +203,7 @@
       // ══════════════════════ SEMANA 1 ══════════════════════
       {
         n: 1, key: 'grammar', icon: '🎤',
-        title: 'Overview · Vocabulary · Grammar',
+        title: 'The Art of Persuasion',
         goal: 'Talk about persuading someone using the right infinitive pattern.',
         comp: 'Você fala sobre convencer alguém a fazer algo, escolhendo entre verbo+objeto+to, ' +
               'arrange for + objeto + to, e a exceção sem to de let/make/have.',
@@ -570,7 +570,7 @@
       // ══════════════════════ SEMANA 2 ══════════════════════
       {
         n: 2, key: 'listening', icon: '👂',
-        title: 'Listening · Video',
+        title: 'The Career So Far',
         goal: 'Follow someone telling their own career story, in order.',
         comp: 'Você ouve alguém contando a própria trajetória artística, ordena os eventos, e ' +
               'resume a história em suas próprias palavras.',
@@ -766,7 +766,7 @@
       // ══════════════════════ SEMANA 3 ══════════════════════
       {
         n: 3, key: 'reading', icon: '📖',
-        title: 'Reading · Connections',
+        title: 'Behind the Success',
         goal: 'Read two artist profiles for the story behind the success, and plan a fundraiser.',
         comp: 'Você lê dois perfis de artistas e identifica o que realmente causou o sucesso ' +
               '(não a versão simplificada), e planeja um evento beneficente.',
@@ -979,7 +979,7 @@
       // ══════════════════════ SEMANA 4 ══════════════════════
       {
         n: 4, key: 'talk', icon: '🎯',
-        title: 'Writing · Speaking · Outcomes',
+        title: 'Negotiating the Deal',
         goal: 'Write a paraphrased profile, and negotiate a contract out loud.',
         comp: 'Você escreve um perfil parafraseando informações de fontes, e negocia um ' +
               'contrato listando prós e contras de verdade.',

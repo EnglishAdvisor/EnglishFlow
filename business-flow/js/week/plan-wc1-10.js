@@ -190,7 +190,7 @@
       // ══════════════════════ SEMANA 1 ══════════════════════
       {
         n: 1, key: 'grammar', icon: '🧭',
-        title: 'Overview · Vocabulary · Grammar',
+        title: 'If This, Then That',
         goal: 'Use the real and unreal conditional to predict and to imagine.',
         comp: 'Você projeta cenários usando o condicional real (o que pode acontecer) e o ' +
               'irreal (o que aconteceria se), sem misturar os dois.',
@@ -537,7 +537,7 @@
       // ══════════════════════ SEMANA 2 ══════════════════════
       {
         n: 2, key: 'listening', icon: '👂',
-        title: 'Listening · Connections · Pronunciation',
+        title: 'Reading Between the Tone',
         goal: 'Hear sarcasm and hesitation, and persuade someone to change course.',
         comp: 'Você reconhece quando alguém diz "great" e quer dizer o contrário, e usa o ' +
               'condicional pra convencer alguém a mudar de rumo.',
@@ -756,7 +756,7 @@
       // ══════════════════════ SEMANA 3 ══════════════════════
       {
         n: 3, key: 'reading', icon: '📖',
-        title: 'Reading · Speaking · Video',
+        title: 'How Groups Decide',
         goal: 'Read how a group decides well, and name the factors behind your own choices.',
         comp: 'Você lê sobre como um grupo toma boas decisões, e identifica quais fatores ' +
               'realmente influenciam as suas — inclusive os que você não gosta de admitir.',
@@ -973,7 +973,7 @@
       // ══════════════════════ SEMANA 4 ══════════════════════
       {
         n: 4, key: 'talk', icon: '🎯',
-        title: 'Writing · Expanding Your Fluency · Outcomes',
+        title: 'The What-If Game',
         goal: 'Write a decision with its causes and effects, and play the "what if" game.',
         comp: 'Você escreve um parágrafo justificando uma decisão com causa e efeito ' +
               'encadeados, e responde perguntas hipotéticas sem travar.',

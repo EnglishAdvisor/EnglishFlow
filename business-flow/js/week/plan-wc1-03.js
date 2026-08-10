@@ -218,7 +218,7 @@
       // ══════════════════════ SEMANA 1 ══════════════════════
       {
         n: 1, key: 'grammar', icon: '⚡',
-        title: 'Overview · Vocabulary · Grammar',
+        title: 'Plans, Predictions, Promises',
         goal: 'Choose the right future form for a plan, a prediction and a promise.',
         comp: 'Você fala sobre o futuro escolhendo entre will, going to, present continuous e ' +
               'will be + -ing conforme a INTENÇÃO, não por sorte.',
@@ -626,7 +626,7 @@
       // ══════════════════════ SEMANA 2 ══════════════════════
       {
         n: 2, key: 'listening', icon: '👂',
-        title: 'Listening · Pronunciation · Video',
+        title: 'Standing Your Ground',
         goal: 'Hear what someone refuses to change, and stress a heteronym correctly.',
         comp: 'Você ouve alguém relatando o que conseguiu e o que NÃO conseguiu mudar, e ' +
               'distingue a PROject do to proJECT pela sílaba tônica.',
@@ -928,7 +928,7 @@
       // ══════════════════════ SEMANA 3 ══════════════════════
       {
         n: 3, key: 'reading', icon: '📖',
-        title: 'Reading · Connections',
+        title: 'Weighing the Trade-offs',
         goal: 'Separate the advantages from the drawbacks, and commit to something yourself.',
         comp: 'Você lê um texto que compara duas soluções e monta o quadro de prós e contras ' +
               'de cada uma — depois assume um compromisso próprio e o justifica.',
@@ -1280,7 +1280,7 @@
       // ══════════════════════ SEMANA 4 ══════════════════════
       {
         n: 4, key: 'talk', icon: '🎯',
-        title: 'Writing · Speaking · Outcomes',
+        title: 'Make Your Case',
         goal: 'Persuade someone to change one thing, in writing and in sixty seconds of speech.',
         comp: 'Você escreve um parágrafo persuasivo com fonte citada e grava um anúncio de ' +
               'utilidade pública que faz alguém mudar de comportamento.',

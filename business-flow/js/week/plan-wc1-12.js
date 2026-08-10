@@ -199,7 +199,7 @@
       // ══════════════════════ SEMANA 1 ══════════════════════
       {
         n: 1, key: 'grammar', icon: '🏆',
-        title: 'Overview · Vocabulary · Grammar · Pronunciation',
+        title: 'He Said, She Said',
         goal: 'Report what someone said, using the right pattern for the right verb.',
         comp: 'Você reporta o que alguém disse escolhendo entre os três padrões, ajustando ' +
               'tempo verbal e pronome — e reconhece modais perfeitos reduzidos na fala.',
@@ -513,7 +513,7 @@
       // ══════════════════════ SEMANA 2 ══════════════════════
       {
         n: 2, key: 'listening', icon: '👂',
-        title: 'Listening · Connections',
+        title: 'On the Record',
         goal: 'Report what an interviewee said, and survey people about sport and character.',
         comp: 'Você ouve uma entrevista e reporta o que o entrevistado disse sem distorcer, e ' +
               'conduz uma pequena pesquisa reportando as respostas.',
@@ -704,7 +704,7 @@
       // ══════════════════════ SEMANA 3 ══════════════════════
       {
         n: 3, key: 'reading', icon: '📖',
-        title: 'Reading · Video',
+        title: 'More Than the Game',
         goal: 'Read what a discipline teaches beyond technique, and judge a risk-taker.',
         comp: 'Você lê sobre o que uma prática ensina além da técnica, e avalia alguém que ' +
               'arrisca a vida pelo que faz.',
@@ -888,7 +888,7 @@
       // ══════════════════════ SEMANA 4 ══════════════════════
       {
         n: 4, key: 'talk', icon: '🎯',
-        title: 'Writing · Speaking · Outcomes',
+        title: 'Under the Clock',
         goal: 'Write a timed essay with proper pacing, and present from an outline.',
         comp: 'Você escreve um ensaio com cronômetro dividindo o tempo corretamente, e ' +
               'apresenta a partir de um outline sem ler.',

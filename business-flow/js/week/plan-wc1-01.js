@@ -192,7 +192,7 @@
       // ══════════════════════ SEMANA 1 ══════════════════════
       {
         n: 1, key: 'grammar', icon: '⏪',
-        title: 'Overview · Vocabulary · Grammar',
+        title: 'Telling Your Story',
         goal: 'Use the four past forms to talk about memorable life events.',
         comp: 'Você conta um acontecimento marcante escolhendo entre simple past, past ' +
               'continuous, present perfect e present perfect continuous — e justifica a escolha.',
@@ -614,7 +614,7 @@
       // ══════════════════════ SEMANA 2 ══════════════════════
       {
         n: 2, key: 'listening', icon: '👂',
-        title: 'Listening · Pronunciation · Video',
+        title: 'What the Study Found',
         goal: 'Summarize the key outcomes of a study, and hear the difference between ' +
               'a question and a statement.',
         comp: 'Você ouve uma reportagem sobre um estudo, resume o que ele descobriu, e ' +
@@ -905,7 +905,7 @@
       // ══════════════════════ SEMANA 3 ══════════════════════
       {
         n: 3, key: 'reading', icon: '📖',
-        title: 'Reading · Connections',
+        title: 'Reading Between the Lines',
         goal: 'Tell the difference between what a text proves, suggests, and denies — ' +
               'and present your own qualifications.',
         comp: 'Você lê um texto sobre o passado e classifica cada afirmação em ' +
@@ -1202,7 +1202,7 @@
       // ══════════════════════ SEMANA 4 ══════════════════════
       {
         n: 4, key: 'talk', icon: '🎯',
-        title: 'Writing · Speaking · Outcomes',
+        title: 'Facing the Hard Question',
         goal: 'Handle a challenging question without freezing, and write a personal statement.',
         comp: 'Você responde a uma pergunta difícil de entrevista usando uma estratégia de ' +
               'ganho de tempo — e escreve um texto explicando por que você é qualificado.',

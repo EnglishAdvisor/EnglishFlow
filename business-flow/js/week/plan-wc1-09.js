@@ -197,7 +197,7 @@
       // ══════════════════════ SEMANA 1 ══════════════════════
       {
         n: 1, key: 'grammar', icon: '🐆',
-        title: 'Overview · Vocabulary · Grammar',
+        title: 'Mastering the Passive',
         goal: 'Use all six forms of the passive voice, and know when the passive is the right choice.',
         comp: 'Você relata fatos usando a voz passiva nos seis tempos, e decide quando incluir ' +
               'ou omitir o "by + agente".',
@@ -544,7 +544,7 @@
       // ══════════════════════ SEMANA 2 ══════════════════════
       {
         n: 2, key: 'listening', icon: '👂',
-        title: 'Listening · Connections',
+        title: 'What the Science Really Shows',
         goal: 'Hear the difference between what a scientist knows and what they only suspect.',
         comp: 'Você ouve um especialista falando e distingue o que ele afirma com certeza do ' +
               'que ele apenas suspeita — e toma posição em dilemas éticos sobre animais.',
@@ -737,7 +737,7 @@
       // ══════════════════════ SEMANA 3 ══════════════════════
       {
         n: 3, key: 'reading', icon: '📖',
-        title: 'Reading · Video · Speaking',
+        title: 'The Case for the Species',
         goal: 'Read for an outline, follow a technical process, and make a case for one species.',
         comp: 'Você lê um texto e extrai o outline dele, acompanha um processo técnico em ' +
               'ordem, e defende qual espécie deve receber financiamento.',
@@ -954,7 +954,7 @@
       // ══════════════════════ SEMANA 4 ══════════════════════
       {
         n: 4, key: 'talk', icon: '🎯',
-        title: 'Writing · Expanding Your Fluency · Outcomes',
+        title: 'Making People Care',
         goal: 'Write a campaign that makes someone care, and give a one-minute TV interview.',
         comp: 'Você escreve uma campanha de conscientização com abertura forte e chamada pra ' +
               'ação, e dá uma entrevista de TV de um minuto.',

@@ -190,7 +190,7 @@
       // ══════════════════════ SEMANA 1 ══════════════════════
       {
         n: 1, key: 'grammar', icon: '🔎',
-        title: 'Overview · Vocabulary · Grammar',
+        title: 'Looking Back, Weighing What-Ifs',
         goal: 'Use past modals to consider possibilities, express disbelief and regret, and draw conclusions.',
         comp: 'Você avalia uma situação passada escolhendo entre couldn\'t have, might have, ' +
               'must have e should have — cada um comunicando uma certeza diferente.',
@@ -514,7 +514,7 @@
       // ══════════════════════ SEMANA 2 ══════════════════════
       {
         n: 2, key: 'listening', icon: '👂',
-        title: 'Listening · Connections · Pronunciation',
+        title: 'The Rule That Got Broken',
         goal: 'Follow a story of a rule broken, and hear how should\'ve is reduced in speech.',
         comp: 'Você acompanha um caso de regra quebrada e sua consequência, e reconhece a ' +
               'redução de "should\'ve" na fala natural.',
@@ -694,7 +694,7 @@
       // ══════════════════════ SEMANA 3 ══════════════════════
       {
         n: 3, key: 'reading', icon: '📖',
-        title: 'Reading · Video',
+        title: 'Guarding Your Privacy',
         goal: 'Read about privacy in the internet age, and watch advice for protecting your reputation.',
         comp: 'Você lê sobre privacidade na era da internet e assiste a um vídeo com conselhos ' +
               'pra proteger a reputação online.',
@@ -876,7 +876,7 @@
       // ══════════════════════ SEMANA 4 ══════════════════════
       {
         n: 4, key: 'talk', icon: '🎯',
-        title: 'Writing · Speaking · Expanding Your Fluency · Outcomes',
+        title: "Who's Watching?",
         goal: 'Write with sympathy about a hardship, and debate surveillance with facts.',
         comp: 'Você escreve reconhecendo uma dificuldade e expressando solidariedade, e ' +
               'debate vigilância defendendo sua posição.',

@@ -193,7 +193,7 @@
       // ══════════════════════ SEMANA 1 ══════════════════════
       {
         n: 1, key: 'grammar', icon: '🛍️',
-        title: 'Overview · Vocabulary · Grammar',
+        title: 'Describing Precisely',
         goal: 'Describe a person or thing precisely using an adjective clause.',
         comp: 'Você descreve pessoas e coisas usando who/which/that, decide quando a vírgula ' +
               'entra, e sabe quando o pronome relativo pode sumir da frase.',
@@ -505,7 +505,7 @@
       // ══════════════════════ SEMANA 2 ══════════════════════
       {
         n: 2, key: 'listening', icon: '👂',
-        title: 'Listening · Connections',
+        title: 'Naming Your Price',
         goal: 'Follow a bargaining conversation, and negotiate a price yourself.',
         comp: 'Você acompanha uma negociação de preço, identifica quando alguém acha que ' +
               'está sendo enganado, e negocia um preço de verdade.',
@@ -668,7 +668,7 @@
       // ══════════════════════ SEMANA 3 ══════════════════════
       {
         n: 3, key: 'reading', icon: '📖',
-        title: 'Reading · Video',
+        title: 'What the Object Reveals',
         goal: 'Read for what an object reveals about its owner, and watch an authentication process.',
         comp: 'Você lê o que um objeto revela sobre quem o usa, e acompanha um vídeo de ' +
               'verificação de autenticidade passo a passo.',
@@ -823,7 +823,7 @@
       // ══════════════════════ SEMANA 4 ══════════════════════
       {
         n: 4, key: 'talk', icon: '🎯',
-        title: 'Writing · Speaking · Expanding Your Fluency · Outcomes',
+        title: 'Defending Your Argument',
         goal: 'Present and defend an argument, and react to viewpoints you disagree with.',
         comp: 'Você apresenta e defende um argumento por escrito, e reage a opiniões — ' +
               'concordando, discordando e questionando com o tom certo.',

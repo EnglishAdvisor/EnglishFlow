@@ -205,7 +205,7 @@
       // ══════════════════════ SEMANA 1 ══════════════════════
       {
         n: 1, key: 'grammar', icon: '🚌',
-        title: 'Overview · Vocabulary · Grammar',
+        title: 'Which Way Is Better?',
         goal: 'Compare two transportation options using the right comparative form.',
         comp: 'Você compara dois meios de transporte escolhendo entre -er/more, less, fewer e ' +
               'as...as, sem misturar as formas.',
@@ -513,7 +513,7 @@
       // ══════════════════════ SEMANA 2 ══════════════════════
       {
         n: 2, key: 'listening', icon: '👂',
-        title: 'Listening · Video',
+        title: 'The Daily Commute',
         goal: 'Follow a report on commute times, and understand real testimonials about a service.',
         comp: 'Você acompanha um relato sobre tempo de commute usando conectores de causa e ' +
               'efeito, e entende depoimentos reais sobre um serviço de transporte.',
@@ -675,7 +675,7 @@
       // ══════════════════════ SEMANA 3 ══════════════════════
       {
         n: 3, key: 'reading', icon: '📖',
-        title: 'Connections · Reading',
+        title: 'Debating the Proposal',
         goal: 'Debate a transit proposal with facts, and read two accounts for cause and effect.',
         comp: 'Você debate uma proposta de transporte usando fatos, e lê dois relatos ' +
               'identificando o que causou o quê.',
@@ -834,7 +834,7 @@
       // ══════════════════════ SEMANA 4 ══════════════════════
       {
         n: 4, key: 'talk', icon: '🎯',
-        title: 'Writing · Speaking · Expanding Your Fluency · Outcomes',
+        title: 'The Complaint That Gets Heard',
         goal: 'Write a complaint with a solution, and defend a decision with facts in a hearing.',
         comp: 'Você escreve uma reclamação com solução proposta, e defende uma decisão numa ' +
               'audiência pública usando fatos.',

@@ -193,7 +193,7 @@
       // ══════════════════════ SEMANA 1 ══════════════════════
       {
         n: 1, key: 'grammar', icon: '🌦️',
-        title: 'Overview · Vocabulary · Grammar',
+        title: 'Getting the Phrasal Verb Right',
         goal: 'Use phrasal verbs correctly, including where the object goes.',
         comp: 'Você usa phrasal verbs sabendo se são separáveis, inseparáveis ou sem objeto — ' +
               'e onde o pronome é obrigado a ficar.',
@@ -504,7 +504,7 @@
       // ══════════════════════ SEMANA 2 ══════════════════════
       {
         n: 2, key: 'listening', icon: '👂',
-        title: 'Listening · Connections · Video',
+        title: 'When the Weather Ruins the Plan',
         goal: 'Hear phrasal verbs in fast speech, and handle a plan that the weather ruined.',
         comp: 'Você reconhece phrasal verbs no meio de uma conversa rápida, e conduz um ' +
               'telefonema pra mudar um plano por causa do tempo.',
@@ -728,7 +728,7 @@
       // ══════════════════════ SEMANA 3 ══════════════════════
       {
         n: 3, key: 'reading', icon: '📖',
-        title: 'Reading · Speaking',
+        title: 'Spotting the Fake Story',
         goal: 'Make inferences from what a text implies, and spot the story that is false.',
         comp: 'Você tira conclusões que o texto não diz explicitamente, e avalia qual de ' +
               'quatro histórias estranhas de clima é a inventada.',
@@ -915,7 +915,7 @@
       // ══════════════════════ SEMANA 4 ══════════════════════
       {
         n: 4, key: 'talk', icon: '🎯',
-        title: 'Writing · Expanding Your Fluency · Outcomes',
+        title: 'Painting with Words',
         goal: 'Write a vivid description using similes, and use one phrasal verb three ways.',
         comp: 'Você escreve uma descrição que faz o leitor SENTIR o clima, usando símiles — e ' +
               'domina os múltiplos sentidos de um mesmo phrasal verb.',

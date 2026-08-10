@@ -205,7 +205,7 @@
       // ══════════════════════ SEMANA 1 ══════════════════════
       {
         n: 1, key: 'grammar', icon: '🧭',
-        title: 'Overview · Vocabulary · Grammar',
+        title: 'Describing the Journey',
         goal: 'Describe a place so the listener can see it, using gerunds and infinitives.',
         comp: 'Você descreve um lugar com detalhe concreto (não com adjetivo genérico) e ' +
               'escolhe entre -ing e to sem travar depois de preposição.',
@@ -627,7 +627,7 @@
       // ══════════════════════ SEMANA 2 ══════════════════════
       {
         n: 2, key: 'listening', icon: '👂',
-        title: 'Listening · Pronunciation · Video',
+        title: 'Taking the Tour',
         goal: 'Take usable notes on a spoken tour, and move the stress when a suffix demands it.',
         comp: 'Você ouve alguém descrevendo um percurso, anota o essencial em abreviação, e ' +
               'pronuncia photograph → photographic sem deixar a força no lugar errado.',
@@ -898,7 +898,7 @@
       // ══════════════════════ SEMANA 3 ══════════════════════
       {
         n: 3, key: 'reading', icon: '📖',
-        title: 'Reading · Connections',
+        title: 'Choosing Your Route',
         goal: 'Read a personal interview for attitude, and build a route you would defend.',
         comp: 'Você identifica o que um viajante realmente pensa (não só o que ele faz), e ' +
               'monta e justifica um roteiro seu.',
@@ -1198,7 +1198,7 @@
       // ══════════════════════ SEMANA 4 ══════════════════════
       {
         n: 4, key: 'talk', icon: '✍️',
-        title: 'Writing · Speaking · Outcomes',
+        title: 'The Life You Want',
         goal: 'Write so the reader can see it, and talk about what you want to do with your life.',
         comp: 'Você troca adjetivo genérico por detalhe concreto na escrita, e conversa sobre ' +
               'planos de vida dando e recebendo conselho.',
