@@ -359,6 +359,7 @@ button.tp-head {
 .cal-day.empty { border: none; background: none; cursor: default; }
 .cal-day.today { border-color: var(--ac2); }
 .cal-day.on { background: var(--ac); color: #00131f; font-weight: 700; border-color: var(--ac); }
+.cal-day.on.done { background: #2ecc71; border-color: #2ecc71; color: #00230f; }
 .cal-day-hora { font-size: 9px; font-weight: 400; opacity: .85; line-height: 1; }
 
 /* ---------- calendário-mestre (todos os alunos, professor) ---------- */

@@ -477,21 +477,39 @@
     const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
     const todayKey = DF.todayKey();
 
+    // aulas marcadas no PASSADO já aconteceram — ficam verdes (realizadas),
+    // sem precisar de confirmação manual. As futuras ficam na cor normal
+    // (agendadas). Nenhuma some do calendário, só muda de cor com o tempo.
+    const realizadasMes = [];
     for (let i = 0; i < startPad; i++) grid.appendChild(DF.el('div', 'cal-day empty'));
     for (let d = 1; d <= daysInMonth; d++) {
       const key = calYear + '-' + String(calMonth + 1).padStart(2, '0') + '-' + String(d).padStart(2, '0');
       const marcado = rec.aulas.indexOf(key) >= 0;
-      const cell = DF.el('button', 'cal-day' + (marcado ? ' on' : '') + (key === todayKey ? ' today' : ''), String(d));
+      const realizada = marcado && key < todayKey;
+      const cell = DF.el('button', 'cal-day' + (marcado ? ' on' : '') + (realizada ? ' done' : '') +
+        (key === todayKey ? ' today' : ''), String(d));
       cell.type = 'button';
       const hora = rec.horarios && rec.horarios[key];
       if (marcado && hora) cell.appendChild(DF.el('span', 'cal-day-hora', hora));
       cell.onclick = function () { abrirEdicaoDia(a, key, rec); };
       grid.appendChild(cell);
+      if (realizada) realizadasMes.push({ key: key, hora: hora });
     }
     c.appendChild(grid);
     c.appendChild(DF.el('p', 'muted small',
       'Clique num dia pra marcar aula ao vivo e definir o horário. ' +
       rec.aulas.length + ' aula(s) marcada(s) ao todo.'));
+
+    if (realizadasMes.length) {
+      const resumo = DF.el('div', 'panel small');
+      resumo.appendChild(DF.el('b', '', '✅ ' + realizadasMes.length +
+        ' aula(s) realizada(s) em ' + MESES[calMonth] + '/' + calYear));
+      realizadasMes.forEach(function (r) {
+        resumo.appendChild(DF.el('div', 'muted small',
+          '• ' + fmtISO(r.key) + (r.hora ? ' · ' + r.hora : '')));
+      });
+      c.appendChild(resumo);
+    }
   }
 
   // ══════════════════════════════════════════════════════════
