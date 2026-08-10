@@ -644,29 +644,32 @@
       {
         n: 3, key: 'tools', icon: '🧰',
         title: 'What Is Missing?',
-        goal: 'Reconhecer ferramentas e equipamentos, usar o verbo to be em todas as formas, ' +
-              'e comparar duas listas para achar o que está errado ou faltando.',
-        comp: 'Você nomeia ferramentas, usa am/is/are (afirmativa, negativa, pergunta) sem ' +
-              'travar, e compara uma lista com uma foto para dizer o que está faltando ou errado.',
+        goal: 'Reconhecer ferramentas e equipamentos, usar o verbo to be e there is/there are ' +
+              'em todas as formas, e comparar duas listas para achar o que está errado ou faltando.',
+        comp: 'Você nomeia ferramentas, usa am/is/are e there is/there are (afirmativa, ' +
+              'negativa, pergunta) sem travar, e compara uma lista com uma foto para dizer ' +
+              'o que está faltando ou errado.',
         live: [
           'Vocabulário de ferramentas e hardware',
           'Pair work "Checking": um aluno tem a lista, o outro tem a foto — acham as ' +
           'diferenças perguntando um ao outro',
           'Leitura sobre empregadores da indústria',
           'Projeto em pequeno grupo',
-          'Verbo to be — explicação e prática'
+          'Verbo to be — explicação e prática',
+          'There is / there are — explicação e prática'
         ],
         bridge: 'Na aula vocês fizeram o "Checking" em DUPLA, um perguntando ao outro. Aqui ' +
                 'você faz uma versão SOLO da mesma habilidade — compara uma foto do galpão ' +
                 'com a lista de inventário sozinho e aponta o que não bate — mais o vocabulário ' +
-                'de ferramentas novo e o to be até sair automático.',
+                'de ferramentas novo, o to be e o there is/there are até sair automático.',
         nextLive: 'Semana 4 · Revisão + Key Words — fecha o mês com o "Communication" em ' +
                   'dupla e a ficha de embarque.',
         ican: [
           'I can name tools and hardware.',
           "I can use am/is/are — positive, negative and question.",
+          "I can use there is/there are — positive, negative and question.",
           'I can compare two lists and say what is missing or wrong.',
-          'I can give short answers with the verb to be.'
+          'I can give short answers with the verb to be and there is/there are.'
         ],
 
         steps: [
@@ -740,6 +743,55 @@
                 title: '🔧 Negue:', main: 'The valve ___ new.',
                 options: DF.shuffle([{ label: "isn't", correct: true }, { label: "aren't" }, { label: "amn't" }, { label: "don't" }]),
                 expl: 'it → isn\'t. "amn\'t" não existe.' }
+            ]
+          },
+
+          {
+            id: 'there', icon: '📦', name: 'There is / there are', tag: 'gramática',
+            items: [
+              { ui: 'read', cat: 'gra', srsId: 'og1u1w3:read:there',
+                title: '📦 There is / there are',
+                textTitle: 'Dizer que algo existe (ou não)',
+                readAloud: false,
+                text:
+                  'SINGULAR (there is)\nThere is a wrench on the shelf. → There\'s a wrench on the shelf.\n' +
+                  'There is not a ladder here. → There isn\'t a ladder here.\nIs there a spare gauge? — Yes, there is. / No, there isn\'t.\n\n' +
+                  'PLURAL (there are)\nThere are three helmets in the box.\n' +
+                  'There are not enough torches. → There aren\'t enough torches.\nAre there any wrenches left? — Yes, there are. / No, there aren\'t.\n\n' +
+                  'ARMADILHA: there is/are diz que algo EXISTE. it is descreve algo que já foi ' +
+                  'mencionado.\nThere\'s a wrench on the shelf. It\'s new. (there = existe / it = ' +
+                  'aquela chave específica)',
+                nextLabel: 'Entendi ▸' },
+              { ui: 'choice', cat: 'gra', srsId: 'og1u1w3:there:1',
+                title: '🔧 Complete:', main: '___ a ladder next to the door.',
+                options: DF.shuffle([{ label: "There's", correct: true }, { label: 'There are' },
+                  { label: "It's" }, { label: 'Is there' }]),
+                expl: 'ladder é singular → There\'s (there is).' },
+              { ui: 'choice', cat: 'gra', srsId: 'og1u1w3:there:2',
+                title: '🔧 Complete:', main: '___ five helmets in the box.',
+                options: DF.shuffle([{ label: 'There are', correct: true }, { label: "There's" },
+                  { label: 'They are' }, { label: 'Is there' }]),
+                expl: 'five helmets é plural → There are.' },
+              { ui: 'choice', cat: 'gra', srsId: 'og1u1w3:there:trap',
+                title: '⚠️ There ou it?', main: '___ a wrench on the shelf. ___ new.',
+                options: DF.shuffle([
+                  { label: "There's / It's", correct: true },
+                  { label: "It's / There's", trap: true },
+                  { label: "There's / There's" }, { label: "It's / It's" }
+                ]),
+                trapNote: 'There anuncia que a chave existe; It descreve a chave que já foi ' +
+                          'apresentada — a ordem não pode inverter.',
+                expl: "There's a wrench on the shelf. It's new." },
+              { ui: 'choice', cat: 'gra', srsId: 'og1u1w3:there:neg',
+                title: '🔧 Negue:', main: '___ any torches in the box (it\'s empty).',
+                options: DF.shuffle([{ label: "There aren't", correct: true }, { label: "There isn't" },
+                  { label: "They aren't" }, { label: "It isn't" }]),
+                expl: 'torches é plural → There aren\'t any.' },
+              { ui: 'choice', cat: 'gra', srsId: 'og1u1w3:there:q',
+                title: '🔧 Pergunte:', main: '___ a spare helmet in the warehouse?',
+                options: DF.shuffle([{ label: 'Is there', correct: true }, { label: 'Are there' },
+                  { label: 'There is' }, { label: 'Does there' }]),
+                expl: 'a spare helmet é singular → Is there…?' }
             ]
           },
 
