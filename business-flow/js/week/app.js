@@ -39,6 +39,11 @@
   // "🧪 Testar" mostrar uma semana sem destravar ela de verdade (achado
   // 10/08/2026 — antes "Testar" reusava o link real e destravava mesmo).
   let previewUntil = null;
+  // ?only=1 junto com ?preview=u.n — pedido do English Flow Hub: quando o
+  // aluno chega vindo da trilha nova (semanas em bonequinho), mostra so o
+  // card da semana clicada, nao as 4. Aditivo: sem esse parametro (o link
+  // direto que os alunos ja usam hoje), nada muda.
+  let onlyWeek = null;
   WK.isOpen = function (u, n) {
     if (open[wkKey(u, n)]) return true;
     if (previewUntil && (u < previewUntil.u || (u === previewUntil.u && n <= previewUntil.n))) {
@@ -204,7 +209,10 @@
     // a semana "atual" = a última destravada — fica sempre aberta na tela,
     // primeiro clique. As anteriores (já vistas) começam colapsadas.
     const curN = p.weeks.reduce(function (m, w) { return WK.isOpen(u, w.n) ? w.n : m; }, 0);
-    p.weeks.forEach(function (w) { c.appendChild(topicCard(u, p, w, w.n === curN)); });
+    const weeksToShow = (onlyWeek && onlyWeek.u === u)
+      ? p.weeks.filter(function (w) { return w.n === onlyWeek.n; })
+      : p.weeks;
+    weeksToShow.forEach(function (w) { c.appendChild(topicCard(u, p, w, w.n === curN)); });
 
     // o gancho: o que vem na próxima aula — com data real, se o professor mandou
     const nextW = p.weeks.find(function (w) { return !WK.isOpen(u, w.n); });
@@ -735,6 +743,7 @@
       const u = +parts[0], n = +parts[1];
       if (q.get('k') === WK.weekKey(DF.state.name, DF.state.trail, u, n)) {
         previewUntil = { u: u, n: n };
+        if (q.get('only') === '1') onlyWeek = { u: u, n: n };
         setTimeout(function () {
           DF.toast('🧪 Modo teste — isto NÃO destravou nada de verdade.');
         }, 700);
