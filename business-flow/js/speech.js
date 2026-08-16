@@ -23,6 +23,11 @@
     return voices.filter(function (v) { return /^en[-_]/i.test(v.lang) || v.lang === 'en'; });
   };
 
+  // nomes de vozes tipicamente masculinas nas engines mais comuns
+  // (Google/Chrome, Microsoft/Edge, Apple) - usado como preferencia
+  // padrao pra leitura dos exercicios (pedido do Felipe: voz grave).
+  const MALE_VOICE_HINTS = /\b(male|david|daniel|arthur|george|ryan|guy|mark|oliver|thomas|james|rishi)\b/i;
+
   function pickVoice() {
     const want = DF.state && DF.state.settings.voiceURI;
     const en = SP.enVoices();
@@ -30,8 +35,9 @@
       const v = en.find(function (x) { return x.voiceURI === want; });
       if (v) return v;
     }
-    // preferência: en-GB, depois en-US, depois qualquer en
-    return en.find(function (v) { return /en[-_]GB/i.test(v.lang); }) ||
+    // preferencia: voz masculina conhecida > en-GB > en-US > qualquer en
+    return en.find(function (v) { return MALE_VOICE_HINTS.test(v.name); }) ||
+      en.find(function (v) { return /en[-_]GB/i.test(v.lang); }) ||
       en.find(function (v) { return /en[-_]US/i.test(v.lang); }) || en[0] || null;
   }
 
@@ -50,7 +56,7 @@
       if (v) u.voice = v;
       u.lang = (v && v.lang) || 'en-GB';
       u.rate = opts.rate || (DF.state ? DF.state.settings.rate : 0.9);
-      u.pitch = 1;
+      u.pitch = opts.pitch || 0.88;
       if (opts.onend) u.onend = function () { opts.onend(true); };
       speechSynthesis.speak(u);
       return true;
