@@ -4,7 +4,7 @@
    Unit 1 "You" (Working with Words: introducing yourself + jobs;
    Language at Work: I'm/you're/Are you...?; Practically Speaking: spelling;
    Business Communication: meeting people) — só objetivos, nada copiado.
-   Personagens e diálogos 100% autorais: escritório fictício "Marcom Global". */
+   Personagens e diálogos 100% autorais: escritório fictício "Whiterock Consultancy". */
 (function (root) {
   const DF = root.DF = root.DF || {};
   DF.TRAIL_DATA = DF.TRAIL_DATA || { starter: {}, elementary: {} };
@@ -177,7 +177,7 @@
 
     // 1 ▸ COVER — apresentação da unidade
     cover: {
-      brief: 'Bem-vindo(a) ao 1º andar da torre. Nesta unidade: como se apresentar, falar sobre cargos e conhecer colegas em inglês — o primeiro dia na Marcom Global.',
+      brief: 'Bem-vindo(a) ao 1º andar da torre. Nesta unidade: como se apresentar, falar sobre cargos e conhecer colegas em inglês — o primeiro dia na Whiterock Consultancy.',
       items: [
         {
           ui: 'cards', cat: 'voc',
@@ -191,9 +191,9 @@
         },
         {
           ui: 'read', cat: 'rea', info: true,
-          title: '🏢 Bem-vindo à Marcom Global',
+          title: '🏢 Bem-vindo à Whiterock Consultancy',
           textTitle: 'Your first day',
-          text: "Marcom Global is an international company. There are people from many countries in the office.\n\nOn your first day, you meet new colleagues. You say your name, your job, and where you're from — all in English.\n\nIt's simple: a smile, a handshake, and \"Nice to meet you.\""
+          text: "Whiterock Consultancy is an international company. There are people from many countries in the office.\n\nOn your first day, you meet new colleagues. You say your name, your job, and where you're from — all in English.\n\nIt's simple: a smile, a handshake, and \"Nice to meet you.\""
         },
         {
           ui: 'choice', cat: 'voc', srsId: 'bs-u1:v:colleague',
@@ -213,7 +213,7 @@
 
     // 2 ▸ WORKING WITH WORDS — jobs + a/an
     words: {
-      brief: 'Cargos comuns no escritório e a diferença entre A e AN. Conheça a equipe da Marcom Global.',
+      brief: 'Cargos comuns no escritório e a diferença entre A e AN. Conheça a equipe da Whiterock Consultancy.',
       items: READ1,
       task: {
         type: 'writing',
@@ -257,7 +257,7 @@
 
     // 6 ▸ TALKING POINT — fluência / jogo
     talk: {
-      brief: 'Hora de praticar sem medo de errar: apresente-se para 3 "colegas" imaginários da Marcom Global, cada um com um cargo diferente.',
+      brief: 'Hora de praticar sem medo de errar: apresente-se para 3 "colegas" imaginários da Whiterock Consultancy, cada um com um cargo diferente.',
       items: [
         {
           ui: 'speak', cat: 'pro', srsId: 'bs-u1:sp:talk1', unit: 1, waSec: 'Talking Point',

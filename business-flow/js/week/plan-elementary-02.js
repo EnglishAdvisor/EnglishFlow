@@ -10,7 +10,7 @@
 
    Mesma regra de sempre: O APP NÃO REPETE A AULA. Tipos de empresa e verbos
    de negócio são conhecimento geral, mas as empresas, produtos e ligações
-   telefônicas são autorais — universo Marcom Global, nunca CJ/Kikkoman/
+   telefônicas são autorais — universo Whiterock Consultancy, nunca CJ/Kikkoman/
    Netflix do livro. */
 (function (root) {
   const DF = root.DF = root.DF || {};
@@ -478,7 +478,7 @@
               { ui: 'drill', cat: 'pro', srsId: 'be2w3:drl:answer', unit: 2, waSec: 'Drill · Phone',
                 title: '🔁 Drill 1 — atendendo', focus: 'atendimento',
                 frame: 'Hello, ___. How can I help you?', ptHint: 'Alô, ___. Como posso ajudar?',
-                slots: ['Marcom Global', 'Aurora Systems', 'Nova Energy', 'Vertex Logistics'] },
+                slots: ['Whiterock Consultancy', 'Aurora Systems', 'Nova Energy', 'Vertex Logistics'] },
               { ui: 'drill', cat: 'pro', srsId: 'be2w3:drl:reason', unit: 2, waSec: 'Drill · Phone',
                 title: '🔁 Drill 2 — o motivo da ligação', focus: 'motivo',
                 frame: "I'm calling about ___.", ptHint: 'Estou ligando sobre ___.',
@@ -562,7 +562,7 @@
               { ui: 'build', cat: 'fun', srsId: 'be2w3:build:1', unit: 2, waSec: 'Sua vez',
                 title: '🗣️ Atenda, pergunte por alguém e dê o motivo',
                 prompt: 'Grave uma ligação: atenda, peça pra falar com alguém, e diga o motivo.',
-                example: "Hello, Marcom Global. How can I help you? Is Elena there, please? I'm calling about the report.",
+                example: "Hello, Whiterock Consultancy. How can I help you? Is Elena there, please? I'm calling about the report.",
                 mustUse: ["I'm calling about"] }
             ]
           }
@@ -668,7 +668,7 @@
               { ui: 'build', cat: 'fun', srsId: 'be2w4:st:1', unit: 2, waSec: 'Speaking Test',
                 title: '🏆 Item 1 — company name and type',
                 prompt: 'Diga o nome da empresa e o tipo de negócio.',
-                example: "My company is Marcom Global. It's a marketing company.", mustUse: ["It's a"] },
+                example: "My company is Whiterock Consultancy. It's a marketing company.", mustUse: ["It's a"] },
               { ui: 'build', cat: 'fun', srsId: 'be2w4:st:2', unit: 2, waSec: 'Speaking Test',
                 title: '🏆 Item 2 — products or services',
                 prompt: 'Diga o que a empresa produz ou fornece.',
@@ -694,7 +694,7 @@
                 title: '🔥 A apresentação inteira, do início ao fim',
                 prompt: 'Grave: nome e tipo da empresa, o que produz, quantos funcionários e ' +
                         'pra onde exporta.',
-                example: "My company is Marcom Global. It's a marketing company. We provide " +
+                example: "My company is Whiterock Consultancy. It's a marketing company. We provide " +
                          'services for small businesses. We employ 50 people. We export to Brazil and Portugal.',
                 expl: 'É o formato exato do speaking test. Mande pro professor pontuar.' }
             ]

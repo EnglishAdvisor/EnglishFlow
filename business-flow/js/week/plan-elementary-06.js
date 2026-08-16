@@ -11,7 +11,7 @@
 
    Mesma regra de sempre: O APP NÃO REPETE A AULA. Redes sociais e gramática
    são conhecimento geral, mas as conversas e viagens são autorais —
-   universo Marcom Global, nunca Giang/Enzo/Ho Chi Minh do livro. */
+   universo Whiterock Consultancy, nunca Giang/Enzo/Ho Chi Minh do livro. */
 (function (root) {
   const DF = root.DF = root.DF || {};
   DF.PLAN = DF.PLAN || { starter: {}, elementary: {} };

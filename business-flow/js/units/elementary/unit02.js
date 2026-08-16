@@ -42,7 +42,7 @@
   };
 
   const PHRASES = [
-    { ui: 'choice', cat: 'fun', srsId: 'be-u2:f:ph1', title: '📞 Você liga e se identifica:', main: null, options: opts("Hello, this is Ana Costa from Marcom.", ['Hello I Ana of Marcom.', 'Ana Costa is calling here.', 'It me Ana Marcom.']), expl: '"This is … from …" identifica você e a empresa.' },
+    { ui: 'choice', cat: 'fun', srsId: 'be-u2:f:ph1', title: '📞 Você liga e se identifica:', main: null, options: opts("Hello, this is Ana Costa from Whiterock.", ['Hello I Ana of Whiterock.', 'Ana Costa is calling here.', 'It me Ana Whiterock.']), expl: '"This is … from …" identifica você e a empresa.' },
     { ui: 'choice', cat: 'fun', srsId: 'be-u2:f:ph2', title: '📞 A linha está ruim. Você diz:', main: null, options: opts("Sorry, could you speak up? The line is bad.", ['Speak strong please.', 'I no hear you good.', 'More loud you talk.']), expl: '"speak up" = falar mais alto.' },
     { ui: 'choice', cat: 'fun', srsId: 'be-u2:f:ph3', title: '📞 Para encerrar:', main: null, options: opts("Thanks for calling. Have a good day.", ['Ok bye finish.', 'Talk end now.', 'Goodbye the call.']), expl: 'Encerramento cordial de ligação.' }
   ];
@@ -63,7 +63,7 @@
     speaking: { brief: 'Como dizer números com clareza — a armadilha teen/ty.', build: NUM_BUILD, task: { type: 'audio', title: '🎙️ Leia números', brief: 'Grave 5 números (misture dezenas e "teens").', waText: 'Registro: dizer números (Unit 2).' } },
     comm: { brief: 'Fazer uma ligação profissional: identificar-se, lidar com ruído, encerrar.', items: PHRASES },
     talk: { brief: 'Simule uma ligação curta.', items: [
-      { ui: 'speak', cat: 'pro', srsId: 'be-u2:sp:talk1', unit: 2, waSec: 'Talking Point', title: '🎤 Identifique-se ao ligar:', target: "Hello, this is Ana from Marcom Global.", ptHint: 'Olá, aqui é a Ana, da Marcom Global.' } ],
+      { ui: 'speak', cat: 'pro', srsId: 'be-u2:sp:talk1', unit: 2, waSec: 'Talking Point', title: '🎤 Identifique-se ao ligar:', target: "Hello, this is Ana from Whiterock Consultancy.", ptHint: 'Olá, aqui é a Ana, da Whiterock Consultancy.' } ],
       task: { type: 'audio', title: '🎙️ Talking Point', brief: 'Grave uma ligação curta (dois papéis).', waText: 'Registro: ligação (Unit 2).' } },
     check: { brief: 'O que você já consegue fazer? Sua resposta vai para o Data Book.', checklist: true }
   };

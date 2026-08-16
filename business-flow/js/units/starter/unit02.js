@@ -3,7 +3,7 @@
    Estrutura oficial Business Result Starter U2 "Company": Working with Words
    (companies & sectors), Language at Work (is / isn't), Practically Speaking
    (numbers 0-9), Business Communication (starting a phone call).
-   Cenário autoral: empresa fictícia "Marcom Global". */
+   Cenário autoral: empresa fictícia "Whiterock Consultancy". */
 (function (root) {
   const DF = root.DF = root.DF || {};
   DF.TRAIL_DATA = DF.TRAIL_DATA || { starter: {}, elementary: {} };
@@ -30,7 +30,7 @@
   }
 
   const LANG1 = [
-    { ui: 'choice', cat: 'gra', srsId: 'bs-u2:g:is1', title: '🔧 Complete:', main: 'Marcom Global ___ a big company.', options: opts('is', ["isn't", 'are', 'am']), expl: 'Empresa (it) na afirmativa → IS.' },
+    { ui: 'choice', cat: 'gra', srsId: 'bs-u2:g:is1', title: '🔧 Complete:', main: 'Whiterock Consultancy ___ a big company.', options: opts('is', ["isn't", 'are', 'am']), expl: 'Empresa (it) na afirmativa → IS.' },
     { ui: 'choice', cat: 'gra', srsId: 'bs-u2:g:is2', title: '🔧 Negativa:', main: 'It ___ a small company. It has 500 employees.', options: opts("isn't", ['is', "aren't", 'not']), expl: "isn't = is not." },
     { ui: 'choice', cat: 'gra', srsId: 'bs-u2:g:is3', title: '🔧 Complete:', main: 'The head office ___ in São Paulo.', options: opts('is', ["isn't", 'are', 'am']), expl: 'Singular (head office) → IS.' },
     { ui: 'choice', cat: 'gra', srsId: 'bs-u2:g:is4', title: '🔧 Pergunta:', main: '___ it a Brazilian company?', options: opts('Is', ['Are', 'Am', 'Do']), expl: 'Pergunta com it → IS it…?' },
@@ -40,7 +40,7 @@
   ];
 
   const PHRASES = [
-    { ui: 'choice', cat: 'fun', srsId: 'bs-u2:f:phone1', title: '📞 Você atende o telefone da empresa:', main: null, options: opts('Good morning, Marcom Global. How can I help you?', ['Hello, who is?', 'Yes, talk.', 'Marcom, what you want?']), expl: 'Atendimento profissional: nome da empresa + oferta de ajuda.', feedbackTts: 'Good morning, Marcom Global. How can I help you?' },
+    { ui: 'choice', cat: 'fun', srsId: 'bs-u2:f:phone1', title: '📞 Você atende o telefone da empresa:', main: null, options: opts('Good morning, Whiterock Consultancy. How can I help you?', ['Hello, who is?', 'Yes, talk.', 'Whiterock, what you want?']), expl: 'Atendimento profissional: nome da empresa + oferta de ajuda.', feedbackTts: 'Good morning, Whiterock Consultancy. How can I help you?' },
     { ui: 'choice', cat: 'fun', srsId: 'bs-u2:f:phone2', title: '📞 Para dizer quem você é ao telefone:', main: null, options: opts("This is Marina speaking.", ['Here Marina.', 'I am the Marina.', 'Marina is talking now.']), expl: '"This is + nome + speaking." é o padrão.' },
     { ui: 'choice', cat: 'fun', srsId: 'bs-u2:f:phone3', title: '📞 Para pedir para falar com alguém:', main: null, options: opts('Could I speak to Mr Costa, please?', ['I want Mr Costa.', 'Give me Mr Costa.', 'Where is Mr Costa now?']), expl: '"Could I speak to…, please?" é educado e comum.' }
   ];
@@ -62,7 +62,7 @@
           { en: 'head office', pt: 'matriz', def: 'Our head office is in São Paulo.' },
           { en: 'customer', pt: 'cliente', def: 'The customer is always important.' },
           { en: 'supplier', pt: 'fornecedor', def: 'A good supplier delivers on time.' } ] },
-        { ui: 'read', cat: 'rea', info: true, title: '🏢 A Marcom Global', textTitle: 'One company, many places', text: 'Marcom Global is an international company. The head office is in São Paulo, and there are branches in Rio and Recife.\n\nIt isn\'t a small company — there are more than 500 employees. It makes products and offers services for other businesses.' },
+        { ui: 'read', cat: 'rea', info: true, title: '🏢 A Whiterock Consultancy', textTitle: 'One company, many places', text: 'Whiterock Consultancy is an international company. The head office is in São Paulo, and there are branches in Rio and Recife.\n\nIt isn\'t a small company — there are more than 500 employees. It makes products and offers services for other businesses.' },
         { ui: 'choice', cat: 'voc', srsId: 'bs-u2:v:branch', sp: { g: 'venpt', en: 'branch', u: 2 }, title: '📦 "Branch" significa:', main: null, options: opts('filial', ['matriz', 'cliente', 'produto']), expl: 'branch = filial · head office = matriz.' } ],
       task: { type: 'audio', title: '🎙️ Fale da sua empresa', brief: 'Grave: "I work for… It is a… company. The head office is in…"', waText: 'Registro: descrição da minha empresa (Unit 2).' }
     },
@@ -83,7 +83,7 @@
     talk: {
       brief: 'Pratique uma abertura de ligação completa, dos dois lados.',
       items: [
-        { ui: 'speak', cat: 'pro', srsId: 'bs-u2:sp:talk1', unit: 2, waSec: 'Talking Point', title: '🎤 Atenda o telefone da sua empresa:', target: 'Good morning, Marcom Global. How can I help you?', ptHint: 'Bom dia, Marcom Global. Como posso ajudar?' },
+        { ui: 'speak', cat: 'pro', srsId: 'bs-u2:sp:talk1', unit: 2, waSec: 'Talking Point', title: '🎤 Atenda o telefone da sua empresa:', target: 'Good morning, Whiterock Consultancy. How can I help you?', ptHint: 'Bom dia, Whiterock Consultancy. Como posso ajudar?' },
         { ui: 'speak', cat: 'pro', srsId: 'bs-u2:sp:talk2', unit: 2, waSec: 'Talking Point', title: '🎤 Peça para falar com alguém:', target: 'Could I speak to the sales manager, please?', ptHint: 'Eu poderia falar com o gerente de vendas, por favor?' } ],
       task: { type: 'audio', title: '🎙️ Talking Point', brief: 'Grave uma abertura de ligação (você nos dois papéis).', waText: 'Registro: abertura de ligação (Unit 2).' }
     },

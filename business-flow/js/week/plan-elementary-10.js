@@ -10,7 +10,7 @@
 
    Mesma regra de sempre: O APP NÃO REPETE A AULA. Colocações de trabalho em
    equipe e gramática são conhecimento geral, mas as reuniões e situações
-   são autorais — universo Marcom Global, nunca W.L. Gore/Recife/McLaren
+   são autorais — universo Whiterock Consultancy, nunca W.L. Gore/Recife/McLaren
    do livro. */
 (function (root) {
   const DF = root.DF = root.DF || {};

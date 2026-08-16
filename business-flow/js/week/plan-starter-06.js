@@ -9,7 +9,7 @@
      semana 25 = U6 W4 · Talking point + teste (fecha a unidade)
 
    Mesma regra de sempre: O APP NÃO REPETE A AULA. O menu, os personagens e
-   os preços do restaurante são autorais (universo Marcom Global) — nunca o
+   os preços do restaurante são autorais (universo Whiterock Consultancy) — nunca o
    menu/preços exatos do livro (que usa "Mr Shimura"/"Mr Jarvis" e uma
    história real de fábrica cantando "EE"/Merthyr Tydfil). Vocabulário de
    comida/bebida é conhecimento geral, então repete — a situação, não. */

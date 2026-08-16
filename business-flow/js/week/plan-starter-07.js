@@ -340,7 +340,7 @@
                 lines: [
                   { who: 'Tom', en: "This is Aisha. She's our new marketing manager." },
                   { who: 'Beatriz', en: "Nice to meet you. What's her email?" },
-                  { who: 'Tom', en: "It's aisha@marcomglobal.com. Her office is next to mine." }
+                  { who: 'Tom', en: "It's aisha@whiterockconsultancy.com. Her office is next to mine." }
                 ],
                 question: 'Onde fica o escritório da Aisha?',
                 options: DF.shuffle([

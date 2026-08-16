@@ -10,7 +10,7 @@
 
    Mesma regra de sempre: O APP NÃO REPETE A AULA. Verbos de tecnologia e
    gramática são conhecimento geral, mas os sistemas, apps e situações são
-   autorais — universo Marcom Global, nunca Paym/Staples do livro. */
+   autorais — universo Whiterock Consultancy, nunca Paym/Staples do livro. */
 (function (root) {
   const DF = root.DF = root.DF || {};
   DF.PLAN = DF.PLAN || { starter: {}, elementary: {} };

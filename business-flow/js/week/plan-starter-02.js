@@ -9,7 +9,7 @@
 
    Vale aqui a mesma regra da Unit 1: O APP NÃO REPETE A AULA.
    Nenhum personagem, empresa ou diálogo do livro aparece — o universo é o
-   escritório fictício "Marcom Global" e suas filiais. */
+   escritório fictício "Whiterock Consultancy" e suas filiais. */
 (function (root) {
   const DF = root.DF = root.DF || {};
   DF.PLAN = DF.PLAN || { starter: {}, elementary: {} };
@@ -111,7 +111,7 @@
         {
           icon: '📞', name: 'Ao telefone',
           leaves: [
-            { en: 'Good morning, Marcom Global.', pt: 'atendendo (empresa)' },
+            { en: 'Good morning, Whiterock Consultancy.', pt: 'atendendo (empresa)' },
             { en: 'Beatriz speaking.', pt: 'atendendo (nome)' },
             { en: 'Can I speak to Camila, please?', pt: 'pedindo por alguém' },
             { en: 'Is Tom there?', pt: 'a forma curta' },
@@ -212,7 +212,7 @@
               { ui: 'drill', cat: 'pro', srsId: 'bs2w1:drl:work', unit: 2, waSec: 'Drill · vocabulário',
                 title: '🔁 Drill 2 — a empresa troca', focus: 'empresa',
                 frame: 'I work for ___.', ptHint: 'Eu trabalho na ___.',
-                slots: ['Marcom Global', 'Aurora Systems', 'Delta Foods',
+                slots: ['Whiterock Consultancy', 'Aurora Systems', 'Delta Foods',
                         'Nova Energy', 'Vertex Logistics'] },
               { ui: 'drill', cat: 'pro', srsId: 'bs2w1:drl:office', unit: 2, waSec: 'Drill · vocabulário',
                 title: '🔁 Drill 3 — a cidade da matriz troca', focus: 'cidade',
@@ -221,7 +221,7 @@
               { ui: 'drill', cat: 'gra', srsId: 'bs2w1:drl:my', unit: 2, waSec: 'Drill · vocabulário',
                 title: '🔁 Drill 4 — "My company is…"', focus: 'empresa',
                 frame: 'My company is ___.', ptHint: 'Minha empresa é a ___.',
-                slots: ['Orion Bank', 'Aurora Systems', 'Delta Foods', 'Marcom Global'] }
+                slots: ['Orion Bank', 'Aurora Systems', 'Delta Foods', 'Whiterock Consultancy'] }
             ]
           },
 
@@ -235,10 +235,10 @@
                         'is in Rio de Janeiro', 'Our head office is in Rio de Janeiro.'] },
               { ui: 'backchain', cat: 'pro', srsId: 'bs2w1:bc:2', unit: 2, waSec: 'Backchain',
                 title: '🧱 As duas coisas com "and"',
-                ptHint: 'Sou do Brasil e trabalho na Marcom Global.',
-                chain: ['Marcom Global', 'for Marcom Global', 'work for Marcom Global',
-                        'and I work for Marcom Global',
-                        "I'm from Brazil and I work for Marcom Global."] },
+                ptHint: 'Sou do Brasil e trabalho na Whiterock Consultancy.',
+                chain: ['Whiterock Consultancy', 'for Whiterock Consultancy', 'work for Whiterock Consultancy',
+                        'and I work for Whiterock Consultancy',
+                        "I'm from Brazil and I work for Whiterock Consultancy."] },
               { ui: 'backchain', cat: 'pro', srsId: 'bs2w1:bc:3', unit: 2, waSec: 'Backchain',
                 title: '🧱 A frase completa do cartão',
                 ptHint: 'Minha empresa é a Aurora Systems e nossa matriz fica em Dublin.',
@@ -309,7 +309,7 @@
                 sub: 'Sem texto na tela. Ouça quantas vezes quiser.',
                 hideText: true,
                 lines: [
-                  { who: 'Beatriz', en: "I'm Beatriz. I'm from Brazil and I work for Marcom Global." },
+                  { who: 'Beatriz', en: "I'm Beatriz. I'm from Brazil and I work for Whiterock Consultancy." },
                   { who: 'Aisha', en: "I'm Aisha. My company is Nova Energy. Our head office is in Kuwait." },
                   { who: 'Yuki', en: "And I'm Yuki, from Japan. I work for Aurora Systems." }
                 ],
@@ -325,12 +325,12 @@
           },
 
           {
-            id: 'cards', icon: '🪪', name: 'Cartões da Marcom Global', tag: 'speaking', sp: true,
+            id: 'cards', icon: '🪪', name: 'Cartões da Whiterock Consultancy', tag: 'speaking', sp: true,
             items: [
               { ui: 'build', cat: 'fun', srsId: 'bs2w1:card:1', unit: 2, waSec: 'Cartões',
-                title: '🪪 Beatriz Lima · Marcom Global · Brazil · matriz: Rio de Janeiro',
+                title: '🪪 Beatriz Lima · Whiterock Consultancy · Brazil · matriz: Rio de Janeiro',
                 prompt: 'Você é a Beatriz. Diga seu país, sua empresa e a matriz — use "and".',
-                example: "I'm from Brazil and I work for Marcom Global. Our head office is in Rio de Janeiro.",
+                example: "I'm from Brazil and I work for Whiterock Consultancy. Our head office is in Rio de Janeiro.",
                 mustUse: ['brazil', 'and'] },
               { ui: 'build', cat: 'fun', srsId: 'bs2w1:card:2', unit: 2, waSec: 'Cartões',
                 title: '🪪 Tom Okafor · Vertex Logistics · Nigeria · matriz: Dublin',
@@ -886,7 +886,7 @@
               { ui: 'drill', cat: 'pro', srsId: 'bs2w3:drl:answer', unit: 2, waSec: 'Drill · expressões',
                 title: '🔁 Drill 1 — atendendo a ligação', focus: 'empresa',
                 frame: 'Good morning, ___.', ptHint: 'Bom dia, ___.',
-                slots: ['Marcom Global', 'Aurora Systems', 'Delta Foods', 'Orion Bank', 'Nova Energy'] },
+                slots: ['Whiterock Consultancy', 'Aurora Systems', 'Delta Foods', 'Orion Bank', 'Nova Energy'] },
               { ui: 'drill', cat: 'pro', srsId: 'bs2w3:drl:ask', unit: 2, waSec: 'Drill · expressões',
                 title: '🔁 Drill 2 — pedindo por alguém', focus: 'pessoa',
                 frame: 'Can I speak to ___, please?', ptHint: 'Posso falar com ___, por favor?',
@@ -910,7 +910,7 @@
                 title: '🎧 Ligação 1 — a pessoa está',
                 sub: 'Situação nova. Ouça antes de ler.',
                 lines: [
-                  { who: 'Beatriz', en: 'Good morning. Marcom Global.' },
+                  { who: 'Beatriz', en: 'Good morning. Whiterock Consultancy.' },
                   { who: 'Hendrik', en: 'Good morning. Can I speak to Camila, please?' },
                   { who: 'Beatriz', en: 'Yes, of course. One moment.' },
                   { who: 'Hendrik', en: 'Thanks.' }
@@ -980,8 +980,8 @@
             id: 'expr', icon: '💬', name: 'Key expressions', tag: 'speaking', sp: true,
             items: [
               { ui: 'repeat', cat: 'pro', srsId: 'bs2w3:rep:ans', unit: 2, waSec: 'Business Communication',
-                title: '🎤 Atendendo:', target: 'Good morning, Marcom Global. Beatriz speaking.',
-                ptHint: 'Bom dia, Marcom Global. Beatriz falando.' },
+                title: '🎤 Atendendo:', target: 'Good morning, Whiterock Consultancy. Beatriz speaking.',
+                ptHint: 'Bom dia, Whiterock Consultancy. Beatriz falando.' },
               { ui: 'repeat', cat: 'pro', srsId: 'bs2w3:rep:yes', unit: 2, waSec: 'Business Communication',
                 title: '🎤 Dizendo sim:', target: 'Yes, of course. One moment.',
                 ptHint: 'Sim, claro. Um momento.' },
@@ -990,9 +990,9 @@
                 ptHint: 'Ok. Obrigado. Tchau.' },
               { ui: 'build', cat: 'fun', srsId: 'bs2w3:build:ans', unit: 2, waSec: 'Business Communication',
                 title: '📞 Atenda a ligação',
-                prompt: 'Você é o recepcionista da Marcom Global. Atenda dizendo bom dia e o nome da empresa.',
-                example: 'Good morning, Marcom Global.',
-                mustUse: ['good', 'marcom'] },
+                prompt: 'Você é o recepcionista da Whiterock Consultancy. Atenda dizendo bom dia e o nome da empresa.',
+                example: 'Good morning, Whiterock Consultancy.',
+                mustUse: ['good', 'whiterock'] },
               { ui: 'build', cat: 'fun', srsId: 'bs2w3:build:no', unit: 2, waSec: 'Business Communication',
                 title: '📞 Diga que a pessoa não está',
                 prompt: 'Perguntaram pela Yuki, mas ela saiu. Responda educadamente.',
@@ -1064,7 +1064,7 @@
               { ui: 'build', cat: 'fun', srsId: 'bs2w3+:b1', unit: 2, waSec: 'Praticar mais',
                 title: '🔥 Você atende e a pessoa não está',
                 prompt: 'Atenda com o nome da empresa, diga que a pessoa saiu e ofereça anotar o número.',
-                example: "Good afternoon, Marcom Global. I'm sorry, she's out. Can I take your number?",
+                example: "Good afternoon, Whiterock Consultancy. I'm sorry, she's out. Can I take your number?",
                 mustUse: ['sorry'] },
               { ui: 'build', cat: 'spl', srsId: 'bs2w3+:b2', unit: 2, waSec: 'Praticar mais',
                 title: '🔥 Passe um número longo',
@@ -1187,7 +1187,7 @@
               { ui: 'match', cat: 'fun', srsId: 'bs2w4:pt:9',
                 title: '🔗 Ligue as metades da ligação:',
                 pairs: [
-                  ['Good morning,', 'Marcom Global.'],
+                  ['Good morning,', 'Whiterock Consultancy.'],
                   ['Can I speak', 'to Camila, please?'],
                   ['Yes, of course.', 'One moment.'],
                   ["I'm sorry,", "she's out."]
@@ -1201,7 +1201,7 @@
               { ui: 'build', cat: 'fun', srsId: 'bs2w4:st:1', unit: 2, waSec: 'Speaking Test',
                 title: '🏆 Item 1 de 5 — answer a call',
                 prompt: 'O telefone toca na sua empresa. Atenda.',
-                example: 'Good morning, Marcom Global.', mustUse: ['good'] },
+                example: 'Good morning, Whiterock Consultancy.', mustUse: ['good'] },
               { ui: 'build', cat: 'fun', srsId: 'bs2w4:st:2', unit: 2, waSec: 'Speaking Test',
                 title: '🏆 Item 2 de 5 — start a call',
                 prompt: 'Agora você liga. Cumprimente e diga quem é.',
@@ -1230,7 +1230,7 @@
               { ui: 'build', cat: 'fun', srsId: 'bs2w4+:b1', unit: 2, waSec: 'Praticar mais',
                 title: '🔥 Os dois papéis de uma vez',
                 prompt: 'Grave a ligação completa fazendo os dois papéis: quem atende e quem liga.',
-                example: "Good morning, Marcom Global. — Hello. Can I speak to Camila, please? " +
+                example: "Good morning, Whiterock Consultancy. — Hello. Can I speak to Camila, please? " +
                          "— I'm sorry, she's out. — OK. Thanks. Goodbye.",
                 expl: 'É o formato exato do speaking test. Mande pro professor pontuar.' }
             ]

@@ -35,7 +35,7 @@
 
   const SPELL = [
     { ui: 'choice', cat: 'spl', srsId: 'be-u3:s:zip', title: '📮 O CEP em inglês (EUA) chama-se:', main: null, options: opts('zip code', ['post box', 'address line', 'street code']), expl: 'zip code (US) / postcode (UK).' },
-    { ui: 'type', cat: 'spl', srsId: 'be-u3:s:email', title: '📧 Ouça e escreva o e-mail (sem espaços):', tts: 'ana dot costa at marcom dot com', ttsLabel: '🔊 Ouvir', showIfNoTTS: 'ana dot costa at marcom dot com', answers: ['ana.costa@marcom.com'], placeholder: 'nome@empresa.com', expl: '"at" = @ · "dot" = .' },
+    { ui: 'type', cat: 'spl', srsId: 'be-u3:s:email', title: '📧 Ouça e escreva o e-mail (sem espaços):', tts: 'ana dot costa at whiterock dot com', ttsLabel: '🔊 Ouvir', showIfNoTTS: 'ana dot costa at whiterock dot com', answers: ['ana.costa@whiterock.com'], placeholder: 'nome@empresa.com', expl: '"at" = @ · "dot" = .' },
     { ui: 'choice', cat: 'spl', srsId: 'be-u3:s:addr', title: '📮 "Rua 25, 3º andar" em inglês:', main: null, options: opts('25 ... Street, 3rd floor', ['Street 25 floor 3', '3 floor 25 street', 'Floor 3rd of 25']), expl: 'número + rua + andar (ordinal).' }
   ];
 

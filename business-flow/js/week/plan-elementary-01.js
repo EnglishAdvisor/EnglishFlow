@@ -10,7 +10,7 @@
 
    Mesma regra de sempre: O APP NÃO REPETE A AULA. Países/nacionalidades e
    cargos são conhecimento geral (repete à vontade), mas a empresa, os
-   personagens e as situações são autorais — universo Marcom Global, nunca
+   personagens e as situações são autorais — universo Whiterock Consultancy, nunca
    a Marcegaglia/Webmex/Serena Software do livro. */
 (function (root) {
   const DF = root.DF = root.DF || {};

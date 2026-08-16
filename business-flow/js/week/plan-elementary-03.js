@@ -10,7 +10,7 @@
 
    Mesma regra de sempre: O APP NÃO REPETE A AULA. Continentes/países e a
    gramática são conhecimento geral, mas empresas, escritórios e ligações
-   são autorais — universo Marcom Global, nunca LEGO/Bowler Corporation/
+   são autorais — universo Whiterock Consultancy, nunca LEGO/Bowler Corporation/
    Singapore do livro. */
 (function (root) {
   const DF = root.DF = root.DF || {};
@@ -690,7 +690,7 @@
               { ui: 'build', cat: 'fun', srsId: 'be3w4:st:1', unit: 3, waSec: 'Speaking Test',
                 title: '🏆 Item 1 — start the call',
                 prompt: 'Cumprimente e diga quem você é.',
-                example: 'Hello, this is Ana from Marcom Global.', mustUse: ['this is'] },
+                example: 'Hello, this is Ana from Whiterock Consultancy.', mustUse: ['this is'] },
               { ui: 'build', cat: 'fun', srsId: 'be3w4:st:2', unit: 3, waSec: 'Speaking Test',
                 title: '🏆 Item 2 — ask to speak to someone',
                 prompt: 'Pergunte se pode falar com alguém.',

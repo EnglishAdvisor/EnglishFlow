@@ -7,7 +7,7 @@
      semana 15 = U4 W3 · Practically speaking + Business communication
      semana 16 = U4 W4 · Talking point + teste
 
-   Regra de sempre: O APP NÃO REPETE A AULA. Universo autoral Marcom Global. */
+   Regra de sempre: O APP NÃO REPETE A AULA. Universo autoral Whiterock Consultancy. */
 (function (root) {
   const DF = root.DF = root.DF || {};
   DF.PLAN = DF.PLAN || { starter: {}, elementary: {} };
@@ -59,7 +59,7 @@
         {
           icon: '⚙️', name: 'Os 7 verbos do trabalho',
           leaves: [
-            { en: 'work', pt: 'trabalhar — I work for Marcom Global.' },
+            { en: 'work', pt: 'trabalhar — I work for Whiterock Consultancy.' },
             { en: 'live', pt: 'morar — I live in Macaé.' },
             { en: 'make', pt: 'fabricar — We make the products.' },
             { en: 'manage', pt: 'gerenciar — I manage a team.' },
@@ -620,9 +620,9 @@
                 chain: ['them', 'sell them', "don't sell them", "but we don't sell them",
                         "We make the products, but we don't sell them."] },
               { ui: 'backchain', cat: 'pro', srsId: 'bs4w2:bc:3', unit: 4, waSec: 'Backchain',
-                title: '🧱 A pergunta do cargo', ptHint: 'O que você faz na Marcom Global?',
-                chain: ['Global', 'Marcom Global', 'at Marcom Global',
-                        'do you do at Marcom Global', 'What do you do at Marcom Global?'] }
+                title: '🧱 A pergunta do cargo', ptHint: 'O que você faz na Whiterock Consultancy?',
+                chain: ['Consultancy', 'Whiterock Consultancy', 'at Whiterock Consultancy',
+                        'do you do at Whiterock Consultancy', 'What do you do at Whiterock Consultancy?'] }
             ]
           },
 

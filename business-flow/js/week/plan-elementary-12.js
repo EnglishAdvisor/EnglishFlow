@@ -10,7 +10,7 @@
 
    Mesma regra de sempre: O APP NÃO REPETE A AULA. Vocabulário de agenda e
    gramática são conhecimento geral, mas os cronogramas e reuniões são
-   autorais — universo Marcom Global, nunca Original Oils/Greta Helsing
+   autorais — universo Whiterock Consultancy, nunca Original Oils/Greta Helsing
    do livro. */
 (function (root) {
   const DF = root.DF = root.DF || {};

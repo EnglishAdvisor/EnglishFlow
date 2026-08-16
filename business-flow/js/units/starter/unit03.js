@@ -34,9 +34,9 @@
   ];
 
   const SPELL = [
-    { ui: 'choice', cat: 'spl', srsId: 'bs-u3:s:at', title: '📧 Num e-mail, o símbolo @ é lido como:', main: null, options: opts('at', ['and', 'a', 'add']), expl: 'ana@marcom.com → "ana AT marcom DOT com".' },
+    { ui: 'choice', cat: 'spl', srsId: 'bs-u3:s:at', title: '📧 Num e-mail, o símbolo @ é lido como:', main: null, options: opts('at', ['and', 'a', 'add']), expl: 'ana@whiterock.com → "ana AT whiterock DOT com".' },
     { ui: 'choice', cat: 'spl', srsId: 'bs-u3:s:dot', title: '📧 O ponto (.) em endereços é lido como:', main: null, options: opts('dot', ['point', 'spot', 'comma']), expl: '.com = "dot com".' },
-    { ui: 'type', cat: 'spl', srsId: 'bs-u3:s:web', title: '📧 Ouça e escreva o endereço (sem espaços):', tts: 'w w w dot marcom dot com', ttsLabel: '🔊 Ouvir', showIfNoTTS: 'www dot marcom dot com', answers: ['www.marcom.com'], placeholder: 'www.exemplo.com', expl: '"dot" = ponto.' }
+    { ui: 'type', cat: 'spl', srsId: 'bs-u3:s:web', title: '📧 Ouça e escreva o endereço (sem espaços):', tts: 'w w w dot whiterock dot com', ttsLabel: '🔊 Ouvir', showIfNoTTS: 'www dot whiterock dot com', answers: ['www.whiterock.com'], placeholder: 'www.exemplo.com', expl: '"dot" = ponto.' }
   ];
 
   const PHRASES = [

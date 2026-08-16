@@ -8,7 +8,7 @@
      semana 12 = U3 W4 · Talking point + teste
 
    Mesma regra das unidades anteriores: O APP NÃO REPETE A AULA.
-   Universo autoral Marcom Global — nenhum nome, empresa ou diálogo do livro. */
+   Universo autoral Whiterock Consultancy — nenhum nome, empresa ou diálogo do livro. */
 (function (root) {
   const DF = root.DF = root.DF || {};
   DF.PLAN = DF.PLAN || { starter: {}, elementary: {} };
@@ -784,15 +784,15 @@
             items: [
               { ui: 'choice', cat: 'spl', srsId: 'bs3w3:ad:1',
                 title: '📧 Ouça e marque o endereço certo:',
-                tts: 'www dot marcom dash global dot com', ttsLabel: '🔊 Ouvir',
-                autoPlay: true, showIfNoTTS: 'www dot marcom dash global dot com',
+                tts: 'www dot whiterock dash consultancy dot com', ttsLabel: '🔊 Ouvir',
+                autoPlay: true, showIfNoTTS: 'www dot whiterock dash consultancy dot com',
                 options: DF.shuffle([
-                  { label: 'www.marcom-global.com', correct: true },
-                  { label: 'www.marcom.global.com', trap: true },
-                  { label: 'www.marcomglobal.com' }
+                  { label: 'www.whiterock-consultancy.com', correct: true },
+                  { label: 'www.whiterock.consultancy.com', trap: true },
+                  { label: 'www.whiterockconsultancy.com' }
                 ]),
                 trapNote: 'Você trocou dash (-) por dot (.).',
-                expl: 'dash = hífen → marcom-global.' },
+                expl: 'dash = hífen → whiterock-consultancy.' },
               { ui: 'choice', cat: 'spl', srsId: 'bs3w3:ad:2',
                 title: '📧 Ouça e marque o endereço certo:',
                 tts: 'b dot lima at aurora dot com dot br', ttsLabel: '🔊 Ouvir',
@@ -820,8 +820,8 @@
             id: 'sayaddr', icon: '🎤', name: 'Diga o endereço', tag: 'speaking', sp: true,
             items: [
               { ui: 'repeat', cat: 'pro', srsId: 'bs3w3:rep:1', unit: 3, waSec: 'Practically Speaking',
-                title: '🎤 Um site:', target: 'www dot marcom dash global dot com',
-                ptHint: 'www.marcom-global.com' },
+                title: '🎤 Um site:', target: 'www dot whiterock dash consultancy dot com',
+                ptHint: 'www.whiterock-consultancy.com' },
               { ui: 'repeat', cat: 'pro', srsId: 'bs3w3:rep:2', unit: 3, waSec: 'Practically Speaking',
                 title: '🎤 Um e-mail:', target: 'b dot lima at aurora dot com',
                 ptHint: 'b.lima@aurora.com' },
@@ -909,9 +909,9 @@
                 sub: 'Sem texto na tela. Ouça quantas vezes quiser.',
                 hideText: true,
                 lines: [
-                  { who: 'Yuki', en: 'The website is marcom dash global dot com.' },
-                  { who: 'Camila', en: 'Marcom dot global?' },
-                  { who: 'Yuki', en: 'No, dash. Marcom dash global.' },
+                  { who: 'Yuki', en: 'The website is whiterock dash consultancy dot com.' },
+                  { who: 'Camila', en: 'Whiterock dot consultancy?' },
+                  { who: 'Yuki', en: 'No, dash. Whiterock dash consultancy.' },
                   { who: 'Camila', en: 'Ah, with a dash. Thanks.' }
                 ],
                 question: 'Qual símbolo está no endereço?',

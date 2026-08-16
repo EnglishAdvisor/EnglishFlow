@@ -12,7 +12,7 @@
                       o cargo e o nome REAIS do aluno, feedback imediato 24/7.
 
    Por isso nenhum personagem, nome ou diálogo do livro aparece aqui. O universo
-   do app é o escritório fictício "Marcom Global", 100% autoral — o que também
+   do app é o escritório fictício "Whiterock Consultancy", 100% autoral — o que também
    cumpre a ESFERA-PEDAGOGIA item 20 (nada copiado do livro).
 
    ═══ ESTRUTURA ═══
@@ -35,7 +35,7 @@
   const DF = root.DF = root.DF || {};
   DF.PLAN = DF.PLAN || { starter: {}, elementary: {} };
 
-  // Equipe da Marcom Global — elenco autoral do app, sem relação com o livro
+  // Equipe da Whiterock Consultancy — elenco autoral do app, sem relação com o livro
   const JOBS = [
     { say: 'IT technician', art: 'an', pt: 'técnico de TI', does: 'fixes computers' },
     { say: 'finance director', art: 'a', pt: 'diretora financeira', does: 'manages the money' },
@@ -266,7 +266,7 @@
             items: [
               {
                 ui: 'dialogue', cat: 'fun', srsId: 'bs1w1:dlg:1',
-                title: '🎧 No elevador da Marcom Global',
+                title: '🎧 No elevador da Whiterock Consultancy',
                 sub: 'Situação nova — não é o diálogo da aula. Ouça antes de ler.',
                 lines: [
                   { who: 'Beatriz', en: "Morning. Are you new here?" },
@@ -319,7 +319,7 @@
           },
 
           {
-            id: 'badges', icon: '🪪', name: 'Crachás da Marcom Global', tag: 'speaking', sp: true,
+            id: 'badges', icon: '🪪', name: 'Crachás da Whiterock Consultancy', tag: 'speaking', sp: true,
             items: [
               { ui: 'build', cat: 'fun', srsId: 'bs1w1:badge:1', unit: 1, waSec: 'Crachás',
                 title: '🪪 Aisha Rahman · Engineer',
@@ -932,7 +932,7 @@
             id: 'client', icon: '🎤', name: 'A visita do cliente', tag: 'speaking', sp: true,
             items: [
               { ui: 'repeat', cat: 'pro', srsId: 'bs1w4:rep:1', unit: 1, waSec: 'Talking Point',
-                title: '🎤 Um cliente chega na recepção:', target: "Good afternoon. Welcome to Marcom Global.", ptHint: 'Boa tarde. Bem-vindo à Marcom Global.' },
+                title: '🎤 Um cliente chega na recepção:', target: "Good afternoon. Welcome to Whiterock Consultancy.", ptHint: 'Boa tarde. Bem-vindo à Whiterock Consultancy.' },
               { ui: 'repeat', cat: 'pro', srsId: 'bs1w4:rep:2', unit: 1, waSec: 'Talking Point',
                 title: '🎤 Você pede a soletração:', target: 'Can you spell your surname, please?', ptHint: 'Pode soletrar seu sobrenome, por favor?' },
               { ui: 'repeat', cat: 'pro', srsId: 'bs1w4:rep:3', unit: 1, waSec: 'Talking Point',

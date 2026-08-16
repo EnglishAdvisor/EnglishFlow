@@ -15,7 +15,7 @@
    drills de vocabulário (Nike, Airbus, Ford, BP, Panasonic — conhecimento
    geral, sem colidir com os exemplos exatos do livro) e empresas fictícias
    novas (Solara Motors, Falcon Aerospace, Trendline) só nos diálogos/textos
-   autorais, seguindo o universo Marcom Global já estabelecido. */
+   autorais, seguindo o universo Whiterock Consultancy já estabelecido. */
 (function (root) {
   const DF = root.DF = root.DF || {};
   DF.PLAN = DF.PLAN || { starter: {}, elementary: {} };
@@ -621,7 +621,7 @@
                 ptHint: 'Ela tem fábricas em três países.' },
               { ui: 'build', cat: 'gra', srsId: 'bs5w2:build:1', unit: 5, waSec: 'Language at work',
                 title: '🗣️ Descreva o que uma empresa NÃO faz',
-                prompt: 'Escolha uma empresa (real ou da Marcom Global) e diga o que ela não faz.',
+                prompt: 'Escolha uma empresa (real ou da Whiterock Consultancy) e diga o que ela não faz.',
                 example: "It doesn't make food. It sells software.",
                 mustUse: ["doesn't"] }
             ]
@@ -815,7 +815,7 @@
                   { who: 'Grace', en: 'The total price is one hundred and forty-four dollars.' },
                   { who: 'Beatriz', en: 'Great. Can you confirm my order by email?' },
                   { who: 'Grace', en: "Yes, of course. What's your email?" },
-                  { who: 'Beatriz', en: "It's beatriz@marcomglobal.com." }
+                  { who: 'Beatriz', en: "It's beatriz@whiterockconsultancy.com." }
                 ],
                 question: 'O que a Beatriz pede no final?',
                 options: DF.shuffle([

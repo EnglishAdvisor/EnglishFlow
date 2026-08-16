@@ -10,7 +10,7 @@
 
    Mesma regra de sempre: O APP NÃO REPETE A AULA. Hotel, dinheiro e comida
    são conhecimento geral, mas a reserva, os planos e os pedidos são
-   autorais — universo Marcom Global, nunca Jenny Chiang/Metro Hotel do livro. */
+   autorais — universo Whiterock Consultancy, nunca Jenny Chiang/Metro Hotel do livro. */
 (function (root) {
   const DF = root.DF = root.DF || {};
   DF.PLAN = DF.PLAN || { starter: {}, elementary: {} };

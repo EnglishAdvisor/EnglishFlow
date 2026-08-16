@@ -10,7 +10,7 @@
 
    Mesma regra de sempre: O APP NÃO REPETE A AULA. Departamentos e
    preposições são conhecimento geral, mas o escritório, o mapa e as
-   ligações são autorais — universo Marcom Global, nunca Komancom/Jim/
+   ligações são autorais — universo Whiterock Consultancy, nunca Komancom/Jim/
    Olivia do livro. */
 (function (root) {
   const DF = root.DF = root.DF || {};

@@ -44,8 +44,8 @@
               'Nigeria', 'Portugal', 'Mexico', 'the USA', 'Italy', 'India', 'the UK'],
     city: ['Rio de Janeiro', 'Tokyo', 'Lagos', 'Amsterdam', 'Lisbon',
            'Dublin', 'Munich', 'Singapore'],
-    // empresas fictícias do universo Marcom Global — nada do livro, nada de marca real
-    company: ['Marcom Global', 'Aurora Systems', 'Delta Foods',
+    // empresas fictícias do universo Whiterock Consultancy — nada do livro, nada de marca real
+    company: ['Whiterock Consultancy', 'Aurora Systems', 'Delta Foods',
               'Nova Energy', 'Vertex Logistics', 'Orion Bank'],
     // Unit 3 — Workplace. Três formas do MESMO lugar; escolha pela moldura:
     //   placeThe    → "They are in {placeThe}."     (lugar definido)

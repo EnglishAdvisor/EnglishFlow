@@ -10,7 +10,7 @@
 
    Mesma regra de sempre: O APP NÃO REPETE A AULA. Qualidades pessoais e
    gramática são conhecimento geral, mas as vagas, agendas e situações são
-   autorais — universo Marcom Global, nunca Kasia/Bruno/Dolores do livro. */
+   autorais — universo Whiterock Consultancy, nunca Kasia/Bruno/Dolores do livro. */
 (function (root) {
   const DF = root.DF = root.DF || {};
   DF.PLAN = DF.PLAN || { starter: {}, elementary: {} };

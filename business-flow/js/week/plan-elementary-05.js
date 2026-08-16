@@ -10,7 +10,7 @@
 
    Mesma regra de sempre: O APP NÃO REPETE A AULA. Documentos e gramática são
    conhecimento geral, mas os e-mails, problemas e ligações são autorais —
-   universo Marcom Global, nunca José/Gosport/Uniqlo do livro. */
+   universo Whiterock Consultancy, nunca José/Gosport/Uniqlo do livro. */
 (function (root) {
   const DF = root.DF = root.DF || {};
   DF.PLAN = DF.PLAN || { starter: {}, elementary: {} };

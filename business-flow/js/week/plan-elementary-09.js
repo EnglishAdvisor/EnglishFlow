@@ -10,7 +10,7 @@
 
    Mesma regra de sempre: O APP NÃO REPETE A AULA. Adjetivos de competição e
    gramática são conhecimento geral, mas as empresas e cotações são
-   autorais — universo Marcom Global, nunca Aldi/Lidl/Weblines do livro. */
+   autorais — universo Whiterock Consultancy, nunca Aldi/Lidl/Weblines do livro. */
 (function (root) {
   const DF = root.DF = root.DF || {};
   DF.PLAN = DF.PLAN || { starter: {}, elementary: {} };
