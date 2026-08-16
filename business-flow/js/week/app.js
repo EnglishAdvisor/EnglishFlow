@@ -726,6 +726,7 @@
       if (q.get('k') === WK.weekKey(DF.state.name, DF.state.trail, u, n)) {
         const novo = !WK.isOpen(u, n);
         WK.openUpTo(u, n);
+        if (q.get('only') === '1') onlyWeek = { u: u, n: n };
         if (novo) setTimeout(function () { DF.toast('🔓 Semana liberada pelo professor!'); }, 700);
       } else {
         setTimeout(function () {
