@@ -157,9 +157,41 @@
   // no modo teste, marca só em memória (deixa o professor avançar de passo
   // em passo na cadeia) mas nunca grava no localStorage do aparelho dele.
   WK.markStep = function (u, n, id) {
+    const already = open['done:' + stKey(u, n, id)];
     open['done:' + stKey(u, n, id)] = 1;
-    if (!WK.isPreviewing()) { saveOpen(); pingPractice(); }
+    if (!WK.isPreviewing()) {
+      saveOpen();
+      pingPractice();
+      if (!already) showKhpGain();
+    }
   };
+
+  // "+15 KHP" subindo e sumindo, toda vez que um exercicio da semana e
+  // concluido pela primeira vez (nao repete se o aluno reabre um
+  // exercicio ja feito). So feedback visual/sonoro - o KHP de verdade
+  // (por posicao real na trilha) e calculado no Hub, nao aqui. Reusa o
+  // som 'unlock' que ja existe (sintetizado, sem arquivo novo).
+  let khpStyleInjected = false;
+  function showKhpGain() {
+    if (DF.AU) DF.AU.sfx('unlock');
+    if (!khpStyleInjected) {
+      khpStyleInjected = true;
+      const style = document.createElement('style');
+      style.textContent =
+        '@keyframes khp-float { 0% { transform: translate(-50%,0) scale(0.8); opacity: 0; } ' +
+        '15% { transform: translate(-50%,-10px) scale(1.05); opacity: 1; } ' +
+        '75% { transform: translate(-50%,-46px) scale(1); opacity: 1; } ' +
+        '100% { transform: translate(-50%,-64px) scale(0.95); opacity: 0; } }';
+      document.head.appendChild(style);
+    }
+    const el = document.createElement('div');
+    el.textContent = '+15 KHP';
+    el.style.cssText = 'position:fixed;left:50%;top:28%;z-index:9999;pointer-events:none;' +
+      'font-weight:800;font-size:22px;color:#fbbf24;text-shadow:0 2px 10px rgba(0,0,0,.5);' +
+      'animation:khp-float 1.1s ease-out forwards;';
+    document.body.appendChild(el);
+    setTimeout(function () { el.remove(); }, 1200);
+  }
 
   // Avisa o Hub (englishflow, outro site) que o aluno praticou hoje -
   // alimenta so o badge verde/cinza do calendario dele, nada mais.
