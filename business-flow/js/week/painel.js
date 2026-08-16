@@ -1,8 +1,8 @@
 /* ENGLISH FLOW — week/painel.js
    HUB DO PROFESSOR (uso interno do Felipe — não é tela de aluno).
 
-   Uma página só: a lista de alunos (clique → aluno.html, tela privada de
-   evolução/calendário/destrava) + os jogos e projetos que já funcionam hoje.
+   Uma página só: o calendário-mestre do mês e a lista de alunos (clique →
+   aluno.html, tela privada de evolução/calendário/destrava).
 
    ⚠️ PRIVACIDADE: os nomes dos alunos ficam SÓ no localStorage desta máquina.
    Nada de nome de aluno neste arquivo — ele vai pro Git e é publicado no
@@ -63,37 +63,6 @@
   P.linkOffshore = function (a) {
     return location.href.replace(/[^/]*$/, '') + 'offshore.html?a=' + encodeURIComponent(a.nome);
   };
-
-  // jogos e projetos que já funcionam hoje (edite aqui quando publicar algo novo)
-  // Só UM produto fica ativo pra valer: o painel semanal (link do grupo de
-  // inscrição é o linkFixo do semana.html). Os outros são protótipos —
-  // ficam listados, mas marcados inativos, pra retomar no futuro.
-  const PROJETOS = [
-    { icon: '🎧', nome: 'ENGLISH FLOW — painel semanal (Business)',
-      desc: 'O produto ativo — é este link que vai no grupo de inscrição do aluno',
-      href: 'semana.html?a=Demo&t=starter', tag: 'ativo' },
-    { icon: '🌊', nome: 'Deep Flow — Oil & Gas', desc: 'Protótipo — jogo da torre, trilha O&G',
-      href: '../deep-flow/index.html', tag: 'inativo' },
-    { icon: '🏘️', nome: 'Life Flow — For Life', desc: 'Protótipo — jogo da torre, trilha For Life',
-      href: '../life-flow/index.html', tag: 'inativo' },
-    { icon: '🏢', nome: 'Business Flow (antigo)', desc: 'Protótipo — torre Business, substituída pelo painel semanal',
-      href: 'index.html', tag: 'inativo' },
-    { icon: '🛢️', nome: 'RIG — Oil & Gas', desc: 'Jogo da trilha O&G',
-      href: '../RIG/index.html', tag: 'inativo' },
-    { icon: '🌊', nome: 'SUBSEA — Oil & Gas', desc: 'Jogo da trilha O&G',
-      href: '../SUBSEA/index.html', tag: 'inativo' },
-    { icon: '🏢', nome: 'TOWER — Business', desc: 'Jogo da trilha Business',
-      href: '../TOWER/index.html', tag: 'inativo' },
-    { icon: '🐊', nome: 'CUCA — For Life', desc: 'Jogo da trilha For Life',
-      href: '../CUCA/index.html', tag: 'inativo' },
-    { icon: '🛢️', nome: 'FirstOil', desc: 'Jogo de introdução à trilha O&G',
-      href: '../FirstOil/index.html', tag: 'inativo' },
-    { icon: '🌳', nome: 'Árvore de cápsulas — OG1', desc: 'Navegação das cápsulas de OG1 por unidade',
-      href: '../oil-gas/arvore-de-capsulas.html', tag: 'inativo' },
-    { icon: '📦', nome: 'Capsules (todas as trilhas)',
-      desc: 'Navegação por cápsula de OG1, Business Starter, Business Elementary e For Life — pra consulta e reaproveitamento futuro',
-      href: 'https://englishadvisor.github.io/EnglishFlow/capsulas-arquivo.html', tag: 'inativo' }
-  ];
 
   function copiar(txt, btn, okLabel) {
     DF.copyText(txt).then(function (ok) {
@@ -245,21 +214,6 @@
     c.appendChild(DF.el('p', 'muted small center',
       '🔒 A lista fica só neste aparelho. Clique num aluno pra ver evolução, ' +
       'calendário e gerar os links de liberação.'));
-
-    // ── nossos jogos e projetos ──
-    c.appendChild(DF.el('div', 'pnl-section-h', '🗂️ Nossos jogos e projetos'));
-    c.appendChild(DF.el('p', 'muted small',
-      'Só o painel semanal está ativo — os outros são protótipos, guardados pro futuro.'));
-    PROJETOS.forEach(function (p) {
-      const row = DF.el('a', 'proj-row' + (p.tag === 'inativo' ? ' proj-off' : ''));
-      row.href = p.href; row.target = '_blank';
-      row.innerHTML =
-        '<span class="tp-ic">' + p.icon + '</span>' +
-        '<span class="proj-info"><b>' + DF.esc(p.nome) + '</b>' +
-        '<small>' + DF.esc(p.desc) + '</small></span>' +
-        '<span class="st-tag' + (p.tag === 'ativo' ? ' sp' : '') + '">' + p.tag + '</span>';
-      c.appendChild(row);
-    });
   };
 
   // ── calendário-mestre: mês corrido, todos os alunos, quem tem aula quando ──

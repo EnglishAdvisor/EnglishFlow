@@ -319,17 +319,6 @@ button.tp-head {
   font-size: 13px; padding: 2px 4px;
 }
 
-.proj-row {
-  display: flex; align-items: center; gap: 11px; padding: 12px 13px;
-  border: 1px solid var(--line); border-radius: 13px; margin-bottom: 9px;
-  background: var(--card); text-decoration: none; color: var(--tx);
-}
-.proj-info { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0; }
-.proj-info b { font-size: 14px; }
-.proj-info small { font-size: 12px; color: var(--tx2); }
-.proj-off { opacity: .5; }
-.proj-off:hover { opacity: .8; }
-
 /* ---------- evolução (painel do aluno) ---------- */
 .evo-stat { flex: 1; text-align: center; padding: 12px 8px; border: 1px solid var(--line);
   border-radius: 12px; background: var(--card); }
