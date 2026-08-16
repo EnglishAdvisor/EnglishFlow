@@ -158,8 +158,24 @@
   // em passo na cadeia) mas nunca grava no localStorage do aparelho dele.
   WK.markStep = function (u, n, id) {
     open['done:' + stKey(u, n, id)] = 1;
-    if (!WK.isPreviewing()) saveOpen();
+    if (!WK.isPreviewing()) { saveOpen(); pingPractice(); }
   };
+
+  // Avisa o Hub (englishflow, outro site) que o aluno praticou hoje -
+  // alimenta so o badge verde/cinza do calendario dele, nada mais.
+  // Fire-and-forget: sem bloquear a UI, sem travar em erro de rede/CORS,
+  // e nunca chamado em modo previa (professor testando nao deve marcar
+  // "praticou" no calendario de ninguem).
+  function pingPractice() {
+    try {
+      fetch('https://english-flow-alpha.vercel.app/api/practice-ping', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: DF.state.name, track: DF.state.trail }),
+        keepalive: true
+      }).catch(function () { /* offline/CORS - ignora */ });
+    } catch (e) { /* ignora */ }
+  }
 
   function plan(u) {
     const t = DF.PLAN[DF.state.trail || 'starter'] || {};
