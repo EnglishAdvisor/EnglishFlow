@@ -663,7 +663,7 @@
         r.appendChild(DF.el('span', 'l-pt', DF.esc(lf.pt)));
         if (DF.SP.ttsAvailable()) {
           const sp = DF.el('button', 'l-sp', '🔊');
-          sp.onclick = function (e) { e.stopPropagation(); DF.SP.speak(lf.en, { rate: 0.85 }); };
+          sp.onclick = function (e) { e.stopPropagation(); DF.SP.speak(lf.en.replace(' ·+', ''), { rate: 0.85 }); };
           r.appendChild(sp);
         }
         body.appendChild(r);
